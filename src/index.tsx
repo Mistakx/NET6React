@@ -10,7 +10,6 @@ if (container !== null) {
 
     const root = createRoot(container);
     root.render(
-        <React.StrictMode>
 
             <BrowserRouter>
                 <Routes>
@@ -18,7 +17,6 @@ if (container !== null) {
                 </Routes>
             </BrowserRouter>
 
-        </React.StrictMode>,
     );
 
 }
