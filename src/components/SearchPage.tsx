@@ -4,19 +4,11 @@ import SpotifyWebApi from "spotify-web-api-js";
 import SpotifyAuthenticator from "../hooks/SpotifyAuthenticator";
 import SearchResults from "./SearchResults";
 import {SearchContent} from 'spotify-types'
-
-// import SearchResponse = SpotifyApi.SearchResponse;
+import {Platform} from "../models/ComponentProperties/Platform";
 
 function SearchPage(): JSX.Element {
 
-    /**
-     * <ul>
-     *     <li>0 - Youtube</li>
-     *     <li>1 - Spotify</li>
-     *     <li>2 - TikTok</li>
-     * </ul>
-     */
-    const platformNames = ["Youtube", "Spotify", "TikTok"];
+    let platformNames: Platform[] = ["YouTube", "Spotify", "TikTok"];
     const spotifyApi = new SpotifyWebApi();
     const spotifyAccessToken = SpotifyAuthenticator()
 
@@ -39,9 +31,8 @@ function SearchPage(): JSX.Element {
     const [searchResults, setSearchResults] = useState<SearchContent>()
 
     // Player
-    const [currentlyPlayingPlatform, setCurrentlyPlayingPlatform] = useState();
-    const [isPlaying, setIsPlaying] = React.useState(false)
-    const [playingId, setPlayingId] = React.useState()
+    const [playingPlatform, setPlayingPlatform] = useState<Platform>();
+    const [playingId, setPlayingId] = useState<string>()
 
     /**
      * Searches the selected platform and updates the page results.
@@ -53,8 +44,9 @@ function SearchPage(): JSX.Element {
 
         try {
             if (spotifyAccessToken && selectedPlatform === platformNames[1]) {
-                let spotifyResults = await spotifyApi.search(searchBarQuery, ["album", "artist", "track"])
-                setSearchResults(spotifyResults as SearchContent);
+                let spotifyResults = await spotifyApi.searchTracks(searchBarQuery, {type: "track", limit: 40})
+                // @ts-ignore
+                setSearchResults(spotifyResults);
             }
         } catch (e) {
             alert(e);
@@ -62,25 +54,19 @@ function SearchPage(): JSX.Element {
 
     }
 
-    async function playSpotify() {
-        return
-    }
-
     let searchResultsTable;
     if (searchResults) {
-        // @ts-ignore
-        searchResultsTable = <SearchResults searchedPlatform={"Spotify"} hasSearched={hasSearched} searchResults={searchResults}/>
+        searchResultsTable =
+            <SearchResults searchedPlatform={JSON.parse(JSON.stringify(selectedPlatform))} hasSearched={hasSearched} searchResults={searchResults} setPlayingPlatform={setPlayingPlatform} setPlayingId={setPlayingId}/>
     }
-
 
     return (
 
         <div className="SearchPage">
 
-            {/*Platform select*/}
             {"Selected Platform:"}
             <Form.Select onChange={(event) => {
-                setSelectedPlatform(event.target.value)
+                setSelectedPlatform(event.target.value as Platform)
             }}>
                 <option value={platformNames[0]}> {platformNames[0]} </option>
                 <option value={platformNames[1]}> {platformNames[1]} </option>
@@ -103,7 +89,6 @@ function SearchPage(): JSX.Element {
             {searchResultsTable}
 
         </div>
-
 
     )
 }
