@@ -1,30 +1,39 @@
 import React from 'react';
 import SpotifyTrack from "./SpotifyTrack";
 import isEmptyObject from "../utils/IsEmptyObject"
-import {SearchResultsProperties} from "../models/ComponentProperties/SearchResultsProperties";
+import SearchResultsStore from "../stores/SearchResultsStore";
 
-function SearchResults(props: SearchResultsProperties): JSX.Element {
+function SearchResults(): JSX.Element {
+
+    const hasSearched = SearchResultsStore(state => state.hasSearched)
+    const searchResultsPlatform = SearchResultsStore(state => state.searchResultsPlatform)
+    const searchResults = SearchResultsStore(state => state.searchResults)
 
     let searchItems;
-    if (props.searchResults && props.searchedPlatform === "Spotify" && props.searchResults.tracks) {
-        searchItems = props.searchResults.tracks.items.map(item => <SpotifyTrack track={item} setPlayingPlatform={props.setPlayingPlatform} setPlayingId={props.setPlayingId}/>)
+    if (hasSearched && searchResults && searchResultsPlatform === "Spotify" && searchResults.tracks) {
+        searchItems = searchResults.tracks.items.map(item => <SpotifyTrack track={item}/>)
     }
 
 
     let searchTable;
     // No results
-    if (props.hasSearched && props.searchResults && isEmptyObject(props.searchResults)) {
+    if (hasSearched && searchResults && isEmptyObject(searchResults)) {
         searchTable = <p>No results</p>;
     }
     // Valid results
-    else if (props.hasSearched && props.searchResults && !isEmptyObject(props.searchResults)) {
+    else if (hasSearched && searchResults && !isEmptyObject(searchResults)) {
         searchTable = <ul className="items"> {searchItems} </ul>
     }
 
 
     return (
         <div>
+
+            {console.log("Selected Platform")}
+            {console.log(searchResultsPlatform)}
+
             {searchTable}
+
         </div>
     )
 

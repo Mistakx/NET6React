@@ -1,5 +1,5 @@
 import {SearchContent} from "spotify-types";
-import {Platform} from "./Platform";
+import {Platform} from "../Platform";
 import React from "react";
 
 export interface SearchResultsProperties {
