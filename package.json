@@ -18,7 +18,8 @@
     "styled-components": "^5.3.5",
     "typescript": "^4.6.3",
     "web-vitals": "^2.1.4",
-    "zustand": "^3.7.2"
+    "zustand": "^3.7.2",
+    "youtube-api-search-typed": "^1.0.0"
 
   },
   "devDependencies": {
@@ -33,7 +34,8 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/request": "^2.48.8",
     "@types/spotify-api": "^0.0.14",
-    "spotify-types": "^1.0.5"
+    "spotify-types": "^1.0.5",
+    "@types/youtube":"^0.0.46"
   },
   "scripts": {
     "start": "react-scripts start",

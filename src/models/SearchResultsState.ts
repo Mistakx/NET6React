@@ -1,5 +1,6 @@
 import {Platform} from "./Platform";
 import {SearchContent} from "spotify-types";
+import {Video} from "youtube-api-search-typed/dist";
 
 export interface SearchResultsState {
 
@@ -9,7 +10,7 @@ export interface SearchResultsState {
     searchResultsPlatform: Platform | null
     setSearchResultsPlatform: (resultsPlatform: Platform) => void;
 
-    searchResults: SearchContent | null
-    setSearchResults: (results: SearchContent) => void;
+    searchResults: SearchContent | Video[] | null
+    setSearchResults: (results: SearchContent | Video[]) => void;
 
 }

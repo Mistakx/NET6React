@@ -5,6 +5,7 @@ import SpotifyWebApi from "spotify-web-api-js";
 import SpotifyAuthenticator from "../hooks/SpotifyAuthenticator";
 import {SearchContent} from "spotify-types";
 import SearchResultsStore from '../stores/SearchResultsStore'
+import YoutubeSearch, { Video } from "youtube-api-search-typed/dist"
 
 function SearchBar(): JSX.Element {
 
@@ -12,7 +13,6 @@ function SearchBar(): JSX.Element {
 
     const spotifyApi = new SpotifyWebApi();
     const spotifyAccessToken = SpotifyAuthenticator()
-
     /**
      * Sets the access token in the Spotify Api.
      */
@@ -24,6 +24,7 @@ function SearchBar(): JSX.Element {
         }
 
     }, [spotifyAccessToken]);
+
 
     const setHasSearched = SearchResultsStore(state => state.setHasSearched)
     const setSearchResultsPlatform = SearchResultsStore(state => state.setSearchResultsPlatform)
@@ -41,12 +42,27 @@ function SearchBar(): JSX.Element {
         setHasSearched(true);
 
         try {
+
+            if (selectedPlatform === platformNames[0]) {
+                let youtubeResults = await YoutubeSearch({
+                    key: 'AIzaSyCqxUkoWYb78UH5e3BEzZmHHcCkxAb9C-g',
+                    term: searchBarQuery,
+                    part: "snippet",
+                    type: "video",
+                    maxResults: "40"
+                })
+                setSearchResults(youtubeResults);
+                setSearchResultsPlatform("YouTube")
+
+            }
+
             if (spotifyAccessToken && selectedPlatform === platformNames[1]) {
                 let spotifyResults = await spotifyApi.searchTracks(searchBarQuery, {type: "track", limit: 40})
                 setSearchResults(spotifyResults as unknown as SearchContent);
                 setSearchResultsPlatform("Spotify");
 
             }
+
         } catch (e) {
             alert(e);
         }
