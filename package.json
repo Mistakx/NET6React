@@ -19,7 +19,8 @@
     "typescript": "^4.6.3",
     "web-vitals": "^2.1.4",
     "zustand": "^3.7.2",
-    "youtube-api-search-typed": "^1.0.0"
+    "youtube-api-search-typed": "^1.0.0",
+    "react-youtube": "^8.0.0"
 
   },
   "devDependencies": {

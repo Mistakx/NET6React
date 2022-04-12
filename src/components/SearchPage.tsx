@@ -1,12 +1,7 @@
 import React, {FormEvent, useEffect, useState} from 'react';
-import Form from 'react-bootstrap/Form'
-import SpotifyWebApi from "spotify-web-api-js";
-import SpotifyAuthenticator from "../hooks/SpotifyAuthenticator";
 import SearchResults from "./SearchResults";
-import {SearchContent} from 'spotify-types'
-import {Platform} from "../models/Platform";
 import SearchBar from "./SearchBar";
-import SearchResultsStore from "../stores/SearchResultsStore";
+import Player from "../components/Player";
 
 function SearchPage(): JSX.Element {
 
@@ -15,6 +10,8 @@ function SearchPage(): JSX.Element {
         <div className="SearchPage">
 
             <SearchBar/>
+
+            <Player/>
 
             <SearchResults/>
 

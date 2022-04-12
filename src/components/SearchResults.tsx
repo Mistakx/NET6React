@@ -30,14 +30,7 @@ function SearchResults(): JSX.Element {
 
 
     return (
-        <div>
-
-            {console.log("Selected Platform")}
-            {console.log(searchResultsPlatform)}
-
-            {searchTable}
-
-        </div>
+        <div> {searchTable} </div>
     )
 
 }
