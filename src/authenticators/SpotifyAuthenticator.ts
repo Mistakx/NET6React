@@ -2,23 +2,23 @@ import {useEffect, useState} from 'react';
 import axios from 'axios';
 import base64 from "base-64";
 import qs from "qs";
-import {SpotifyAuthorization} from "../models/SpotifyAuthorization";
+import {SpotifyAuthorization} from "../models/ApiRequests/SpotifyAuthorization";
 
 /**
  * Hook responsible for continuously getting a Spotify access token.
  * Each access token expires after an hour, after which a new one is re-negotiated.
  */
-function SpotifyAuthenticator(): string {
+function SpotifyAuthenticator() {
 
     async function getSpotifyAuthorization() {
 
-        const clientId = process.env.REACT_APP_CLIENT_ID;
-        const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
+        const spotifyClientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+        const spotifyClientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
 
         const url = "https://accounts.spotify.com/api/token"
         const headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic ' + base64.encode(clientId + ':' + clientSecret)
+            'Authorization': 'Basic ' + base64.encode(spotifyClientId + ':' + spotifyClientSecret)
         }
         const data = {'grant_type': 'client_credentials'};
         const options = {
@@ -48,11 +48,11 @@ function SpotifyAuthenticator(): string {
 
             (async () => {
 
-                console.log("Negotiating Spotify access token for the first time.");
+                console.log("%cNegotiating Spotify access token for the first time.", "color: green");
                 let spotifyAuthorization = await getSpotifyAuthorization();
                 setAccessToken(spotifyAuthorization.access_token);
                 setExpiresIn(spotifyAuthorization.expires_in);
-                console.log("Ended Spotify access token negotiation for the first time.");
+                console.log("%cEnded Spotify access token negotiation for the first time.", "color: green");
 
             })()
 
@@ -67,17 +67,17 @@ function SpotifyAuthenticator(): string {
 
         if (expiresIn) {
 
-            console.log("Started timer for renegotiating Spotify access token.")
+            console.log("%cStarted timer for renegotiating Spotify access token.", "color: green")
 
             const interval = setInterval(() => {
 
 
                 (async () => {
-                    console.log("Renegotiating Spotify access token.")
+                    console.log("%cRenegotiating Spotify access token.", "color: green")
                     let spotifyAuthorization = await getSpotifyAuthorization()
                     setAccessToken(spotifyAuthorization.access_token);
                     setExpiresIn(spotifyAuthorization.expires_in);
-                    console.log("Ended Spotify access token negotiation.")
+                    console.log("%cEnded Spotify access token negotiation.", "color: green")
 
                 })();
 

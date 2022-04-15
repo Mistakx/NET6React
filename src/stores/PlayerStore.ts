@@ -1,5 +1,5 @@
 import create from 'zustand'
-import {PlayerState} from "../models/PlayerState";
+import {PlayerState} from "../models/States/PlayerState";
 
 const PlayerStore = create<PlayerState>((set) => ({
 

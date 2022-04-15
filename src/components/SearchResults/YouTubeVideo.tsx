@@ -1,7 +1,7 @@
 import React from 'react'
-import {SpotifyTrackProperties} from "../models/ComponentProperties/SpotifyTrackProperties";
-import PlayerStore from "../stores/PlayerStore";
-import {YouTubeVideoProperties} from "../models/ComponentProperties/YouTubeVideoProperties";
+import {SpotifyTrackProperties} from "../../models/ComponentProperties/SpotifyTrackProperties";
+import PlayerStore from "../../stores/PlayerStore";
+import {YouTubeVideoProperties} from "../../models/ComponentProperties/YouTubeVideoProperties";
 
 function YouTubeVideo(props: YouTubeVideoProperties): JSX.Element {
 

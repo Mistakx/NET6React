@@ -1,6 +1,6 @@
 import React from 'react'
-import {SpotifyTrackProperties} from "../models/ComponentProperties/SpotifyTrackProperties";
-import PlayerStore from "../stores/PlayerStore";
+import {SpotifyTrackProperties} from "../../models/ComponentProperties/SpotifyTrackProperties";
+import PlayerStore from "../../stores/PlayerStore";
 
 function SpotifyTrack(props: SpotifyTrackProperties): JSX.Element {
 

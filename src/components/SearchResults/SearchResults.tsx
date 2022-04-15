@@ -1,9 +1,11 @@
 import React from 'react';
 import SpotifyTrack from "./SpotifyTrack";
-import isEmptyObject from "../utils/IsEmptyObject"
-import SearchResultsStore from "../stores/SearchResultsStore";
+import isEmptyObject from "../../utils/IsEmptyObject"
+import SearchResultsStore from "../../stores/SearchResultsStore";
 import YouTubeVideo from "./YouTubeVideo";
 import {Video} from "youtube-api-search-typed/dist";
+import VimeoVideo from "./VimeoVideo";
+import {VimeoSearch, VimeoVideo as IVimeoVideo} from "../../models/ApiRequests/VimeoSearch"
 
 function SearchResults(): JSX.Element {
 
@@ -16,6 +18,8 @@ function SearchResults(): JSX.Element {
         searchItems = searchResults.tracks.items.map(item => <SpotifyTrack track={item}/>)
     } else if (searchResultsPlatform === "YouTube" && searchResults) {
         searchItems = (searchResults as Video[]).map(item => <YouTubeVideo video={item}/>)
+    } else if (searchResultsPlatform === "Vimeo" && searchResults) {
+        searchItems = (searchResults as VimeoSearch).data.map(item => <VimeoVideo video={item}/>)
     }
 
     let searchTable;

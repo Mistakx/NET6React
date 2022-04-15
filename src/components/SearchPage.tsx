@@ -1,7 +1,7 @@
-import React, {FormEvent, useEffect, useState} from 'react';
-import SearchResults from "./SearchResults";
+import React from 'react';
+import SearchResults from "./SearchResults/SearchResults";
 import SearchBar from "./SearchBar";
-import Player from "../components/Player";
+import Player from "./Player/Player";
 
 function SearchPage(): JSX.Element {
 
