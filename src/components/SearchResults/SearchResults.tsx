@@ -5,7 +5,7 @@ import SearchResultsStore from "../../stores/SearchResultsStore";
 import YouTubeVideo from "./YouTubeVideo";
 import {Video} from "youtube-api-search-typed/dist";
 import VimeoVideo from "./VimeoVideo";
-import {VimeoSearch, VimeoVideo as IVimeoVideo} from "../../models/ApiRequests/VimeoSearch"
+import {VimeoSearch} from "../../models/ApiRequests/VimeoSearch"
 
 function SearchResults(): JSX.Element {
 

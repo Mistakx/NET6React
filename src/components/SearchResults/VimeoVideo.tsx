@@ -1,9 +1,6 @@
 import React from 'react'
-import {SpotifyTrackProperties} from "../../models/ComponentProperties/SpotifyTrackProperties";
 import PlayerStore from "../../stores/PlayerStore";
-import {YouTubeVideoProperties} from "../../models/ComponentProperties/YouTubeVideoProperties";
 import {VimeoVideoProperties} from "../../models/ComponentProperties/VimeoVideoProperties";
-import VimeoAuthenticator from "../../authenticators/VimeoAuthenticator";
 
 function VimeoVideo(props: VimeoVideoProperties): JSX.Element {
 

@@ -1,5 +1,4 @@
 import React from 'react'
-import {SpotifyTrackProperties} from "../../models/ComponentProperties/SpotifyTrackProperties";
 import PlayerStore from "../../stores/PlayerStore";
 import {YouTubeVideoProperties} from "../../models/ComponentProperties/YouTubeVideoProperties";
 

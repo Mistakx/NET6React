@@ -1,25 +1,22 @@
-import React, {FormEvent, useEffect, useState} from 'react';
+import React, {FormEvent, useState} from 'react';
 import Form from 'react-bootstrap/Form'
 import {Platform} from "../models/Platform";
-import {SearchContent} from "spotify-types";
 import SearchResultsStore from '../stores/SearchResultsStore'
-import YoutubeSearch from "youtube-api-search-typed/dist"
-import VimeoAuthenticator from "../authenticators/VimeoAuthenticator";
-import {TwitchAuthenticator} from "../authenticators/TwitchAuthenticator";
-import SpotifyAuthenticator from "../authenticators/SpotifyAuthenticator";
 import searchSpotifyTracks from "../apiSearches/SpotifySearch";
 import searchYouTubeVideos from "../apiSearches/YouTubeSearch";
+import searchVimeoVideos from "../apiSearches/VimeoSearch";
+import searchTwitchChannels from "../apiSearches/TwitchSearch";
+import AccessTokensStore from "../stores/AccessTokensStore";
 
 function SearchBar(): JSX.Element {
 
-    let platformNames: Platform[] = ["YouTube", "Spotify", "TikTok", "Vimeo"];
-
-    const spotifyAccessToken = SpotifyAuthenticator()
-    const twitchAccessToken = TwitchAuthenticator()
+    let platformNames: Platform[] = ["YouTube", "Spotify", "TikTok", "Vimeo", "Twitch"];
 
     const setHasSearched = SearchResultsStore(state => state.setHasSearched)
     const setSearchResultsPlatform = SearchResultsStore(state => state.setSearchResultsPlatform)
     const setSearchResults = SearchResultsStore(state => state.setSearchResults)
+    const spotifyAccessToken = AccessTokensStore(state => state.spotifyAccessToken)
+    const twitchAccessToken = AccessTokensStore(state => state.twitchAccessToken)
     const [selectedPlatform, setSelectedPlatform] = useState<Platform>("YouTube");
     const [searchBarQuery, setSearchBarQuery] = useState("");
 
@@ -35,26 +32,21 @@ function SearchBar(): JSX.Element {
         try {
 
             if (selectedPlatform === platformNames[0]) {
-
-
-                let youtubeResults = await searchYouTubeVideos(searchBarQuery, 20)
+                let youtubeResults = await searchYouTubeVideos(searchBarQuery, 40, null)
                 setSearchResults(youtubeResults);
-                setSearchResultsPlatform("YouTube")
-
-            }
-
-            else if (spotifyAccessToken && selectedPlatform === platformNames[1]) {
+                setSearchResultsPlatform(platformNames[0])
+            } else if (spotifyAccessToken && selectedPlatform === platformNames[1]) {
                 let spotifyResults = await searchSpotifyTracks(searchBarQuery, spotifyAccessToken, 40)
                 setSearchResults(spotifyResults);
-                setSearchResultsPlatform("Spotify");
-
-            }
-
-            else if (selectedPlatform === platformNames[3]) {
-                // let vimeoVideos = await vimeoApi.searchVideo(searchBarQuery)
-                // setSearchResults(vimeoVideos);
-                // setSearchResultsPlatform("Vimeo");
-
+                setSearchResultsPlatform(platformNames[1]);
+            } else if (selectedPlatform === platformNames[3]) {
+                let vimeoVideos = await searchVimeoVideos(searchBarQuery, 40, 1)
+                setSearchResults(vimeoVideos);
+                setSearchResultsPlatform(platformNames[3]);
+            } else if (twitchAccessToken && selectedPlatform === platformNames[4]) {
+                let twitchChannels = await searchTwitchChannels(searchBarQuery, twitchAccessToken, 40, 1)
+                setSearchResults(twitchChannels);
+                setSearchResultsPlatform(platformNames[4]);
             }
 
         } catch (e) {
@@ -75,6 +67,7 @@ function SearchBar(): JSX.Element {
                 <option value={platformNames[1]}> {platformNames[1]} </option>
                 <option value={platformNames[2]}> {platformNames[2]} </option>
                 <option value={platformNames[3]}> {platformNames[3]} </option>
+                <option value={platformNames[4]}> {platformNames[4]} </option>
             </Form.Select>
 
             {/*Search bar*/}

@@ -1,6 +1,5 @@
 import React from 'react';
 import PlayerStore from '../../stores/PlayerStore'
-import YouTube from 'react-youtube';
 import YouTubePlayer from "./YouTubePlayer";
 import SpotifyPlayer from "./SpotifyPlayer";
 import VimeoPlayer from "./VimeoPlayer";

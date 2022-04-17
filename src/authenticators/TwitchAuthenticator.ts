@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
-import base64 from "base-64";
 import qs from "qs";
 import {TwitchAuthorization} from "../models/ApiRequests/TwitchAuthorization";
 
@@ -55,7 +54,7 @@ export function TwitchAuthenticator() {
                 let twitchAuthorization = await getTwitchAuthorization();
                 setAccessToken(twitchAuthorization.access_token);
                 setExpiresIn(twitchAuthorization.expires_in);
-                console.log("%cEnded Twitch access token negotiation for the first time.", "color: purple");
+                console.log("%cEnded Twitch access token negotiation for the first time: " + twitchAuthorization.access_token, "color: purple");
 
             })()
 
