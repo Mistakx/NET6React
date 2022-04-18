@@ -1,6 +1,5 @@
-import {Track} from "spotify-types";
-import {Video} from "youtube-api-search-typed/dist";
+import {YouTubeVideo} from "../ApiSearches/YouTubeSearchResult";
 
 export interface YouTubeVideoProperties {
-    video: Video;
+    video: YouTubeVideo;
 }

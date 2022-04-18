@@ -1,7 +1,5 @@
 import create from 'zustand'
 import {SearchResultsState} from "../models/States/SearchResultsState";
-import searchResults from "../components/SearchResults/SearchResults";
-import {Video} from "youtube-api-search-typed/dist";
 
 const SearchResultsStore = create<SearchResultsState>((set) => ({
 

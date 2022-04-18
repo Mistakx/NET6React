@@ -1,7 +1,6 @@
 import axios from "axios";
 import base64 from "base-64";
-import {VimeoSearch} from "../models/ApiRequests/VimeoSearch";
-
+import {VimeoSearchResult} from "../models/ApiSearches/VimeoSearchResult";
 
 /**
  * https://developer.vimeo.com/api/reference/videos#search_videos
@@ -28,7 +27,7 @@ async function searchVimeoVideos(searchQuery: string, limit: number = 20, page: 
 
     // @ts-ignore
     let vimeoSearchResponse = await axios(options);
-    let vimeoSearchResults: VimeoSearch = vimeoSearchResponse.data;
+    let vimeoSearchResults: VimeoSearchResult = vimeoSearchResponse.data;
     return vimeoSearchResults;
 
 

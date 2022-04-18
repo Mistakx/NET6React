@@ -1,22 +1,22 @@
 import React, {FormEvent, useState} from 'react';
 import Form from 'react-bootstrap/Form'
-import {Platform} from "../models/Platform";
-import SearchResultsStore from '../stores/SearchResultsStore'
-import searchSpotifyTracks from "../apiSearches/SpotifySearch";
-import searchYouTubeVideos from "../apiSearches/YouTubeSearch";
-import searchVimeoVideos from "../apiSearches/VimeoSearch";
-import searchTwitchChannels from "../apiSearches/TwitchSearch";
-import AccessTokensStore from "../stores/AccessTokensStore";
+import {Platform} from "../../models/Platform";
+import SearchResultsStore from '../../stores/SearchResultsStore'
+import searchSpotifyTracks from "../../apiSearches/SpotifySearch";
+import searchYouTubeVideos from "../../apiSearches/YouTubeSearch";
+import searchVimeoVideos from "../../apiSearches/VimeoSearch";
+import searchTwitchChannels from "../../apiSearches/TwitchSearch";
+import {SearchBarProperties} from "../../models/ComponentProperties/SearchBarProperties";
+import platformNames from "./PlatformNames";
 
-function SearchBar(): JSX.Element {
+function SearchBar(props: SearchBarProperties): JSX.Element {
 
-    let platformNames: Platform[] = ["YouTube", "Spotify", "TikTok", "Vimeo", "Twitch"];
+    console.log("%cRendered search bar.", "color: cyan")
+
 
     const setHasSearched = SearchResultsStore(state => state.setHasSearched)
     const setSearchResultsPlatform = SearchResultsStore(state => state.setSearchResultsPlatform)
     const setSearchResults = SearchResultsStore(state => state.setSearchResults)
-    const spotifyAccessToken = AccessTokensStore(state => state.spotifyAccessToken)
-    const twitchAccessToken = AccessTokensStore(state => state.twitchAccessToken)
     const [selectedPlatform, setSelectedPlatform] = useState<Platform>("YouTube");
     const [searchBarQuery, setSearchBarQuery] = useState("");
 
@@ -35,19 +35,41 @@ function SearchBar(): JSX.Element {
                 let youtubeResults = await searchYouTubeVideos(searchBarQuery, 40, null)
                 setSearchResults(youtubeResults);
                 setSearchResultsPlatform(platformNames[0])
-            } else if (spotifyAccessToken && selectedPlatform === platformNames[1]) {
-                let spotifyResults = await searchSpotifyTracks(searchBarQuery, spotifyAccessToken, 40)
-                setSearchResults(spotifyResults);
-                setSearchResultsPlatform(platformNames[1]);
+            } else if (selectedPlatform === platformNames[1]) {
+
+                if (props.spotifyAccessToken) {
+                    let spotifyResults = await searchSpotifyTracks(searchBarQuery, props.spotifyAccessToken.current, 40)
+                    setSearchResults(spotifyResults);
+                    setSearchResultsPlatform(platformNames[1]);
+                } else {
+                    throw new Error("No Spotify access token found.")
+                }
+
             } else if (selectedPlatform === platformNames[3]) {
                 let vimeoVideos = await searchVimeoVideos(searchBarQuery, 40, 1)
                 setSearchResults(vimeoVideos);
                 setSearchResultsPlatform(platformNames[3]);
-            } else if (twitchAccessToken && selectedPlatform === platformNames[4]) {
-                let twitchChannels = await searchTwitchChannels(searchBarQuery, twitchAccessToken, 40, 1)
-                setSearchResults(twitchChannels);
-                setSearchResultsPlatform(platformNames[4]);
+            } else if (selectedPlatform === platformNames[4]) {
+
+                if (props.twitchAccessToken) {
+                    let twitchChannels = await searchTwitchChannels(searchBarQuery, props.twitchAccessToken.current, 40, 1)
+                    // setSearchResults(twitchChannels);
+                    // setSearchResultsPlatform(platformNames[4]);
+                } else {
+                    throw new Error("No Twitch access token found.")
+                }
+
             }
+            else if (selectedPlatform === "Test") {
+
+                if (props.testAccessToken) {
+                    console.log("Test access token: " + props.testAccessToken.current)
+                } else {
+                    throw new Error("No test access token found.")
+                }
+
+            }
+
 
         } catch (e) {
             alert(e);
@@ -68,6 +90,7 @@ function SearchBar(): JSX.Element {
                 <option value={platformNames[2]}> {platformNames[2]} </option>
                 <option value={platformNames[3]}> {platformNames[3]} </option>
                 <option value={platformNames[4]}> {platformNames[4]} </option>
+                <option value={"Test"}> {"Test"} </option>
             </Form.Select>
 
             {/*Search bar*/}

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Video} from "youtube-api-search-typed/dist";
+import {YouTubeSearchResult} from "../models/ApiSearches/YouTubeSearchResult";
 
 /**
  * https://developers.google.com/youtube/v3/docs/search/list
@@ -23,9 +23,9 @@ async function searchYouTubeVideos(query: string, limit: number = 20, page: stri
     };
 
     // @ts-ignore
-    let youtubeVideosResponse = await axios(options);
-    let youtubeVideos: Video[] = youtubeVideosResponse.data.items;
-    return youtubeVideos;
+    let youtubeResponse = await axios(options);
+    let youtubeSearchResult: YouTubeSearchResult  = youtubeResponse.data;
+    return youtubeSearchResult;
 
 
 }

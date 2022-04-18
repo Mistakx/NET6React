@@ -1,5 +1,5 @@
-import {Track} from "spotify-types";
+import {SpotifyTrack} from "../ApiSearches/SpotifySearchResult";
 
 export interface SpotifyTrackProperties {
-    track: Track;
+    track: SpotifyTrack;
 }

@@ -1,19 +1,17 @@
 import React from 'react';
 import SearchResults from "./SearchResults/SearchResults";
-import SearchBar from "./SearchBar";
 import Player from "./Player/Player";
-import SpotifyAuthenticator from "../authenticators/SpotifyAuthenticator";
-import TwitchAuthenticator from "../authenticators/TwitchAuthenticator";
+import AuthenticatedSearchBar from "./SearchBar/AuthenticatedSearchBar";
 
 function SearchPage(): JSX.Element {
 
-    console.log("%cRendered search page.", "blue")
+    console.log("%cRendered search page.", "color: cyan")
 
     return (
 
         <div className="SearchPage">
 
-            <SearchBar/>
+            <AuthenticatedSearchBar/>
 
             <Player/>
 

@@ -1,9 +1,48 @@
-export interface VimeoSearch {
+// https://developer.vimeo.com/api/reference/videos#search_videos
+
+export interface VimeoSearchResult {
     total: number;
     page: number;
     per_page: number;
     paging: Paging;
     data: VimeoVideo[];
+}
+
+export interface VimeoVideo {
+    uri: string;
+    name: string;
+    description: string;
+    type: string;
+    link: string;
+    player_embed_url: string;
+    duration: number;
+    width: number;
+    language: string;
+    height: number;
+    embed: Embed;
+    created_time: Date;
+    modified_time: Date;
+    release_time: Date;
+    content_rating: string[];
+    content_rating_class: string;
+    rating_mod_locked: boolean;
+    license: string;
+    privacy: Privacy;
+    pictures: Pictures;
+    tags: Tag[];
+    stats: Stats;
+    categories: Category[];
+    uploader: Uploader;
+    metadata: Metadata3;
+    user: User;
+    play: Play;
+    app: App;
+    status: string;
+    resource_key: string;
+    upload?: any;
+    transcode?: any;
+    is_playable: boolean;
+    has_audio: boolean;
 }
 
 interface Paging {
@@ -467,41 +506,5 @@ interface App {
     uri: string;
 }
 
-export interface VimeoVideo {
-    uri: string;
-    name: string;
-    description: string;
-    type: string;
-    link: string;
-    player_embed_url: string;
-    duration: number;
-    width: number;
-    language: string;
-    height: number;
-    embed: Embed;
-    created_time: Date;
-    modified_time: Date;
-    release_time: Date;
-    content_rating: string[];
-    content_rating_class: string;
-    rating_mod_locked: boolean;
-    license: string;
-    privacy: Privacy;
-    pictures: Pictures;
-    tags: Tag[];
-    stats: Stats;
-    categories: Category[];
-    uploader: Uploader;
-    metadata: Metadata3;
-    user: User;
-    play: Play;
-    app: App;
-    status: string;
-    resource_key: string;
-    upload?: any;
-    transcode?: any;
-    is_playable: boolean;
-    has_audio: boolean;
-}
 
 

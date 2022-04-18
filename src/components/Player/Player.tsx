@@ -11,17 +11,11 @@ function Player(): JSX.Element {
 
     let player;
     if (playingPlatform === "Spotify") {
-
         player = <SpotifyPlayer/>
-
     } else if (playingPlatform === "YouTube") {
-
         player = <YouTubePlayer/>;
-
     } else if (playingPlatform === "Vimeo") {
-
         player = <VimeoPlayer/>;
-
     }
 
     return (<div id="Player"> {player} </div>)
