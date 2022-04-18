@@ -1,8 +1,8 @@
 import {Platform} from "../Platform";
-import {SearchContent} from "spotify-types";
 import {VimeoSearchResult} from "../ApiSearches/VimeoSearchResult";
-import {YouTubeSearchResult, YouTubeVideo} from "../ApiSearches/YouTubeSearchResult";
+import {YouTubeSearchResult} from "../ApiSearches/YouTubeSearchResult";
 import {SpotifySearchResult} from "../ApiSearches/SpotifySearchResult";
+import {TwitchSearchResult} from "../ApiSearches/TwitchChannelsSearchResult";
 
 export interface SearchResultsState {
 
@@ -12,7 +12,7 @@ export interface SearchResultsState {
     searchResultsPlatform: Platform | null
     setSearchResultsPlatform: (resultsPlatform: Platform) => void;
 
-    searchResults: SpotifySearchResult | YouTubeSearchResult | VimeoSearchResult | null
-    setSearchResults: (results: SpotifySearchResult | YouTubeSearchResult | VimeoSearchResult) => void;
+    searchResults: SpotifySearchResult | YouTubeSearchResult | VimeoSearchResult | TwitchSearchResult | null
+    setSearchResults: (results: SpotifySearchResult | YouTubeSearchResult | VimeoSearchResult | TwitchSearchResult) => void;
 
 }

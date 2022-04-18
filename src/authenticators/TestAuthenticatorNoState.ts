@@ -1,18 +1,17 @@
 import React, {useEffect, useRef} from 'react';
 
 /**
- * Hook responsible for continuously getting a Spotify access token.
- * Each access token expires after an hour, after which a new one is re-negotiated.
+ * Hook responsible for continuously getting a test access token.
  */
 function TestAuthenticatorNoState() {
 
     const accessToken = useRef<string>()
-    let expiresIn: number;
+    const expiresIn = useRef<number>();
 
     console.log("%cTestAuthenticator render: " + accessToken.current, "color: cyan");
 
     /**
-     * Negotiate access token for the fist time.
+     * Continuously negotiate access token.
      */
     useEffect(() => {
 
@@ -20,34 +19,21 @@ function TestAuthenticatorNoState() {
 
             console.log("%c1st time negotiation: Beginning.", "color: orange");
             accessToken.current = "alpha";
-            expiresIn = 75;
+            expiresIn.current = 75;
             console.log("%c1st time negotiation: Complete: " + "alpha", "color: orange");
 
-        })()
-
-    });
-
-    /**
-     * Continuously renegotiate access token after it expires.
-     */
-    useEffect(() => {
-
-        if (expiresIn) {
-            console.log("%cRenegotiation: Started timer: " + (expiresIn - 60) + " seconds.", "color: orange")
+            console.log("%cRenegotiation: Started timer: " + (expiresIn.current - 60) + " seconds.", "color: orange")
             setInterval(() => {
 
                 (async () => {
                     console.log("%cRenegotiation: Access token expired. Renegotiating test access token.", "color: orange")
                     accessToken.current = ("beta");
-                    expiresIn = (75);
-                    console.log("%cEnded test access token renegotiation: " + "beta", "color: orange");
+                    expiresIn.current = (75);
+                    console.log("%Renegotiation: Ended: " + "beta", "color: orange");
                 })();
 
-            }, (expiresIn - 60) * 1000);
-        } else {
-            console.log("%cRenegotiation: 1st negotiation hasn't happened yet.", "color: orange");
-        }
-
+            }, (expiresIn.current - 60) * 1000);
+        })()
 
     });
 

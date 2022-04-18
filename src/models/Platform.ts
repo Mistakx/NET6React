@@ -1,1 +1,1 @@
-export type Platform = "YouTube" | "Spotify" | "TikTok" | "Vimeo" | "Twitch" | "Test"
+export type Platform = "YouTube" | "Spotify" | "Vimeo" | "Twitch"

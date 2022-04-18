@@ -1,12 +1,12 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import axios from 'axios';
 import qs from "qs";
 import {TwitchAuthorization} from "../models/ApiAuthorizations";
 
 /**
  * Hook responsible for continuously getting a Twitch access token.
- * Each access token expires after an hour, after which a new one is re-negotiated.
- */
+ * https://dev.twitch.tv/docs/authentication/getting-tokens-oauth/#client-credentials-grant-flow */
+
 export function TwitchAuthenticator() {
 
     async function getTwitchAuthorization() {
@@ -38,60 +38,43 @@ export function TwitchAuthenticator() {
 
     }
 
-    const [accessToken, setAccessToken] = useState<string>();
-    const [expiresIn, setExpiresIn] = useState<number>();
+    const accessToken = useRef<string>()
+    const expiresIn = useRef<number>();
 
     /**
-     * Negotiate access token for the fist time.
+     * Continuously negotiate access token.
      */
     useEffect(() => {
 
-        if (!accessToken) {
 
-            (async () => {
+        (async () => {
 
-                console.log("%cNegotiating Twitch access token for the first time.", "color: purple");
-                let twitchAuthorization = await getTwitchAuthorization();
-                setAccessToken(twitchAuthorization.access_token);
-                setExpiresIn(twitchAuthorization.expires_in);
-                console.log("%cEnded Twitch access token negotiation for the first time: " + twitchAuthorization.access_token, "color: purple");
+            console.log("%c1st time negotiation: Beginning.", "color: purple");
+            let twitchAuthorization = await getTwitchAuthorization();
+            accessToken.current = twitchAuthorization.access_token;
+            expiresIn.current = twitchAuthorization.expires_in;
+            console.log("%c1st time negotiation: Complete: " + accessToken.current, "color: purple");
 
-            })()
-
-        }
-
-    });
-
-    /**
-     * Renegotiate access token after it expires.
-     */
-    useEffect(() => {
-
-        if (expiresIn) {
-
-            console.log("%cStarted timer for renegotiating Twitch access token.", "color: purple")
-
-            const interval = setInterval(() => {
+            console.log("%cRenegotiation: Started timer: " + (expiresIn.current - 60) + " seconds.", "color: purple")
+            setInterval(() => {
 
 
                 (async () => {
-                    console.log("%cRenegotiating Twitch access token.", "color: purple")
+                    console.log("%cRenegotiation: Access token expired. Renegotiating.", "color: purple")
                     let twitchAuthorization = await getTwitchAuthorization()
-                    setAccessToken(twitchAuthorization.access_token);
-                    setExpiresIn(twitchAuthorization.expires_in);
-                    console.log("%cEnded Twitch access token negotiation.", "color: purple")
+                    accessToken.current = twitchAuthorization.access_token;
+                    expiresIn.current = twitchAuthorization.expires_in;
+                    console.log("%Renegotiation: Ended: " + accessToken.current, "color: purple");
 
                 })();
 
-            }, (expiresIn - 60) * 1000);
+            }, (expiresIn.current - 60) * 1000);
 
-            clearInterval(interval);
+        })()
 
-        }
+    });
 
-    }, [expiresIn]);
-
-    return accessToken as string; // It's guaranteed that after the first useEffect access token is a string
+    return accessToken as React.MutableRefObject<string>; // It's guaranteed that after the first useEffect access token is a string
 
 }
 

@@ -5,14 +5,14 @@ import SearchResultsStore from '../../stores/SearchResultsStore'
 import searchSpotifyTracks from "../../apiSearches/SpotifySearch";
 import searchYouTubeVideos from "../../apiSearches/YouTubeSearch";
 import searchVimeoVideos from "../../apiSearches/VimeoSearch";
-import searchTwitchChannels from "../../apiSearches/TwitchSearch";
+import {searchTwitchClipsByBroadcasterId} from "../../apiSearches/TwitchSearch";
 import {SearchBarProperties} from "../../models/ComponentProperties/SearchBarProperties";
-import platformNames from "./PlatformNames";
 
 function SearchBar(props: SearchBarProperties): JSX.Element {
 
     console.log("%cRendered search bar.", "color: cyan")
 
+    const platformNames: Platform[] = ["YouTube", "Spotify", "Vimeo", "Twitch"];
 
     const setHasSearched = SearchResultsStore(state => state.setHasSearched)
     const setSearchResultsPlatform = SearchResultsStore(state => state.setSearchResultsPlatform)
@@ -42,37 +42,28 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                     setSearchResults(spotifyResults);
                     setSearchResultsPlatform(platformNames[1]);
                 } else {
-                    throw new Error("No Spotify access token found.")
+                    alert("No Spotify access token found.")
                 }
 
-            } else if (selectedPlatform === platformNames[3]) {
+            } else if (selectedPlatform === platformNames[2]) {
                 let vimeoVideos = await searchVimeoVideos(searchBarQuery, 40, 1)
                 setSearchResults(vimeoVideos);
-                setSearchResultsPlatform(platformNames[3]);
-            } else if (selectedPlatform === platformNames[4]) {
+                setSearchResultsPlatform(platformNames[2]);
+            } else if (selectedPlatform === platformNames[3]) {
 
                 if (props.twitchAccessToken) {
-                    let twitchChannels = await searchTwitchChannels(searchBarQuery, props.twitchAccessToken.current, 40, 1)
-                    // setSearchResults(twitchChannels);
-                    // setSearchResultsPlatform(platformNames[4]);
+                    let twitchChannels = await searchTwitchClipsByBroadcasterId(searchBarQuery, props.twitchAccessToken.current, 40, null)
+                    setSearchResults(twitchChannels);
+                    setSearchResultsPlatform(platformNames[3]);
                 } else {
-                    throw new Error("No Twitch access token found.")
-                }
-
-            }
-            else if (selectedPlatform === "Test") {
-
-                if (props.testAccessToken) {
-                    console.log("Test access token: " + props.testAccessToken.current)
-                } else {
-                    throw new Error("No test access token found.")
+                    alert("No Twitch access token found.")
                 }
 
             }
 
 
-        } catch (e) {
-            alert(e);
+        } catch (exception) {
+            alert(exception);
         }
 
     }
@@ -89,8 +80,6 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                 <option value={platformNames[1]}> {platformNames[1]} </option>
                 <option value={platformNames[2]}> {platformNames[2]} </option>
                 <option value={platformNames[3]}> {platformNames[3]} </option>
-                <option value={platformNames[4]}> {platformNames[4]} </option>
-                <option value={"Test"}> {"Test"} </option>
             </Form.Select>
 
             {/*Search bar*/}

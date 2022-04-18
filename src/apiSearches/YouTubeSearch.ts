@@ -12,7 +12,6 @@ async function searchYouTubeVideos(query: string, limit: number = 20, page: stri
         + "&q=" + query
         + "&type=video"
         + "&key=" + process.env.REACT_APP_YOUTUBE_API_KEY
-
     if (page) {
         url += "&pageToken=" + page;
     }

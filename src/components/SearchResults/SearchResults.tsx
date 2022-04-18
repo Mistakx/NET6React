@@ -7,6 +7,8 @@ import VimeoVideo from "./VimeoVideo";
 import {VimeoSearchResult} from "../../models/ApiSearches/VimeoSearchResult"
 import {SpotifySearchResult} from "../../models/ApiSearches/SpotifySearchResult"
 import {YouTubeSearchResult} from "../../models/ApiSearches/YouTubeSearchResult"
+import {TwitchSearchResult} from "../../models/ApiSearches/TwitchChannelsSearchResult";
+import TwitchClip from "./TwitchClip";
 
 function SearchResults(): JSX.Element {
 
@@ -21,6 +23,8 @@ function SearchResults(): JSX.Element {
         searchItems = (searchResult as YouTubeSearchResult).items.map(item => <YouTubeVideo video={item}/>)
     } else if (searchResultsPlatform === "Vimeo" && searchResult) {
         searchItems = (searchResult as VimeoSearchResult).data.map(item => <VimeoVideo video={item}/>)
+    } else if (searchResultsPlatform === "Twitch" && searchResult) {
+        searchItems = (searchResult as TwitchSearchResult).data.map(item => <TwitchClip clip={item}/>)
     }
 
     let searchTable;
