@@ -1,5 +1,5 @@
 import axios from "axios";
-import {YouTubeSearchResult} from "../models/ApiSearches/YouTubeSearchResult";
+import {YouTubeSearchVideoResult} from "../models/ApiSearches/YouTubeSearchResult";
 
 /**
  * https://developers.google.com/youtube/v3/docs/search/list
@@ -23,7 +23,7 @@ async function searchYouTubeVideos(query: string, limit: number = 20, page: stri
 
     // @ts-ignore
     let youtubeResponse = await axios(options);
-    let youtubeSearchResult: YouTubeSearchResult  = youtubeResponse.data;
+    let youtubeSearchResult: YouTubeSearchVideoResult  = youtubeResponse.data;
     return youtubeSearchResult;
 
 

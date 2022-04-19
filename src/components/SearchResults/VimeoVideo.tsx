@@ -4,13 +4,13 @@ import {VimeoVideoProperties} from "../../models/ComponentProperties/VimeoVideoP
 
 function VimeoVideo(props: VimeoVideoProperties): JSX.Element {
 
-    const setPlayingPlatform = PlayerStore(state => state.setPlayingPlatform)
+    const setPlayingType = PlayerStore(state => state.setPlayingType)
     const setPlayingId = PlayerStore(state => state.setPlayingId)
 
     const videoId = props.video.uri.split("/videos/")[1]
 
     function playVideo() {
-        setPlayingPlatform("Vimeo")
+        setPlayingType("VimeoVideo")
         setPlayingId(videoId)
     }
 

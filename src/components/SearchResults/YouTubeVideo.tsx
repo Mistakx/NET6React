@@ -4,11 +4,11 @@ import {YouTubeVideoProperties} from "../../models/ComponentProperties/YouTubeVi
 
 function YouTubeVideo(props: YouTubeVideoProperties): JSX.Element {
 
-    const setPlayingPlatform = PlayerStore(state => state.setPlayingPlatform)
+    const setPlayingType = PlayerStore(state => state.setPlayingType)
     const setPlayingId = PlayerStore(state => state.setPlayingId)
 
     function playVideo() {
-        setPlayingPlatform("YouTube")
+        setPlayingType("YouTubeVideo")
         setPlayingId(props.video.id.videoId)
     }
 

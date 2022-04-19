@@ -1,18 +1,22 @@
-import {Platform} from "../Platform";
-import {VimeoSearchResult} from "../ApiSearches/VimeoSearchResult";
-import {YouTubeSearchResult} from "../ApiSearches/YouTubeSearchResult";
-import {SpotifySearchResult} from "../ApiSearches/SpotifySearchResult";
-import {TwitchSearchResult} from "../ApiSearches/TwitchChannelsSearchResult";
+import {SearchResult} from "../ApiSearches/PlatformSearches";
+import {VimeoSearchVideoResult} from "../ApiSearches/VimeoSearchResult";
+import {YouTubeSearchVideoResult} from "../ApiSearches/YouTubeSearchResult";
+import {SpotifyTracksPage} from "../ApiSearches/SpotifySearchResults";
+import {
+    TwitchSearchChannelResult,
+    TwitchSearchClipResult,
+    TwitchSearchVideoResult
+} from "../ApiSearches/TwitchSearchResults";
 
 export interface SearchResultsState {
 
     hasSearched: boolean;
     setHasSearched: (hasSearched: boolean) => void;
 
-    searchResultsPlatform: Platform | null
-    setSearchResultsPlatform: (resultsPlatform: Platform) => void;
+    searchResultType: SearchResult | null
+    setSearchResultType: (resultType: SearchResult) => void;
 
-    searchResults: SpotifySearchResult | YouTubeSearchResult | VimeoSearchResult | TwitchSearchResult | null
-    setSearchResults: (results: SpotifySearchResult | YouTubeSearchResult | VimeoSearchResult | TwitchSearchResult) => void;
+    searchResults: SpotifyTracksPage | YouTubeSearchVideoResult | VimeoSearchVideoResult | TwitchSearchClipResult | TwitchSearchVideoResult | TwitchSearchChannelResult | null
+    setSearchResults: (results: SpotifyTracksPage | YouTubeSearchVideoResult | VimeoSearchVideoResult | TwitchSearchClipResult | TwitchSearchVideoResult | TwitchSearchChannelResult) => void;
 
 }

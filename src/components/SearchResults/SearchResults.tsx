@@ -4,35 +4,45 @@ import isEmptyObject from "../../utils/IsEmptyObject"
 import SearchResultsStore from "../../stores/SearchResultsStore";
 import YouTubeVideo from "./YouTubeVideo";
 import VimeoVideo from "./VimeoVideo";
-import {VimeoSearchResult} from "../../models/ApiSearches/VimeoSearchResult"
-import {SpotifySearchResult} from "../../models/ApiSearches/SpotifySearchResult"
-import {YouTubeSearchResult} from "../../models/ApiSearches/YouTubeSearchResult"
-import {TwitchSearchResult} from "../../models/ApiSearches/TwitchChannelsSearchResult";
+import {VimeoSearchVideoResult} from "../../models/ApiSearches/VimeoSearchResult"
+import {SpotifyTracksPage} from "../../models/ApiSearches/SpotifySearchResults"
+import {YouTubeSearchVideoResult} from "../../models/ApiSearches/YouTubeSearchResult"
+import {
+    TwitchSearchChannelResult,
+    TwitchSearchClipResult,
+    TwitchSearchVideoResult
+} from "../../models/ApiSearches/TwitchSearchResults";
 import TwitchClip from "./TwitchClip";
+import TwitchVideo from "./TwitchVideo";
+import TwitchLive from "./TwitchLive";
 
 function SearchResults(): JSX.Element {
 
     const hasSearched = SearchResultsStore(state => state.hasSearched)
-    const searchResultsPlatform = SearchResultsStore(state => state.searchResultsPlatform)
+    const searchResultType = SearchResultsStore(state => state.searchResultType)
     const searchResult = SearchResultsStore(state => state.searchResults)
 
     let searchItems;
-    if (searchResultsPlatform === "Spotify" && searchResult) {
-        searchItems = (searchResult as SpotifySearchResult).tracks.items.map(item => <SpotifyTrack track={item}/>)
-    } else if (searchResultsPlatform === "YouTube" && searchResult) {
-        searchItems = (searchResult as YouTubeSearchResult).items.map(item => <YouTubeVideo video={item}/>)
-    } else if (searchResultsPlatform === "Vimeo" && searchResult) {
-        searchItems = (searchResult as VimeoSearchResult).data.map(item => <VimeoVideo video={item}/>)
-    } else if (searchResultsPlatform === "Twitch" && searchResult) {
-        searchItems = (searchResult as TwitchSearchResult).data.map(item => <TwitchClip clip={item}/>)
+    if (searchResultType === "YouTubeVideo" && searchResult) {
+        searchItems = (searchResult as YouTubeSearchVideoResult).items.map(item => <YouTubeVideo video={item}/>)
+    } else if (searchResultType === "SpotifyTrack" && searchResult) {
+        searchItems = (searchResult as SpotifyTracksPage).items.map(item => <SpotifyTrack track={item}/>)
+    } else if (searchResultType === "VimeoVideo" && searchResult) {
+        searchItems = (searchResult as VimeoSearchVideoResult).data.map(item => <VimeoVideo video={item}/>)
+    } else if (searchResultType === "TwitchClip" && searchResult) {
+        searchItems = (searchResult as TwitchSearchClipResult).data.map(item => <TwitchClip clip={item}/>)
+    } else if (searchResultType === "TwitchVideo" && searchResult) {
+        searchItems = (searchResult as TwitchSearchVideoResult).data.map(item => <TwitchVideo video={item}/>)
+    } else if (searchResultType === "TwitchLive" && searchResult) {
+        searchItems = (searchResult as TwitchSearchChannelResult).data.map(item => <TwitchLive channel={item}/>)
     }
 
     let searchTable;
-    // No results
+// No results
     if (hasSearched && searchResult && isEmptyObject(searchResult)) {
         searchTable = <p>No results</p>;
     }
-    // Valid results
+// Valid results
     else if (hasSearched && searchResult && !isEmptyObject(searchResult)) {
         searchTable = <ul className="items"> {searchItems} </ul>
     }

@@ -8,9 +8,9 @@ const SearchResultsStore = create<SearchResultsState>((set) => ({
         hasSearched: hasSearched
     })),
 
-    searchResultsPlatform: null,
-    setSearchResultsPlatform: (searchResultsPlatform) => set(state => ({
-        searchResultsPlatform: searchResultsPlatform
+    searchResultType: null,
+    setSearchResultType: (searchResultType) => set(state => ({
+        searchResultType: searchResultType
     })),
 
     searchResults: null,

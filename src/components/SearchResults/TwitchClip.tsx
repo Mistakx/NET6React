@@ -4,11 +4,11 @@ import {TwitchClipProperties} from "../../models/ComponentProperties/TwitchClipP
 
 function TwitchClip(props: TwitchClipProperties): JSX.Element {
 
-    const setPlayingPlatform = PlayerStore(state => state.setPlayingPlatform)
+    const setPlayingType = PlayerStore(state => state.setPlayingType)
     const setPlayingId = PlayerStore(state => state.setPlayingId)
 
     function playClip() {
-        setPlayingPlatform("Twitch")
+        setPlayingType("TwitchClip")
         setPlayingId(props.clip.id)
     }
 

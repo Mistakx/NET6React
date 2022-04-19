@@ -1,9 +1,9 @@
-import {Platform} from "../Platform";
+import {SearchResult} from "../ApiSearches/PlatformSearches";
 
 export interface PlayerState {
 
-    playingPlatform: Platform | null
-    setPlayingPlatform: (playingPlatform: Platform) => void;
+    playingType: SearchResult | null
+    setPlayingType: (playingType: SearchResult) => void;
 
     playingId: string | null
     setPlayingId: (playingId: string) => void;

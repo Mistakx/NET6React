@@ -3,9 +3,9 @@ import {PlayerState} from "../models/States/PlayerState";
 
 const PlayerStore = create<PlayerState>((set) => ({
 
-    playingPlatform: null,
-    setPlayingPlatform: (playingPlatform) => set((state) => ({
-        playingPlatform: playingPlatform
+    playingType: null,
+    setPlayingType: (playingType) => set((state) => ({
+        playingType: playingType
     })),
 
     playingId: null,

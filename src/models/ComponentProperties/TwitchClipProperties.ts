@@ -1,4 +1,4 @@
-import {TwitchClip} from "../ApiSearches/TwitchChannelsSearchResult";
+import {TwitchClip} from "../ApiSearches/TwitchSearchResults";
 
 export interface TwitchClipProperties {
     clip: TwitchClip;

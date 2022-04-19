@@ -1,6 +1,6 @@
 // https://developer.vimeo.com/api/reference/videos#search_videos
 
-export interface VimeoSearchResult {
+export interface VimeoSearchVideoResult {
     total: number;
     page: number;
     per_page: number;

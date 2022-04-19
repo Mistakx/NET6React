@@ -1,7 +1,7 @@
 import React from 'react';
 import PlayerStore from '../../stores/PlayerStore'
 
-function SpotifyPlayer(): JSX.Element {
+function SpotifyTrackPlayer(): JSX.Element {
 
     const playingId = PlayerStore(state => state.playingId)
 
@@ -15,4 +15,4 @@ function SpotifyPlayer(): JSX.Element {
 
 }
 
-export default SpotifyPlayer;
+export default SpotifyTrackPlayer;

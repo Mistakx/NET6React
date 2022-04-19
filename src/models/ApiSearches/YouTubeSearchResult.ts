@@ -1,4 +1,4 @@
-export interface YouTubeSearchResult extends GoogleApiYouTubePaginationInfo<GoogleApiYouTubeSearchResource> {
+export interface YouTubeSearchVideoResult extends GoogleApiYouTubePaginationInfo<GoogleApiYouTubeSearchResource> {
 }
 
 export interface YouTubeVideo extends GoogleApiYouTubeSearchResource {}

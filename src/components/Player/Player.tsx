@@ -1,25 +1,31 @@
 import React from 'react';
 import PlayerStore from '../../stores/PlayerStore'
-import YouTubePlayer from "./YouTubePlayer";
-import SpotifyPlayer from "./SpotifyPlayer";
-import VimeoPlayer from "./VimeoPlayer";
+import YouTubeVideoPlayer from "./YouTubeVideoPlayer";
+import SpotifyTrackPlayer from "./SpotifyTrackPlayer";
+import VimeoVideoPlayer from "./VimeoVideoPlayer";
 import TwitchClipPlayer from "./TwitchClipPlayer";
+import TwitchVideoPlayer from "./TwitchVideoPlayer";
+import TwitchLivePlayer from "./TwitchLivePlayer";
 
 
 function Player(): JSX.Element {
 
-    const playingPlatform = PlayerStore(state => state.playingPlatform)
+    const playingType = PlayerStore(state => state.playingType)
 
     let player;
 
-    if (playingPlatform === "YouTube") {
-        player = <YouTubePlayer/>;
-    } else if (playingPlatform === "Spotify") {
-        player = <SpotifyPlayer/>
-    } else if (playingPlatform === "Vimeo") {
-        player = <VimeoPlayer/>;
-    } else if (playingPlatform === "Twitch") {
+    if (playingType === "YouTubeVideo") {
+        player = <YouTubeVideoPlayer/>;
+    } else if (playingType === "SpotifyTrack") {
+        player = <SpotifyTrackPlayer/>
+    } else if (playingType === "VimeoVideo") {
+        player = <VimeoVideoPlayer/>;
+    } else if (playingType === "TwitchClip") {
         player = <TwitchClipPlayer/>;
+    } else if (playingType === "TwitchVideo") {
+        player = <TwitchVideoPlayer/>;
+    } else if (playingType === "TwitchLive") {
+        player = <TwitchLivePlayer/>;
     }
 
     return (<div id="Player"> {player} </div>)
