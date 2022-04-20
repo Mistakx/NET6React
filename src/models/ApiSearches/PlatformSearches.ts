@@ -8,8 +8,13 @@ type SpotifySpecificSearch = "SpotifySearchTrackByName" | "SpotifySearchTrackByA
 // https://developer.vimeo.com/api/reference/videos#search_videos
 type VimeoSpecificSearch = "VimeoSearchVideoByName"
 
-type TwitchSpecificSearch = "TwitchSearchClipByBroadcaster" | "TwitchSearchClipByGame" | "TwitchSearchVideoByBroadcaster" | "TwitchSearchVideoByGame" |"TwitchSearchChannelByGeneral"
+type TwitchSpecificSearch = "TwitchSearchClipByChannel" | "TwitchSearchClipByGame" | "TwitchSearchVideoByChannel" | "TwitchSearchVideoByGame" |"TwitchSearchChannelByGeneral"
 
-export type SpecificSearch = YouTubeSpecificSearch | SpotifySpecificSearch | VimeoSpecificSearch | TwitchSpecificSearch
+export type SpecificSearchType = YouTubeSpecificSearch | SpotifySpecificSearch | VimeoSpecificSearch | TwitchSpecificSearch
 export type SearchResult = "YouTubeVideo" | "SpotifyTrack" | "VimeoVideo" | "TwitchClip" | "TwitchVideo" | "TwitchLive"
 
+export class SpecificSearch {
+
+
+
+}

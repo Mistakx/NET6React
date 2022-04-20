@@ -2,13 +2,13 @@ import React from 'react'
 import PlayerStore from "../../stores/PlayerStore";
 import {TwitchClipProperties} from "../../models/ComponentProperties/TwitchClipProperties";
 
-function TwitchClip(props: TwitchClipProperties): JSX.Element {
+function TwitchClipResult(props: TwitchClipProperties): JSX.Element {
 
     const setPlayingType = PlayerStore(state => state.setPlayingType)
     const setPlayingId = PlayerStore(state => state.setPlayingId)
 
     function playClip() {
-        setPlayingType("TwitchClip")
+        setPlayingType("TwitchClipResult")
         setPlayingId(props.clip.id)
     }
 
@@ -23,4 +23,4 @@ function TwitchClip(props: TwitchClipProperties): JSX.Element {
     )
 }
 
-export default TwitchClip;
+export default TwitchClipResult;

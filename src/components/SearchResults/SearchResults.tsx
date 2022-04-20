@@ -1,9 +1,9 @@
 import React from 'react';
-import SpotifyTrack from "./SpotifyTrack";
+import SpotifyTrackResult from "./SpotifyTrackResult";
 import isEmptyObject from "../../utils/IsEmptyObject"
 import SearchResultsStore from "../../stores/SearchResultsStore";
-import YouTubeVideo from "./YouTubeVideo";
-import VimeoVideo from "./VimeoVideo";
+import YouTubeVideoResult from "./YouTubeVideoResult";
+import VimeoVideoResult from "./VimeoVideoResult";
 import {VimeoSearchVideoResult} from "../../models/ApiSearches/VimeoSearchResult"
 import {SpotifyTracksPage} from "../../models/ApiSearches/SpotifySearchResults"
 import {YouTubeSearchVideoResult} from "../../models/ApiSearches/YouTubeSearchResult"
@@ -12,9 +12,9 @@ import {
     TwitchSearchClipResult,
     TwitchSearchVideoResult
 } from "../../models/ApiSearches/TwitchSearchResults";
-import TwitchClip from "./TwitchClip";
-import TwitchVideo from "./TwitchVideo";
-import TwitchLive from "./TwitchLive";
+import TwitchClipResult from "./TwitchClipResult";
+import TwitchVideoResult from "./TwitchVideoResult";
+import TwitchLiveResult from "./TwitchLiveResult";
 
 function SearchResults(): JSX.Element {
 
@@ -23,18 +23,18 @@ function SearchResults(): JSX.Element {
     const searchResult = SearchResultsStore(state => state.searchResults)
 
     let searchItems;
-    if (searchResultType === "YouTubeVideo" && searchResult) {
-        searchItems = (searchResult as YouTubeSearchVideoResult).items.map(item => <YouTubeVideo video={item}/>)
-    } else if (searchResultType === "SpotifyTrack" && searchResult) {
-        searchItems = (searchResult as SpotifyTracksPage).items.map(item => <SpotifyTrack track={item}/>)
-    } else if (searchResultType === "VimeoVideo" && searchResult) {
-        searchItems = (searchResult as VimeoSearchVideoResult).data.map(item => <VimeoVideo video={item}/>)
-    } else if (searchResultType === "TwitchClip" && searchResult) {
-        searchItems = (searchResult as TwitchSearchClipResult).data.map(item => <TwitchClip clip={item}/>)
-    } else if (searchResultType === "TwitchVideo" && searchResult) {
-        searchItems = (searchResult as TwitchSearchVideoResult).data.map(item => <TwitchVideo video={item}/>)
-    } else if (searchResultType === "TwitchLive" && searchResult) {
-        searchItems = (searchResult as TwitchSearchChannelResult).data.map(item => <TwitchLive channel={item}/>)
+    if (searchResultType === "YouTubeVideoResult" && searchResult) {
+        searchItems = (searchResult as YouTubeSearchVideoResult).items.map(item => <YouTubeVideoResult video={item}/>)
+    } else if (searchResultType === "SpotifyTrackResult" && searchResult) {
+        searchItems = (searchResult as SpotifyTracksPage).items.map(item => <SpotifyTrackResult track={item}/>)
+    } else if (searchResultType === "VimeoVideoResult" && searchResult) {
+        searchItems = (searchResult as VimeoSearchVideoResult).data.map(item => <VimeoVideoResult video={item}/>)
+    } else if (searchResultType === "TwitchClipResult" && searchResult) {
+        searchItems = (searchResult as TwitchSearchClipResult).data.map(item => <TwitchClipResult clip={item}/>)
+    } else if (searchResultType === "TwitchVideoResult" && searchResult) {
+        searchItems = (searchResult as TwitchSearchVideoResult).data.map(item => <TwitchVideoResult video={item}/>)
+    } else if (searchResultType === "TwitchLiveResult" && searchResult) {
+        searchItems = (searchResult as TwitchSearchChannelResult).data.map(item => <TwitchLiveResult channel={item}/>)
     }
 
     let searchTable;

@@ -2,7 +2,7 @@ import React from 'react'
 import PlayerStore from "../../stores/PlayerStore";
 import {VimeoVideoProperties} from "../../models/ComponentProperties/VimeoVideoProperties";
 
-function VimeoVideo(props: VimeoVideoProperties): JSX.Element {
+function VimeoVideoResult(props: VimeoVideoProperties): JSX.Element {
 
     const setPlayingType = PlayerStore(state => state.setPlayingType)
     const setPlayingId = PlayerStore(state => state.setPlayingId)
@@ -10,7 +10,7 @@ function VimeoVideo(props: VimeoVideoProperties): JSX.Element {
     const videoId = props.video.uri.split("/videos/")[1]
 
     function playVideo() {
-        setPlayingType("VimeoVideo")
+        setPlayingType("VimeoVideoResult")
         setPlayingId(videoId)
     }
 
@@ -27,4 +27,4 @@ function VimeoVideo(props: VimeoVideoProperties): JSX.Element {
     )
 }
 
-export default VimeoVideo;
+export default VimeoVideoResult;

@@ -1,17 +1,10 @@
 import React, {FormEvent, useState} from 'react';
 import Form from 'react-bootstrap/Form'
-import {SpecificSearch} from "../../models/ApiSearches/PlatformSearches";
+import {SpecificSearchType} from "../../models/ApiSearches/PlatformSearches";
 import SearchResultsStore from '../../stores/SearchResultsStore'
-import searchYouTubeVideos from "../../apiSearches/YouTubeSearch";
-import searchVimeoVideos from "../../apiSearches/VimeoSearch";
-import {
-    searchTwitchChannels,
-    searchTwitchClipsByChannel,
-    searchTwitchClipsByGame,
-    searchTwitchVideosByChannel, searchTwitchVideosByGame
-} from "../../apiSearches/TwitchSearch";
 import {SearchBarProperties} from "../../models/ComponentProperties/SearchBarProperties";
-import {searchSpotifyTracksByAlbum, searchSpotifyTracksByName} from "../../apiSearches/SpotifySearch";
+import {SpecificSearch} from "../../SpecificSearches/SpecificSearch";
+import {YouTubeSearchByGeneral} from "../../SpecificSearches/YouTubeSearchByGeneral";
 
 function SearchBar(props: SearchBarProperties): JSX.Element {
 
@@ -20,7 +13,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
     const setHasSearched = SearchResultsStore(state => state.setHasSearched)
     const setSearchResultType = SearchResultsStore(state => state.setSearchResultType)
     const setSearchResult = SearchResultsStore(state => state.setSearchResults)
-    const [specificSearchType, setSpecificSearchType] = useState<SpecificSearch>("YouTubeSearchVideoByGeneral");
+    const [specificSearch, setSpecificSearch] = useState<SpecificSearch>(YouTubeSearchByGeneral.getInstance());
     const [searchBarQuery, setSearchBarQuery] = useState("");
 
     /**
@@ -34,11 +27,11 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
         try {
 
-            if (specificSearchType === "YouTubeSearchVideoByGeneral") {
+            if (specificSearch.getType() === "YouTubeSearchVideoByGeneral") {
                 let youtubeResults = await searchYouTubeVideos(searchBarQuery, 40, null)
                 setSearchResult(youtubeResults);
                 setSearchResultType("YouTubeVideo")
-            } else if (specificSearchType === "SpotifySearchTrackByName") {
+            } else if (specificSearch === "SpotifySearchTrackByName") {
 
                 if (props.spotifyAccessToken) {
                     let spotifyResults = await searchSpotifyTracksByName(searchBarQuery, props.spotifyAccessToken.current, 40)
@@ -49,7 +42,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                     alert("No Spotify access token found.")
                 }
 
-            } else if (specificSearchType === "SpotifySearchTrackByAlbum") {
+            } else if (specificSearch === "SpotifySearchTrackByAlbum") {
 
                 if (props.spotifyAccessToken) {
                     let spotifyResults = await searchSpotifyTracksByAlbum(searchBarQuery, props.spotifyAccessToken.current, 40)
@@ -60,11 +53,11 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                     alert("No Spotify access token found.")
                 }
 
-            } else if (specificSearchType === "VimeoSearchVideoByName") {
+            } else if (specificSearch === "VimeoSearchVideoByName") {
                 let vimeoVideos = await searchVimeoVideos(searchBarQuery, 10, 1)
                 setSearchResult(vimeoVideos);
                 setSearchResultType("VimeoVideo");
-            } else if (specificSearchType === "TwitchSearchClipByBroadcaster") {
+            } else if (specificSearch === "TwitchSearchClipByBroadcaster") {
 
                 if (props.twitchAccessToken) {
                     let twitchClips = await searchTwitchClipsByChannel(searchBarQuery, props.twitchAccessToken.current, 40, null)
@@ -74,7 +67,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                     alert("No Twitch access token found.")
                 }
 
-            } else if (specificSearchType === "TwitchSearchClipByGame") {
+            } else if (specificSearch === "TwitchSearchClipByGame") {
 
                 if (props.twitchAccessToken) {
                     let twitchClips = await searchTwitchClipsByGame(searchBarQuery, props.twitchAccessToken.current, 40, null)
@@ -84,7 +77,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                     alert("No Twitch access token found.")
                 }
 
-            } else if (specificSearchType === "TwitchSearchVideoByBroadcaster") {
+            } else if (specificSearch === "TwitchSearchVideoByBroadcaster") {
 
                 if (props.twitchAccessToken) {
                     let twitchVideos = await searchTwitchVideosByChannel(searchBarQuery, "week", "trending", props.twitchAccessToken.current, 40, null)
@@ -94,7 +87,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                     alert("No Twitch access token found.")
                 }
 
-            } else if (specificSearchType === "TwitchSearchVideoByGame") {
+            } else if (specificSearch === "TwitchSearchVideoByGame") {
 
                 if (props.twitchAccessToken) {
                     let twitchVideos = await searchTwitchVideosByGame(searchBarQuery, "week", "trending", props.twitchAccessToken.current, 40, null)
@@ -104,7 +97,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                     alert("No Twitch access token found.")
                 }
 
-            } else if (specificSearchType === "TwitchSearchChannelByGeneral") {
+            } else if (specificSearch === "TwitchSearchChannelByGeneral") {
 
                 if (props.twitchAccessToken) {
                     let twitchLiveChannels = await searchTwitchChannels(searchBarQuery, props.twitchAccessToken.current, 40, null, true)
@@ -122,38 +115,13 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
     }
 
-    /**
-     * Search button
-     */
-    // TODO: Create abstract class with specific search type and corresponding button text
-    let searchButton;
-    if (specificSearchType === "YouTubeSearchVideoByGeneral") {
-        searchButton = <button>Search YouTube</button>
-    } else if (specificSearchType === "SpotifySearchTrackByName") {
-        searchButton = <button>Search Spotify (Track)</button>
-    } else if (specificSearchType === "SpotifySearchTrackByAlbum") {
-        searchButton = <button>Search Spotify (Album)</button>
-    } else if (specificSearchType === "VimeoSearchVideoByName") {
-        searchButton = <button>Search Vimeo</button>
-    } else if (specificSearchType === "TwitchSearchClipByBroadcaster") {
-        searchButton = <button>Search Twitch - Clip (Broadcaster)</button>
-    } else if (specificSearchType === "TwitchSearchClipByGame") {
-        searchButton = <button>Search Twitch - Clip (Game)</button>
-    } else if (specificSearchType === "TwitchSearchVideoByBroadcaster") {
-        searchButton = <button>Search Twitch - Video (Broadcaster)</button>
-    } else if (specificSearchType === "TwitchSearchVideoByGame") {
-        searchButton = <button>Search Twitch - Video (Game)</button>
-    }else if (specificSearchType === "TwitchSearchChannelByGeneral") {
-        searchButton = <button>Search Twitch - Live Channel</button>
-    }
-
     return (
 
         <div className="SearchPage">
 
             {"Selected Platform Searches:"}
             <Form.Select onChange={(event) => {
-                setSpecificSearchType(event.target.value as SpecificSearch)
+                setSpecificSearch(event.target.value as SpecificSearchType)
             }}>
                 <option value={"YouTubeSearchVideoByGeneral"}> {"YouTube"} </option>
                 <option value={"SpotifySearchTrackByName"}> {"Spotify (Track)"} </option>
@@ -176,7 +144,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                     setSearchBarQuery(event.target.value)
                 }}/>
 
-                {searchButton}
+                <button>{specificSearch.getButtonText()}</button>
 
             </form>
 

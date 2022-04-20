@@ -2,13 +2,13 @@ import React from 'react'
 import PlayerStore from "../../stores/PlayerStore";
 import {YouTubeVideoProperties} from "../../models/ComponentProperties/YouTubeVideoProperties";
 
-function YouTubeVideo(props: YouTubeVideoProperties): JSX.Element {
+function YouTubeVideoResult(props: YouTubeVideoProperties): JSX.Element {
 
     const setPlayingType = PlayerStore(state => state.setPlayingType)
     const setPlayingId = PlayerStore(state => state.setPlayingId)
 
     function playVideo() {
-        setPlayingType("YouTubeVideo")
+        setPlayingType("YouTubeVideoResult")
         setPlayingId(props.video.id.videoId)
     }
 
@@ -23,4 +23,4 @@ function YouTubeVideo(props: YouTubeVideoProperties): JSX.Element {
     )
 }
 
-export default YouTubeVideo;
+export default YouTubeVideoResult;

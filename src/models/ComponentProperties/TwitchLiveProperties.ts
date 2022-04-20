@@ -1,5 +1,5 @@
-import {TwitchChannel} from "../ApiSearches/TwitchSearchResults";
+import {LivestreamAdapter} from "../ApiSearches/Adapters";
 
 export interface TwitchLiveProperties {
-    channel: TwitchChannel;
+    livestream: LivestreamAdapter;
 }

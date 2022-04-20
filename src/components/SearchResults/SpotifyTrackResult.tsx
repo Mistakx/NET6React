@@ -2,13 +2,13 @@ import React from 'react'
 import {SpotifyTrackProperties} from "../../models/ComponentProperties/SpotifyTrackProperties";
 import PlayerStore from "../../stores/PlayerStore";
 
-function SpotifyTrack(props: SpotifyTrackProperties): JSX.Element {
+function SpotifyTrackResult(props: SpotifyTrackProperties): JSX.Element {
 
     const setPlayingType = PlayerStore(state => state.setPlayingType)
     const setPlayingId = PlayerStore(state => state.setPlayingId)
 
     function playTrack() {
-        setPlayingType("SpotifyTrack")
+        setPlayingType("SpotifyTrackResult")
         setPlayingId(props.track.id)
     }
 
@@ -23,4 +23,4 @@ function SpotifyTrack(props: SpotifyTrackProperties): JSX.Element {
     )
 }
 
-export default SpotifyTrack;
+export default SpotifyTrackResult;
