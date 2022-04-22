@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import axios from 'axios';
 import base64 from "base-64";
 import qs from "qs";
-import {SpotifyAuthorization} from "../models/ApiAuthorizations";
+import {SpotifyAuthorization} from "../models/authenticators/ApiAuthorizations";
 
 /**
  * Hook responsible for continuously getting a Spotify access token.

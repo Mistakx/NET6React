@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import axios from 'axios';
 import qs from "qs";
-import {TwitchAuthorization} from "../models/ApiAuthorizations";
+import {TwitchAuthorization} from "../models/authenticators/ApiAuthorizations";
 
 /**
  * Hook responsible for continuously getting a Twitch access token.

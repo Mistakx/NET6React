@@ -1,16 +1,11 @@
 import create from 'zustand'
-import {PlayerState} from "../models/States/PlayerState";
+import {PlayerState} from "../models/states/PlayerState";
 
 const PlayerStore = create<PlayerState>((set) => ({
 
-    playingType: null,
-    setPlayingType: (playingType) => set((state) => ({
-        playingType: playingType
-    })),
-
-    playingId: null,
-    setPlayingId: (playingId) => set((state) => ({
-        playingId: playingId
+    currentPlayer: null,
+    setCurrentPlayer: (currentPlayer: JSX.Element) => set(state => ({
+        currentPlayer: currentPlayer
     })),
 
 }))
