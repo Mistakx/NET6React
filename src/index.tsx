@@ -1,7 +1,7 @@
 import React from 'react';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes,} from "react-router-dom";
-import SearchPage from "./components/searchPage/SearchPage";
+import SearchPage from "./components/SearchPage";
 import {createRoot} from "react-dom/client";
 
 const container = document.getElementById('root');

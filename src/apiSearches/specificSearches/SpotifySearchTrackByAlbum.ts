@@ -3,10 +3,9 @@ import axios from "axios";
 import {SpotifySearchAlbumsResult, SpotifyTracksPage} from "../../models/apiSearches/SpotifySearchResults";
 import {SimplifiedAlbum} from "spotify-types";
 import {Platform} from "../../models/apiSearches/PlatformSearches";
-import {SearchList} from "../../searchList/SearchList";
-import {SpotifyPlayer} from "../../players/SpotifyPlayer";
+import {SpotifyPlayerCreator} from "../../playerCreators/SpotifyPlayerCreator";
 import {SpotifyTracksPageToListItemsConverter} from "../converters/SpotifyTracksPageToListItemsConverter";
-import {TrackSearchList} from "../../searchList/TrackSearchList";
+import {TrackSearchList} from "../../searchLists/TrackSearchList";
 
 export class SpotifySearchTrackByAlbum extends ApiSearch {
 
@@ -102,7 +101,7 @@ export class SpotifySearchTrackByAlbum extends ApiSearch {
 
         const spotifyTracksPage = await this.searchSpotifyTracksByAlbum(searchQuery, accessToken, limit, page)
         const items = SpotifyTracksPageToListItemsConverter.convert(spotifyTracksPage)
-        const searchList = new TrackSearchList(items, "", new SpotifyPlayer())
+        const searchList = new TrackSearchList(items, "", new SpotifyPlayerCreator())
 
         return searchList
 

@@ -1,4 +1,4 @@
-import {PlayerBuilder} from "../players/PlayerBuilder";
+import {PlayerCreator} from "../playerCreators/PlayerCreator";
 
 export abstract class SearchList {
 
@@ -13,7 +13,7 @@ export abstract class SearchList {
         return this.playerHeight;
     }
 
-    public abstract getPlayerBuilder(): PlayerBuilder
+    public abstract getPlayerBuilder(): PlayerCreator
 
     public abstract getItemsHtml(): JSX.Element[]
 

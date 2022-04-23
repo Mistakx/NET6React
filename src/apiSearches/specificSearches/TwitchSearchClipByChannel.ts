@@ -2,11 +2,10 @@ import {ApiSearch} from "./ApiSearch";
 import axios from "axios";
 import {TwitchSearchClipsResultPage} from "../../models/apiSearches/TwitchSearchResults";
 import {TwitchChannelSearch} from "../auxiliarySearches/TwitchChannelSearch";
-import {SearchList} from "../../searchList/SearchList";
 import {TwitchClipSearchResultToListItemsConverter} from "../converters/TwitchClipSearchResultToListItemsConverter";
-import {TwitchClipPlayer} from "../../players/TwitchClipPlayer";
+import {TwitchClipPlayerCreator} from "../../playerCreators/TwitchClipPlayerCreator";
 import {Platform} from "../../models/apiSearches/PlatformSearches";
-import {VideoSearchList} from "../../searchList/VideoSearchList";
+import {VideoSearchList} from "../../searchLists/VideoSearchList";
 
 export class TwitchSearchClipByChannel extends ApiSearch {
 
@@ -74,7 +73,7 @@ export class TwitchSearchClipByChannel extends ApiSearch {
 
         const twitchClipsPage = await this.searchTwitchClipsByChannel(searchQuery, accessToken, limit, null)
         const items = TwitchClipSearchResultToListItemsConverter.convert(twitchClipsPage)
-        const searchList = new VideoSearchList(items, "", new TwitchClipPlayer())
+        const searchList = new VideoSearchList(items, "", new TwitchClipPlayerCreator())
         return searchList
 
     }

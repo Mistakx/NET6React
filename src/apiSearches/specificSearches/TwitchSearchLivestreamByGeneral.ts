@@ -1,12 +1,11 @@
 import {ApiSearch} from "./ApiSearch";
 import {TwitchChannelSearch} from "../auxiliarySearches/TwitchChannelSearch";
 import {Platform} from "../../models/apiSearches/PlatformSearches";
-import {SearchList} from "../../searchList/SearchList";
-import {TwitchClipPlayer} from "../../players/TwitchClipPlayer";
+import {TwitchClipPlayerCreator} from "../../playerCreators/TwitchClipPlayerCreator";
 import {
     TwitchChannelSearchResultToListItemsConverter
 } from "../converters/TwitchChannelSearchResultToListItemsConverter";
-import {LivestreamSearchList} from "../../searchList/LivestreamSearchList";
+import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
 
 export class TwitchSearchLivestreamByGeneral extends ApiSearch {
 
@@ -35,7 +34,7 @@ export class TwitchSearchLivestreamByGeneral extends ApiSearch {
 
         const twitchChannelsPageResult = await TwitchChannelSearch.searchTwitchChannels(searchQuery, accessToken, limit, null, true)
         const items = TwitchChannelSearchResultToListItemsConverter.convert(twitchChannelsPageResult)
-        const searchList = new LivestreamSearchList(items, "https://www.twitch.tv/", new TwitchClipPlayer())
+        const searchList = new LivestreamSearchList(items, "https://www.twitch.tv/", new TwitchClipPlayerCreator())
         return searchList
 
     }

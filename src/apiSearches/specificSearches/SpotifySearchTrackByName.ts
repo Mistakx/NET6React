@@ -3,9 +3,8 @@ import axios from "axios";
 import {SpotifySearchTracksResult} from "../../models/apiSearches/SpotifySearchResults";
 import {Platform} from "../../models/apiSearches/PlatformSearches";
 import {SpotifyTracksPageToListItemsConverter} from "../converters/SpotifyTracksPageToListItemsConverter";
-import {SearchList} from "../../searchList/SearchList";
-import {SpotifyPlayer} from "../../players/SpotifyPlayer";
-import {TrackSearchList} from "../../searchList/TrackSearchList";
+import {SpotifyPlayerCreator} from "../../playerCreators/SpotifyPlayerCreator";
+import {TrackSearchList} from "../../searchLists/TrackSearchList";
 
 export class SpotifySearchTrackByName extends ApiSearch {
 
@@ -61,7 +60,7 @@ export class SpotifySearchTrackByName extends ApiSearch {
 
         const spotifyTracksPage = await this.searchSpotifyTracksByName(searchQuery, accessToken, limit, page);
         const items = SpotifyTracksPageToListItemsConverter.convert(spotifyTracksPage);
-        const searchList = new TrackSearchList(items, "", new SpotifyPlayer());
+        const searchList = new TrackSearchList(items, "", new SpotifyPlayerCreator());
 
         return searchList;
 

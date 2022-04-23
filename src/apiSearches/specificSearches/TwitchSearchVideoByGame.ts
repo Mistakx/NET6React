@@ -4,9 +4,8 @@ import {TwitchSearchVideoResultPage} from "../../models/apiSearches/TwitchSearch
 import {Platform} from "../../models/apiSearches/PlatformSearches";
 import {TwitchGamesSearch} from "../auxiliarySearches/TwitchGameSearch";
 import {TwitchVideoSearchResultToListItemsConverter} from "../converters/TwitchVideoSearchResultToListItemsConverter";
-import {SearchList} from "../../searchList/SearchList";
-import {MultiPlatformPlayer} from "../../players/MultiPlatformPlayer";
-import {VideoSearchList} from "../../searchList/VideoSearchList";
+import {MultiPlatformPlayerCreator} from "../../playerCreators/MultiPlatformPlayerCreator";
+import {VideoSearchList} from "../../searchLists/VideoSearchList";
 
 export class TwitchSearchVideoByGame extends ApiSearch {
 
@@ -78,7 +77,7 @@ export class TwitchSearchVideoByGame extends ApiSearch {
 
         const twitchVideoPageResult = await this.searchTwitchVideosByGame(searchQuery, "week", "trending", accessToken, limit, null)
         const items = TwitchVideoSearchResultToListItemsConverter.convert(twitchVideoPageResult)
-        const searchList = new VideoSearchList(items, "https://www.twitch.tv/videos/", new MultiPlatformPlayer())
+        const searchList = new VideoSearchList(items, "https://www.twitch.tv/videos/", new MultiPlatformPlayerCreator())
         return searchList
 
     }

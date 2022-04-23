@@ -2,9 +2,9 @@ import {ApiSearch} from "./ApiSearch";
 import axios from "axios";
 import {YouTubeVideoSearchResultPage} from "../../models/apiSearches/YouTubeSearchResult";
 import {Platform} from "../../models/apiSearches/PlatformSearches";
-import {MultiPlatformPlayer} from "../../players/MultiPlatformPlayer";
+import {MultiPlatformPlayerCreator} from "../../playerCreators/MultiPlatformPlayerCreator";
 import {YouTubeVideoResultPageToListItemsConverter} from "../converters/YouTubeVideoResultPageToListItemsConverter";
-import {VideoSearchList} from "../../searchList/VideoSearchList";
+import {VideoSearchList} from "../../searchLists/VideoSearchList";
 
 export class YouTubeSearchVideoByGeneral extends ApiSearch {
 
@@ -39,7 +39,7 @@ export class YouTubeSearchVideoByGeneral extends ApiSearch {
             + "&maxResults=" + limit
             + "&q=" + searchQuery
             + "&type=video"
-            + "&key=" + process.env.REACT_APP_YOUTUBE_API_KEY
+            + "&key=" + process.env.REACT_APP_YOUTUBE_MILTON_API_KEY
         if (page) {
             url += "&pageToken=" + page;
         }
@@ -60,7 +60,7 @@ export class YouTubeSearchVideoByGeneral extends ApiSearch {
 
         const youtubeVideoResultPage = await this.searchYouTubeVideos(searchQuery, limit, null)
         const items = YouTubeVideoResultPageToListItemsConverter.convert(youtubeVideoResultPage)
-        const searchList = new VideoSearchList(items, "https://www.youtube.com/watch?v=", new MultiPlatformPlayer())
+        const searchList = new VideoSearchList(items, "https://www.youtube.com/watch?v=", new MultiPlatformPlayerCreator())
         return searchList
 
     }

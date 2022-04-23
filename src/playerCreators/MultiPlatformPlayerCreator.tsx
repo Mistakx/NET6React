@@ -1,10 +1,10 @@
-import {PlayerBuilder} from "./PlayerBuilder";
+import {PlayerCreator} from "./PlayerCreator";
 import React from "react";
 import {MultiPlatformPlayerComponent} from "../components/players/MultiPlatformPlayerComponent";
 
-export class MultiPlatformPlayer extends PlayerBuilder {
+export class MultiPlatformPlayerCreator extends PlayerCreator {
 
-    public buildComponent(clipId: string, width: number, height: number, platformPlayerUrl: string): JSX.Element {
+    public create(clipId: string, width: number, height: number, platformPlayerUrl: string): JSX.Element {
 
         return <MultiPlatformPlayerComponent contentId={clipId} width={width} height={height} playerUrl={platformPlayerUrl}/>
 

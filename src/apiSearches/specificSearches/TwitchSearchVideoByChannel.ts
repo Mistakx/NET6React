@@ -3,10 +3,9 @@ import axios from "axios";
 import {TwitchSearchVideoResultPage} from "../../models/apiSearches/TwitchSearchResults";
 import {TwitchChannelSearch} from "../auxiliarySearches/TwitchChannelSearch";
 import {Platform} from "../../models/apiSearches/PlatformSearches";
-import {SearchList} from "../../searchList/SearchList";
 import {TwitchVideoSearchResultToListItemsConverter} from "../converters/TwitchVideoSearchResultToListItemsConverter";
-import {MultiPlatformPlayer} from "../../players/MultiPlatformPlayer";
-import {VideoSearchList} from "../../searchList/VideoSearchList";
+import {MultiPlatformPlayerCreator} from "../../playerCreators/MultiPlatformPlayerCreator";
+import {VideoSearchList} from "../../searchLists/VideoSearchList";
 
 export class TwitchSearchVideoByChannel extends ApiSearch {
 
@@ -81,7 +80,7 @@ export class TwitchSearchVideoByChannel extends ApiSearch {
 
         const twitchVideoPageResult = await this.searchTwitchVideosByChannel(searchQuery, "week", "trending", accessToken, limit, null)
         const items = TwitchVideoSearchResultToListItemsConverter.convert(twitchVideoPageResult)
-        const searchList = new VideoSearchList(items, "https://www.twitch.tv/videos/", new MultiPlatformPlayer())
+        const searchList = new VideoSearchList(items, "https://www.twitch.tv/videos/", new MultiPlatformPlayerCreator())
         return searchList
 
     }

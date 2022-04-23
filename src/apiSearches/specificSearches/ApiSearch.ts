@@ -1,8 +1,7 @@
-import {SearchList} from "../../searchList/SearchList";
 import {Platform} from "../../models/apiSearches/PlatformSearches";
-import {VideoSearchList} from "../../searchList/VideoSearchList";
-import {TrackSearchList} from "../../searchList/TrackSearchList";
-import {LivestreamSearchList} from "../../searchList/LivestreamSearchList";
+import {VideoSearchList} from "../../searchLists/VideoSearchList";
+import {TrackSearchList} from "../../searchLists/TrackSearchList";
+import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
 
 export abstract class ApiSearch {
 

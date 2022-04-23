@@ -9,7 +9,7 @@ function VideoItemComponent(props: TrackItemComponentProperties): JSX.Element {
 
     function setCurrentPlayerToClickedItem(item: GenericTrackResult) {
 
-        setCurrentPlayer(props.playerBuilder.buildComponent(item.id, props.playerWidth, props.playerHeight, props.playerUrl));
+        setCurrentPlayer(props.playerBuilder.create(item.id, props.playerWidth, props.playerHeight, props.playerUrl));
 
     }
 

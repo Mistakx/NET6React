@@ -1,10 +1,10 @@
 import {GenericLivestreamResult, GenericVideoResult} from "../../apiSearches/GenericResults";
-import {PlayerBuilder} from "../../../players/PlayerBuilder";
+import {PlayerCreator} from "../../../playerCreators/PlayerCreator";
 
 export interface LivestreamItemComponentProperties {
     item: GenericLivestreamResult
     playerUrl: string
     playerWidth: number
     playerHeight: number
-    playerBuilder: PlayerBuilder
+    playerBuilder: PlayerCreator
 }

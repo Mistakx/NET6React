@@ -1,10 +1,10 @@
 import {GenericVideoResult} from "../../apiSearches/GenericResults";
-import {PlayerBuilder} from "../../../players/PlayerBuilder";
+import {PlayerCreator} from "../../../playerCreators/PlayerCreator";
 
 export interface VideoItemComponentProperties {
     item: GenericVideoResult
     playerUrl: string
     playerWidth: number
     playerHeight: number
-    playerBuilder: PlayerBuilder
+    playerBuilder: PlayerCreator
 }

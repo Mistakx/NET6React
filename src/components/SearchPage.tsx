@@ -1,7 +1,7 @@
 import React from 'react';
-import SearchResults from "../SearchResults";
-import Player from "../players/Player";
-import SearchBar from "../SearchBar";
+import Player from "./players/Player";
+import AuthenticatedSearchBar from "./searchBar/AuthenticatedSearchBar";
+import SearchResults from "./SearchResults";
 
 function SearchPage(): JSX.Element {
 
@@ -11,10 +11,10 @@ function SearchPage(): JSX.Element {
 
         <div className="SearchPage">
 
-            <SearchBar/>
+            <AuthenticatedSearchBar/>
 
             <Player/>
-
+            
             <SearchResults/>
 
         </div>

@@ -1,17 +1,15 @@
 import {GenericLivestreamResult} from "../models/apiSearches/GenericResults";
-import {PlayerBuilder} from "../players/PlayerBuilder";
+import {PlayerCreator} from "../playerCreators/PlayerCreator";
 import {SearchList} from "./SearchList";
-import {VideoSearchList} from "./VideoSearchList";
-import PlayerStore from "../stores/PlayerStore";
 import LivestreamItemComponent from "../components/searchPage/LivestreamItemComponent";
 
 export class LivestreamSearchList extends SearchList {
 
     private readonly items: GenericLivestreamResult[];
     private readonly playerUrl: string;
-    private readonly playerBuilder: PlayerBuilder;
+    private readonly playerBuilder: PlayerCreator;
 
-    public constructor(items: GenericLivestreamResult[], playerUrl: string, playerBuilder: PlayerBuilder) {
+    public constructor(items: GenericLivestreamResult[], playerUrl: string, playerBuilder: PlayerCreator) {
         super();
         this.items = items;
         this.playerUrl = playerUrl;
@@ -21,7 +19,6 @@ export class LivestreamSearchList extends SearchList {
     public getPlayerBuilder() {
         return this.playerBuilder;
     }
-
 
     public getItemsHtml() {
 

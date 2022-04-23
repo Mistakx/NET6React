@@ -9,7 +9,7 @@ function LivestreamItemComponent(props: LivestreamItemComponentProperties): JSX.
 
     function setCurrentPlayerToClickedItem(item: GenericLivestreamResult) {
 
-        setCurrentPlayer(props.playerBuilder.buildComponent(item.id, props.playerWidth, props.playerHeight, props.playerUrl));
+        setCurrentPlayer(props.playerBuilder.create(item.id, props.playerWidth, props.playerHeight, props.playerUrl));
 
     }
 

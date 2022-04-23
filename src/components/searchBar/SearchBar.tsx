@@ -1,31 +1,51 @@
 import React, {useState} from 'react';
 import Form from 'react-bootstrap/Form'
-import {SpecificSearchType} from "../models/apiSearches/PlatformSearches";
-import ChosenSearchStore from '../stores/ChosenSearchStore'
-import {ApiSearch} from "../apiSearches/specificSearches/ApiSearch";
-import {YouTubeSearchVideoByGeneral} from "../apiSearches/specificSearches/YouTubeSearchVideoByGeneral";
-import {SpotifySearchTrackByName} from "../apiSearches/specificSearches/SpotifySearchTrackByName";
-import {SpotifySearchTrackByAlbum} from "../apiSearches/specificSearches/SpotifySearchTrackByAlbum";
-import {VimeoSearchVideoByName} from "../apiSearches/specificSearches/VimeoSearchVideoByName";
-import {TwitchSearchClipByGame} from "../apiSearches/specificSearches/TwitchSearchClipByGame";
-import {TwitchSearchClipByChannel} from "../apiSearches/specificSearches/TwitchSearchClipByChannel";
-import {TwitchSearchVideoByChannel} from "../apiSearches/specificSearches/TwitchSearchVideoByChannel";
-import {TwitchSearchVideoByGame} from "../apiSearches/specificSearches/TwitchSearchVideoByGame";
-import {TwitchSearchLivestreamByGeneral} from "../apiSearches/specificSearches/TwitchSearchLivestreamByGeneral";
+import {SpecificSearchType} from "../../models/apiSearches/PlatformSearches";
+import SearchListStore from '../../stores/SearchListStore'
+import {ApiSearch} from "../../apiSearches/specificSearches/ApiSearch";
+import {YouTubeSearchVideoByGeneral} from "../../apiSearches/specificSearches/YouTubeSearchVideoByGeneral";
+import {SpotifySearchTrackByName} from "../../apiSearches/specificSearches/SpotifySearchTrackByName";
+import {SpotifySearchTrackByAlbum} from "../../apiSearches/specificSearches/SpotifySearchTrackByAlbum";
+import {VimeoSearchVideoByName} from "../../apiSearches/specificSearches/VimeoSearchVideoByName";
+import {TwitchSearchClipByGame} from "../../apiSearches/specificSearches/TwitchSearchClipByGame";
+import {TwitchSearchClipByChannel} from "../../apiSearches/specificSearches/TwitchSearchClipByChannel";
+import {TwitchSearchVideoByChannel} from "../../apiSearches/specificSearches/TwitchSearchVideoByChannel";
+import {TwitchSearchVideoByGame} from "../../apiSearches/specificSearches/TwitchSearchVideoByGame";
+import {TwitchSearchLivestreamByGeneral} from "../../apiSearches/specificSearches/TwitchSearchLivestreamByGeneral";
+import {VideoSearchList} from "../../searchLists/VideoSearchList";
+import {TrackSearchList} from "../../searchLists/TrackSearchList";
+import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
+import {SearchBarProperties} from "../../models/components/searchBar/SearchBarProperties";
 
-function SearchBar(): JSX.Element {
+function SearchBar(props: SearchBarProperties): JSX.Element {
 
     console.log("%cRendered search bar.", "color: cyan")
 
     const [selectedSearch, setSelectedSearch] = useState<ApiSearch>(YouTubeSearchVideoByGeneral.getInstance());
     const [searchBarQuery, setSearchBarQuery] = useState("");
-    const setChosenSearchType = ChosenSearchStore(state => state.setChosenSearchType)
+
+    const setSearchList = SearchListStore(state => state.setSearchList)
+
+    async function searchPlatformItems(chosenSearchQuery: string) {
+
+        let searchList: VideoSearchList | TrackSearchList | LivestreamSearchList
+
+        if (selectedSearch.getPlatform() === "Spotify") {
+            searchList = await selectedSearch.getSearchList(chosenSearchQuery, props.spotifyAuthenticator.current, 40, 1)
+        } else if (selectedSearch.getPlatform() === "Twitch") {
+            searchList = await selectedSearch.getSearchList(chosenSearchQuery, props.twitchAuthenticator.current, 40, 1)
+        } else {
+            searchList = await selectedSearch.getSearchList(chosenSearchQuery, "", 40, 1)
+        }
+        return searchList
+
+    }
 
     return (
 
         <div className="SearchPage">
 
-            {"Selected Platform specificSearches:"}
+            {"Selected Platform:"}
             <Form.Select onChange={(event) => {
                 switch (event.target.value as SpecificSearchType) {
                     case "YouTubeSearchVideoByGeneral":
@@ -70,8 +90,9 @@ function SearchBar(): JSX.Element {
             </Form.Select>
 
             {/*Search bar*/}
-            <form onSubmit={async (_) => {
-                setChosenSearchType(selectedSearch);
+            <form onSubmit={async (event) => {
+                event.preventDefault()
+                setSearchList(await searchPlatformItems(searchBarQuery));
             }}>
 
                 <input autoFocus value={searchBarQuery} onChange={(event) => {

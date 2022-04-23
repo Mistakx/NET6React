@@ -1,15 +1,15 @@
-import {GenericVideoResult} from "../models/apiSearches/GenericResults";
-import {PlayerBuilder} from "../players/PlayerBuilder";
+import {GenericTrackResult} from "../models/apiSearches/GenericResults";
+import {PlayerCreator} from "../playerCreators/PlayerCreator";
 import {SearchList} from "./SearchList";
-import VideoItemComponent from "../components/searchPage/VideoItemComponent";
+import TrackItemComponent from "../components/searchPage/TrackItemComponent";
 
-export class VideoSearchList extends SearchList {
+export class TrackSearchList extends SearchList {
 
-    private readonly items: GenericVideoResult[];
+    private readonly items: GenericTrackResult[];
     private readonly playerUrl: string;
-    private readonly playerBuilder: PlayerBuilder;
+    private readonly playerBuilder: PlayerCreator;
 
-    public constructor(items: GenericVideoResult[], playerUrl: string, playerBuilder: PlayerBuilder) {
+    public constructor(items: GenericTrackResult[], playerUrl: string, playerBuilder: PlayerCreator) {
         super();
         this.items = items;
         this.playerUrl = playerUrl;
@@ -26,7 +26,7 @@ export class VideoSearchList extends SearchList {
 
         for (let currentGenericItem of this.items) {
 
-            let genericItemHtml = <VideoItemComponent
+            let genericItemHtml = <TrackItemComponent
                 item={currentGenericItem}
                 playerUrl={this.playerUrl}
                 playerWidth={super.getPlayerWidth()}
