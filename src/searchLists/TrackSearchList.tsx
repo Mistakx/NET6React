@@ -2,6 +2,7 @@ import {GenericTrackResult} from "../models/apiSearches/GenericResults";
 import {PlayerCreator} from "../playerCreators/PlayerCreator";
 import {SearchList} from "./SearchList";
 import TrackItemComponent from "../components/searchPage/TrackItemComponent";
+import TrackBoostrapItem from "../components/searchPage/TrackBootstrapItem";
 
 export class TrackSearchList extends SearchList {
 
@@ -26,7 +27,7 @@ export class TrackSearchList extends SearchList {
 
         for (let currentGenericItem of this.items) {
 
-            let genericItemHtml = <TrackItemComponent
+            let genericItemHtml = <TrackBoostrapItem
                 item={currentGenericItem}
                 playerUrl={this.playerUrl}
                 playerWidth={super.getPlayerWidth()}

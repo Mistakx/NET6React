@@ -3,6 +3,8 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes,} from "react-router-dom";
 import SearchPage from "./components/SearchPage";
 import {createRoot} from "react-dom/client";
+import ProfilePage from "./components/ProfilePage";
+import UsernamePage from "./components/UsernamePage";
 
 const container = document.getElementById('root');
 
@@ -14,6 +16,8 @@ if (container !== null) {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<SearchPage/>}/>
+                    <Route path="/profile" element={<ProfilePage/>}/>
+                    <Route path="/user/:username" element={<UsernamePage/>}/>
                 </Routes>
             </BrowserRouter>
 

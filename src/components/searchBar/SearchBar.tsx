@@ -16,6 +16,7 @@ import {VideoSearchList} from "../../searchLists/VideoSearchList";
 import {TrackSearchList} from "../../searchLists/TrackSearchList";
 import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
 import {SearchBarProperties} from "../../models/components/searchBar/SearchBarProperties";
+import '../../styles/style.css'
 
 function SearchBar(props: SearchBarProperties): JSX.Element {
 
@@ -43,65 +44,99 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
     return (
 
-        <div className="SearchPage">
+        <div>
 
-            {"Selected Platform:"}
-            <Form.Select onChange={(event) => {
-                switch (event.target.value as SpecificSearchType) {
-                    case "YouTubeSearchVideoByGeneral":
-                        setSelectedSearch(YouTubeSearchVideoByGeneral.getInstance())
-                        break;
-                    case "SpotifySearchTrackByName":
-                        setSelectedSearch(SpotifySearchTrackByName.getInstance())
-                        break;
-                    case "SpotifySearchTrackByAlbum":
-                        setSelectedSearch(SpotifySearchTrackByAlbum.getInstance())
-                        break;
-                    case "VimeoSearchVideoByName":
-                        setSelectedSearch(VimeoSearchVideoByName.getInstance())
-                        break;
-                    case "TwitchSearchClipByChannel":
-                        setSelectedSearch(TwitchSearchClipByChannel.getInstance())
-                        break;
-                    case "TwitchSearchClipByGame":
-                        setSelectedSearch(TwitchSearchClipByGame.getInstance())
-                        break;
-                    case "TwitchSearchVideoByChannel":
-                        setSelectedSearch(TwitchSearchVideoByChannel.getInstance())
-                        break;
-                    case "TwitchSearchVideoByGame":
-                        setSelectedSearch(TwitchSearchVideoByGame.getInstance())
-                        break;
-                    case "TwitchSearchLivestreamByGeneral":
-                        setSelectedSearch(TwitchSearchLivestreamByGeneral.getInstance())
-                        break;
-                }
-            }}>
-                <option value={"YouTubeSearchVideoByGeneral"}> {"YouTube"} </option>
-                <option value={"SpotifySearchTrackByName"}> {"Spotify (Track)"} </option>
-                <option value={"SpotifySearchTrackByAlbum"}> {"Spotify (Album)"} </option>
-                <option value={"VimeoSearchVideoByName"}> {"Vimeo"} </option>
-                <option value={"TwitchSearchClipByChannel"}> {"Twitch Clip (Broadcaster)"} </option>
-                <option value={"TwitchSearchClipByGame"}> {"Twitch Clip (Game)"} </option>
-                <option value={"TwitchSearchVideoByChannel"}> {"Twitch Video (Broadcaster)"} </option>
-                <option value={"TwitchSearchVideoByGame"}> {"Twitch Video (Game)"} </option>
-                <option value={"TwitchSearchLivestreamByGeneral"}> {"Twitch - Livestream"} </option>
+            <div className="SearchPage">
 
-            </Form.Select>
+                {"Selected Platform:"}
+                <Form.Select onChange={(event) => {
+                    switch (event.target.value as SpecificSearchType) {
+                        case "YouTubeSearchVideoByGeneral":
+                            setSelectedSearch(YouTubeSearchVideoByGeneral.getInstance())
+                            break;
+                        case "SpotifySearchTrackByName":
+                            setSelectedSearch(SpotifySearchTrackByName.getInstance())
+                            break;
+                        case "SpotifySearchTrackByAlbum":
+                            setSelectedSearch(SpotifySearchTrackByAlbum.getInstance())
+                            break;
+                        case "VimeoSearchVideoByName":
+                            setSelectedSearch(VimeoSearchVideoByName.getInstance())
+                            break;
+                        case "TwitchSearchClipByChannel":
+                            setSelectedSearch(TwitchSearchClipByChannel.getInstance())
+                            break;
+                        case "TwitchSearchClipByGame":
+                            setSelectedSearch(TwitchSearchClipByGame.getInstance())
+                            break;
+                        case "TwitchSearchVideoByChannel":
+                            setSelectedSearch(TwitchSearchVideoByChannel.getInstance())
+                            break;
+                        case "TwitchSearchVideoByGame":
+                            setSelectedSearch(TwitchSearchVideoByGame.getInstance())
+                            break;
+                        case "TwitchSearchLivestreamByGeneral":
+                            setSelectedSearch(TwitchSearchLivestreamByGeneral.getInstance())
+                            break;
+                    }
+                }}>
+                    <option value={"YouTubeSearchVideoByGeneral"}> {"YouTube"} </option>
+                    <option value={"SpotifySearchTrackByName"}> {"Spotify (Track)"} </option>
+                    <option value={"SpotifySearchTrackByAlbum"}> {"Spotify (Album)"} </option>
+                    <option value={"VimeoSearchVideoByName"}> {"Vimeo"} </option>
+                    <option value={"TwitchSearchClipByChannel"}> {"Twitch Clip (Broadcaster)"} </option>
+                    <option value={"TwitchSearchClipByGame"}> {"Twitch Clip (Game)"} </option>
+                    <option value={"TwitchSearchVideoByChannel"}> {"Twitch Video (Broadcaster)"} </option>
+                    <option value={"TwitchSearchVideoByGame"}> {"Twitch Video (Game)"} </option>
+                    <option value={"TwitchSearchLivestreamByGeneral"}> {"Twitch - Livestream"} </option>
 
-            {/*Search bar*/}
-            <form onSubmit={async (event) => {
-                event.preventDefault()
-                setSearchList(await searchPlatformItems(searchBarQuery));
-            }}>
+                </Form.Select>
 
-                <input autoFocus value={searchBarQuery} onChange={(event) => {
-                    setSearchBarQuery(event.target.value)
-                }}/>
+                {/*Search bar*/}
+                <form onSubmit={async (event) => {
+                    event.preventDefault()
+                    setSearchList(await searchPlatformItems(searchBarQuery));
+                }}>
 
-                <button>{selectedSearch.getButtonText()}</button>
+                    <input autoFocus value={searchBarQuery} onChange={(event) => {
+                        setSearchBarQuery(event.target.value)
+                    }}/>
 
-            </form>
+                    <button>{selectedSearch.getButtonText()}</button>
+
+                </form>
+
+            </div>
+
+            <div className="form-wrapper">
+                <div className="input-group">
+                    <button className="btn btn-outline-warning dropdown-toggle" id="choose"
+                            type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Platform
+                    </button>
+                    <ul className="dropdown-menu dropdown-menu-dark align-items-center bg-dark">
+                        <li><a className="dropdown-item text-center text-white h3 bg-success"
+                               id="platform"
+                               data-id="spotify" href="#spotify"><i className='bx bxl-spotify'></i></a>
+                        </li>
+                        <li><a className="dropdown-item text-center text-white h3 bg-danger"
+                               id="platform"
+                               data-id="youtube" href="#youtube"><i className='bx bxl-youtube'></i></a>
+                        </li>
+                        <li><a className="dropdown-item text-center text-white h3 bg-twitch"
+                               id="platform"
+                               data-id="twitch" href="#twitch"><i className='bx bxl-twitch'></i></a>
+                        </li>
+                        <li><a className="dropdown-item text-center text-white h3 bg-info" id="platform"
+                               data-id="vimeo" href="#vimeo"><i className='bx bxl-vimeo'></i></a></li>
+                    </ul>
+
+                    <input type="text" id="search" className="form-control form-control-lg default"
+                           placeholder="I want that music..."/>
+                    <span id="filtro" className="input-group-text d-none"></span>
+                </div>
+
+            </div>
 
         </div>
 

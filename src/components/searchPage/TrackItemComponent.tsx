@@ -3,7 +3,7 @@ import {GenericTrackResult} from "../../models/apiSearches/GenericResults";
 import PlayerStore from "../../stores/PlayerStore";
 import {TrackItemComponentProperties} from "../../models/components/searchPage/TrackItemComponentProperties";
 
-function VideoItemComponent(props: TrackItemComponentProperties): JSX.Element {
+function TrackItemComponent(props: TrackItemComponentProperties): JSX.Element {
 
     const setCurrentPlayer = PlayerStore(state => state.setCurrentPlayer)
 
@@ -27,4 +27,4 @@ function VideoItemComponent(props: TrackItemComponentProperties): JSX.Element {
 
 }
 
-export default VideoItemComponent;
+export default TrackItemComponent;

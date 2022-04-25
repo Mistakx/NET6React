@@ -8,4 +8,5 @@ export abstract class ApiSearch {
     abstract getPlatform(): Platform
     abstract getButtonText(): string
     abstract getSearchList(searchQuery: string, accessToken: string, limit: number, page: number): Promise<VideoSearchList | TrackSearchList | LivestreamSearchList>
+
 }
