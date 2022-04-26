@@ -47,6 +47,7 @@ export class VimeoSearchVideoByName extends ApiSearch {
             + "?query=" + searchQuery
             + "&page=" + page
             + "&per_page=" + limit
+            + "&fields=uri,name,user.name,duration,pictures.base_link,created_time,stats.plays" // Filters the fields to return.
 
         const headers = {
             'Content-Type': 'application/x-www-form-urlencoded',

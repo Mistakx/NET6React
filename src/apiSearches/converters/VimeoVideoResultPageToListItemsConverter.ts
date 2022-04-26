@@ -15,7 +15,7 @@ export class VimeoVideoResultPageToListItemsConverter {
                 creator: item.user.name,
                 duration: item.duration,
                 thumbnailUrl: item.pictures.base_link,
-                createdAt: item.created_time.toDateString(),
+                createdAt: item.created_time.toString(),
                 views: item.stats.plays
             }
 
