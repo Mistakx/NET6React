@@ -49,7 +49,6 @@ export class SpotifySearchTrackByName extends ApiSearch {
             method: 'GET',
             headers: headers,
             url: url,
-            withCredentials: false
         };
 
         try {

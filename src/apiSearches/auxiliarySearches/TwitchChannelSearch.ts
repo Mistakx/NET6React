@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 import {TwitchSearchChannelsResultPage} from "../../models/apiSearches/TwitchSearchResults";
 
 export class TwitchChannelSearch {
@@ -22,26 +22,30 @@ export class TwitchChannelSearch {
         const headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
             'Authorization': 'Bearer ' + accessToken,
-        }
-        if (twitchClientId) {
-            axios.defaults.headers.common['Client-Id'] = twitchClientId;
-        } else {
-            throw new Error("Twitch client ID not set in the environment variables.")
+            'Client-Id': twitchClientId
         }
 
         const options = {
             method: 'GET',
             headers: headers,
-            withCredentials: false,
             url: url,
         };
 
+        let twitchChannelsSearchResponse: AxiosResponse<any, any>;
         try {
             // @ts-ignore
-            let twitchChannelsSearchResponse = await axios(options);
+            twitchChannelsSearchResponse = await axios(options);
             let twitchChannelsSearchResult: TwitchSearchChannelsResultPage = twitchChannelsSearchResponse.data;
             return twitchChannelsSearchResult;
         } catch (e) {
+            console.log("DEBUG")
+            // @ts-ignore
+            console.log(twitchChannelsSearchResponse.data)
+            // @ts-ignore
+            if (twitchChannelsSearchResponse.data.message) {
+                // @ts-ignore
+                alert(twitchChannelsSearchResponse.data.message)
+            }
             alert(e)
         }
         return {} as TwitchSearchChannelsResultPage

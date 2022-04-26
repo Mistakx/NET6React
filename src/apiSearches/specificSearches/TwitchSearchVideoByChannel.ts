@@ -54,17 +54,12 @@ export class TwitchSearchVideoByChannel extends ApiSearch {
         const headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
             'Authorization': 'Bearer ' + accessToken,
-        }
-        if (twitchClientId) {
-            axios.defaults.headers.common['Client-Id'] = twitchClientId;
-        } else {
-            throw new Error("Twitch client ID not set in the environment variables.")
+            'Client-Id': twitchClientId
         }
 
         const options = {
             method: 'GET',
             headers: headers,
-            withCredentials: false,
             url: url,
         };
 

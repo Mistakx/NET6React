@@ -49,11 +49,11 @@ export class VimeoSearchVideoByName extends ApiSearch {
             + "&per_page=" + limit
             + "&fields=uri,name,user.name,duration,pictures.base_link,created_time,stats.plays" // Filters the fields to return. https://vimeo.zendesk.com/hc/en-us/articles/360042882251-API-Best-Practices
 
-
         const headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
             'Authorization': 'Basic ' + base64.encode(vimeoClientId + ':' + vimeoClientSecret)
         }
+
         const options = {
             method: 'GET',
             headers: headers,

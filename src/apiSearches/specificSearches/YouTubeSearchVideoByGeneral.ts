@@ -48,7 +48,6 @@ export class YouTubeSearchVideoByGeneral extends ApiSearch {
 
         const options = {
             method: 'GET',
-            withCredentials: false,
             url: url,
         };
 
@@ -58,7 +57,7 @@ export class YouTubeSearchVideoByGeneral extends ApiSearch {
             let youtubeSearchResult: YouTubeVideoSearchResultPage = youtubeResponse.data;
             return youtubeSearchResult;
         } catch (e) {
-            alert(e)
+            alert("YouTube Search - " + e)
         }
         return {} as YouTubeVideoSearchResultPage
 
