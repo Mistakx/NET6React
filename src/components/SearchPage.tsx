@@ -1,7 +1,7 @@
 import React from 'react';
 import Player from "./players/Player";
 import AuthenticatedSearchBar from "./searchBar/AuthenticatedSearchBar";
-import SearchResults from "./SearchResults";
+import SearchResultsList from "./searchResults/SearchResultsList";
 import SidePanel from "./SidePanel";
 
 function SearchPage(): JSX.Element {
@@ -10,7 +10,7 @@ function SearchPage(): JSX.Element {
 
     return (
 
-        <div className="SearchPage">
+        <div>
 
             <section id="services" className="services">
                 <div className="container" data-aos="fade-up">
@@ -27,7 +27,9 @@ function SearchPage(): JSX.Element {
 
                                 <AuthenticatedSearchBar/>
 
-                                <SearchResults/>
+                                <Player/>
+
+                                <SearchResultsList/>
 
                             </div>
 
@@ -37,10 +39,6 @@ function SearchPage(): JSX.Element {
                 </div>
 
             </section>
-
-
-            <Player/>
-
 
             <SidePanel/>
 

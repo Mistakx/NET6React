@@ -5,7 +5,7 @@ export abstract class SearchList {
     private playerWidth = 400
     private playerHeight = 400
 
-    public  getPlayerWidth() {
+    public getPlayerWidth() {
         return this.playerWidth;
     }
 
@@ -13,7 +13,7 @@ export abstract class SearchList {
         return this.playerHeight;
     }
 
-    public abstract getPlayerBuilder(): PlayerCreator
+    public abstract getPlayerCreator(): PlayerCreator
 
     public abstract getItemsHtml(): JSX.Element[]
 

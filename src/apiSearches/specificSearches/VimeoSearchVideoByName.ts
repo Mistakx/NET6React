@@ -6,6 +6,8 @@ import {Platform} from "../../models/apiSearches/PlatformSearches";
 import {MultiPlatformPlayerCreator} from "../../playerCreators/MultiPlatformPlayerCreator";
 import {VimeoVideoResultPageToListItemsConverter} from "../converters/VimeoVideoResultPageToListItemsConverter";
 import {VideoSearchList} from "../../searchLists/VideoSearchList";
+import {TrackSearchList} from "../../searchLists/TrackSearchList";
+import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
 
 export class VimeoSearchVideoByName extends ApiSearch {
 
@@ -64,11 +66,11 @@ export class VimeoSearchVideoByName extends ApiSearch {
 
     }
 
-    public async getSearchList(searchQuery: string, accessToken: string, limit: number, page: number) {
+    public async getSearchList(searchQuery: string, page: number, limit: number): Promise<VideoSearchList | TrackSearchList | LivestreamSearchList> {
 
         const vimeoVideoResultPage = await this.searchVimeoVideos(searchQuery, limit, page)
         const items = VimeoVideoResultPageToListItemsConverter.convert(vimeoVideoResultPage)
-        const searchList = new VideoSearchList(items, "https://vimeo.com/", new MultiPlatformPlayerCreator())
+        const searchList = new VideoSearchList(items, new MultiPlatformPlayerCreator(super.getSearchListPlayerWidth(), super.getSearchListPlayerHeight(), "https://vimeo.com/"))
         return searchList
 
     }

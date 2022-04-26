@@ -1,23 +1,20 @@
 import {GenericVideoResult} from "../models/apiSearches/GenericResults";
 import {PlayerCreator} from "../playerCreators/PlayerCreator";
 import {SearchList} from "./SearchList";
-import VideoItemComponent from "../components/searchPage/VideoItemComponent";
-import VideoBoostrapItem from "../components/searchPage/VideoBootstrapItem";
+import VideoBoostrapItem from "../components/searchResults/VideoBootstrapItem";
 
 export class VideoSearchList extends SearchList {
 
     private readonly items: GenericVideoResult[];
-    private readonly playerUrl: string;
     private readonly playerBuilder: PlayerCreator;
 
-    public constructor(items: GenericVideoResult[], playerUrl: string, playerBuilder: PlayerCreator) {
+    public constructor(items: GenericVideoResult[], playerBuilder: PlayerCreator) {
         super();
         this.items = items;
-        this.playerUrl = playerUrl;
         this.playerBuilder = playerBuilder;
     }
 
-    public getPlayerBuilder() {
+    public getPlayerCreator() {
         return this.playerBuilder;
     }
 
@@ -29,9 +26,6 @@ export class VideoSearchList extends SearchList {
 
             let genericItemHtml = <VideoBoostrapItem
                 item={currentGenericItem}
-                playerUrl={this.playerUrl}
-                playerWidth={super.getPlayerWidth()}
-                playerHeight={super.getPlayerWidth()}
                 playerBuilder={this.playerBuilder}
             />
 

@@ -6,6 +6,8 @@ import {Platform} from "../../models/apiSearches/PlatformSearches";
 import {TwitchVideoSearchResultToListItemsConverter} from "../converters/TwitchVideoSearchResultToListItemsConverter";
 import {MultiPlatformPlayerCreator} from "../../playerCreators/MultiPlatformPlayerCreator";
 import {VideoSearchList} from "../../searchLists/VideoSearchList";
+import {TrackSearchList} from "../../searchLists/TrackSearchList";
+import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
 
 export class TwitchSearchVideoByChannel extends ApiSearch {
 
@@ -76,11 +78,11 @@ export class TwitchSearchVideoByChannel extends ApiSearch {
         return await this.searchTwitchVideosByChannel(searchQuery, "week", "trending", accessToken, limit, null)
     }
 
-    public async getSearchList(searchQuery: string, accessToken: string, limit: number, page: number) {
+    public async getSearchList(searchQuery: string, page: number, limit: number, accessToken: string): Promise<VideoSearchList | TrackSearchList | LivestreamSearchList> {
 
         const twitchVideoPageResult = await this.searchTwitchVideosByChannel(searchQuery, "week", "trending", accessToken, limit, null)
         const items = TwitchVideoSearchResultToListItemsConverter.convert(twitchVideoPageResult)
-        const searchList = new VideoSearchList(items, "https://www.twitch.tv/videos/", new MultiPlatformPlayerCreator())
+        const searchList = new VideoSearchList(items, new MultiPlatformPlayerCreator(super.getSearchListPlayerWidth(), super.getSearchListPlayerHeight()))
         return searchList
 
     }

@@ -1,12 +1,21 @@
 import {PlayerCreator} from "./PlayerCreator";
 import React from "react";
-import {MultiPlatformPlayerComponent} from "../components/players/MultiPlatformPlayerComponent";
+import {MultiPlatformPlayer} from "../components/players/MultiPlatformPlayer";
 
 export class MultiPlatformPlayerCreator extends PlayerCreator {
 
-    public create(clipId: string, width: number, height: number, platformPlayerUrl: string): JSX.Element {
+    public create(clipId: string): JSX.Element {
 
-        return <MultiPlatformPlayerComponent contentId={clipId} width={width} height={height} playerUrl={platformPlayerUrl}/>
+        if (super.getPlatformPlayerUrl()) {
+            return <MultiPlatformPlayer
+                contentId={clipId}
+                width={super.getPlayerWidth()}
+                height={super.getPlayerHeight()}
+                playerUrl={super.getPlatformPlayerUrl() as string}/>
+        }
+
+        return <div>Error with Multi Platform Player URL</div>
+
 
     }
 

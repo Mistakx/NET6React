@@ -1,11 +1,13 @@
 import {ApiSearch} from "./ApiSearch";
 import {TwitchChannelSearch} from "../auxiliarySearches/TwitchChannelSearch";
 import {Platform} from "../../models/apiSearches/PlatformSearches";
-import {TwitchClipPlayerCreator} from "../../playerCreators/TwitchClipPlayerCreator";
 import {
     TwitchChannelSearchResultToListItemsConverter
 } from "../converters/TwitchChannelSearchResultToListItemsConverter";
 import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
+import {MultiPlatformPlayerCreator} from "../../playerCreators/MultiPlatformPlayerCreator";
+import {VideoSearchList} from "../../searchLists/VideoSearchList";
+import {TrackSearchList} from "../../searchLists/TrackSearchList";
 
 export class TwitchSearchLivestreamByGeneral extends ApiSearch {
 
@@ -30,11 +32,14 @@ export class TwitchSearchLivestreamByGeneral extends ApiSearch {
         return "Twitch - Livestream";
     }
 
-    public async getSearchList(searchQuery: string, accessToken: string, limit: number, page: number) {
+    /**
+     * https://dev.twitch.tv/docs/api/reference#search-channels
+     */
+    public async getSearchList(searchQuery: string, page: number, limit: number, accessToken: string): Promise<VideoSearchList | TrackSearchList | LivestreamSearchList> {
 
         const twitchChannelsPageResult = await TwitchChannelSearch.searchTwitchChannels(searchQuery, accessToken, limit, null, true)
         const items = TwitchChannelSearchResultToListItemsConverter.convert(twitchChannelsPageResult)
-        const searchList = new LivestreamSearchList(items, "https://www.twitch.tv/", new TwitchClipPlayerCreator())
+        const searchList = new LivestreamSearchList(items, new MultiPlatformPlayerCreator(super.getSearchListPlayerWidth(), super.getSearchListPlayerHeight(), "https://www.twitch.tv/"))
         return searchList
 
     }

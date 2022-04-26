@@ -5,6 +5,8 @@ import {Platform} from "../../models/apiSearches/PlatformSearches";
 import {SpotifyTracksPageToListItemsConverter} from "../converters/SpotifyTracksPageToListItemsConverter";
 import {SpotifyPlayerCreator} from "../../playerCreators/SpotifyPlayerCreator";
 import {TrackSearchList} from "../../searchLists/TrackSearchList";
+import {VideoSearchList} from "../../searchLists/VideoSearchList";
+import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
 
 export class SpotifySearchTrackByName extends ApiSearch {
 
@@ -56,11 +58,11 @@ export class SpotifySearchTrackByName extends ApiSearch {
 
     }
 
-    public async getSearchList(searchQuery: string, accessToken: string, limit: number, page: number) {
+    public async getSearchList(searchQuery: string, page: number, limit: number, accessToken: string): Promise<VideoSearchList | TrackSearchList | LivestreamSearchList> {
 
         const spotifyTracksPage = await this.searchSpotifyTracksByName(searchQuery, accessToken, limit, page);
         const items = SpotifyTracksPageToListItemsConverter.convert(spotifyTracksPage);
-        const searchList = new TrackSearchList(items, "", new SpotifyPlayerCreator());
+        const searchList = new TrackSearchList(items, new SpotifyPlayerCreator(super.getSearchListPlayerWidth(), super.getSearchListPlayerHeight()));
 
         return searchList;
 

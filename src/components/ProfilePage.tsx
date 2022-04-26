@@ -6,7 +6,6 @@ function ProfilePage(): JSX.Element {
 
     return (
 
-
         <div>
 
             <SidePanel />

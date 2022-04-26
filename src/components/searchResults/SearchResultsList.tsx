@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import SearchListStore from "../stores/SearchListStore";
+import SearchListStore from "../../stores/SearchListStore";
 
-function SearchResults(): JSX.Element {
+function SearchResultsList(): JSX.Element {
 
     const [searchListHtml, setSearchListHtml] = useState<JSX.Element[]>();
 
     const searchList = SearchListStore(state => state.searchList)
 
     useEffect(() => {
+
         // No results
         if (searchList && searchList.getItemsHtml().length === 0) {
             setSearchListHtml([<p>No results</p>]);
@@ -17,9 +18,8 @@ function SearchResults(): JSX.Element {
         else if (searchList && searchList.getItemsHtml().length > 0) {
             setSearchListHtml(searchList.getItemsHtml());
         }
+
     }, [searchList]);
-
-
 
     return (
 
@@ -37,4 +37,4 @@ function SearchResults(): JSX.Element {
 
 }
 
-export default SearchResults;
+export default SearchResultsList;

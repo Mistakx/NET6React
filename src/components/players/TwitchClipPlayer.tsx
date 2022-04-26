@@ -1,7 +1,7 @@
 import {TwitchClipPlayerProperties} from "../../models/components/players/TwitchClipPlayerProperties";
 import React from "react";
 
-export function TwitchClipComponent(props: TwitchClipPlayerProperties): JSX.Element {
+export function TwitchClipPlayer(props: TwitchClipPlayerProperties): JSX.Element {
 
     const parent = "&parent=localhost"
 

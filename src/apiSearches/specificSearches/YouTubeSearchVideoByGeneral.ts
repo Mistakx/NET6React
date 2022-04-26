@@ -5,6 +5,8 @@ import {Platform} from "../../models/apiSearches/PlatformSearches";
 import {MultiPlatformPlayerCreator} from "../../playerCreators/MultiPlatformPlayerCreator";
 import {YouTubeVideoResultPageToListItemsConverter} from "../converters/YouTubeVideoResultPageToListItemsConverter";
 import {VideoSearchList} from "../../searchLists/VideoSearchList";
+import {TrackSearchList} from "../../searchLists/TrackSearchList";
+import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
 
 export class YouTubeSearchVideoByGeneral extends ApiSearch {
 
@@ -54,13 +56,14 @@ export class YouTubeSearchVideoByGeneral extends ApiSearch {
         let youtubeSearchResult: YouTubeVideoSearchResultPage = youtubeResponse.data;
         return youtubeSearchResult;
 
+
     }
 
-    public async getSearchList(searchQuery: string, accessToken: string, limit: number, page: number) {
+    public async getSearchList(searchQuery: string, page: number, limit: number): Promise<VideoSearchList | TrackSearchList | LivestreamSearchList> {
 
         const youtubeVideoResultPage = await this.searchYouTubeVideos(searchQuery, limit, null)
         const items = YouTubeVideoResultPageToListItemsConverter.convert(youtubeVideoResultPage)
-        const searchList = new VideoSearchList(items, "https://www.youtube.com/watch?v=", new MultiPlatformPlayerCreator())
+        const searchList = new VideoSearchList(items, new MultiPlatformPlayerCreator(super.getSearchListPlayerHeight(), super.getSearchListPlayerWidth(), "https://www.youtube.com/watch?v="))
         return searchList
 
     }

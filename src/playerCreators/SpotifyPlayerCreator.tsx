@@ -1,11 +1,11 @@
 import {PlayerCreator} from "./PlayerCreator";
-import {SpotifyPlayerComponent} from "../components/players/SpotifyPlayerComponent";
+import {SpotifyPlayer} from "../components/players/SpotifyPlayer";
 
 export class SpotifyPlayerCreator extends PlayerCreator {
 
-    public create(trackId: string, width: number, height: number): JSX.Element {
+    public create(trackId: string, trackThumbnailUrl: string): JSX.Element {
 
-        return <SpotifyPlayerComponent contentId={trackId} width={width} height={height}/>;
+        return <SpotifyPlayer contentId={trackId} width={super.getPlayerWidth()} height={super.getPlayerHeight()} thumbnailUrl={trackThumbnailUrl}/>;
 
     }
 

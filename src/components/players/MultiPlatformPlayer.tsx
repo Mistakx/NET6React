@@ -1,7 +1,7 @@
 import ReactPlayer from "react-player";
 import {MultiPlatformPlayerProperties} from "../../models/components/players/MultiPlatformPlayerProperties";
 
-export function MultiPlatformPlayerComponent(props: MultiPlatformPlayerProperties): JSX.Element {
+export function MultiPlatformPlayer(props: MultiPlatformPlayerProperties): JSX.Element {
 
     return (
         <ReactPlayer url={props.playerUrl + props.contentId} playing={true} controls={true} pip={true} width={props.width} heigth={props.height}/>

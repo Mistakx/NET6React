@@ -22,6 +22,7 @@ export interface GenericVideoResult extends GenericResult {
  */
 export interface GenericTrackResult extends GenericResult {
     duration: number
+    albumName: string
 }
 
 /**

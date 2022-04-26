@@ -1,24 +1,27 @@
 import React from 'react';
-import {GenericLivestreamResult} from "../../models/apiSearches/GenericResults";
 import PlayerStore from "../../stores/PlayerStore";
 import {VideoItemComponentProperties} from "../../models/components/searchPage/VideoItemComponentProperties";
-import {TrackItemComponentProperties} from "../../models/components/searchPage/TrackItemComponentProperties";
 
-function TrackBoostrapItem(props: TrackItemComponentProperties): JSX.Element {
+function VideoBoostrapItem(props: VideoItemComponentProperties): JSX.Element {
 
     const setCurrentPlayer = PlayerStore(state => state.setCurrentPlayer)
 
-    function setCurrentPlayerToClickedItem(item: GenericLivestreamResult) {
-
-        setCurrentPlayer(props.playerBuilder.create(item.id, props.playerWidth, props.playerHeight, props.playerUrl));
-
+    function setCurrentPlayerToClickedItem() {
+        setCurrentPlayer(props.playerBuilder.create(props.item.id));
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
     }
 
     return (
 
-        <div className="col-md-3">
+        <div className="col-md-3" onClick={() => {
+            setCurrentPlayerToClickedItem()
+        }}>
             <div className="card bg-dark"
-                 style={{backgroundSize: "cover", backgroundImage: "url(" + props.item.thumbnailUrl + ")"}}>
+                 style={{cursor: "pointer", backgroundSize: "cover", backgroundImage: "url(" + props.item.thumbnailUrl + ")"}}>
                 <div className="card-img-overlay text-end">
                     <h5 className="card-title text-uppercase">{props.item.title}</h5>
                     <p className="card-text">{props.item.creator}</p>
@@ -30,9 +33,8 @@ function TrackBoostrapItem(props: TrackItemComponentProperties): JSX.Element {
             </div>
         </div>
 
-
     )
 
 }
 
-export default TrackBoostrapItem;
+export default VideoBoostrapItem;

@@ -6,7 +6,21 @@ import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
 export abstract class ApiSearch {
 
     abstract getPlatform(): Platform
+
     abstract getButtonText(): string
-    abstract getSearchList(searchQuery: string, accessToken: string, limit: number, page: number): Promise<VideoSearchList | TrackSearchList | LivestreamSearchList>
+
+    private searchListPlayerWidth = 400
+
+    private searchListPlayerHeight = 400
+
+    public getSearchListPlayerWidth(): number {
+        return this.searchListPlayerWidth
+    }
+
+    public getSearchListPlayerHeight(): number {
+        return this.searchListPlayerHeight
+    }
+
+    abstract getSearchList(searchQuery: string, page: number, limit: number, accessToken?: string): Promise<VideoSearchList | TrackSearchList | LivestreamSearchList>
 
 }

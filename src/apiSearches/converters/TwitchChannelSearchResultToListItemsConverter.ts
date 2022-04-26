@@ -1,6 +1,5 @@
-import {SpotifyTracksPage} from "../../models/apiSearches/SpotifySearchResults";
-import {GenericLivestreamResult, GenericTrackResult, GenericVideoResult} from "../../models/apiSearches/GenericResults";
-import {TwitchSearchChannelsResultPage, TwitchSearchClipsResultPage} from "../../models/apiSearches/TwitchSearchResults";
+import {GenericLivestreamResult} from "../../models/apiSearches/GenericResults";
+import {TwitchSearchChannelsResultPage} from "../../models/apiSearches/TwitchSearchResults";
 
 export class TwitchChannelSearchResultToListItemsConverter {
 
@@ -11,7 +10,7 @@ export class TwitchChannelSearchResultToListItemsConverter {
         twitchChannelSearchResult.data.map(item => {
 
             const currentGenericLivestreamItem: GenericLivestreamResult = {
-                id: item.id,
+                id: item.display_name,
                 title: item.title,
                 creator: item.display_name,
                 thumbnailUrl: item.thumbnail_url,

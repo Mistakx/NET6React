@@ -1,12 +1,12 @@
 import {PlayerCreator} from "./PlayerCreator";
 import React from "react";
-import {TwitchClipComponent} from "../components/players/TwitchClipComponent";
+import {TwitchClipPlayer} from "../components/players/TwitchClipPlayer";
 
 export class TwitchClipPlayerCreator extends PlayerCreator {
 
-    public create(clipId: string, width: number, height: number): JSX.Element {
+    public create(clipId: string): JSX.Element {
 
-        return <TwitchClipComponent contentId={clipId} width={width} height={height}/>;
+        return <TwitchClipPlayer contentId={clipId} width={super.getPlayerWidth()} height={super.getPlayerWidth()}/>;
 
     }
 

@@ -32,11 +32,12 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
         let searchList: VideoSearchList | TrackSearchList | LivestreamSearchList
 
         if (selectedSearch.getPlatform() === "Spotify") {
-            searchList = await selectedSearch.getSearchList(chosenSearchQuery, props.spotifyAuthenticator.current, 40, 1)
+            searchList = await selectedSearch.getSearchList(chosenSearchQuery, 1, 40, props.spotifyAuthenticator.current)
         } else if (selectedSearch.getPlatform() === "Twitch") {
-            searchList = await selectedSearch.getSearchList(chosenSearchQuery, props.twitchAuthenticator.current, 40, 1)
+            searchList = await selectedSearch.getSearchList(chosenSearchQuery, 1, 40, props.twitchAuthenticator.current)
         } else {
-            searchList = await selectedSearch.getSearchList(chosenSearchQuery, "", 40, 1)
+            searchList = await selectedSearch.getSearchList(chosenSearchQuery, 1, 40)
+            console.log(searchList)
         }
         return searchList
 
@@ -46,7 +47,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
         <div>
 
-            <div className="SearchPage">
+            <div>
 
                 {"Selected Platform:"}
                 <Form.Select onChange={(event) => {
@@ -84,10 +85,10 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                     <option value={"SpotifySearchTrackByName"}> {"Spotify (Track)"} </option>
                     <option value={"SpotifySearchTrackByAlbum"}> {"Spotify (Album)"} </option>
                     <option value={"VimeoSearchVideoByName"}> {"Vimeo"} </option>
-                    <option value={"TwitchSearchClipByChannel"}> {"Twitch Clip (Broadcaster)"} </option>
-                    <option value={"TwitchSearchClipByGame"}> {"Twitch Clip (Game)"} </option>
-                    <option value={"TwitchSearchVideoByChannel"}> {"Twitch Video (Broadcaster)"} </option>
-                    <option value={"TwitchSearchVideoByGame"}> {"Twitch Video (Game)"} </option>
+                    <option value={"TwitchSearchClipByChannel"}> {"Twitch - Clip (Channel)"} </option>
+                    <option value={"TwitchSearchClipByGame"}> {"Twitch - Clip (Game)"} </option>
+                    <option value={"TwitchSearchVideoByChannel"}> {"Twitch - Video (Channel)"} </option>
+                    <option value={"TwitchSearchVideoByGame"}> {"Twitch - Video (Game)"} </option>
                     <option value={"TwitchSearchLivestreamByGeneral"}> {"Twitch - Livestream"} </option>
 
                 </Form.Select>

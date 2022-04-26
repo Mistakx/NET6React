@@ -6,6 +6,8 @@ import {TwitchClipSearchResultToListItemsConverter} from "../converters/TwitchCl
 import {TwitchClipPlayerCreator} from "../../playerCreators/TwitchClipPlayerCreator";
 import {Platform} from "../../models/apiSearches/PlatformSearches";
 import {VideoSearchList} from "../../searchLists/VideoSearchList";
+import {TrackSearchList} from "../../searchLists/TrackSearchList";
+import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
 
 export class TwitchSearchClipByChannel extends ApiSearch {
 
@@ -69,11 +71,11 @@ export class TwitchSearchClipByChannel extends ApiSearch {
 
     }
 
-    public async getSearchList(searchQuery: string, accessToken: string, limit: number, page: number) {
+    public async getSearchList(searchQuery: string, page: number, limit: number, accessToken: string): Promise<VideoSearchList | TrackSearchList | LivestreamSearchList> {
 
         const twitchClipsPage = await this.searchTwitchClipsByChannel(searchQuery, accessToken, limit, null)
         const items = TwitchClipSearchResultToListItemsConverter.convert(twitchClipsPage)
-        const searchList = new VideoSearchList(items, "", new TwitchClipPlayerCreator())
+        const searchList = new VideoSearchList(items, new TwitchClipPlayerCreator(super.getSearchListPlayerWidth(), super.getSearchListPlayerHeight()))
         return searchList
 
     }

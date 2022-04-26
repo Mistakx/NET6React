@@ -1,5 +1,4 @@
 import {GenericVideoResult} from "../../models/apiSearches/GenericResults";
-import {VimeoSearchVideoResultPage} from "../../models/apiSearches/VimeoSearchResult";
 import {YouTubeVideoSearchResultPage} from "../../models/apiSearches/YouTubeSearchResult";
 
 export class YouTubeVideoResultPageToListItemsConverter {
