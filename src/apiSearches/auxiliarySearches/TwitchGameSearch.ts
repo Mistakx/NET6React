@@ -30,14 +30,19 @@ export class TwitchGamesSearch {
         const options = {
             method: 'GET',
             headers: headers,
+            withCredentials: false,
             url: url,
         };
 
-        // @ts-ignore
-        let twitchChannelsSearchResponse = await axios(options);
-        let twitchChannelsSearchResult: TwitchSearchCategoriesResultPage = twitchChannelsSearchResponse.data;
-        return twitchChannelsSearchResult;
-
+        try {
+            // @ts-ignore
+            let twitchChannelsSearchResponse = await axios(options);
+            let twitchChannelsSearchResult: TwitchSearchCategoriesResultPage = twitchChannelsSearchResponse.data;
+            return twitchChannelsSearchResult;
+        } catch (e) {
+            alert(e)
+        }
+        return {} as TwitchSearchCategoriesResultPage
     }
 
 }

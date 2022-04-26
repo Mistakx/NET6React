@@ -38,7 +38,7 @@ export class VimeoSearchVideoByName extends ApiSearch {
     /**
      * https://developer.vimeo.com/api/reference/videos#search_videos
      */
-    public async searchVimeoVideos(searchQuery: string, limit: number, page: number)  {
+    public async searchVimeoVideos(searchQuery: string, limit: number, page: number) {
 
         const vimeoClientId = process.env.REACT_APP_VIMEO_CLIENT_ID;
         const vimeoClientSecret = process.env.REACT_APP_VIMEO_CLIENT_SECRET;
@@ -47,7 +47,8 @@ export class VimeoSearchVideoByName extends ApiSearch {
             + "?query=" + searchQuery
             + "&page=" + page
             + "&per_page=" + limit
-            + "&fields=uri,name,user.name,duration,pictures.base_link,created_time,stats.plays" // Filters the fields to return.
+            + "&fields=uri,name,user.name,duration,pictures.base_link,created_time,stats.plays" // Filters the fields to return. https://vimeo.zendesk.com/hc/en-us/articles/360042882251-API-Best-Practices
+
 
         const headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -56,14 +57,19 @@ export class VimeoSearchVideoByName extends ApiSearch {
         const options = {
             method: 'GET',
             headers: headers,
+            withCredentials: false,
             url,
         };
 
-        // @ts-ignore
-        let vimeoSearchResponse = await axios(options);
-        let vimeoSearchResults: VimeoSearchVideoResultPage = vimeoSearchResponse.data;
-        return vimeoSearchResults;
-
+        try {
+            // @ts-ignore
+            let vimeoSearchResponse = await axios(options);
+            let vimeoSearchResults: VimeoSearchVideoResultPage = vimeoSearchResponse.data;
+            return vimeoSearchResults;
+        } catch (e) {
+            alert(e)
+        }
+        return {} as VimeoSearchVideoResultPage
 
     }
 

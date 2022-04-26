@@ -1,6 +1,6 @@
 import {ApiSearch} from "./ApiSearch";
 import axios from "axios";
-import {SpotifySearchTracksResult} from "../../models/apiSearches/SpotifySearchResults";
+import {SpotifySearchTracksResult, SpotifyTracksPage} from "../../models/apiSearches/SpotifySearchResults";
 import {Platform} from "../../models/apiSearches/PlatformSearches";
 import {SpotifyTracksPageToListItemsConverter} from "../converters/SpotifyTracksPageToListItemsConverter";
 import {SpotifyPlayerCreator} from "../../playerCreators/SpotifyPlayerCreator";
@@ -48,13 +48,19 @@ export class SpotifySearchTrackByName extends ApiSearch {
         const options = {
             method: 'GET',
             headers: headers,
-            url,
+            url: url,
+            withCredentials: false
         };
 
-        // @ts-ignore
-        let spotifyTracksResponse = await axios(options);
-        let spotifyTracks: SpotifySearchTracksResult = spotifyTracksResponse.data;
-        return spotifyTracks.tracks;
+        try {
+            // @ts-ignore
+            let spotifyTracksResponse = await axios(options);
+            let spotifyTracks: SpotifySearchTracksResult = spotifyTracksResponse.data;
+            return spotifyTracks.tracks;
+        } catch (e) {
+            alert(e)
+        }
+        return {} as SpotifyTracksPage
 
     }
 

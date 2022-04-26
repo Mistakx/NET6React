@@ -14,7 +14,7 @@ export class YouTubeVideoResultPageToListItemsConverter {
                 title: item.snippet.title,
                 creator: item.snippet.channelTitle,
                 duration: 0,
-                thumbnailUrl: item.snippet.thumbnails.default.url,
+                thumbnailUrl: item.snippet.thumbnails.high.url,
                 createdAt: item.snippet.publishedAt,
                 views: 0
             }

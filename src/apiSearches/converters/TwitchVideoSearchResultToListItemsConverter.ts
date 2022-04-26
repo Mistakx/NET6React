@@ -6,16 +6,28 @@ export class TwitchVideoSearchResultToListItemsConverter {
 
     private static parseDuration(duration: string) {
 
-        const hoursSplice = duration.split("h")
-        const hours = parseInt(hoursSplice[0])
+        let totalSeconds = 0
+        let remainingDuration = duration;
 
-        const minutesSplice = hoursSplice[1].split("m")
-        const minutes = parseInt(minutesSplice[0])
+        if (duration.includes("h")) {
+            const hoursSplit = duration.split("h")
+            const hours = parseInt(hoursSplit[0])
+            remainingDuration = hoursSplit[1];
+            totalSeconds += hours * 60 * 60
+        }
 
-        const secondsSplice = minutesSplice[1].split("s")
-        const seconds = parseInt(secondsSplice[0])
+        if (duration.includes("m")) {
+            const minutesSplit = remainingDuration.split("m")
+            const minutes = parseInt(remainingDuration[0])
+            remainingDuration = minutesSplit[1];
+            totalSeconds += minutes * 60
+        }
 
-        const totalSeconds = hours * 3600 + minutes * 60 + seconds
+        if (duration.includes("s")) {
+            const secondsSplit = remainingDuration.split("s")
+            const seconds = parseInt(remainingDuration[0])
+            totalSeconds += seconds
+        }
 
         return totalSeconds
 
@@ -32,7 +44,7 @@ export class TwitchVideoSearchResultToListItemsConverter {
                 title: item.title,
                 creator: item.user_name,
                 duration: this.parseDuration(item.duration),
-                thumbnailUrl: item.thumbnail_url,
+                thumbnailUrl: item.thumbnail_url.replace("%{width}", "640").replace("%{height}", "640"),
                 createdAt: item.created_at,
                 views: item.view_count
             }

@@ -61,14 +61,19 @@ export class TwitchSearchClipByGame extends ApiSearch {
         const options = {
             method: 'GET',
             headers: headers,
+            withCredentials: false,
             url: url,
         };
 
-        // @ts-ignore
-        let twitchClipsSearchResponse = await axios(options);
-        let twitchClipsResult: TwitchSearchClipsResultPage = twitchClipsSearchResponse.data;
-        return twitchClipsResult;
-
+        try {
+            // @ts-ignore
+            let twitchClipsSearchResponse = await axios(options);
+            let twitchClipsResult: TwitchSearchClipsResultPage = twitchClipsSearchResponse.data;
+            return twitchClipsResult;
+        } catch (e) {
+            alert(e)
+        }
+        return {} as TwitchSearchClipsResultPage
     }
 
     public async getSearchList(searchQuery: string, page: number, limit: number, accessToken: string): Promise<VideoSearchList | TrackSearchList | LivestreamSearchList> {

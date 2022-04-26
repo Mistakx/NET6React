@@ -64,25 +64,27 @@ export class TwitchSearchVideoByChannel extends ApiSearch {
         const options = {
             method: 'GET',
             headers: headers,
+            withCredentials: false,
             url: url,
         };
 
-        // @ts-ignore
-        let twitchVideosSearchResponse = await axios(options);
-        let twitchVideosResult: TwitchSearchVideoResultPage = twitchVideosSearchResponse.data;
-        return twitchVideosResult;
+        try {
+            // @ts-ignore
+            let twitchVideosSearchResponse = await axios(options);
+            let twitchVideosResult: TwitchSearchVideoResultPage = twitchVideosSearchResponse.data;
+            return twitchVideosResult;
+        } catch (e) {
+            alert(e)
+        }
+        return {} as TwitchSearchVideoResultPage
 
-    }
-
-    public async defaultSearch(searchQuery: string, accessToken: string, limit: number, page: number) {
-        return await this.searchTwitchVideosByChannel(searchQuery, "week", "trending", accessToken, limit, null)
     }
 
     public async getSearchList(searchQuery: string, page: number, limit: number, accessToken: string): Promise<VideoSearchList | TrackSearchList | LivestreamSearchList> {
 
         const twitchVideoPageResult = await this.searchTwitchVideosByChannel(searchQuery, "week", "trending", accessToken, limit, null)
         const items = TwitchVideoSearchResultToListItemsConverter.convert(twitchVideoPageResult)
-        const searchList = new VideoSearchList(items, new MultiPlatformPlayerCreator(super.getSearchListPlayerWidth(), super.getSearchListPlayerHeight()))
+        const searchList = new VideoSearchList(items, new MultiPlatformPlayerCreator(super.getSearchListPlayerWidth(), super.getSearchListPlayerHeight(), "https://www.twitch.tv/videos/"))
         return searchList
 
     }

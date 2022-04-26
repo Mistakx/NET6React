@@ -54,10 +54,15 @@ export class SpotifySearchTrackByAlbum extends ApiSearch {
             url,
         };
 
-        // @ts-ignore
-        let spotifyAlbumsResponse = await axios(options);
-        let spotifyAlbums: SpotifySearchAlbumsResult = spotifyAlbumsResponse.data;
-        return spotifyAlbums;
+        try {
+            // @ts-ignore
+            let spotifyAlbumsResponse = await axios(options);
+            let spotifyAlbums: SpotifySearchAlbumsResult = spotifyAlbumsResponse.data;
+            return spotifyAlbums;
+        } catch (e) {
+            alert(e)
+        }
+        return {} as SpotifySearchAlbumsResult
 
     }
 

@@ -48,13 +48,19 @@ export class YouTubeSearchVideoByGeneral extends ApiSearch {
 
         const options = {
             method: 'GET',
-            url,
+            withCredentials: false,
+            url: url,
         };
 
-        // @ts-ignore
-        let youtubeResponse = await axios(options);
-        let youtubeSearchResult: YouTubeVideoSearchResultPage = youtubeResponse.data;
-        return youtubeSearchResult;
+        try {
+            // @ts-ignore
+            let youtubeResponse = await axios(options);
+            let youtubeSearchResult: YouTubeVideoSearchResultPage = youtubeResponse.data;
+            return youtubeSearchResult;
+        } catch (e) {
+            alert(e)
+        }
+        return {} as YouTubeVideoSearchResultPage
 
 
     }

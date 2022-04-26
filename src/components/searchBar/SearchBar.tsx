@@ -37,7 +37,6 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
             searchList = await selectedSearch.getSearchList(chosenSearchQuery, 1, 40, props.twitchAuthenticator.current)
         } else {
             searchList = await selectedSearch.getSearchList(chosenSearchQuery, 1, 40)
-            console.log(searchList)
         }
         return searchList
 
