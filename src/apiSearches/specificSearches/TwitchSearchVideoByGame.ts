@@ -1,13 +1,14 @@
 import {ApiSearch} from "./ApiSearch";
 import axios from "axios";
 import {TwitchSearchVideoResultPage} from "../../models/apiSearches/TwitchSearchResults";
-import {Platform} from "../../models/apiSearches/PlatformSearches";
+import {Platform} from "../platforms/Platform";
 import {TwitchGamesSearch} from "../auxiliarySearches/TwitchGameSearch";
 import {TwitchVideoSearchResultToListItemsConverter} from "../converters/TwitchVideoSearchResultToListItemsConverter";
 import {MultiPlatformPlayerCreator} from "../../playerCreators/MultiPlatformPlayerCreator";
 import {VideoSearchList} from "../../searchLists/VideoSearchList";
 import {TrackSearchList} from "../../searchLists/TrackSearchList";
 import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
+import Twitch from '../platforms/Twitch';
 
 export class TwitchSearchVideoByGame extends ApiSearch {
 
@@ -25,7 +26,7 @@ export class TwitchSearchVideoByGame extends ApiSearch {
     }
 
     public getPlatform(): Platform {
-        return "Twitch";
+        return new Twitch();
     }
 
     public getButtonText() {

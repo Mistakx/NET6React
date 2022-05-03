@@ -11,24 +11,31 @@ function SidePanel(): JSX.Element {
 
                 <ul>
 
-                    <li>
-                        <a href="#hero" className="nav-link scrollto active">
-                            <i className="bx bx-home"></i>
-                            <span>Home</span>
-                        </a>
-                    </li>
+                    {/*<li>*/}
+                    {/*    <a href="" className="nav-link scrollto active">*/}
+                    {/*        <i className="bx bx-home"></i>*/}
+                    {/*        <span>Home</span>*/}
+                    {/*    </a>*/}
+                    {/*</li>*/}
+
+                    {/*<li>*/}
+                    {/*    <a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"*/}
+                    {/*       aria-controls="offcanvasRight"*/}
+                    {/*       className="nav-link scrollto">*/}
+                    {/*        <i className="bx bx-search-alt"></i>*/}
+                    {/*        <span>Search</span>*/}
+                    {/*    </a>*/}
+                    {/*</li>*/}
 
                     <li>
-                        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                           aria-controls="offcanvasRight"
-                           className="nav-link scrollto">
+                        <a href="/" className="nav-link scrollto">
                             <i className="bx bx-search-alt"></i>
                             <span>Search</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="profile" className="nav-link scrollto">
+                        <a href="/profile" className="nav-link scrollto">
                             <i className="bx bx-user"></i>
                             <span>Profile</span>
                         </a>

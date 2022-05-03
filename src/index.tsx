@@ -3,8 +3,9 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes,} from "react-router-dom";
 import SearchPage from "./components/SearchPage";
 import {createRoot} from "react-dom/client";
-import ProfilePage from "./components/ProfilePage";
+import ProfilePage from "./components/profilePage/ProfilePage";
 import UsernamePage from "./components/UsernamePage";
+import PlaylistPage from "./components/playlistPage/PlaylistPage";
 
 const container = document.getElementById('root');
 
@@ -18,6 +19,7 @@ if (container !== null) {
                     <Route path="/" element={<SearchPage/>}/>
                     <Route path="/profile" element={<ProfilePage/>}/>
                     <Route path="/user/:username" element={<UsernamePage/>}/>
+                    <Route path="/playlist/" element={<PlaylistPage/>}/>
                 </Routes>
             </BrowserRouter>
 

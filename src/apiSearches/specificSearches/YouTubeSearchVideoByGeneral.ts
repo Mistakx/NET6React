@@ -1,12 +1,13 @@
 import {ApiSearch} from "./ApiSearch";
 import axios from "axios";
 import {YouTubeVideoSearchResultPage} from "../../models/apiSearches/YouTubeSearchResult";
-import {Platform} from "../../models/apiSearches/PlatformSearches";
+import {Platform} from "../platforms/Platform";
 import {MultiPlatformPlayerCreator} from "../../playerCreators/MultiPlatformPlayerCreator";
 import {YouTubeVideoResultPageToListItemsConverter} from "../converters/YouTubeVideoResultPageToListItemsConverter";
 import {VideoSearchList} from "../../searchLists/VideoSearchList";
 import {TrackSearchList} from "../../searchLists/TrackSearchList";
 import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
+import YouTube from '../platforms/YouTube';
 
 export class YouTubeSearchVideoByGeneral extends ApiSearch {
 
@@ -24,7 +25,7 @@ export class YouTubeSearchVideoByGeneral extends ApiSearch {
     }
 
     public getPlatform(): Platform {
-        return "YouTube";
+        return new YouTube();
     }
 
     public getButtonText() {

@@ -1,6 +1,6 @@
 import {ApiSearch} from "./ApiSearch";
 import {TwitchChannelSearch} from "../auxiliarySearches/TwitchChannelSearch";
-import {Platform} from "../../models/apiSearches/PlatformSearches";
+import {Platform} from "../platforms/Platform";
 import {
     TwitchChannelSearchResultToListItemsConverter
 } from "../converters/TwitchChannelSearchResultToListItemsConverter";
@@ -8,6 +8,7 @@ import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
 import {MultiPlatformPlayerCreator} from "../../playerCreators/MultiPlatformPlayerCreator";
 import {VideoSearchList} from "../../searchLists/VideoSearchList";
 import {TrackSearchList} from "../../searchLists/TrackSearchList";
+import Twitch from '../platforms/Twitch';
 
 export class TwitchSearchLivestreamByGeneral extends ApiSearch {
 
@@ -18,7 +19,7 @@ export class TwitchSearchLivestreamByGeneral extends ApiSearch {
     }
 
     public getPlatform(): Platform {
-        return "Twitch";
+        return new Twitch();
     }
 
     public static getInstance() {

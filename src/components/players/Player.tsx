@@ -5,7 +5,7 @@ function Player(): JSX.Element {
 
     const currentPlayer = PlayerStore(state => state.currentPlayer)
 
-    return (<div id="Player"> {currentPlayer} </div>)
+    return (<div id="Player" style={{marginTop: "30px"}}> {currentPlayer} </div>)
 
 }
 

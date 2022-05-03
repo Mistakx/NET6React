@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import SearchListStore from "../../stores/SearchListStore";
+import SearchedListStore from "../../stores/SearchedListStore";
 
 function SearchResultsList(): JSX.Element {
 
     const [searchListHtml, setSearchListHtml] = useState<JSX.Element[]>();
 
-    const searchList = SearchListStore(state => state.searchList)
+    const searchList = SearchedListStore(state => state.searchedList)
 
     useEffect(() => {
 

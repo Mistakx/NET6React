@@ -3,6 +3,7 @@ import Player from "./players/Player";
 import AuthenticatedSearchBar from "./searchBar/AuthenticatedSearchBar";
 import SearchResultsList from "./searchResults/SearchResultsList";
 import SidePanel from "./SidePanel";
+import SearchLabel from "./searchBar/SearchLabel";
 
 function SearchPage(): JSX.Element {
 
@@ -16,12 +17,8 @@ function SearchPage(): JSX.Element {
                 <div className="container" data-aos="fade-up">
 
                     <div className="row">
+
                         <div className="col-md-10 offset-md-1">
-
-                            <div className="search-header">
-                                <h2 id="offcanvasRightLabel">Search <small></small></h2>
-                            </div>
-
 
                             <div className="search-body">
 

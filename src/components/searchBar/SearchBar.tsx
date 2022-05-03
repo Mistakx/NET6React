@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Form from 'react-bootstrap/Form'
 import {SpecificSearchType} from "../../models/apiSearches/PlatformSearches";
-import SearchListStore from '../../stores/SearchListStore'
+import SearchedListStore from '../../stores/SearchedListStore'
 import {ApiSearch} from "../../apiSearches/specificSearches/ApiSearch";
 import {YouTubeSearchVideoByGeneral} from "../../apiSearches/specificSearches/YouTubeSearchVideoByGeneral";
 import {SpotifySearchTrackByName} from "../../apiSearches/specificSearches/SpotifySearchTrackByName";
@@ -17,23 +17,29 @@ import {TrackSearchList} from "../../searchLists/TrackSearchList";
 import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
 import {SearchBarProperties} from "../../models/components/searchBar/SearchBarProperties";
 import '../../styles/style.css'
+import SearchLabel from "./SearchLabel";
+import SelectedSearchStore from "../../stores/SelectedSearchStore";
+import PlatformSelector from "./PlatformSelector";
+import SearchForm from "./SearchForm";
 
 function SearchBar(props: SearchBarProperties): JSX.Element {
 
     console.log("%cRendered search bar.", "color: cyan")
 
-    const [selectedSearch, setSelectedSearch] = useState<ApiSearch>(YouTubeSearchVideoByGeneral.getInstance());
+    const [searchBarStyle, setSearchBarStyle] = useState<string>("")
     const [searchBarQuery, setSearchBarQuery] = useState("");
 
-    const setSearchList = SearchListStore(state => state.setSearchList)
+    const selectedSearch = SelectedSearchStore(state => state.selectedSearch)
+    const setSelectedSearch = SelectedSearchStore(state => state.setSelectedSearch)
+    const setSearchedList = SearchedListStore(state => state.setSearchedList)
 
     async function searchPlatformItems(chosenSearchQuery: string) {
 
         let searchList: VideoSearchList | TrackSearchList | LivestreamSearchList
 
-        if (selectedSearch.getPlatform() === "Spotify") {
+        if (selectedSearch.getPlatform().getName() === "Spotify") {
             searchList = await selectedSearch.getSearchList(chosenSearchQuery, 1, 40, props.spotifyAuthenticator.current)
-        } else if (selectedSearch.getPlatform() === "Twitch") {
+        } else if (selectedSearch.getPlatform().getName() === "Twitch") {
             searchList = await selectedSearch.getSearchList(chosenSearchQuery, 1, 40, props.twitchAuthenticator.current)
         } else {
             searchList = await selectedSearch.getSearchList(chosenSearchQuery, 1, 40)
@@ -42,69 +48,20 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
     }
 
+
+
+
     return (
 
         <div>
 
+            <SearchLabel/>
+
             <div>
 
-                {"Selected Platform:"}
-                <Form.Select onChange={(event) => {
-                    switch (event.target.value as SpecificSearchType) {
-                        case "YouTubeSearchVideoByGeneral":
-                            setSelectedSearch(YouTubeSearchVideoByGeneral.getInstance())
-                            break;
-                        case "SpotifySearchTrackByName":
-                            setSelectedSearch(SpotifySearchTrackByName.getInstance())
-                            break;
-                        case "SpotifySearchTrackByAlbum":
-                            setSelectedSearch(SpotifySearchTrackByAlbum.getInstance())
-                            break;
-                        case "VimeoSearchVideoByName":
-                            setSelectedSearch(VimeoSearchVideoByName.getInstance())
-                            break;
-                        case "TwitchSearchClipByChannel":
-                            setSelectedSearch(TwitchSearchClipByChannel.getInstance())
-                            break;
-                        case "TwitchSearchClipByGame":
-                            setSelectedSearch(TwitchSearchClipByGame.getInstance())
-                            break;
-                        case "TwitchSearchVideoByChannel":
-                            setSelectedSearch(TwitchSearchVideoByChannel.getInstance())
-                            break;
-                        case "TwitchSearchVideoByGame":
-                            setSelectedSearch(TwitchSearchVideoByGame.getInstance())
-                            break;
-                        case "TwitchSearchLivestreamByGeneral":
-                            setSelectedSearch(TwitchSearchLivestreamByGeneral.getInstance())
-                            break;
-                    }
-                }}>
-                    <option value={"YouTubeSearchVideoByGeneral"}> {"YouTube"} </option>
-                    <option value={"SpotifySearchTrackByName"}> {"Spotify (Track)"} </option>
-                    <option value={"SpotifySearchTrackByAlbum"}> {"Spotify (Album)"} </option>
-                    <option value={"VimeoSearchVideoByName"}> {"Vimeo"} </option>
-                    <option value={"TwitchSearchClipByChannel"}> {"Twitch - Clip (Channel)"} </option>
-                    <option value={"TwitchSearchClipByGame"}> {"Twitch - Clip (Game)"} </option>
-                    <option value={"TwitchSearchVideoByChannel"}> {"Twitch - Video (Channel)"} </option>
-                    <option value={"TwitchSearchVideoByGame"}> {"Twitch - Video (Game)"} </option>
-                    <option value={"TwitchSearchLivestreamByGeneral"}> {"Twitch - Livestream"} </option>
+                <PlatformSelector/>
 
-                </Form.Select>
-
-                {/*Search bar*/}
-                <form onSubmit={async (event) => {
-                    event.preventDefault()
-                    setSearchList(await searchPlatformItems(searchBarQuery));
-                }}>
-
-                    <input autoFocus value={searchBarQuery} onChange={(event) => {
-                        setSearchBarQuery(event.target.value)
-                    }}/>
-
-                    <button>{selectedSearch.getButtonText()}</button>
-
-                </form>
+                <SearchForm twitchAuthenticator={props.twitchAuthenticator} spotifyAuthenticator={props.spotifyAuthenticator}/>
 
             </div>
 

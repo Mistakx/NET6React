@@ -4,15 +4,15 @@ import {VideoSearchList} from "../searchLists/VideoSearchList";
 import {TrackSearchList} from "../searchLists/TrackSearchList";
 import {LivestreamSearchList} from "../searchLists/LivestreamSearchList";
 
-const SearchListStore = create<SearchListState>((set) => ({
+const SearchedListStore = create<SearchListState>((set) => ({
 
-    searchList: null,
-        setSearchList: (searchList: VideoSearchList | TrackSearchList | LivestreamSearchList) => set(state => ({
-    searchList: searchList
+    searchedList: null,
+    setSearchedList: (searchedList: VideoSearchList | TrackSearchList | LivestreamSearchList) => set(state => ({
+        searchedList: searchedList
     }))
 
 
 }))
 
-export default SearchListStore;
+export default SearchedListStore;
 

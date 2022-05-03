@@ -2,12 +2,13 @@ import {ApiSearch} from "./ApiSearch";
 import base64 from "base-64";
 import axios from "axios";
 import {VimeoSearchVideoResultPage} from "../../models/apiSearches/VimeoSearchResult";
-import {Platform} from "../../models/apiSearches/PlatformSearches";
 import {MultiPlatformPlayerCreator} from "../../playerCreators/MultiPlatformPlayerCreator";
 import {VimeoVideoResultPageToListItemsConverter} from "../converters/VimeoVideoResultPageToListItemsConverter";
 import {VideoSearchList} from "../../searchLists/VideoSearchList";
 import {TrackSearchList} from "../../searchLists/TrackSearchList";
 import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
+import Vimeo from "../platforms/Vimeo";
+import {Platform} from "../platforms/Platform";
 
 export class VimeoSearchVideoByName extends ApiSearch {
 
@@ -28,7 +29,7 @@ export class VimeoSearchVideoByName extends ApiSearch {
     }
 
     public getPlatform(): Platform {
-        return "Vimeo";
+        return new Vimeo();
     }
 
     public getButtonText() {

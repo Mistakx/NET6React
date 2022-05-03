@@ -4,8 +4,8 @@ import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
 
 export interface SearchListState {
 
-    searchList: VideoSearchList | TrackSearchList | LivestreamSearchList | null
-    setSearchList: (searchList: VideoSearchList | TrackSearchList | LivestreamSearchList) => void
+    searchedList: VideoSearchList | TrackSearchList | LivestreamSearchList | null
+    setSearchedList: (searchList: VideoSearchList | TrackSearchList | LivestreamSearchList) => void
 
 
 }

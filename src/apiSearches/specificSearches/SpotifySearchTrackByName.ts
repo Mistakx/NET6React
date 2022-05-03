@@ -1,12 +1,13 @@
 import {ApiSearch} from "./ApiSearch";
 import axios from "axios";
 import {SpotifySearchTracksResult, SpotifyTracksPage} from "../../models/apiSearches/SpotifySearchResults";
-import {Platform} from "../../models/apiSearches/PlatformSearches";
 import {SpotifyTracksPageToListItemsConverter} from "../converters/SpotifyTracksPageToListItemsConverter";
 import {SpotifyPlayerCreator} from "../../playerCreators/SpotifyPlayerCreator";
 import {TrackSearchList} from "../../searchLists/TrackSearchList";
 import {VideoSearchList} from "../../searchLists/VideoSearchList";
 import {LivestreamSearchList} from "../../searchLists/LivestreamSearchList";
+import {Platform} from "../platforms/Platform";
+import Spotify from '../platforms/Spotify';
 
 export class SpotifySearchTrackByName extends ApiSearch {
 
@@ -24,7 +25,7 @@ export class SpotifySearchTrackByName extends ApiSearch {
     }
 
     public getPlatform(): Platform {
-        return "Spotify";
+        return new Spotify();
     }
 
     public getButtonText() {
