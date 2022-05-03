@@ -283,7 +283,7 @@ h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background: url("https://cdn.pixabay.com/photo/2016/11/23/00/58/record-player-1851576_960_720.jpg") top right no-repeat;
   background-size: cover;
   position: relative;
@@ -303,10 +303,8 @@ h2, h3, h4, h5, h6 {
   right: 0;
 }
 #hero h1 {
-  margin: 0;
+  margin-top: -200px;
   font-size: 64px;
-  font-weight: 700;
-  line-height: 56px;
   color: #C0A71A;
 }
 #hero p {
@@ -354,10 +352,6 @@ h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 .search-header h2 {
   color:#C0A71A;
-}
-
-.search-body .dropdown-menu {
-  min-width: 5rem;
 }
 
 .search-body .form-control {
@@ -441,7 +435,7 @@ h2, h3, h4, h5, h6 {
   background-repeat: no-repeat;
   margin-bottom: 5px;
 }
-/* 
+/*
 .results .col-md-6 {
   position: absolute;
   display: inline-block;
@@ -460,7 +454,7 @@ h2, h3, h4, h5, h6 {
 
 .card-img-overlay {
   color: #fff;
-  background: rgba(7, 30, 61, 0.3);
+  background: rgba(7, 30, 61, 0.7);
 
 }
 
@@ -469,7 +463,7 @@ h2, h3, h4, h5, h6 {
   bottom: 0;
   right: 0;
 }
-/* 
+/*
 .options .btn {
   font-size:30px;
 } */
@@ -521,6 +515,31 @@ h2, h3, h4, h5, h6 {
 
 .options .btn-outline-dark:hover {
   color: #FFF;
+}
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+
+.player-flutuante {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  z-index: 1000;
+}
+
+.player-flutuante .btn {
+  color:red;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 20px;
+  z-index: 1020;
+}
+
+.player-flutuante iframe {
+  border:none;
+  box-shadow: 0 5px 10px 0 #0678e3;
 }
 
 /*--------------------------------------------------------------

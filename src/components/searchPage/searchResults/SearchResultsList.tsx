@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import SearchedListStore from "../../stores/SearchedListStore";
+import SearchedListStore from "../../../stores/SearchedListStore";
 
 function SearchResultsList(): JSX.Element {
 

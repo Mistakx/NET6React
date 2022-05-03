@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../styles/style.css';
-import SelectedSearchStore from "../../stores/SelectedSearchStore";
+import '../../../styles/style.css';
+import SelectedSearchStore from "../../../stores/SelectedSearchStore";
 
 function SearchLabel(): JSX.Element {
 

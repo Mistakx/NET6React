@@ -1,6 +1,6 @@
 import React from 'react';
-import PlayerStore from "../../stores/PlayerStore";
-import {LivestreamItemComponentProperties} from "../../models/components/searchPage/LivestreamItemComponentProperties";
+import PlayerStore from "../../../stores/PlayerStore";
+import {LivestreamItemComponentProperties} from "../../../models/components/searchPage/LivestreamItemComponentProperties";
 
 function LivestreamItemComponent(props: LivestreamItemComponentProperties): JSX.Element {
 

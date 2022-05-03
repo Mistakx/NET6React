@@ -1,10 +1,10 @@
 import React from 'react';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes,} from "react-router-dom";
-import SearchPage from "./components/SearchPage";
+import SearchPage from "./components/searchPage/SearchPage";
 import {createRoot} from "react-dom/client";
 import ProfilePage from "./components/profilePage/ProfilePage";
-import UsernamePage from "./components/UsernamePage";
+import UsernamePage from "./components/userPage/UsernamePage";
 import PlaylistPage from "./components/playlistPage/PlaylistPage";
 
 const container = document.getElementById('root');

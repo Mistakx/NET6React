@@ -9,9 +9,9 @@ export abstract class ApiSearch {
 
     abstract getButtonText(): string
 
-    private searchListPlayerWidth = 400
+    private searchListPlayerWidth = 1000
 
-    private searchListPlayerHeight = 400
+    private searchListPlayerHeight = 200
 
     public getSearchListPlayerWidth(): number {
         return this.searchListPlayerWidth

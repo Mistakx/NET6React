@@ -1,7 +1,7 @@
 import React from 'react';
-import '../styles/style.css';
+import '../../styles/style.css';
 import {useParams} from "react-router-dom";
-import SidePanel from "./SidePanel";
+import SidePanel from "../SidePanel";
 
 function UsernamePage(): JSX.Element {
 
