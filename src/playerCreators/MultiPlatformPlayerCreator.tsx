@@ -9,8 +9,6 @@ export class MultiPlatformPlayerCreator extends PlayerCreator {
         if (super.getPlatformPlayerUrl()) {
             return <MultiPlatformPlayer
                 contentId={clipId}
-                width={super.getPlayerWidth()}
-                height={super.getPlayerHeight()}
                 playerUrl={super.getPlatformPlayerUrl() as string}/>
         }
 

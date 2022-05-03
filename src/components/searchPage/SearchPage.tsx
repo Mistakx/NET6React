@@ -23,7 +23,6 @@ function SearchPage(): JSX.Element {
 
                                 <AuthenticatedSearchBar/>
 
-                                <FloatingPlayer/>
 
                                 <SearchResultsList/>
 
@@ -38,7 +37,12 @@ function SearchPage(): JSX.Element {
 
             <SidePanel/>
 
+            <FloatingPlayer/>
+
+
         </div>
+
+
 
     )
 }

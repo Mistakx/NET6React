@@ -7,8 +7,6 @@ export function SpotifyPlayer(props: SpotifyPlayerProperties): JSX.Element {
         <div style={{
             backgroundSize: "cover",
             backgroundImage: "url(" + props.thumbnailUrl + ")",
-            width: props.width + "px",
-            height: props.height + "px"
         }}>
 
             <iframe style={{position: "relative", top: (props.width - 80) + "px"}}
