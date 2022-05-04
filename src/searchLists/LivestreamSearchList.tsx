@@ -1,7 +1,7 @@
 import {GenericLivestreamResult} from "../models/apiSearches/GenericResults";
 import {PlayerCreator} from "../playerCreators/PlayerCreator";
 import {SearchList} from "./SearchList";
-import LivestreamBootstrapItem from "../components/searchPage/searchResults/LivestreamBootstrapItem";
+import LivestreamBootstrapItem from "../components/searchPage/searchItems/LivestreamBootstrapItem";
 
 export class LivestreamSearchList extends SearchList {
 
@@ -26,8 +26,6 @@ export class LivestreamSearchList extends SearchList {
 
             let genericItemHtml = <LivestreamBootstrapItem
                 item={currentGenericItem}
-                playerWidth={super.getPlayerWidth()}
-                playerHeight={super.getPlayerWidth()}
                 playerBuilder={this.playerBuilder}
             />
 

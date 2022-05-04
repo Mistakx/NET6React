@@ -12,8 +12,11 @@ export function TwitchClipPlayer(props: TwitchClipPlayerProperties): JSX.Element
             frameBorder={0}
             allowFullScreen={true}
             scrolling={"no"}
-            height={props.height}
-            width={props.width}
+            height={"100%"}
+            width={"100%"}
+            onLoad={() => {
+                props.setPlayerStarted(true)
+            }}
         />
     )
 

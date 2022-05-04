@@ -4,9 +4,12 @@ import {TwitchClipPlayer} from "../components/players/TwitchClipPlayer";
 
 export class TwitchClipPlayerCreator extends PlayerCreator {
 
-    public create(clipId: string): JSX.Element {
+    public create(clipId: string, setPlayerStarted: React.Dispatch<React.SetStateAction<boolean>>): JSX.Element {
 
-        return <TwitchClipPlayer contentId={clipId} width={super.getPlayerWidth()} height={super.getPlayerWidth()}/>;
+        return <TwitchClipPlayer
+            contentId={clipId}
+            setPlayerStarted={setPlayerStarted}
+        />;
 
     }
 

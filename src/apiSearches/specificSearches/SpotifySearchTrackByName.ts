@@ -68,7 +68,7 @@ export class SpotifySearchTrackByName extends ApiSearch {
 
         const spotifyTracksPage = await this.searchSpotifyTracksByName(searchQuery, accessToken, limit, page);
         const items = SpotifyTracksPageToListItemsConverter.convert(spotifyTracksPage);
-        const searchList = new TrackSearchList(items, new SpotifyPlayerCreator(super.getSearchListPlayerWidth(), super.getSearchListPlayerHeight()));
+        const searchList = new TrackSearchList(items, new SpotifyPlayerCreator());
 
         return searchList;
 

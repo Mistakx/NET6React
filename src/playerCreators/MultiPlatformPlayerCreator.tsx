@@ -4,17 +4,13 @@ import {MultiPlatformPlayer} from "../components/players/MultiPlatformPlayer";
 
 export class MultiPlatformPlayerCreator extends PlayerCreator {
 
-    public create(clipId: string): JSX.Element {
+    public create(clipId: string, setPlayerStarted: React.Dispatch<React.SetStateAction<boolean>>) {
 
-        if (super.getPlatformPlayerUrl()) {
-            return <MultiPlatformPlayer
-                contentId={clipId}
-                playerUrl={super.getPlatformPlayerUrl() as string}/>
-        }
-
-        return <div>Error with Multi Platform Player URL</div>
-
-
+        return <MultiPlatformPlayer
+            contentId={clipId}
+            playerUrl={super.getPlatformPlayerUrl() as string}
+            setPlayerStarted={setPlayerStarted}
+        />
     }
 
 }

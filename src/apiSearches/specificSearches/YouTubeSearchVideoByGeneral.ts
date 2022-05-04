@@ -69,7 +69,7 @@ export class YouTubeSearchVideoByGeneral extends ApiSearch {
 
         const youtubeVideoResultPage = await this.searchYouTubeVideos(searchQuery, limit, null)
         const items = YouTubeVideoResultPageToListItemsConverter.convert(youtubeVideoResultPage)
-        const searchList = new VideoSearchList(items, new MultiPlatformPlayerCreator(super.getSearchListPlayerHeight(), super.getSearchListPlayerWidth(), "https://www.youtube.com/watch?v="))
+        const searchList = new VideoSearchList(items, new MultiPlatformPlayerCreator("https://www.youtube.com/watch?v="))
         return searchList
 
     }

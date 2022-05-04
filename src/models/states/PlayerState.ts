@@ -1,6 +1,12 @@
+import {PlayerCreator} from "../../playerCreators/PlayerCreator";
+
 export interface PlayerState {
 
-    currentPlayer: JSX.Element | null
-    setCurrentPlayer: (currentPlayer: JSX.Element) => void;
+    playingId: string | null
+    setPlayingId: (playingId: string | null) => void
+    playingThumbnailUrl: string | null
+    setPlayingThumbnailUrl: (playingThumbnailUrl: string | null) => void
+    playerCreator: PlayerCreator | null
+    setPlayerCreator: (playerCreator: PlayerCreator | null) => void
 
 }

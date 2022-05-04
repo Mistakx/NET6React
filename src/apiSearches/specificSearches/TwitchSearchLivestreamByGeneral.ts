@@ -40,7 +40,7 @@ export class TwitchSearchLivestreamByGeneral extends ApiSearch {
 
         const twitchChannelsPageResult = await TwitchChannelSearch.searchTwitchChannels(searchQuery, accessToken, limit, null, true)
         const items = TwitchChannelSearchResultToListItemsConverter.convert(twitchChannelsPageResult)
-        const searchList = new LivestreamSearchList(items, new MultiPlatformPlayerCreator(super.getSearchListPlayerWidth(), super.getSearchListPlayerHeight(), "https://www.twitch.tv/"))
+        const searchList = new LivestreamSearchList(items, new MultiPlatformPlayerCreator("https://www.twitch.tv/"))
         return searchList
 
     }

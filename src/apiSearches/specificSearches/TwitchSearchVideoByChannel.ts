@@ -80,7 +80,7 @@ export class TwitchSearchVideoByChannel extends ApiSearch {
 
         const twitchVideoPageResult = await this.searchTwitchVideosByChannel(searchQuery, "week", "trending", accessToken, limit, null)
         const items = TwitchVideoSearchResultToListItemsConverter.convert(twitchVideoPageResult)
-        const searchList = new VideoSearchList(items, new MultiPlatformPlayerCreator(super.getSearchListPlayerWidth(), super.getSearchListPlayerHeight(), "https://www.twitch.tv/videos/"))
+        const searchList = new VideoSearchList(items, new MultiPlatformPlayerCreator("https://www.twitch.tv/videos/"))
         return searchList
 
     }

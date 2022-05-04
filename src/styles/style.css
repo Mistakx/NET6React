@@ -392,13 +392,35 @@ h2, h3, h4, h5, h6 {
   color: #FF0000;
 }
 
-.bg-twitch {
-  background-color: #6441A4;
+.btn-twitch:hover {
+  background-color: #583e8c;
+  border-color: #6343a2;
   color: #fff;
 }
 
 .btn-twitch {
   background-color: #6441A4;
+  border-color: #6441A4;
+  color: #fff;
+}
+
+.bg-twitch {
+  background-color: #6441A4;
+  color: #fff;
+}
+
+.bg-youtube {
+  background-color: #FF0000;
+  color: #fff;
+}
+
+.bg-vimeo {
+  background-color: #19b7ea;
+  color: #fff;
+}
+
+.bg-spotify {
+  background-color: #1db954;
   color: #fff;
 }
 
@@ -455,7 +477,8 @@ h2, h3, h4, h5, h6 {
 .card-img-overlay {
   color: #fff;
   background: rgba(7, 30, 61, 0.7);
-
+  width: 101%;
+  left: -1px;
 }
 
 .options {
@@ -522,19 +545,22 @@ h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 
 .player-flutuante {
+  margin-top: 5px;
   position: fixed;
-  bottom: 0px;
+  top: 0px;
   right: 0px;
   z-index: 1000;
 }
 
 .player-flutuante .btn {
-  color:red;
+  color:white;
   position: absolute;
-  top: 0;
-  right: 10px;
+  top: 0px;
+  right: 0px;
   font-size: 20px;
   z-index: 1020;
+  padding-top: 0px;
+  padding-right: 4px;
 }
 
 .player-flutuante iframe {

@@ -77,7 +77,7 @@ export class TwitchSearchClipByChannel extends ApiSearch {
 
         const twitchClipsPage = await this.searchTwitchClipsByChannel(searchQuery, accessToken, limit, null)
         const items = TwitchClipSearchResultToListItemsConverter.convert(twitchClipsPage)
-        const searchList = new VideoSearchList(items, new TwitchClipPlayerCreator(super.getSearchListPlayerWidth(), super.getSearchListPlayerHeight()))
+        const searchList = new VideoSearchList(items, new TwitchClipPlayerCreator())
         return searchList
 
     }

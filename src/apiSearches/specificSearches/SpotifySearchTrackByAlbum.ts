@@ -110,7 +110,7 @@ export class SpotifySearchTrackByAlbum extends ApiSearch {
 
         const spotifyTracksPage = await this.searchSpotifyTracksByAlbum(searchQuery, accessToken, limit, page)
         const items = SpotifyTracksPageToListItemsConverter.convert(spotifyTracksPage)
-        const searchList = new TrackSearchList(items, new SpotifyPlayerCreator(super.getSearchListPlayerWidth(), super.getSearchListPlayerHeight()))
+        const searchList = new TrackSearchList(items, new SpotifyPlayerCreator())
 
         return searchList
 

@@ -78,7 +78,7 @@ export class VimeoSearchVideoByName extends ApiSearch {
 
         const vimeoVideoResultPage = await this.searchVimeoVideos(searchQuery, limit, page)
         const items = VimeoVideoResultPageToListItemsConverter.convert(vimeoVideoResultPage)
-        const searchList = new VideoSearchList(items, new MultiPlatformPlayerCreator(super.getSearchListPlayerWidth(), super.getSearchListPlayerHeight(), "https://vimeo.com/"))
+        const searchList = new VideoSearchList(items, new MultiPlatformPlayerCreator("https://vimeo.com/"))
         return searchList
 
     }

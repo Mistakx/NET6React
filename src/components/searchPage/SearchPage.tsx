@@ -1,6 +1,6 @@
 import React from 'react';
 import AuthenticatedSearchBar from "./searchBar/AuthenticatedSearchBar";
-import SearchResultsList from "./searchResults/SearchResultsList";
+import SearchResultsList from "./searchItems/SearchResultsList";
 import SidePanel from "../SidePanel";
 import FloatingPlayer from "./FloatingPlayer";
 
@@ -22,8 +22,7 @@ function SearchPage(): JSX.Element {
                             <div className="search-body">
 
                                 <AuthenticatedSearchBar/>
-
-
+                                
                                 <SearchResultsList/>
 
                             </div>

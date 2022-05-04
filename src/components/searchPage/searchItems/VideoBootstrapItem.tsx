@@ -1,13 +1,17 @@
 import React from 'react';
 import PlayerStore from "../../../stores/PlayerStore";
 import {VideoItemComponentProperties} from "../../../models/components/searchPage/VideoItemComponentProperties";
+import SearchedListStore from "../../../stores/SearchedListStore";
 
 function VideoBoostrapItem(props: VideoItemComponentProperties): JSX.Element {
 
-    const setCurrentPlayer = PlayerStore(state => state.setCurrentPlayer)
+    const setPlayingId = PlayerStore(state => state.setPlayingId)
+    const searchList = SearchedListStore(state => state.searchedList)
+    const setPlayerCreator = PlayerStore(state => state.setPlayerCreator)
 
     function setCurrentPlayerToClickedItem() {
-        setCurrentPlayer(props.playerBuilder.create(props.item.id));
+        setPlayingId(props.item.id);
+        setPlayerCreator(searchList!.getPlayerCreator())
         window.scroll({
             top: 0,
             left: 0,
@@ -21,7 +25,7 @@ function VideoBoostrapItem(props: VideoItemComponentProperties): JSX.Element {
             setCurrentPlayerToClickedItem()
         }}>
             <div className="card bg-dark"
-                 style={{cursor: "pointer", backgroundSize: "cover", backgroundImage: "url(" + props.item.thumbnailUrl + ")"}}>
+                 style={{cursor: "pointer", backgroundSize: "100% 100%", backgroundImage: "url(" + props.item.thumbnailUrl + ")"}}>
                 <div className="card-img-overlay text-end">
                     <h5 className="card-title text-uppercase">{props.item.title}</h5>
                     <p className="card-text">{props.item.creator}</p>

@@ -3,9 +3,19 @@ import {PlayerState} from "../models/states/PlayerState";
 
 const PlayerStore = create<PlayerState>((set) => ({
 
-    currentPlayer: null,
-    setCurrentPlayer: (currentPlayer: JSX.Element) => set(state => ({
-        currentPlayer: currentPlayer
+    playingId: null,
+    setPlayingId: (playingId) => set(state => ({
+        playingId: playingId
+    })),
+
+    playingThumbnailUrl: null,
+    setPlayingThumbnailUrl: (playingThumbnailUrl) => set(state => ({
+        playingThumbnailUrl: playingThumbnailUrl
+    })),
+
+    playerCreator: null,
+    setPlayerCreator: (playerCreator) => set(state => ({
+        playerCreator: playerCreator
     })),
 
 }))

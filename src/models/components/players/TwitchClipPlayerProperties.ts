@@ -1,5 +1,6 @@
+import React from "react";
+
 export interface TwitchClipPlayerProperties {
     contentId: string
-    width: number
-    height: number
+    setPlayerStarted: React.Dispatch<React.SetStateAction<boolean>>
 }

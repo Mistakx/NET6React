@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import '../../../styles/style.css'
 import SelectedSearchStore from "../../../stores/SelectedSearchStore";
 import {VimeoSearchVideoByName} from "../../../apiSearches/specificSearches/VimeoSearchVideoByName";
@@ -23,33 +23,41 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
         <ul className={platformDropdownList}>
 
             <li>
-                <div className="dropdown-item text-center text-white h3 bg-success"
+                <div className="dropdown-item text-center text-white h3 bg-spotify"
                      id="platform"
-                     data-id="spotify"><i className='bx bxl-spotify' onClick={(e) => {
-                    props.togglePlatformDropdownList()
-                    e.preventDefault()
-                    setSelectedSearch(SpotifySearchTrackByName.getInstance())
-                }}></i></div>
+                     data-id="spotify"
+                     onClick={(e) => {
+                         props.togglePlatformDropdownList()
+                         e.preventDefault()
+                         setSelectedSearch(SpotifySearchTrackByName.getInstance())
+                     }}>
+                    <i className='bx bxl-spotify'></i>
+                </div>
             </li>
 
             <li>
-                <div className="dropdown-item text-center text-white h3 bg-success"
+                <div className="dropdown-item text-center text-white h3 bg-spotify"
                      id="platform"
-                     data-id="spotify" onClick={(e) => {
-                    props.togglePlatformDropdownList()
-                    e.preventDefault()
-                    setSelectedSearch(SpotifySearchTrackByAlbum.getInstance())
-                }}><i className='bx bxl-spotify'></i></div>
+                     data-id="spotify"
+                     onClick={(e) => {
+                         props.togglePlatformDropdownList()
+                         e.preventDefault()
+                         setSelectedSearch(SpotifySearchTrackByAlbum.getInstance())
+                     }}>
+                    <i className='bx bxl-spotify'></i>
+                </div>
             </li>
 
             <li>
-                <div className="dropdown-item text-center text-white h3 bg-danger"
+                <div className="dropdown-item text-center text-white h3 bg-youtube"
                      id="platform"
                      data-id="youtube" onClick={(e) => {
                     props.togglePlatformDropdownList()
                     e.preventDefault()
                     setSelectedSearch(YouTubeSearchVideoByGeneral.getInstance())
-                }}><i className='bx bxl-youtube'></i></div>
+                }}>
+                    <i className='bx bxl-youtube'></i>
+                </div>
             </li>
 
             <li>
@@ -59,7 +67,9 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     props.togglePlatformDropdownList()
                     e.preventDefault()
                     setSelectedSearch(TwitchSearchClipByChannel.getInstance())
-                }}><i className='bx bxl-twitch'></i></div>
+                }}>
+                    <i className='bx bxl-twitch'></i>
+                </div>
             </li>
 
             <li>
@@ -69,7 +79,9 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     props.togglePlatformDropdownList()
                     e.preventDefault()
                     setSelectedSearch(TwitchSearchClipByGame.getInstance())
-                }}><i className='bx bxl-twitch'></i></div>
+                }}>
+                    <i className='bx bxl-twitch'></i>
+                </div>
             </li>
 
             <li>
@@ -79,7 +91,9 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     props.togglePlatformDropdownList()
                     e.preventDefault()
                     setSelectedSearch(TwitchSearchVideoByChannel.getInstance())
-                }}><i className='bx bxl-twitch'></i></div>
+                }}>
+                    <i className='bx bxl-twitch'></i>
+                </div>
             </li>
 
             <li>
@@ -103,8 +117,11 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
             </li>
 
             <li>
-                <div className="dropdown-item text-center text-white h3 bg-info" id="platform"
-                     data-id="vimeo" onClick={() => {
+                <div className="dropdown-item text-center text-white h3 bg-vimeo"
+                     id="platform"
+                     data-id="vimeo" onClick={(e) => {
+                    props.togglePlatformDropdownList()
+                    e.preventDefault()
                     setSelectedSearch(VimeoSearchVideoByName.getInstance())
                 }}><i className='bx bxl-vimeo'></i></div>
             </li>
