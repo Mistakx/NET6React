@@ -1,12 +1,34 @@
 /*--------------------------------------------------------------
+# Colors
+--------------------------------------------------------------*/
+:root{
+    --iconColor: #fff;
+
+    --youtubeHighlightColor: #fe0000;
+    --youtubeNeutralColor: #de0000;
+    --youtubeHoveredColor: #b90000;
+
+    --spotifyHighlightColor: #29f171;
+    --spotifyNeutralColor: #1db954;
+    --spotifyHoveredColor: #158d41;
+
+    --twitchHiglightColor: #9965ff;
+    --twitchNeutralColor: #6441A4;
+    --twitchHoveredColor: #4b3675;
+
+    --vimeoHiglightColor: #29c0ff;
+    --vimeoNeutralColor: #19b7ea;
+    --vimeoHoveredColor: #147ea1;
+}
+/*--------------------------------------------------------------
 # Search Label and Input
 --------------------------------------------------------------*/
+
 .search-body .form-control {
     background-color: transparent;
     border: none;
     border-bottom-width: 3px;
     border-bottom-style: solid;
-    border-bottom-color: #C0A71A;
 }
 
 .search-body .form-control:focus {
@@ -16,39 +38,39 @@
 }
 
 .search-body .spotify {
-    color: #1ED760;
-    border-bottom-color: #1ED760;
+    color: var(--spotifyHighlightColor);
+    border-bottom-color: var(--spotifyNeutralColor);
 }
 
 .search-body .spotify::placeholder {
-    color: #1ED760;
+    color: var(--spotifyHighlightColor);
 }
 
 .search-body .youtube {
-    color: #FF0000;
-    border-bottom-color: #FF0000;
+    color: var(--youtubeHighlightColor);
+    border-bottom-color: var(--youtubeNeutralColor);
 }
 
 .search-body .youtube::placeholder {
-    color: #FF0000;
+    color: var(--youtubeHighlightColor);
 }
 
 .search-body .twitch {
-    color: #6441A4;
-    border-bottom-color: #6441A4;
+    color: var(--twitchHiglightColor);
+    border-bottom-color: var(--twitchNeutralColor);
 }
 
 .search-body .twitch::placeholder {
-    color: #6441A4;
+    color: var(--twitchHiglightColor);
 }
 
 .search-body .vimeo {
-    color: #24ABE2;
-    border-bottom-color: #24ABE2;
+    color: var(--vimeoHiglightColor);
+    border-bottom-color: var(--vimeoNeutralColor);
 }
 
 .search-body .vimeo::placeholder {
-    color: #24ABE2;
+    color: var(--vimeoHiglightColor);
 }
 
 .search-body .results {
@@ -59,68 +81,105 @@
 # Dropdown buttons
 --------------------------------------------------------------*/
 .btn-twitch:hover {
-    background-color: #4b3675;
-    border-color: #6441A4;
-    color: #fff;
+    background-color: var(--twitchHoveredColor);
+    border-color: var(--twitchNeutralColor);
+    color: var(--iconColor);
 }
+
 .btn-twitch {
-    background-color: #6441A4;
-    border-color: #6441A4;
-    color: #fff;
+    background-color: var(--twitchNeutralColor);
+    background-color: var(--twitchNeutralColor);
+    color: var(--iconColor);
 }
 
 .btn-youtube:hover {
-    background-color: #c70000;
-    border-color: #FF0000;
-    color: #fff;
+    background-color: var(--youtubeHoveredColor);
+    border-color: var(--youtubeNeutralColor);
+    color: var(--iconColor);
 }
+
 .btn-youtube {
-    background-color: #FF0000;
-    border-color: #FF0000;
-    color: #fff;
+    background-color: var(--youtubeNeutralColor);
+    border-color: var(--youtubeNeutralColor);
+    color: var(--iconColor);
 }
 
 .btn-vimeo:hover {
-    background-color: #147ea1;
-    border-color: #19b7ea;
-    color: #fff;
+    background-color: var(--vimeoHoveredColor);
+    border-color: var(--vimeoNeutralColor);
+    color: var(--iconColor);
 }
+
 .btn-vimeo {
-    background-color: #19b7ea;
-    border-color: #19b7ea;
-    color: #fff;
+    background-color: var(--vimeoNeutralColor);
+    border-color: var(--vimeoNeutralColor);
+    color: var(--iconColor);
 }
 
 .btn-spotify:hover {
-    background-color: #158d41;
-    border-color: #1db954;
-    color: #fff;
+    background-color: var(--spotifyHoveredColor);
+    border-color: var(--spotifyNeutralColor);
+    color: var(--iconColor);
 }
+
 .btn-spotify {
+    background-color: var(--spotifyNeutralColor);
+    border-color: var(--spotifyNeutralColor);
+    color: var(--iconColor);
+}
+
+/*--------------------------------------------------------------
+# Dropdown submenu
+--------------------------------------------------------------*/
+.dropdown-menu li {
+    position: relative;
+}
+
+.dropdown-menu .dropdown-submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: -7px;
+}
+
+.dropdown-menu .dropdown-submenu-left {
+    right: 100%;
+    left: auto;
+}
+
+.dropdown-menu > li:hover > .dropdown-submenu {
+    display: block;
+}
+
+.dropdown-menu-dark .dropdown-item {
+    margin-top: 0px
+}
+
+.dropdown-item .spotify:hover {
     background-color: #1db954;
     border-color: #1db954;
     color: #fff;
 }
 
-
-.results .card {
-    max-width: 100%;
-    height: 200px;
-    margin-bottom: 20px;
+.dropdown-menu .spotify {
+    background-color: #1db954;
+    /*border-color: #1db954;*/
+    color: #fff !important;
 }
 
-.card {
-    background-position: center;
-    background-repeat: no-repeat;
-    margin-bottom: 5px;
+.dropdown-menu .spotify a:active {
+    background-color: #15B860;
+    border-color: #15B860;
+    color: #fff;
 }
 
-/*
-.results .col-md-6 {
-  position: absolute;
-  display: inline-block;
-  overflow: hidden;
-} */
+.dropdown-menu .bg-twitch {
+    background-color: #4D2F8D;
+    /*border-color: #4D2F8D;*/
+    color: #fff;
+}
+
+
 .dropdown-submenu {
     position: relative;
     background-color: transparent;
@@ -132,16 +191,8 @@
     margin-top: -1px;
 }
 
-.card-img-overlay {
-    color: #fff;
-    background: rgba(7, 30, 61, 0.7);
-    width: 101%;
-    left: -1px;
-}
-
-
 /*--------------------------------------------------------------
-# Flating Player
+# Floating Player
 --------------------------------------------------------------*/
 .player-flutuante {
     margin-top: 5px;
@@ -165,4 +216,26 @@
 .player-flutuante iframe {
     border: none;
     box-shadow: 0 5px 10px 0 #0678e3;
+}
+
+/*--------------------------------------------------------------
+# Search results
+--------------------------------------------------------------*/
+.card-img-overlay {
+    color: #fff;
+    background: rgba(7, 30, 61, 0.7);
+    width: 101%;
+    left: -1px;
+}
+
+.results .card {
+    max-width: 100%;
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 5px;
 }

@@ -8,7 +8,7 @@ class Spotify extends Platform {
     }
 
     public getDropdownButtonClass() {
-        return "btn-success";
+        return "btn-spotify";
     }
 
     public getName() {

@@ -8,7 +8,7 @@ class Vimeo extends Platform{
     }
 
     public getDropdownButtonClass() {
-        return "btn-info";
+        return "btn-vimeo";
     }
 
     public getName() {

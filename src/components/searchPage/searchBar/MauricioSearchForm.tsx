@@ -14,7 +14,7 @@ function MauricioSearchForm(props: SearchFormProperties): JSX.Element {
     return (
 
             <input type="text submit" id="search"
-                   className={"form-control form-control-lg default " + selectedSearch.getPlatform().getColorClass()}
+                   className={"form-control " + selectedSearch.getPlatform().getColorClass()}
                    autoFocus value={props.searchBarQuery}
                    placeholder="I want that music..."
 

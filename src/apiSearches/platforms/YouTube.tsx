@@ -8,7 +8,7 @@ export class YouTube extends Platform{
     }
 
     public getDropdownButtonClass() {
-        return "btn-danger";
+        return "btn-youtube";
     }
 
     public getName() {

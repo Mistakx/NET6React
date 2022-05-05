@@ -27,12 +27,12 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                 <div className="dropdown-item text-center text-white h3 btn-spotify" id="platform"
                    data-id="spotify"><i className='bx bxl-spotify'></i> &raquo;
                 </div>
-                <ul className="dropdown-menu dropdown-submenu btn-spotify">
+                <ul className="dropdown-menu dropdown-submenu spotify">
                     <li>
-                        <a className="dropdown-item btn-spotify" href="#">Track</a>
+                        <a className="dropdown-item spotify" href="#">Track</a>
                     </li>
                     <li>
-                        <a className="dropdown-item btn-spotify" href="#">Album</a>
+                        <a className="dropdown-item spotify" href="#">Album</a>
                     </li>
                 </ul>
             </li>

@@ -8,9 +8,9 @@ function SearchLabel(): JSX.Element {
 
     return (
 
-        <h2 id="offcanvasRightLabel"
+        <h2
             className={selectedSearch.getPlatform().getColorClass()}>Search {selectedSearch.getButtonText()}
-            <small></small></h2>
+        </h2>
 
     )
 
