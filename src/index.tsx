@@ -19,7 +19,7 @@ if (container !== null) {
                     <Route path="/" element={<SearchPage/>}/>
                     <Route path="/profile" element={<ProfilePage/>}/>
                     <Route path="/user/:username" element={<UsernamePage/>}/>
-                    <Route path="/playlist/" element={<PlaylistPage/>}/>
+                    <Route path="/playlist" element={<PlaylistPage/>}/>
                 </Routes>
             </BrowserRouter>
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/style.css';
 
-function Playlist(): JSX.Element {
+function PlaylistItem(): JSX.Element {
 
     return (
 
@@ -12,6 +12,7 @@ function Playlist(): JSX.Element {
                     <h5 className="card-title text-uppercase">Nome Música</h5>
                     <p className="card-text">Tipo album</p>
                     <p className="card-text">Artista</p>
+
 
                     <div className="options">
 
@@ -38,4 +39,4 @@ function Playlist(): JSX.Element {
 
 }
 
-export default Playlist
+export default PlaylistItem

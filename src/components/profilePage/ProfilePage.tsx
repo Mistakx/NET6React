@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/style.css';
 import SidePanel from "../SidePanel";
 import User from "./User";
-import Playlist from "./Playlist";
+import PlaylistItem from "./PlaylistItem";
 import PlaylistsList from "./PlaylistsList";
 import TopBar from "./TopBar";
 

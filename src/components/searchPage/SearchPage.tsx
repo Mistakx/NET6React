@@ -3,6 +3,7 @@ import AuthenticatedSearchBar from "./searchBar/AuthenticatedSearchBar";
 import SearchResultsList from "./searchItems/SearchResultsList";
 import SidePanel from "../SidePanel";
 import FloatingPlayer from "./FloatingPlayer";
+import '../../styles/SearchPage.css';
 
 function SearchPage(): JSX.Element {
 

@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/style.css';
 import SidePanel from "../SidePanel";
 import User from "./User";
-import Playlist from "./Playlist";
+import PlaylistItem from "./PlaylistItem";
 
 function PlaylistsList(): JSX.Element {
 
@@ -12,12 +12,12 @@ function PlaylistsList(): JSX.Element {
 
             <div className="row results">
 
-                <Playlist/>
-                <Playlist/>
-                <Playlist/>
-                <Playlist/>
-                <Playlist/>
-                <Playlist/>
+                <PlaylistItem/>
+                <PlaylistItem/>
+                <PlaylistItem/>
+                <PlaylistItem/>
+                <PlaylistItem/>
+                <PlaylistItem/>
 
             </div>
 

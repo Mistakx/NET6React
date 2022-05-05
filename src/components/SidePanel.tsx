@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/style.css';
+import '../styles/Sidepanel.css';
 
 function SidePanel(): JSX.Element {
 
@@ -31,6 +31,13 @@ function SidePanel(): JSX.Element {
                         <a href="/" className="nav-link scrollto">
                             <i className="bx bx-search-alt"></i>
                             <span>Search</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/playlist" className="nav-link scrollto">
+                            <i className="bx bx-search-alt"></i>
+                            <span>Playlist</span>
                         </a>
                     </li>
 

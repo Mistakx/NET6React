@@ -22,8 +22,23 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
 
         <ul className={platformDropdownList}>
 
+
             <li>
-                <div className="dropdown-item text-center text-white h3 bg-spotify"
+                <div className="dropdown-item text-center text-white h3 btn-spotify" id="platform"
+                   data-id="spotify"><i className='bx bxl-spotify'></i> &raquo;
+                </div>
+                <ul className="dropdown-menu dropdown-submenu btn-spotify">
+                    <li>
+                        <a className="dropdown-item btn-spotify" href="#">Track</a>
+                    </li>
+                    <li>
+                        <a className="dropdown-item btn-spotify" href="#">Album</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <div className="dropdown-item text-center text-white h3 btn-spotify"
                      id="platform"
                      data-id="spotify"
                      onClick={(e) => {
@@ -33,10 +48,11 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                      }}>
                     <i className='bx bxl-spotify'></i>
                 </div>
+
             </li>
 
             <li>
-                <div className="dropdown-item text-center text-white h3 bg-spotify"
+                <div className="dropdown-item text-center text-white h3 btn-spotify"
                      id="platform"
                      data-id="spotify"
                      onClick={(e) => {
@@ -49,7 +65,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
             </li>
 
             <li>
-                <div className="dropdown-item text-center text-white h3 bg-youtube"
+                <div className="dropdown-item text-center text-white h3 btn-youtube"
                      id="platform"
                      data-id="youtube" onClick={(e) => {
                     props.togglePlatformDropdownList()
@@ -61,7 +77,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
             </li>
 
             <li>
-                <div className="dropdown-item text-center text-white h3 bg-twitch"
+                <div className="dropdown-item text-center text-white h3 btn-twitch"
                      id="platform"
                      data-id="twitch" onClick={(e) => {
                     props.togglePlatformDropdownList()
@@ -73,7 +89,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
             </li>
 
             <li>
-                <div className="dropdown-item text-center text-white h3 bg-twitch"
+                <div className="dropdown-item text-center text-white h3 btn-twitch"
                      id="platform"
                      data-id="twitch" onClick={(e) => {
                     props.togglePlatformDropdownList()
@@ -85,7 +101,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
             </li>
 
             <li>
-                <div className="dropdown-item text-center text-white h3 bg-twitch"
+                <div className="dropdown-item text-center text-white h3 btn-twitch"
                      id="platform"
                      data-id="twitch" onClick={(e) => {
                     props.togglePlatformDropdownList()
@@ -97,7 +113,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
             </li>
 
             <li>
-                <div className="dropdown-item text-center text-white h3 bg-twitch"
+                <div className="dropdown-item text-center text-white h3 btn-twitch"
                      id="platform"
                      data-id="twitch" onClick={(e) => {
                     props.togglePlatformDropdownList()
@@ -107,7 +123,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
             </li>
 
             <li>
-                <div className="dropdown-item text-center text-white h3 bg-twitch"
+                <div className="dropdown-item text-center text-white h3 btn-twitch"
                      id="platform"
                      data-id="twitch" onClick={(e) => {
                     props.togglePlatformDropdownList()
@@ -117,7 +133,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
             </li>
 
             <li>
-                <div className="dropdown-item text-center text-white h3 bg-vimeo"
+                <div className="dropdown-item text-center text-white h3 btn-vimeo"
                      id="platform"
                      data-id="vimeo" onClick={(e) => {
                     props.togglePlatformDropdownList()

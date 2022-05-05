@@ -1,0 +1,30 @@
+/*--------------------------------------------------------------
+# Login
+--------------------------------------------------------------*/
+.login label {
+  color: #C0A71A;
+}
+
+.login .form-control {
+  background-color: #0D3A76;
+  border-color: #0D3A76;
+  color: #C0A71A;
+  margin-bottom:20px;
+}
+
+.login .btn {
+  margin-top: 30px;
+}
+
+.options .btn {
+  margin-bottom: 30px;
+}
+
+.options .btn-outline-dark {
+  color: #FE2C55;
+}
+
+.options .btn-outline-dark:hover {
+  color: #FFF;
+}
+

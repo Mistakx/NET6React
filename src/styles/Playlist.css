@@ -1,0 +1,128 @@
+/*--------------------------------------------------------------
+# Player
+--------------------------------------------------------------*/
+.offcanvas-bottom .offcanvas-body{
+  margin: -5px;
+  overflow: hidden;
+}
+
+.offcanvas-bottom .card {
+  background-color: transparent;
+}
+
+/*--------------------------------------------------------------
+# Player
+--------------------------------------------------------------*/
+.player-options {
+  background-color: #011426;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0 2px 2px 0;
+}
+
+#playlist .card {
+  background-color: #0D3A76;
+}
+
+#playlist .list-group .list-group-item {
+  background-color: #0D3A76;
+  color: #fff;
+}
+
+#playlist .list-group .active {
+  background-color: #067ded;
+}
+
+#playlist .list-group {
+  height: 335px;
+  overflow: auto;
+}
+
+.social {
+  background-color: #0D3A76;
+}
+
+
+/*--------------------------------------------------------------
+# Services
+--------------------------------------------------------------*/
+.services {
+  min-height: 100vh;
+}
+
+.iconbox-blue {
+  background: #0D3A76;
+  color: #fff;
+}
+
+.services .icon-box {
+  text-align: center;
+  padding: 20px 20px 80px 20px;
+  transition: all ease-in-out 0.3s;
+  box-shadow: 0px 5px 90px 0px rgba(110, 123, 131, 0.05);
+}
+.services .icon-box img {
+  height: 250px;
+  box-shadow: 0px 0px 90px 25px rgba(25, 112, 227, 0.5);
+}
+
+.services .card-profile {
+  height: 150px;
+}
+
+.card-profile h2 {
+  margin:20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.card-img-overlay .options {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+/*
+.options .btn {
+  color:#C0A71A;
+  font-size:30px;
+  padding:0;
+} */
+
+.services .card {
+  background-color: #0678e3;
+  color: #fff;
+  margin-top: 0px;
+}
+
+.iconbox-blue nav {
+  border-radius: 5px;
+}
+
+.services .icon-box h4 {
+  font-weight: 600;
+  margin: 10px 0 15px 0;
+  font-size: 22px;
+}
+.services .icon-box h4 a {
+  color: #45505b;
+  transition: ease-in-out 0.3s;
+}
+.services .icon-box p {
+  line-height: 24px;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.options .btn {
+  margin-bottom: 30px;
+}
+
+.options .btn-outline-dark {
+  color: #FE2C55;
+}
+
+.options .btn-outline-dark:hover {
+  color: #FFF;
+}
