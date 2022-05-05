@@ -12,11 +12,6 @@ function VideoBoostrapItem(props: VideoItemComponentProperties): JSX.Element {
     function setCurrentPlayerToClickedItem() {
         setPlayingId(props.item.id);
         setPlayerCreator(searchList!.getPlayerCreator())
-        window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
     }
 
     return (

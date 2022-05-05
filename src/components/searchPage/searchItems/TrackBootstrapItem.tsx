@@ -14,11 +14,6 @@ function TrackBoostrapItem(props: TrackItemComponentProperties): JSX.Element {
         setPlayingId(props.item.id);
         setPlayingThumbnailUrl(props.item.thumbnailUrl)
         setPlayerCreator(searchList!.getPlayerCreator())
-        window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
     }
 
     return (

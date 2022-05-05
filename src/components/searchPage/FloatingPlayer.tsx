@@ -1,5 +1,5 @@
 import React from 'react';
-import Player from "../players/Player";
+import ResizeablePlayer from "../players/ResizeablePlayer";
 import AuthenticatedSearchBar from "./searchBar/AuthenticatedSearchBar";
 import SearchResultsList from "./searchItems/SearchResultsList";
 import SidePanel from "../SidePanel";
@@ -16,7 +16,7 @@ function FloatingPlayer(): JSX.Element {
 
 
                     <div className="ratio ratio-16x9">
-                        <Player/>
+                        <ResizeablePlayer/>
                     </div>
 
                 </div>
