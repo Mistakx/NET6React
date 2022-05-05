@@ -5,12 +5,15 @@ import User from "./User";
 import PlaylistItem from "./PlaylistItem";
 import PlaylistsList from "./PlaylistsList";
 import TopBar from "./TopBar";
+import FloatingPlayer from "../searchPage/FloatingPlayer";
 
 function ProfilePage(): JSX.Element {
 
     return (
 
+
         <div>
+
 
             <SidePanel/>
 

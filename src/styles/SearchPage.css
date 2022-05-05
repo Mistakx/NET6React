@@ -80,53 +80,67 @@
 /*--------------------------------------------------------------
 # Dropdown buttons
 --------------------------------------------------------------*/
-.btn-twitch:hover {
-    background-color: var(--twitchHoveredColor);
-    border-color: var(--twitchNeutralColor);
-    color: var(--iconColor);
-}
 
 .btn-twitch {
     background-color: var(--twitchNeutralColor);
     background-color: var(--twitchNeutralColor);
+    color: var(--iconColor) !important;
+}
+
+.btn-twitch:hover {
+    background-color: var(--twitchHoveredColor) !important;
     color: var(--iconColor);
 }
 
-.btn-youtube:hover {
-    background-color: var(--youtubeHoveredColor);
-    border-color: var(--youtubeNeutralColor);
-    color: var(--iconColor);
+.btn-twitch:active {
+    background-color: var(--twitchHoveredColor) !important;
 }
 
 .btn-youtube {
     background-color: var(--youtubeNeutralColor);
     border-color: var(--youtubeNeutralColor);
+    color: var(--iconColor) !important;
+}
+
+.btn-youtube:hover {
+    background-color: var(--youtubeHoveredColor) !important;
     color: var(--iconColor);
 }
 
-.btn-vimeo:hover {
-    background-color: var(--vimeoHoveredColor);
-    border-color: var(--vimeoNeutralColor);
-    color: var(--iconColor);
+.btn-youtube:active {
+    background-color: var(--youtubeHoveredColor) !important;
 }
 
 .btn-vimeo {
     background-color: var(--vimeoNeutralColor);
     border-color: var(--vimeoNeutralColor);
+    color: var(--iconColor) !important;
+}
+
+.btn-vimeo:hover {
+    background-color: var(--vimeoHoveredColor) !important;
     color: var(--iconColor);
 }
 
-.btn-spotify:hover {
-    background-color: var(--spotifyHoveredColor);
-    border-color: var(--spotifyNeutralColor);
-    color: var(--iconColor);
+.btn-vimeo:active {
+    background-color: var(--vimeoHoveredColor) !important;
 }
 
 .btn-spotify {
     background-color: var(--spotifyNeutralColor);
     border-color: var(--spotifyNeutralColor);
+    color: var(--iconColor) !important;
+}
+
+.btn-spotify:hover {
+    background-color: var(--spotifyHoveredColor) !important;
     color: var(--iconColor);
 }
+
+.btn-spotify:active {
+    background-color: var(--spotifyHoveredColor) !important;
+}
+
 
 /*--------------------------------------------------------------
 # Dropdown submenu
@@ -142,41 +156,30 @@
     top: -7px;
 }
 
-.dropdown-menu .dropdown-submenu-left {
-    right: 100%;
-    left: auto;
-}
-
 .dropdown-menu > li:hover > .dropdown-submenu {
     display: block;
 }
 
-.dropdown-menu-dark .dropdown-item {
-    margin-top: 0px
-}
-
-.dropdown-item .spotify:hover {
-    background-color: #1db954;
-    border-color: #1db954;
-    color: #fff;
-}
-
 .dropdown-menu .spotify {
-    background-color: #1db954;
-    /*border-color: #1db954;*/
-    color: #fff !important;
+    background-color: var(--spotifyNeutralColor);
+    color: var(--iconColor);
 }
 
-.dropdown-menu .spotify a:active {
-    background-color: #15B860;
-    border-color: #15B860;
-    color: #fff;
+.dropdown-menu .spotify div:active {
+    background-color: var(--spotifyHoveredColor) !important;
+    border-color: var(--spotifyNeutralColor);
+    color: var(--iconColor);
 }
 
-.dropdown-menu .bg-twitch {
-    background-color: #4D2F8D;
-    /*border-color: #4D2F8D;*/
-    color: #fff;
+.dropdown-menu .twitch {
+    background-color: var(--twitchNeutralColor);
+    color: var(--iconColor);
+}
+
+.dropdown-menu .twitch div:active {
+    background-color: var(--twitchHoveredColor);
+    border-color: var(--twitchNeutralColor);
+    color: var(--iconColor);
 }
 
 

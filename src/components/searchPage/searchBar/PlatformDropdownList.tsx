@@ -22,48 +22,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
 
         <ul className={platformDropdownList}>
 
-
-            <li>
-                <div className="dropdown-item text-center text-white h3 btn-spotify" id="platform"
-                   data-id="spotify"><i className='bx bxl-spotify'></i> &raquo;
-                </div>
-                <ul className="dropdown-menu dropdown-submenu spotify">
-                    <li>
-                        <a className="dropdown-item spotify" href="#">Track</a>
-                    </li>
-                    <li>
-                        <a className="dropdown-item spotify" href="#">Album</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li>
-                <div className="dropdown-item text-center text-white h3 btn-spotify"
-                     id="platform"
-                     data-id="spotify"
-                     onClick={(e) => {
-                         props.togglePlatformDropdownList()
-                         e.preventDefault()
-                         setSelectedSearch(SpotifySearchTrackByName.getInstance())
-                     }}>
-                    <i className='bx bxl-spotify'></i>
-                </div>
-
-            </li>
-
-            <li>
-                <div className="dropdown-item text-center text-white h3 btn-spotify"
-                     id="platform"
-                     data-id="spotify"
-                     onClick={(e) => {
-                         props.togglePlatformDropdownList()
-                         e.preventDefault()
-                         setSelectedSearch(SpotifySearchTrackByAlbum.getInstance())
-                     }}>
-                    <i className='bx bxl-spotify'></i>
-                </div>
-            </li>
-
+            {/*YouTube*/}
             <li>
                 <div className="dropdown-item text-center text-white h3 btn-youtube"
                      id="platform"
@@ -76,62 +35,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                 </div>
             </li>
 
-            <li>
-                <div className="dropdown-item text-center text-white h3 btn-twitch"
-                     id="platform"
-                     data-id="twitch" onClick={(e) => {
-                    props.togglePlatformDropdownList()
-                    e.preventDefault()
-                    setSelectedSearch(TwitchSearchClipByChannel.getInstance())
-                }}>
-                    <i className='bx bxl-twitch'></i>
-                </div>
-            </li>
-
-            <li>
-                <div className="dropdown-item text-center text-white h3 btn-twitch"
-                     id="platform"
-                     data-id="twitch" onClick={(e) => {
-                    props.togglePlatformDropdownList()
-                    e.preventDefault()
-                    setSelectedSearch(TwitchSearchClipByGame.getInstance())
-                }}>
-                    <i className='bx bxl-twitch'></i>
-                </div>
-            </li>
-
-            <li>
-                <div className="dropdown-item text-center text-white h3 btn-twitch"
-                     id="platform"
-                     data-id="twitch" onClick={(e) => {
-                    props.togglePlatformDropdownList()
-                    e.preventDefault()
-                    setSelectedSearch(TwitchSearchVideoByChannel.getInstance())
-                }}>
-                    <i className='bx bxl-twitch'></i>
-                </div>
-            </li>
-
-            <li>
-                <div className="dropdown-item text-center text-white h3 btn-twitch"
-                     id="platform"
-                     data-id="twitch" onClick={(e) => {
-                    props.togglePlatformDropdownList()
-                    e.preventDefault()
-                    setSelectedSearch(TwitchSearchVideoByGame.getInstance())
-                }}><i className='bx bxl-twitch'></i></div>
-            </li>
-
-            <li>
-                <div className="dropdown-item text-center text-white h3 btn-twitch"
-                     id="platform"
-                     data-id="twitch" onClick={(e) => {
-                    props.togglePlatformDropdownList()
-                    e.preventDefault()
-                    setSelectedSearch(TwitchSearchLivestreamByGeneral.getInstance())
-                }}><i className='bx bxl-twitch'></i></div>
-            </li>
-
+            {/*Vimeo*/}
             <li>
                 <div className="dropdown-item text-center text-white h3 btn-vimeo"
                      id="platform"
@@ -141,6 +45,119 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     setSelectedSearch(VimeoSearchVideoByName.getInstance())
                 }}><i className='bx bxl-vimeo'></i></div>
             </li>
+
+            {/*Spotify*/}
+            <li>
+
+                {/*Spotify button*/}
+                <div className="clickable dropdown-item text-center text-white h3 btn-spotify"
+                     id="platform"
+                     data-id="spotify"
+                     onClick={(e) => {
+                         props.togglePlatformDropdownList()
+                         e.preventDefault()
+                         setSelectedSearch(SpotifySearchTrackByName.getInstance())
+                     }}
+                >
+                    <i className='bx bxl-spotify'></i> &raquo;
+                </div>
+
+                {/*Spotify dropdown*/}
+                <ul className="dropdown-menu dropdown-submenu spotify">
+
+                    {/*Spotify by track button*/}
+                    <li onClick={(e) => {
+                        props.togglePlatformDropdownList()
+                        e.preventDefault()
+                        setSelectedSearch(SpotifySearchTrackByName.getInstance())
+                    }}>
+                        <div className="clickable dropdown-item btn-spotify">Track</div>
+                    </li>
+
+                    {/*Spotify by album button*/}
+                    <li onClick={(e) => {
+                        props.togglePlatformDropdownList()
+                        e.preventDefault()
+                        setSelectedSearch(SpotifySearchTrackByAlbum.getInstance())
+
+                    }}>
+                        <div className="clickable dropdown-item btn-spotify">Album</div>
+                    </li>
+
+                </ul>
+            </li>
+
+            {/*Twitch*/}
+            <li>
+
+                {/*Twitch button*/}
+                <div className="clickable dropdown-item text-center text-white h3 btn-twitch"
+                     id="platform"
+                     data-id="twitch"
+                     onClick={(e) => {
+                         props.togglePlatformDropdownList()
+                         e.preventDefault()
+                         setSelectedSearch(TwitchSearchLivestreamByGeneral.getInstance())
+                     }}
+                >
+                    <i className='bx bxl-twitch'></i> &raquo;
+                </div>
+
+                {/*Twitch dropdown*/}
+                <ul className="dropdown-menu dropdown-submenu twitch">
+
+                    {/*Twitch livestream*/}
+                    <li onClick={(e) => {
+                        props.togglePlatformDropdownList()
+                        e.preventDefault()
+                        setSelectedSearch(TwitchSearchLivestreamByGeneral.getInstance())
+                    }}>
+                        <div className="clickable dropdown-item btn-twitch">Livestream</div>
+                    </li>
+
+                    {/*Twitch clip by channel*/}
+                    <li onClick={(e) => {
+                        props.togglePlatformDropdownList()
+                        e.preventDefault()
+                        setSelectedSearch(TwitchSearchClipByChannel.getInstance())
+
+                    }}>
+                        <div className="clickable dropdown-item btn-twitch">Clip - Channel</div>
+                    </li>
+
+                    {/*Twitch clip by game*/}
+                    <li onClick={(e) => {
+                        props.togglePlatformDropdownList()
+                        e.preventDefault()
+                        setSelectedSearch(TwitchSearchClipByGame.getInstance())
+
+                    }}>
+                        <div className="clickable dropdown-item btn-twitch">Clip - Game</div>
+                    </li>
+
+                    {/*Twitch video by channel*/}
+                    <li onClick={(e) => {
+                        props.togglePlatformDropdownList()
+                        e.preventDefault()
+                        setSelectedSearch(TwitchSearchVideoByChannel.getInstance())
+
+                    }}>
+                        <div className="clickable dropdown-item btn-twitch">Video - Channel</div>
+                    </li>
+
+                    {/*Twitch video by game*/}
+                    <li onClick={(e) => {
+                        props.togglePlatformDropdownList()
+                        e.preventDefault()
+                        setSelectedSearch(TwitchSearchVideoByGame.getInstance())
+
+                    }}>
+                        <div className="clickable dropdown-item btn-twitch">Video - Game</div>
+                    </li>
+
+                </ul>
+            </li>
+
         </ul>
 
     )

@@ -17,6 +17,7 @@ if (container !== null) {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<SearchPage/>}/>
+                    <Route path="/search" element={<SearchPage/>}/>
                     <Route path="/profile" element={<ProfilePage/>}/>
                     <Route path="/user/:username" element={<UsernamePage/>}/>
                     <Route path="/playlist" element={<PlaylistPage/>}/>

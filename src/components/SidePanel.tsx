@@ -11,39 +11,43 @@ function SidePanel(): JSX.Element {
 
                 <ul>
 
-                    {/*<li>*/}
-                    {/*    <a href="" className="nav-link scrollto active">*/}
-                    {/*        <i className="bx bx-home"></i>*/}
-                    {/*        <span>Home</span>*/}
-                    {/*    </a>*/}
-                    {/*</li>*/}
-
-                    {/*<li>*/}
-                    {/*    <a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"*/}
-                    {/*       aria-controls="offcanvasRight"*/}
-                    {/*       className="nav-link scrollto">*/}
-                    {/*        <i className="bx bx-search-alt"></i>*/}
-                    {/*        <span>Search</span>*/}
-                    {/*    </a>*/}
-                    {/*</li>*/}
+                    <li>
+                        <a
+                            className="clickable nav-link scrollto"
+                            onClick={() => {
+                                window.location.href = "/home"
+                            }}>
+                            <i className="bx bx-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
 
                     <li>
-                        <a href="/" className="nav-link scrollto">
+                        <a
+                            className="clickable nav-link scrollto"
+                            onClick={() => {
+                                window.location.href = "/search"
+                            }}>
                             <i className="bx bx-search-alt"></i>
                             <span>Search</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="/playlist" className="nav-link scrollto">
+                        <a
+                            className="nav-link scrollto"
+                            onClick={() => {
+                                window.location.href = "/playlist"
+                            }}>
                             <i className="bx bx-search-alt"></i>
                             <span>Playlist</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="/profile" className="nav-link scrollto">
-                            <i className="bx bx-user"></i>
+                        <a className="nav-link scrollto"
+                           onClick={()=>{window.location.href="/profile"}}>
+                        <i className="bx bx-user"></i>
                             <span>Profile</span>
                         </a>
                     </li>

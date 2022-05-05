@@ -18,9 +18,12 @@ function TrackBoostrapItem(props: TrackItemComponentProperties): JSX.Element {
 
     return (
 
-        <div className="col-md-3" onClick={() => {setCurrentPlayerToClickedItem()}}>
-            <div className="card bg-dark"
-                 style={{cursor: "pointer", backgroundSize: "100% 100%", backgroundImage: "url(" + props.item.thumbnailUrl + ")"}}>
+        <div className="col-md-3">
+            <div className="clickable card bg-dark"
+                 onClick={() => {
+                     setCurrentPlayerToClickedItem()
+                 }}
+                 style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.item.thumbnailUrl + ")"}}>
                 <div className="card-img-overlay text-end">
                     <h5 className="card-title text-uppercase">{props.item.title}</h5>
                     <p className="card-text">{props.item.albumName}</p>
