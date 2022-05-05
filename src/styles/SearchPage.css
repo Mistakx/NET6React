@@ -145,6 +145,12 @@
 /*--------------------------------------------------------------
 # Dropdown submenu
 --------------------------------------------------------------*/
+
+.dropdown-menu {
+    min-width: auto !important;
+    padding-bottom: 0;
+}
+
 .dropdown-menu li {
     position: relative;
 }
@@ -227,8 +233,19 @@
 .card-img-overlay {
     color: #fff;
     background: rgba(7, 30, 61, 0.7);
-    width: 101%;
-    left: -1px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.card:hover .card-img-overlay {
+    color: #fff;
+    transition: 400ms;
+    height: 100%;
+
+}
+.card:not( :hover) .card-img-overlay {
+    transition: 400ms;
+
 }
 
 .results .card {
@@ -241,4 +258,20 @@
     background-position: center;
     background-repeat: no-repeat;
     margin-bottom: 5px;
+    border-radius: 20px;
+}
+
+
+
+.btn-add {
+    position:absolute;
+    color:#FFF;
+    font-size:24px;
+    bottom:0;
+    right:0;
+    margin:20px;
+}
+.btn-add:hover,
+.btn-add:active {
+    color:#C0A71A;
 }
