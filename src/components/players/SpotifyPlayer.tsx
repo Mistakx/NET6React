@@ -5,12 +5,14 @@ export function SpotifyPlayer(props: SpotifyPlayerProperties): JSX.Element {
     return (
 
         <div style={{
-            backgroundSize: "cover",
+            width: "100%",
+            height: "100%",
+            backgroundSize: "100% 100%",
             backgroundImage: "url(" + props.thumbnailUrl + ")",
         }}>
 
             <iframe
-                style={{position: "relative", bottom: 100 + "px"}}
+                style={{position: "absolute", bottom:0}}
                 src={"https://open.spotify.com/embed/track/" + props.contentId + "?utm_source=generator"}
                 width="100.1%"
                 height="80"
