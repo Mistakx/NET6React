@@ -25,7 +25,7 @@ function VideoBoostrapItem(props: VideoItemComponentProperties): JSX.Element {
                 <div className="card-img-overlay text-end">
                     <h5 className="card-title text-uppercase text-truncate">{props.item.title}</h5>
                     <p className="card-text text-truncate">{props.item.creator}</p>
-                    <p className="card-text">{props.item.createdAt}</p>
+                    {/* <p className="card-text">{props.item.createdAt}</p> */}
                 </div>
             </div>
             <button className="btn btn-sm btn-add" type="button"
