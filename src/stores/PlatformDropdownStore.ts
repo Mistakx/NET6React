@@ -3,7 +3,7 @@ import {PlatformDropdownState} from "../models/states/PlatformDropdownState";
 
 const PlatformDropdown = create<PlatformDropdownState>((set) => ({
 
-    platformDropdownList: "dropdown-menu dropdown-menu-dark align-items-center bg-dark",
+    platformDropdownList: "dropdown-menu",
     setPlatformDropdownList: (platformDropdownList) => set(state => ({
         platformDropdownList: platformDropdownList
     }))
