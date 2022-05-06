@@ -238,7 +238,7 @@
 
 .player-flutuante iframe {
     border: none;
-    box-shadow: 0 5px 10px 0 #0678e3;
+    box-shadow: 0 10px 20px 0 #3b3b3b;
 }
 
 /*--------------------------------------------------------------
@@ -246,7 +246,7 @@
 --------------------------------------------------------------*/
 .card-img-overlay {
     color: #fff;
-    background: rgba(7, 30, 61, 0.7);
+    background: rgba(7, 30, 61, 0.5);
     height: 50px;
     overflow: hidden;
 }
@@ -275,7 +275,10 @@
     border-radius: 20px;
 }
 
-
+.position-relative:hover  {
+    transition: 200ms;
+    transform: scale(1.1);
+}
 
 .btn-add {
     position:absolute;
@@ -285,6 +288,7 @@
     right:0;
     margin:20px;
 }
+
 .btn-add:hover,
 .btn-add:active {
     color:#C0A71A;
