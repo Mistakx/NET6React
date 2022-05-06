@@ -83,12 +83,6 @@
   bottom: 0;
   right: 0;
 }
-/*
-.options .btn {
-  color:#C0A71A;
-  font-size:30px;
-  padding:0;
-} */
 
 .services .card {
   background-color: #0678e3;
@@ -115,14 +109,3 @@
   margin-bottom: 0;
 }
 
-.options .btn {
-  margin-bottom: 30px;
-}
-
-.options .btn-outline-dark {
-  color: #FE2C55;
-}
-
-.options .btn-outline-dark:hover {
-  color: #FFF;
-}

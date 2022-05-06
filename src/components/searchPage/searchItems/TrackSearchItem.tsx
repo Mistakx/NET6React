@@ -18,7 +18,7 @@ function TrackBoostrapItem(props: TrackItemComponentProperties): JSX.Element {
 
     return (
 
-        <div className="col-md-3 col-6 position-relative">
+        <div className="col-md-4 col-sm-4 col-lg-3 col-6 position-relative scale">
             <div className="clickable card bg-dark"
                  onClick={() => {
                      setCurrentPlayerToClickedItem()
@@ -31,9 +31,11 @@ function TrackBoostrapItem(props: TrackItemComponentProperties): JSX.Element {
                     {/* <p className="card-text text-truncate">{props.item.createdAt}</p> */}
                     </div>
                 </div>
-                <button className="btn btn-sm btn-add" type="button"
+            <div className="options">
+                <button className="btn btn-add" type="button"
                     data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                     className='bx bx-plus'></i></button>
+            </div>
         </div>
 
 
