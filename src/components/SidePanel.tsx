@@ -39,7 +39,7 @@ function SidePanel(): JSX.Element {
                             onClick={() => {
                                 window.location.href = "/playlist"
                             }}>
-                            <i className="bx bx-movie"></i>
+                            <i className='bx bxs-playlist'></i>
                             <span>Playlist</span>
                         </div>
                     </li>
