@@ -1,7 +1,7 @@
 import {GenericTrackResult} from "../models/apiSearches/GenericResults";
 import {PlayerCreator} from "../playerCreators/PlayerCreator";
 import {SearchList} from "./SearchList";
-import TrackBoostrapItem from "../components/searchPage/searchItems/TrackBootstrapItem";
+import TrackBoostrapItem from "../components/searchPage/searchItems/TrackSearchItem";
 
 export class TrackSearchList extends SearchList {
 

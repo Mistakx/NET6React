@@ -14,10 +14,10 @@ export class TwitchClipSearchResultToListItemsConverter {
                 id: item.id,
                 title: item.title,
                 creator: item.creator_name,
-                duration: item.duration,
+                // durationInSeconds: item.duration,
                 thumbnailUrl: item.thumbnail_url,
-                createdAt: item.created_at,
-                views: item.view_count
+                // createdAt: item.created_at,
+                // views: item.view_count
             }
 
             items.push(currentGenericClipItem)

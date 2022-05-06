@@ -4,7 +4,7 @@
 export interface GenericResult {
     id: string
     title: string
-    createdAt: string
+    // createdAt: string
     thumbnailUrl: string
     creator: string
 }
@@ -13,8 +13,8 @@ export interface GenericResult {
  * A platform-agnostic video result, with no API specific details.
  */
 export interface GenericVideoResult extends GenericResult {
-    duration: number
-    views: number
+    // durationInSeconds: number
+    // views: number
 }
 
 /**

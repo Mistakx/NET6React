@@ -85,7 +85,6 @@
     background-color: var(--twitchNeutralColor);
     background-color: var(--twitchNeutralColor);
     color: var(--iconColor) !important;
-    margin-bottom: 0;
 }
 
 .btn-twitch:hover {

@@ -43,10 +43,10 @@ export class TwitchVideoSearchResultToListItemsConverter {
                 id: item.id,
                 title: item.title,
                 creator: item.user_name,
-                duration: this.parseDuration(item.duration),
+                // durationInSeconds: this.parseDuration(item.duration),
                 thumbnailUrl: item.thumbnail_url.replace("%{width}", "640").replace("%{height}", "640"),
-                createdAt: item.created_at,
-                views: item.view_count
+                // createdAt: item.created_at,
+                // views: item.view_count
             }
 
             items.push(currentGenericVideoItem)

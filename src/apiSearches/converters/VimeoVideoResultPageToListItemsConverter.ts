@@ -13,10 +13,10 @@ export class VimeoVideoResultPageToListItemsConverter {
                 id: item.uri.split("/videos/")[1],
                 title: item.name,
                 creator: item.user.name,
-                duration: item.duration,
+                // durationInSeconds: item.duration,
                 thumbnailUrl: item.pictures.base_link,
-                createdAt: item.created_time.toString(),
-                views: item.stats.plays
+                // createdAt: item.created_time.toString(),
+                // views: item.stats.plays
             }
 
             items.push(currentGenericVideoItem)

@@ -35,7 +35,7 @@ function SidePanel(): JSX.Element {
 
                     <li>
                         <div
-                            className="nav-link scrollto"
+                            className="clickable nav-link scrollto"
                             onClick={() => {
                                 window.location.href = "/playlist"
                             }}>
@@ -45,7 +45,7 @@ function SidePanel(): JSX.Element {
                     </li>
 
                     <li>
-                        <div className="nav-link scrollto"
+                        <div className="clickable nav-link scrollto"
                            onClick={()=>{window.location.href="/profile"}}>
                         <i className="bx bx-user"></i>
                             <span>Profile</span>

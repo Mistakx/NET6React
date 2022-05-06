@@ -1,5 +1,6 @@
 import {GenericVideoResult} from "../../models/apiSearches/GenericResults";
 import {YouTubeVideoSearchResultPage} from "../../models/apiSearches/YouTubeSearchResult";
+import moment from 'moment'
 
 export class YouTubeVideoResultPageToListItemsConverter {
 
@@ -13,10 +14,10 @@ export class YouTubeVideoResultPageToListItemsConverter {
                 id: item.id.videoId,
                 title: item.snippet.title,
                 creator: item.snippet.channelTitle,
-                duration: 0,
+                // durationInSeconds: moment.duration(item.details.items[0].contentDetails.duration).asSeconds(),
                 thumbnailUrl: item.snippet.thumbnails.high.url,
-                createdAt: item.snippet.publishedAt,
-                views: 0
+                // createdAt: item.snippet.publishedAt,
+                // views: item.details.items[0].statistics.viewCount
             }
 
             items.push(currentGenericVideoItem)

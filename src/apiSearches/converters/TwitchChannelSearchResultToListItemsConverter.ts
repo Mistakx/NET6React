@@ -14,7 +14,7 @@ export class TwitchChannelSearchResultToListItemsConverter {
                 title: item.title,
                 creator: item.display_name,
                 thumbnailUrl: item.thumbnail_url,
-                createdAt: item.started_at,
+                // createdAt: item.started_at,
                 gameName: item.game_name
             }
 

@@ -1,7 +1,7 @@
 import {GenericVideoResult} from "../models/apiSearches/GenericResults";
 import {PlayerCreator} from "../playerCreators/PlayerCreator";
 import {SearchList} from "./SearchList";
-import VideoBoostrapItem from "../components/searchPage/searchItems/VideoBootstrapItem";
+import VideoBoostrapItem from "../components/searchPage/searchItems/VideoSearchItem";
 
 export class VideoSearchList extends SearchList {
 
