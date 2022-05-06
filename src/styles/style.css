@@ -196,3 +196,10 @@ section {
 .section-title p {
   margin-bottom: 0;
 }
+
+.icon-box .btn {
+  font-size: 32px;
+  color: #BA9E03;
+  padding:0;
+  margin: 0;
+}

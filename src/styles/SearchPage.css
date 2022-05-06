@@ -301,11 +301,17 @@
     border-top-left-radius: 20px;
     padding:0;
 }
-.options-dropdown .btn i {
+.options-dropdown .btn i,
+.options-top .btn  {
     color:#fff;
     font-size:32px;
     margin:0;
 }
+.options-top {
+    position:absolute;
+    top:0;
+}
+
 
 .btn-add:hover,
 .btn-add:active {
