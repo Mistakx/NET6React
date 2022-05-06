@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import PlayerStore from '../../stores/PlayerStore'
 import CloseVideoButton from "./CloseVideoButton";
-import { Rnd } from "react-rnd";
+import {Rnd} from "react-rnd";
+import MoveVideoButton from "./MoveVideoButton";
 
 function ResizeablePlayer(): JSX.Element {
 
@@ -18,26 +19,31 @@ function ResizeablePlayer(): JSX.Element {
             x: 0,
             y: 0,
             width: "100%",
-            height: "100%",
+            height: "100em",
         }
-        resizeablePlayer = <Rnd
-            default={resizeablePlayerDefaultOptions}
-            minWidth={100}
-            minHeight={100}
-        >
-            <CloseVideoButton/>
-            {player}
 
-        </Rnd>
+        resizeablePlayer =
+
+            <Rnd
+                default={resizeablePlayerDefaultOptions}
+                minWidth="200px"
+                minHeight="150px"
+            >
+                <MoveVideoButton/>
+                <CloseVideoButton/>
+                {player}
+
+            </Rnd>
+
+
     }
 
 
     return (
-
-        <div>
+        <div className="ratio ratio-16x9">
             {resizeablePlayer}
-        </div>)
-
+        </div>
+    )
 }
 
 export default ResizeablePlayer;

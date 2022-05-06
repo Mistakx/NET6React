@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import PlayerStore from '../../stores/PlayerStore'
 
 function CloseVideoButton(): JSX.Element {
@@ -14,15 +14,12 @@ function CloseVideoButton(): JSX.Element {
     }
 
     return (
-        <button className="btn btn-link"
-                onClick={() => {
-                    stopPlayingVideo()
-                }}>
-            <i
-                style={{backgroundColor: "rgb(255, 255, 255, 0.3)"}}
-                className='bx bx-x'>
-            </i>
-        </button>
+        <i
+            className='bx bx-x bx-sm closeButton clickable'
+            onClick={() => {
+                stopPlayingVideo()
+            }}>
+        </i>
     )
 }
 

@@ -5,6 +5,7 @@ export function MultiPlatformPlayer(props: MultiPlatformPlayerProperties): JSX.E
 
     return (
         <ReactPlayer
+            config={{vimeo: {playerOptions: {transparent: false}}}}
             url={props.playerUrl + props.contentId}
             playing={true}
             controls={true}

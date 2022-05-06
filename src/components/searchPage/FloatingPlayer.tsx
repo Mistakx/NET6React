@@ -12,12 +12,9 @@ function FloatingPlayer(): JSX.Element {
         <div className="container">
             <div className="row">
 
-                <div className="player-flutuante col-md-3 col-12 player mb-4 pr-3" id="player">
+                <div className="player-flutuante col-md-3 col-12 player mb-4 pr-3">
 
-
-                    <div className="ratio ratio-16x9">
-                        <ResizeablePlayer/>
-                    </div>
+                    <ResizeablePlayer/>
 
                 </div>
             </div>
