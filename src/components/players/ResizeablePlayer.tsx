@@ -24,26 +24,29 @@ function ResizeablePlayer(): JSX.Element {
 
         resizeablePlayer =
 
-            <Rnd
-                default={resizeablePlayerDefaultOptions}
-                minWidth="200px"
-                minHeight="150px"
-            >
-                <MoveVideoButton/>
-                <CloseVideoButton/>
-                {player}
+            <div className="ratio ratio-16x9">
 
-            </Rnd>
+                <Rnd
+                    default={resizeablePlayerDefaultOptions}
+                    minWidth="200px"
+                    minHeight="150px"
+                >
+                    <MoveVideoButton/>
+                    <CloseVideoButton/>
+                    {player}
+
+                </Rnd>
+            </div>
 
 
     }
 
-
     return (
-        <div className="ratio ratio-16x9">
+        <div>
             {resizeablePlayer}
         </div>
     )
+
 }
 
 export default ResizeablePlayer;

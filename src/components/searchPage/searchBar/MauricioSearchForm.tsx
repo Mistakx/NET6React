@@ -15,7 +15,9 @@ function MauricioSearchForm(props: SearchFormProperties): JSX.Element {
 
             <input type="text submit" id="search"
                    className={"form-control " + selectedSearch.getPlatform().getColorClass()}
-                   autoFocus value={props.searchBarQuery}
+                   autoFocus
+                   autoComplete={"off"}
+                   value={props.searchBarQuery}
                    placeholder="I want that content..."
 
                    onChange={(event) => {

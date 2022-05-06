@@ -12,44 +12,44 @@ function SidePanel(): JSX.Element {
                 <ul>
 
                     <li>
-                        <a
+                        <div
                             className="clickable nav-link scrollto"
                             onClick={() => {
                                 window.location.href = "/home"
                             }}>
                             <i className="bx bx-home"></i>
                             <span>Home</span>
-                        </a>
+                        </div>
                     </li>
 
                     <li>
-                        <a
+                        <div
                             className="clickable nav-link scrollto"
                             onClick={() => {
                                 window.location.href = "/search"
                             }}>
                             <i className="bx bx-search-alt"></i>
                             <span>Search</span>
-                        </a>
+                        </div>
                     </li>
 
                     <li>
-                        <a
+                        <div
                             className="nav-link scrollto"
                             onClick={() => {
                                 window.location.href = "/playlist"
                             }}>
-                            <i className="bx bx-search-alt"></i>
+                            <i className="bx bx-movie"></i>
                             <span>Playlist</span>
-                        </a>
+                        </div>
                     </li>
 
                     <li>
-                        <a className="nav-link scrollto"
+                        <div className="nav-link scrollto"
                            onClick={()=>{window.location.href="/profile"}}>
                         <i className="bx bx-user"></i>
                             <span>Profile</span>
-                        </a>
+                        </div>
                     </li>
 
                 </ul>

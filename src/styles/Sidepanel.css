@@ -17,7 +17,7 @@
   position: relative;
   white-space: nowrap;
 }
-.nav-menu a, .nav-menu a:focus {
+.nav-menu div, .nav-menu div:focus {
   display: flex;
   align-items: center;
   color: #45505b;
@@ -32,34 +32,34 @@
   overflow: hidden;
   transition: 0.3s;
 }
-.nav-menu a i, .nav-menu a:focus i {
+.nav-menu div i, .nav-menu div:focus i {
   font-size: 20px;
 }
-.nav-menu a span, .nav-menu a:focus span {
+.nav-menu div span, .nav-menu div:focus span {
   padding: 0 5px 0 7px;
   color: #45505b;
 }
 @media (min-width: 992px) {
-  .nav-menu a, .nav-menu a:focus {
+  .nav-menu div, .nav-menu div:focus {
     width: 56px;
   }
-  .nav-menu a span, .nav-menu a:focus span {
+  .nav-menu div span, .nav-menu div:focus span {
     display: none;
     color: #fff;
   }
 }
-.nav-menu a:hover, .nav-menu .active, .nav-menu .active:focus, .nav-menu li:hover > a {
+.nav-menu div:hover, .nav-menu .active, .nav-menu .active:focus, .nav-menu li:hover > div {
   color: #fff;
   background: #0D3A76;
 }
-.nav-menu a:hover span, .nav-menu .active span, .nav-menu .active:focus span, .nav-menu li:hover > a span {
+.nav-menu div:hover span, .nav-menu .active span, .nav-menu .active:focus span, .nav-menu li:hover > div span {
   color: #fff;
 }
-.nav-menu a:hover, .nav-menu li:hover > a {
+.nav-menu div:hover, .nav-menu li:hover > div {
   width: 100%;
   color: #fff;
 }
-.nav-menu a:hover span, .nav-menu li:hover > a span {
+.nav-menu div:hover span, .nav-menu li:hover > div span {
   display: block;
 }
 
