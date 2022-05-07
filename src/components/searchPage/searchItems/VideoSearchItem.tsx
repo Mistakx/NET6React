@@ -36,9 +36,8 @@ function VideoBoostrapItem(props: VideoItemComponentProperties): JSX.Element {
                 </div>
             </div>
             <div className="options">
-                <button className="btn btn-add" type="button"
-                    data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                    className='bx bx-plus'></i></button>
+                <button className="btn btn-add" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <i className='bx bx-plus'></i></button>
             </div>
         </div>
 

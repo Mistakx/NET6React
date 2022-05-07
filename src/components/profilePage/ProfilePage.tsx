@@ -18,9 +18,7 @@ function ProfilePage(): JSX.Element {
 
     return (
 
-
         <div>
-
 
             <SidePanel/>
 
@@ -28,7 +26,7 @@ function ProfilePage(): JSX.Element {
 
                 <section id="services" className="services">
 
-                    <div className="container" data-aos="fade-up">
+                    <div className="container">
 
                         <TopBar/>
 

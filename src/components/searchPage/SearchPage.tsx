@@ -3,6 +3,7 @@ import AuthenticatedSearchBar from "./searchBar/AuthenticatedSearchBar";
 import SearchResultsList from "./searchItems/SearchResultsList";
 import SidePanel from "../SidePanel";
 import FloatingPlayer from "./FloatingPlayer";
+import ModalList from "./modalList/ModalList";
 import '../../styles/SearchPage.css';
 import React, { useEffect } from "react";
 import AOS from "aos";
@@ -18,6 +19,7 @@ function SearchPage(): JSX.Element {
     return (
 
         <div>
+            <SidePanel/>
 
             <section id="services" className="services">
                 <div className="container" data-aos="zoom-in" data-aos-duration="1000">
@@ -41,14 +43,10 @@ function SearchPage(): JSX.Element {
 
             </section>
 
-            <SidePanel/>
-
             <FloatingPlayer/>
-
+            <ModalList/>
 
         </div>
-
-
 
     )
 }

@@ -36,9 +36,9 @@ function Home(): JSX.Element {
                     <a href="#" className="linkedin"><i className="bx bxl-linkedin"></i></a>
                 </div>
 
-                <div className="col-md-4 offset-md-2 position-absolute top-50 start-50 translate-middle logo">
+                {/* <div className="col-md-4 offset-md-2 position-absolute top-50 start-50 translate-middle logo">
                     <img src={logo} alt="" />
-                </div>
+                </div> */}
 
             </div>
 

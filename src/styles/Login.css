@@ -5,11 +5,17 @@
   background-image: url('https://cdn.pixabay.com/photo/2016/02/26/17/32/s-record-player-1224385_960_720.jpg') !important;
 }
 
+.login h1 {
+  color:#f2f3f5;
+  
+  font-family: 'Baloo 2', cursive;
+}
+
 .login .form-control {
   background-color: transparent;
   border: none;
-  border-bottom: 3px solid #C0A71A;
-  color: #C0A71A;
+  border-bottom: 3px solid #f2f3f5;
+  color: #f2f3f5;
   margin-bottom:20px;
 }
 
@@ -20,7 +26,7 @@
 }
 
 .login .form-control::placeholder {
-  color: rgba(193, 168, 26, 0.5);
+  color: rgba(242, 243, 245, 0.5);
 }
 
 .login .options {
@@ -34,13 +40,5 @@
 .login .options .btn {
   margin-top: 10px;
   font-size: 24px;
-}
-
-.login .options .btn-outline-dark {
-  color: #FE2C55;
-}
-
-.login .options .btn-outline-dark:hover {
-  color: #FFF;
 }
 

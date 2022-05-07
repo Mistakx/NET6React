@@ -31,7 +31,7 @@ function PlaylistPage(): JSX.Element {
                                 <input type="text" className="form-control form-control-lg" placeholder="Password"/>
                             </div>
                             <div className="form-group d-grid" data-aos="zoom-in" data-aos-delay="400">
-                                <button className="btn btn-warning">Validar</button>
+                                <button className="btn btn-light">Validar</button>
                             </div>
                         </div>
                     </div>

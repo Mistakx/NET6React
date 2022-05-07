@@ -15,9 +15,9 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Baloo 2', cursive;
   background-color: #071E3D;
-  color: #272829;
+  color: #f2f3f5;
 
   /*Unselectable text*/
   -webkit-user-select: none; /* Safari */
@@ -38,7 +38,8 @@ a:hover {
 }
 
 h1 {
-  font-family: 'Caesar Dressing', cursive;
+  /* font-family: 'Caesar Dressing', cursive; */
+  font-family: 'Baloo 2', cursive;
 }
 
 h2, h3, h4, h5, h6 {
@@ -61,12 +62,12 @@ h2, h3, h4, h5, h6 {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #C0A71A;
+  background: #f2f3f5;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #BA9E03;
+  background: #f2f3f5;
 }
 
 /*--------------------------------------------------------------
@@ -151,17 +152,16 @@ h2, h3, h4, h5, h6 {
 #hero h1 {
   /* margin-top: -200px; */
   font-size: 88px;
-  color: #C0A71A;
 }
 #hero p {
   color: #45505b;
   margin: 15px 0 0 0;
   font-size: 26px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Baloo 2', cursive;
 }
 #hero p span {
-  font-family: 'Zilla Slab Highlight', cursive;
-  color: #C0A71A;
+  font-family: 'Baloo 2', cursive;
+  color: #f2f3f5;
   letter-spacing: 1px;
 }
 #hero .social-links {
@@ -269,7 +269,7 @@ section {
 
 .icon-box .btn {
   font-size: 32px;
-  color: #BA9E03;
+  color: #f2f3f5;
   padding:0;
   margin: 0;
 }
@@ -278,3 +278,22 @@ section {
   background-color: #071E3D;
   font-size: 14px;
 }
+  
+  /*--------------------------------------------------------------
+  # Sections General
+  --------------------------------------------------------------*/
+  .modal-content {
+    background-color: #0D3A76;
+    color: #fff;
+  }
+  .modal-header  {
+    background-color: #f2f3f5;
+    border-bottom-color: #f2f3f5;
+    color:#1355AD;
+  }
+  .modal-footer {
+    border-top-color: #f2f3f5;
+  }
+  .modal-body .card {
+    background-color: #1355AD;
+  }

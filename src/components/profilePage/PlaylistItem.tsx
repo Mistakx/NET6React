@@ -5,7 +5,7 @@ function PlaylistItem(): JSX.Element {
 
     return (
 
-        <div className="col-md-6 col-sm-6 col-lg-4 col-6 position-relative scale clickable" 
+        <div className="col-md-6 col-sm-6 col-lg-4 col-6 position-relative scale clickable " data-aos="fade-down"
         onClick={() => {
             window.location.href = "/playlist"
         }}>
