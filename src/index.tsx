@@ -7,6 +7,7 @@ import {createRoot} from "react-dom/client";
 import ProfilePage from "./components/profilePage/ProfilePage";
 import UsernamePage from "./components/userPage/UsernamePage";
 import PlaylistPage from "./components/playlistPage/PlaylistPage";
+import Login from "./components/login/Login";
 
 const container = document.getElementById('root');
 
@@ -23,6 +24,7 @@ if (container !== null) {
                 <Route path="/profile" element={<ProfilePage/>}/>
                 <Route path="/user/:username" element={<UsernamePage/>}/>
                 <Route path="/playlist" element={<PlaylistPage/>}/>
+                <Route path="/login" element={<Login/>}/>
             </Routes>
         </BrowserRouter>
 

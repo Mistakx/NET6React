@@ -9,7 +9,7 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
-@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Zilla+Slab+Highlight:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap');
 /*--------------------------------------------------------------
 # General
@@ -38,7 +38,7 @@ a:hover {
 }
 
 h1 {
-  font-family: 'Monoton', cursive;
+  font-family: 'Caesar Dressing', cursive;
 }
 
 h2, h3, h4, h5, h6 {
@@ -141,7 +141,7 @@ h2, h3, h4, h5, h6 {
 }
 #hero:before {
   content: "";
-  background: rgba(7, 30, 61, 0.55);
+  background: rgba(7, 30, 61, 0.65);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -149,8 +149,8 @@ h2, h3, h4, h5, h6 {
   right: 0;
 }
 #hero h1 {
-  margin-top: -200px;
-  font-size: 64px;
+  /* margin-top: -200px; */
+  font-size: 88px;
   color: #C0A71A;
 }
 #hero p {
@@ -272,4 +272,9 @@ section {
   color: #BA9E03;
   padding:0;
   margin: 0;
+}
+
+.dropdown-menu-dark {
+  background-color: #071E3D;
+  font-size: 14px;
 }

@@ -75,18 +75,15 @@
   border-top-right-radius:10px;
 }
 
-.playlist .card-profile {
-  height: 150px;
-  border-top-left-radius:10px;
-  border-top-right-radius:10px;
-}
-
-
 .playlist .card {
   border-radius: 10px;
   background-color: #0678e3;
   color: #fff;
   margin-top: 0px;
+}
+
+.card .list-group li:hover {
+  background-color: #517da7;
 }
 
 .iconbox-blue nav {

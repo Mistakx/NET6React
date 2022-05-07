@@ -10,7 +10,7 @@ function TopBar(): JSX.Element {
     return (
 
 
-        <div className="row">
+        <div className="row" data-aos="fade-down">
             <div className="col-12">
                 <div className="iconbox-blue rounded">
                     <nav aria-label="breadcrumb ">

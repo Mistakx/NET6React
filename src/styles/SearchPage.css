@@ -262,7 +262,6 @@
 }
 .card:not( :hover) .card-img-overlay {
     transition: 400ms;
-
 }
 
 .results .card {
@@ -279,21 +278,20 @@
 }
 
 .scale:hover  {
+    
     transition: 200ms;
     transform: scale(1.1);
 }
 
-.options {
+.scale .options {
     position: absolute;
     bottom:0;
     right:0;
     margin-right: 15px; 
     margin-bottom: 20px;
 }
-.options .btn {
-    color:#fff;
+.scale .options .btn {
     font-size:32px;
-    padding:0;
 }
 
 .options-dropdown .btn {
@@ -312,6 +310,9 @@
     top:0;
 }
 
+.btn-add {
+    color:#fff;
+}
 
 .btn-add:hover,
 .btn-add:active {

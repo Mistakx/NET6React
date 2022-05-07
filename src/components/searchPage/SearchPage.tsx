@@ -20,7 +20,7 @@ function SearchPage(): JSX.Element {
         <div>
 
             <section id="services" className="services">
-                <div className="container" data-aos="fade-down">
+                <div className="container" data-aos="zoom-in" data-aos-duration="1000">
 
                     <div className="row">
 

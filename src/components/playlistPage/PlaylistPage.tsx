@@ -22,7 +22,7 @@ function PlaylistPage(): JSX.Element {
             <main id="main">
 
                 <section id="services" className="playlist">
-                    <div className="container" data-aos="fade-down">
+                    <div className="container">
                         <TopBar/>
 
                         <div className="row">
@@ -31,7 +31,7 @@ function PlaylistPage(): JSX.Element {
 
                                 <div className="col-md-8 col-12" id="player">
                                     <div style={{position: "relative"}} className="align-items-stretch"
-                                        data-aos="zoom-in" data-aos-delay="100">
+                                        data-aos="fade-right" data-aos-delay="100">
                                         <div className="ratio ratio-16x9">
 
                                             <iframe
@@ -56,9 +56,9 @@ function PlaylistPage(): JSX.Element {
                                     </div>
                                 </div>
 
-                                <div className="col-md-4 col-12" id="playlist">
+                                <div className="col-md-4 col-12" id="playlist" data-aos="fade-left" data-aos-delay="200">
 
-                                    <div className="card align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+                                    <div className="card align-items-stretch mt-4 mt-md-0">
 
                                         <div className="card-profile position-relative"
                                             style={{backgroundImage: "url(https://cdn.pixabay.com/photo/2017/11/24/10/43/album-2974646_960_720.jpg)"}}>
@@ -86,7 +86,7 @@ function PlaylistPage(): JSX.Element {
 
                                 </div>
 
-                                <div className="col-md-8 col-12" id="titulo">
+                                <div className="col-md-8 col-12" id="titulo" data-aos="fade-right" data-aos-delay="200">
                                     <div className="social text-white rounded">
                                         <h3 className="p-3">Nome Música</h3>
                                     </div>

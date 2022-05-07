@@ -5,7 +5,10 @@ function PlaylistItem(): JSX.Element {
 
     return (
 
-        <div className="col-md-6 col-sm-6 col-lg-4 col-6 position-relative scale">
+        <div className="col-md-6 col-sm-6 col-lg-4 col-6 position-relative scale clickable" 
+        onClick={() => {
+            window.location.href = "/playlist"
+        }}>
             <div className="card bg-dark"
             style={{backgroundImage: "url(https://cdn.pixabay.com/photo/2016/03/28/09/36/music-1285165_960_720.jpg)"}}>
                 <div className="card-img-overlay text-end">
