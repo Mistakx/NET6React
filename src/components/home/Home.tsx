@@ -1,10 +1,16 @@
-import React from 'react';
+// import React from 'react';
 import '../../styles/style.css';
 // import '../../assets/js/main.js';
 import SidePanel from "../SidePanel";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Home(): JSX.Element {
-
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+    }, []);  
     return (
         <section id="hero" className="d-flex flex-column justify-content-center">
 

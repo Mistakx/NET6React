@@ -1,9 +1,12 @@
-import React from 'react';
+// import React from 'react';
 import PlayerStore from "../../../stores/PlayerStore";
 import {
     LivestreamItemComponentProperties
 } from "../../../models/components/searchPage/LivestreamItemComponentProperties";
 import SearchedListStore from "../../../stores/SearchedListStore";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function LivestreamItemComponent(props: LivestreamItemComponentProperties): JSX.Element {
 
@@ -15,10 +18,13 @@ function LivestreamItemComponent(props: LivestreamItemComponentProperties): JSX.
         setPlayingId(props.item.id)
         setPlayerCreator(searchList!.getPlayerCreator())
     }
-
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+    }, []);
     return (
 
-        <div className="col-md-4 col-sm-4 col-lg-3 col-6 position-relative scale">
+        <div className="col-md-4 col-sm-4 col-lg-3 col-6 position-relative scale" data-aos="fade-down">
             <div className="clickable card bg-dark"
                 onClick={() => {
                     setCurrentPlayerToClickedItem()
@@ -36,7 +42,6 @@ function LivestreamItemComponent(props: LivestreamItemComponentProperties): JSX.
                         className='bx bx-plus'></i></button>
                 </div>
         </div>
-
 
     )
 

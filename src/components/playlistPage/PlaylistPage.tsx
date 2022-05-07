@@ -1,12 +1,18 @@
-import React from 'react';
+// import React from 'react';
 import '../../styles/Playlist.css'
 import '../../styles/SearchPage.css'
 import SidePanel from "../SidePanel";
 import TopBar from "../profilePage/TopBar";
 import MusicList from "./MusicList";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function PlaylistPage(): JSX.Element {
-
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+    }, []);   
     return (
 
         <div>
@@ -16,7 +22,7 @@ function PlaylistPage(): JSX.Element {
             <main id="main">
 
                 <section id="services" className="playlist">
-                    <div className="container" data-aos="fade-up">
+                    <div className="container" data-aos="fade-down">
                         <TopBar/>
 
                         <div className="row">
