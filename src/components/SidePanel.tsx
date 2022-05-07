@@ -12,8 +12,7 @@ function SidePanel(): JSX.Element {
                 <ul>
 
                     <li>
-                        <div
-                            className="clickable nav-link scrollto"
+                        <div className="clickable nav-link scrollto"
                             onClick={() => {
                                 window.location.href = "/home"
                             }}>
@@ -23,8 +22,7 @@ function SidePanel(): JSX.Element {
                     </li>
 
                     <li>
-                        <div
-                            className="clickable nav-link scrollto"
+                        <div className="clickable nav-link scrollto"
                             onClick={() => {
                                 window.location.href = "/search"
                             }}>
@@ -34,8 +32,7 @@ function SidePanel(): JSX.Element {
                     </li>
 
                     <li>
-                        <div
-                            className="clickable nav-link scrollto"
+                        <div className="clickable nav-link scrollto"
                             onClick={() => {
                                 window.location.href = "/playlist"
                             }}>
@@ -46,7 +43,7 @@ function SidePanel(): JSX.Element {
 
                     <li>
                         <div className="clickable nav-link scrollto"
-                           onClick={()=>{window.location.href="/profile"}}>
+                            onClick={()=>{window.location.href="/profile"}}>
                         <i className="bx bx-user"></i>
                             <span>Profile</span>
                         </div>
