@@ -18,7 +18,8 @@
     "react-player": "^2.10.0",
     "react-rnd": "^10.3.7",
     "moment": "^2.29.3",
-    "async": "^3.2.3"
+    "async": "^3.2.3",
+    "http-proxy-middleware": "^0.19.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.3",
@@ -35,10 +36,12 @@
     "@types/async": "^3.2.13"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "prestart": "node aspnetcore-https && node aspnetcore-react",
+    "start": "rimraf ./build && react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "cross-env CI=true react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "lint": "eslint ./src/"
   },
   "eslintConfig": {
     "extends": [

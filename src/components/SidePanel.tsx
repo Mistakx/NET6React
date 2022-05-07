@@ -1,7 +1,10 @@
 import React from 'react';
 import '../styles/Sidepanel.css';
+import {useNavigate} from "react-router-dom";
 
 function SidePanel(): JSX.Element {
+
+    const navigate = useNavigate();
 
     return (
 
@@ -15,7 +18,7 @@ function SidePanel(): JSX.Element {
                         <div
                             className="clickable nav-link scrollto"
                             onClick={() => {
-                                window.location.href = "/home"
+                                navigate('/home');
                             }}>
                             <i className="bx bx-home"></i>
                             <span>Home</span>
@@ -26,7 +29,7 @@ function SidePanel(): JSX.Element {
                         <div
                             className="clickable nav-link scrollto"
                             onClick={() => {
-                                window.location.href = "/search"
+                                navigate('/search');
                             }}>
                             <i className="bx bx-search-alt"></i>
                             <span>Search</span>
@@ -37,7 +40,8 @@ function SidePanel(): JSX.Element {
                         <div
                             className="clickable nav-link scrollto"
                             onClick={() => {
-                                window.location.href = "/playlist"
+                                navigate('/playlist');
+
                             }}>
                             <i className="bx bx-movie"></i>
                             <span>Playlist</span>
@@ -46,7 +50,10 @@ function SidePanel(): JSX.Element {
 
                     <li>
                         <div className="clickable nav-link scrollto"
-                           onClick={()=>{window.location.href="/profile"}}>
+                             onClick={()=>{
+                                 navigate('/profile');
+                             }}
+                        >
                         <i className="bx bx-user"></i>
                             <span>Profile</span>
                         </div>
