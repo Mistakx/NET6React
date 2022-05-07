@@ -4,8 +4,9 @@ import SidePanel from "../SidePanel";
 import User from "./User";
 import PlaylistItem from "./PlaylistItem";
 import PlaylistsList from "./PlaylistsList";
+import {ProfileTopBarProperties} from "../../models/components/profilePage/ProfileTopBarProperties";
 
-function TopBar(): JSX.Element {
+function ProfileTopBar(props: ProfileTopBarProperties): JSX.Element {
 
     return (
 
@@ -15,7 +16,7 @@ function TopBar(): JSX.Element {
                 <div className="iconbox-blue rounded">
                     <nav aria-label="breadcrumb ">
                         <ol className="breadcrumb p-3">
-                            <li className="breadcrumb-item active text-white" aria-current="page">Profile page
+                            <li className="breadcrumb-item active text-white" aria-current="page">Profile page - {props.id}
                             </li>
                         </ol>
                     </nav>
@@ -28,4 +29,4 @@ function TopBar(): JSX.Element {
 
 }
 
-export default TopBar;
+export default ProfileTopBar;
