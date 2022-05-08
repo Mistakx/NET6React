@@ -1,9 +1,7 @@
-import React, {useEffect} from 'react';
 import '../../styles/style.css';
 import SidePanel from "../SidePanel";
 import User from "./User";
 import PlaylistsList from "./PlaylistsList";
-import TopBar from "./TopBar";
 import FloatingPlayer from "../searchPage/FloatingPlayer";
 import React, { useEffect } from "react";
 import AOS from "aos";

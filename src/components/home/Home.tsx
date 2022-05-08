@@ -1,7 +1,6 @@
 import '../../styles/style.css';
 import SidePanel from "../SidePanel";
 import React, { useEffect } from "react";
-import Typed from "typed.js";
 import AOS from "aos";
 import "aos/dist/aos.css";
 const logo = require("../../assets/img/logo.PNG");

@@ -2,7 +2,6 @@
 import '../../styles/Playlist.css'
 import '../../styles/SearchPage.css'
 import SidePanel from "../SidePanel";
-import TopBar from "../profilePage/TopBar";
 import MusicList from "./MusicList";
 import React, { useEffect } from "react";
 import AOS from "aos";
@@ -23,7 +22,7 @@ function PlaylistPage(): JSX.Element {
 
                 <section id="services" className="playlist">
                     <div className="container">
-                        <TopBar/>
+                        {/*<TopBar/>*/}
 
                         <div className="row">
 
