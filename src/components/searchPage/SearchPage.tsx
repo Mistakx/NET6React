@@ -1,7 +1,5 @@
-// import React from 'react';
 import AuthenticatedSearchBar from "./searchBar/AuthenticatedSearchBar";
 import SearchResultsList from "./searchItems/SearchResultsList";
-import SidePanel from "../SidePanel";
 import FloatingPlayer from "./FloatingPlayer";
 import ModalList from "./modalList/ModalList";
 import '../../styles/SearchPage.css';
@@ -11,11 +9,11 @@ import "aos/dist/aos.css";
 
 function SearchPage(): JSX.Element {
 
-    console.log("%cRendered search page.", "color: cyan")
     useEffect(() => {
         AOS.init();
         AOS.refresh();
-    }, []);  
+    }, []);
+
     return (
 
         <div>

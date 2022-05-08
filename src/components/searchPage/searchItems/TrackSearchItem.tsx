@@ -1,12 +1,11 @@
-// import React from 'react';
 import PlayerStore from "../../../stores/PlayerStore";
-import {TrackItemComponentProperties} from "../../../models/components/searchPage/TrackItemComponentProperties";
+import {TrackSearchItemProperties} from "../../../models/components/searchPage/TrackSearchItemProperties";
 import SearchedListStore from "../../../stores/SearchedListStore";
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-function TrackBoostrapItem(props: TrackItemComponentProperties): JSX.Element {
+function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
 
     const setPlayingId = PlayerStore(state => state.setPlayingId)
     const setPlayingThumbnailUrl = PlayerStore(state => state.setPlayingThumbnailUrl)
@@ -50,4 +49,4 @@ function TrackBoostrapItem(props: TrackItemComponentProperties): JSX.Element {
 
 }
 
-export default TrackBoostrapItem;
+export default TrackSearchItem;

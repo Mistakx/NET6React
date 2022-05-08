@@ -1,7 +1,7 @@
 import {GenericTrackResult} from "../models/apiSearches/GenericResults";
 import {PlayerCreator} from "../playerCreators/PlayerCreator";
 import {SearchList} from "./SearchList";
-import TrackBoostrapItem from "../components/searchPage/searchItems/TrackSearchItem";
+import TrackSearchItem from "../components/searchPage/searchItems/TrackSearchItem";
 
 export class TrackSearchList extends SearchList {
 
@@ -24,7 +24,7 @@ export class TrackSearchList extends SearchList {
 
         for (let currentGenericItem of this.items) {
 
-            let genericItemHtml = <TrackBoostrapItem
+            let genericItemHtml = <TrackSearchItem
                 item={currentGenericItem}
                 playerBuilder={this.playerBuilder}
             />

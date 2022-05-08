@@ -1,7 +1,7 @@
 import {GenericLivestreamResult} from "../../apiSearches/GenericResults";
 import {PlayerCreator} from "../../../playerCreators/PlayerCreator";
 
-export interface LivestreamItemComponentProperties {
+export interface LivestreamSearchItemProperties {
     item: GenericLivestreamResult
     playerBuilder: PlayerCreator
 }

@@ -1,7 +1,7 @@
 import {GenericVideoResult} from "../models/apiSearches/GenericResults";
 import {PlayerCreator} from "../playerCreators/PlayerCreator";
 import {SearchList} from "./SearchList";
-import VideoBoostrapItem from "../components/searchPage/searchItems/VideoSearchItem";
+import VideoSearchItem from "../components/searchPage/searchItems/VideoSearchItem";
 
 export class VideoSearchList extends SearchList {
 
@@ -24,7 +24,7 @@ export class VideoSearchList extends SearchList {
 
         for (let currentGenericItem of this.items) {
 
-            let genericItemHtml = <VideoBoostrapItem
+            let genericItemHtml = <VideoSearchItem
                 item={currentGenericItem}
                 playerBuilder={this.playerBuilder}
             />

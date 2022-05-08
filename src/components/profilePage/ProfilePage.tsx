@@ -1,14 +1,12 @@
 import '../../styles/style.css';
-import SidePanel from "../SidePanel";
 import User from "./User";
 import PlaylistsList from "./PlaylistsList";
-import FloatingPlayer from "../searchPage/FloatingPlayer";
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import ProfileTopBar from "./ProfileTopBar";
 import axios from "axios";
 import {UserProfile} from "../../models/backendSearches/UserProfile";
+import TopBar from "../TopBar";
 
 function ProfilePage(): JSX.Element {
     useEffect(() => {
@@ -26,7 +24,7 @@ function ProfilePage(): JSX.Element {
     }, [userProfile]);
 
     async function getProfile(userId: string) {
-        const url = "/User/" + userId;
+        const url = "/User/userProfile" + userId;
 
         const options = {
             method: 'GET',
@@ -50,7 +48,7 @@ function ProfilePage(): JSX.Element {
 
                     <div className="container">
 
-                        <ProfileTopBar id={userProfile?.id}/>
+                        <TopBar text={"Profile page - " + userProfile?.id}/>
 
                         <div className="row">
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../styles/style.css';
 import {useParams} from "react-router-dom";
-import SidePanel from "../SidePanel";
 
 function UsernamePage(): JSX.Element {
 
@@ -10,12 +9,8 @@ function UsernamePage(): JSX.Element {
     return (
 
         <div>
-
             This is the user page {username}
-
         </div>
-
-
 
     )
 

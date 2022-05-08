@@ -1,15 +1,16 @@
 import '../../styles/style.css';
-import SidePanel from "../SidePanel";
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 const logo = require("../../assets/img/logo.PNG");
 
 function HomePage(): JSX.Element {
+
     useEffect(() => {
         AOS.init();
         AOS.refresh();
-    }, []);  
+    }, []);
+
     // var options = new Typed('.typed', {
     //     strings       : ['Make your playlist', 'Choose your music', 'Many more than a playlist manager'],
     //     backSpeed     : 0,
@@ -20,8 +21,8 @@ function HomePage(): JSX.Element {
     // });
     
     return (
-        <section id="hero" className="d-flex flex-column justify-content-center position-relative">
 
+        <section id="hero" className="d-flex flex-column justify-content-center position-relative">
 
             <div className="container" data-aos="zoom-in" data-aos-delay="100">
                 <h1>Sparta List</h1>

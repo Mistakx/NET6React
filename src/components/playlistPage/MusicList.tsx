@@ -1,9 +1,5 @@
 import React from 'react';
 import '../../styles/style.css';
-import SidePanel from "../SidePanel";
-// import User from "./User";
-// import PlaylistItem from "./PlaylistItem";
-// import PlaylistsList from "./PlaylistsList";
 
 function MusicList(): JSX.Element {
 

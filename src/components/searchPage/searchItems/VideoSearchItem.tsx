@@ -1,12 +1,11 @@
-// import React from 'react';
 import PlayerStore from "../../../stores/PlayerStore";
-import {VideoItemComponentProperties} from "../../../models/components/searchPage/VideoItemComponentProperties";
+import {VideoSearchItemProperties} from "../../../models/components/searchPage/VideoSearchItemProperties";
 import SearchedListStore from "../../../stores/SearchedListStore";
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-function VideoBoostrapItem(props: VideoItemComponentProperties): JSX.Element {
+function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
 
     const setPlayingId = PlayerStore(state => state.setPlayingId)
     const searchList = SearchedListStore(state => state.searchedList)
@@ -45,4 +44,4 @@ function VideoBoostrapItem(props: VideoItemComponentProperties): JSX.Element {
 
 }
 
-export default VideoBoostrapItem;
+export default VideoSearchItem;
