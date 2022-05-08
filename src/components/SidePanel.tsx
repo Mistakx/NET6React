@@ -15,8 +15,7 @@ function SidePanel(): JSX.Element {
                 <ul>
 
                     <li>
-                        <div
-                            className="clickable nav-link scrollto"
+                        <div className="clickable nav-link scrollto"
                             onClick={() => {
                                 navigate('/home');
                             }}>
@@ -26,8 +25,7 @@ function SidePanel(): JSX.Element {
                     </li>
 
                     <li>
-                        <div
-                            className="clickable nav-link scrollto"
+                        <div className="clickable nav-link scrollto"
                             onClick={() => {
                                 navigate('/search');
                             }}>
@@ -37,13 +35,12 @@ function SidePanel(): JSX.Element {
                     </li>
 
                     <li>
-                        <div
-                            className="clickable nav-link scrollto"
+                        <div className="clickable nav-link scrollto"
                             onClick={() => {
                                 navigate('/playlist');
 
                             }}>
-                            <i className="bx bx-movie"></i>
+                            <i className='bx bxs-playlist'></i>
                             <span>Playlist</span>
                         </div>
                     </li>

@@ -9,15 +9,15 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
-@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Zilla+Slab+Highlight:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap');
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Baloo 2', cursive;
   background-color: #071E3D;
-  color: #272829;
+  color: #f2f3f5;
 
   /*Unselectable text*/
   -webkit-user-select: none; /* Safari */
@@ -38,7 +38,8 @@ a:hover {
 }
 
 h1 {
-  font-family: 'Monoton', cursive;
+  /* font-family: 'Caesar Dressing', cursive; */
+  font-family: 'Baloo 2', cursive;
 }
 
 h2, h3, h4, h5, h6 {
@@ -61,12 +62,12 @@ h2, h3, h4, h5, h6 {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #C0A71A;
+  background: #f2f3f5;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #BA9E03;
+  background: #f2f3f5;
 }
 
 /*--------------------------------------------------------------
@@ -123,6 +124,75 @@ h2, h3, h4, h5, h6 {
     transition-delay: 0 !important;
   }
 }
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+#hero {
+  width: 100%;
+  min-height: 100vh;
+  background: url("https://cdn.pixabay.com/photo/2016/11/23/00/58/record-player-1851576_960_720.jpg") top right no-repeat;
+  background-size: cover;
+  position: relative;
+}
+@media (min-width: 992px) {
+  #hero {
+    padding-left: 160px;
+  }
+}
+#hero:before {
+  content: "";
+  background: rgba(7, 30, 61, 0.65);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+#hero h1 {
+  /* margin-top: -200px; */
+  font-size: 88px;
+}
+#hero p {
+  color: #45505b;
+  margin: 15px 0 0 0;
+  font-size: 26px;
+  font-family: 'Baloo 2', cursive;
+}
+#hero p span {
+  font-family: 'Baloo 2', cursive;
+  color: #f2f3f5;
+  letter-spacing: 1px;
+}
+#hero .social-links {
+  margin-top: 30px;
+}
+#hero .social-links a {
+  font-size: 32px;
+  display: inline-block;
+  color: #2570bc;
+  line-height: 1;
+  margin-right: 20px;
+  transition: 0.3s;
+}
+#hero .social-links a:hover {
+  color: #0563bb;
+}
+@media (max-width: 992px) {
+  #hero {
+    text-align: center;
+  }
+  #hero h1 {
+    font-size: 32px;
+    line-height: 36px;
+  }
+  #hero p {
+    margin-top: 10px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -196,3 +266,34 @@ section {
 .section-title p {
   margin-bottom: 0;
 }
+
+.icon-box .btn {
+  font-size: 32px;
+  color: #f2f3f5;
+  padding:0;
+  margin: 0;
+}
+
+.dropdown-menu-dark {
+  background-color: #071E3D;
+  font-size: 14px;
+}
+  
+  /*--------------------------------------------------------------
+  # Sections General
+  --------------------------------------------------------------*/
+  .modal-content {
+    background-color: #0D3A76;
+    color: #fff;
+  }
+  .modal-header  {
+    background-color: #f2f3f5;
+    border-bottom-color: #f2f3f5;
+    color:#1355AD;
+  }
+  .modal-footer {
+    border-top-color: #f2f3f5;
+  }
+  .modal-body .card {
+    background-color: #1355AD;
+  }

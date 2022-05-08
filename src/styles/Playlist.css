@@ -37,6 +37,8 @@
 #playlist .list-group {
   height: 335px;
   overflow: auto;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .social {
@@ -60,40 +62,28 @@
   text-align: center;
   padding: 20px 20px 80px 20px;
   transition: all ease-in-out 0.3s;
-  box-shadow: 0px 5px 90px 0px rgba(110, 123, 131, 0.05);
+  /* box-shadow: 0px 5px 90px 0px rgba(110, 123, 131, 0.05); */
 }
 .services .icon-box img {
   height: 250px;
   box-shadow: 0px 0px 90px 25px rgba(25, 112, 227, 0.5);
 }
 
-.services .card-profile {
+.playlist .card-profile {
   height: 150px;
+  border-top-left-radius:10px;
+  border-top-right-radius:10px;
 }
 
-.card-profile h2 {
-  margin:20px;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.card-img-overlay .options {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-/*
-.options .btn {
-  color:#C0A71A;
-  font-size:30px;
-  padding:0;
-} */
-
-.services .card {
+.playlist .card {
+  border-radius: 10px;
   background-color: #0678e3;
   color: #fff;
   margin-top: 0px;
+}
+
+.card .list-group li:hover {
+  background-color: #517da7;
 }
 
 .iconbox-blue nav {
@@ -115,14 +105,3 @@
   margin-bottom: 0;
 }
 
-.options .btn {
-  margin-bottom: 30px;
-}
-
-.options .btn-outline-dark {
-  color: #FE2C55;
-}
-
-.options .btn-outline-dark:hover {
-  color: #FFF;
-}

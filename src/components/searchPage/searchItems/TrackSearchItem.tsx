@@ -1,7 +1,10 @@
-import React from 'react';
+// import React from 'react';
 import PlayerStore from "../../../stores/PlayerStore";
 import {TrackItemComponentProperties} from "../../../models/components/searchPage/TrackItemComponentProperties";
 import SearchedListStore from "../../../stores/SearchedListStore";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function TrackBoostrapItem(props: TrackItemComponentProperties): JSX.Element {
 
@@ -15,10 +18,14 @@ function TrackBoostrapItem(props: TrackItemComponentProperties): JSX.Element {
         setPlayingThumbnailUrl(props.item.thumbnailUrl)
         setPlayerCreator(searchList!.getPlayerCreator())
     }
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+    }, []);
 
     return (
 
-        <div className="col-md-3 col-6 position-relative">
+        <div className="col-md-4 col-sm-4 col-lg-3 col-6 position-relative scale" data-aos="fade-down">
             <div className="clickable card bg-dark"
                  onClick={() => {
                      setCurrentPlayerToClickedItem()
@@ -31,9 +38,11 @@ function TrackBoostrapItem(props: TrackItemComponentProperties): JSX.Element {
                     {/* <p className="card-text text-truncate">{props.item.createdAt}</p> */}
                     </div>
                 </div>
-                <button className="btn btn-sm btn-add" type="button"
+            <div className="options">
+                <button className="btn btn-add" type="button"
                     data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                     className='bx bx-plus'></i></button>
+            </div>
         </div>
 
 

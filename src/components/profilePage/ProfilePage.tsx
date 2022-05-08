@@ -3,11 +3,20 @@ import '../../styles/style.css';
 import SidePanel from "../SidePanel";
 import User from "./User";
 import PlaylistsList from "./PlaylistsList";
+import TopBar from "./TopBar";
+import FloatingPlayer from "../searchPage/FloatingPlayer";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import ProfileTopBar from "./ProfileTopBar";
 import axios from "axios";
 import {UserProfile} from "../../models/backendSearches/UserProfile";
 
 function ProfilePage(): JSX.Element {
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+    }, []);
 
     const [userProfile, setProfile] = React.useState<UserProfile>();
 
@@ -43,7 +52,7 @@ function ProfilePage(): JSX.Element {
 
                 <section id="services" className="services">
 
-                    <div className="container" data-aos="fade-up">
+                    <div className="container">
 
                         <ProfileTopBar id={userProfile?.id}/>
 

@@ -1,30 +1,44 @@
 /*--------------------------------------------------------------
 # Login
 --------------------------------------------------------------*/
-.login label {
-  color: #C0A71A;
+.login {
+  background-image: url('https://cdn.pixabay.com/photo/2016/02/26/17/32/s-record-player-1224385_960_720.jpg') !important;
+}
+
+.login h1 {
+  color:#f2f3f5;
+  
+  font-family: 'Baloo 2', cursive;
 }
 
 .login .form-control {
-  background-color: #0D3A76;
-  border-color: #0D3A76;
-  color: #C0A71A;
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid #f2f3f5;
+  color: #f2f3f5;
   margin-bottom:20px;
 }
 
+.login .form-control:focus {
+  background-color: transparent;
+  outline: 0;
+  box-shadow: none !important;
+}
+
+.login .form-control::placeholder {
+  color: rgba(242, 243, 245, 0.5);
+}
+
+.login .options {
+  margin-top: -50px;
+}
+
 .login .btn {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
-.options .btn {
-  margin-bottom: 30px;
-}
-
-.options .btn-outline-dark {
-  color: #FE2C55;
-}
-
-.options .btn-outline-dark:hover {
-  color: #FFF;
+.login .options .btn {
+  margin-top: 10px;
+  font-size: 24px;
 }
 

@@ -1,7 +1,10 @@
-import React from 'react';
+// import React from 'react';
 import PlayerStore from "../../../stores/PlayerStore";
 import {VideoItemComponentProperties} from "../../../models/components/searchPage/VideoItemComponentProperties";
 import SearchedListStore from "../../../stores/SearchedListStore";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function VideoBoostrapItem(props: VideoItemComponentProperties): JSX.Element {
 
@@ -13,24 +16,29 @@ function VideoBoostrapItem(props: VideoItemComponentProperties): JSX.Element {
         setPlayingId(props.item.id);
         setPlayerCreator(searchList!.getPlayerCreator())
     }
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+    }, []);
 
     return (
 
-        <div className="col-md-3 col-6 position-relative">
+        <div className="col-md-4 col-sm-4 col-lg-3 col-6 position-relative scale" data-aos="fade-down">
             <div className="clickable card bg-dark"
-                 onClick={() => {
-                     setCurrentPlayerToClickedItem()
-                 }}
-                 style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.item.thumbnailUrl + ")"}}>
+                onClick={() => {
+                    setCurrentPlayerToClickedItem()
+                }}
+                style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.item.thumbnailUrl + ")"}}>
                 <div className="card-img-overlay text-end">
                     <h5 className="card-title text-uppercase text-truncate">{props.item.title}</h5>
                     <p className="card-text text-truncate">{props.item.creator}</p>
                     {/* <p className="card-text">{props.item.createdAt}</p> */}
                 </div>
             </div>
-            <button className="btn btn-sm btn-add" type="button"
-                data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                className='bx bx-plus'></i></button>
+            <div className="options">
+                <button className="btn btn-add" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <i className='bx bx-plus'></i></button>
+            </div>
         </div>
 
     )

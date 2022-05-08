@@ -2,10 +2,12 @@ import React from 'react';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes,} from "react-router-dom";
 import SearchPage from "./components/searchPage/SearchPage";
+import Home from "./components/home/Home";
 import {createRoot} from "react-dom/client";
 import ProfilePage from "./components/profilePage/ProfilePage";
 import UsernamePage from "./components/userPage/UsernamePage";
 import PlaylistPage from "./components/playlistPage/PlaylistPage";
+import Login from "./components/login/Login";
 
 const container = document.getElementById('root');
 
@@ -14,15 +16,17 @@ if (container !== null) {
     const root = createRoot(container);
     root.render(
 
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<SearchPage/>}/>
-                    <Route path="/search" element={<SearchPage/>}/>
-                    <Route path="/profile" element={<ProfilePage/>}/>
-                    <Route path="/user/:username" element={<UsernamePage/>}/>
-                    <Route path="/playlist" element={<PlaylistPage/>}/>
-                </Routes>
-            </BrowserRouter>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+                <Route path="/home" element={<Home/>}/>
+                <Route path="/search" element={<SearchPage/>}/>
+                <Route path="/profile" element={<ProfilePage/>}/>
+                <Route path="/user/:username" element={<UsernamePage/>}/>
+                <Route path="/playlist" element={<PlaylistPage/>}/>
+                <Route path="/login" element={<Login/>}/>
+            </Routes>
+        </BrowserRouter>
 
     );
 

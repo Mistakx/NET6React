@@ -1,6 +1,6 @@
 import {GenericVideoResult} from "../../models/apiSearches/GenericResults";
 import {YouTubeVideoSearchResultPage} from "../../models/apiSearches/YouTubeSearchResult";
-import moment from 'moment'
+import moment from 'moment';
 
 export class YouTubeVideoResultPageToListItemsConverter {
 
