@@ -4,9 +4,8 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-function SearchPage(): JSX.Element {
+function ModalList(): JSX.Element {
 
-    console.log("%cRendered search page.", "color: cyan")
     useEffect(() => {
         AOS.init();
         AOS.refresh();
@@ -32,4 +31,4 @@ function SearchPage(): JSX.Element {
     )
 }
 
-export default SearchPage;
+export default ModalList;

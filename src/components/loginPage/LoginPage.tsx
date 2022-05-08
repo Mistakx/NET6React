@@ -16,7 +16,6 @@ function PlaylistPage(): JSX.Element {
     return (
 
         <section id="hero" className="d-flex flex-column justify-content-center position-relative login">
-            <SidePanel/>
             <div className="container" data-aos="zoom-in" data-aos-delay="100">
                 
                 <div className="row">

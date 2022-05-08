@@ -19,7 +19,6 @@ function SearchPage(): JSX.Element {
     return (
 
         <div>
-            <SidePanel/>
 
             <section id="services" className="services">
                 <div className="container" data-aos="zoom-in" data-aos-duration="1000">
@@ -44,6 +43,7 @@ function SearchPage(): JSX.Element {
             </section>
 
             <FloatingPlayer/>
+
             <ModalList/>
 
         </div>

@@ -2,12 +2,13 @@ import React from 'react';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes,} from "react-router-dom";
 import SearchPage from "./components/searchPage/SearchPage";
-import Home from "./components/home/Home";
+import HomePage from "./components/homePage/HomePage";
 import {createRoot} from "react-dom/client";
 import ProfilePage from "./components/profilePage/ProfilePage";
 import UsernamePage from "./components/userPage/UsernamePage";
 import PlaylistPage from "./components/playlistPage/PlaylistPage";
-import Login from "./components/login/Login";
+import Login from "./components/loginPage/LoginPage";
+import SidePanel from "./components/SidePanel";
 
 const container = document.getElementById('root');
 
@@ -17,9 +18,12 @@ if (container !== null) {
     root.render(
 
         <BrowserRouter>
+
+            <SidePanel/>
+
             <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/home" element={<Home/>}/>
+                <Route path="/" element={<HomePage/>}/>
+                <Route path="/home" element={<HomePage/>}/>
                 <Route path="/search" element={<SearchPage/>}/>
                 <Route path="/profile" element={<ProfilePage/>}/>
                 <Route path="/user/:username" element={<UsernamePage/>}/>

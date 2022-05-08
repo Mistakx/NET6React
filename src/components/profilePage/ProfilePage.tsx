@@ -44,8 +44,6 @@ function ProfilePage(): JSX.Element {
 
         <div>
 
-            <SidePanel/>
-
             <main id="main">
 
                 <section id="services" className="services">

@@ -5,7 +5,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 const logo = require("../../assets/img/logo.PNG");
 
-function Home(): JSX.Element {
+function HomePage(): JSX.Element {
     useEffect(() => {
         AOS.init();
         AOS.refresh();
@@ -22,7 +22,6 @@ function Home(): JSX.Element {
     return (
         <section id="hero" className="d-flex flex-column justify-content-center position-relative">
 
-            <SidePanel/>
 
             <div className="container" data-aos="zoom-in" data-aos-delay="100">
                 <h1>Sparta List</h1>
@@ -46,4 +45,4 @@ function Home(): JSX.Element {
 
 }
 
-export default Home;
+export default HomePage;

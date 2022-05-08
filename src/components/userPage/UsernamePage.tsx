@@ -10,7 +10,6 @@ function UsernamePage(): JSX.Element {
     return (
 
         <div>
-            <SidePanel />
 
             This is the user page {username}
 
