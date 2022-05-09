@@ -1,7 +1,8 @@
-import {GenericTrackResult} from "../models/apiSearches/GenericResults";
+import {GenericTrackResult} from "../models/apiRequests/GenericResults";
 import {PlayerCreator} from "../playerCreators/PlayerCreator";
 import {SearchList} from "./SearchList";
 import TrackSearchItem from "../components/searchPage/searchItems/TrackSearchItem";
+import React from "react";
 
 export class TrackSearchList extends SearchList {
 

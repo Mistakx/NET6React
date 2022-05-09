@@ -1,4 +1,4 @@
-import {GenericVideoResult} from "../../apiSearches/GenericResults";
+import {GenericVideoResult} from "../../apiRequests/GenericResults";
 import {PlayerCreator} from "../../../playerCreators/PlayerCreator";
 
 export interface VideoSearchItemProperties {

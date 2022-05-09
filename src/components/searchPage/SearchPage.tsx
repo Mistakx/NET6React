@@ -1,7 +1,7 @@
 import AuthenticatedSearchBar from "./searchBar/AuthenticatedSearchBar";
 import SearchResultsList from "./searchItems/SearchResultsList";
 import FloatingPlayer from "./FloatingPlayer";
-import ModalList from "./modalList/ModalList";
+import PlaylistsModal from "./playlistsModal/PlaylistsModal";
 import '../../styles/SearchPage.css';
 import React, { useEffect } from "react";
 import AOS from "aos";
@@ -41,8 +41,6 @@ function SearchPage(): JSX.Element {
             </section>
 
             <FloatingPlayer/>
-
-            <ModalList/>
 
         </div>
 

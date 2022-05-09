@@ -1,17 +1,24 @@
 import PlayerStore from "../../../stores/PlayerStore";
 import {
     LivestreamSearchItemProperties
-} from "../../../models/components/searchPage/LivestreamSearchItemProperties";
+} from "../../../models/components/searchPage/searchItems/LivestreamSearchItemProperties";
 import SearchedListStore from "../../../stores/SearchedListStore";
 import React, {useEffect} from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import PlaylistsModalStore from "../../../stores/PlaylistsModalStore";
 
 function LivestreamSearchItem(props: LivestreamSearchItemProperties): JSX.Element {
 
+    const searchList = SearchedListStore(state => state.searchedList)
+
     const setPlayingId = PlayerStore(state => state.setPlayingId)
     const setPlayerCreator = PlayerStore(state => state.setPlayerCreator)
-    const searchList = SearchedListStore(state => state.searchedList)
+
+    const setShowingPlaylistsModal =  PlaylistsModalStore(state => state.setShowingPlaylistsModal)
+    const setContentToAddId =  PlaylistsModalStore(state => state.setContentToAddId)
+    const setContentToAddTitle =  PlaylistsModalStore(state => state.setContentToAddTitle)
+
 
     function setCurrentPlayerToClickedItem() {
         setPlayingId(props.item.id)
@@ -41,10 +48,14 @@ function LivestreamSearchItem(props: LivestreamSearchItemProperties): JSX.Elemen
 
             <div className="options">
                 <button className="btn btn-add"
-                        type="button"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"><i
-                    className='bx bx-plus'></i></button>
+                        onClick={() => {
+                            setShowingPlaylistsModal(true)
+                            setContentToAddId(props.item.id)
+                            setContentToAddTitle(props.item.title)
+                        }}
+                >
+                    <i className='bx bx-plus'></i>
+                </button>
             </div>
 
         </div>

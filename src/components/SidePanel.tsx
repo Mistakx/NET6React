@@ -37,22 +37,11 @@ function SidePanel(): JSX.Element {
                     <li>
                         <div className="clickable nav-link scrollto"
                             onClick={() => {
-                                navigate('/playlist');
+                                navigate('/profile');
 
                             }}>
                             <i className='bx bxs-playlist'></i>
-                            <span>Playlist</span>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div className="clickable nav-link scrollto"
-                             onClick={()=>{
-                                 navigate('/profile');
-                             }}
-                        >
-                        <i className="bx bx-user"></i>
-                            <span>Profile</span>
+                            <span>My Playlists</span>
                         </div>
                     </li>
 

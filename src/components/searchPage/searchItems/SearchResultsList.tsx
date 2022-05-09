@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import SearchedListStore from "../../../stores/SearchedListStore";
+import PlaylistsModal from "../playlistsModal/PlaylistsModal";
 
 function SearchResultsList(): JSX.Element {
 
@@ -9,28 +10,36 @@ function SearchResultsList(): JSX.Element {
 
     useEffect(() => {
 
-        // No results
-        if (searchList && searchList.getItemsHtml().length === 0) {
-            setSearchListHtml([<p>No results</p>]);
+        if (searchList) {
+            let itemsHTML = searchList.getItemsHtml()
+
+            // No results
+            if (itemsHTML.length === 0) {
+                setSearchListHtml([<p>No results.</p>]);
+            }
+
+            // Valid results
+            else if (itemsHTML.length > 0) {
+                setSearchListHtml(itemsHTML);
+            }
         }
 
-        // Valid results
-        else if (searchList && searchList.getItemsHtml().length > 0) {
-            setSearchListHtml(searchList.getItemsHtml());
-        }
 
     }, [searchList]);
 
     return (
 
-        <div className="results">
+        <div>
 
-            <div className="row">
+            <PlaylistsModal/>
 
-                {searchListHtml}
+            <div className="results">
+                <div className="row">
 
+                    {searchListHtml}
+
+                </div>
             </div>
-
         </div>
 
     )

@@ -1,18 +1,49 @@
 import '../../styles/Playlist.css'
 import '../../styles/SearchPage.css'
-import MusicList from "./MusicList";
 import React, {useEffect} from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import TopBar from "../TopBar";
+import {useParams} from "react-router-dom";
+import axios from "axios";
+import {PlaylistDetails} from "../../models/backendRequests/PlaylistDetails";
+import PlaylistItemsList from "./PlaylistItemsList";
 
 function PlaylistPage(): JSX.Element {
 
+    const playlistId = useParams().playlistId
+
+    const [playlistInformation, setPlaylistInformation] = React.useState<PlaylistDetails>();
+
+    async function getPlaylist(playlistId: string) {
+        const url = "/Playlist/" + playlistId;
+
+        const options = {
+            method: 'GET',
+            url: url,
+        };
+
+        // @ts-ignore
+        let profileResponse = await axios(options);
+        let profile: PlaylistDetails = profileResponse.data;
+        return profile;
+
+    }
+
+    useEffect(() => {
+        if (!playlistInformation && playlistId) {
+            (async () => {
+                setPlaylistInformation(await getPlaylist(playlistId));
+            })()
+        }
+    }, [playlistId]);
+    
     useEffect(() => {
         AOS.init();
         AOS.refresh();
     }, []);
 
+    
     return (
 
         <div>
@@ -62,27 +93,14 @@ function PlaylistPage(): JSX.Element {
 
                                     <div className="card-profile position-relative"
                                          style={{backgroundImage: "url(https://cdn.pixabay.com/photo/2017/11/24/10/43/album-2974646_960_720.jpg)"}}>
-                                        <h2 className="text-white text-center text-wrap position-absolute top-50 start-50 translate-middle">Name
-                                            the playlist</h2>
+                                        <h2 className="text-white text-center text-wrap position-absolute top-50 start-50 translate-middle">
+                                            {playlistInformation?.title}
+                                        </h2>
                                     </div>
 
 
-                                    <div className="overflow-auto">
+                                    <PlaylistItemsList playlists={playlistInformation?.contents}/>
 
-                                        <ul className="list-group">
-                                            <MusicList/>
-                                            <MusicList/>
-                                            <MusicList/>
-                                            <MusicList/>
-                                            <MusicList/>
-                                            <MusicList/>
-                                            <MusicList/>
-                                            <MusicList/>
-                                            <MusicList/>
-                                            <MusicList/>
-                                        </ul>
-
-                                    </div>
                                 </div>
 
                             </div>

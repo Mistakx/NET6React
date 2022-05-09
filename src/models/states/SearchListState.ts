@@ -7,5 +7,4 @@ export interface SearchListState {
     searchedList: VideoSearchList | TrackSearchList | LivestreamSearchList | null
     setSearchedList: (searchList: VideoSearchList | TrackSearchList | LivestreamSearchList) => void
 
-
 }

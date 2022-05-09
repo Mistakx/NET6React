@@ -1,7 +1,7 @@
 import React from 'react';
 import TwitchAuthenticator from "../../../authenticators/TwitchAuthenticator";
 import SpotifyAuthenticator from "../../../authenticators/SpotifyAuthenticator";
-import MauricioSearchBar from "./MauricioSearchBar";
+import SearchBar from "./SearchBar";
 
 function AuthenticatedSearchBar(): JSX.Element {
 
@@ -10,7 +10,7 @@ function AuthenticatedSearchBar(): JSX.Element {
 
     return (
         <div>
-            <MauricioSearchBar spotifyAuthenticator={spotifyAuthenticator} twitchAuthenticator={twitchAuthenticator}/>
+            <SearchBar spotifyAuthenticator={spotifyAuthenticator} twitchAuthenticator={twitchAuthenticator}/>
         </div>
     )
 }

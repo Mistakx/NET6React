@@ -1,15 +1,15 @@
 import React from 'react';
 import '../../../styles/style.css'
 import SelectedSearchStore from "../../../stores/SelectedSearchStore";
-import {VimeoSearchVideoByName} from "../../../apiSearches/specificSearches/VimeoSearchVideoByName";
-import {YouTubeSearchVideoByGeneral} from "../../../apiSearches/specificSearches/YouTubeSearchVideoByGeneral";
-import {SpotifySearchTrackByName} from "../../../apiSearches/specificSearches/SpotifySearchTrackByName";
-import {SpotifySearchTrackByAlbum} from "../../../apiSearches/specificSearches/SpotifySearchTrackByAlbum";
-import {TwitchSearchClipByChannel} from "../../../apiSearches/specificSearches/TwitchSearchClipByChannel";
-import {TwitchSearchClipByGame} from "../../../apiSearches/specificSearches/TwitchSearchClipByGame";
-import {TwitchSearchVideoByChannel} from "../../../apiSearches/specificSearches/TwitchSearchVideoByChannel";
-import {TwitchSearchVideoByGame} from "../../../apiSearches/specificSearches/TwitchSearchVideoByGame";
-import {TwitchSearchLivestreamByGeneral} from "../../../apiSearches/specificSearches/TwitchSearchLivestreamByGeneral";
+import {VimeoSearchVideoByName} from "../../../apiRequests/specificSearches/VimeoSearchVideoByName";
+import {YouTubeSearchVideoByGeneral} from "../../../apiRequests/specificSearches/YouTubeSearchVideoByGeneral";
+import {SpotifySearchTrackByName} from "../../../apiRequests/specificSearches/SpotifySearchTrackByName";
+import {SpotifySearchTrackByAlbum} from "../../../apiRequests/specificSearches/SpotifySearchTrackByAlbum";
+import {TwitchSearchClipByChannel} from "../../../apiRequests/specificSearches/TwitchSearchClipByChannel";
+import {TwitchSearchClipByGame} from "../../../apiRequests/specificSearches/TwitchSearchClipByGame";
+import {TwitchSearchVideoByChannel} from "../../../apiRequests/specificSearches/TwitchSearchVideoByChannel";
+import {TwitchSearchVideoByGame} from "../../../apiRequests/specificSearches/TwitchSearchVideoByGame";
+import {TwitchSearchLivestreamByGeneral} from "../../../apiRequests/specificSearches/TwitchSearchLivestreamByGeneral";
 import {PlatformDropdownListProperties} from "../../../models/components/searchBar/PlatformDropdownListProperties";
 import PlatformDropdownStore from "../../../stores/PlatformDropdownStore";
 

@@ -1,7 +1,8 @@
-import {GenericLivestreamResult} from "../models/apiSearches/GenericResults";
+import {GenericLivestreamResult} from "../models/apiRequests/GenericResults";
 import {PlayerCreator} from "../playerCreators/PlayerCreator";
 import {SearchList} from "./SearchList";
 import LivestreamBootstrapItem from "../components/searchPage/searchItems/LivestreamSearchItem";
+import React from "react";
 
 export class LivestreamSearchList extends SearchList {
 

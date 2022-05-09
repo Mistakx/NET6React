@@ -1,16 +1,29 @@
 import React, {useEffect} from 'react';
 import '../../styles/style.css';
 import {UserProperties} from "../../models/components/profilePage/UserProperties";
+import axios from "axios";
+import {UserProfile} from "../../models/backendRequests/UserProfile";
+import UserRequests from "../../backendRequests/UserRequests";
 
 // https://mocah.org/thumbs/4556157-elliot-mr-robot-mr.-robot-tv-hacking-text.jpg
 // https://image.api.playstation.com/vulcan/img/rnd/202109/0114/ql9sjqcZguB1Iz0LUJcKN3yG.png
-function User(props: UserProperties): JSX.Element {
+function User(): JSX.Element {
+
+    const [userProfile, setProfile] = React.useState<UserProfile>();
+
+    useEffect(() => {
+        if (!userProfile) {
+            (async () => {
+                setProfile(await UserRequests.getProfile(process.env.REACT_APP_USER_ID as string));
+            })()
+        }
+    }, [userProfile]);
 
     return (
         <div className="col-md-4 position-relative">
             <div className="align-items-stretch mb-4 " data-aos="zoom-in" data-aos-delay="100">
                 <div className="icon-box iconbox-blue rounded">
-                    <h4 className="text-white">{props.name}</h4>
+                    <h4 className="text-white">{userProfile?.name}</h4>
                     <img src="https://image.api.playstation.com/vulcan/img/rnd/202109/0114/ql9sjqcZguB1Iz0LUJcKN3yG.png"
                          alt=""
                          className="img-fluid rounded-circle img-centered"/>
