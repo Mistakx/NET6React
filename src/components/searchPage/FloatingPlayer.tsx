@@ -1,9 +1,5 @@
 import React from 'react';
 import ResizeablePlayer from "../players/ResizeablePlayer";
-import AuthenticatedSearchBar from "./searchBar/AuthenticatedSearchBar";
-import SearchResultsList from "./searchItems/SearchResultsList";
-import SidePanel from "../SidePanel";
-import SearchLabel from "./searchBar/SearchLabel";
 
 function FloatingPlayer(): JSX.Element {
 

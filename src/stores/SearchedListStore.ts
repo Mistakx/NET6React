@@ -1,8 +1,8 @@
 import create from 'zustand'
 import {SearchListState} from "../models/states/SearchListState";
-import {VideoSearchList} from "../searchLists/VideoSearchList";
-import {TrackSearchList} from "../searchLists/TrackSearchList";
-import {LivestreamSearchList} from "../searchLists/LivestreamSearchList";
+import {VideoSearchList} from "../requests/apiRequests/searchLists/VideoSearchList";
+import {TrackSearchList} from "../requests/apiRequests/searchLists/TrackSearchList";
+import {LivestreamSearchList} from "../requests/apiRequests/searchLists/LivestreamSearchList";
 
 const SearchedListStore = create<SearchListState>((set) => ({
 

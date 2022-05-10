@@ -1,7 +1,7 @@
 import create from 'zustand'
 import {SearchState} from "../models/states/SearchState";
-import {ApiSearch} from "../apiRequests/specificSearches/ApiSearch";
-import {YouTubeSearchVideoByGeneral} from "../apiRequests/specificSearches/YouTubeSearchVideoByGeneral";
+import {ApiSearch} from "../requests/apiRequests/specificSearches/ApiSearch";
+import {YouTubeSearchVideoByGeneral} from "../requests/apiRequests/specificSearches/YouTubeSearchVideoByGeneral";
 
 const SelectedSearchStore = create<SearchState>((set) => ({
 

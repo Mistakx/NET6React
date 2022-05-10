@@ -1,14 +1,10 @@
 import PlayerStore from "../../../stores/PlayerStore";
 import {TrackSearchItemProperties} from "../../../models/components/searchPage/searchItems/TrackSearchItemProperties";
-import SearchedListStore from "../../../stores/SearchedListStore";
-import React, {useEffect} from "react";
-import AOS from "aos";
+import React from "react";
 import "aos/dist/aos.css";
 import PlaylistsModalStore from "../../../stores/PlaylistsModalStore";
 
 function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
-
-    const searchList = SearchedListStore(state => state.searchedList)
 
     const setPlayingId = PlayerStore(state => state.setPlayingId)
     const setPlayingThumbnailUrl = PlayerStore(state => state.setPlayingThumbnailUrl)
@@ -21,13 +17,8 @@ function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
     function setCurrentPlayerToClickedItem() {
         setPlayingId(props.item.id);
         setPlayingThumbnailUrl(props.item.thumbnailUrl)
-        setPlayerCreator(searchList!.getPlayerCreator())
+        setPlayerCreator(props.playerCreator)
     }
-
-    useEffect(() => {
-        AOS.init();
-        AOS.refresh();
-    }, []);
 
     return (
 

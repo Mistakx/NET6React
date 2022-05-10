@@ -4,5 +4,5 @@ import React from "react";
 
 export interface LivestreamSearchItemProperties {
     item: GenericLivestreamResult
-    playerBuilder: PlayerCreator
+    playerCreator: PlayerCreator
 }

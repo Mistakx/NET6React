@@ -3,7 +3,7 @@ import '../../styles/style.css';
 import {UserProperties} from "../../models/components/profilePage/UserProperties";
 import axios from "axios";
 import {UserProfile} from "../../models/backendRequests/UserProfile";
-import UserRequests from "../../backendRequests/UserRequests";
+import UserRequests from "../../requests/backendRequests/UserRequests";
 
 // https://mocah.org/thumbs/4556157-elliot-mr-robot-mr.-robot-tv-hacking-text.jpg
 // https://image.api.playstation.com/vulcan/img/rnd/202109/0114/ql9sjqcZguB1Iz0LUJcKN3yG.png

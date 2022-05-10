@@ -1,14 +1,10 @@
 import PlayerStore from "../../../stores/PlayerStore";
 import {VideoSearchItemProperties} from "../../../models/components/searchPage/VideoSearchItemProperties";
-import SearchedListStore from "../../../stores/SearchedListStore";
-import React, {useEffect, useState} from "react";
-import AOS from "aos";
+import React from "react";
 import "aos/dist/aos.css";
 import PlaylistsModalStore from "../../../stores/PlaylistsModalStore";
 
 function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
-
-    const searchList = SearchedListStore(state => state.searchedList)
 
     const setPlayingId = PlayerStore(state => state.setPlayingId)
     const setPlayerCreator = PlayerStore(state => state.setPlayerCreator)
@@ -19,17 +15,12 @@ function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
 
     function setCurrentPlayerToClickedItem() {
         setPlayingId(props.item.id);
-        setPlayerCreator(searchList!.getPlayerCreator())
+        setPlayerCreator(props.playerCreator)
     }
-
-    useEffect(() => {
-        AOS.init();
-        AOS.refresh();
-    }, []);
 
     return (
 
-        <div className="col-md-4 col-sm-4 col-lg-3 col-6 position-relative scale" data-aos="fade-down">
+        <div className="col-md-4 col-sm-4 col-lg-3 col-6 position-relative scale" data-aos="fade-up">
 
             <div className="clickable card bg-dark"
                  onClick={() => {

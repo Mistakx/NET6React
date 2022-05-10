@@ -7,16 +7,14 @@ import "aos/dist/aos.css";
 import axios from "axios";
 import {UserProfile} from "../../models/backendRequests/UserProfile";
 import TopBar from "../TopBar";
+import FloatingPlayer from "../searchPage/FloatingPlayer";
 
 function ProfilePage(): JSX.Element {
-    useEffect(() => {
-        AOS.init();
-        AOS.refresh();
-    }, []);
 
     return (
 
         <div>
+
             <main id="main">
                 <section id="services" className="services">
                     <div className="container">
@@ -31,6 +29,9 @@ function ProfilePage(): JSX.Element {
                     </div>
                 </section>
             </main>
+
+            <FloatingPlayer/>
+
         </div>
 
     )

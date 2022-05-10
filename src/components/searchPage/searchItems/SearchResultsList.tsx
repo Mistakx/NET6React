@@ -11,7 +11,7 @@ function SearchResultsList(): JSX.Element {
     useEffect(() => {
 
         if (searchList) {
-            let itemsHTML = searchList.getItemsHtml()
+            let itemsHTML = searchList.getSearchItems()
 
             // No results
             if (itemsHTML.length === 0) {

@@ -1,18 +1,11 @@
 import AuthenticatedSearchBar from "./searchBar/AuthenticatedSearchBar";
 import SearchResultsList from "./searchItems/SearchResultsList";
 import FloatingPlayer from "./FloatingPlayer";
-import PlaylistsModal from "./playlistsModal/PlaylistsModal";
 import '../../styles/SearchPage.css';
 import React, { useEffect } from "react";
-import AOS from "aos";
 import "aos/dist/aos.css";
 
 function SearchPage(): JSX.Element {
-
-    useEffect(() => {
-        AOS.init();
-        AOS.refresh();
-    }, []);
 
     return (
 

@@ -1,4 +1,4 @@
-import {ApiSearch} from "../../apiRequests/specificSearches/ApiSearch";
+import {ApiSearch} from "../../requests/apiRequests/specificSearches/ApiSearch";
 
 export interface SearchState {
 

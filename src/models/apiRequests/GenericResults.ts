@@ -1,12 +1,15 @@
 /**
  * A platform-agnostic result, with no API specific details.
  */
+import {PlayerCreator} from "../../playerCreators/PlayerCreator";
+
 export interface GenericResult {
     id: string
     title: string
     // createdAt: string
     thumbnailUrl: string
     creator: string
+    playerCreator: PlayerCreator
 }
 
 /**

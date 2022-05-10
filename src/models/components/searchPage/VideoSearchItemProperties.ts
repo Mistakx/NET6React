@@ -3,5 +3,5 @@ import {PlayerCreator} from "../../../playerCreators/PlayerCreator";
 
 export interface VideoSearchItemProperties {
     item: GenericVideoResult
-    playerBuilder: PlayerCreator
+    playerCreator: PlayerCreator
 }

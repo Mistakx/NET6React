@@ -1,6 +1,6 @@
 import React from 'react';
-import TwitchAuthenticator from "../../../authenticators/TwitchAuthenticator";
-import SpotifyAuthenticator from "../../../authenticators/SpotifyAuthenticator";
+import TwitchAuthenticator from "../../../requests/authenticators/TwitchAuthenticator";
+import SpotifyAuthenticator from "../../../requests/authenticators/SpotifyAuthenticator";
 import SearchBar from "./SearchBar";
 
 function AuthenticatedSearchBar(): JSX.Element {

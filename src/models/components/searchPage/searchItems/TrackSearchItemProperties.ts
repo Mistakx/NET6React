@@ -4,5 +4,5 @@ import React from "react";
 
 export interface TrackSearchItemProperties {
     item: GenericTrackResult
-    playerBuilder: PlayerCreator
+    playerCreator: PlayerCreator
 }
