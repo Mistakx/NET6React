@@ -1,6 +1,6 @@
 import {GenericVideoResult} from "../../../models/apiRequests/GenericResults";
 import {YouTubeVideoSearchResultPage} from "../../../models/apiRequests/YouTubeSearchResult";
-import {MultiPlatformPlayerCreator} from "../../../playerCreators/MultiPlatformPlayerCreator";
+import {MultiPlatformPlayerFactory} from "../../../playerFactory/MultiPlatformPlayerFactory";
 
 export class YouTubeVideoResultPageToListItemsConverter {
 
@@ -11,6 +11,7 @@ export class YouTubeVideoResultPageToListItemsConverter {
         youtubeVideosSearchResultPage.items.map(item => {
 
             const currentGenericVideoItem: GenericVideoResult = {
+                interface: "GenericVideoResult",
                 id: item.id.videoId,
                 title: item.snippet.title,
                 creator: item.snippet.channelTitle,
@@ -18,7 +19,7 @@ export class YouTubeVideoResultPageToListItemsConverter {
                 thumbnailUrl: item.snippet.thumbnails.high.url,
                 // createdAt: item.snippet.publishedAt,
                 // views: item.details.items[0].statistics.viewCount
-                playerCreator: new MultiPlatformPlayerCreator("https://www.youtube.com/watch?v=")
+                playerFactory: new MultiPlatformPlayerFactory("https://www.youtube.com/watch?v=")
             }
 
             items.push(currentGenericVideoItem)

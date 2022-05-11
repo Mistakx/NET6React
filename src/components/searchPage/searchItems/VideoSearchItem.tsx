@@ -15,7 +15,7 @@ function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
 
     function setCurrentPlayerToClickedItem() {
         setPlayingId(props.item.id);
-        setPlayerCreator(props.playerCreator)
+        setPlayerCreator(props.item.playerFactory)
     }
 
     return (

@@ -1,8 +1,7 @@
 import {GenericLivestreamResult} from "../../../apiRequests/GenericResults";
-import {PlayerCreator} from "../../../../playerCreators/PlayerCreator";
+import {PlayerFactory} from "../../../../playerFactory/PlayerFactory";
 import React from "react";
 
 export interface LivestreamSearchItemProperties {
     item: GenericLivestreamResult
-    playerCreator: PlayerCreator
 }

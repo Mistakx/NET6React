@@ -23,7 +23,9 @@ function User(): JSX.Element {
         <div className="col-md-4 position-relative">
             <div className="align-items-stretch mb-4 " data-aos="zoom-in" data-aos-delay="100">
                 <div className="icon-box iconbox-blue rounded">
-                    <h4 className="text-white">{userProfile?.name}</h4>
+                    <h3 className="text-white"><strong>{userProfile?.name}</strong></h3>
+                    <h4 className="text-white">{userProfile?.username}</h4>
+                    <h6 className="text-white">({userProfile?.email})</h6>
                     <img src="https://image.api.playstation.com/vulcan/img/rnd/202109/0114/ql9sjqcZguB1Iz0LUJcKN3yG.png"
                          alt=""
                          className="img-fluid rounded-circle img-centered"/>

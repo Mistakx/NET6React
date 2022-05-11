@@ -4,10 +4,7 @@ import {TwitchSearchClipsResultPage} from "../../../models/apiRequests/TwitchSea
 import {Platform} from "../platforms/Platform";
 import {TwitchGamesSearch} from "../auxiliarySearches/TwitchGameSearch";
 import {TwitchClipSearchResultToListItemsConverter} from "../converters/TwitchClipSearchResultToListItemsConverter";
-import {TwitchClipPlayerCreator} from "../../../playerCreators/TwitchClipPlayerCreator";
-import {VideoSearchList} from "../searchLists/VideoSearchList";
-import {TrackSearchList} from "../searchLists/TrackSearchList";
-import {LivestreamSearchList} from "../searchLists/LivestreamSearchList";
+import {TwitchClipPlayerFactory} from "../../../playerFactory/TwitchClipPlayerFactory";
 import Twitch from '../platforms/Twitch';
 
 export class TwitchSearchClipByGame extends ApiSearch {
@@ -72,12 +69,11 @@ export class TwitchSearchClipByGame extends ApiSearch {
         return {} as TwitchSearchClipsResultPage
     }
 
-    public async getSearchList(searchQuery: string, page: number, limit: number, accessToken: string){
+    public async getSearchResults(searchQuery: string, page: number, limit: number, accessToken: string){
 
         const twitchClipsPage = await this.searchTwitchClipsByGame(searchQuery, accessToken, limit, null)
         const items = TwitchClipSearchResultToListItemsConverter.convert(twitchClipsPage)
-        const searchList = new VideoSearchList(items, new TwitchClipPlayerCreator())
-        return searchList
+        return items
 
     }
 

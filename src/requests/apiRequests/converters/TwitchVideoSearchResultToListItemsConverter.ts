@@ -1,6 +1,6 @@
 import {GenericVideoResult} from "../../../models/apiRequests/GenericResults";
 import {TwitchSearchVideoResultPage} from "../../../models/apiRequests/TwitchSearchResults";
-import {MultiPlatformPlayerCreator} from "../../../playerCreators/MultiPlatformPlayerCreator";
+import {MultiPlatformPlayerFactory} from "../../../playerFactory/MultiPlatformPlayerFactory";
 
 export class TwitchVideoSearchResultToListItemsConverter {
 
@@ -40,6 +40,7 @@ export class TwitchVideoSearchResultToListItemsConverter {
         twitchVideosSearchResult.data.map(item => {
 
             const currentGenericVideoItem: GenericVideoResult = {
+                interface: "GenericVideoResult",
                 id: item.id,
                 title: item.title,
                 creator: item.user_name,
@@ -47,7 +48,7 @@ export class TwitchVideoSearchResultToListItemsConverter {
                 thumbnailUrl: item.thumbnail_url.replace("%{width}", "640").replace("%{height}", "640"),
                 // createdAt: item.created_at,
                 // views: item.view_count
-                playerCreator: new MultiPlatformPlayerCreator("https://www.twitch.tv/videos/")
+                playerFactory: new MultiPlatformPlayerFactory("https://www.twitch.tv/videos/")
             }
 
             items.push(currentGenericVideoItem)

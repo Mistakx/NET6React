@@ -17,7 +17,7 @@ function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
     function setCurrentPlayerToClickedItem() {
         setPlayingId(props.item.id);
         setPlayingThumbnailUrl(props.item.thumbnailUrl)
-        setPlayerCreator(props.playerCreator)
+        setPlayerCreator(props.item.playerFactory)
     }
 
     return (

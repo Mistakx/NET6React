@@ -1,6 +1,6 @@
 import React from "react";
 
-export abstract class PlayerCreator {
+export abstract class PlayerFactory {
 
     private readonly platformPlayerUrl;
 

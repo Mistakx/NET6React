@@ -38,14 +38,6 @@ export class TwitchChannelSearch {
             let twitchChannelsSearchResult: TwitchSearchChannelsResultPage = twitchChannelsSearchResponse.data;
             return twitchChannelsSearchResult;
         } catch (e) {
-            console.log("DEBUG")
-            // @ts-ignore
-            console.log(twitchChannelsSearchResponse.data)
-            // @ts-ignore
-            if (twitchChannelsSearchResponse.data.message) {
-                // @ts-ignore
-                alert(twitchChannelsSearchResponse.data.message)
-            }
             alert(e)
         }
         return {} as TwitchSearchChannelsResultPage

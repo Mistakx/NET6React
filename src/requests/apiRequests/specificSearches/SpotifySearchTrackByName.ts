@@ -2,10 +2,7 @@ import {ApiSearch} from "./ApiSearch";
 import axios from "axios";
 import {SpotifySearchTracksResult, SpotifyTracksPage} from "../../../models/apiRequests/SpotifySearchResults";
 import {SpotifyTracksPageToListItemsConverter} from "../converters/SpotifyTracksPageToListItemsConverter";
-import {SpotifyPlayerCreator} from "../../../playerCreators/SpotifyPlayerCreator";
-import {TrackSearchList} from "../searchLists/TrackSearchList";
-import {VideoSearchList} from "../searchLists/VideoSearchList";
-import {LivestreamSearchList} from "../searchLists/LivestreamSearchList";
+import {SpotifyPlayerFactory} from "../../../playerFactory/SpotifyPlayerFactory";
 import {Platform} from "../platforms/Platform";
 import Spotify from '../platforms/Spotify';
 
@@ -64,14 +61,11 @@ export class SpotifySearchTrackByName extends ApiSearch {
 
     }
 
-    public async getSearchList(searchQuery: string, page: number, limit: number, accessToken: string) {
+    public async getSearchResults(searchQuery: string, page: number, limit: number, accessToken: string) {
 
         const spotifyTracksPage = await this.searchSpotifyTracksByName(searchQuery, accessToken, limit, page);
         const items = SpotifyTracksPageToListItemsConverter.convert(spotifyTracksPage);
-        const searchList = new TrackSearchList(items, new SpotifyPlayerCreator());
-
-        return searchList;
-
+        return items;
 
     }
 

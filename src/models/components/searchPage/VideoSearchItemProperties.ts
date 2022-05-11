@@ -1,7 +1,6 @@
 import {GenericVideoResult} from "../../apiRequests/GenericResults";
-import {PlayerCreator} from "../../../playerCreators/PlayerCreator";
+import {PlayerFactory} from "../../../playerFactory/PlayerFactory";
 
 export interface VideoSearchItemProperties {
     item: GenericVideoResult
-    playerCreator: PlayerCreator
 }

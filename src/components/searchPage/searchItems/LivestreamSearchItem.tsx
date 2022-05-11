@@ -2,8 +2,7 @@ import PlayerStore from "../../../stores/PlayerStore";
 import {
     LivestreamSearchItemProperties
 } from "../../../models/components/searchPage/searchItems/LivestreamSearchItemProperties";
-import React, {useEffect} from "react";
-import AOS from "aos";
+import React from "react";
 import "aos/dist/aos.css";
 import PlaylistsModalStore from "../../../stores/PlaylistsModalStore";
 
@@ -12,14 +11,14 @@ function LivestreamSearchItem(props: LivestreamSearchItemProperties): JSX.Elemen
     const setPlayingId = PlayerStore(state => state.setPlayingId)
     const setPlayerCreator = PlayerStore(state => state.setPlayerCreator)
 
-    const setShowingPlaylistsModal =  PlaylistsModalStore(state => state.setShowingPlaylistsModal)
-    const setContentToAddId =  PlaylistsModalStore(state => state.setContentToAddId)
-    const setContentToAddTitle =  PlaylistsModalStore(state => state.setContentToAddTitle)
+    const setShowingPlaylistsModal = PlaylistsModalStore(state => state.setShowingPlaylistsModal)
+    const setContentToAddId = PlaylistsModalStore(state => state.setContentToAddId)
+    const setContentToAddTitle = PlaylistsModalStore(state => state.setContentToAddTitle)
 
 
     function setCurrentPlayerToClickedItem() {
         setPlayingId(props.item.id)
-        setPlayerCreator(props.playerCreator)
+        setPlayerCreator(props.item.playerFactory)
     }
 
     return (

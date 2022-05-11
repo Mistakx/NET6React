@@ -1,31 +1,32 @@
 import React, {useEffect, useState} from 'react';
 import SearchedListStore from "../../../stores/SearchedListStore";
 import PlaylistsModal from "../playlistsModal/PlaylistsModal";
+import SearchResultComponentFactory from "./SearchResultComponentFactory";
 
 function SearchResultsList(): JSX.Element {
 
-    const [searchListHtml, setSearchListHtml] = useState<JSX.Element[]>();
+    const [searchList, setSearchList] = useState<JSX.Element[]>();
 
-    const searchList = SearchedListStore(state => state.searchedList)
+    const searchedResults = SearchedListStore(state => state.searchedResults)
 
     useEffect(() => {
 
-        if (searchList) {
-            let itemsHTML = searchList.getSearchItems()
+        if (searchedResults) {
+
 
             // No results
-            if (itemsHTML.length === 0) {
-                setSearchListHtml([<p>No results.</p>]);
+            if (searchedResults.length === 0) {
+                setSearchList([<p>No results.</p>]);
             }
 
             // Valid results
-            else if (itemsHTML.length > 0) {
-                setSearchListHtml(itemsHTML);
+            else if (searchedResults.length > 0) {
+                setSearchList(SearchResultComponentFactory.create(searchedResults));
             }
         }
 
 
-    }, [searchList]);
+    }, [searchedResults]);
 
     return (
 
@@ -36,7 +37,7 @@ function SearchResultsList(): JSX.Element {
             <div className="results">
                 <div className="row">
 
-                    {searchListHtml}
+                    {searchList}
 
                 </div>
             </div>

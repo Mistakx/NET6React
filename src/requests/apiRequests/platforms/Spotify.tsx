@@ -1,4 +1,3 @@
-import {ApiSearch} from "../specificSearches/ApiSearch";
 import {Platform} from "./Platform";
 
 class Spotify extends Platform {

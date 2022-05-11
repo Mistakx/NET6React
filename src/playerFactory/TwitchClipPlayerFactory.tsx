@@ -1,8 +1,8 @@
-import {PlayerCreator} from "./PlayerCreator";
+import {PlayerFactory} from "./PlayerFactory";
 import React from "react";
 import {TwitchClipPlayer} from "../components/players/TwitchClipPlayer";
 
-export class TwitchClipPlayerCreator extends PlayerCreator {
+export class TwitchClipPlayerFactory extends PlayerFactory {
 
     public create(clipId: string, setPlayerStarted: React.Dispatch<React.SetStateAction<boolean>>): JSX.Element {
 

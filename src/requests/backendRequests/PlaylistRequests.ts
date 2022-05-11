@@ -20,6 +20,21 @@ class PlaylistRequests {
 
     }
 
+    static async addToPlaylist(playlistId: string) {
+        const url = "/Playlist/";
+
+        const options = {
+            method: 'GET',
+            url: url,
+        };
+
+        // @ts-ignore
+        let playlistResponse = await axios(options);
+        let playlist: GenericResult[] = playlistResponse.data;
+        return playlist;
+
+    }
+
 }
 
 export default PlaylistRequests;

@@ -1,14 +1,17 @@
 import create from 'zustand'
-import {SearchListState} from "../models/states/SearchListState";
-import {VideoSearchList} from "../requests/apiRequests/searchLists/VideoSearchList";
-import {TrackSearchList} from "../requests/apiRequests/searchLists/TrackSearchList";
-import {LivestreamSearchList} from "../requests/apiRequests/searchLists/LivestreamSearchList";
+import {SearchedResultsState} from "../models/states/SearchedResultsState";
+import {
+    GenericLivestreamResult,
+    GenericResult,
+    GenericTrackResult,
+    GenericVideoResult
+} from "../models/apiRequests/GenericResults";
 
-const SearchedListStore = create<SearchListState>((set) => ({
+const SearchedListStore = create<SearchedResultsState>((set) => ({
 
-    searchedList: null,
-    setSearchedList: (searchedList: VideoSearchList | TrackSearchList | LivestreamSearchList) => set(state => ({
-        searchedList: searchedList
+    searchedResults: null,
+    setSearchedResults: (searchedResults: GenericResult[]) => set(state => ({
+        searchedResults: searchedResults
     }))
 
 

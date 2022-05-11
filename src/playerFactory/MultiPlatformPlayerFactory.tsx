@@ -1,8 +1,8 @@
-import {PlayerCreator} from "./PlayerCreator";
+import {PlayerFactory} from "./PlayerFactory";
 import React from "react";
 import {MultiPlatformPlayer} from "../components/players/MultiPlatformPlayer";
 
-export class MultiPlatformPlayerCreator extends PlayerCreator {
+export class MultiPlatformPlayerFactory extends PlayerFactory {
 
     public create(clipId: string, setPlayerStarted: React.Dispatch<React.SetStateAction<boolean>>) {
 

@@ -4,13 +4,13 @@ import SearchForm from "./SearchForm";
 import {SearchBarProperties} from "../../../models/components/searchBar/SearchBarProperties";
 import SelectedSearchStore from "../../../stores/SelectedSearchStore";
 import SearchLabel from "./SearchLabel";
-import {VideoSearchList} from "../../../requests/apiRequests/searchLists/VideoSearchList";
-import {TrackSearchList} from "../../../requests/apiRequests/searchLists/TrackSearchList";
-import {LivestreamSearchList} from "../../../requests/apiRequests/searchLists/LivestreamSearchList";
 import SearchedListStore from "../../../stores/SearchedListStore";
 import PlatformDropdownButton from "./PlatformDropdownButton";
 import PlatformDropdownList from "./PlatformDropdownList";
 import PlatformDropdownStore from "../../../stores/PlatformDropdownStore";
+import {
+    GenericResult,
+} from "../../../models/apiRequests/GenericResults";
 
 function SearchBar(props: SearchBarProperties): JSX.Element {
 
@@ -22,7 +22,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
     const setPlatformDropdownList = PlatformDropdownStore(state => state.setPlatformDropdownList)
 
     const [searchBarQuery, setSearchBarQuery] = useState("");
-    const setSearchedList = SearchedListStore(state => state.setSearchedList)
+    const setSearchedResults = SearchedListStore(state => state.setSearchedResults)
 
     function togglePlatformDropdownList() {
         if (platformDropdownList === closedDropdown) {
@@ -34,14 +34,14 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
     async function searchPlatformItems(chosenSearchQuery: string) {
 
-        let searchList: VideoSearchList | TrackSearchList | LivestreamSearchList
+        let searchList: GenericResult[] = [];
 
         if (selectedSearch.getPlatform().getName() === "Spotify") {
-            searchList = await selectedSearch.getSearchList(chosenSearchQuery, 1, 40, props.spotifyAuthenticator.current)
+            searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40, props.spotifyAuthenticator.current)
         } else if (selectedSearch.getPlatform().getName() === "Twitch") {
-            searchList = await selectedSearch.getSearchList(chosenSearchQuery, 1, 40, props.twitchAuthenticator.current)
+            searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40, props.twitchAuthenticator.current)
         } else {
-            searchList = await selectedSearch.getSearchList(chosenSearchQuery, 1, 40)
+            searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40)
         }
         return searchList
 
@@ -55,7 +55,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
             <form onSubmit={async (event) => {
                 event.preventDefault()
-                setSearchedList(await searchPlatformItems(searchBarQuery));
+                setSearchedResults(await searchPlatformItems(searchBarQuery));
             }}>
 
                 <div className="input-group">
@@ -71,6 +71,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
                 </div>
             </form>
+
         </div>
 
     )

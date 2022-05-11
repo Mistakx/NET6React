@@ -2,11 +2,8 @@ import {ApiSearch} from "./ApiSearch";
 import base64 from "base-64";
 import axios from "axios";
 import {VimeoSearchVideoResultPage} from "../../../models/apiRequests/VimeoSearchResult";
-import {MultiPlatformPlayerCreator} from "../../../playerCreators/MultiPlatformPlayerCreator";
+import {MultiPlatformPlayerFactory} from "../../../playerFactory/MultiPlatformPlayerFactory";
 import {VimeoVideoResultPageToListItemsConverter} from "../converters/VimeoVideoResultPageToListItemsConverter";
-import {VideoSearchList} from "../searchLists/VideoSearchList";
-import {TrackSearchList} from "../searchLists/TrackSearchList";
-import {LivestreamSearchList} from "../searchLists/LivestreamSearchList";
 import Vimeo from "../platforms/Vimeo";
 import {Platform} from "../platforms/Platform";
 
@@ -74,12 +71,11 @@ export class VimeoSearchVideoByName extends ApiSearch {
 
     }
 
-    public async getSearchList(searchQuery: string, page: number, limit: number) {
+    public async getSearchResults(searchQuery: string, page: number, limit: number) {
 
         const vimeoVideoResultPage = await this.searchVimeoVideos(searchQuery, limit, page)
         const items = VimeoVideoResultPageToListItemsConverter.convert(vimeoVideoResultPage)
-        const searchList = new VideoSearchList(items, new MultiPlatformPlayerCreator("https://vimeo.com/"))
-        return searchList
+        return items
 
     }
 

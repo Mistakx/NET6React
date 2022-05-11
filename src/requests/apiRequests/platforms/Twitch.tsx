@@ -1,4 +1,3 @@
-import {ApiSearch} from "../specificSearches/ApiSearch";
 import {Platform} from "./Platform";
 
 class Twitch extends Platform {
@@ -18,7 +17,6 @@ class Twitch extends Platform {
     public getColorClass() {
         return "twitch";
     }
-
 
 }
 

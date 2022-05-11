@@ -1,7 +1,9 @@
-import {VideoSearchList} from "../searchLists/VideoSearchList";
-import {TrackSearchList} from "../searchLists/TrackSearchList";
-import {LivestreamSearchList} from "../searchLists/LivestreamSearchList";
 import {Platform} from "../platforms/Platform";
+import {
+    GenericLivestreamResult, GenericResult,
+    GenericTrackResult,
+    GenericVideoResult
+} from "../../../models/apiRequests/GenericResults";
 
 export abstract class ApiSearch {
 
@@ -9,6 +11,6 @@ export abstract class ApiSearch {
 
     abstract getButtonText(): string
 
-    abstract getSearchList(searchQuery: string, page: number, limit: number, accessToken?: string): Promise<VideoSearchList | TrackSearchList | LivestreamSearchList>
+    abstract getSearchResults(searchQuery: string, page: number, limit: number, accessToken?: string): Promise<GenericResult[]>
 
 }

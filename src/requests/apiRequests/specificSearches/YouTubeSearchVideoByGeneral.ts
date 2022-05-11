@@ -1,18 +1,12 @@
 import {ApiSearch} from "./ApiSearch";
 import axios from "axios";
-import async from 'async';
 
 import {
-    YouTubeVideoDetails,
     YouTubeVideoDetailsSearchResultPage,
     YouTubeVideoSearchResultPage
 } from "../../../models/apiRequests/YouTubeSearchResult";
 import {Platform} from "../platforms/Platform";
-import {MultiPlatformPlayerCreator} from "../../../playerCreators/MultiPlatformPlayerCreator";
 import {YouTubeVideoResultPageToListItemsConverter} from "../converters/YouTubeVideoResultPageToListItemsConverter";
-import {VideoSearchList} from "../searchLists/VideoSearchList";
-import {TrackSearchList} from "../searchLists/TrackSearchList";
-import {LivestreamSearchList} from "../searchLists/LivestreamSearchList";
 import YouTube from '../platforms/YouTube';
 
 export class YouTubeSearchVideoByGeneral extends ApiSearch {
@@ -99,7 +93,6 @@ export class YouTubeSearchVideoByGeneral extends ApiSearch {
 
             return youtubeSearchResult;
 
-
         } catch (e) {
             alert("YouTube Search - " + e)
         }
@@ -108,12 +101,11 @@ export class YouTubeSearchVideoByGeneral extends ApiSearch {
 
     }
 
-    public async getSearchList(searchQuery: string, page: number, limit: number) {
+    public async getSearchResults(searchQuery: string, page: number, limit: number) {
 
         const youtubeVideoResultPage = await this.searchYouTubeVideos(searchQuery, limit, null)
         const items = YouTubeVideoResultPageToListItemsConverter.convert(youtubeVideoResultPage)
-        const searchList = new VideoSearchList(items, new MultiPlatformPlayerCreator("https://www.youtube.com/watch?v="))
-        return searchList
+        return items
 
     }
 

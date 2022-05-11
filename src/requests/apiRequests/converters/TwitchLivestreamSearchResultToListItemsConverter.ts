@@ -1,6 +1,6 @@
 import {GenericLivestreamResult} from "../../../models/apiRequests/GenericResults";
 import {TwitchSearchChannelsResultPage} from "../../../models/apiRequests/TwitchSearchResults";
-import {MultiPlatformPlayerCreator} from "../../../playerCreators/MultiPlatformPlayerCreator";
+import {MultiPlatformPlayerFactory} from "../../../playerFactory/MultiPlatformPlayerFactory";
 
 export class TwitchLivestreamSearchResultToListItemsConverter {
 
@@ -11,13 +11,14 @@ export class TwitchLivestreamSearchResultToListItemsConverter {
         twitchChannelSearchResult.data.map(item => {
 
             const currentGenericLivestreamItem: GenericLivestreamResult = {
+                interface: "GenericLivestreamResult",
                 id: item.display_name,
                 title: item.title,
                 creator: item.display_name,
                 thumbnailUrl: item.thumbnail_url,
                 // createdAt: item.started_at,
                 gameName: item.game_name,
-                playerCreator: new MultiPlatformPlayerCreator("https://www.twitch.tv/")
+                playerFactory: new MultiPlatformPlayerFactory("https://www.twitch.tv/")
             }
 
             items.push(currentGenericLivestreamItem)
