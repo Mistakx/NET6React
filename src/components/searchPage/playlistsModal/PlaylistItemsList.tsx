@@ -23,7 +23,6 @@ function PlaylistItemsList(): JSX.Element {
             playlistItemsList.push(
                 <PlaylistItem id={currentUserPlaylist.id}
                               title={currentUserPlaylist.title}
-                              thumbnailUrl={currentUserPlaylist.thumbnailUrl}
                 />)
         }
     }

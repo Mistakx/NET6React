@@ -5,6 +5,11 @@ import {YouTubeSearchVideoByGeneral} from "../requests/apiRequests/specificSearc
 
 const SelectedSearchStore = create<SearchState>((set) => ({
 
+    searchBarQuery: "",
+    setSearchBarQuery: (searchBarQuery: string) => set(state => ({
+        searchBarQuery: searchBarQuery
+    })),
+
     selectedSearch: YouTubeSearchVideoByGeneral.getInstance(),
     setSelectedSearch: (selectedSearch: ApiSearch) => set(state => ({
         selectedSearch: selectedSearch

@@ -1,10 +1,10 @@
 // /User/Playlists/{userId}
 export interface PlaylistBasicDetails {
-    id: string;
-    title: string;
-    thumbnailUrl: string;
-    visibility: string;
-    creationDate: Date;
+    id: string
+    title: string
+    visibility: string
+    creationDate: Date
+    description: string
 }
 
 

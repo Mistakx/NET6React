@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../../styles/style.css'
 import SearchForm from "./SearchForm";
 import {SearchBarProperties} from "../../../models/components/searchBar/SearchBarProperties";
@@ -18,11 +18,16 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
     const closedDropdown = "dropdown-menu dropdown-menu-dark align-items-center bg-dark"
 
     const selectedSearch = SelectedSearchStore(state => state.selectedSearch)
+    const searchBarQuery = SelectedSearchStore(state => state.searchBarQuery)
+
     const platformDropdownList = PlatformDropdownStore(state => state.platformDropdownList)
     const setPlatformDropdownList = PlatformDropdownStore(state => state.setPlatformDropdownList)
 
-    const [searchBarQuery, setSearchBarQuery] = useState("");
     const setSearchedResults = SearchedListStore(state => state.setSearchedResults)
+
+    useEffect(() => {
+        setPlatformDropdownList(closedDropdown)
+    },[])
 
     function togglePlatformDropdownList() {
         if (platformDropdownList === closedDropdown) {
@@ -65,8 +70,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                     <PlatformDropdownList togglePlatformDropdownList={togglePlatformDropdownList}/>
 
                     <SearchForm spotifyAuthenticator={props.spotifyAuthenticator}
-                                twitchAuthenticator={props.twitchAuthenticator} searchBarQuery={searchBarQuery}
-                                setSearchBarQuery={setSearchBarQuery}
+                                twitchAuthenticator={props.twitchAuthenticator}
                     />
 
                 </div>

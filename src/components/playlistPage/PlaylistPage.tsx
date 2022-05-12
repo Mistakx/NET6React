@@ -9,12 +9,17 @@ import {PlaylistDetails} from "../../models/backendRequests/PlaylistDetails";
 import PlaylistItemsList from "./PlaylistItemsList";
 import PlaylistTitle from "./PlaylistTitle";
 import PlaylistPlayer from "./PlaylistPlayer";
+import PlaylistPagePlayerStore from "../../stores/PlaylistPagePlayerStore";
 
 function PlaylistPage(): JSX.Element {
 
     const playlistId = useParams().playlistId
 
     const [playlistInformation, setPlaylistInformation] = React.useState<PlaylistDetails>();
+
+    const setPlayingGenericResult = PlaylistPagePlayerStore(state => state.setPlayingGenericResult)
+    const setPlayingGenericResultPlaylistIndex = PlaylistPagePlayerStore(state => state.setPlayingGenericResultPlaylistIndex)
+
 
     async function getPlaylist(playlistId: string) {
         const url = "/Playlist/" + playlistId;
@@ -37,8 +42,12 @@ function PlaylistPage(): JSX.Element {
                 setPlaylistInformation(await getPlaylist(playlistId));
             })()
         }
-    }, [playlistId]);
-    
+    }, []);
+
+    useEffect(() => {
+        setPlayingGenericResult(null)
+        setPlayingGenericResultPlaylistIndex(null)
+    },[])
 
     return (
 

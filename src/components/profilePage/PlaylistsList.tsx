@@ -18,14 +18,9 @@ function PlaylistsList(): JSX.Element {
 
     let playlistsList: JSX.Element[] = [];
     if (userPlaylists) {
-        for (let currentPlaylist of userPlaylists) {
+        for (let currentPlaylistBasicDetails of userPlaylists) {
             
-            let currentPlaylistItem = <ProfilePlaylistItem 
-                id={currentPlaylist.id}
-                title={currentPlaylist.title}
-                visibility={currentPlaylist.visibility} 
-                creationDate={currentPlaylist.creationDate}
-                />
+            let currentPlaylistItem = <ProfilePlaylistItem basicDetails={currentPlaylistBasicDetails}/>
             playlistsList.push(currentPlaylistItem);
 
         }

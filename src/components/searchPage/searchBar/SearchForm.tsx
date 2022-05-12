@@ -6,6 +6,8 @@ import {SearchFormProperties} from "../../../models/components/searchBar/SearchF
 function SearchForm(props: SearchFormProperties): JSX.Element {
 
     const selectedSearch = SelectedSearchStore(state => state.selectedSearch)
+    const searchBarQuery = SelectedSearchStore(state => state.searchBarQuery)
+    const setSearchBarQuery = SelectedSearchStore(state => state.setSearchBarQuery)
 
     return (
 
@@ -13,15 +15,16 @@ function SearchForm(props: SearchFormProperties): JSX.Element {
                    className={"form-control " + selectedSearch.getPlatform().getColorClass()}
                    autoFocus
                    autoComplete={"off"}
-                   value={props.searchBarQuery}
+                   value={searchBarQuery}
                    placeholder="I want that content..."
 
                    onChange={(event) => {
-                       props.setSearchBarQuery(event.target.value)
+                       setSearchBarQuery(event.target.value)
                    }}
             />
 
     )
+
 }
 
 export default SearchForm;

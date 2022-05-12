@@ -1,6 +1,5 @@
+import {PlaylistBasicDetails} from "../../backendRequests/PlaylistBasicDetails";
+
 export interface ProfilePlaylistItemProperties {
-    id: string;
-    title: string;
-    visibility: string;
-    creationDate: Date;
+    basicDetails: PlaylistBasicDetails
 }

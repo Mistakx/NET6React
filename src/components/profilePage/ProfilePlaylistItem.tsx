@@ -15,11 +15,11 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
             <div className="clickable card bg-dark"
             style={{backgroundImage: "url(https://cdn.pixabay.com/photo/2016/03/28/09/36/music-1285165_960_720.jpg)"}}>
                 <div className="card-img-overlay text-end"
-                    onClick={()=>{navigate("/playlist/" + props.id)}}
+                    onClick={()=>{navigate("/playlist/" + props.basicDetails.id)}}
                 >
-                    <h5 className="card-title text-uppercase">{props.title}</h5>
-                    <p className="card-text">{props.visibility}</p>
-                    <p className="card-text">{props.creationDate}</p>
+                    <h5 className="card-title text-uppercase">{props.basicDetails.title}</h5>
+                    <p className="card-text">{props.basicDetails.visibility}</p>
+                    <p className="card-text">{props.basicDetails.description}</p>
                 </div>
                 
                 <div className="options-dropdown">
