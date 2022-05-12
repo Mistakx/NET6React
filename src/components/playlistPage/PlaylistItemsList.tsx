@@ -10,10 +10,7 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
     let playlistItemsList: JSX.Element[] = []
     if (props.playlists) {
         for (const currentPlaylistItem of props.playlists) {
-            playlistItemsList.push(<PlaylistItem
-                title={currentPlaylistItem.title}
-                thumbnailUrl={currentPlaylistItem.thumbnailUrl}
-            />)
+            playlistItemsList.push(<PlaylistItem genericResult={currentPlaylistItem}/>)
         }
     }
 

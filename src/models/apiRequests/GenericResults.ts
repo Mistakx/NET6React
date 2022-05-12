@@ -1,7 +1,6 @@
 /**
  * A platform-agnostic result, with no API specific details.
  */
-
 export interface GenericResult {
     interface: string
     id: string

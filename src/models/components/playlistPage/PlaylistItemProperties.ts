@@ -1,4 +1,5 @@
+import {GenericResult} from "../../apiRequests/GenericResults";
+
 export interface PlaylistItemProperties {
-    title: string
-    thumbnailUrl: string
+    genericResult: GenericResult
 }

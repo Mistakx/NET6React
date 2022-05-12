@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import PlayerStore from '../../stores/PlayerStore'
+import GlobalPlayerStore from '../../stores/GlobalPlayerStore'
 import CloseVideoButton from "./CloseVideoButton";
 import {Rnd} from "react-rnd";
 import MoveVideoButton from "./MoveVideoButton";
@@ -7,7 +7,7 @@ import {PlayerFactory} from "./PlayerFactory";
 
 function ResizeablePlayer(): JSX.Element {
 
-    const playingGenericResult = PlayerStore(state => state.playingGenericResult)
+    const playingGenericResult = GlobalPlayerStore(state => state.playingGenericResult)
 
     const [playerStarted, setPlayerStarted] = useState(false)
 

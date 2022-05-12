@@ -1,6 +1,6 @@
 import {GenericResult} from "../apiRequests/GenericResults";
 
-export interface PlayerState {
+export interface GlobalPlayerState {
 
     playingGenericResult: GenericResult | null
     setPlayingGenericResult: (playingGenericResult: GenericResult | null) => void

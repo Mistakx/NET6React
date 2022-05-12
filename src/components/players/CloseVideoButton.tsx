@@ -1,9 +1,9 @@
 import React from 'react';
-import PlayerStore from '../../stores/PlayerStore'
+import GlobalPlayerStore from '../../stores/GlobalPlayerStore'
 
 function CloseVideoButton(): JSX.Element {
 
-    const setPlayingGenericResult = PlayerStore(state => state.setPlayingGenericResult)
+    const setPlayingGenericResult = GlobalPlayerStore(state => state.setPlayingGenericResult)
 
     function stopPlayingVideo() {
         setPlayingGenericResult(null)

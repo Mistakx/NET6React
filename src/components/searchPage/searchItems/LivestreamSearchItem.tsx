@@ -1,4 +1,4 @@
-import PlayerStore from "../../../stores/PlayerStore";
+import GlobalPlayerStore from "../../../stores/GlobalPlayerStore";
 import {
     LivestreamSearchItemProperties
 } from "../../../models/components/searchPage/searchItems/LivestreamSearchItemProperties";
@@ -8,7 +8,7 @@ import PlaylistsModalStore from "../../../stores/PlaylistsModalStore";
 
 function LivestreamSearchItem(props: LivestreamSearchItemProperties): JSX.Element {
 
-    const setPlayingGenericResult = PlayerStore(state => state.setPlayingGenericResult)
+    const setPlayingGenericResult = GlobalPlayerStore(state => state.setPlayingGenericResult)
 
     const setShowingPlaylistsModal = PlaylistsModalStore(state => state.setShowingPlaylistsModal)
     const setResultToAdd = PlaylistsModalStore(state => state.setResultToAdd)

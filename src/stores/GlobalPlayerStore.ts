@@ -1,7 +1,7 @@
 import create from 'zustand'
-import {PlayerState} from "../models/states/PlayerState";
+import {GlobalPlayerState} from "../models/states/GlobalPlayerState";
 
-const PlayerStore = create<PlayerState>((set) => ({
+const GlobalPlayerStore = create<GlobalPlayerState>((set) => ({
 
     playingGenericResult: null,
     setPlayingGenericResult: (playingGenericResult) => set(state => ({
@@ -10,4 +10,4 @@ const PlayerStore = create<PlayerState>((set) => ({
 
 }))
 
-export default PlayerStore;
+export default GlobalPlayerStore;
