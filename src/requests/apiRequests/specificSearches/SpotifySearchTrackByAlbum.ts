@@ -2,7 +2,6 @@ import {ApiSearch} from "./ApiSearch";
 import axios from "axios";
 import {SpotifySearchAlbumsResult, SpotifyTracksPage} from "../../../models/apiRequests/SpotifySearchResults";
 import {SimplifiedAlbum} from "spotify-types";
-import {SpotifyPlayerFactory} from "../../../playerFactory/SpotifyPlayerFactory";
 import {SpotifyTracksPageToListItemsConverter} from "../converters/SpotifyTracksPageToListItemsConverter";
 import {Platform} from "../platforms/Platform";
 import Spotify from '../platforms/Spotify';

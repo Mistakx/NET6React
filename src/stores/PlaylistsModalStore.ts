@@ -4,14 +4,9 @@ import React from "react";
 
 const PlaylistsModalStore = create<PlaylistModalState>((set) => ({
 
-    contentToAddId: null,
-    setContentToAddId: (contentToAddId) => set(state => ({
-        contentToAddId: contentToAddId
-    })),
-
-    contentToAddTitle: null,
-    setContentToAddTitle: (contentToAddTitle) => set(state => ({
-        contentToAddTitle: contentToAddTitle
+    resultToAdd: null,
+    setResultToAdd: (resultToAdd) => set(state => ({
+        resultToAdd: resultToAdd
     })),
 
     showingPlaylistsModal: false,

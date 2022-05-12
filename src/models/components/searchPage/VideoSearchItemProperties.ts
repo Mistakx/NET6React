@@ -1,5 +1,5 @@
 import {GenericVideoResult} from "../../apiRequests/GenericResults";
-import {PlayerFactory} from "../../../playerFactory/PlayerFactory";
+import {PlayerFactory} from "../../../components/players/PlayerFactory";
 
 export interface VideoSearchItemProperties {
     item: GenericVideoResult

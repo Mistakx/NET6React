@@ -1,6 +1,5 @@
 import {GenericVideoResult} from "../../../models/apiRequests/GenericResults";
 import {TwitchSearchVideoResultPage} from "../../../models/apiRequests/TwitchSearchResults";
-import {MultiPlatformPlayerFactory} from "../../../playerFactory/MultiPlatformPlayerFactory";
 
 export class TwitchVideoSearchResultToListItemsConverter {
 
@@ -48,7 +47,8 @@ export class TwitchVideoSearchResultToListItemsConverter {
                 thumbnailUrl: item.thumbnail_url.replace("%{width}", "640").replace("%{height}", "640"),
                 // createdAt: item.created_at,
                 // views: item.view_count
-                playerFactory: new MultiPlatformPlayerFactory("https://www.twitch.tv/videos/")
+                playerFactoryName: "MultiPlatformPlayerFactory",
+                platformPlayerUrl: "https://www.twitch.tv/videos/"
             }
 
             items.push(currentGenericVideoItem)

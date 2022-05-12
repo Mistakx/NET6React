@@ -4,7 +4,6 @@ import {TwitchSearchClipsResultPage} from "../../../models/apiRequests/TwitchSea
 import {Platform} from "../platforms/Platform";
 import {TwitchGamesSearch} from "../auxiliarySearches/TwitchGameSearch";
 import {TwitchClipSearchResultToListItemsConverter} from "../converters/TwitchClipSearchResultToListItemsConverter";
-import {TwitchClipPlayerFactory} from "../../../playerFactory/TwitchClipPlayerFactory";
 import Twitch from '../platforms/Twitch';
 
 export class TwitchSearchClipByGame extends ApiSearch {

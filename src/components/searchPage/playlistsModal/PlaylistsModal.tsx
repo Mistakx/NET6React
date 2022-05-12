@@ -15,8 +15,7 @@ function PlaylistsModal(): JSX.Element {
 
     const [userPlaylists, setUserPlaylists] = React.useState<PlaylistBasicDetails[]>();
 
-    const contentToAddId = PlaylistsModalStore(state => state.contentToAddId)
-    const contentToAddTitle = PlaylistsModalStore(state => state.contentToAddTitle)
+    const resultToAdd = PlaylistsModalStore(state => state.resultToAdd)
     const showingPlaylistsModal = PlaylistsModalStore(state => state.showingPlaylistsModal)
     const setShowingPlaylistsModal = PlaylistsModalStore(state => state.setShowingPlaylistsModal)
 
@@ -43,9 +42,9 @@ function PlaylistsModal(): JSX.Element {
         }
     }, [userPlaylists]);
 
-    return (
-
-        <Modal
+    let playlistModal;
+    if (showingPlaylistsModal && resultToAdd) {
+        playlistModal = <Modal
             show={showingPlaylistsModal}
             backdrop="static"
             keyboard={true}
@@ -57,7 +56,7 @@ function PlaylistsModal(): JSX.Element {
 
                     <Modal.Title>
                         <h5 id="staticBackdropLabel">
-                            <strong>Add to playlist - </strong> {contentToAddTitle}
+                            <strong>Add to playlist - </strong> {resultToAdd!.title}
                         </h5>
                     </Modal.Title>
 
@@ -73,8 +72,15 @@ function PlaylistsModal(): JSX.Element {
 
             </div>
 
-
         </Modal>
+    }
+
+    return (
+
+        <div>
+        {playlistModal}
+        </div>
+
     )
 }
 

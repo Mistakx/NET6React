@@ -2,7 +2,6 @@ import {ApiSearch} from "./ApiSearch";
 import base64 from "base-64";
 import axios from "axios";
 import {VimeoSearchVideoResultPage} from "../../../models/apiRequests/VimeoSearchResult";
-import {MultiPlatformPlayerFactory} from "../../../playerFactory/MultiPlatformPlayerFactory";
 import {VimeoVideoResultPageToListItemsConverter} from "../converters/VimeoVideoResultPageToListItemsConverter";
 import Vimeo from "../platforms/Vimeo";
 import {Platform} from "../platforms/Platform";

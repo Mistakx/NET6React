@@ -7,7 +7,7 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
     return (
 
         <li className="list-group-item d-flex justify-content-between align-items-start align-middle item"
-            style={{backgroundImage: "url(" + props.thumbnailUrl + ")"}}
+            style={{backgroundSize:"100% 100%", backgroundImage: "url(" + props.thumbnailUrl + ")"}}
         >
             <div className="ms-2 me-auto">
                 <h6 className="fw-bold">{props.title}</h6>

@@ -3,7 +3,6 @@ import axios from "axios";
 import {TwitchSearchClipsResultPage} from "../../../models/apiRequests/TwitchSearchResults";
 import {TwitchChannelSearch} from "../auxiliarySearches/TwitchChannelSearch";
 import {TwitchClipSearchResultToListItemsConverter} from "../converters/TwitchClipSearchResultToListItemsConverter";
-import {TwitchClipPlayerFactory} from "../../../playerFactory/TwitchClipPlayerFactory";
 import {Platform} from "../platforms/Platform";
 import Twitch from '../platforms/Twitch';
 

@@ -4,7 +4,6 @@ import {TwitchSearchVideoResultPage} from "../../../models/apiRequests/TwitchSea
 import {TwitchChannelSearch} from "../auxiliarySearches/TwitchChannelSearch";
 import {Platform} from "../platforms/Platform";
 import {TwitchVideoSearchResultToListItemsConverter} from "../converters/TwitchVideoSearchResultToListItemsConverter";
-import {MultiPlatformPlayerFactory} from "../../../playerFactory/MultiPlatformPlayerFactory";
 import Twitch from '../platforms/Twitch';
 
 export class TwitchSearchVideoByChannel extends ApiSearch {

@@ -4,7 +4,6 @@ import {Platform} from "../platforms/Platform";
 import {
     TwitchLivestreamSearchResultToListItemsConverter
 } from "../converters/TwitchLivestreamSearchResultToListItemsConverter";
-import {MultiPlatformPlayerFactory} from "../../../playerFactory/MultiPlatformPlayerFactory";
 import Twitch from '../platforms/Twitch';
 
 export class TwitchSearchLivestreamByGeneral extends ApiSearch {

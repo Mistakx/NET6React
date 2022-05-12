@@ -3,18 +3,17 @@ import PlayerStore from '../../stores/PlayerStore'
 import CloseVideoButton from "./CloseVideoButton";
 import {Rnd} from "react-rnd";
 import MoveVideoButton from "./MoveVideoButton";
+import {PlayerFactory} from "./PlayerFactory";
 
 function ResizeablePlayer(): JSX.Element {
 
-    const playingId = PlayerStore(state => state.playingId)
-    const playingThumbnailUrl = PlayerStore(state => state.playingThumbnailUrl)
-    const playerCreator = PlayerStore(state => state.playerCreator)
+    const playingGenericResult = PlayerStore(state => state.playingGenericResult)
 
     const [playerStarted, setPlayerStarted] = useState(false)
 
     let resizeablePlayer;
-    if (playerCreator && playingId) {
-        let player = playerCreator.create(playingId, setPlayerStarted, playingThumbnailUrl)
+    if (playingGenericResult) {
+        let player = PlayerFactory.createPlayer(playingGenericResult, setPlayerStarted)
         const resizeablePlayerDefaultOptions = {
             x: 0,
             y: 0,

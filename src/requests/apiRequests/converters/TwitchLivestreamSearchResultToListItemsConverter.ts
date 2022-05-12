@@ -1,6 +1,5 @@
 import {GenericLivestreamResult} from "../../../models/apiRequests/GenericResults";
 import {TwitchSearchChannelsResultPage} from "../../../models/apiRequests/TwitchSearchResults";
-import {MultiPlatformPlayerFactory} from "../../../playerFactory/MultiPlatformPlayerFactory";
 
 export class TwitchLivestreamSearchResultToListItemsConverter {
 
@@ -18,7 +17,8 @@ export class TwitchLivestreamSearchResultToListItemsConverter {
                 thumbnailUrl: item.thumbnail_url,
                 // createdAt: item.started_at,
                 gameName: item.game_name,
-                playerFactory: new MultiPlatformPlayerFactory("https://www.twitch.tv/")
+                playerFactoryName: "MultiPlatformPlayerFactory",
+                platformPlayerUrl: "https://www.twitch.tv/",
             }
 
             items.push(currentGenericLivestreamItem)

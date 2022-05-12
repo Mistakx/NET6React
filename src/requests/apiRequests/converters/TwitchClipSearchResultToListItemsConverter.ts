@@ -1,6 +1,5 @@
 import {GenericVideoResult} from "../../../models/apiRequests/GenericResults";
 import {TwitchSearchClipsResultPage} from "../../../models/apiRequests/TwitchSearchResults";
-import {TwitchClipPlayerFactory} from "../../../playerFactory/TwitchClipPlayerFactory";
 
 export class TwitchClipSearchResultToListItemsConverter {
 
@@ -19,7 +18,7 @@ export class TwitchClipSearchResultToListItemsConverter {
                 thumbnailUrl: item.thumbnail_url,
                 // createdAt: item.created_at,
                 // views: item.view_count
-                playerFactory: new TwitchClipPlayerFactory()
+                playerFactoryName: "TwitchClipPlayerFactory"
             }
 
             items.push(currentGenericClipItem)

@@ -1,10 +1,9 @@
+import {GenericResult} from "../apiRequests/GenericResults";
+
 export interface PlaylistModalState {
 
-    contentToAddId: string | null
-    setContentToAddId: (contentToAddId: string) => void
-
-    contentToAddTitle: string | null
-    setContentToAddTitle: (contentToAddTitle: string) => void
+    resultToAdd: GenericResult | null
+    setResultToAdd: (resultToAddId: GenericResult) => void
 
     showingPlaylistsModal: boolean
     setShowingPlaylistsModal: (showingPlaylistsModal: boolean) => void

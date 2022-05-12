@@ -3,14 +3,10 @@ import PlayerStore from '../../stores/PlayerStore'
 
 function CloseVideoButton(): JSX.Element {
 
-    const setPlayingId = PlayerStore(state => state.setPlayingId)
-    const setPlayingThumbnailUrl = PlayerStore(state => state.setPlayingThumbnailUrl)
-    const setPlayerCreator = PlayerStore(state => state.setPlayerCreator)
+    const setPlayingGenericResult = PlayerStore(state => state.setPlayingGenericResult)
 
     function stopPlayingVideo() {
-        setPlayingId(null)
-        setPlayingThumbnailUrl(null)
-        setPlayerCreator(null)
+        setPlayingGenericResult(null)
     }
 
     return (

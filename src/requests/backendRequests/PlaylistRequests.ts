@@ -20,18 +20,24 @@ class PlaylistRequests {
 
     }
 
-    static async addToPlaylist(playlistId: string) {
-        const url = "/Playlist/";
+    static async addToPlaylist(playlistId: string, genericResult: GenericResult) {
+
+        const url = "/Playlist/addToPlaylist";
+
+        let data = {
+            ...genericResult,
+            playlistId: playlistId
+        }
 
         const options = {
-            method: 'GET',
+            method: 'POST',
             url: url,
+            data: data
         };
 
+
         // @ts-ignore
-        let playlistResponse = await axios(options);
-        let playlist: GenericResult[] = playlistResponse.data;
-        return playlist;
+        let addToPlaylistResponse = await axios(options);
 
     }
 

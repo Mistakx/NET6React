@@ -1,7 +1,6 @@
 /**
  * A platform-agnostic result, with no API specific details.
  */
-import {PlayerFactory} from "../../playerFactory/PlayerFactory";
 
 export interface GenericResult {
     interface: string
@@ -10,7 +9,8 @@ export interface GenericResult {
     // createdAt: string
     thumbnailUrl: string
     creator: string
-    playerFactory: PlayerFactory
+    playerFactoryName: string
+    platformPlayerUrl?: string
 }
 
 /**
@@ -27,7 +27,6 @@ export interface GenericVideoResult extends GenericResult {
  */
 export interface GenericTrackResult extends GenericResult {
     interface: "GenericTrackResult"
-    duration: number
     albumName: string
 }
 

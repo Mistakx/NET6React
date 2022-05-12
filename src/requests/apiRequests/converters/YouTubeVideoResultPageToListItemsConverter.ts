@@ -1,6 +1,5 @@
 import {GenericVideoResult} from "../../../models/apiRequests/GenericResults";
 import {YouTubeVideoSearchResultPage} from "../../../models/apiRequests/YouTubeSearchResult";
-import {MultiPlatformPlayerFactory} from "../../../playerFactory/MultiPlatformPlayerFactory";
 
 export class YouTubeVideoResultPageToListItemsConverter {
 
@@ -19,7 +18,8 @@ export class YouTubeVideoResultPageToListItemsConverter {
                 thumbnailUrl: item.snippet.thumbnails.high.url,
                 // createdAt: item.snippet.publishedAt,
                 // views: item.details.items[0].statistics.viewCount
-                playerFactory: new MultiPlatformPlayerFactory("https://www.youtube.com/watch?v=")
+                playerFactoryName: "MultiPlatformPlayerFactory",
+                platformPlayerUrl: "https://www.youtube.com/watch?v="
             }
 
             items.push(currentGenericVideoItem)

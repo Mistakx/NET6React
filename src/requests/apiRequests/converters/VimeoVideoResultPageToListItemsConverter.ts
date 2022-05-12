@@ -1,6 +1,5 @@
 import {GenericVideoResult} from "../../../models/apiRequests/GenericResults";
 import {VimeoSearchVideoResultPage} from "../../../models/apiRequests/VimeoSearchResult";
-import {MultiPlatformPlayerFactory} from "../../../playerFactory/MultiPlatformPlayerFactory";
 
 export class VimeoVideoResultPageToListItemsConverter {
 
@@ -19,7 +18,8 @@ export class VimeoVideoResultPageToListItemsConverter {
                 thumbnailUrl: item.pictures.base_link,
                 // createdAt: item.created_time.toString(),
                 // views: item.stats.plays
-                playerFactory: new MultiPlatformPlayerFactory("https://vimeo.com/")
+                playerFactoryName: "MultiPlatformPlayerFactory",
+                platformPlayerUrl: "https://vimeo.com/"
             }
 
             items.push(currentGenericVideoItem)

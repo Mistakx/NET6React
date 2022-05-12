@@ -1,12 +1,8 @@
-import {PlayerFactory} from "../../playerFactory/PlayerFactory";
+import {GenericResult} from "../apiRequests/GenericResults";
 
 export interface PlayerState {
 
-    playingId: string | null
-    setPlayingId: (playingId: string | null) => void
-    playingThumbnailUrl: string | null
-    setPlayingThumbnailUrl: (playingThumbnailUrl: string | null) => void
-    playerCreator: PlayerFactory | null
-    setPlayerCreator: (playerCreator: PlayerFactory | null) => void
+    playingGenericResult: GenericResult | null
+    setPlayingGenericResult: (playingGenericResult: GenericResult | null) => void
 
 }

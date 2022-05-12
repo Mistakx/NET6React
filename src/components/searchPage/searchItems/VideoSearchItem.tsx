@@ -6,16 +6,13 @@ import PlaylistsModalStore from "../../../stores/PlaylistsModalStore";
 
 function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
 
-    const setPlayingId = PlayerStore(state => state.setPlayingId)
-    const setPlayerCreator = PlayerStore(state => state.setPlayerCreator)
+    const setPlayingGenericResult = PlayerStore(state => state.setPlayingGenericResult)
 
     const setShowingPlaylistsModal = PlaylistsModalStore(state => state.setShowingPlaylistsModal)
-    const setContentToAddId = PlaylistsModalStore(state => state.setContentToAddId)
-    const setContentToAddTitle = PlaylistsModalStore(state => state.setContentToAddTitle)
+    const setResultToAdd = PlaylistsModalStore(state => state.setResultToAdd)
 
     function setCurrentPlayerToClickedItem() {
-        setPlayingId(props.item.id);
-        setPlayerCreator(props.item.playerFactory)
+        setPlayingGenericResult(props.item)
     }
 
     return (
@@ -39,7 +36,7 @@ function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
                         type="button"
                         onClick={() => {
                             setShowingPlaylistsModal(true)
-                            setContentToAddTitle(props.item.title)
+                            setResultToAdd(props.item)
                         }}
                 >
                     <i className='bx bx-plus'></i></button>
