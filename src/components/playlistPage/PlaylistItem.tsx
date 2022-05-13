@@ -2,8 +2,11 @@ import React from 'react';
 import '../../styles/style.css';
 import {PlaylistItemProperties} from "../../models/components/playlistPage/PlaylistItemProperties";
 import PlaylistPagePlayerStore from "../../stores/PlaylistPagePlayerStore";
+import GlobalPlayerStore from "../../stores/GlobalPlayerStore";
 
 function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
+
+    const setPlayingGlobalGenericResult = GlobalPlayerStore(state => state.setPlayingGenericResult)
 
     const setPlayingGenericResult = PlaylistPagePlayerStore(state => state.setPlayingGenericResult)
 
@@ -13,6 +16,7 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
             style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.genericResult.thumbnailUrl + ")"}}
             onClick={() => {
                 setPlayingGenericResult(props.genericResult)
+                setPlayingGlobalGenericResult(null)
             }}
         >
             <div className="ms-2 me-auto">

@@ -25,13 +25,12 @@ if (container !== null) {
             <FloatingPlayer/>
 
             <Routes>
-                <Route path="/" element={<HomePage/>}/>
+                <Route path="/" element={<Login/>}/>
                 <Route path="/home" element={<HomePage/>}/>
                 <Route path="/search" element={<SearchPage/>}/>
                 <Route path="/profile" element={<ProfilePage/>}/>
                 <Route path="/user/:username" element={<UsernamePage/>}/>
                 <Route path="/playlist/:playlistId" element={<PlaylistPage/>}/>
-                <Route path="/login" element={<Login/>}/>
             </Routes>
         </BrowserRouter>
 

@@ -34,6 +34,30 @@ class UserRequests {
 
     }
 
+    // Logs in to the application, returns a session Id
+    static async login(email: string, password: string) {
+        const url = "/User/login";
+
+        const data = {
+            email: email,
+            password: password
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+
+
+        // @ts-ignore
+        let loginResponse = await axios(options);
+        let sessionToken: string = loginResponse.data;
+        return sessionToken;
+
+    }
+
 }
 
 export default UserRequests;

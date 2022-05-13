@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import '../styles/Sidepanel.css';
 import {useNavigate} from "react-router-dom";
+import AOS from "aos";
 
 function SidePanel(): JSX.Element {
 
     const navigate = useNavigate();
 
-    return (
+    const [sessionIToken, setSessionToken] = useState(window.sessionStorage.getItem("sessionToken"))
 
-        <header id="header" className="d-flex flex-column justify-content-center">
+    let sidePanel;
+    if (window.sessionStorage.getItem("sessionToken")) {
+        sidePanel = <header id="header" className="d-flex flex-column justify-content-center">
 
             <nav id="navbar" className="navbar nav-menu">
 
@@ -16,9 +19,9 @@ function SidePanel(): JSX.Element {
 
                     <li>
                         <div className="clickable nav-link scrollto"
-                            onClick={() => {
-                                navigate('/home');
-                            }}>
+                             onClick={() => {
+                                 navigate('/home');
+                             }}>
                             <i className="bx bx-home"></i>
                             <span>Home</span>
                         </div>
@@ -26,9 +29,9 @@ function SidePanel(): JSX.Element {
 
                     <li>
                         <div className="clickable nav-link scrollto"
-                            onClick={() => {
-                                navigate('/search');
-                            }}>
+                             onClick={() => {
+                                 navigate('/search');
+                             }}>
                             <i className="bx bx-search-alt"></i>
                             <span>Search</span>
                         </div>
@@ -36,10 +39,10 @@ function SidePanel(): JSX.Element {
 
                     <li>
                         <div className="clickable nav-link scrollto"
-                            onClick={() => {
-                                navigate('/profile');
+                             onClick={() => {
+                                 navigate('/profile');
 
-                            }}>
+                             }}>
                             <i className='bx bxs-playlist'></i>
                             <span>My Playlists</span>
                         </div>
@@ -49,6 +52,14 @@ function SidePanel(): JSX.Element {
             </nav>
 
         </header>
+
+    }
+
+    return (
+
+        <div>
+            {sidePanel}
+        </div>
 
     )
 
