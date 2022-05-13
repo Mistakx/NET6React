@@ -39,6 +39,14 @@ function LoginPage(): JSX.Element {
                         <h1>Login</h1>
                         <div className="form-wrapper mt-5">
 
+                            <form onSubmit={
+                                async (e) => {
+                                    e.preventDefault()
+                                    let sessionToken = await UserRequests.login(loginEmail, loginPassword)
+                                    setSessionToken(sessionToken)
+                                }
+                            }>
+
                             <div className="form-group" data-aos="zoom-in" data-aos-delay="100">
                                 <input type="text" className="form-control form-control-lg" placeholder="Email"
                                        onChange={
@@ -60,18 +68,10 @@ function LoginPage(): JSX.Element {
                             </div>
 
                             <div className="form-group d-grid" data-aos="zoom-in" data-aos-delay="400">
-                                <button className="btn btn-light"
-                                        onClick={
-                                            async (e) => {
-                                                let sessionToken = await UserRequests.login(loginEmail, loginPassword)
-                                                setSessionToken(sessionToken)
-                                            }
-                                        }
-                                >
-                                    Validar
-                                </button>
+                                <button className="btn btn-light">Validar</button>
                             </div>
 
+                            </form>
                         </div>
                     </div>
                 </div>

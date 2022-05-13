@@ -7,8 +7,6 @@ function SidePanel(): JSX.Element {
 
     const navigate = useNavigate();
 
-    const [sessionIToken, setSessionToken] = useState(window.sessionStorage.getItem("sessionToken"))
-
     let sidePanel;
     if (window.sessionStorage.getItem("sessionToken")) {
         sidePanel = <header id="header" className="d-flex flex-column justify-content-center">
