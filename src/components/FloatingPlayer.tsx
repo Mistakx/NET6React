@@ -1,5 +1,5 @@
 import React from 'react';
-import ResizeablePlayer from "../players/ResizeablePlayer";
+import ResizeablePlayer from "./players/ResizeablePlayer";
 
 function FloatingPlayer(): JSX.Element {
 

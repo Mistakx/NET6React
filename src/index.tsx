@@ -9,6 +9,7 @@ import UsernamePage from "./components/userPage/UsernamePage";
 import PlaylistPage from "./components/playlistPage/PlaylistPage";
 import Login from "./components/loginPage/LoginPage";
 import SidePanel from "./components/SidePanel";
+import FloatingPlayer from "./components/FloatingPlayer";
 
 const container = document.getElementById('root');
 
@@ -20,6 +21,8 @@ if (container !== null) {
         <BrowserRouter>
 
             <SidePanel/>
+
+            <FloatingPlayer/>
 
             <Routes>
                 <Route path="/" element={<HomePage/>}/>

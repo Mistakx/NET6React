@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 import axios from "axios";
 import {UserProfile} from "../../models/backendRequests/UserProfile";
 import TopBar from "../TopBar";
-import FloatingPlayer from "../searchPage/FloatingPlayer";
+import FloatingPlayer from "../FloatingPlayer";
 
 function ProfilePage(): JSX.Element {
 
@@ -29,8 +29,6 @@ function ProfilePage(): JSX.Element {
                     </div>
                 </section>
             </main>
-
-            <FloatingPlayer/>
 
         </div>
 
