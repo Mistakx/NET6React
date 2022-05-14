@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../styles/style.css';
-import {ProfilePlaylistItemProperties} from "../../models/components/profilePage/ProfilePlaylistItemProperties";
+import '../../../styles/style.css';
+import {ProfilePlaylistItemProperties} from "../../../models/components/profilePage/ProfilePlaylistItemProperties";
 import {useNavigate} from "react-router-dom";
 
 function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
@@ -13,7 +13,7 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
              data-aos="fade-down">
             
             <div className="clickable card bg-dark"
-            style={{backgroundImage: "url(https://cdn.pixabay.com/photo/2016/03/28/09/36/music-1285165_960_720.jpg)"}}>
+            style={{backgroundSize:"100% 100%", backgroundImage: "url(" + props.basicDetails.thumbnailUrl + ")"}}>
                 <div className="card-img-overlay text-end"
                     onClick={()=>{navigate("/playlist/" + props.basicDetails.id)}}
                 >

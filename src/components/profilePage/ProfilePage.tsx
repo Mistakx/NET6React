@@ -1,6 +1,6 @@
 import '../../styles/style.css';
-import User from "./User";
-import PlaylistsList from "./PlaylistsList";
+import User from "./userPanel/User";
+import PlaylistsList from "./playlistsLists/PlaylistsList";
 import React, {useEffect} from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";

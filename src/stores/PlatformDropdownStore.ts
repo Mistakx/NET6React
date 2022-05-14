@@ -1,7 +1,7 @@
 import create from 'zustand'
 import {PlatformDropdownState} from "../models/states/PlatformDropdownState";
 
-const PlatformDropdown = create<PlatformDropdownState>((set) => ({
+const PlatformDropdownStore = create<PlatformDropdownState>((set) => ({
 
     platformDropdownList: "dropdown-menu",
     setPlatformDropdownList: (platformDropdownList) => set(state => ({
@@ -11,5 +11,5 @@ const PlatformDropdown = create<PlatformDropdownState>((set) => ({
 }))
 
 
-export default PlatformDropdown;
+export default PlatformDropdownStore;
 

@@ -1,7 +1,7 @@
 import create from 'zustand'
 import {PlaylistPagePlayerState} from "../models/states/PlaylistPagePlayerState";
 
-const PlaylistPlayerPage = create<PlaylistPagePlayerState>((set) => ({
+const PlaylistPlayerPageStore = create<PlaylistPagePlayerState>((set) => ({
 
     playingGenericResultPlaylistIndex: null,
     setPlayingGenericResultPlaylistIndex: (playingGenericResultPlaylistIndex) => set(state => ({
@@ -15,4 +15,4 @@ const PlaylistPlayerPage = create<PlaylistPagePlayerState>((set) => ({
 
 }))
 
-export default PlaylistPlayerPage;
+export default PlaylistPlayerPageStore;

@@ -5,6 +5,7 @@ export interface PlaylistBasicDetails {
     visibility: string
     creationDate: Date
     description: string
+    thumbnailUrl: string
 }
 
 

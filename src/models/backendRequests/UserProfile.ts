@@ -4,7 +4,7 @@ export interface UserProfile {
     email: string
     name: string
     username: string
-    profilePhotoPath: string
+    profilePhotoUrl: string
 }
 
 

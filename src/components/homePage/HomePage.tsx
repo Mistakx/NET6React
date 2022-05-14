@@ -6,11 +6,6 @@ const logo = require("../../assets/img/logo.PNG");
 
 function HomePage(): JSX.Element {
 
-    useEffect(() => {
-        AOS.init();
-        AOS.refresh();
-    }, []);
-
     // var options = new Typed('.typed', {
     //     strings       : ['Make your playlist', 'Choose your music', 'Many more than a playlist manager'],
     //     backSpeed     : 0,
