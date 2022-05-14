@@ -1,7 +1,7 @@
 import '../../styles/Login.css'
+import UserRequests from "../../requests/backendRequests/UserRequests";
 import React, {useEffect, useState} from "react";
 import "aos/dist/aos.css";
-import UserRequests from "../../requests/backendRequests/UserRequests";
 import AOS from "aos";
 import {useNavigate} from "react-router-dom";
 

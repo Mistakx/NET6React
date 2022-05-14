@@ -48,6 +48,7 @@ function PlaylistsModal(): JSX.Element {
             show={showingPlaylistsModal}
             backdrop="static"
             keyboard={true}
+            centered
         >
 
             <div className="modal-content">
@@ -56,7 +57,7 @@ function PlaylistsModal(): JSX.Element {
 
                     <Modal.Title>
                         <h5 id="staticBackdropLabel">
-                            <strong>Add to playlist - </strong> {resultToAdd!.title}
+                            <strong>Add to playlist</strong><br/> {resultToAdd!.title}
                         </h5>
                     </Modal.Title>
 
@@ -68,7 +69,9 @@ function PlaylistsModal(): JSX.Element {
 
                 </Modal.Header>
 
-                <PlaylistItemsList/>
+                <Modal.Body>
+                    <PlaylistItemsList/>
+                </Modal.Body>
 
             </div>
 

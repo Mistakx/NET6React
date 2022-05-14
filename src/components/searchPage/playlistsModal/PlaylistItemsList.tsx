@@ -22,18 +22,22 @@ function PlaylistItemsList(): JSX.Element {
         for (const currentUserPlaylist of userPlaylists) {
             playlistItemsList.push(
                 <PlaylistItem id={currentUserPlaylist.id}
-                              title={currentUserPlaylist.title}
+                                title={currentUserPlaylist.title}
                 />)
         }
     }
 
     return (
 
-        <div>
-
+        <ul className="list-group">
+            <li className="list-group-item add-list clickable">
+                <div className="input-group">
+                    <input type="text" className="form-control" placeholder="Add Playlist" />
+                    <button className="btn btn-success">OK</button>
+                </div>
+            </li>
             {playlistItemsList}
-
-        </div>
+        </ul>
     )
 }
 

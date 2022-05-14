@@ -12,18 +12,12 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
 
     return (
 
-        <div>
+        <li className="list-group-item clickable" onClick={() => {
+            PlaylistRequests.addToPlaylist(props.id, resultToAdd!)
+        }}>
+            {props.title}
+        </li>
 
-            <Modal.Body>
-                <div onClick={() => {
-                    PlaylistRequests.addToPlaylist(props.id, resultToAdd!)
-                }}>
-                    {props.title}
-                </div>
-            </Modal.Body>
-
-
-        </div>
     )
 }
 
