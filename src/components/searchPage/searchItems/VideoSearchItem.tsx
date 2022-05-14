@@ -17,7 +17,7 @@ function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
 
     return (
 
-        <div className="col-md-4 col-sm-4 col-lg-3 col-6 position-relative scale" data-aos="fade-up">
+        <div className="col-lg-3 col-md-4 col-sm-4 col-6 position-relative scale" data-aos="fade-up">
 
             <div className="clickable card bg-dark"
                  onClick={() => {
@@ -33,13 +33,13 @@ function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
 
             <div className="options">
                 <button className="btn btn-add"
-                        type="button"
-                        onClick={() => {
-                            setShowingPlaylistsModal(true)
-                            setResultToAdd(props.item)
-                        }}
+                    type="button"
+                    onClick={() => {
+                        setShowingPlaylistsModal(true)
+                        setResultToAdd(props.item)
+                    }}
                 >
-                    <i className='bx bx-plus'></i></button>
+                <i className='bx bx-plus'></i></button>
             </div>
 
         </div>

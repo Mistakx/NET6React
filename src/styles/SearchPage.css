@@ -37,11 +37,24 @@
     box-shadow: none !important;
 }
 
+.search-body .btn-search {
+    position: absolute;
+    top:0;
+    right:0;
+    z-index: 3;
+}
+
+.search-body .btn-search:hover,
+.search-body .btn-search:active {
+    color:#fff;
+}
+
 .search-body .spotify {
     color: var(--spotifyHighlightColor);
     border-bottom-color: var(--spotifyNeutralColor);
 }
 
+.search-body .spotify .btn-search,
 .search-body .spotify::placeholder {
     color: var(--spotifyHighlightColor);
 }
@@ -51,6 +64,7 @@
     border-bottom-color: var(--youtubeNeutralColor);
 }
 
+.search-body .youtube .btn-search,
 .search-body .youtube::placeholder {
     color: var(--youtubeHighlightColor);
 }
@@ -60,6 +74,7 @@
     border-bottom-color: var(--twitchNeutralColor);
 }
 
+.search-body .twitch .btn-search,
 .search-body .twitch::placeholder {
     color: var(--twitchHiglightColor);
 }
@@ -69,6 +84,7 @@
     border-bottom-color: var(--vimeoNeutralColor);
 }
 
+.search-body .vimeo .btn-search,
 .search-body .vimeo::placeholder {
     color: var(--vimeoHiglightColor);
 }
@@ -278,7 +294,6 @@
 }
 
 .scale:hover  {
-    
     transition: 200ms;
     transform: scale(1.1);
 }
@@ -309,12 +324,32 @@
     position:absolute;
     top:0;
 }
+.options .btn-add i {
+    padding:0;
+}
 
-.btn-add {
+.options .btn-add {
+    background-color: rgba(242, 243, 245, 0.3);
+    padding:0;
+    width:42px;
+    height:42px;
+    padding-bottom:-20px;
+    margin-bottom:15px;
+    margin-right:15px;
     color:#fff;
 }
 
 .btn-add:hover,
 .btn-add:active {
     color:#0d3a76;
+}
+
+.modal-body .list-group .add-list:hover {
+    background-color:#027cee;
+    color:#fff;
+}
+
+.modal-body .list-group-item:hover {
+    background-color:#1355AD;
+    color:#fff;
 }

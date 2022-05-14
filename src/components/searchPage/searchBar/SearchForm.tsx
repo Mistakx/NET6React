@@ -10,18 +10,17 @@ function SearchForm(props: SearchFormProperties): JSX.Element {
     const setSearchBarQuery = SelectedSearchStore(state => state.setSearchBarQuery)
 
     return (
+        <input type="text submit" id="search"
+                className={"form-control " + selectedSearch.getPlatform().getColorClass()}
+                autoFocus
+                autoComplete={"off"}
+                value={searchBarQuery}
+                placeholder="I want that content..."
 
-            <input type="text submit" id="search"
-                   className={"form-control " + selectedSearch.getPlatform().getColorClass()}
-                   autoFocus
-                   autoComplete={"off"}
-                   value={searchBarQuery}
-                   placeholder="I want that content..."
-
-                   onChange={(event) => {
-                       setSearchBarQuery(event.target.value)
-                   }}
-            />
+                onChange={(event) => {
+                    setSearchBarQuery(event.target.value)
+                }}
+        />
 
     )
 

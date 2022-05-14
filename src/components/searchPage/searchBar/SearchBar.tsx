@@ -8,6 +8,8 @@ import SearchedListStore from "../../../stores/SearchedListStore";
 import PlatformDropdownButton from "./PlatformDropdownButton";
 import PlatformDropdownList from "./PlatformDropdownList";
 import PlatformDropdownStore from "../../../stores/PlatformDropdownStore";
+import "aos/dist/aos.css";
+import AOS from "aos";
 import {
     GenericResult,
 } from "../../../models/apiRequests/GenericResults";
@@ -28,6 +30,12 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
     useEffect(() => {
         setPlatformDropdownList(closedDropdown)
     },[])
+    
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+    }, []);
+
 
     function togglePlatformDropdownList() {
         if (platformDropdownList === closedDropdown) {
@@ -73,6 +81,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                                 twitchAuthenticator={props.twitchAuthenticator}
                     />
 
+                    <button className={"btn btn-search " + selectedSearch.getPlatform().getColorClass()} type="submit" id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
                 </div>
             </form>
 
