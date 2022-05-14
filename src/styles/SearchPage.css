@@ -293,9 +293,10 @@
     border-radius: 20px;
 }
 
-.scale:hover  {
+.scale .card:hover  {
     transition: 200ms;
     transform: scale(1.1);
+    background-color: red;
 }
 
 .scale .options {
@@ -324,9 +325,6 @@
     position:absolute;
     top:0;
 }
-.options .btn-add i {
-    padding:0;
-}
 
 .options .btn-add {
     background-color: rgba(242, 243, 245, 0.3);
@@ -334,13 +332,15 @@
     width:42px;
     height:42px;
     padding-bottom:-20px;
-    margin-bottom:15px;
-    margin-right:15px;
     color:#fff;
 }
 
-.btn-add:hover,
-.btn-add:active {
+.options .btn-add i {
+    padding:0;
+}
+
+.options .btn-add:hover,
+.options .btn-add:active {
     color:#0d3a76;
 }
 

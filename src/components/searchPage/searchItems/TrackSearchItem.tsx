@@ -17,7 +17,7 @@ function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
 
     return (
 
-        <div className="col-md-4 col-sm-4 col-lg-3 col-6 position-relative scale" data-aos="fade-down">
+        <div className="col-md-4 col-sm-4 col-lg-3 col-6 position-relative scale" data-aos="fade-up">
             <div className="clickable card bg-dark"
                  onClick={() => {
                      setCurrentPlayerToClickedItem()
@@ -29,16 +29,16 @@ function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
                     <p className="card-text text-truncate">{props.item.creator}</p>
                     {/* <p className="card-text text-truncate">{props.item.createdAt}</p> */}
                 </div>
-            </div>
-            <div className="options">
-                <button className="btn btn-add"
-                    onClick={() => {
-                        setShowingPlaylistsModal(true)
-                        setResultToAdd(props.item)
-                    }}
-                >
-                    <i className='bx bx-plus'></i>
-                </button>
+                <div className="options">
+                    <button className="btn btn-add"
+                        onClick={() => {
+                            setShowingPlaylistsModal(true)
+                            setResultToAdd(props.item)
+                        }}
+                        >
+                        <i className='bx bx-plus'></i>
+                    </button>
+                </div>
             </div>
         </div>
 
