@@ -50,6 +50,14 @@ h2, h3, h4, h5, h6 {
   box-shadow: none !important;
 }
 
+.btn-link {
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  color: #f2f3f5;
+}
+
 /*--------------------------------------------------------------
 # Scroll bar
 --------------------------------------------------------------*/

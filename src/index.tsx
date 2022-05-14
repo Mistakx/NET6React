@@ -8,6 +8,7 @@ import ProfilePage from "./components/profilePage/ProfilePage";
 import UsernamePage from "./components/userPage/UsernamePage";
 import PlaylistPage from "./components/playlistPage/PlaylistPage";
 import Login from "./components/loginPage/LoginPage";
+import RegisterPage from "./components/registerPage/RegisterPage";
 import SidePanel from "./components/SidePanel";
 import FloatingPlayer from "./components/FloatingPlayer";
 
@@ -29,6 +30,7 @@ if (container !== null) {
                 <Route path="/home" element={<HomePage/>}/>
                 <Route path="/search" element={<SearchPage/>}/>
                 <Route path="/profile" element={<ProfilePage/>}/>
+                <Route path="/register" element={<RegisterPage/>}/>
                 <Route path="/user/:username" element={<UsernamePage/>}/>
                 <Route path="/playlist/:playlistId" element={<PlaylistPage/>}/>
             </Routes>
