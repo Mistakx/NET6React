@@ -18,12 +18,11 @@ function PlaylistPlayer(): JSX.Element {
 
     return (
 
-
-        <div className="col-md-8 col-12" id="player">
+        <div className="col-lg-8 col-12" id="player">
 
             <div style={{position: "relative"}}
-                 className="align-items-stretch"
-                 data-aos="fade-right" data-aos-delay="100">
+                className="align-items-stretch"
+                data-aos="fade-right" data-aos-delay="100">
 
                 <div className="ratio ratio-16x9">
                     <div className="card col-12 h-100 d-inline-block">
