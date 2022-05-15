@@ -11,6 +11,10 @@ import FloatingPlayer from "../FloatingPlayer";
 
 function ProfilePage(): JSX.Element {
 
+    useEffect(() => {
+        AOS.init();
+    }, []);
+
     return (
 
         <div>

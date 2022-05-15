@@ -58,6 +58,26 @@ class UserRequests {
 
     }
 
+    // Logs in to the application, returns a session Id
+    static async editProfilePhoto(file: FileList) {
+
+        console.log(file)
+
+        const url = "/User/editProfilePhoto";
+
+        const headers = {
+            // 'Content-Type': 'multipart/form-data'
+            // @ts-ignore
+        }
+
+
+        let formData = new FormData();
+        formData.append("file", file[0]);
+        axios.post(url, formData, {headers})
+
+    }
+
+
 }
 
 export default UserRequests;
