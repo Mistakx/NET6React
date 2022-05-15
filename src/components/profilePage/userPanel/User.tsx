@@ -8,14 +8,13 @@ import {EditPhotoWithPreviewButton} from "./EditPhotoWithPreviewButton";
 function User(): JSX.Element {
 
     const [userProfile, setProfile] = React.useState<UserProfile>();
+    const [updatedUserPhotoUrl, setUpdatedUserPhotoUrl] = React.useState<string>();
 
     useEffect(() => {
-        if (!userProfile) {
-            (async () => {
-                setProfile(await UserRequests.getProfile(process.env.REACT_APP_USER_ID as string));
-            })()
-        }
-    }, [userProfile]);
+        (async () => {
+            setProfile(await UserRequests.getProfile(process.env.REACT_APP_USER_ID as string));
+        })()
+    }, [userProfile, updatedUserPhotoUrl]);
 
     return (
         <div className="col-md-4 position-relative">
@@ -25,13 +24,13 @@ function User(): JSX.Element {
                     <h4 className="text-white">{userProfile?.username}</h4>
                     <h6 className="text-white">({userProfile?.email})</h6>
                     <img src={userProfile?.profilePhotoUrl}
-                        width="250"
-                        alt=""
-                        className="img-fluid rounded-circle img-centered"/>
+                         width="250"
+                         alt=""
+                         className="img-fluid rounded-circle img-centered"/>
                     {/*<button className="btn rounded position-absolute top-50 start-50 translate-middle mt-5">*/}
                     {/*    <i className='bx bx-camera'></i>*/}
                     {/*</button>*/}
-                    <EditPhotoButton/>
+                    <EditPhotoButton setUpdatedUserPhotoUrl={setUpdatedUserPhotoUrl}/>
                     <EditPhotoWithPreviewButton/>
                 </div>
                 <div className="options-top mr-5 mb-5">

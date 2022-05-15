@@ -1,9 +1,13 @@
 import React, {useRef} from "react";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
+import {useNavigate} from "react-router-dom";
+import {EditPhotoButtonProperties} from "../../../models/components/profilePage/EditPhotoButtonProperties";
 
-export function EditPhotoButton() {
+export function EditPhotoButton(props: EditPhotoButtonProperties) {
 
     const fileInputRef = useRef();
+
+    const navigate = useNavigate()
 
     return (
         <div>
@@ -18,10 +22,12 @@ export function EditPhotoButton() {
                 // @ts-ignore
                 ref={fileInputRef}
                 // @ts-ignore
-                onChange={(e) => {
+                onChange={async (e) => {
                     const file = e.target.files
                     if (file) {
-                        UserRequests.editProfilePhoto(file)
+                        props.setUpdatedUserPhotoUrl(await UserRequests.editProfilePhoto(file))
+                    } else {
+                        alert("No file selected")
                     }
 
                 }}
