@@ -20,9 +20,9 @@ function LivestreamSearchItem(props: LivestreamSearchItemProperties): JSX.Elemen
 
     return (
 
-        <div className="col-md-4 col-sm-4 col-lg-3 col-6 position-relative scale" data-aos="fade-up">
+        <div className="result col-md-4 col-sm-4 col-lg-3 col-6 position-relative" data-aos="fade-up">
 
-            <div className="clickable card bg-dark"
+            <div className="card scale clickable"
                 onClick={() => {
                     setCurrentPlayerToClickedItem()
                 }}

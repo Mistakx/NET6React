@@ -17,8 +17,8 @@ function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
 
     return (
 
-        <div className="col-md-4 col-sm-4 col-lg-3 col-6 position-relative scale" data-aos="fade-up">
-            <div className="clickable card bg-dark"
+        <div className="result col-md-4 col-sm-4 col-lg-3 col-6 position-relative" data-aos="fade-up">
+            <div className="card scale clickable"
                  onClick={() => {
                      setCurrentPlayerToClickedItem()
                  }}
@@ -26,8 +26,7 @@ function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
                 <div className="card-img-overlay text-end">
                     <h5 className="card-title text-uppercase text-truncate">{props.item.title}</h5>
                     <p className="card-text text-truncate">{props.item.albumName}</p>
-                    <p className="card-text text-truncate">{props.item.creator}</p>
-                    {/* <p className="card-text text-truncate">{props.item.createdAt}</p> */}
+                    <p className="card-text text-wrap">{props.item.creator}</p>
                 </div>
             </div>
             <div className="options">
