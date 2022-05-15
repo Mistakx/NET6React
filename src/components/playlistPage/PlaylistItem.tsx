@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useEffect} from "react";
 import '../../styles/style.css';
+import "aos/dist/aos.css";
+import AOS from "aos";
 import {PlaylistItemProperties} from "../../models/components/playlistPage/PlaylistItemProperties";
 import PlaylistPagePlayerStore from "../../stores/PlaylistPagePlayerStore";
 import GlobalPlayerStore from "../../stores/GlobalPlayerStore";
@@ -10,21 +12,41 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
 
     const setPlayingGenericResult = PlaylistPagePlayerStore(state => state.setPlayingGenericResult)
 
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+    }, []);
+
     return (
+        <li className="list-group-item">
+            <div className="row">
+                <div className="col-2">
+                    <span className="badge"><i className='bx bx-menu h4'></i></span>
+                </div>
+                <div className="col-8 p-3"
+                    style={{backgroundSize: "100% auto", backgroundRepeat: "no-repeat" ,backgroundPosition: "center", backgroundImage: "url(" + props.genericResult.thumbnailUrl + ")"}}
+                    onClick={() => {
+                        setPlayingGenericResult(props.genericResult)
+                        setPlayingGlobalGenericResult(null)
+                    }}
+                >
+                    <h6 className="fw-bold text-truncate">{props.genericResult.title}</h6>
+                </div>
 
-        <li className="list-group-item d-flex justify-content-between align-items-start align-middle item"
-            style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.genericResult.thumbnailUrl + ")"}}
-            onClick={() => {
-                setPlayingGenericResult(props.genericResult)
-                setPlayingGlobalGenericResult(null)
-            }}
-        >
-            <div className="ms-2 me-auto">
-                <h6 className="fw-bold">{props.genericResult.title}</h6>
+                <div className="col-1">
+                    <div className="btn-group dropstart">
+                        <button type="button" className="btn btn-link"data-bs-toggle="dropdown" aria-expanded="false">
+                            <i className='bx bx-dots-vertical-rounded h4'></i>
+                        </button>
+                        <ul className="dropdown-menu">
+                            <li><a className="dropdown-item" href="#">Set as cover</a></li>
+                            <li><a className="dropdown-item text-danger" href="#">Remove</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <span className="badge"><i className='bx bx-menu h5'></i></span>
-        </li>
 
+        </li>
     )
 
 }

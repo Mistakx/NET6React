@@ -20,13 +20,14 @@ function User(): JSX.Element {
     return (
         <div className="col-md-4 position-relative">
             <div className="align-items-stretch mb-4 " data-aos="zoom-in" data-aos-delay="100">
-                <div className="icon-box iconbox-blue rounded">
+                <div className="icon-box icon-box-lightblue">
                     <h3 className="text-white"><strong>{userProfile?.name}</strong></h3>
                     <h4 className="text-white">{userProfile?.username}</h4>
                     <h6 className="text-white">({userProfile?.email})</h6>
                     <img src={userProfile?.profilePhotoUrl}
-                         alt=""
-                         className="img-fluid rounded-circle img-centered"/>
+                        width="250"
+                        alt=""
+                        className="img-fluid rounded-circle img-centered"/>
                     <button className="btn rounded position-absolute top-50 start-50 translate-middle mt-5">
                         <i className='bx bx-camera'></i>
                     </button>

@@ -8,8 +8,6 @@ import SearchedListStore from "../../../stores/SearchedListStore";
 import PlatformDropdownButton from "./PlatformDropdownButton";
 import PlatformDropdownList from "./PlatformDropdownList";
 import PlatformDropdownStore from "../../../stores/PlatformDropdownStore";
-import "aos/dist/aos.css";
-import AOS from "aos";
 import {
     GenericResult,
 } from "../../../models/apiRequests/GenericResults";
@@ -31,11 +29,6 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
         setPlatformDropdownList(closedDropdown)
     },[])
     
-    useEffect(() => {
-        AOS.init();
-        AOS.refresh();
-    }, []);
-
 
     function togglePlatformDropdownList() {
         if (platformDropdownList === closedDropdown) {

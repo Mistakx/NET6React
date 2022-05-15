@@ -32,6 +32,20 @@ function PlaylistsList(): JSX.Element {
 
             <div className="row results">
 
+                <div className="col-md-6 col-sm-6 col-lg-4 col-6 scale"
+                data-aos="fade-down">
+                
+                    <div className="clickable card align-middle add-playlist">
+                        
+                        <i className="bx bx-plus h1 text-center mt-5"
+                            style={{fontSize:120}}
+                        ></i>
+                        
+                    </div>
+
+                </div>
+
+
                 {playlistsList}
 
             </div>

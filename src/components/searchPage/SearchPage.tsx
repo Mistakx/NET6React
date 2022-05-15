@@ -4,15 +4,21 @@ import FloatingPlayer from "../FloatingPlayer";
 import '../../styles/SearchPage.css';
 import React, { useEffect } from "react";
 import "aos/dist/aos.css";
+import AOS from "aos";
 
 function SearchPage(): JSX.Element {
+
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+    }, []);
 
     return (
 
         <div>
 
             <section id="services" className="services">
-                <div className="container" data-aos="zoom-in" data-aos-duration="1000">
+                <div className="container" >
 
                     <div className="row">
 

@@ -50,6 +50,14 @@ h2, h3, h4, h5, h6 {
   box-shadow: none !important;
 }
 
+.btn-link {
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  color: #f2f3f5;
+}
+
 /*--------------------------------------------------------------
 # Scroll bar
 --------------------------------------------------------------*/
@@ -300,3 +308,16 @@ section {
   .modal-body .card {
     background-color: #1355AD;
   }
+  
+  /*--------------------------------------------------------------
+  # Sections General
+  --------------------------------------------------------------*/
+
+.playlistItens .list-group .list-group-item{
+  vertical-align: middle;
+  padding: 0px 11px 0px 10px;
+}
+
+.card iframe {
+  border-radius: 10px;
+}

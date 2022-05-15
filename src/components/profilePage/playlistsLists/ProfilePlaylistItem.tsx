@@ -10,9 +10,9 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
     return (
 
         <div className="col-md-6 col-sm-6 col-lg-4 col-6 position-relative scale"
-             data-aos="fade-down">
+            data-aos="fade-down">
             
-            <div className="clickable card bg-dark"
+            <div className="clickable card"
             style={{backgroundSize:"100% 100%", backgroundImage: "url(" + props.basicDetails.thumbnailUrl + ")"}}>
                 <div className="card-img-overlay text-end"
                     onClick={()=>{navigate("/playlist/" + props.basicDetails.id)}}

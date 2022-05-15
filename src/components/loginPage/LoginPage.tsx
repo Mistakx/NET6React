@@ -68,7 +68,14 @@ function LoginPage(): JSX.Element {
                             </div>
 
                             <div className="form-group d-grid" data-aos="zoom-in" data-aos-delay="400">
-                                <button className="btn btn-light">Validar</button>
+                                <button className="btn btn-light">Login</button>
+                                <button className="btn btn-link"
+                                    onClick={()=>{
+                                        navigate("/register");
+                                    }}
+                                >
+                                    Don't have an account
+                                </button>
                             </div>
 
                             </form>
