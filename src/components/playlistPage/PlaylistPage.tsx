@@ -1,6 +1,7 @@
 import '../../styles/Playlist.css'
 import '../../styles/SearchPage.css'
 import React, {useEffect} from "react";
+import AOS from "aos";
 import "aos/dist/aos.css";
 import TopBar from "../TopBar";
 import {useParams} from "react-router-dom";
@@ -45,6 +46,11 @@ function PlaylistPage(): JSX.Element {
     }, []);
 
     useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+    }, []);
+
+    useEffect(() => {
         setPlayingGenericResult(null)
         setPlayingGenericResultPlaylistIndex(null)
     },[])
@@ -66,7 +72,7 @@ function PlaylistPage(): JSX.Element {
 
                             <PlaylistPlayer/>
 
-                            <div className="col-md-4 col-12" id="playlist" data-aos="fade-left" data-aos-delay="200">
+                            <div className="col-lg-4 col-12" id="playlist" data-aos="fade-left" data-aos-delay="200">
 
                                 <div className="card align-items-stretch mt-4 mt-md-0">
 
@@ -78,7 +84,7 @@ function PlaylistPage(): JSX.Element {
 
                             </div>
 
-                            <div className="col-md-8 col-12" id="titulo" data-aos="fade-right" data-aos-delay="200">
+                            <div className="col-lg-8 col-12" id="titulo" data-aos="fade-right" data-aos-delay="200">
                                 <div className="social text-white rounded">
                                     <h3 className="p-3">Nome Música</h3>
                                 </div>
