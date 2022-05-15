@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------
 # Colors
 --------------------------------------------------------------*/
-:root{
+:root {
     --iconColor: #fff;
 
     --youtubeHighlightColor: #fe0000;
@@ -20,6 +20,7 @@
     --vimeoNeutralColor: #19b7ea;
     --vimeoHoveredColor: #147ea1;
 }
+
 /*--------------------------------------------------------------
 # Search Label and Input
 --------------------------------------------------------------*/
@@ -39,14 +40,14 @@
 
 .search-body .btn-search {
     position: absolute;
-    top:0;
-    right:0;
+    top: 0;
+    right: 0;
     z-index: 3;
 }
 
 .search-body .btn-search:hover,
 .search-body .btn-search:active {
-    color:#fff;
+    color: #fff;
 }
 
 .search-body .spotify {
@@ -178,7 +179,7 @@
     top: -7px;
 }
 
-.dropdown-menu > li:hover > .dropdown-submenu {
+.dropdown-menu>li:hover>.dropdown-submenu {
     display: block;
 }
 
@@ -224,7 +225,7 @@
     position: fixed;
     top: 0px;
     right: 0px;
-    z-index: 1070;
+    z-index: 1000;
 }
 
 .closeButton {
@@ -263,6 +264,14 @@
 /*--------------------------------------------------------------
 # Search results
 --------------------------------------------------------------*/
+.card {
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    background-color: #0D3A76;
+}
+
 .card-img-overlay {
     color: #fff;
     background: rgba(7, 30, 61, 0.5);
@@ -274,8 +283,9 @@
     color: #fff;
     transition: 400ms;
     height: 100%;
-
+    border-radius: 20px;
 }
+
 .card:not( :hover) .card-img-overlay {
     transition: 400ms;
 }
@@ -283,80 +293,73 @@
 .results .card {
     max-width: 100%;
     height: 200px;
-    margin-bottom: 20px;
-    background-color:#0D3A76;
 }
 
 .results .add-playlist {
     background-color: rgba(19, 87, 174, .7)
 }
 
-.card {
-    background-position: center center;
-    background-repeat: no-repeat;
-    margin-bottom: 5px;
-    border-radius: 20px;
-}
-
-.scale .card:hover  {
+.scale:hover {
     transition: 200ms;
     transform: scale(1.1);
 }
 
-.scale .options {
+.result .options {
     position: absolute;
-    bottom:0;
-    right:0;
-    margin-right: 15px; 
-    margin-bottom: 20px;
+    bottom: 0;
+    right: 0;
+    margin-right: 15px;
+    margin-bottom: 25px;
 }
 
-.scale .options .btn {
-    font-size:32px;
-    margin-right:15px;
+.result .options .btn {
+    font-size: 32px;
+    margin-right: 15px;
     margin-bottom: 15px;
 }
 
 .options-dropdown .btn {
-    color:#fff;
+    color: #fff;
     border-top-left-radius: 20px;
-    padding:0;
+    padding: 0;
 }
+
 .options-dropdown .btn i,
-.options-top .btn  {
-    color:#fff;
-    font-size:32px;
-    margin:0;
+.options-top .btn {
+    color: #fff;
+    font-size: 32px;
+    margin: 0;
 }
+
 .options-top {
-    position:absolute;
-    top:0;
+    position: absolute;
+    top: 0;
 }
 
 .options .btn-add {
     background-color: rgba(242, 243, 245, 0.3);
-    padding:0;
-    width:42px;
-    height:42px;
-    padding-bottom:-20px;
-    color:#fff;
+    padding: 0;
+    width: 42px;
+    height: 42px;
+    padding-bottom: -20px;
+    color: #fff;
 }
 
 .options .btn-add i {
-    padding:0;
+    padding: 0;
 }
 
 .options .btn-add:hover,
 .options .btn-add:active {
-    color:#0d3a76;
+    color: #0d3a76;
 }
 
 .modal-body .list-group .add-list:hover {
-    background-color:#027cee;
-    color:#fff;
+    background-color: #027cee;
+    color: #fff;
 }
 
 .modal-body .list-group-item:hover {
-    background-color:#1355AD;
-    color:#fff;
+    background-color: #1355AD;
+    color: #fff;
 }
