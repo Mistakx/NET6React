@@ -284,6 +284,11 @@
     max-width: 100%;
     height: 200px;
     margin-bottom: 20px;
+    background-color:#0D3A76;
+}
+
+.results .add-playlist {
+    background-color: rgba(19, 87, 174, .7)
 }
 
 .card {
@@ -296,7 +301,6 @@
 .scale .card:hover  {
     transition: 200ms;
     transform: scale(1.1);
-    background-color: red;
 }
 
 .scale .options {
@@ -306,8 +310,11 @@
     margin-right: 15px; 
     margin-bottom: 20px;
 }
+
 .scale .options .btn {
     font-size:32px;
+    margin-right:15px;
+    margin-bottom: 15px;
 }
 
 .options-dropdown .btn {

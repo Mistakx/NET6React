@@ -30,16 +30,16 @@ function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
                     {/* <p className="card-text">{props.item.createdAt}</p> */}
                 </div>
 
-                <div className="options">
-                    <button className="btn btn-add"
-                        type="button"
-                        onClick={() => {
-                            setShowingPlaylistsModal(true)
-                            setResultToAdd(props.item)
-                        }}
-                        >
-                    <i className='bx bx-plus'></i></button>
-                </div>
+            </div>
+            <div className="options">
+                <button className="btn btn-add"
+                    type="button"
+                    onClick={() => {
+                        setShowingPlaylistsModal(true)
+                        setResultToAdd(props.item)
+                    }}
+                    >
+                <i className='bx bx-plus'></i></button>
             </div>
 
         </div>

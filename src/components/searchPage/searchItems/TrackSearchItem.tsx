@@ -29,16 +29,16 @@ function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
                     <p className="card-text text-truncate">{props.item.creator}</p>
                     {/* <p className="card-text text-truncate">{props.item.createdAt}</p> */}
                 </div>
-                <div className="options">
-                    <button className="btn btn-add"
-                        onClick={() => {
-                            setShowingPlaylistsModal(true)
-                            setResultToAdd(props.item)
-                        }}
-                        >
-                        <i className='bx bx-plus'></i>
-                    </button>
-                </div>
+            </div>
+            <div className="options">
+                <button className="btn btn-add"
+                    onClick={() => {
+                        setShowingPlaylistsModal(true)
+                        setResultToAdd(props.item)
+                    }}
+                    >
+                    <i className='bx bx-plus'></i>
+                </button>
             </div>
         </div>
 
