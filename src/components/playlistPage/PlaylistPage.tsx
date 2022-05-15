@@ -72,7 +72,7 @@ function PlaylistPage(): JSX.Element {
 
                             <PlaylistPlayer/>
 
-                            <div className="col-lg-4 col-12" id="playlist" data-aos="fade-left" data-aos-delay="200">
+                            <div className="col-lg-4 col-md-4 col-12" id="playlist" data-aos="fade-left" data-aos-delay="200">
 
                                 <div className="card align-items-stretch mt-4 mt-md-0">
 
@@ -82,12 +82,6 @@ function PlaylistPage(): JSX.Element {
 
                                 </div>
 
-                            </div>
-
-                            <div className="col-lg-8 col-12" id="titulo" data-aos="fade-right" data-aos-delay="200">
-                                <div className="social text-white rounded">
-                                    <h3 className="p-3">Nome Música</h3>
-                                </div>
                             </div>
 
                             {/* </div> */}
