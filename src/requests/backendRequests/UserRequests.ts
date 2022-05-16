@@ -1,11 +1,11 @@
 import axios from "axios";
 import {UserProfile} from "../../models/backendRequests/UserProfile";
-import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistBasicDetails";
+import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
 
 class UserRequests {
 
-    static async getProfile(userId: string) {
-        const url = "/User/Profile/" + userId;
+    static async getProfile(sessionToken: string) {
+        const url = "/User/Profile/" + sessionToken;
 
         const options = {
             method: 'GET',

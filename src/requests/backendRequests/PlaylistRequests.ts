@@ -1,7 +1,8 @@
 import axios from "axios";
-import {UserProfile} from "../../models/backendRequests/UserProfile";
-import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistBasicDetails";
 import {GenericResult} from "../../models/apiRequests/GenericResults";
+import {EditPlaylistTitle} from "../../models/backendRequests/PlaylistRoute/EditPlaylistTitle";
+import {AddToPlaylist} from "../../models/backendRequests/PlaylistRoute/AddToPlaylist";
+import {CreatePlaylist} from "../../models/backendRequests/PlaylistRoute/CreatePlaylist";
 
 class PlaylistRequests {
 
@@ -24,7 +25,7 @@ class PlaylistRequests {
 
         const url = "/Playlist/addToPlaylist";
 
-        let data = {
+        let data: AddToPlaylist = {
             ...genericResult,
             playlistId: playlistId
         }
@@ -40,6 +41,52 @@ class PlaylistRequests {
         let addToPlaylistResponse = await axios(options);
 
     }
+
+    static async editPlaylistTitle(newTitle: string, playlistId: string, sessionToken: string) {
+
+        const url = "/Playlist/edit";
+
+        let data: EditPlaylistTitle = {
+            id: playlistId,
+            newTitle: newTitle,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+
+        // @ts-ignore
+        let addToPlaylistResponse = await axios(options);
+
+    }
+
+    static async createPlaylist(playlistTitle: string, sessionToken: string) {
+
+        const url = "/Playlist/create";
+
+        let data: CreatePlaylist = {
+            title: playlistTitle,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+
+        // @ts-ignore
+        let addToPlaylistResponse = await axios(options);
+        return addToPlaylistResponse.data;
+
+    }
+
+
 
 }
 

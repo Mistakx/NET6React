@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import '../../../styles/style.css';
 import ProfilePlaylistItem from "./ProfilePlaylistItem";
-import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistBasicDetails";
+import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
 
 function PlaylistsList(): JSX.Element {

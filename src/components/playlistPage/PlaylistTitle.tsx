@@ -6,7 +6,7 @@ import "aos/dist/aos.css";
 import TopBar from "../TopBar";
 import {useParams} from "react-router-dom";
 import axios from "axios";
-import {PlaylistDetails} from "../../models/backendRequests/PlaylistDetails";
+import {PlaylistDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistDetails";
 import PlaylistItemsList from "./PlaylistItemsList";
 import {PlaylistTitleProperties} from "../../models/components/playlistPage/PlaylistTitleProperties";
 
