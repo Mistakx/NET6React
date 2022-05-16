@@ -60,7 +60,13 @@ h2, h3, h4, h5, h6 {
 .form-control {
   box-shadow: none !important;
 }
-
+.top-stick {
+  position: sticky !important;
+  position: -webkit-sticky;
+  top: 5rem;
+  overflow-y: auto;
+  height: calc(100vh - 5rem);
+}
 /*--------------------------------------------------------------
 # Scroll bar
 --------------------------------------------------------------*/
