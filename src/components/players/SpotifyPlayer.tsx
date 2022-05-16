@@ -7,7 +7,10 @@ export function SpotifyPlayer(props: SpotifyPlayerProperties): JSX.Element {
         <div style={{
             width: "100%",
             height: "100%",
-            backgroundSize: "100% 100%",
+            backgroundSize: "auto",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundColor: "#000",
             backgroundImage: "url(" + props.thumbnailUrl + ")",
         }}>
 
