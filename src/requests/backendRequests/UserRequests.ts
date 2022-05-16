@@ -34,6 +34,31 @@ class UserRequests {
 
     }
 
+    // Registers a new user
+    static async register(username: string, name: string, email: string, password: string, userPhoto: File) {
+        const url = "/User/register";
+
+        const headers = {
+            // 'Content-Type': 'multipart/form-data'
+            // @ts-ignore
+        }
+
+        let formData = new FormData();
+        formData.append("email", email);
+        formData.append("password", password);
+        formData.append("name", name);
+        formData.append("username", username);
+        formData.append("userPhoto", userPhoto);
+        try {
+            let response = await axios.post(url, formData, {headers})
+            return response.data
+        }
+        catch (e) {
+            alert(e);
+        }
+
+    }
+
     // Logs in to the application, returns a session Id
     static async login(email: string, password: string) {
         const url = "/User/login";
@@ -59,7 +84,7 @@ class UserRequests {
     }
 
     // Logs in to the application, returns a session Id
-    static async editProfilePhoto(file: FileList) {
+    static async editProfilePhoto(file: File, sessionToken: string) {
 
         const url = "/User/editProfilePhoto";
 
@@ -68,9 +93,9 @@ class UserRequests {
             // @ts-ignore
         }
 
-
         let formData = new FormData();
-        formData.append("file", file[0]);
+        formData.append("userPhoto", file);
+        formData.append("sessionToken", file);
         let response = await axios.post(url, formData, {headers})
         return response.data
 

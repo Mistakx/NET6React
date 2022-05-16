@@ -1,13 +1,12 @@
 import React, {useRef} from "react";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
-import {useNavigate} from "react-router-dom";
 import {EditPhotoButtonProperties} from "../../../models/components/profilePage/EditPhotoButtonProperties";
 
 export function EditPhotoButton(props: EditPhotoButtonProperties) {
 
     const fileInputRef = useRef();
 
-    const navigate = useNavigate()
+    const sessionToken = sessionStorage.getItem("sessionToken");
 
     return (
         <div>
@@ -23,13 +22,12 @@ export function EditPhotoButton(props: EditPhotoButtonProperties) {
                 ref={fileInputRef}
                 // @ts-ignore
                 onChange={async (e) => {
-                    const file = e.target.files
-                    if (file) {
-                        props.setUpdatedUserPhotoUrl(await UserRequests.editProfilePhoto(file))
+                    if (e.target.files && sessionToken) {
+                        const file = e.target.files[0]
+                        props.setUpdatedUserPhotoUrl(await UserRequests.editProfilePhoto(file, sessionToken))
                     } else {
                         alert("No file selected")
                     }
-
                 }}
                 multiple={false}
                 type="file"
