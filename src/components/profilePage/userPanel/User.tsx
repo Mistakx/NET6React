@@ -12,7 +12,9 @@ function User(): JSX.Element {
     useEffect(() => {
 
         (async () => {
-            setProfile(await UserRequests.getProfile(process.env.REACT_APP_USER_ID as string));
+            const sessionToken = window.sessionStorage.getItem("sessionToken");
+            if (sessionToken) setProfile(await UserRequests.getProfile(sessionToken))
+            else alert("No session token found.")
         })()
     }, [updatedUserPhotoUrl]);
 
