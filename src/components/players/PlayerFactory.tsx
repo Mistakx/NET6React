@@ -1,12 +1,12 @@
 import React from "react";
 import {MultiPlatformPlayer} from "./MultiPlatformPlayer";
-import {GenericResult} from "../../models/apiRequests/GenericResults";
+import {GeneralizedResult} from "../../models/apiRequests/GenericResults";
 import {TwitchClipPlayer} from "./TwitchClipPlayer";
 import {SpotifyPlayer} from "./SpotifyPlayer";
 
 export class PlayerFactory {
 
-    public static createPlayer(item: GenericResult, setPlayerStarted: React.Dispatch<React.SetStateAction<boolean>>) {
+    public static createPlayer(item: GeneralizedResult, setPlayerStarted: React.Dispatch<React.SetStateAction<boolean>>) {
 
         switch (item.playerFactoryName) {
 

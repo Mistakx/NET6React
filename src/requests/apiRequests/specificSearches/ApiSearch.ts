@@ -1,6 +1,6 @@
 import {Platform} from "../platforms/Platform";
 import {
-    GenericLivestreamResult, GenericResult,
+    GenericLivestreamResult, GeneralizedResult,
     GenericTrackResult,
     GenericVideoResult
 } from "../../../models/apiRequests/GenericResults";
@@ -11,6 +11,6 @@ export abstract class ApiSearch {
 
     abstract getButtonText(): string
 
-    abstract getSearchResults(searchQuery: string, page: number, limit: number, accessToken?: string): Promise<GenericResult[]>
+    abstract getSearchResults(searchQuery: string, page: number, limit: number, accessToken?: string): Promise<GeneralizedResult[]>
 
 }

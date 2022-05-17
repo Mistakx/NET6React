@@ -9,7 +9,7 @@ import PlatformDropdownButton from "./PlatformDropdownButton";
 import PlatformDropdownList from "./PlatformDropdownList";
 import PlatformDropdownStore from "../../../stores/PlatformDropdownStore";
 import {
-    GenericResult,
+    GeneralizedResult,
 } from "../../../models/apiRequests/GenericResults";
 
 function SearchBar(props: SearchBarProperties): JSX.Element {
@@ -40,7 +40,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
     async function searchPlatformItems(chosenSearchQuery: string) {
 
-        let searchList: GenericResult[] = [];
+        let searchList: GeneralizedResult[] = [];
 
         if (selectedSearch.getPlatform().getName() === "Spotify") {
             searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40, props.spotifyAuthenticator.current)

@@ -7,16 +7,29 @@ import {EditPhotoButton} from "./EditPhotoButton";
 function User(): JSX.Element {
 
     const [userProfile, setProfile] = React.useState<UserProfile>();
-    const [updatedUserPhotoUrl, setUpdatedUserPhotoUrl] = React.useState<string>();
+    const [updatedUserPhotoResponse, setUpdatedUserPhotoResponse] = React.useState<string | null>(null);
 
     useEffect(() => {
-
         (async () => {
             const sessionToken = window.sessionStorage.getItem("sessionToken");
             if (sessionToken) setProfile(await UserRequests.getProfile(sessionToken))
             else alert("No session token found.")
         })()
-    }, [updatedUserPhotoUrl]);
+    }, []);
+
+    useEffect(() => {
+        if (updatedUserPhotoResponse) {
+            (async () => {
+                console.log("DEBUG")
+                console.log(updatedUserPhotoResponse)
+                const sessionToken = window.sessionStorage.getItem("sessionToken");
+                if (sessionToken) {
+                    setProfile(await UserRequests.getProfile(sessionToken))
+                    setUpdatedUserPhotoResponse(null)
+                } else alert("No session token found.")
+            })()
+        }
+    }, [updatedUserPhotoResponse]);
 
     return (
         <div className="col-md-4 position-relative">
@@ -29,7 +42,7 @@ function User(): JSX.Element {
                          width="250"
                          alt=""
                          className="img-fluid rounded-circle img-centered"/>
-                    <EditPhotoButton setUpdatedUserPhotoUrl={setUpdatedUserPhotoUrl}/>
+                    <EditPhotoButton setUpdatedUserPhotoResponse={setUpdatedUserPhotoResponse}/>
                 </div>
                 <div className="options-top mr-5 mb-5">
                     <button className="btn text-white">

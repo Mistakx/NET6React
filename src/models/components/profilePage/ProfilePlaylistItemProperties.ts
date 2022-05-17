@@ -3,5 +3,5 @@ import React from "react";
 
 export interface ProfilePlaylistItemProperties {
     basicDetails: PlaylistBasicDetails
-    setDeletePlaylistResponse: React.Dispatch<React.SetStateAction<string>>
+    setDeletePlaylistResponse: React.Dispatch<React.SetStateAction<string | null>>
 }

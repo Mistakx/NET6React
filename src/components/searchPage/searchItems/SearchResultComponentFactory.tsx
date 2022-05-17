@@ -1,5 +1,5 @@
 import {
-    GenericLivestreamResult, GenericResult,
+    GenericLivestreamResult, GeneralizedResult,
     GenericTrackResult,
     GenericVideoResult
 } from "../../../models/apiRequests/GenericResults";
@@ -9,7 +9,7 @@ import TrackSearchItem from "./TrackSearchItem";
 
 class SearchResultComponentFactory {
 
-    static create(results: GenericResult[]) {
+    static create(results: GeneralizedResult[]) {
 
         let searchResultItems: JSX.Element[] = []
 

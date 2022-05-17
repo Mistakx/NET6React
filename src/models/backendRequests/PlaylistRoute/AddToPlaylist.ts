@@ -1,7 +1,7 @@
 // /Playlist/addToPlaylist
-import {GenericResult} from "../../apiRequests/GenericResults";
+import {GeneralizedResult} from "../../apiRequests/GenericResults";
 
-export interface AddToPlaylist extends GenericResult {
+export interface AddToPlaylist extends GeneralizedResult {
     playlistId: string
 }
 

@@ -7,7 +7,7 @@ import UserRequests from "../../../requests/backendRequests/UserRequests";
 function PlaylistsList(): JSX.Element {
 
     const [userPlaylists, setUserPlaylists] = React.useState<PlaylistBasicDetails[]>();
-    const [deletePlaylistResponse, setDeletePlaylistResponse] = React.useState("");
+    const [deletePlaylistResponse, setDeletePlaylistResponse] = React.useState<string | null>(null);
 
     useEffect(() => {
         (async () => {
@@ -23,7 +23,7 @@ function PlaylistsList(): JSX.Element {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
                     setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
-                    setDeletePlaylistResponse("");
+                    setDeletePlaylistResponse(null);
                 }
                 else alert("No session token found.")
             })()

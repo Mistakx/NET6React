@@ -1,15 +1,17 @@
 import axios from "axios";
-import {GenericResult} from "../../models/apiRequests/GenericResults";
+import {GeneralizedResult} from "../../models/apiRequests/GenericResults";
 import {EditPlaylistTitle} from "../../models/backendRequests/PlaylistRoute/EditPlaylistTitle";
 import {AddToPlaylist} from "../../models/backendRequests/PlaylistRoute/AddToPlaylist";
 import {CreatePlaylist} from "../../models/backendRequests/PlaylistRoute/CreatePlaylist";
 import {DeletePlaylist} from "../../models/backendRequests/PlaylistRoute/DeletePlaylist";
 import {DeleteGeneralizedResult} from "../../models/backendRequests/PlaylistRoute/DeleteGeneralizedResult";
+import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import {PlaylistGeneralizedResults} from "../../models/backendRequests/PlaylistRoute/PlaylistGeneralizedResults";
 
 class PlaylistRequests {
 
-    static async getPlaylist(playlistId: string) {
-        const url = "/Playlist/" + playlistId;
+    static async getPlaylistGeneralizedResults(playlistId: string) {
+        const url = "/Playlist/getGeneralizedResults/" + playlistId;
 
         const options = {
             method: 'GET',
@@ -18,12 +20,25 @@ class PlaylistRequests {
 
         // @ts-ignore
         let playlistResponse = await axios(options);
-        let playlist: GenericResult[] = playlistResponse.data;
-        return playlist;
+        return playlistResponse.data as PlaylistGeneralizedResults;
 
     }
 
-    static async addToPlaylist(playlistId: string, genericResult: GenericResult) {
+    static async getPlaylistBasicDetails(playlistId: string) {
+        const url = "/Playlist/getBasicDetails/" + playlistId;
+
+        const options = {
+            method: 'GET',
+            url: url,
+        };
+
+        // @ts-ignore
+        let playlistResponse = await axios(options);
+        return playlistResponse.data as PlaylistBasicDetails;
+
+    }
+
+    static async addToPlaylist(playlistId: string, genericResult: GeneralizedResult) {
 
         const url = "/Playlist/addToPlaylist";
 
@@ -41,7 +56,7 @@ class PlaylistRequests {
 
         // @ts-ignore
         let addToPlaylistResponse = await axios(options);
-        return addToPlaylistResponse.data;
+        return addToPlaylistResponse.data as string;
     }
 
     static async editPlaylistTitle(newTitle: string, playlistId: string, sessionToken: string) {
@@ -63,7 +78,7 @@ class PlaylistRequests {
 
         // @ts-ignore
         let editPlaylistTitleResponse = await axios(options);
-        return editPlaylistTitleResponse.data;
+        return editPlaylistTitleResponse.data as string;
 
     }
 
@@ -85,7 +100,7 @@ class PlaylistRequests {
 
         // @ts-ignore
         let addToPlaylistResponse = await axios(options);
-        return addToPlaylistResponse.data;
+        return addToPlaylistResponse.data as string;
 
     }
 
@@ -107,7 +122,7 @@ class PlaylistRequests {
 
         // @ts-ignore
         let addToPlaylistResponse = await axios(options);
-        return addToPlaylistResponse.data;
+        return addToPlaylistResponse.data as string;
 
     }
 
@@ -130,7 +145,30 @@ class PlaylistRequests {
 
         // @ts-ignore
         let deleteGeneralizedResultResponse = await axios(options);
-        return deleteGeneralizedResultResponse.data;
+        return deleteGeneralizedResultResponse.data as string;
+
+    }
+
+    static async setAsCover(playlistId: string, generalizedResultDatabaseId: string, sessionToken: string) {
+
+        const url = "/Playlist/deleteGeneralizedResult";
+
+        let data: DeleteGeneralizedResult = {
+            playlistId: playlistId,
+            generalizedResultDatabaseId: generalizedResultDatabaseId,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+
+        // @ts-ignore
+        let deleteGeneralizedResultResponse = await axios(options);
+        return deleteGeneralizedResultResponse.data as string;
 
     }
 

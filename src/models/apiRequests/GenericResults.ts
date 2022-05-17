@@ -1,7 +1,7 @@
 /**
  * A platform-agnostic result, with no API specific details.
  */
-export interface GenericResult {
+export interface GeneralizedResult {
     interface: string
     id: string
     title: string
@@ -16,7 +16,7 @@ export interface GenericResult {
 /**
  * A platform-agnostic video result, with no API specific details.
  */
-export interface GenericVideoResult extends GenericResult {
+export interface GenericVideoResult extends GeneralizedResult {
     interface: "GenericVideoResult"
     // durationInSeconds: number
     // views: number
@@ -25,7 +25,7 @@ export interface GenericVideoResult extends GenericResult {
 /**
  * A platform-agnostic track result, with no API specific details.
  */
-export interface GenericTrackResult extends GenericResult {
+export interface GenericTrackResult extends GeneralizedResult {
     interface: "GenericTrackResult"
     albumName: string
 }
@@ -33,7 +33,7 @@ export interface GenericTrackResult extends GenericResult {
 /**
  * A platform-agnostic livestream result, with no API specific details.
  */
-export interface GenericLivestreamResult extends GenericResult{
+export interface GenericLivestreamResult extends GeneralizedResult{
     interface: "GenericLivestreamResult"
     gameName: string // Name of the game being played on the stream.
 }
