@@ -12,12 +12,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap');
 /*--------------------------------------------------------------
+# Colors
+--------------------------------------------------------------*/
+:root {
+  --text: #f2f3f5;
+
+  --danger: #9B1D1D;
+  --dangerHover: #A43232;
+
+  --success: #278213;
+  --successHover: #3B8D28;
+
+  --warning: #BA9E03;
+  --warningHover: #C0A71A;
+
+  --primary: #1355AD;
+  --primaryHover: #1970E3;
+
+  --dark: #071E3D;
+}
+
+
+/*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
 body {
   font-family: 'Baloo 2', cursive;
   background-color: #071E3D;
-  color: #f2f3f5;
+  color: var(--text);
 
   /*Unselectable text*/
   -webkit-user-select: none; /* Safari */
@@ -45,9 +67,74 @@ h1 {
 h2, h3, h4, h5, h6 {
   font-family: 'Baloo 2', cursive;
 }
-
+/*--------------------------------------------------------------
+# HoverRiding Bootstrap
+--------------------------------------------------------------*/
 .btn {
   box-shadow: none !important;
+  color: var(--text) ;
+}
+
+.text-danger {
+  color: var(--danger);
+}
+
+.btn-danger,
+.bg-danger {
+  background-color: var(--danger) ;
+  border-color: var(--danger) ;
+}
+
+.btn-danger:hover {
+  background-color: var(--dangerHover) ;
+}
+
+.text-success {
+  color: var(--success);
+}
+
+.btn-success,
+.bg-success {
+  background-color: var(--success) ;
+  border-color: var(--success) ;
+}
+
+.btn-success:hover {
+  background-color: var(--successHover) ;
+}
+
+.text-warning {
+  color: var(--warning);
+}
+
+.btn-warning,
+.bg-warning {
+  background-color: var(--warning) ;
+  border-color: var(--warning) ;
+}
+
+.btn-warning:hover {
+  background-color: var(--warningHover) ;
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.btn-primary,
+.bg-primary,
+.btn-outline-primary:hover {
+  background-color: var(--primary) ;
+  border-color: var(--primary) ;
+}
+.btn-outline-primary {
+  border-color: var(--primary) ;
+}
+
+.btn-outline-primary:hover,
+.btn-primary:hover {
+  background-color: var(--primaryHover) ;
+  border-color: var(--primaryHover) ;
 }
 
 .btn-link {
@@ -55,7 +142,7 @@ h2, h3, h4, h5, h6 {
 }
 
 .btn-link:hover {
-  color: #f2f3f5;
+  color: var(--text);
 }
 
 /*--------------------------------------------------------------
@@ -172,7 +259,7 @@ h2, h3, h4, h5, h6 {
 }
 #hero p span {
   font-family: 'Baloo 2', cursive;
-  color: #f2f3f5;
+  color: var(--text);
   letter-spacing: 1px;
 }
 #hero .social-links {
@@ -280,7 +367,6 @@ section {
 
 .icon-box .btn {
   font-size: 32px;
-  color: #f2f3f5;
   padding:0;
   margin: 0;
 }
@@ -295,7 +381,7 @@ section {
   --------------------------------------------------------------*/
   .modal-content {
     background-color: #0D3A76;
-    color: #fff;
+    color: var(--text);
   }
   .modal-header  {
     background-color: #f2f3f5;

@@ -18,7 +18,7 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
                 <div className="col-2">
                     <span className="badge"><i className='bx bx-menu h4'></i></span>
                 </div>
-                <div className="col-8 p-3"
+                <div className="col-8 p-3 clickable"
                     style={{backgroundSize: "100% auto", backgroundRepeat: "no-repeat" ,backgroundPosition: "center", backgroundImage: "url(" + props.genericResult.thumbnailUrl + ")"}}
                     onClick={() => {
                         setPlayingGenericResult(props.genericResult)

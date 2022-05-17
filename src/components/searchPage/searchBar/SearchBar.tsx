@@ -54,8 +54,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
     }
 
     return (
-
-        <div className="form-wrapper">
+        <div className="form-wrapper top-stick" >
 
             <SearchLabel/>
 
@@ -72,7 +71,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
                     <SearchForm spotifyAuthenticator={props.spotifyAuthenticator}
                                 twitchAuthenticator={props.twitchAuthenticator}
-                    />
+                                />
 
                     <button className={"btn btn-search " + selectedSearch.getPlatform().getColorClass()} type="submit" id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
                 </div>

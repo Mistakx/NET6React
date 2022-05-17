@@ -18,10 +18,9 @@ function PlaylistPlayer(): JSX.Element {
 
     return (
 
-        <div className="col-lg-8 col-12" id="player">
+        <div className="col-lg-8 col-md-8 col-12" id="player">
 
-            <div style={{position: "relative"}}
-                className="align-items-stretch"
+            <div className="align-items-stretch position-relative"
                 data-aos="fade-right" data-aos-delay="100">
 
                 <div className="ratio ratio-16x9">
@@ -39,6 +38,11 @@ function PlaylistPlayer(): JSX.Element {
                 {/*    </button>*/}
                 {/*</div>*/}
 
+            </div>
+
+            
+            <div className="social text-white rounded mt-4"  id="titulo" data-aos="fade-right" data-aos-delay="200">
+                <h3 className="p-3">Nome Música</h3>
             </div>
         </div>
 

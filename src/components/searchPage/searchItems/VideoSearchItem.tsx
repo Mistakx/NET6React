@@ -17,9 +17,9 @@ function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
 
     return (
 
-        <div className="col-lg-3 col-md-4 col-sm-4 col-6 position-relative scale" data-aos="fade-up">
+        <div className="result col-lg-3 col-md-4 col-sm-4 col-6 position-relative" data-aos="fade-up">
 
-            <div className="clickable card bg-dark"
+            <div className="card scale clickable"
                  onClick={() => {
                      setCurrentPlayerToClickedItem()
                  }}

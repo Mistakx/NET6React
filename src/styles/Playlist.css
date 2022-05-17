@@ -111,3 +111,19 @@
   margin-bottom: 0;
 }
 
+.form-control {
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+
+.form-group .form-control, 
+.form-group .form-control::placeholder {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+
+.form-group textarea {
+  resize: none;
+}
