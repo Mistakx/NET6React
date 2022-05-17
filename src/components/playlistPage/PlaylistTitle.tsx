@@ -13,7 +13,7 @@ function PlaylistPage(props: PlaylistTitleProperties): JSX.Element {
 
             <div className="input-group">
                 <input type="text" className="form-control" placeholder="Change playlist name" value={props.title}/>
-                <button className="btn btn-success">OK</button>
+                <button className="btn btn-success"><i className='bx bx-check h5'></i></button>
             </div>
 
             <h2 className="text-white text-center text-wrap position-absolute top-50 start-50 translate-middle">

@@ -8,7 +8,7 @@ function PlaylistItemDropdown(props: PlaylistItemDropdownProperties): JSX.Elemen
 
     return (
 
-        <ul className="dropdown-menu">
+        <ul className="dropdown-menu dropdown-menu-dark">
             <li>
                 <div className="dropdown-item">Set as cover</div>
             </li>

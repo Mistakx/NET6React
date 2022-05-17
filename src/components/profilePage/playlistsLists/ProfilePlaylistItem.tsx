@@ -44,7 +44,7 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
                                 else alert("You must be logged in to delete a playlist.")
                             }}
                             >
-                                <div className="dropdown-item">Delete</div>
+                                <div className="dropdown-item text-danger">Delete</div>
                             </li>
                         </ul>
                     </div>
