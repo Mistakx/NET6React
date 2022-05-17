@@ -1,14 +1,10 @@
 import '../../../styles/SearchPage.css';
 import React, {useEffect} from "react";
-import AOS from "aos";
 import "aos/dist/aos.css";
 import {Modal} from "react-bootstrap";
-import {PlaylistsModalProperties} from "../../../models/components/searchPage/searchItems/PlaylistsModalProperties";
-import SearchedListStore from "../../../stores/SearchedListStore";
 import PlaylistsModalStore from "../../../stores/PlaylistsModalStore";
-import {PlaylistDetails} from "../../../models/backendRequests/PlaylistDetails";
 import axios from "axios";
-import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistBasicDetails";
+import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
 import PlaylistItemsList from "./PlaylistItemsList";
 
 function PlaylistsModal(): JSX.Element {
@@ -37,7 +33,9 @@ function PlaylistsModal(): JSX.Element {
     useEffect(() => {
         if (!userPlaylists) {
             (async () => {
-                setUserPlaylists(await getPlaylists(process.env.REACT_APP_USER_ID as string));
+                const sessionToken = window.sessionStorage.getItem("sessionToken");
+                if (sessionToken) setUserPlaylists(await getPlaylists(sessionToken));
+                else alert("No session token found.")
             })()
         }
     }, [userPlaylists]);

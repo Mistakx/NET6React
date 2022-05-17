@@ -2,6 +2,7 @@ import React from 'react';
 import '../../../styles/style.css';
 import {ProfilePlaylistItemProperties} from "../../../models/components/profilePage/ProfilePlaylistItemProperties";
 import {useNavigate} from "react-router-dom";
+import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
 
 function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
@@ -32,6 +33,19 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
                         <ul className="dropdown-menu dropdown-menu-dark">
                             <li><div className="dropdown-item">Change name</div></li>
                             <li><div className="dropdown-item">Toggle visibility</div></li>
+                            <li
+                            onClick={async () => {
+                                const sessionToken = sessionStorage.getItem("sessionToken")
+                                if (sessionToken) {
+                                    const response = await PlaylistRequests.deletePlaylist(props.basicDetails.id, sessionToken)
+                                    alert(response)
+                                    props.setDeletePlaylistResponse(response)
+                                }
+                                else alert("You must be logged in to delete a playlist.")
+                            }}
+                            >
+                                <div className="dropdown-item">Delete</div>
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -9,25 +9,27 @@ function RegisterPage(): JSX.Element {
 
     const navigate = useNavigate()
 
-    const [loginEmail, setLoginEmail] = useState("")
-    const [loginPassword, setLoginPassword] = useState("")
+    const [userPhoto, setUserPhoto] = useState<File>()
+    const [name, setName] = useState("")
+    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [confirmationPassword, setConfirmationPassword] = useState("")
     const [sessionToken, setSessionToken] = useState<string>()
 
     useEffect(() => {
         AOS.init();
-        // AOS.refresh();
-        // if (window.sessionStorage.getItem("sessionToken")) {
-        //     navigate("/home")
-        // }
-    }, []);
+        if (window.sessionStorage.getItem("sessionToken")) {
+            navigate("/home")
+        }
+    }, [])
 
-    // useEffect(() => {
-    //     if (sessionToken) {
-    //         window.sessionStorage.setItem("sessionToken", sessionToken)
-    //         navigate("/home")
-    //     }
-    // }, [sessionToken]);
-
+    useEffect(() => {
+        if (sessionToken) {
+            window.sessionStorage.setItem("sessionToken", sessionToken)
+            navigate("/home")
+        }
+    }, [sessionToken]);
 
     return (
 
@@ -42,70 +44,99 @@ function RegisterPage(): JSX.Element {
                             <form onSubmit={
                                 async (e) => {
                                     e.preventDefault()
-                                    let sessionToken = await UserRequests.login(loginEmail, loginPassword)
-                                    setSessionToken(sessionToken)
+                                    if (password !== confirmationPassword) {
+                                        alert("Passwords do not match.")
+                                    } else {
+                                        await UserRequests.register(username, name, email, password, userPhoto!)
+                                        let sessionToken = await UserRequests.login(email, password)
+                                        setSessionToken(sessionToken)
+                                    }
+
                                 }
                             }>
 
-                            <div className="form-group" data-aos="zoom-in" data-aos-delay="100">
-                                <input type="file" className="form-control add-photo" placeholder="Chose photo"
-                                    onChange={
-                                        (e) => {
-                                            setLoginEmail(e.target.value)
-                                        }
-                                    }/>
-                            </div>
+                                {/*User photo*/}
+                                <div className="form-group" data-aos="zoom-in" data-aos-delay="100">
+                                    <input type="file" className="form-control add-photo" placeholder="Choose photo"
+                                           onChange={
+                                               (e) => {
+                                                   if (e.target.files) {
+                                                       setUserPhoto(e.target.files[0])
+                                                   } else {
+                                                       alert("No file selected.")
+                                                   }
+                                               }
+                                           }/>
+                                </div>
 
-                            <div className="form-group" data-aos="zoom-in" data-aos-delay="200">
-                                <input type="text" className="form-control form-control-lg" placeholder="Name"
-                                    onChange={
-                                        (e) => {
-                                            setLoginEmail(e.target.value)
-                                        }
-                                    }>
-                                </input>
-                            </div>
+                                {/*Username*/}
+                                <div className="form-group" data-aos="zoom-in" data-aos-delay="200">
+                                    <input type="text" className="form-control form-control-lg" placeholder="User Name"
+                                           onChange={
+                                               (e) => {
+                                                   setUsername(e.target.value)
+                                               }
+                                           }>
+                                    </input>
+                                </div>
 
-                            <div className="form-group" data-aos="zoom-in" data-aos-delay="300">
-                                <input type="text" className="form-control form-control-lg" placeholder="Email"
-                                    onChange={
-                                        (e) => {
-                                            setLoginEmail(e.target.value)
-                                        }
-                                    }>
-                                </input>
-                            </div>
+                                {/*Name*/}
+                                <div className="form-group" data-aos="zoom-in" data-aos-delay="200">
+                                    <input type="text" className="form-control form-control-lg" placeholder="Name"
+                                           onChange={
+                                               (e) => {
+                                                   setName(e.target.value)
+                                               }
+                                           }>
+                                    </input>
+                                </div>
 
-                            <div className="form-group" data-aos="zoom-in" data-aos-delay="400">
-                                <input type="password" className="form-control form-control-lg" placeholder="Password"
-                                    onChange={
-                                        (e) => {
-                                            setLoginPassword(e.target.value)
-                                        }
-                                    }>
-                                </input>
-                            </div>
+                                {/*Email*/}
+                                <div className="form-group" data-aos="zoom-in" data-aos-delay="300">
+                                    <input type="text" className="form-control form-control-lg" placeholder="Email"
+                                           onChange={
+                                               (e) => {
+                                                   setEmail(e.target.value)
+                                               }
+                                           }>
+                                    </input>
+                                </div>
 
-                            <div className="form-group" data-aos="zoom-in" data-aos-delay="500">
-                                <input type="password" className="form-control form-control-lg" placeholder="Confirm password"
-                                    onChange={
-                                        (e) => {
-                                            setLoginPassword(e.target.value)
-                                        }
-                                    }>
-                                </input>
-                            </div>
+                                {/*Password*/}
+                                <div className="form-group" data-aos="zoom-in" data-aos-delay="400">
+                                    <input type="password" className="form-control form-control-lg"
+                                           placeholder="Password"
+                                           onChange={
+                                               (e) => {
+                                                   setPassword(e.target.value)
+                                               }
+                                           }>
+                                    </input>
+                                </div>
 
-                            <div className="form-group d-grid" data-aos="zoom-in" data-aos-delay="700">
-                                <button className="btn btn-light">Register</button>
-                                <button className="btn btn-link"
-                                    onClick={()=>{
-                                        navigate("/");
-                                    }}
-                                >
-                                    Already have an account
-                                </button>
-                            </div>
+                                {/*Confirm password*/}
+                                <div className="form-group" data-aos="zoom-in" data-aos-delay="500">
+                                    <input type="password" className="form-control form-control-lg"
+                                           placeholder="Confirm password"
+                                           onChange={
+                                               (e) => {
+                                                   setConfirmationPassword(e.target.value)
+                                               }
+                                           }>
+                                    </input>
+                                </div>
+
+                                {/*Register button and login page link*/}
+                                <div className="form-group d-grid" data-aos="zoom-in" data-aos-delay="700">
+                                    <button className="btn btn-light">Register</button>
+                                    <button className="btn btn-link"
+                                            onClick={() => {
+                                                navigate("/");
+                                            }}
+                                    >
+                                        Already have an account
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -117,4 +148,5 @@ function RegisterPage(): JSX.Element {
 
 }
 
+// TODO: Add validation
 export default RegisterPage;

@@ -1,6 +1,6 @@
 // /Playlist/{playlistId}
-import {UserProfile} from "./UserProfile";
-import {GenericResult} from "../apiRequests/GenericResults";
+import {UserProfile} from "../UserProfile";
+import {GenericResult} from "../../apiRequests/GenericResults";
 
 export interface PlaylistDetails {
     id: string

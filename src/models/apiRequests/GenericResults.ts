@@ -10,6 +10,7 @@ export interface GenericResult {
     creator: string
     playerFactoryName: string
     platformPlayerUrl?: string
+    databaseId?: string
 }
 
 /**

@@ -15,7 +15,6 @@ function LoginPage(): JSX.Element {
 
     useEffect(() => {
         AOS.init();
-        // AOS.refresh();
         if (window.sessionStorage.getItem("sessionToken")) {
             navigate("/home")
         }

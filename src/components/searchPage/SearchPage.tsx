@@ -10,7 +10,6 @@ function SearchPage(): JSX.Element {
 
     useEffect(() => {
         AOS.init();
-        AOS.refresh();
     }, []);
 
     return (

@@ -6,7 +6,7 @@ import "aos/dist/aos.css";
 import TopBar from "../TopBar";
 import {useParams} from "react-router-dom";
 import axios from "axios";
-import {PlaylistDetails} from "../../models/backendRequests/PlaylistDetails";
+import {PlaylistDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistDetails";
 import PlaylistItemsList from "./PlaylistItemsList";
 import PlaylistTitle from "./PlaylistTitle";
 import PlaylistPlayer from "./PlaylistPlayer";
@@ -47,13 +47,9 @@ function PlaylistPage(): JSX.Element {
 
     useEffect(() => {
         AOS.init();
-        AOS.refresh();
-    }, []);
-
-    useEffect(() => {
         setPlayingGenericResult(null)
         setPlayingGenericResultPlaylistIndex(null)
-    },[])
+    }, []);
 
     return (
 
@@ -78,7 +74,7 @@ function PlaylistPage(): JSX.Element {
 
                                     <PlaylistTitle title={playlistInformation?.title}/>
 
-                                    <PlaylistItemsList playlists={playlistInformation?.contents}/>
+                                    <PlaylistItemsList playlistId={playlistInformation?.id} playlistItems={playlistInformation?.contents}/>
 
                                 </div>
 
