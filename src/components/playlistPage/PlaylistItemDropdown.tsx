@@ -20,8 +20,7 @@ function PlaylistItemDropdown(props: PlaylistItemDropdownProperties): JSX.Elemen
                     const response = await PlaylistRequests.deleteGeneralizedResult(props.playlistId!, props.genericResult.databaseId!, sessionToken)
                     props.setDeleteGeneralizedResultResponse(response)
                     alert(response)
-                }
-                alert("You must be logged in to delete a result.")
+                } else alert("You must be logged in to delete a result.")
             }}>
                 <div className="dropdown-item text-danger">Remove</div>
             </li>

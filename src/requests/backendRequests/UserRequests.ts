@@ -83,7 +83,6 @@ class UserRequests {
 
     }
 
-    // Logs in to the application, returns a session Id
     static async editProfilePhoto(file: File, sessionToken: string) {
 
         const url = "/User/editProfilePhoto";
@@ -95,7 +94,7 @@ class UserRequests {
 
         let formData = new FormData();
         formData.append("userPhoto", file);
-        formData.append("sessionToken", file);
+        formData.append("sessionToken", sessionToken);
         let response = await axios.post(url, formData, {headers})
         return response.data
 

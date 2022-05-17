@@ -24,7 +24,9 @@ export function EditPhotoButton(props: EditPhotoButtonProperties) {
                 onChange={async (e) => {
                     if (e.target.files && sessionToken) {
                         const file = e.target.files[0]
-                        props.setUpdatedUserPhotoUrl(await UserRequests.editProfilePhoto(file, sessionToken))
+                        const response = await UserRequests.editProfilePhoto(file, sessionToken)
+                        props.setUpdatedUserPhotoResponse(response)
+                        alert(response)
                     } else {
                         alert("No file selected")
                     }

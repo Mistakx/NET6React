@@ -1,5 +1,5 @@
 import React from "react";
 
 export interface EditPhotoButtonProperties {
-    setUpdatedUserPhotoUrl: React.Dispatch<React.SetStateAction<string | undefined>>
+    setUpdatedUserPhotoResponse: React.Dispatch<React.SetStateAction<string | null>>
 }

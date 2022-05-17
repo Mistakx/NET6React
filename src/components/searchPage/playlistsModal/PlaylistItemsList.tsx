@@ -8,7 +8,7 @@ import AddPlaylistForm from "./AddPlaylistForm";
 
 function PlaylistItemsList(): JSX.Element {
 
-    const [newPlaylistResponse, setNewPlaylistResponse] = React.useState("");
+    const [newPlaylistResponse, setNewPlaylistResponse] = React.useState<string | null>(null);
     const [userPlaylists, setUserPlaylists] = React.useState<PlaylistBasicDetails[]>();
 
     useEffect(() => {
@@ -20,13 +20,15 @@ function PlaylistItemsList(): JSX.Element {
     }, []);
 
     useEffect(() => {
-        (async () => {
-            const sessionToken = window.sessionStorage.getItem("sessionToken");
-            if (sessionToken) {
-                setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
-                setNewPlaylistResponse("");
-            } else alert("No session token found.")
-        })()
+        if (newPlaylistResponse) {
+            (async () => {
+                const sessionToken = window.sessionStorage.getItem("sessionToken");
+                if (sessionToken) {
+                    setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+                    setNewPlaylistResponse(null);
+                } else alert("No session token found.")
+            })()
+        }
     }, [newPlaylistResponse]);
 
     let playlistItemsList: JSX.Element[] = [];
@@ -40,7 +42,6 @@ function PlaylistItemsList(): JSX.Element {
     }
 
     return (
-
         <ul className="list-group">
             <AddPlaylistForm setNewPlaylistResponse={setNewPlaylistResponse}/>
             {playlistItemsList}
