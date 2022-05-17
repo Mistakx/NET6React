@@ -7,10 +7,17 @@ import {PlaylistItemsListProperties} from "../../models/components/playlistPage/
 
 function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
 
+    const [deleteGeneralizedResultResponse, setDeleteGeneralizedResultResponse] = React.useState("");
+
     let playlistItemsList: JSX.Element[] = []
-    if (props.playlists) {
-        for (const currentPlaylistItem of props.playlists) {
-            playlistItemsList.push(<PlaylistItem genericResult={currentPlaylistItem}/>)
+    if (props.playlistItems) {
+        for (const currentPlaylistItem of props.playlistItems) {
+            playlistItemsList.push(
+                <PlaylistItem
+                    playlistId={props.playlistId}
+                    genericResult={currentPlaylistItem}
+                    setDeleteGeneralizedResultResponse={setDeleteGeneralizedResultResponse}
+                />)
         }
     }
 

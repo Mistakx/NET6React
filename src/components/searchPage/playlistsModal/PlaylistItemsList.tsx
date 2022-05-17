@@ -12,11 +12,21 @@ function PlaylistItemsList(): JSX.Element {
     const [userPlaylists, setUserPlaylists] = React.useState<PlaylistBasicDetails[]>();
 
     useEffect(() => {
-            (async () => {
-                const sessionToken = window.sessionStorage.getItem("sessionToken");
-                if (sessionToken) setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
-                else alert("No session token found.")
-            })()
+        (async () => {
+            const sessionToken = window.sessionStorage.getItem("sessionToken");
+            if (sessionToken) setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+            else alert("No session token found.")
+        })()
+    }, []);
+
+    useEffect(() => {
+        (async () => {
+            const sessionToken = window.sessionStorage.getItem("sessionToken");
+            if (sessionToken) {
+                setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+                setNewPlaylistResponse("");
+            } else alert("No session token found.")
+        })()
     }, [newPlaylistResponse]);
 
     let playlistItemsList: JSX.Element[] = [];

@@ -47,13 +47,9 @@ function PlaylistPage(): JSX.Element {
 
     useEffect(() => {
         AOS.init();
-        AOS.refresh();
-    }, []);
-
-    useEffect(() => {
         setPlayingGenericResult(null)
         setPlayingGenericResultPlaylistIndex(null)
-    },[])
+    }, []);
 
     return (
 
@@ -78,7 +74,7 @@ function PlaylistPage(): JSX.Element {
 
                                     <PlaylistTitle title={playlistInformation?.title}/>
 
-                                    <PlaylistItemsList playlists={playlistInformation?.contents}/>
+                                    <PlaylistItemsList playlistId={playlistInformation?.id} playlistItems={playlistInformation?.contents}/>
 
                                 </div>
 
