@@ -34,11 +34,32 @@ function HomePage(): JSX.Element {
                     <a href="#" className="linkedin"><i className="bx bxl-linkedin"></i></a>
                 </div>
 
-                {/* <div className="col-md-4 offset-md-2 position-absolute top-50 start-50 translate-middle logo">
-                    <img src={logo} alt="" />
-                </div> */}
+                <div className="col-md-4 offset-md-2 position-absolute top-50 start-50 translate-middle logo">
+                    {/* <img src={logo} alt="" /> */}
+
+                    <div className="row">
+                        <div className="col-6 p-5 bg-danger">s</div>
+                        <div className="col-6 p-5 bg-success">f</div>
+                        <div className="col-6 p-5 bg-warning">f</div>
+                        <div className="col-6 p-5 bg-primary">f</div>
+
+
+                        
+                    </div>
+
+                </div>
 
             </div>
+
+            <div className="toast align-items-center show bg-danger position-absolute top-0 end-0 m-5" role="alert" aria-live="assertive" aria-atomic="true" data-aos="fade-left" data-aos-duration="500">
+                <div className="d-flex">
+                    <div className="toast-body">
+                        Hello, world! This is a toast message.
+                    </div>
+                    <button type="button" className="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+
 
         </section>
     )
