@@ -2,18 +2,18 @@ import '../../../styles/SearchPage.css';
 import React, {useEffect} from "react";
 import "aos/dist/aos.css";
 import {Modal} from "react-bootstrap";
-import PlaylistsModalStore from "../../../stores/PlaylistsModalStore";
+import UserPlaylistsModalStore from "../../../stores/UserPlaylistsModalStore";
 import axios from "axios";
 import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
 import PlaylistItemsList from "./PlaylistItemsList";
 
-function PlaylistsModal(): JSX.Element {
+function UserPlaylistsModal(): JSX.Element {
 
     const [userPlaylists, setUserPlaylists] = React.useState<PlaylistBasicDetails[]>();
 
-    const resultToAdd = PlaylistsModalStore(state => state.resultToAdd)
-    const showingPlaylistsModal = PlaylistsModalStore(state => state.showingPlaylistsModal)
-    const setShowingPlaylistsModal = PlaylistsModalStore(state => state.setShowingPlaylistsModal)
+    const resultToAdd = UserPlaylistsModalStore(state => state.resultToAdd)
+    const showingPlaylistsModal = UserPlaylistsModalStore(state => state.showingPlaylistsModal)
+    const setShowingPlaylistsModal = UserPlaylistsModalStore(state => state.setShowingPlaylistsModal)
 
     async function getPlaylists(userId: string) {
         const url = "/User/Playlists/" + userId;
@@ -46,7 +46,7 @@ function PlaylistsModal(): JSX.Element {
             show={showingPlaylistsModal}
             backdrop="static"
             keyboard={true}
-            centered
+            centered={true}
         >
 
             <div className="modal-content">
@@ -55,7 +55,7 @@ function PlaylistsModal(): JSX.Element {
 
                     <Modal.Title>
                         <h5 id="staticBackdropLabel">
-                            <strong>Add to playlist</strong><br/> {resultToAdd!.title}
+                            <strong>Add to playlist</strong><br/> {resultToAdd?.title}
                         </h5>
                     </Modal.Title>
 
@@ -85,4 +85,4 @@ function PlaylistsModal(): JSX.Element {
     )
 }
 
-export default PlaylistsModal;
+export default UserPlaylistsModal;

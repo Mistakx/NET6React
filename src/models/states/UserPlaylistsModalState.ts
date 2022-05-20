@@ -1,6 +1,6 @@
 import {GeneralizedResult} from "../apiRequests/GenericResults";
 
-export interface PlaylistModalState {
+export interface UserPlaylistsModalState {
 
     resultToAdd: GeneralizedResult | null
     setResultToAdd: (resultToAddId: GeneralizedResult) => void

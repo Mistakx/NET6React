@@ -8,7 +8,7 @@ import {
 
 function AddPlaylistForm(props: AddPlaylistFormProperties): JSX.Element {
 
-    const [newPlaylistTitle, setNewPlaylistTitle] = React.useState("");
+    const [playlistTitle, setPlaylistTitle] = React.useState("");
 
     return (
 
@@ -19,7 +19,7 @@ function AddPlaylistForm(props: AddPlaylistFormProperties): JSX.Element {
                     e.preventDefault()
                     const sessionToken = window.sessionStorage.getItem("sessionToken")
                     if (sessionToken) {
-                        const addPlaylistResponse = await PlaylistRequests.createPlaylist(newPlaylistTitle, sessionToken)
+                        const addPlaylistResponse = await PlaylistRequests.createPlaylist(playlistTitle, "Public", "", sessionToken)
                         props.setNewPlaylistResponse(addPlaylistResponse)
                         alert(addPlaylistResponse)
                     }
@@ -30,7 +30,7 @@ function AddPlaylistForm(props: AddPlaylistFormProperties): JSX.Element {
 
                     <input type="text" className="form-control" placeholder="Add Playlist"
                            onChange={(e) => {
-                               setNewPlaylistTitle(e.target.value)
+                               setPlaylistTitle(e.target.value)
                            }}
                     />
                     <button className="btn btn-success">OK</button>

@@ -26,7 +26,7 @@ function PlaylistPage(): JSX.Element {
         (async () => {
             setPlayingGenericResult(null)
             setPlayingGenericResultPlaylistIndex(null)
-            await PlaylistRequests.getPlaylistBasicDetails(playlistId!)
+            setPlaylistBasicDetails(await PlaylistRequests.getPlaylistBasicDetails(playlistId!))
         })()
 
     }, []);

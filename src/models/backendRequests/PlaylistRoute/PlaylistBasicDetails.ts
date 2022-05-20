@@ -2,7 +2,7 @@
 export interface PlaylistBasicDetails {
     id: string
     title: string
-    visibility: string
+    visibility: "Public" | "Private"
     creationDate: Date
     description: string
     thumbnailUrl: string

@@ -3,11 +3,11 @@ import React from "react";
 import "aos/dist/aos.css";
 import {PlaylistItemProperties} from "../../../models/components/searchPage/playlistsModal/PlaylistItemProperties";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
-import PlaylistsModalStore from "../../../stores/PlaylistsModalStore";
+import UserPlaylistsModalStore from "../../../stores/UserPlaylistsModalStore";
 
 function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
 
-    const resultToAdd = PlaylistsModalStore(state => state.resultToAdd)
+    const resultToAdd = UserPlaylistsModalStore(state => state.resultToAdd)
 
     return (
 

@@ -42,7 +42,7 @@ function PlaylistPlayer(): JSX.Element {
 
             
             <div className="social text-white rounded mt-4"  id="titulo" data-aos="fade-right" data-aos-delay="200">
-                <h3 className="p-3">Nome Música</h3>
+                <h3 className="p-3">{playingGenericResult?.title}</h3>
             </div>
         </div>
 

@@ -2,14 +2,14 @@ import GlobalPlayerStore from "../../../stores/GlobalPlayerStore";
 import {TrackSearchItemProperties} from "../../../models/components/searchPage/searchItems/TrackSearchItemProperties";
 import React from "react";
 import "aos/dist/aos.css";
-import PlaylistsModalStore from "../../../stores/PlaylistsModalStore";
+import UserPlaylistsModalStore from "../../../stores/UserPlaylistsModalStore";
 
 function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
 
     const setPlayingGenericResult = GlobalPlayerStore(state => state.setPlayingGenericResult)
 
-    const setShowingPlaylistsModal =  PlaylistsModalStore(state => state.setShowingPlaylistsModal)
-    const setResultToAdd =  PlaylistsModalStore(state => state.setResultToAdd)
+    const setShowingPlaylistsModal =  UserPlaylistsModalStore(state => state.setShowingPlaylistsModal)
+    const setResultToAdd =  UserPlaylistsModalStore(state => state.setResultToAdd)
 
     function setCurrentPlayerToClickedItem() {
         setPlayingGenericResult(props.item)

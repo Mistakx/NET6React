@@ -20,7 +20,6 @@ function User(): JSX.Element {
     useEffect(() => {
         if (updatedUserPhotoResponse) {
             (async () => {
-                console.log("DEBUG")
                 console.log(updatedUserPhotoResponse)
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {

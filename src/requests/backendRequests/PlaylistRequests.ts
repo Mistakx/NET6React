@@ -1,6 +1,6 @@
 import axios from "axios";
 import {GeneralizedResult} from "../../models/apiRequests/GenericResults";
-import {EditPlaylistTitle} from "../../models/backendRequests/PlaylistRoute/EditPlaylistTitle";
+import {EditPlaylist} from "../../models/backendRequests/PlaylistRoute/EditPlaylist";
 import {AddToPlaylist} from "../../models/backendRequests/PlaylistRoute/AddToPlaylist";
 import {CreatePlaylist} from "../../models/backendRequests/PlaylistRoute/CreatePlaylist";
 import {DeletePlaylist} from "../../models/backendRequests/PlaylistRoute/DeletePlaylist";
@@ -59,13 +59,15 @@ class PlaylistRequests {
         return addToPlaylistResponse.data as string;
     }
 
-    static async editPlaylistTitle(newTitle: string, playlistId: string, sessionToken: string) {
+    static async editPlaylistTitle(newTitle: string, newVisibility: "Public" | "Private", newDescription: string,playlistId: string, sessionToken: string) {
 
         const url = "/Playlist/edit";
 
-        let data: EditPlaylistTitle = {
+        let data: EditPlaylist = {
             id: playlistId,
-            newTitle: newTitle,
+            title: newTitle,
+            visibility: newVisibility,
+            description: newDescription,
             sessionToken: sessionToken
         }
 
@@ -82,13 +84,15 @@ class PlaylistRequests {
 
     }
 
-    static async createPlaylist(playlistTitle: string, sessionToken: string) {
+    static async createPlaylist(playlistTitle: string, visibility: "Public" | "Private", description: string, sessionToken: string) {
 
         const url = "/Playlist/create";
 
         let data: CreatePlaylist = {
             title: playlistTitle,
-            sessionToken: sessionToken
+            sessionToken: sessionToken,
+            visibility: visibility,
+            description: description
         }
 
         const options = {
@@ -103,6 +107,32 @@ class PlaylistRequests {
         return addToPlaylistResponse.data as string;
 
     }
+
+    static async editPlaylist(playlistId: string, newTitle: string, newVisibility: "Public" | "Private", newDescription: string, sessionToken: string) {
+
+        const url = "/Playlist/edit";
+
+        let data: EditPlaylist = {
+            id: playlistId,
+            title: newTitle,
+            sessionToken: sessionToken,
+            visibility: newVisibility,
+            description: newDescription
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+
+        // @ts-ignore
+        let response = await axios(options);
+        return response.data as string;
+
+    }
+
 
     static async deletePlaylist(playlistId: string, sessionToken: string) {
 
@@ -171,7 +201,6 @@ class PlaylistRequests {
         return deleteGeneralizedResultResponse.data as string;
 
     }
-
 
 }
 
