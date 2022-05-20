@@ -26,15 +26,15 @@ function EditOrCreatePlaylistModal(props: CreateOrEditPlaylistItemProperties): J
 
     useEffect(() => {
         if (playlistToEditOrCreate && "playlistId" in playlistToEditOrCreate) {
+            setPlaylistId(playlistToEditOrCreate.playlistId)
+            setPlaylistTitle(playlistToEditOrCreate?.title)
             setModalTitle(
                 <div>
                     <strong>Edit Playlist</strong>
                     <br></br>
-                    {playlistTitle.toUpperCase()}
+                    {playlistToEditOrCreate?.title.toUpperCase()}
                 </div>
             )
-            setPlaylistId(playlistToEditOrCreate.playlistId)
-            setPlaylistTitle(playlistToEditOrCreate?.title)
             setPlaylistDescription(playlistToEditOrCreate?.description)
             setPlaylistVisibility(playlistToEditOrCreate?.visibility)
         } else {
