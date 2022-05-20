@@ -22,13 +22,23 @@ function EditOrCreatePlaylistModal(props: CreateOrEditPlaylistItemProperties): J
     const [playlistVisibility, setPlaylistVisibility] = useState<"Public" | "Private">("Public")
     const [playlistId, setPlaylistId] = useState("")
 
+    const [modalTitle, setModalTitle] = useState<JSX.Element>()
+
     useEffect(() => {
         if (playlistToEditOrCreate && "playlistId" in playlistToEditOrCreate) {
+            setModalTitle(
+                <div>
+                    <strong>Edit Playlist</strong>
+                    <br></br>
+                    {playlistTitle.toUpperCase()}
+                </div>
+            )
             setPlaylistId(playlistToEditOrCreate.playlistId)
             setPlaylistTitle(playlistToEditOrCreate?.title)
             setPlaylistDescription(playlistToEditOrCreate?.description)
             setPlaylistVisibility(playlistToEditOrCreate?.visibility)
         } else {
+            setModalTitle(<strong>New Playlist</strong>)
             setPlaylistId("")
             setPlaylistTitle("")
             setPlaylistVisibility("Public")
@@ -79,7 +89,7 @@ function EditOrCreatePlaylistModal(props: CreateOrEditPlaylistItemProperties): J
                 <ModalHeader>
 
                     <ModalTitle>
-                        <h5 id="exampleModalLabel">New playlist</h5>
+                        <h5 id="exampleModalLabel">{modalTitle}</h5>
 
                     </ModalTitle>
 
