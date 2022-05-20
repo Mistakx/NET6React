@@ -1,3 +1,5 @@
+import {PlaylistBasicDetails} from "../../backendRequests/PlaylistRoute/PlaylistBasicDetails";
+
 export interface PlaylistTitleProperties {
-    title: string | undefined
+    playlistBasicDetails: PlaylistBasicDetails | undefined
 }

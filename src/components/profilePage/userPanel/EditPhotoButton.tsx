@@ -1,9 +1,9 @@
 import React, {useRef} from "react";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
-import {EditPhotoButtonProperties} from "../../../models/components/profilePage/EditPhotoButtonProperties";
 import AlertStore from "../../../stores/AlertStore";
+import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 
-export function EditPhotoButton(props: EditPhotoButtonProperties) {
+export function EditPhotoButton() {
 
     const fileInputRef = useRef();
 
@@ -11,6 +11,7 @@ export function EditPhotoButton(props: EditPhotoButtonProperties) {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
+    const setUpdatedUserPhotoResponse = BackendResponsesStore(state => state.setUpdatedUserPhotoResponse)
 
     return (
         <div>
@@ -30,7 +31,7 @@ export function EditPhotoButton(props: EditPhotoButtonProperties) {
                         const file = e.target.files[0]
                         try {
                             const response = await UserRequests.editProfilePhoto(file, sessionToken)
-                            props.setUpdatedUserPhotoResponse(response)
+                            setUpdatedUserPhotoResponse(response)
                             prettyAlert(response, true)
                         } catch (e: any) {
                             prettyAlert(e.response.data, true)

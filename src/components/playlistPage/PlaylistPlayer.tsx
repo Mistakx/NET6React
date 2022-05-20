@@ -29,14 +29,14 @@ function PlaylistPlayer(): JSX.Element {
                     </div>
                 </div>
 
-                {/*<div className="player-options rounded">*/}
-                {/*    <button className="btn btn-link text-white">*/}
-                {/*        <i className='bx bx-skip-previous h3'></i>*/}
-                {/*    </button>*/}
-                {/*    <button className="btn btn-link text-white">*/}
-                {/*        <i className='bx bx-skip-next h3'></i>*/}
-                {/*    </button>*/}
-                {/*</div>*/}
+                <div className="player-options rounded">
+                    <button className="btn btn-link text-white">
+                        <i className='bx bx-skip-previous h3'></i>
+                    </button>
+                    <button className="btn btn-link text-white">
+                        <i className='bx bx-skip-next h3'></i>
+                    </button>
+                </div>
 
             </div>
 

@@ -4,13 +4,16 @@ import {UserProfile} from "../../../models/backendRequests/UserProfile";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
 import {EditPhotoButton} from "./EditPhotoButton";
 import AlertStore from "../../../stores/AlertStore";
+import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 
 function User(): JSX.Element {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const [userProfile, setProfile] = React.useState<UserProfile>();
-    const [updatedUserPhotoResponse, setUpdatedUserPhotoResponse] = React.useState<string | null>(null);
+
+    const updatedUserPhotoResponse = BackendResponsesStore(state => state.updatedUserPhotoResponse)
+    const setUpdatedUserPhotoResponse = BackendResponsesStore(state => state.setUpdatedUserPhotoResponse)
 
     useEffect(() => {
         (async () => {
@@ -49,7 +52,7 @@ function User(): JSX.Element {
                          width="250"
                          alt=""
                          className="img-fluid rounded-circle img-centered"/>
-                    <EditPhotoButton setUpdatedUserPhotoResponse={setUpdatedUserPhotoResponse}/>
+                    <EditPhotoButton/>
                 </div>
                 <div className="options-top mr-5 mb-5">
                     <button className="btn text-white">

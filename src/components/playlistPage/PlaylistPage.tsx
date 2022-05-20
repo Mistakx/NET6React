@@ -5,7 +5,7 @@ import "aos/dist/aos.css";
 import TopBar from "../TopBar";
 import {useParams} from "react-router-dom";
 import PlaylistItemsList from "./PlaylistItemsList";
-import PlaylistTitle from "./PlaylistTitle";
+import PlaylistCover from "./PlaylistCover";
 import PlaylistPlayer from "./PlaylistPlayer";
 import PlaylistPagePlayerStore from "../../stores/PlaylistPagePlayerStore";
 import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
@@ -18,6 +18,7 @@ function PlaylistPage(): JSX.Element {
     const playlistId = useParams().playlistId
 
     const [playlistBasicDetails, setPlaylistBasicDetails] = useState<PlaylistBasicDetails>()
+    const [playlistCoverChangedResponse, setPlaylistCoverChangedResponse] = useState<string | null>(null)
 
     const setPlayingGenericResult = PlaylistPagePlayerStore(state => state.setPlayingGenericResult)
     const setPlayingGenericResultPlaylistIndex = PlaylistPagePlayerStore(state => state.setPlayingGenericResultPlaylistIndex)
@@ -61,7 +62,7 @@ function PlaylistPage(): JSX.Element {
 
                                 <div className="card align-items-stretch mt-4 mt-md-0">
 
-                                    <PlaylistTitle title={playlistBasicDetails?.title}/>
+                                    <PlaylistCover playlistBasicDetails={playlistBasicDetails}/>
 
                                     <PlaylistItemsList playlistId={playlistId!}/>
 

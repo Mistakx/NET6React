@@ -34,7 +34,6 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
                             <i className='bx bx-dots-vertical-rounded h4'></i>
                         </button>
                         <PlaylistItemDropdown
-                            setDeleteGeneralizedResultResponse={props.setDeleteGeneralizedResultResponse}
                             playlistId={props.playlistId}
                             genericResult={props.genericResult}
                         />

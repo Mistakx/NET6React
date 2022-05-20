@@ -6,13 +6,16 @@ import UserRequests from "../../../requests/backendRequests/UserRequests";
 import PlaylistItem from "./PlaylistItem";
 import AddPlaylistForm from "./AddPlaylistForm";
 import AlertStore from "../../../stores/AlertStore";
+import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 
 
 function PlaylistItemsList(): JSX.Element {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
-    const [newPlaylistResponse, setNewPlaylistResponse] = React.useState<string | null>(null);
+    const newPlaylistResponse = BackendResponsesStore(state => state.newPlaylistResponse)
+    const setNewPlaylistResponse = BackendResponsesStore(state => state.setNewPlaylistResponse)
+
     const [userPlaylists, setUserPlaylists] = React.useState<PlaylistBasicDetails[]>();
 
     useEffect(() => {
@@ -56,7 +59,7 @@ function PlaylistItemsList(): JSX.Element {
 
     return (
         <ul className="list-group">
-            <AddPlaylistForm setNewPlaylistResponse={setNewPlaylistResponse}/>
+            <AddPlaylistForm/>
             {playlistItemsList}
         </ul>
     )

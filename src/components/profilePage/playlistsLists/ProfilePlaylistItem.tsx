@@ -6,6 +6,7 @@ import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests
 import EditOrCreatePlaylistModalStore from "../../../stores/EditOrCreatePlaylistModalStore";
 import {EditPlaylist} from "../../../models/backendRequests/PlaylistRoute/EditPlaylist";
 import AlertStore from "../../../stores/AlertStore";
+import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 
 function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
@@ -15,6 +16,8 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
 
     const setPlaylistToEditOrCreate = EditOrCreatePlaylistModalStore(state => state.setPlaylistToEditOrCreate)
     const setShowingEditOrCreatePlaylistModal = EditOrCreatePlaylistModalStore(state => state.setShowingEditOrCreatePlaylistModal)
+
+    const setDeletePlaylistResponse = BackendResponsesStore(state => state.setDeletePlaylistResponse)
 
     return (
 
@@ -71,7 +74,7 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
                                             response = e.response.data
                                             prettyAlert(e.response.data, false)
                                         }
-                                        props.setDeletePlaylistResponse(response)
+                                        setDeletePlaylistResponse(response)
                                     } else prettyAlert("You must be logged in to delete a playlist.", false)
                                 }}
                             >

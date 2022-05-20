@@ -7,6 +7,7 @@ import {DeletePlaylist} from "../../models/backendRequests/PlaylistRoute/DeleteP
 import {DeleteGeneralizedResult} from "../../models/backendRequests/PlaylistRoute/DeleteGeneralizedResult";
 import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
 import {PlaylistGeneralizedResults} from "../../models/backendRequests/PlaylistRoute/PlaylistGeneralizedResults";
+import {SetCoverItem} from "../../models/backendRequests/PlaylistRoute/SetCoverItem";
 
 class PlaylistRequests {
 
@@ -150,6 +151,29 @@ class PlaylistRequests {
         // @ts-ignore
         let deleteGeneralizedResultResponse = await axios(options);
         return deleteGeneralizedResultResponse.data as string;
+
+    }
+
+    static async setCoverItem(playlistId: string, thumbnailUrl: string, sessionToken: string) {
+
+        const url = "/Playlist/setCoverItem";
+
+        let data: SetCoverItem = {
+            playlistId: playlistId,
+            coverUrl: thumbnailUrl,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+
+        // @ts-ignore
+        let response = await axios(options);
+        return response.data as string;
 
     }
 

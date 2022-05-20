@@ -6,14 +6,19 @@ import UserRequests from "../../../requests/backendRequests/UserRequests";
 import AddPlaylistItem from "./AddPlaylistItem";
 import EditOrCreatePlaylistModal from "./EditOrCreatePlaylistModal";
 import AlertStore from "../../../stores/AlertStore";
+import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 
 function PlaylistsList(): JSX.Element {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const [userPlaylists, setUserPlaylists] = React.useState<PlaylistBasicDetails[]>();
-    const [deletePlaylistResponse, setDeletePlaylistResponse] = React.useState<string | null>(null);
-    const [editOrCreatePlaylistResponse, setEditOrCreatePlaylistResponse] = React.useState<string | null>(null);
+
+    const setEditOrCreatePlaylistResponse = BackendResponsesStore(state => state.setEditOrCreatePlaylistResponse)
+    const editOrCreatePlaylistResponse = BackendResponsesStore(state => state.editOrCreatePlaylistResponse)
+
+    const deletePlaylistResponse = BackendResponsesStore(state => state.deletePlaylistResponse)
+    const setDeletePlaylistResponse = BackendResponsesStore(state => state.setDeletePlaylistResponse)
 
     useEffect(() => {
         (async () => {
@@ -67,7 +72,6 @@ function PlaylistsList(): JSX.Element {
 
             let currentPlaylistItem = <ProfilePlaylistItem
                 basicDetails={currentPlaylistBasicDetails}
-                setDeletePlaylistResponse={setDeletePlaylistResponse}
             />
             playlistsList.push(currentPlaylistItem);
 
@@ -86,7 +90,7 @@ function PlaylistsList(): JSX.Element {
 
             </div>
 
-            <EditOrCreatePlaylistModal setEditOrCreatePlaylistResponse={setEditOrCreatePlaylistResponse}/>
+            <EditOrCreatePlaylistModal/>
 
         </div>
 

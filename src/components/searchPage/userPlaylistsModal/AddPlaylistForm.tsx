@@ -2,14 +2,14 @@ import '../../../styles/SearchPage.css';
 import React from "react";
 import "aos/dist/aos.css";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
-import {
-    AddPlaylistFormProperties
-} from "../../../models/components/searchPage/playlistsModal/AddPlaylistFormProperties";
 import AlertStore from "../../../stores/AlertStore";
+import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 
-function AddPlaylistForm(props: AddPlaylistFormProperties): JSX.Element {
+function AddPlaylistForm(): JSX.Element {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
+
+    const setNewPlaylistResponse = BackendResponsesStore(state => state.setNewPlaylistResponse)
 
     const [playlistTitle, setPlaylistTitle] = React.useState("");
 
@@ -23,7 +23,7 @@ function AddPlaylistForm(props: AddPlaylistFormProperties): JSX.Element {
                     const sessionToken = window.sessionStorage.getItem("sessionToken")
                     if (sessionToken) {
                         const response = await PlaylistRequests.createPlaylist(playlistTitle, "Public", "", sessionToken)
-                        props.setNewPlaylistResponse(response)
+                        setNewPlaylistResponse(response)
                         prettyAlert(response, true)
                     } else prettyAlert("You need to be logged in to add a playlist.", false)
                 }}

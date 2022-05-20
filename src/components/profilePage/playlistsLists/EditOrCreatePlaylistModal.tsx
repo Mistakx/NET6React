@@ -3,19 +3,20 @@ import '../../../styles/style.css';
 import EditOrCreatePlaylistModalStore from "../../../stores/EditOrCreatePlaylistModalStore";
 import {Modal, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
-import {
-    CreateOrEditPlaylistItemProperties
-} from "../../../models/components/profilePage/CreateOrEditPlaylistItemProperties";
 import AlertStore from "../../../stores/AlertStore";
+import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 
 
-function EditOrCreatePlaylistModal(props: CreateOrEditPlaylistItemProperties): JSX.Element {
+function EditOrCreatePlaylistModal(): JSX.Element {
 
     const playlistToEditOrCreate = EditOrCreatePlaylistModalStore(state => state.playlistToEditOrCreate)
     const showingEditOrCreatePlaylistModal = EditOrCreatePlaylistModalStore(state => state.showingEditOrCreatePlaylistModal)
     const setShowingEditOrCreatePlaylistModal = EditOrCreatePlaylistModalStore(state => state.setShowingEditOrCreatePlaylistModal)
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
+
+    const setEditOrCreatePlaylistResponse = BackendResponsesStore(state => state.setEditOrCreatePlaylistResponse)
+
 
     const [playlistTitle, setPlaylistTitle] = useState("")
     const [playlistDescription, setPlaylistDescription] = useState("")
@@ -68,7 +69,7 @@ function EditOrCreatePlaylistModal(props: CreateOrEditPlaylistItemProperties): J
                     prettyAlert(e.response.data, false)
                 }
             }
-            props.setEditOrCreatePlaylistResponse(response)
+            setEditOrCreatePlaylistResponse(response)
 
         } else prettyAlert("You must be logged in to edit or create a playlist.", false)
 
