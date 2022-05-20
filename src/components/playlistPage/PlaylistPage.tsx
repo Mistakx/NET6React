@@ -17,27 +17,15 @@ function PlaylistPage(): JSX.Element {
 
     const playlistId = useParams().playlistId
 
-    const [playlistBasicDetails, setPlaylistBasicDetails] = useState<PlaylistBasicDetails>()
-    const [playlistCoverChangedResponse, setPlaylistCoverChangedResponse] = useState<string | null>(null)
-
     const setPlayingGenericResult = PlaylistPagePlayerStore(state => state.setPlayingGenericResult)
     const setPlayingGenericResultPlaylistIndex = PlaylistPagePlayerStore(state => state.setPlayingGenericResultPlaylistIndex)
-
-    const prettyAlert = AlertStore(state => state.prettyAlert)
-
 
     useEffect(() => {
         AOS.init();
         (async () => {
             setPlayingGenericResult(null)
             setPlayingGenericResultPlaylistIndex(null)
-            try {
-                setPlaylistBasicDetails(await PlaylistRequests.getPlaylistBasicDetails(playlistId!))
-            } catch (e: any) {
-                prettyAlert(e.response.data, false)
-            }
         })()
-
     }, []);
 
     return (
@@ -62,7 +50,7 @@ function PlaylistPage(): JSX.Element {
 
                                 <div className="card align-items-stretch mt-4 mt-md-0">
 
-                                    <PlaylistCover playlistBasicDetails={playlistBasicDetails}/>
+                                    <PlaylistCover playlistId={playlistId}/>
 
                                     <PlaylistItemsList playlistId={playlistId!}/>
 

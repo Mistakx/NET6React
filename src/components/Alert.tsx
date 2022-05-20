@@ -29,6 +29,7 @@ function Alert(): JSX.Element {
                 </button>
             </div>
         </div>
+        setTimeout(()=>{setShowingAlert(false)}, 5000)
     }
 
     return (
