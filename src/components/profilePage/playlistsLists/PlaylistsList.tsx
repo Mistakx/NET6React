@@ -5,8 +5,11 @@ import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRout
 import UserRequests from "../../../requests/backendRequests/UserRequests";
 import AddPlaylistItem from "./AddPlaylistItem";
 import EditOrCreatePlaylistModal from "./EditOrCreatePlaylistModal";
+import AlertStore from "../../../stores/AlertStore";
 
 function PlaylistsList(): JSX.Element {
+
+    const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const [userPlaylists, setUserPlaylists] = React.useState<PlaylistBasicDetails[]>();
     const [deletePlaylistResponse, setDeletePlaylistResponse] = React.useState<string | null>(null);
@@ -15,8 +18,14 @@ function PlaylistsList(): JSX.Element {
     useEffect(() => {
         (async () => {
             const sessionToken = window.sessionStorage.getItem("sessionToken");
-            if (sessionToken) setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
-            else alert("No session token found.")
+            if (sessionToken) {
+                try {
+                    setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+                } catch (e: any) {
+                    prettyAlert(e.response.data, false)
+                }
+
+            } else prettyAlert("No session token found.", false)
         })()
     }, []);
 
@@ -25,12 +34,32 @@ function PlaylistsList(): JSX.Element {
             (async () => {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
-                    setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+                    try {
+                        setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+                    } catch (e: any) {
+                        prettyAlert(e.response.data, false)
+                    }
                     setDeletePlaylistResponse(null);
-                } else alert("No session token found.")
+                } else prettyAlert("No session token found.", false)
             })()
         }
-    }, [deletePlaylistResponse, editOrCreatePlaylistResponse]);
+    }, [deletePlaylistResponse]);
+
+    useEffect(() => {
+        if (editOrCreatePlaylistResponse) {
+            (async () => {
+                const sessionToken = window.sessionStorage.getItem("sessionToken");
+                if (sessionToken) {
+                    try {
+                        setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+                    } catch (e: any) {
+                        prettyAlert(e.response.data, false)
+                    }
+                    setEditOrCreatePlaylistResponse(null);
+                } else prettyAlert("No session token found.", false)
+            })()
+        }
+    }, [editOrCreatePlaylistResponse]);
 
     let playlistsList: JSX.Element[] = [];
     if (userPlaylists) {

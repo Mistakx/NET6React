@@ -5,10 +5,13 @@ import {useNavigate} from "react-router-dom";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
 import EditOrCreatePlaylistModalStore from "../../../stores/EditOrCreatePlaylistModalStore";
 import {EditPlaylist} from "../../../models/backendRequests/PlaylistRoute/EditPlaylist";
+import AlertStore from "../../../stores/AlertStore";
 
 function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
     let navigate = useNavigate()
+
+    const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const setPlaylistToEditOrCreate = EditOrCreatePlaylistModalStore(state => state.setPlaylistToEditOrCreate)
     const setShowingEditOrCreatePlaylistModal = EditOrCreatePlaylistModalStore(state => state.setShowingEditOrCreatePlaylistModal)
@@ -44,15 +47,14 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
                                     if (sessionToken) {
                                         setShowingEditOrCreatePlaylistModal(true)
                                         let playlistToEdit: EditPlaylist = {
-                                            id: props.basicDetails.id,
+                                            playlistId: props.basicDetails.id,
                                             title: props.basicDetails.title,
                                             description: props.basicDetails.description,
                                             visibility: props.basicDetails.visibility,
                                             sessionToken: sessionToken
                                         }
                                         setPlaylistToEditOrCreate(playlistToEdit)
-                                    }
-                                    else alert("You must be logged in to edit a playlist.")
+                                    } else prettyAlert("You must be logged in to edit a playlist.", false)
 
                                 }}>
                                 <div className="dropdown-item">Edit</div>
@@ -61,10 +63,16 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
                                 onClick={async () => {
                                     const sessionToken = sessionStorage.getItem("sessionToken")
                                     if (sessionToken) {
-                                        const response = await PlaylistRequests.deletePlaylist(props.basicDetails.id, sessionToken)
-                                        alert(response)
+                                        let response;
+                                        try {
+                                            response = await PlaylistRequests.deletePlaylist(props.basicDetails.id, sessionToken)
+                                            prettyAlert(response, true)
+                                        } catch (e: any) {
+                                            response = e.response.data
+                                            prettyAlert(e.response.data, false)
+                                        }
                                         props.setDeletePlaylistResponse(response)
-                                    } else alert("You must be logged in to delete a playlist.")
+                                    } else prettyAlert("You must be logged in to delete a playlist.", false)
                                 }}
                             >
                                 <div className="dropdown-item text-danger">Delete</div>

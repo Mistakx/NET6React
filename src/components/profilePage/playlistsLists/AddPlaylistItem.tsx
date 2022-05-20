@@ -2,12 +2,14 @@ import React from 'react';
 import '../../../styles/style.css';
 import EditOrCreatePlaylistModalStore from "../../../stores/EditOrCreatePlaylistModalStore";
 import {CreatePlaylist} from "../../../models/backendRequests/PlaylistRoute/CreatePlaylist";
-import {CreateOrEditPlaylistItemProperties} from "../../../models/components/profilePage/CreateOrEditPlaylistItemProperties";
+import AlertStore from "../../../stores/AlertStore";
 
 function AddPlaylistItem(): JSX.Element {
 
     const setPlaylistToEditOrCreate = EditOrCreatePlaylistModalStore(state => state.setPlaylistToEditOrCreate)
     const setShowingEditOrCreatePlaylistModal = EditOrCreatePlaylistModalStore(state => state.setShowingEditOrCreatePlaylistModal)
+
+    const prettyAlert = AlertStore(state => state.prettyAlert)
 
     return (
 
@@ -24,9 +26,7 @@ function AddPlaylistItem(): JSX.Element {
                      }
                      setPlaylistToEditOrCreate(newPlaylist)
                      setShowingEditOrCreatePlaylistModal(true)
-                 }
-                 else alert("You need to be logged in to create a playlist.")
-
+                 } else prettyAlert("User needs to be logged in to add a playlist", false)
              }}
         >
 

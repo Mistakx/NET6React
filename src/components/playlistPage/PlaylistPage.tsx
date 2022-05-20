@@ -11,6 +11,7 @@ import PlaylistPagePlayerStore from "../../stores/PlaylistPagePlayerStore";
 import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
 import PlaylistRequests from "../../requests/backendRequests/PlaylistRequests";
 import AOS from "aos";
+import AlertStore from "../../stores/AlertStore";
 
 function PlaylistPage(): JSX.Element {
 
@@ -21,12 +22,19 @@ function PlaylistPage(): JSX.Element {
     const setPlayingGenericResult = PlaylistPagePlayerStore(state => state.setPlayingGenericResult)
     const setPlayingGenericResultPlaylistIndex = PlaylistPagePlayerStore(state => state.setPlayingGenericResultPlaylistIndex)
 
+    const prettyAlert = AlertStore(state => state.prettyAlert)
+
+
     useEffect(() => {
         AOS.init();
         (async () => {
             setPlayingGenericResult(null)
             setPlayingGenericResultPlaylistIndex(null)
-            setPlaylistBasicDetails(await PlaylistRequests.getPlaylistBasicDetails(playlistId!))
+            try {
+                setPlaylistBasicDetails(await PlaylistRequests.getPlaylistBasicDetails(playlistId!))
+            } catch (e: any) {
+                prettyAlert(e.response.data, false)
+            }
         })()
 
     }, []);
@@ -48,7 +56,8 @@ function PlaylistPage(): JSX.Element {
 
                             <PlaylistPlayer/>
 
-                            <div className="col-lg-4 col-md-4 col-12" id="playlist" data-aos="fade-left" data-aos-delay="200">
+                            <div className="col-lg-4 col-md-4 col-12" id="playlist" data-aos="fade-left"
+                                 data-aos-delay="200">
 
                                 <div className="card align-items-stretch mt-4 mt-md-0">
 

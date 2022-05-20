@@ -6,6 +6,8 @@ import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests
 import {
     CreateOrEditPlaylistItemProperties
 } from "../../../models/components/profilePage/CreateOrEditPlaylistItemProperties";
+import AlertStore from "../../../stores/AlertStore";
+
 
 function EditOrCreatePlaylistModal(props: CreateOrEditPlaylistItemProperties): JSX.Element {
 
@@ -13,14 +15,16 @@ function EditOrCreatePlaylistModal(props: CreateOrEditPlaylistItemProperties): J
     const showingEditOrCreatePlaylistModal = EditOrCreatePlaylistModalStore(state => state.showingEditOrCreatePlaylistModal)
     const setShowingEditOrCreatePlaylistModal = EditOrCreatePlaylistModalStore(state => state.setShowingEditOrCreatePlaylistModal)
 
+    const prettyAlert = AlertStore(state => state.prettyAlert)
+
     const [playlistTitle, setPlaylistTitle] = useState("")
     const [playlistDescription, setPlaylistDescription] = useState("")
     const [playlistVisibility, setPlaylistVisibility] = useState<"Public" | "Private">("Public")
     const [playlistId, setPlaylistId] = useState("")
 
     useEffect(() => {
-        if (playlistToEditOrCreate && "id" in playlistToEditOrCreate) {
-            setPlaylistId(playlistToEditOrCreate.id)
+        if (playlistToEditOrCreate && "playlistId" in playlistToEditOrCreate) {
+            setPlaylistId(playlistToEditOrCreate.playlistId)
             setPlaylistTitle(playlistToEditOrCreate?.title)
             setPlaylistDescription(playlistToEditOrCreate?.description)
             setPlaylistVisibility(playlistToEditOrCreate?.visibility)
@@ -36,17 +40,29 @@ function EditOrCreatePlaylistModal(props: CreateOrEditPlaylistItemProperties): J
 
         const sessionToken = sessionStorage.getItem("sessionToken")
         if (sessionToken) {
+            let response: string;
             if (playlistId) {
-                const response = await PlaylistRequests.editPlaylist(playlistId, playlistTitle, playlistVisibility, playlistDescription, sessionToken)
-                alert(response)
-                props.setEditOrCreatePlaylistResponse(response)
+                try {
+                    response = await PlaylistRequests.editPlaylist(playlistId, playlistTitle, playlistVisibility, playlistDescription, sessionToken)
+                    prettyAlert(response, true)
+                } catch (e: any) {
+                    response = e.response.data
+                    prettyAlert(e.response.data, false)
+                }
             } else {
-                const response = await PlaylistRequests.createPlaylist(playlistTitle, playlistVisibility, playlistDescription, sessionToken)
-                alert(response)
-                props.setEditOrCreatePlaylistResponse(response)
+                try {
+                    response = await PlaylistRequests.createPlaylist(playlistTitle, playlistVisibility, playlistDescription, sessionToken)
+                    prettyAlert(response, true)
+                } catch (e: any) {
+                    response = e.response.data
+                    prettyAlert(e.response.data, false)
+                }
             }
-        } else alert("You must be logged in to edit or create a playlist.")
+            props.setEditOrCreatePlaylistResponse(response)
 
+        } else prettyAlert("You must be logged in to edit or create a playlist.", false)
+
+        setShowingEditOrCreatePlaylistModal(false)
     }
 
     let editPlaylistModal;
@@ -78,7 +94,7 @@ function EditOrCreatePlaylistModal(props: CreateOrEditPlaylistItemProperties): J
                 <ModalBody>
                     <form onSubmit={async (e) => {
                         e.preventDefault()
-                        alert(await submitForm())
+                        await submitForm()
                     }}>
                         <div className="form-group mb-3">
                             <input type="text" className="form-control" placeholder="Playlist title"
@@ -98,7 +114,7 @@ function EditOrCreatePlaylistModal(props: CreateOrEditPlaylistItemProperties): J
                                         type="radio"
                                         name="btnradio"
                                         id="btnradio1"
-                                        checked={playlistVisibility === "Public"}
+                                        defaultChecked={playlistVisibility === "Public"}
                                         onClick={() => {
                                             setPlaylistVisibility("Public")
                                         }}
@@ -111,7 +127,7 @@ function EditOrCreatePlaylistModal(props: CreateOrEditPlaylistItemProperties): J
                                         type="radio"
                                         name="btnradio"
                                         id="btnradio2"
-                                        checked={playlistVisibility === "Private"}
+                                        defaultChecked={playlistVisibility === "Private"}
                                         onClick={() => {
                                             setPlaylistVisibility("Private")
                                         }}

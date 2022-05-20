@@ -3,8 +3,11 @@ import '../../styles/style.css';
 import "aos/dist/aos.css";
 import PlaylistRequests from "../../requests/backendRequests/PlaylistRequests";
 import {PlaylistItemDropdownProperties} from "../../models/components/playlistPage/PlaylistItemDropdownProperties";
+import AlertStore from "../../stores/AlertStore";
 
 function PlaylistItemDropdown(props: PlaylistItemDropdownProperties): JSX.Element {
+
+    const prettyAlert = AlertStore(state => state.prettyAlert)
 
     return (
 
@@ -17,10 +20,17 @@ function PlaylistItemDropdown(props: PlaylistItemDropdownProperties): JSX.Elemen
             <li onClick={async () => {
                 const sessionToken = sessionStorage.getItem("sessionToken")
                 if (sessionToken) {
-                    const response = await PlaylistRequests.deleteGeneralizedResult(props.playlistId!, props.genericResult.databaseId!, sessionToken)
+                    let response: string;
+                    try {
+                        response = await PlaylistRequests.deleteGeneralizedResult(props.playlistId!, props.genericResult.databaseId!, sessionToken)
+                        prettyAlert(response, true)
+                    } catch (e: any) {
+                        response = e.response.data
+                        prettyAlert(e.response.data, true)
+                    }
                     props.setDeleteGeneralizedResultResponse(response)
-                    alert(response)
-                } else alert("You must be logged in to delete a result.")
+                } else prettyAlert("You must be logged in to delete a result.", false)
+
             }}>
                 <div className="dropdown-item text-danger">Remove</div>
             </li>

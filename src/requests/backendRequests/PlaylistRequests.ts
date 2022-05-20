@@ -59,31 +59,6 @@ class PlaylistRequests {
         return addToPlaylistResponse.data as string;
     }
 
-    static async editPlaylistTitle(newTitle: string, newVisibility: "Public" | "Private", newDescription: string,playlistId: string, sessionToken: string) {
-
-        const url = "/Playlist/edit";
-
-        let data: EditPlaylist = {
-            id: playlistId,
-            title: newTitle,
-            visibility: newVisibility,
-            description: newDescription,
-            sessionToken: sessionToken
-        }
-
-        const options = {
-            method: 'POST',
-            url: url,
-            data: data
-        };
-
-
-        // @ts-ignore
-        let editPlaylistTitleResponse = await axios(options);
-        return editPlaylistTitleResponse.data as string;
-
-    }
-
     static async createPlaylist(playlistTitle: string, visibility: "Public" | "Private", description: string, sessionToken: string) {
 
         const url = "/Playlist/create";
@@ -113,7 +88,7 @@ class PlaylistRequests {
         const url = "/Playlist/edit";
 
         let data: EditPlaylist = {
-            id: playlistId,
+            playlistId: playlistId,
             title: newTitle,
             sessionToken: sessionToken,
             visibility: newVisibility,
@@ -132,7 +107,6 @@ class PlaylistRequests {
         return response.data as string;
 
     }
-
 
     static async deletePlaylist(playlistId: string, sessionToken: string) {
 
@@ -157,29 +131,6 @@ class PlaylistRequests {
     }
 
     static async deleteGeneralizedResult(playlistId: string, generalizedResultDatabaseId: string, sessionToken: string) {
-
-        const url = "/Playlist/deleteGeneralizedResult";
-
-        let data: DeleteGeneralizedResult = {
-            playlistId: playlistId,
-            generalizedResultDatabaseId: generalizedResultDatabaseId,
-            sessionToken: sessionToken
-        }
-
-        const options = {
-            method: 'POST',
-            url: url,
-            data: data
-        };
-
-
-        // @ts-ignore
-        let deleteGeneralizedResultResponse = await axios(options);
-        return deleteGeneralizedResultResponse.data as string;
-
-    }
-
-    static async setAsCover(playlistId: string, generalizedResultDatabaseId: string, sessionToken: string) {
 
         const url = "/Playlist/deleteGeneralizedResult";
 

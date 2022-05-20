@@ -7,22 +7,33 @@ import {PlaylistItemsListProperties} from "../../models/components/playlistPage/
 import PlaylistRequests from "../../requests/backendRequests/PlaylistRequests";
 import {GeneralizedResult} from "../../models/apiRequests/GenericResults";
 import {PlaylistGeneralizedResults} from "../../models/backendRequests/PlaylistRoute/PlaylistGeneralizedResults";
+import AlertStore from "../../stores/AlertStore";
 
 function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
+
+    const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const [playlistGeneralizedResults, setPlaylistGeneralizedResults] = React.useState<PlaylistGeneralizedResults>();
     const [deleteGeneralizedResultResponse, setDeleteGeneralizedResultResponse] = React.useState("");
 
     useEffect(() => {
         (async () => {
-            setPlaylistGeneralizedResults(await PlaylistRequests.getPlaylistGeneralizedResults(props.playlistId!));
+            try {
+                setPlaylistGeneralizedResults(await PlaylistRequests.getPlaylistGeneralizedResults(props.playlistId!));
+            } catch (e: any) {
+                prettyAlert(e.response.data, false)
+            }
         })()
     }, []);
 
     useEffect(() => {
         if (deleteGeneralizedResultResponse) {
             (async () => {
-                setPlaylistGeneralizedResults(await PlaylistRequests.getPlaylistGeneralizedResults(props.playlistId!));
+                try {
+                    setPlaylistGeneralizedResults(await PlaylistRequests.getPlaylistGeneralizedResults(props.playlistId!));
+                } catch (e: any) {
+                    prettyAlert(e.response.data, false)
+                }
                 setDeleteGeneralizedResultResponse("")
             })()
         }

@@ -11,6 +11,7 @@ import Login from "./components/loginPage/LoginPage";
 import RegisterPage from "./components/registerPage/RegisterPage";
 import SidePanel from "./components/SidePanel";
 import FloatingPlayer from "./components/FloatingPlayer";
+import Alert from "./components/Alert";
 
 const container = document.getElementById('root');
 
@@ -22,7 +23,7 @@ if (container !== null) {
         <BrowserRouter>
 
             <SidePanel/>
-
+            <Alert/>
             <FloatingPlayer/>
 
             <Routes>

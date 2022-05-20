@@ -3,8 +3,11 @@ import '../../../styles/style.css';
 import {UserProfile} from "../../../models/backendRequests/UserProfile";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
 import {EditPhotoButton} from "./EditPhotoButton";
+import AlertStore from "../../../stores/AlertStore";
 
 function User(): JSX.Element {
+
+    const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const [userProfile, setProfile] = React.useState<UserProfile>();
     const [updatedUserPhotoResponse, setUpdatedUserPhotoResponse] = React.useState<string | null>(null);
@@ -12,8 +15,13 @@ function User(): JSX.Element {
     useEffect(() => {
         (async () => {
             const sessionToken = window.sessionStorage.getItem("sessionToken");
-            if (sessionToken) setProfile(await UserRequests.getProfile(sessionToken))
-            else alert("No session token found.")
+            if (sessionToken) {
+                try {
+                    setProfile(await UserRequests.getProfile(sessionToken))
+                } catch (e: any) {
+                    prettyAlert(e.response.data, false)
+                }
+            } else prettyAlert("No session token found.", false)
         })()
     }, []);
 
@@ -25,7 +33,7 @@ function User(): JSX.Element {
                 if (sessionToken) {
                     setProfile(await UserRequests.getProfile(sessionToken))
                     setUpdatedUserPhotoResponse(null)
-                } else alert("No session token found.")
+                } else prettyAlert("No session token found.", false)
             })()
         }
     }, [updatedUserPhotoResponse]);

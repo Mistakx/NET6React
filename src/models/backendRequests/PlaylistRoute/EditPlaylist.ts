@@ -2,7 +2,7 @@
 import {CreatePlaylist} from "./CreatePlaylist";
 
 export interface EditPlaylist extends CreatePlaylist {
-    id: string
+    playlistId: string
 }
 
 

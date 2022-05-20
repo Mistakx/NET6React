@@ -1,12 +1,16 @@
 import React, {useRef} from "react";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
 import {EditPhotoButtonProperties} from "../../../models/components/profilePage/EditPhotoButtonProperties";
+import AlertStore from "../../../stores/AlertStore";
 
 export function EditPhotoButton(props: EditPhotoButtonProperties) {
 
     const fileInputRef = useRef();
 
     const sessionToken = sessionStorage.getItem("sessionToken");
+
+    const prettyAlert = AlertStore(state => state.prettyAlert)
+
 
     return (
         <div>
@@ -24,12 +28,14 @@ export function EditPhotoButton(props: EditPhotoButtonProperties) {
                 onChange={async (e) => {
                     if (e.target.files && sessionToken) {
                         const file = e.target.files[0]
-                        const response = await UserRequests.editProfilePhoto(file, sessionToken)
-                        props.setUpdatedUserPhotoResponse(response)
-                        alert(response)
-                    } else {
-                        alert("No file selected")
-                    }
+                        try {
+                            const response = await UserRequests.editProfilePhoto(file, sessionToken)
+                            props.setUpdatedUserPhotoResponse(response)
+                            prettyAlert(response, true)
+                        } catch (e: any) {
+                            prettyAlert(e.response.data, true)
+                        }
+                    } else prettyAlert("No file selected", false)
                 }}
                 multiple={false}
                 type="file"

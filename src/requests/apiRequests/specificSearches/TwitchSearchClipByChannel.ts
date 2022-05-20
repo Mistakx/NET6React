@@ -57,15 +57,10 @@ export class TwitchSearchClipByChannel extends ApiSearch {
             url: url,
         };
 
-        try {
-            // @ts-ignore
-            let twitchClipsSearchResponse = await axios(options);
-            let twitchClipsResult: TwitchSearchClipsResultPage = twitchClipsSearchResponse.data;
-            return twitchClipsResult;
-        } catch (e) {
-            alert(e)
-        }
-        return {} as TwitchSearchClipsResultPage
+        // @ts-ignore
+        let twitchClipsSearchResponse = await axios(options);
+        let twitchClipsResult: TwitchSearchClipsResultPage = twitchClipsSearchResponse.data;
+        return twitchClipsResult;
 
     }
 

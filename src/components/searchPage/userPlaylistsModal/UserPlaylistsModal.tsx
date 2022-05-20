@@ -6,10 +6,13 @@ import UserPlaylistsModalStore from "../../../stores/UserPlaylistsModalStore";
 import axios from "axios";
 import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
 import PlaylistItemsList from "./PlaylistItemsList";
+import AlertStore from "../../../stores/AlertStore";
 
 function UserPlaylistsModal(): JSX.Element {
 
     const [userPlaylists, setUserPlaylists] = React.useState<PlaylistBasicDetails[]>();
+
+    const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const resultToAdd = UserPlaylistsModalStore(state => state.resultToAdd)
     const showingPlaylistsModal = UserPlaylistsModalStore(state => state.showingPlaylistsModal)
@@ -34,8 +37,14 @@ function UserPlaylistsModal(): JSX.Element {
         if (!userPlaylists) {
             (async () => {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
-                if (sessionToken) setUserPlaylists(await getPlaylists(sessionToken));
-                else alert("No session token found.")
+                if (sessionToken) {
+                    try {
+                        setUserPlaylists(await getPlaylists(sessionToken));
+                    } catch (e: any) {
+                        prettyAlert(e.response.data, false)
+                    }
+                } else prettyAlert("No session token found.", false)
+
             })()
         }
     }, [userPlaylists]);
@@ -79,7 +88,7 @@ function UserPlaylistsModal(): JSX.Element {
     return (
 
         <div>
-        {playlistModal}
+            {playlistModal}
         </div>
 
     )

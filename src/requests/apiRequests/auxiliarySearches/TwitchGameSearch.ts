@@ -34,15 +34,11 @@ export class TwitchGamesSearch {
             url: url,
         };
 
-        try {
-            // @ts-ignore
-            let twitchChannelsSearchResponse = await axios(options);
-            let twitchChannelsSearchResult: TwitchSearchCategoriesResultPage = twitchChannelsSearchResponse.data;
-            return twitchChannelsSearchResult;
-        } catch (e) {
-            alert(e)
-        }
-        return {} as TwitchSearchCategoriesResultPage
+        // @ts-ignore
+        let twitchChannelsSearchResponse = await axios(options);
+        let twitchChannelsSearchResult: TwitchSearchCategoriesResultPage = twitchChannelsSearchResponse.data;
+        return twitchChannelsSearchResult;
+
     }
 
 }
