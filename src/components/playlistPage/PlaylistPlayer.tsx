@@ -16,6 +16,8 @@ function PlaylistPlayer(): JSX.Element {
         playlistPlayer = PlayerFactory.createPlayer(playingGenericResult, setPlayerStarted)
     }
 
+    let currentlyPlayingText = playingGenericResult?.title ? playingGenericResult?.title : "Not playing content"
+
     return (
 
         <div className="col-lg-8 col-md-8 col-12" id="player">
@@ -42,7 +44,7 @@ function PlaylistPlayer(): JSX.Element {
 
             
             <div className="social text-white rounded mt-4"  id="titulo" data-aos="fade-right" data-aos-delay="200">
-                <h3 className="p-3">{playingGenericResult?.title}</h3>
+                <h3 className="p-3">{currentlyPlayingText}</h3>
             </div>
         </div>
 

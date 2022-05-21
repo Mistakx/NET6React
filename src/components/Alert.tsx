@@ -14,22 +14,30 @@ function Alert(): JSX.Element {
 
     let alert;
     if (showingAlert) {
-        alert = <div style={{zIndex: 99999}}
-                     className={"toast align-items-center show position-absolute top-0 end-0 m-5 " + alertColor}
-                     role="alert"
-                     aria-live="assertive" aria-atomic="true" data-aos="fade-left" data-aos-duration="500">
-            <div className="d-flex">
-                <div className="toast-body">
-                    {alertMessage}
+        alert =
+
+            <div className="row text-center no-gutters position-absolute top-0 end-0 m-5"
+                 style={{overflowX: "hidden"}}>
+
+                <div style={{zIndex: 1070}}
+                     className={"toast align-items-center show " + alertColor}
+                     data-aos="fade-left" data-aos-duration="500">
+                    <div className="d-flex">
+                        <div className="toast-body">
+                            {alertMessage}
+                        </div>
+                        <button type="button" className="btn-close me-2 m-auto"
+                                aria-label="Close"
+                                onClick={() => setShowingAlert(false)}
+                        >
+                        </button>
+                    </div>
                 </div>
-                <button type="button" className="btn-close me-2 m-auto"
-                        aria-label="Close"
-                        onClick={() => setShowingAlert(false)}
-                >
-                </button>
+
             </div>
-        </div>
-        setTimeout(()=>{setShowingAlert(false)}, 5000)
+        setTimeout(() => {
+            setShowingAlert(false)
+        }, 2500)
     }
 
     return (

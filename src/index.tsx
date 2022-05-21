@@ -19,7 +19,6 @@ if (container !== null) {
 
     const root = createRoot(container);
     root.render(
-
         <BrowserRouter>
 
             <SidePanel/>
@@ -36,7 +35,6 @@ if (container !== null) {
                 <Route path="/playlist/:playlistId" element={<PlaylistPage/>}/>
             </Routes>
         </BrowserRouter>
-
     );
 
 }
