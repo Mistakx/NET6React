@@ -33,6 +33,12 @@ const BackendResponsesStore = create<BackendResponsesState>((set) => ({
         deletePlaylistResponse: deletePlaylistResponse
     })),
 
+    resetCoverResponse: null,
+    setResetCoverResponse: (resetCoverResponse) => set(state => ({
+        resetCoverResponse: resetCoverResponse
+    })),
+
+
 }))
 
 export default BackendResponsesStore;

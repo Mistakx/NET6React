@@ -6,21 +6,21 @@ import EditOrCreatePlaylistModalStore from "./EditOrCreatePlaylistModalStore";
 const AlertStore = create<AlertState>((set) => ({
 
     alertSucceeded: null,
-    setAlertSucceeded: (alertSucceeded: boolean) => set(state => ({
+    setAlertSucceeded: (alertSucceeded) => set(state => ({
         alertSucceeded: alertSucceeded
     })),
 
     alertMessage: null,
-    setAlertMessage: (alertMessage: string) => set(state => ({
+    setAlertMessage: (alertMessage) => set(state => ({
         alertMessage: alertMessage
     })),
 
     showingAlert: false,
-    setShowingAlert: (showingAlert: boolean) => set(state => ({
+    setShowingAlert: (showingAlert) => set(state => ({
         showingAlert: showingAlert
     })),
 
-    prettyAlert: (alertMessage: string, alertSucceeded: boolean) => set(state => ({
+    prettyAlert: (alertMessage, alertSucceeded) => set(state => ({
         alertMessage: alertMessage,
         alertSucceeded: alertSucceeded,
         showingAlert: true

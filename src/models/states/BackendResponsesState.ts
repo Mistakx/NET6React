@@ -18,4 +18,7 @@ export interface BackendResponsesState {
     deletePlaylistResponse: string | null;
     setDeletePlaylistResponse: (editOrCreatePlaylistResponse: string | null) => void
 
+    resetCoverResponse: string | null;
+    setResetCoverResponse: (resetCoverResponse: string | null) => void
+
 }

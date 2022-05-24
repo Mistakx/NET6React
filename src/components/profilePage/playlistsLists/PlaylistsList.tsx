@@ -20,6 +20,9 @@ function PlaylistsList(): JSX.Element {
     const deletePlaylistResponse = BackendResponsesStore(state => state.deletePlaylistResponse)
     const setDeletePlaylistResponse = BackendResponsesStore(state => state.setDeletePlaylistResponse)
 
+    const resetCoverResponse = BackendResponsesStore(state => state.resetCoverResponse)
+    const setResetCoverResponse = BackendResponsesStore(state => state.setResetCoverResponse)
+
     useEffect(() => {
         (async () => {
             const sessionToken = window.sessionStorage.getItem("sessionToken");
@@ -49,6 +52,23 @@ function PlaylistsList(): JSX.Element {
             })()
         }
     }, [deletePlaylistResponse]);
+
+    useEffect(() => {
+        console.log("DEBUG")
+        if (resetCoverResponse) {
+            (async () => {
+                const sessionToken = window.sessionStorage.getItem("sessionToken");
+                if (sessionToken) {
+                    try {
+                        setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+                    } catch (e: any) {
+                        prettyAlert(e.response.data, false)
+                    }
+                    setResetCoverResponse(null);
+                } else prettyAlert("No session token found.", false)
+            })()
+        }
+    }, [resetCoverResponse]);
 
     useEffect(() => {
         if (editOrCreatePlaylistResponse) {

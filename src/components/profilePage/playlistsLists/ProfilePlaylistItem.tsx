@@ -18,6 +18,7 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
     const setShowingEditOrCreatePlaylistModal = EditOrCreatePlaylistModalStore(state => state.setShowingEditOrCreatePlaylistModal)
 
     const setDeletePlaylistResponse = BackendResponsesStore(state => state.setDeletePlaylistResponse)
+    const setResetCoverResponse = BackendResponsesStore(state => state.setResetCoverResponse)
 
     return (
 
@@ -61,6 +62,23 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
 
                                 }}>
                                 <div className="dropdown-item">Edit</div>
+                            </li>
+                            <li
+                                onClick={async () => {
+                                    const sessionToken = sessionStorage.getItem("sessionToken")
+                                    if (sessionToken) {
+                                        let response
+                                        try {
+                                            response = await PlaylistRequests.setCoverItem(props.basicDetails.id, "", sessionToken)
+                                            prettyAlert(response, true)
+                                        } catch (e: any) {
+                                            response = e.response.data
+                                            prettyAlert(response, true)
+                                        }
+                                        setResetCoverResponse(response)
+                                    } else prettyAlert("You must be logged in to edit a playlist.", false)
+                                }}>
+                                <div className="dropdown-item">Reset cover</div>
                             </li>
                             <li
                                 onClick={async () => {

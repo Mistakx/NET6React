@@ -4,7 +4,7 @@ export interface AlertState {
     setAlertSucceeded: (alertSucceeded: boolean) => void
 
     alertMessage: string | null
-    setAlertMessage: (alertMessage: string) => void
+    setAlertMessage: (alertMessage: string | null) => void
 
     showingAlert: boolean
     setShowingAlert: (showingAlert: boolean) => void
