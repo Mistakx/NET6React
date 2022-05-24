@@ -43,10 +43,10 @@ function Alert(): JSX.Element {
     if (showingAlert && alertMessageBeingDisplayed) {
         alert =
 
-            <div className="row text-center no-gutters position-absolute top-0 end-0 m-5"
-                 style={{overflowX: "hidden"}}>
+            <div className="row text-center no-gutters position-fixed top-0 end-0 m-5"
+                 style={{overflowX: "hidden", zIndex: 1070}}>
 
-                <div style={{zIndex: 1070}}
+                <div
                      className={"toast align-items-center show " + alertColor}
                      data-aos="fade-left" data-aos-duration="500">
                     <div className="d-flex">
