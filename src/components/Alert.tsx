@@ -17,11 +17,19 @@ function Alert(): JSX.Element {
     useEffect(() => {
 
         if (alertMessage) {
+
+            // Reset the previous alert message and timer
             if (timeoutId.current) clearTimeout(timeoutId.current)
-            setAlertMessageBeingDisplayed(alertMessage)
-            setAlertMessage(null)
+            setAlertMessageBeingDisplayed(null)
+
+            // Set the new alert message and timer
+            setTimeout(() => {
+                setAlertMessageBeingDisplayed(alertMessage)
+                setAlertMessage(null)
+            }, 100)
+
+            // Set the timer to remove the alert message
             timeoutId.current = setTimeout(() => {
-                console.log("3000 ms have passed, resetting alert")
                 setShowingAlert(false)
                 setAlertMessageBeingDisplayed(null)
             }, 3000)
