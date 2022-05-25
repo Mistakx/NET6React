@@ -1,9 +1,9 @@
 import React from "react";
-import '../../styles/style.css';
+import '../../../styles/style.css';
 import "aos/dist/aos.css";
-import {PlaylistItemProperties} from "../../models/components/playlistPage/PlaylistItemProperties";
-import PlaylistPagePlayerStore from "../../stores/PlaylistPagePlayerStore";
-import GlobalPlayerStore from "../../stores/GlobalPlayerStore";
+import {PlaylistItemProperties} from "../../../models/components/playlistPage/PlaylistItemProperties";
+import PlaylistPagePlayerStore from "../../../stores/PlaylistPagePlayerStore";
+import GlobalPlayerStore from "../../../stores/GlobalPlayerStore";
 import PlaylistItemDropdown from "./PlaylistItemDropdown";
 
 function PlaylistItem(props: PlaylistItemProperties): JSX.Element {

@@ -1,10 +1,10 @@
 import React from "react";
-import '../../styles/style.css';
+import '../../../styles/style.css';
 import "aos/dist/aos.css";
-import PlaylistRequests from "../../requests/backendRequests/PlaylistRequests";
-import {PlaylistItemDropdownProperties} from "../../models/components/playlistPage/PlaylistItemDropdownProperties";
-import AlertStore from "../../stores/AlertStore";
-import BackendResponsesStore from "../../stores/BackendResponsesStore";
+import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
+import {PlaylistItemDropdownProperties} from "../../../models/components/playlistPage/PlaylistItemDropdownProperties";
+import AlertStore from "../../../stores/AlertStore";
+import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 
 function PlaylistItemDropdown(props: PlaylistItemDropdownProperties): JSX.Element {
 

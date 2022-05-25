@@ -21,4 +21,7 @@ export interface BackendResponsesState {
     resetCoverResponse: string | null;
     setResetCoverResponse: (resetCoverResponse: string | null) => void
 
+    updatedUserInfoResponse: string | null;
+    setUpdatedUserInfoResponse: (updatedUserInfoResponse: string | null) => void
+
 }

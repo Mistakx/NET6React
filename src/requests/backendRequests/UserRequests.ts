@@ -1,6 +1,7 @@
 import axios from "axios";
-import {UserProfile} from "../../models/backendRequests/UserProfile";
+import {UserProfile} from "../../models/backendRequests/UserRoute/UserProfile";
 import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import {EditUserInfo} from "../../models/backendRequests/UserRoute/EditUserInfo";
 
 class UserRequests {
 
@@ -33,7 +34,6 @@ class UserRequests {
 
     }
 
-    // Registers a new user
     static async register(username: string, name: string, email: string, password: string, userPhoto: File) {
         const url = "/User/register";
 
@@ -54,7 +54,7 @@ class UserRequests {
 
     }
 
-    // Logs in to the application, returns a session Id
+    // Logs in to the application and returns a session token
     static async login(email: string, password: string) {
         const url = "/User/login";
 
@@ -93,6 +93,27 @@ class UserRequests {
 
     }
 
+    static async updateUserInfo(name: string, username: string, email: string, sessionToken: string) {
+
+        const url = "/User/editUserInfo";
+
+        const data: EditUserInfo = {
+            name: name,
+            username: username,
+            email: email,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as string
+    }
 
 }
 

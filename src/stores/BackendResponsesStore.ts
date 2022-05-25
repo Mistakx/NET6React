@@ -38,6 +38,10 @@ const BackendResponsesStore = create<BackendResponsesState>((set) => ({
         resetCoverResponse: resetCoverResponse
     })),
 
+    updatedUserInfoResponse: null,
+    setUpdatedUserInfoResponse: (updatedUserInfoResponse) => set(state => ({
+        updatedUserInfoResponse: updatedUserInfoResponse
+    })),
 
 }))
 

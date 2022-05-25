@@ -1,13 +1,13 @@
-import '../../styles/Playlist.css'
-import '../../styles/SearchPage.css'
+import '../../../styles/Playlist.css'
+import '../../../styles/SearchPage.css'
 import React, {useEffect, useState} from "react";
 import "aos/dist/aos.css";
-import BackendResponsesStore from "../../stores/BackendResponsesStore";
+import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 import AOS from "aos";
-import PlaylistRequests from "../../requests/backendRequests/PlaylistRequests";
-import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
-import {PlaylistCoverProperties} from "../../models/components/playlistPage/PlaylistCoverProperties";
-import AlertStore from "../../stores/AlertStore";
+import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
+import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import {PlaylistCoverProperties} from "../../../models/components/playlistPage/PlaylistCoverProperties";
+import AlertStore from "../../../stores/AlertStore";
 
 function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
 

@@ -1,9 +1,9 @@
-import '../../styles/Playlist.css'
-import '../../styles/SearchPage.css'
+import '../../../styles/Playlist.css'
+import '../../../styles/SearchPage.css'
 import React, {useState} from "react";
 import "aos/dist/aos.css";
-import {PlayerFactory} from "../players/PlayerFactory";
-import PlaylistPagePlayerStore from "../../stores/PlaylistPagePlayerStore";
+import {PlayerFactory} from "../../players/PlayerFactory";
+import PlaylistPagePlayerStore from "../../../stores/PlaylistPagePlayerStore";
 
 function PlaylistPlayer(): JSX.Element {
 

@@ -1,14 +1,14 @@
-import '../../styles/Playlist.css'
-import '../../styles/SearchPage.css'
+import '../../../styles/Playlist.css'
+import '../../../styles/SearchPage.css'
 import PlaylistItem from "./PlaylistItem";
 import React, {useEffect} from "react";
 import "aos/dist/aos.css";
-import {PlaylistItemsListProperties} from "../../models/components/playlistPage/PlaylistItemsListProperties";
-import PlaylistRequests from "../../requests/backendRequests/PlaylistRequests";
-import {PlaylistGeneralizedResults} from "../../models/backendRequests/PlaylistRoute/PlaylistGeneralizedResults";
-import AlertStore from "../../stores/AlertStore";
-import PlaylistPagePlayerStore from "../../stores/PlaylistPagePlayerStore";
-import BackendResponsesStore from "../../stores/BackendResponsesStore";
+import {PlaylistItemsListProperties} from "../../../models/components/playlistPage/PlaylistItemsListProperties";
+import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
+import {PlaylistGeneralizedResults} from "../../../models/backendRequests/PlaylistRoute/PlaylistGeneralizedResults";
+import AlertStore from "../../../stores/AlertStore";
+import PlaylistPagePlayerStore from "../../../stores/PlaylistPagePlayerStore";
+import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 
 function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
 
