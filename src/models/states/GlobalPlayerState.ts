@@ -1,8 +1,8 @@
-import {GenericResult} from "../apiRequests/GenericResults";
+import {GeneralizedResult} from "../apiRequests/GenericResults";
 
 export interface GlobalPlayerState {
 
-    playingGenericResult: GenericResult | null
-    setPlayingGenericResult: (playingGenericResult: GenericResult | null) => void
+    playingGenericResult: GeneralizedResult | null
+    setPlayingGenericResult: (playingGenericResult: GeneralizedResult | null) => void
 
 }

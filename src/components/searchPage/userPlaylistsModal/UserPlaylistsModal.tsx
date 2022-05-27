@@ -2,18 +2,21 @@ import '../../../styles/SearchPage.css';
 import React, {useEffect} from "react";
 import "aos/dist/aos.css";
 import {Modal} from "react-bootstrap";
-import PlaylistsModalStore from "../../../stores/PlaylistsModalStore";
+import UserPlaylistsModalStore from "../../../stores/UserPlaylistsModalStore";
 import axios from "axios";
 import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
 import PlaylistItemsList from "./PlaylistItemsList";
+import AlertStore from "../../../stores/AlertStore";
 
-function PlaylistsModal(): JSX.Element {
+function UserPlaylistsModal(): JSX.Element {
 
     const [userPlaylists, setUserPlaylists] = React.useState<PlaylistBasicDetails[]>();
 
-    const resultToAdd = PlaylistsModalStore(state => state.resultToAdd)
-    const showingPlaylistsModal = PlaylistsModalStore(state => state.showingPlaylistsModal)
-    const setShowingPlaylistsModal = PlaylistsModalStore(state => state.setShowingPlaylistsModal)
+    const prettyAlert = AlertStore(state => state.prettyAlert)
+
+    const resultToAdd = UserPlaylistsModalStore(state => state.resultToAdd)
+    const showingPlaylistsModal = UserPlaylistsModalStore(state => state.showingPlaylistsModal)
+    const setShowingPlaylistsModal = UserPlaylistsModalStore(state => state.setShowingPlaylistsModal)
 
     async function getPlaylists(userId: string) {
         const url = "/User/Playlists/" + userId;
@@ -34,8 +37,14 @@ function PlaylistsModal(): JSX.Element {
         if (!userPlaylists) {
             (async () => {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
-                if (sessionToken) setUserPlaylists(await getPlaylists(sessionToken));
-                else alert("No session token found.")
+                if (sessionToken) {
+                    try {
+                        setUserPlaylists(await getPlaylists(sessionToken));
+                    } catch (e: any) {
+                        prettyAlert(e.response?.data || e.toJSON().message, false)
+                    }
+                } else prettyAlert("No session token found.", false)
+
             })()
         }
     }, [userPlaylists]);
@@ -46,7 +55,7 @@ function PlaylistsModal(): JSX.Element {
             show={showingPlaylistsModal}
             backdrop="static"
             keyboard={true}
-            centered
+            centered={true}
         >
 
             <div className="modal-content">
@@ -55,7 +64,7 @@ function PlaylistsModal(): JSX.Element {
 
                     <Modal.Title>
                         <h5 id="staticBackdropLabel">
-                            <strong>Add to playlist</strong><br/> {resultToAdd!.title}
+                            <strong>Add to playlist</strong><br/> {resultToAdd?.title}
                         </h5>
                     </Modal.Title>
 
@@ -79,10 +88,10 @@ function PlaylistsModal(): JSX.Element {
     return (
 
         <div>
-        {playlistModal}
+            {playlistModal}
         </div>
 
     )
 }
 
-export default PlaylistsModal;
+export default UserPlaylistsModal;

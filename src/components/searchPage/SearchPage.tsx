@@ -1,6 +1,5 @@
 import AuthenticatedSearchBar from "./searchBar/AuthenticatedSearchBar";
 import SearchResultsList from "./searchItems/SearchResultsList";
-import FloatingPlayer from "../FloatingPlayer";
 import '../../styles/SearchPage.css';
 import React, { useEffect } from "react";
 import "aos/dist/aos.css";

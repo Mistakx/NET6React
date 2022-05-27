@@ -1,54 +1,31 @@
 import '../../styles/Playlist.css'
 import '../../styles/SearchPage.css'
-import React, {useEffect} from "react";
-import AOS from "aos";
+import React, {useEffect, useState} from "react";
 import "aos/dist/aos.css";
 import TopBar from "../TopBar";
 import {useParams} from "react-router-dom";
-import axios from "axios";
-import {PlaylistDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistDetails";
-import PlaylistItemsList from "./PlaylistItemsList";
-import PlaylistTitle from "./PlaylistTitle";
-import PlaylistPlayer from "./PlaylistPlayer";
+import PlaylistItemsList from "./PlaylistItems/PlaylistItemsList";
+import PlaylistCover from "./PlaylistItems/PlaylistCover";
+import PlaylistPlayer from "./PlaylistPlayer/PlaylistPlayer";
 import PlaylistPagePlayerStore from "../../stores/PlaylistPagePlayerStore";
+import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import PlaylistRequests from "../../requests/backendRequests/PlaylistRequests";
+import AOS from "aos";
+import AlertStore from "../../stores/AlertStore";
 
 function PlaylistPage(): JSX.Element {
 
     const playlistId = useParams().playlistId
 
-    const [playlistInformation, setPlaylistInformation] = React.useState<PlaylistDetails>();
-
     const setPlayingGenericResult = PlaylistPagePlayerStore(state => state.setPlayingGenericResult)
     const setPlayingGenericResultPlaylistIndex = PlaylistPagePlayerStore(state => state.setPlayingGenericResultPlaylistIndex)
 
-
-    async function getPlaylist(playlistId: string) {
-        const url = "/Playlist/" + playlistId;
-
-        const options = {
-            method: 'GET',
-            url: url,
-        };
-
-        // @ts-ignore
-        let profileResponse = await axios(options);
-        let profile: PlaylistDetails = profileResponse.data;
-        return profile;
-
-    }
-
-    useEffect(() => {
-        if (!playlistInformation && playlistId) {
-            (async () => {
-                setPlaylistInformation(await getPlaylist(playlistId));
-            })()
-        }
-    }, []);
-
     useEffect(() => {
         AOS.init();
-        setPlayingGenericResult(null)
-        setPlayingGenericResultPlaylistIndex(null)
+        (async () => {
+            setPlayingGenericResult(null)
+            setPlayingGenericResultPlaylistIndex(null)
+        })()
     }, []);
 
     return (
@@ -68,13 +45,14 @@ function PlaylistPage(): JSX.Element {
 
                             <PlaylistPlayer/>
 
-                            <div className="col-lg-4 col-md-4 col-12" id="playlist" data-aos="fade-left" data-aos-delay="200">
+                            <div className="col-lg-4 col-md-4 col-12" id="playlist" data-aos="fade-left"
+                                 data-aos-delay="200">
 
                                 <div className="card align-items-stretch mt-4 mt-md-0">
 
-                                    <PlaylistTitle title={playlistInformation?.title}/>
+                                    <PlaylistCover playlistId={playlistId}/>
 
-                                    <PlaylistItemsList playlistId={playlistInformation?.id} playlistItems={playlistInformation?.contents}/>
+                                    <PlaylistItemsList playlistId={playlistId!}/>
 
                                 </div>
 

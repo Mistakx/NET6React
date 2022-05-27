@@ -1,9 +1,9 @@
-import '../../styles/Playlist.css'
-import '../../styles/SearchPage.css'
+import '../../../styles/Playlist.css'
+import '../../../styles/SearchPage.css'
 import React, {useState} from "react";
 import "aos/dist/aos.css";
-import {PlayerFactory} from "../players/PlayerFactory";
-import PlaylistPagePlayerStore from "../../stores/PlaylistPagePlayerStore";
+import {PlayerFactory} from "../../players/PlayerFactory";
+import PlaylistPagePlayerStore from "../../../stores/PlaylistPagePlayerStore";
 
 function PlaylistPlayer(): JSX.Element {
 
@@ -15,6 +15,8 @@ function PlaylistPlayer(): JSX.Element {
     if (playingGenericResult) {
         playlistPlayer = PlayerFactory.createPlayer(playingGenericResult, setPlayerStarted)
     }
+
+    let currentlyPlayingText = playingGenericResult?.title ? playingGenericResult?.title : "Not playing content"
 
     return (
 
@@ -29,20 +31,20 @@ function PlaylistPlayer(): JSX.Element {
                     </div>
                 </div>
 
-                {/*<div className="player-options rounded">*/}
-                {/*    <button className="btn btn-link text-white">*/}
-                {/*        <i className='bx bx-skip-previous h3'></i>*/}
-                {/*    </button>*/}
-                {/*    <button className="btn btn-link text-white">*/}
-                {/*        <i className='bx bx-skip-next h3'></i>*/}
-                {/*    </button>*/}
-                {/*</div>*/}
+                <div className="player-options rounded">
+                    <button className="btn btn-link text-white">
+                        <i className='bx bx-skip-previous h3'></i>
+                    </button>
+                    <button className="btn btn-link text-white">
+                        <i className='bx bx-skip-next h3'></i>
+                    </button>
+                </div>
 
             </div>
 
             
             <div className="social text-white rounded mt-4"  id="titulo" data-aos="fade-right" data-aos-delay="200">
-                <h3 className="p-3">Nome Música</h3>
+                <h3 className="p-3">{currentlyPlayingText}</h3>
             </div>
         </div>
 

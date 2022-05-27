@@ -48,15 +48,10 @@ export class SpotifySearchTrackByName extends ApiSearch {
             url: url,
         };
 
-        try {
-            // @ts-ignore
-            let spotifyTracksResponse = await axios(options);
-            let spotifyTracks: SpotifySearchTracksResult = spotifyTracksResponse.data;
-            return spotifyTracks.tracks;
-        } catch (e) {
-            alert(e)
-        }
-        return {} as SpotifyTracksPage
+        // @ts-ignore
+        let spotifyTracksResponse = await axios(options);
+        let spotifyTracks: SpotifySearchTracksResult = spotifyTracksResponse.data;
+        return spotifyTracks.tracks;
 
     }
 

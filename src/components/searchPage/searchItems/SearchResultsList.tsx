@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import SearchedListStore from "../../../stores/SearchedListStore";
-import PlaylistsModal from "../playlistsModal/PlaylistsModal";
+import UserPlaylistsModal from "../userPlaylistsModal/UserPlaylistsModal";
 import SearchResultComponentFactory from "./SearchResultComponentFactory";
 
 function SearchResultsList(): JSX.Element {
@@ -32,7 +32,7 @@ function SearchResultsList(): JSX.Element {
 
         <div>
 
-            <PlaylistsModal/>
+            <UserPlaylistsModal/>
 
             <div className="results">
                 <div className="row">

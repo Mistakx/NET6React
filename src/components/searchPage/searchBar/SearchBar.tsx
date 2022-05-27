@@ -9,8 +9,9 @@ import PlatformDropdownButton from "./PlatformDropdownButton";
 import PlatformDropdownList from "./PlatformDropdownList";
 import PlatformDropdownStore from "../../../stores/PlatformDropdownStore";
 import {
-    GenericResult,
+    GeneralizedResult,
 } from "../../../models/apiRequests/GenericResults";
+import AlertStore from "../../../stores/AlertStore";
 
 function SearchBar(props: SearchBarProperties): JSX.Element {
 
@@ -25,10 +26,12 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
     const setSearchedResults = SearchedListStore(state => state.setSearchedResults)
 
+    const prettyAlert = AlertStore(state => state.prettyAlert)
+
     useEffect(() => {
         setPlatformDropdownList(closedDropdown)
-    },[])
-    
+    }, [])
+
 
     function togglePlatformDropdownList() {
         if (platformDropdownList === closedDropdown) {
@@ -40,27 +43,35 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
     async function searchPlatformItems(chosenSearchQuery: string) {
 
-        let searchList: GenericResult[] = [];
+        let searchList: GeneralizedResult[] = [];
 
-        if (selectedSearch.getPlatform().getName() === "Spotify") {
-            searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40, props.spotifyAuthenticator.current)
-        } else if (selectedSearch.getPlatform().getName() === "Twitch") {
-            searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40, props.twitchAuthenticator.current)
-        } else {
-            searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40)
+        try {
+            if (selectedSearch.getPlatform().getName() === "Spotify") {
+                searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40, props.spotifyAuthenticator.current)
+            } else if (selectedSearch.getPlatform().getName() === "Twitch") {
+                searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40, props.twitchAuthenticator.current)
+            } else {
+                searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40)
+            }
+            return searchList
+        } catch (e: any) {
+            prettyAlert(e.response?.data || e.toJSON().message, false)
         }
-        return searchList
+
 
     }
 
     return (
-        <div className="form-wrapper top-stick" >
+        <div className="form-wrapper top-stick">
 
             <SearchLabel/>
 
             <form onSubmit={async (event) => {
                 event.preventDefault()
-                setSearchedResults(await searchPlatformItems(searchBarQuery));
+                let results = await searchPlatformItems(searchBarQuery)
+                if (results) {
+                    setSearchedResults(results)
+                }
             }}>
 
                 <div className="input-group">
@@ -71,9 +82,10 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
                     <SearchForm spotifyAuthenticator={props.spotifyAuthenticator}
                                 twitchAuthenticator={props.twitchAuthenticator}
-                                />
+                    />
 
-                    <button className={"btn btn-search " + selectedSearch.getPlatform().getColorClass()} type="submit" id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
+                    <button className={"btn btn-search " + selectedSearch.getPlatform().getColorClass()} type="submit"
+                            id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
                 </div>
             </form>
 

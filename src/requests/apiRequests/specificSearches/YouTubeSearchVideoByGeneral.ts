@@ -47,16 +47,10 @@ export class YouTubeSearchVideoByGeneral extends ApiSearch {
             url: url,
         };
 
-        try {
-            // @ts-ignore
-            let youtubeResponse = await axios(options);
-            let youtubeSearchResult: YouTubeVideoDetailsSearchResultPage = youtubeResponse.data;
-            return youtubeSearchResult;
-        } catch (e) {
-            alert("YouTube Video Details Search - " + e)
-        }
-        return {} as YouTubeVideoDetailsSearchResultPage
-
+        // @ts-ignore
+        let youtubeResponse = await axios(options);
+        let youtubeSearchResult: YouTubeVideoDetailsSearchResultPage = youtubeResponse.data;
+        return youtubeSearchResult;
 
     }
 
@@ -80,24 +74,18 @@ export class YouTubeSearchVideoByGeneral extends ApiSearch {
             url: url,
         };
 
-        try {
-            // @ts-ignore
-            let youtubeResponse = await axios(options);
-            let youtubeSearchResult: YouTubeVideoSearchResultPage = youtubeResponse.data;
 
-            // await async.forEach(youtubeSearchResult.items, async (item) => {
-            //     console.log("YouTube Video Search - " + item.snippet.title)
-            //     let videoDetails = await this.searchYouTubeVideoDetails(item.id.videoId)
-            //     item.details = {...videoDetails}
-            // })
+        // @ts-ignore
+        let youtubeResponse = await axios(options);
+        let youtubeSearchResult: YouTubeVideoSearchResultPage = youtubeResponse.data;
 
-            return youtubeSearchResult;
+        // await async.forEach(youtubeSearchResult.items, async (item) => {
+        //     console.log("YouTube Video Search - " + item.snippet.title)
+        //     let videoDetails = await this.searchYouTubeVideoDetails(item.id.videoId)
+        //     item.details = {...videoDetails}
+        // })
 
-        } catch (e) {
-            alert("YouTube Search - " + e)
-        }
-        return {} as YouTubeVideoSearchResultPage
-
+        return youtubeSearchResult;
 
     }
 

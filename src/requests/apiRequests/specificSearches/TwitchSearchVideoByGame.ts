@@ -61,15 +61,11 @@ export class TwitchSearchVideoByGame extends ApiSearch {
             url: url,
         };
 
-        try {
-            // @ts-ignore
-            let twitchVideosSearchResponse = await axios(options);
-            let twitchVideosResult: TwitchSearchVideoResultPage = twitchVideosSearchResponse.data;
-            return twitchVideosResult;
-        } catch (e) {
-            alert(e)
-        }
-        return {} as TwitchSearchVideoResultPage;
+        // @ts-ignore
+        let twitchVideosSearchResponse = await axios(options);
+        let twitchVideosResult: TwitchSearchVideoResultPage = twitchVideosSearchResponse.data;
+        return twitchVideosResult;
+
     }
 
     public async getSearchResults(searchQuery: string, page: number, limit: number, accessToken: string) {

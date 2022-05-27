@@ -1,8 +1,7 @@
 import create from 'zustand'
-import {PlaylistModalState} from "../models/states/PlaylistModalState";
-import React from "react";
+import {UserPlaylistsModalState} from "../models/states/UserPlaylistsModalState";
 
-const PlaylistsModalStore = create<PlaylistModalState>((set) => ({
+const UserPlaylistsModalStore = create<UserPlaylistsModalState>((set) => ({
 
     resultToAdd: null,
     setResultToAdd: (resultToAdd) => set(state => ({
@@ -16,4 +15,4 @@ const PlaylistsModalStore = create<PlaylistModalState>((set) => ({
 
 }))
 
-export default PlaylistsModalStore;
+export default UserPlaylistsModalStore;

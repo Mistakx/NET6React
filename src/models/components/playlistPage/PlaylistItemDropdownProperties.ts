@@ -1,8 +1,6 @@
-import {GenericResult} from "../../apiRequests/GenericResults";
-import React from "react";
+import {GeneralizedResult} from "../../apiRequests/GenericResults";
 
 export interface PlaylistItemDropdownProperties {
-    genericResult: GenericResult
+    genericResult: GeneralizedResult
     playlistId: string | undefined
-    setDeleteGeneralizedResultResponse: React.Dispatch<React.SetStateAction<string>>
 }

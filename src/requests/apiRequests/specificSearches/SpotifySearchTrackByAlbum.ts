@@ -6,7 +6,6 @@ import {SpotifyTracksPageToListItemsConverter} from "../converters/SpotifyTracks
 import {Platform} from "../platforms/Platform";
 import Spotify from '../platforms/Spotify';
 
-
 export class SpotifySearchTrackByAlbum extends ApiSearch {
 
     private static spotifySearchTrackByAlbumInstance: ApiSearch
@@ -52,15 +51,11 @@ export class SpotifySearchTrackByAlbum extends ApiSearch {
             url,
         };
 
-        try {
-            // @ts-ignore
-            let spotifyAlbumsResponse = await axios(options);
-            let spotifyAlbums: SpotifySearchAlbumsResult = spotifyAlbumsResponse.data;
-            return spotifyAlbums;
-        } catch (e) {
-            alert(e)
-        }
-        return {} as SpotifySearchAlbumsResult
+
+        // @ts-ignore
+        let spotifyAlbumsResponse = await axios(options);
+        let spotifyAlbums: SpotifySearchAlbumsResult = spotifyAlbumsResponse.data;
+        return spotifyAlbums;
 
     }
 
