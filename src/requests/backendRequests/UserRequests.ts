@@ -66,7 +66,8 @@ class UserRequests {
         const options = {
             method: 'POST',
             url: url,
-            data: data
+            data: data,
+            timeout: 2000
         };
 
 

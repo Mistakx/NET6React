@@ -30,9 +30,8 @@ function PlaylistsList(): JSX.Element {
                 try {
                     setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
                 } catch (e: any) {
-                    prettyAlert(e.response.data, false)
+                    prettyAlert(e.response.data || e.toJSON().message, false)
                 }
-
             } else prettyAlert("No session token found.", false)
         })()
     }, []);
@@ -45,7 +44,7 @@ function PlaylistsList(): JSX.Element {
                     try {
                         setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
                     } catch (e: any) {
-                        prettyAlert(e.response.data, false)
+                        prettyAlert(e.response.data || e.toJSON().message, false)
                     }
                     setDeletePlaylistResponse(null);
                 } else prettyAlert("No session token found.", false)
@@ -54,7 +53,6 @@ function PlaylistsList(): JSX.Element {
     }, [deletePlaylistResponse]);
 
     useEffect(() => {
-        console.log("DEBUG")
         if (resetCoverResponse) {
             (async () => {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
@@ -62,7 +60,7 @@ function PlaylistsList(): JSX.Element {
                     try {
                         setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
                     } catch (e: any) {
-                        prettyAlert(e.response.data, false)
+                        prettyAlert(e.response.data || e.toJSON().message, false)
                     }
                     setResetCoverResponse(null);
                 } else prettyAlert("No session token found.", false)
@@ -78,7 +76,7 @@ function PlaylistsList(): JSX.Element {
                     try {
                         setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
                     } catch (e: any) {
-                        prettyAlert(e.response.data, false)
+                        prettyAlert(e.response.data || e.toJSON().message, false)
                     }
                     setEditOrCreatePlaylistResponse(null);
                 } else prettyAlert("No session token found.", false)

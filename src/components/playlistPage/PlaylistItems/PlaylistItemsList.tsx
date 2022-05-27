@@ -24,7 +24,7 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
             try {
                 setPlaylistGeneralizedResults(await PlaylistRequests.getPlaylistGeneralizedResults(props.playlistId!));
             } catch (e: any) {
-                prettyAlert(e.response.data, false)
+                prettyAlert(e.response.data || e.toJSON().message, false)
             }
         })()
     }, []);
@@ -35,7 +35,7 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
                 try {
                     setPlaylistGeneralizedResults(await PlaylistRequests.getPlaylistGeneralizedResults(props.playlistId!));
                 } catch (e: any) {
-                    prettyAlert(e.response.data, false)
+                    prettyAlert(e.response.data || e.toJSON().message, false)
                 }
                 setDeleteGeneralizedResultResponse("")
             })()

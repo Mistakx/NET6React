@@ -27,8 +27,10 @@ function EditUserInfoModal(): JSX.Element {
             let response;
             try {
                 response = await UserRequests.updateUserInfo(name!, username!, email!, sessionToken)
+                prettyAlert(response, true)
             } catch (e: any) {
-                response = e.response.data
+                response = e.response.statusText
+                prettyAlert(response, false)
             }
             setUpdatedUserInfoResponse(response)
             setShowingEditUserInfoModal(false)
@@ -125,3 +127,5 @@ function EditUserInfoModal(): JSX.Element {
 }
 
 export default EditUserInfoModal;
+
+// TODO: Create function that receives a request function and alerts the user propertly

@@ -67,15 +67,13 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
                                 onClick={async () => {
                                     const sessionToken = sessionStorage.getItem("sessionToken")
                                     if (sessionToken) {
-                                        let response
                                         try {
-                                            response = await PlaylistRequests.setCoverItem(props.basicDetails.id, "", sessionToken)
+                                            let response = await PlaylistRequests.setCoverItem(props.basicDetails.id, "", sessionToken)
                                             prettyAlert(response, true)
+                                            setResetCoverResponse(response)
                                         } catch (e: any) {
-                                            response = e.response.data
-                                            prettyAlert(response, true)
+                                            prettyAlert(e.response.data || e.toJSON().message, true)
                                         }
-                                        setResetCoverResponse(response)
                                     } else prettyAlert("You must be logged in to edit a playlist.", false)
                                 }}>
                                 <div className="dropdown-item">Reset cover</div>
@@ -84,15 +82,13 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
                                 onClick={async () => {
                                     const sessionToken = sessionStorage.getItem("sessionToken")
                                     if (sessionToken) {
-                                        let response;
                                         try {
-                                            response = await PlaylistRequests.deletePlaylist(props.basicDetails.id, sessionToken)
+                                            let response = await PlaylistRequests.deletePlaylist(props.basicDetails.id, sessionToken)
                                             prettyAlert(response, true)
+                                            setDeletePlaylistResponse(response)
                                         } catch (e: any) {
-                                            response = e.response.data
-                                            prettyAlert(e.response.data, false)
+                                            prettyAlert(e.response.data || e.toJSON().message, false)
                                         }
-                                        setDeletePlaylistResponse(response)
                                     } else prettyAlert("You must be logged in to delete a playlist.", false)
                                 }}
                             >

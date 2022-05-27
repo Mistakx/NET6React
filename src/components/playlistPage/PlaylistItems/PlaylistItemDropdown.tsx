@@ -27,9 +27,8 @@ function PlaylistItemDropdown(props: PlaylistItemDropdownProperties): JSX.Elemen
                                  setPlaylistCoverChangedResponse(response)
                                  prettyAlert(response, true)
                              } catch (e: any) {
-                                 prettyAlert(e.response.data, false)
+                                 prettyAlert(e.response.data || e.toJSON().message, false)
                              }
-
                          } else prettyAlert("You must be logged in to delete a playlist", false)
                      }}
                 >Set as cover
@@ -40,15 +39,13 @@ function PlaylistItemDropdown(props: PlaylistItemDropdownProperties): JSX.Elemen
             <li onClick={async () => {
                 const sessionToken = sessionStorage.getItem("sessionToken")
                 if (sessionToken) {
-                    let response: string;
                     try {
-                        response = await PlaylistRequests.deleteGeneralizedResult(props.playlistId!, props.genericResult.databaseId!, sessionToken)
+                        let response = await PlaylistRequests.deleteGeneralizedResult(props.playlistId!, props.genericResult.databaseId!, sessionToken)
                         prettyAlert(response, true)
+                        setDeleteGeneralizedResultResponse(response)
                     } catch (e: any) {
-                        response = e.response.data
-                        prettyAlert(e.response.data, true)
+                        prettyAlert(e.response.data || e.toJSON().message, true)
                     }
-                    setDeleteGeneralizedResultResponse(response)
                 } else prettyAlert("You must be logged in to delete a result.", false)
 
             }}>

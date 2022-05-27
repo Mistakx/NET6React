@@ -47,9 +47,10 @@ function LoginPage(): JSX.Element {
                                     e.preventDefault()
                                     try {
                                         let sessionToken = await UserRequests.login(loginEmail, loginPassword)
+                                        prettyAlert("Successfully logged in.", true)
                                         setSessionToken(sessionToken)
                                     } catch (e: any) {
-                                        prettyAlert(e.response.data, false)
+                                        prettyAlert(e.response.data || e.toJSON().message, false)
                                     }
                                 }
                             }>

@@ -29,7 +29,7 @@ function User(): JSX.Element {
                 try {
                     setProfile(await UserRequests.getProfile(sessionToken))
                 } catch (e: any) {
-                    prettyAlert(e.response.data, false)
+                    prettyAlert(e.response.data || e.toJSON().message, false)
                 }
             } else prettyAlert("No session token found.", false)
         })()

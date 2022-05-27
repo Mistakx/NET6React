@@ -56,20 +56,19 @@ function EditOrCreatePlaylistModal(): JSX.Element {
                 try {
                     response = await PlaylistRequests.editPlaylist(playlistId, playlistTitle, playlistVisibility, playlistDescription, sessionToken)
                     prettyAlert(response, true)
+                    setEditOrCreatePlaylistResponse(response)
                 } catch (e: any) {
-                    response = e.response.data
-                    prettyAlert(e.response.data, false)
+                    prettyAlert(e.response.data || e.toJSON().message , false)
                 }
             } else {
                 try {
                     response = await PlaylistRequests.createPlaylist(playlistTitle, playlistVisibility, playlistDescription, sessionToken)
                     prettyAlert(response, true)
+                    setEditOrCreatePlaylistResponse(response)
                 } catch (e: any) {
-                    response = e.response.data
-                    prettyAlert(e.response.data, false)
+                    prettyAlert(e.response.data || e.toJSON().message, false)
                 }
             }
-            setEditOrCreatePlaylistResponse(response)
 
         } else prettyAlert("You must be logged in to edit or create a playlist.", false)
 
