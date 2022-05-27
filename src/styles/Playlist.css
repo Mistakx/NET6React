@@ -127,3 +127,9 @@
 .form-group textarea {
   resize: none;
 }
+
+
+.btn .btn-rounded {
+  /* border-radius: 50px; */
+  box-shadow: 0px 0px 90px 25px rgb(173, 190, 211);
+}

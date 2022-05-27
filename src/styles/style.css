@@ -72,7 +72,6 @@ h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 .btn {
   box-shadow: none !important;
-  color: var(--text) ;
 }
 
 .text-danger {
@@ -139,6 +138,7 @@ h2, h3, h4, h5, h6 {
 
 .btn-link {
   text-decoration: none;
+  color: var(--dark);
 }
 
 .btn-link:hover {
