@@ -24,15 +24,13 @@ function EditUserInfoModal(): JSX.Element {
     async function submitForm() {
         const sessionToken = sessionStorage.getItem("sessionToken")
         if (sessionToken){
-            let response;
             try {
-                response = await UserRequests.updateUserInfo(name!, username!, email!, sessionToken)
+                let response = await UserRequests.updateUserInfo(name!, username!, email!, sessionToken)
                 prettyAlert(response, true)
+                setUpdatedUserInfoResponse(response)
             } catch (e: any) {
-                response = e.response.statusText
-                prettyAlert(response, false)
+                prettyAlert(e.response.data || e.toJSON().message, false)
             }
-            setUpdatedUserInfoResponse(response)
             setShowingEditUserInfoModal(false)
         } else prettyAlert("You must be logged in to edit your user info", false)
 
