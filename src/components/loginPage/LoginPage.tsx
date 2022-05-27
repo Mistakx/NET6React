@@ -50,7 +50,7 @@ function LoginPage(): JSX.Element {
                                         prettyAlert("Successfully logged in.", true)
                                         setSessionToken(sessionToken)
                                     } catch (e: any) {
-                                        prettyAlert(e.response.data || e.toJSON().message, false)
+                                        prettyAlert(e.response?.data || e.toJSON().message, false)
                                     }
                                 }
                             }>

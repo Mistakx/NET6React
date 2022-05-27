@@ -55,7 +55,7 @@ function RegisterPage(): JSX.Element {
                                             let sessionToken = await UserRequests.login(email, password)
                                             setSessionToken(sessionToken)
                                         } catch (e: any) {
-                                            prettyAlert(e.response.data || e.toJSON().message, false)
+                                            prettyAlert(e.response?.data || e.toJSON().message, false)
                                         }
                                     }
                                 }

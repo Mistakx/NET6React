@@ -19,7 +19,7 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
                 let response = await PlaylistRequests.addToPlaylist(props.id, resultToAdd!)
                 prettyAlert(response, true)
             } catch (e: any) {
-                prettyAlert(e.response.data || e.toJSON().message, false)
+                prettyAlert(e.response?.data || e.toJSON().message, false)
             }
         }}>
             {props.title}

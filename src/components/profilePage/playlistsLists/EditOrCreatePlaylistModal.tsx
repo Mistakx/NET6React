@@ -58,7 +58,7 @@ function EditOrCreatePlaylistModal(): JSX.Element {
                     prettyAlert(response, true)
                     setEditOrCreatePlaylistResponse(response)
                 } catch (e: any) {
-                    prettyAlert(e.response.data || e.toJSON().message , false)
+                    prettyAlert(e.response?.data || e.toJSON().message , false)
                 }
             } else {
                 try {
@@ -66,7 +66,7 @@ function EditOrCreatePlaylistModal(): JSX.Element {
                     prettyAlert(response, true)
                     setEditOrCreatePlaylistResponse(response)
                 } catch (e: any) {
-                    prettyAlert(e.response.data || e.toJSON().message, false)
+                    prettyAlert(e.response?.data || e.toJSON().message, false)
                 }
             }
 

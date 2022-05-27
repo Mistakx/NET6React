@@ -67,7 +67,6 @@ class UserRequests {
             method: 'POST',
             url: url,
             data: data,
-            timeout: 2000
         };
 
 

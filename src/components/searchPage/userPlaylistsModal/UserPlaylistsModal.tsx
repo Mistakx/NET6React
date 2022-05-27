@@ -41,7 +41,7 @@ function UserPlaylistsModal(): JSX.Element {
                     try {
                         setUserPlaylists(await getPlaylists(sessionToken));
                     } catch (e: any) {
-                        prettyAlert(e.response.data || e.toJSON().message, false)
+                        prettyAlert(e.response?.data || e.toJSON().message, false)
                     }
                 } else prettyAlert("No session token found.", false)
 

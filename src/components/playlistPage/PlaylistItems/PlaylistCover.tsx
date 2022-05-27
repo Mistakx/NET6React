@@ -26,7 +26,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                 try {
                     setPlaylistBasicDetails(await PlaylistRequests.getPlaylistBasicDetails(props.playlistId!))
                 } catch (e: any) {
-                    prettyAlert(e.response.data || e.toJSON().message, false)
+                    prettyAlert(e.response?.data || e.toJSON().message, false)
                 }
                 setPlaylistCoverChangedResponse("")
             })()
