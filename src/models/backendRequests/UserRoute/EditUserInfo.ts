@@ -1,7 +1,7 @@
 export interface EditUserInfo {
-    email: string
-    name: string
-    username: string
+    newEmail: string
+    newName: string
+    newUsername: string
     sessionToken: string
 }
 

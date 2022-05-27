@@ -2,6 +2,7 @@ import axios from "axios";
 import {UserProfile} from "../../models/backendRequests/UserRoute/UserProfile";
 import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
 import {EditUserInfo} from "../../models/backendRequests/UserRoute/EditUserInfo";
+import {EditUserPassword} from "../../models/backendRequests/UserRoute/EditUserPassword";
 
 class UserRequests {
 
@@ -98,9 +99,30 @@ class UserRequests {
         const url = "/User/editUserInfo";
 
         const data: EditUserInfo = {
-            name: name,
-            username: username,
-            email: email,
+            newName: name,
+            newUsername: username,
+            newEmail: email,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as string
+    }
+
+    static async updatePassword(currentPassword: string, newPassword: string, sessionToken: string) {
+
+        const url = "/User/editPassword";
+
+        const data: EditUserPassword = {
+            currentPassword: currentPassword,
+            newPassword: newPassword,
             sessionToken: sessionToken
         }
 

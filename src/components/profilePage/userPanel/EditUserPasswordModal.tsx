@@ -1,45 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../../../styles/style.css';
 import {Modal, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
 import AlertStore from "../../../stores/AlertStore";
-import BackendResponsesStore from "../../../stores/BackendResponsesStore";
-import EditUserInfoModalStore from "../../../stores/EditUserInfoModalStore";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
+import EditUserPasswordModalStore from "../../../stores/EditUserPasswordModal";
 
-function EditUserInfoModal(): JSX.Element {
+function EditUserPasswordModal(): JSX.Element {
 
-    const showingEditUserInfoModal = EditUserInfoModalStore(state => state.showingEditUserInfoModal)
-    const setShowingEditUserInfoModal = EditUserInfoModalStore(state => state.setShowingEditUserInfoModal)
-    const name = EditUserInfoModalStore(state => state.name)
-    const setName = EditUserInfoModalStore(state => state.setName)
-    const username = EditUserInfoModalStore(state => state.username)
-    const setUsername = EditUserInfoModalStore(state => state.setUsername)
-    const email = EditUserInfoModalStore(state => state.email)
-    const setEmail = EditUserInfoModalStore(state => state.setEmail)
+    const showingEditUserPasswordModal = EditUserPasswordModalStore(state => state.showingEditUserPasswordModal)
+    const setShowingEditUserPasswordModal = EditUserPasswordModalStore(state => state.setShowingEditUserPasswordModal)
+
+    const [newPassword, setNewPassword] = useState("")
+    const [currentPassword, setCurrentPassword] = useState("")
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
-
-    const setUpdatedUserInfoResponse = BackendResponsesStore(state => state.setUpdatedUserInfoResponse)
 
     async function submitForm() {
         const sessionToken = sessionStorage.getItem("sessionToken")
         if (sessionToken){
             try {
-                let response = await UserRequests.updateUserInfo(name!, username!, email!, sessionToken)
+                let response = await UserRequests.updatePassword(currentPassword, newPassword, sessionToken)
                 prettyAlert(response, true)
-                setUpdatedUserInfoResponse(response)
-                setShowingEditUserInfoModal(false)
+                setShowingEditUserPasswordModal(false)
             } catch (e: any) {
                 prettyAlert(e.response.data || e.toJSON().message, false)
             }
-        } else prettyAlert("You must be logged in to edit your user info", false)
+        } else prettyAlert("You must be logged in to edit your user password", false)
 
     }
 
     let userInfoModal;
-    if (showingEditUserInfoModal) {
+    if (showingEditUserPasswordModal) {
         userInfoModal = <Modal
-            show={showingEditUserInfoModal}
+            show={showingEditUserPasswordModal}
             backdrop="static"
             keyboard={true}
             centered={true}
@@ -56,7 +49,7 @@ function EditUserInfoModal(): JSX.Element {
 
                     <button className="btn-close"
                             onClick={() => {
-                                setShowingEditUserInfoModal(false)
+                                setShowingEditUserPasswordModal(false)
                             }}>
                     </button>
 
@@ -70,30 +63,20 @@ function EditUserInfoModal(): JSX.Element {
 
                         {/*Name*/}
                         <div className="form-group mb-3">
-                            <input type="text" className="form-control" placeholder="Name"
-                                   value={name!}
+                            <input type="text" className="form-control" placeholder="Current password"
+                                   value={currentPassword}
                                    onChange={(e) => {
-                                       setName(e.target.value)
+                                       setCurrentPassword(e.target.value)
                                    }}
                             />
                         </div>
 
                         {/*Username*/}
                         <div className="form-group mb-3">
-                            <input type="text" className="form-control" placeholder="Username"
-                                   value={username!}
+                            <input type="text" className="form-control" placeholder="New password"
+                                   value={newPassword}
                                    onChange={(e) => {
-                                       setUsername(e.target.value)
-                                   }}
-                            />
-                        </div>
-
-                        {/*Email*/}
-                        <div className="form-group mb-3">
-                            <input type="text" className="form-control" placeholder="Email"
-                                   value={email!}
-                                   onChange={(e) => {
-                                       setEmail(e.target.value)
+                                       setNewPassword(e.target.value)
                                    }}
                             />
                         </div>
@@ -124,4 +107,4 @@ function EditUserInfoModal(): JSX.Element {
 
 }
 
-export default EditUserInfoModal;
+export default EditUserPasswordModal;
