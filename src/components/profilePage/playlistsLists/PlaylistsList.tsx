@@ -8,12 +8,27 @@ import EditOrCreatePlaylistModal from "./EditOrCreatePlaylistModal";
 import AlertStore from "../../../stores/AlertStore";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 import TestList from "../TestList";
+import {
+    DndContext,
+    closestCenter,
+    KeyboardSensor,
+    PointerSensor,
+    useSensor,
+    useSensors, DragEndEvent,
+} from '@dnd-kit/core';
+import {
+    arrayMove,
+    SortableContext,
+    sortableKeyboardCoordinates,
+    rectSortingStrategy,
+} from '@dnd-kit/sortable';
+import SortableItem from "../SortableItem";
 
 function PlaylistsList(): JSX.Element {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
-    const [userPlaylists, setUserPlaylists] = React.useState<PlaylistBasicDetails[]>();
+    const [userPlaylistItems, setUserPlaylistItems] = React.useState<PlaylistBasicDetails[]>([]);
 
     const setEditOrCreatePlaylistResponse = BackendResponsesStore(state => state.setEditOrCreatePlaylistResponse)
     const editOrCreatePlaylistResponse = BackendResponsesStore(state => state.editOrCreatePlaylistResponse)
@@ -29,7 +44,7 @@ function PlaylistsList(): JSX.Element {
             const sessionToken = window.sessionStorage.getItem("sessionToken");
             if (sessionToken) {
                 try {
-                    setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+                    setUserPlaylistItems(await UserRequests.getPlaylists(sessionToken));
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
                 }
@@ -43,7 +58,7 @@ function PlaylistsList(): JSX.Element {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
                     try {
-                        setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+                        setUserPlaylistItems(await UserRequests.getPlaylists(sessionToken));
                     } catch (e: any) {
                         prettyAlert(e.response?.data || e.toJSON().message, false)
                     }
@@ -59,7 +74,7 @@ function PlaylistsList(): JSX.Element {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
                     try {
-                        setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+                        setUserPlaylistItems(await UserRequests.getPlaylists(sessionToken));
                     } catch (e: any) {
                         prettyAlert(e.response?.data || e.toJSON().message, false)
                     }
@@ -75,7 +90,7 @@ function PlaylistsList(): JSX.Element {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
                     try {
-                        setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+                        setUserPlaylistItems(await UserRequests.getPlaylists(sessionToken));
                     } catch (e: any) {
                         prettyAlert(e.response?.data || e.toJSON().message, false)
                     }
@@ -85,20 +100,27 @@ function PlaylistsList(): JSX.Element {
         }
     }, [editOrCreatePlaylistResponse]);
 
+    const sensors = useSensors(
+        useSensor(PointerSensor),
+        useSensor(KeyboardSensor, {
+            coordinateGetter: sortableKeyboardCoordinates,
+        }),
+    );
+
     function compare(a: PlaylistBasicDetails, b: PlaylistBasicDetails) {
-        return(a.title.localeCompare(b.title));
+        return (a.title.localeCompare(b.title));
     }
 
-    let playlistsList: JSX.Element[] = [];
-    if (userPlaylists) {
-        userPlaylists.sort(compare);
-        for (let currentPlaylistBasicDetails of userPlaylists) {
-            let currentPlaylistItem = <ProfilePlaylistItem
-                basicDetails={currentPlaylistBasicDetails}
-            />
-            playlistsList.push(currentPlaylistItem);
-        }
+    function handleDragEnd(event: DragEndEvent) {
+        const {active, over} = event;
 
+        if (active.id !== over?.id) {
+            setUserPlaylistItems((items) => {
+                const oldIndex = items.findIndex((item) => item.id === active.id);
+                const newIndex = items.findIndex((item) => item.id === over?.id);
+                return arrayMove(items, oldIndex, newIndex);
+            });
+        }
     }
 
     return (
@@ -107,19 +129,58 @@ function PlaylistsList(): JSX.Element {
 
             <div className="row results">
 
+
+                <EditOrCreatePlaylistModal/>
+
                 <AddPlaylistItem/>
 
-                {/*{playlistsList}*/}
-                <TestList/>
+                <DndContext
+                    sensors={sensors}
+                    collisionDetection={closestCenter}
+                    onDragEnd={handleDragEnd}
+                >
+                    <SortableContext
+                        items={userPlaylistItems.map((playlist) => playlist.id)}
+                        strategy={rectSortingStrategy}
+                    >
+
+                        {/*<AddPlaylistItem/>*/}
+                        {/*<AddPlaylistItem/>*/}
+
+                        {/*<ProfilePlaylistItem key={userPlaylistItems[0].id} basicDetails={userPlaylistItems[0]}/>*/}
+                        {/*<ProfilePlaylistItem key={userPlaylistItems[0].id} basicDetails={userPlaylistItems[0]}/>*/}
+
+                        {/*<Grid>*/}
+                            {userPlaylistItems.map((playlist) => (
+                                // <SortableItem key={playlist.id} id={playlist.id} />
+                                <ProfilePlaylistItem key={playlist.id} basicDetails={playlist}/>
+                            ))}
+
+
+                        {/*</Grid>*/}
+                    </SortableContext>
+                </DndContext>
+
             </div>
-
-            <EditOrCreatePlaylistModal/>
-
         </div>
 
 
     )
 
+}
+
+function Grid({children}: any) {
+    return (
+        <div
+            style={{
+                display: 'inline-grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gridGap: 10,
+            }}
+        >
+            {children}
+        </div>
+    );
 }
 
 export default PlaylistsList;
