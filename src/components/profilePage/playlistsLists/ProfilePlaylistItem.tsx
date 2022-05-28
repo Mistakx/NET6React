@@ -72,7 +72,7 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
                                             prettyAlert(response, true)
                                             setResetCoverResponse(response)
                                         } catch (e: any) {
-                                            prettyAlert(e.response?.data || e.toJSON().message, true)
+                                            prettyAlert(e.response?.data || e.toJSON().message, false)
                                         }
                                     } else prettyAlert("You must be logged in to edit a playlist.", false)
                                 }}>

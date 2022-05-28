@@ -7,6 +7,7 @@ import AddPlaylistItem from "./AddPlaylistItem";
 import EditOrCreatePlaylistModal from "./EditOrCreatePlaylistModal";
 import AlertStore from "../../../stores/AlertStore";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
+import TestList from "../TestList";
 
 function PlaylistsList(): JSX.Element {
 
@@ -84,16 +85,20 @@ function PlaylistsList(): JSX.Element {
         }
     }, [editOrCreatePlaylistResponse]);
 
+    function compare(a: PlaylistBasicDetails, b: PlaylistBasicDetails) {
+        return(a.title.localeCompare(b.title));
+    }
+
     let playlistsList: JSX.Element[] = [];
     if (userPlaylists) {
+        userPlaylists.sort(compare);
         for (let currentPlaylistBasicDetails of userPlaylists) {
-
             let currentPlaylistItem = <ProfilePlaylistItem
                 basicDetails={currentPlaylistBasicDetails}
             />
             playlistsList.push(currentPlaylistItem);
-
         }
+
     }
 
     return (
@@ -104,8 +109,8 @@ function PlaylistsList(): JSX.Element {
 
                 <AddPlaylistItem/>
 
-                {playlistsList}
-
+                {/*{playlistsList}*/}
+                <TestList/>
             </div>
 
             <EditOrCreatePlaylistModal/>

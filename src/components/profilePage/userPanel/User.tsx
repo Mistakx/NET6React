@@ -23,7 +23,6 @@ function User(): JSX.Element {
 
     const setShowingEditUserPasswordModal = EditUserPasswordModalStore(state => state.setShowingEditUserPasswordModal)
 
-
     const updatedUserPhotoResponse = BackendResponsesStore(state => state.updatedUserPhotoResponse)
     const setUpdatedUserPhotoResponse = BackendResponsesStore(state => state.setUpdatedUserPhotoResponse)
     const updatedUserInfoResponse = BackendResponsesStore(state => state.updatedUserInfoResponse)

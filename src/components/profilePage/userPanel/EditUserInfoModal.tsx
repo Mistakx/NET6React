@@ -30,7 +30,7 @@ function EditUserInfoModal(): JSX.Element {
                 setUpdatedUserInfoResponse(response)
                 setShowingEditUserInfoModal(false)
             } catch (e: any) {
-                prettyAlert(e.response.data || e.toJSON().message, false)
+                prettyAlert(e.response?.data || e.toJSON().message, false)
             }
         } else prettyAlert("You must be logged in to edit your user info", false)
 
@@ -50,7 +50,7 @@ function EditUserInfoModal(): JSX.Element {
                 <ModalHeader>
 
                     <ModalTitle>
-                        <h5 id="exampleModalLabel">Edit user info</h5>
+                        <h5 id="exampleModalLabel">Edit My Information</h5>
 
                     </ModalTitle>
 

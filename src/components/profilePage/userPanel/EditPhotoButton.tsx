@@ -34,7 +34,7 @@ export function EditPhotoButton() {
                             setUpdatedUserPhotoResponse(response)
                             prettyAlert(response, true)
                         } catch (e: any) {
-                            prettyAlert(e.response?.data || e.toJSON().message, true)
+                            prettyAlert(e.response?.data || e.toJSON().message, false)
                         }
                     } else prettyAlert("No file selected", false)
                 }}

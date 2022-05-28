@@ -12,6 +12,9 @@ import RegisterPage from "./components/registerPage/RegisterPage";
 import SidePanel from "./components/SidePanel";
 import FloatingPlayer from "./components/FloatingPlayer";
 import Alert from "./components/Alert";
+import LogRocket from 'logrocket';
+
+LogRocket.init('tcdmcx/playlist-manager');
 
 const container = document.getElementById('root');
 

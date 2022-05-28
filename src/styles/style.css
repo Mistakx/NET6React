@@ -1,4 +1,6 @@
-/*Cursor changes when pointed at*/
+@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap'); /*Cursor changes when pointed at*/
+
 .clickable {
   cursor: pointer;
 }
@@ -9,8 +11,7 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
-@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap');
+
 /*--------------------------------------------------------------
 # Colors
 --------------------------------------------------------------*/
@@ -37,7 +38,7 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: 'Baloo 2', cursive;
+  /*font-family: 'Baloo 2', cursive;*/
   background-color: #071E3D;
   color: var(--text);
 
@@ -61,11 +62,11 @@ a:hover {
 
 h1 {
   /* font-family: 'Caesar Dressing', cursive; */
-  font-family: 'Baloo 2', cursive;
+  /*font-family: 'Baloo 2', cursive;*/
 }
 
 h2, h3, h4, h5, h6 {
-  font-family: 'Baloo 2', cursive;
+  /*font-family: 'Baloo 2', cursive;*/
 }
 /*--------------------------------------------------------------
 # HoverRiding Bootstrap
@@ -219,7 +220,7 @@ h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
-    transition-delay: 0 !important;
+    transition-delay: 0ms !important;
   }
 }
 
@@ -255,10 +256,10 @@ h2, h3, h4, h5, h6 {
   color: #45505b;
   margin: 15px 0 0 0;
   font-size: 26px;
-  font-family: 'Baloo 2', cursive;
+  /*font-family: 'Baloo 2', cursive;*/
 }
 #hero p span {
-  font-family: 'Baloo 2', cursive;
+  /*font-family: 'Baloo 2', cursive;*/
   color: var(--text);
   letter-spacing: 1px;
 }
