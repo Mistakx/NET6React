@@ -7,12 +7,12 @@ import AddPlaylistItem from "./AddPlaylistItem";
 import EditOrCreatePlaylistModal from "./EditOrCreatePlaylistModal";
 import AlertStore from "../../../stores/AlertStore";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
-import TestList from "../TestList";
 import {
     DndContext,
     closestCenter,
     KeyboardSensor,
     PointerSensor,
+    MouseSensor,
     useSensor,
     useSensors, DragEndEvent,
 } from '@dnd-kit/core';
@@ -22,13 +22,15 @@ import {
     sortableKeyboardCoordinates,
     rectSortingStrategy,
 } from '@dnd-kit/sortable';
-import SortableItem from "../SortableItem";
+import {restrictToParentElement, restrictToWindowEdges} from "@dnd-kit/modifiers";
+
 
 function PlaylistsList(): JSX.Element {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const [userPlaylistItems, setUserPlaylistItems] = React.useState<PlaylistBasicDetails[]>([]);
+    const [number, setNumber] = React.useState(1);
 
     const setEditOrCreatePlaylistResponse = BackendResponsesStore(state => state.setEditOrCreatePlaylistResponse)
     const editOrCreatePlaylistResponse = BackendResponsesStore(state => state.editOrCreatePlaylistResponse)
@@ -44,7 +46,10 @@ function PlaylistsList(): JSX.Element {
             const sessionToken = window.sessionStorage.getItem("sessionToken");
             if (sessionToken) {
                 try {
-                    setUserPlaylistItems(await UserRequests.getPlaylists(sessionToken));
+                    const userPlaylists = await UserRequests.getPlaylists(sessionToken)
+                    userPlaylists.sort(compare)
+                    setUserPlaylistItems(userPlaylists);
+                    setNumber(2)
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
                 }
@@ -58,7 +63,9 @@ function PlaylistsList(): JSX.Element {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
                     try {
-                        setUserPlaylistItems(await UserRequests.getPlaylists(sessionToken));
+                        const userPlaylists = await UserRequests.getPlaylists(sessionToken)
+                        userPlaylists.sort(compare)
+                        setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
                         prettyAlert(e.response?.data || e.toJSON().message, false)
                     }
@@ -74,7 +81,9 @@ function PlaylistsList(): JSX.Element {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
                     try {
-                        setUserPlaylistItems(await UserRequests.getPlaylists(sessionToken));
+                        const userPlaylists = await UserRequests.getPlaylists(sessionToken)
+                        userPlaylists.sort(compare)
+                        setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
                         prettyAlert(e.response?.data || e.toJSON().message, false)
                     }
@@ -90,7 +99,9 @@ function PlaylistsList(): JSX.Element {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
                     try {
-                        setUserPlaylistItems(await UserRequests.getPlaylists(sessionToken));
+                        const userPlaylists = await UserRequests.getPlaylists(sessionToken)
+                        userPlaylists.sort(compare)
+                        setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
                         prettyAlert(e.response?.data || e.toJSON().message, false)
                     }
@@ -101,7 +112,11 @@ function PlaylistsList(): JSX.Element {
     }, [editOrCreatePlaylistResponse]);
 
     const sensors = useSensors(
-        useSensor(PointerSensor),
+        useSensor(PointerSensor, {
+            activationConstraint: {
+                distance: 1
+            }
+        }),
         useSensor(KeyboardSensor, {
             coordinateGetter: sortableKeyboardCoordinates,
         }),
@@ -127,37 +142,26 @@ function PlaylistsList(): JSX.Element {
 
         <div className="col-md-8">
 
+            <EditOrCreatePlaylistModal/>
+
             <div className="row results">
-
-
-                <EditOrCreatePlaylistModal/>
-
-                <AddPlaylistItem/>
 
                 <DndContext
                     sensors={sensors}
                     collisionDetection={closestCenter}
                     onDragEnd={handleDragEnd}
+                    modifiers={[restrictToWindowEdges]}
                 >
                     <SortableContext
                         items={userPlaylistItems.map((playlist) => playlist.id)}
                         strategy={rectSortingStrategy}
                     >
+                        <AddPlaylistItem/>
 
-                        {/*<AddPlaylistItem/>*/}
-                        {/*<AddPlaylistItem/>*/}
+                        {userPlaylistItems.map((playlist) => (
+                            <ProfilePlaylistItem key={playlist.id} basicDetails={playlist}/>
+                        ))}
 
-                        {/*<ProfilePlaylistItem key={userPlaylistItems[0].id} basicDetails={userPlaylistItems[0]}/>*/}
-                        {/*<ProfilePlaylistItem key={userPlaylistItems[0].id} basicDetails={userPlaylistItems[0]}/>*/}
-
-                        {/*<Grid>*/}
-                            {userPlaylistItems.map((playlist) => (
-                                // <SortableItem key={playlist.id} id={playlist.id} />
-                                <ProfilePlaylistItem key={playlist.id} basicDetails={playlist}/>
-                            ))}
-
-
-                        {/*</Grid>*/}
                     </SortableContext>
                 </DndContext>
 
@@ -167,20 +171,6 @@ function PlaylistsList(): JSX.Element {
 
     )
 
-}
-
-function Grid({children}: any) {
-    return (
-        <div
-            style={{
-                display: 'inline-grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gridGap: 10,
-            }}
-        >
-            {children}
-        </div>
-    );
 }
 
 export default PlaylistsList;

@@ -18,17 +18,15 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
     const deleteGeneralizedResultResponse = BackendResponsesStore(state => state.deleteGeneralizedResultResponse)
     const setDeleteGeneralizedResultResponse = BackendResponsesStore(state => state.setDeleteGeneralizedResultResponse)
 
-    const [playlistGeneralizedResults, setPlaylistGeneralizedResults] = React.useState<PlaylistGeneralizedResults>();
-
     const [playlistItems, setPlaylistItems] = React.useState<JSX.Element[]>([]);
 
     useEffect(() => {
         (async () => {
             try {
-                setPlaylistGeneralizedResults(await PlaylistRequests.getPlaylistGeneralizedResults(props.playlistId!));
-                playlistGeneralizedResults?.contents.sort(compareTitle)
+                let response = await PlaylistRequests.getPlaylistGeneralizedResults(props.playlistId)
+                response.contents.sort(compareTitle)
                 let playlistItemsList: JSX.Element[] = []
-                for (const currentPlaylistItem of playlistGeneralizedResults?.contents!) {
+                for (const currentPlaylistItem of response?.contents!) {
                     playlistItemsList.push(
                         <PlaylistItem
                             playlistId={props.playlistId}
@@ -46,7 +44,17 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
         if (deleteGeneralizedResultResponse) {
             (async () => {
                 try {
-                    setPlaylistGeneralizedResults(await PlaylistRequests.getPlaylistGeneralizedResults(props.playlistId!));
+                    let response = await PlaylistRequests.getPlaylistGeneralizedResults(props.playlistId)
+                    response.contents.sort(compareTitle)
+                    let playlistItemsList: JSX.Element[] = []
+                    for (const currentPlaylistItem of response?.contents!) {
+                        playlistItemsList.push(
+                            <PlaylistItem
+                                playlistId={props.playlistId}
+                                genericResult={currentPlaylistItem}
+                            />)
+                    }
+                    setPlaylistItems(playlistItemsList)
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
                 }
@@ -68,17 +76,7 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
 
         <div className="overflow-auto playlistItens">
             <ul className="list-group">
-                <List
-                    values={playlistItems}
-                    onChange={({oldIndex, newIndex}) => {
-                        setPlaylistItems(arrayMove(playlistItems, oldIndex, newIndex))
-                        alert(oldIndex + " " + newIndex)
-                    }}
-                    renderList={({children, props}) => <ul {...props}>{children}</ul>}
-                    renderItem={({value, props}) => <li {...props}>{value}</li>}
-                />
-
-
+                {playlistItems}
             </ul>
 
         </div>

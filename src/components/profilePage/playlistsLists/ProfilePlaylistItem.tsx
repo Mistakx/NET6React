@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../../styles/style.css';
-import {ProfilePlaylistItemProperties} from "../../../models/components/profilePage/ProfilePlaylistItemProperties";
 import {useNavigate} from "react-router-dom";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
 import EditOrCreatePlaylistModalStore from "../../../stores/EditOrCreatePlaylistModalStore";
@@ -9,8 +8,9 @@ import AlertStore from "../../../stores/AlertStore";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 import {useSortable} from "@dnd-kit/sortable";
 import {CSS} from "@dnd-kit/utilities";
+import {ProfilePlaylistItemProperties} from "../../../models/components/profilePage/ProfilePlaylistItemProperties";
 
-function ProfilePlaylistItem(props: any): JSX.Element {
+function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
     let navigate = useNavigate()
 
@@ -28,6 +28,7 @@ function ProfilePlaylistItem(props: any): JSX.Element {
         setNodeRef,
         transform,
         transition,
+        isDragging
     } = useSortable({id: props.basicDetails.id});
 
     const style = {
@@ -45,9 +46,7 @@ function ProfilePlaylistItem(props: any): JSX.Element {
              data-aos="fade-down"
         >
 
-        <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-
-
+            <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
 
                 <div className="clickable card"
                      style={{

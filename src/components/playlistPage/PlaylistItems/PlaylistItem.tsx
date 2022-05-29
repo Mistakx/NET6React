@@ -13,7 +13,7 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
     const setPlayingGenericResult = PlaylistPagePlayerStore(state => state.setPlayingGenericResult)
 
     return (
-        <li className="list-group-item">
+        <li key={props.playlistId} className="list-group-item" >
             <div className="row">
                 <div className="col-2">
                     <span className="badge"><i className='bx bx-menu h4'></i></span>

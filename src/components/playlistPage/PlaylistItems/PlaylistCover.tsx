@@ -3,7 +3,6 @@ import '../../../styles/SearchPage.css'
 import React, {useEffect, useState} from "react";
 import "aos/dist/aos.css";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
-import AOS from "aos";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
 import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
 import {PlaylistCoverProperties} from "../../../models/components/playlistPage/PlaylistCoverProperties";
@@ -18,20 +17,28 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
 
     const [playlistBasicDetails, setPlaylistBasicDetails] = useState<PlaylistBasicDetails>()
 
-
-
     useEffect(() => {
-
             (async () => {
                 try {
-                    setPlaylistBasicDetails(await PlaylistRequests.getPlaylistBasicDetails(props.playlistId!))
+                    setPlaylistBasicDetails(await PlaylistRequests.getPlaylistBasicDetails(props.playlistId))
+                } catch (e: any) {
+                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                }
+            })()
+    }, []);
+
+    useEffect(() => {
+        if (playlistCoverChangedResponse) {
+            (async () => {
+                try {
+                    setPlaylistBasicDetails(await PlaylistRequests.getPlaylistBasicDetails(props.playlistId))
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
                 }
                 setPlaylistCoverChangedResponse("")
             })()
+        }
     }, [playlistCoverChangedResponse]);
-
 
     return (
 

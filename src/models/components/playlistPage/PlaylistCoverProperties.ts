@@ -1,3 +1,3 @@
 export interface PlaylistCoverProperties {
-    playlistId: string | undefined
+    playlistId: string
 }
