@@ -270,6 +270,7 @@
     margin-bottom: 30px;
     border-radius: 20px;
     background-color: #0D3A76;
+    padding:none;
 }
 
 .card-img-overlay {
@@ -277,6 +278,7 @@
     background: rgba(7, 30, 61, 0.5);
     height: 50px;
     overflow: hidden;
+    margin:none;
 }
 
 .card:hover .card-img-overlay {

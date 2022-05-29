@@ -32,15 +32,10 @@ export class TwitchChannelSearch {
         };
 
         let twitchChannelsSearchResponse: AxiosResponse<any, any>;
-        try {
-            // @ts-ignore
-            twitchChannelsSearchResponse = await axios(options);
-            let twitchChannelsSearchResult: TwitchSearchChannelsResultPage = twitchChannelsSearchResponse.data;
-            return twitchChannelsSearchResult;
-        } catch (e) {
-            alert(e)
-        }
-        return {} as TwitchSearchChannelsResultPage
+        // @ts-ignore
+        twitchChannelsSearchResponse = await axios(options);
+        let twitchChannelsSearchResult: TwitchSearchChannelsResultPage = twitchChannelsSearchResponse.data;
+        return twitchChannelsSearchResult;
 
     }
 

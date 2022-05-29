@@ -1,5 +1,5 @@
 // /Playlist/getGeneralizedResults/{playlistId}
-import {UserProfile} from "../UserProfile";
+import {UserProfile} from "../UserRoute/UserProfile";
 import {GeneralizedResult} from "../../apiRequests/GenericResults";
 
 export interface PlaylistGeneralizedResults {

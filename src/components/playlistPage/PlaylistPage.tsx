@@ -4,19 +4,18 @@ import React, {useEffect, useState} from "react";
 import "aos/dist/aos.css";
 import TopBar from "../TopBar";
 import {useParams} from "react-router-dom";
-import PlaylistItemsList from "./PlaylistItemsList";
-import PlaylistTitle from "./PlaylistTitle";
-import PlaylistPlayer from "./PlaylistPlayer";
+import PlaylistItemsList from "./PlaylistItems/PlaylistItemsList";
+import PlaylistCover from "./PlaylistItems/PlaylistCover";
+import PlaylistPlayer from "./PlaylistPlayer/PlaylistPlayer";
 import PlaylistPagePlayerStore from "../../stores/PlaylistPagePlayerStore";
 import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
 import PlaylistRequests from "../../requests/backendRequests/PlaylistRequests";
 import AOS from "aos";
+import AlertStore from "../../stores/AlertStore";
 
 function PlaylistPage(): JSX.Element {
 
     const playlistId = useParams().playlistId
-
-    const [playlistBasicDetails, setPlaylistBasicDetails] = useState<PlaylistBasicDetails>()
 
     const setPlayingGenericResult = PlaylistPagePlayerStore(state => state.setPlayingGenericResult)
     const setPlayingGenericResultPlaylistIndex = PlaylistPagePlayerStore(state => state.setPlayingGenericResultPlaylistIndex)
@@ -26,9 +25,7 @@ function PlaylistPage(): JSX.Element {
         (async () => {
             setPlayingGenericResult(null)
             setPlayingGenericResultPlaylistIndex(null)
-            await PlaylistRequests.getPlaylistBasicDetails(playlistId!)
         })()
-
     }, []);
 
     return (
@@ -48,11 +45,12 @@ function PlaylistPage(): JSX.Element {
 
                             <PlaylistPlayer/>
 
-                            <div className="col-lg-4 col-md-4 col-12" id="playlist" data-aos="fade-left" data-aos-delay="200">
+                            <div className="col-lg-4 col-md-4 col-12" id="playlist" data-aos="fade-left"
+                                 data-aos-delay="200">
 
                                 <div className="card align-items-stretch mt-4 mt-md-0">
 
-                                    <PlaylistTitle title={playlistBasicDetails?.title}/>
+                                    <PlaylistCover playlistId={playlistId}/>
 
                                     <PlaylistItemsList playlistId={playlistId!}/>
 

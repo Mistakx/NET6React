@@ -58,15 +58,11 @@ export class VimeoSearchVideoByName extends ApiSearch {
             url,
         };
 
-        try {
-            // @ts-ignore
-            let vimeoSearchResponse = await axios(options);
-            let vimeoSearchResults: VimeoSearchVideoResultPage = vimeoSearchResponse.data;
-            return vimeoSearchResults;
-        } catch (e) {
-            alert(e)
-        }
-        return {} as VimeoSearchVideoResultPage
+
+        // @ts-ignore
+        let vimeoSearchResponse = await axios(options);
+        let vimeoSearchResults: VimeoSearchVideoResultPage = vimeoSearchResponse.data;
+        return vimeoSearchResults;
 
     }
 

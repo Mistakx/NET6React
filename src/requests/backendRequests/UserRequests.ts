@@ -1,6 +1,8 @@
 import axios from "axios";
-import {UserProfile} from "../../models/backendRequests/UserProfile";
+import {UserProfile} from "../../models/backendRequests/UserRoute/UserProfile";
 import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import {EditUserInfo} from "../../models/backendRequests/UserRoute/EditUserInfo";
+import {EditUserPassword} from "../../models/backendRequests/UserRoute/EditUserPassword";
 
 class UserRequests {
 
@@ -29,12 +31,10 @@ class UserRequests {
 
         // @ts-ignore
         let profileResponse = await axios(options);
-        let profile: PlaylistBasicDetails[] = profileResponse.data;
-        return profile;
+        return profileResponse.data as PlaylistBasicDetails[];
 
     }
 
-    // Registers a new user
     static async register(username: string, name: string, email: string, password: string, userPhoto: File) {
         const url = "/User/register";
 
@@ -49,17 +49,13 @@ class UserRequests {
         formData.append("name", name);
         formData.append("username", username);
         formData.append("userPhoto", userPhoto);
-        try {
-            let response = await axios.post(url, formData, {headers})
-            return response.data
-        }
-        catch (e) {
-            alert(e);
-        }
+
+        let response = await axios.post(url, formData, {headers})
+        return response.data as string
 
     }
 
-    // Logs in to the application, returns a session Id
+    // Logs in to the application and returns a session token
     static async login(email: string, password: string) {
         const url = "/User/login";
 
@@ -71,15 +67,13 @@ class UserRequests {
         const options = {
             method: 'POST',
             url: url,
-            data: data
+            data: data,
         };
 
 
-
         // @ts-ignore
-        let loginResponse = await axios(options);
-        let sessionToken: string = loginResponse.data;
-        return sessionToken;
+        let loginResponse = await axios(options)
+        return loginResponse.data as string
 
     }
 
@@ -100,6 +94,48 @@ class UserRequests {
 
     }
 
+    static async updateUserInfo(name: string, username: string, email: string, sessionToken: string) {
+
+        const url = "/User/editUserInfo";
+
+        const data: EditUserInfo = {
+            newName: name,
+            newUsername: username,
+            newEmail: email,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as string
+    }
+
+    static async updatePassword(currentPassword: string, newPassword: string, sessionToken: string) {
+
+        const url = "/User/editPassword";
+
+        const data: EditUserPassword = {
+            currentPassword: currentPassword,
+            newPassword: newPassword,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as string
+    }
 
 }
 

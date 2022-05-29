@@ -4,10 +4,13 @@ import React, {useEffect, useState} from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import {useNavigate} from "react-router-dom";
+import AlertStore from "../../stores/AlertStore";
 
 function RegisterPage(): JSX.Element {
 
     const navigate = useNavigate()
+
+    const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const [userPhoto, setUserPhoto] = useState<File>()
     const [name, setName] = useState("")
@@ -45,13 +48,16 @@ function RegisterPage(): JSX.Element {
                                 async (e) => {
                                     e.preventDefault()
                                     if (password !== confirmationPassword) {
-                                        alert("Passwords do not match.")
+                                        prettyAlert("Passwords do not match.", false)
                                     } else {
-                                        await UserRequests.register(username, name, email, password, userPhoto!)
-                                        let sessionToken = await UserRequests.login(email, password)
-                                        setSessionToken(sessionToken)
+                                        try {
+                                            await UserRequests.register(username, name, email, password, userPhoto!)
+                                            let sessionToken = await UserRequests.login(email, password)
+                                            setSessionToken(sessionToken)
+                                        } catch (e: any) {
+                                            prettyAlert(e.response?.data || e.toJSON().message, false)
+                                        }
                                     }
-
                                 }
                             }>
 
@@ -63,7 +69,7 @@ function RegisterPage(): JSX.Element {
                                                    if (e.target.files) {
                                                        setUserPhoto(e.target.files[0])
                                                    } else {
-                                                       alert("No file selected.")
+                                                       prettyAlert("No file selected.", false)
                                                    }
                                                }
                                            }/>

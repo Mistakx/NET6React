@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import {useNavigate} from "react-router-dom";
+import AlertStore from "../../stores/AlertStore";
 
 function LoginPage(): JSX.Element {
 
@@ -12,6 +13,9 @@ function LoginPage(): JSX.Element {
     const [loginEmail, setLoginEmail] = useState("")
     const [loginPassword, setLoginPassword] = useState("")
     const [sessionToken, setSessionToken] = useState<string>()
+
+    const prettyAlert = AlertStore(state => state.prettyAlert)
+
 
     useEffect(() => {
         AOS.init();
@@ -41,41 +45,47 @@ function LoginPage(): JSX.Element {
                             <form onSubmit={
                                 async (e) => {
                                     e.preventDefault()
-                                    let sessionToken = await UserRequests.login(loginEmail, loginPassword)
-                                    setSessionToken(sessionToken)
+                                    try {
+                                        let sessionToken = await UserRequests.login(loginEmail, loginPassword)
+                                        prettyAlert("Successfully logged in.", true)
+                                        setSessionToken(sessionToken)
+                                    } catch (e: any) {
+                                        prettyAlert(e.response?.data || e.toJSON().message, false)
+                                    }
                                 }
                             }>
 
-                            <div className="form-group" data-aos="zoom-in" data-aos-delay="100">
-                                <input type="text" className="form-control form-control-lg" placeholder="Email"
-                                       onChange={
-                                           (e) => {
-                                               setLoginEmail(e.target.value)
-                                           }
-                                       }>
-                                </input>
-                            </div>
+                                <div className="form-group" data-aos="zoom-in" data-aos-delay="100">
+                                    <input type="text" className="form-control form-control-lg" placeholder="Email"
+                                           onChange={
+                                               (e) => {
+                                                   setLoginEmail(e.target.value)
+                                               }
+                                           }>
+                                    </input>
+                                </div>
 
-                            <div className="form-group" data-aos="zoom-in" data-aos-delay="200">
-                                <input type="password" className="form-control form-control-lg" placeholder="Password"
-                                       onChange={
-                                           (e) => {
-                                               setLoginPassword(e.target.value)
-                                           }
-                                       }>
-                                </input>
-                            </div>
+                                <div className="form-group" data-aos="zoom-in" data-aos-delay="200">
+                                    <input type="password" className="form-control form-control-lg"
+                                           placeholder="Password"
+                                           onChange={
+                                               (e) => {
+                                                   setLoginPassword(e.target.value)
+                                               }
+                                           }>
+                                    </input>
+                                </div>
 
-                            <div className="form-group d-grid" data-aos="zoom-in" data-aos-delay="400">
-                                <button className="btn btn-light">Login</button>
-                                <button className="btn btn-link"
-                                    onClick={()=>{
-                                        navigate("/register");
-                                    }}
-                                >
-                                    Don't have an account
-                                </button>
-                            </div>
+                                <div className="form-group d-grid" data-aos="zoom-in" data-aos-delay="400">
+                                    <button className="btn btn-light">Login</button>
+                                    <button className="btn btn-link"
+                                            onClick={() => {
+                                                navigate("/register");
+                                            }}
+                                    >
+                                        Don't have an account
+                                    </button>
+                                </div>
 
                             </form>
                         </div>

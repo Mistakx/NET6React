@@ -14,10 +14,10 @@
 # Player
 --------------------------------------------------------------*/
 .player-options {
-  background-color: #011426;
+  background-color: rgba(1, 20, 38, 0.6);
   position: absolute;
-  bottom: 0;
-  right: 0;
+  top: 5px;
+  left: 5px;
   margin: 0 2px 2px 0;
 }
 
@@ -126,4 +126,10 @@
 
 .form-group textarea {
   resize: none;
+}
+
+
+.btn .btn-rounded {
+  /* border-radius: 50px; */
+  box-shadow: 0px 0px 90px 25px rgb(173, 190, 211);
 }
