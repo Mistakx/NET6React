@@ -16,7 +16,7 @@ export function EditPhotoButton() {
     return (
         <div>
 
-            <button className="btn rounded position-absolute top-50 start-50 translate-middle mt-5"
+            <button className="btn btn-rounded rounded position-absolute bottom-0 start-50 translate-middle mb-5"
                 /*@ts-ignore*/
                     onClick={() => fileInputRef.current.click()}>
                 <i className='bx bx-camera'></i>
