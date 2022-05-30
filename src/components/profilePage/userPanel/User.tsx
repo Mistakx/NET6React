@@ -68,7 +68,7 @@ function User(): JSX.Element {
 
     return (
 
-        <div className="col-md-4 position-relative">
+        <div className="col-lg-4 col-md-6 col-sm-12 col-12 position-relative">
 
             <EditUserInfoModal/>
             <EditUserPasswordModal/>

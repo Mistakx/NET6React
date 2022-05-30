@@ -292,9 +292,19 @@
     transition: 400ms;
 }
 
+
+
+.row .display-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .results .card {
     max-width: 100%;
-    height: 200px;
+}
+
+.results .card img {
+    border-radius:20px;
 }
 
 .results .add-playlist {
@@ -310,6 +320,7 @@
     position: absolute;
     bottom: 0;
     right: 0;
+    z-index: 10;
     margin-right: 15px;
     margin-bottom: 25px;
 }
@@ -318,6 +329,13 @@
     font-size: 32px;
     margin-right: 15px;
     margin-bottom: 15px;
+}
+
+.options-dropdown {
+    position: absolute;
+    top:10px;
+    left:10px;
+    z-index: 10;
 }
 
 .options-dropdown .btn {

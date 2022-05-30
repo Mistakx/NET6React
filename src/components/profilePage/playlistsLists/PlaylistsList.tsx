@@ -98,7 +98,7 @@ function PlaylistsList(): JSX.Element {
 
     return (
 
-        <div className="col-md-8">
+        <div className="col-lg-8 col-md-6 col-sm-12 col-12">
 
             <div className="row results">
 

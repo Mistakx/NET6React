@@ -17,19 +17,17 @@ function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
 
     return (
 
-        <div className="result col-lg-3 col-md-4 col-sm-4 col-6 position-relative" data-aos="fade-up">
-
+        <div className="result col-lg-3 col-md-4 col-sm-6 col-12 position-relative" data-aos="fade-up">
             <div className="card scale clickable"
-                 onClick={() => {
-                     setCurrentPlayerToClickedItem()
-                 }}
-                 style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.item.thumbnailUrl + ")"}}>
+                onClick={() => {
+                    setCurrentPlayerToClickedItem()
+                }}>
+                <img src={props.item.thumbnailUrl} className="card-img" alt="..."></img>
                 <div className="card-img-overlay text-end">
                     <h5 className="card-title text-uppercase text-truncate">{props.item.title}</h5>
                     <p className="card-text text-truncate">{props.item.creator}</p>
                     {/* <p className="card-text">{props.item.createdAt}</p> */}
                 </div>
-
             </div>
             <div className="options">
                 <button className="btn btn-add"
@@ -41,7 +39,6 @@ function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
                     >
                 <i className='bx bx-plus'></i></button>
             </div>
-
         </div>
 
     )
