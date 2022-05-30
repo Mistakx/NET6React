@@ -30,7 +30,6 @@ function PlaylistsList(): JSX.Element {
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const [userPlaylistItems, setUserPlaylistItems] = React.useState<PlaylistBasicDetails[]>([]);
-    const [number, setNumber] = React.useState(1);
 
     const setEditOrCreatePlaylistResponse = BackendResponsesStore(state => state.setEditOrCreatePlaylistResponse)
     const editOrCreatePlaylistResponse = BackendResponsesStore(state => state.editOrCreatePlaylistResponse)
@@ -49,7 +48,6 @@ function PlaylistsList(): JSX.Element {
                     const userPlaylists = await UserRequests.getPlaylists(sessionToken)
                     userPlaylists.sort(compare)
                     setUserPlaylistItems(userPlaylists);
-                    setNumber(2)
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
                 }
@@ -103,13 +101,17 @@ function PlaylistsList(): JSX.Element {
                         userPlaylists.sort(compare)
                         setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
-                        prettyAlert(e.response?.data || e.toJSON().message, false)
+                        // prettyAlert(e.response?.data || e.toJSON().message, false)
                     }
                     setEditOrCreatePlaylistResponse(null);
                 } else prettyAlert("No session token found.", false)
             })()
         }
     }, [editOrCreatePlaylistResponse]);
+
+    function compare(a: PlaylistBasicDetails, b: PlaylistBasicDetails) {
+        return (a.title.localeCompare(b.title));
+    }
 
     const sensors = useSensors(
         useSensor(PointerSensor, {
@@ -121,10 +123,6 @@ function PlaylistsList(): JSX.Element {
             coordinateGetter: sortableKeyboardCoordinates,
         }),
     );
-
-    function compare(a: PlaylistBasicDetails, b: PlaylistBasicDetails) {
-        return (a.title.localeCompare(b.title));
-    }
 
     function handleDragEnd(event: DragEndEvent) {
         const {active, over} = event;

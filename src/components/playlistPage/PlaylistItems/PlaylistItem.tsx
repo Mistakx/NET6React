@@ -5,6 +5,8 @@ import {PlaylistItemProperties} from "../../../models/components/playlistPage/Pl
 import PlaylistPagePlayerStore from "../../../stores/PlaylistPagePlayerStore";
 import GlobalPlayerStore from "../../../stores/GlobalPlayerStore";
 import PlaylistItemDropdown from "./PlaylistItemDropdown";
+import {useSortable} from "@dnd-kit/sortable";
+import {CSS} from "@dnd-kit/utilities";
 
 function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
 
@@ -12,18 +14,44 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
 
     const setPlayingGenericResult = PlaylistPagePlayerStore(state => state.setPlayingGenericResult)
 
+    const {
+        attributes,
+        listeners,
+        setNodeRef,
+        transform,
+        transition,
+        isDragging
+    } = useSortable({id: props.genericResult.id});
+
+    const style = {
+        // width: "100%",
+        // height: "100%",
+        // padding: 20,
+        // border: '1px solid',
+        transform: CSS.Transform.toString(transform),
+        transition,
+    };
+
     return (
-        <li key={props.playlistId} className="list-group-item" >
+
+        <li className="list-group-item"
+            ref={setNodeRef} style={style} {...attributes} {...listeners}
+        >
             <div className="row">
                 <div className="col-2">
                     <span className="badge"><i className='bx bx-menu h4'></i></span>
                 </div>
                 <div className="col-8 p-3 clickable"
-                    style={{backgroundSize: "100% auto", backgroundRepeat: "no-repeat" ,backgroundPosition: "center", backgroundImage: "url(" + props.genericResult.thumbnailUrl + ")"}}
-                    onClick={() => {
-                        setPlayingGenericResult(props.genericResult)
-                        setPlayingGlobalGenericResult(null)
-                    }}
+                     style={{
+                         backgroundSize: "100% auto",
+                         backgroundRepeat: "no-repeat",
+                         backgroundPosition: "center",
+                         backgroundImage: "url(" + props.genericResult.thumbnailUrl + ")"
+                     }}
+                     onClick={() => {
+                         setPlayingGenericResult(props.genericResult)
+                         setPlayingGlobalGenericResult(null)
+                     }}
                 >
                     <h6 className="fw-bold text-truncate">{props.genericResult.title}</h6>
                 </div>

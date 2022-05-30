@@ -10,6 +10,17 @@ import AlertStore from "../../../stores/AlertStore";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 import {GeneralizedResult} from "../../../models/apiRequests/GenericResults";
 import {List, arrayMove} from 'react-movable';
+import {
+    closestCenter,
+    DndContext,
+    DragEndEvent,
+    KeyboardSensor,
+    PointerSensor,
+    useSensor,
+    useSensors
+} from "@dnd-kit/core";
+import {restrictToWindowEdges} from "@dnd-kit/modifiers";
+import {rectSortingStrategy, SortableContext, sortableKeyboardCoordinates} from "@dnd-kit/sortable";
 
 function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
 
@@ -18,22 +29,14 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
     const deleteGeneralizedResultResponse = BackendResponsesStore(state => state.deleteGeneralizedResultResponse)
     const setDeleteGeneralizedResultResponse = BackendResponsesStore(state => state.setDeleteGeneralizedResultResponse)
 
-    const [playlistItems, setPlaylistItems] = React.useState<JSX.Element[]>([]);
+    const [playlistGeneralizedResults, setPlaylistGeneralizedResults] = React.useState<GeneralizedResult[]>([]);
 
     useEffect(() => {
         (async () => {
             try {
                 let response = await PlaylistRequests.getPlaylistGeneralizedResults(props.playlistId)
-                response.contents.sort(compareTitle)
-                let playlistItemsList: JSX.Element[] = []
-                for (const currentPlaylistItem of response?.contents!) {
-                    playlistItemsList.push(
-                        <PlaylistItem
-                            playlistId={props.playlistId}
-                            genericResult={currentPlaylistItem}
-                        />)
-                }
-                setPlaylistItems(playlistItemsList)
+                response.sort(compareTitle)
+                setPlaylistGeneralizedResults(response)
             } catch (e: any) {
                 prettyAlert(e.response?.data || e.toJSON().message, false)
             }
@@ -45,16 +48,8 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
             (async () => {
                 try {
                     let response = await PlaylistRequests.getPlaylistGeneralizedResults(props.playlistId)
-                    response.contents.sort(compareTitle)
-                    let playlistItemsList: JSX.Element[] = []
-                    for (const currentPlaylistItem of response?.contents!) {
-                        playlistItemsList.push(
-                            <PlaylistItem
-                                playlistId={props.playlistId}
-                                genericResult={currentPlaylistItem}
-                            />)
-                    }
-                    setPlaylistItems(playlistItemsList)
+                    response.sort(compareTitle)
+                    setPlaylistGeneralizedResults(response)
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
                 }
@@ -71,12 +66,57 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
         return a.creator.localeCompare(b.creator)
     }
 
+    const sensors = useSensors(
+        useSensor(PointerSensor, {
+            activationConstraint: {
+                distance: 1
+            }
+        }),
+        useSensor(KeyboardSensor, {
+            coordinateGetter: sortableKeyboardCoordinates,
+        }),
+    );
+
+    function handleDragEnd(event: DragEndEvent) {
+        const {active, over} = event;
+
+        if  (active.id !== over?.id) {
+            setPlaylistGeneralizedResults((items) => {
+                const oldIndex = items.findIndex((item) => item.id === active.id);
+                const newIndex = items.findIndex((item) => item.id === over?.id);
+                return arrayMove(items, oldIndex, newIndex);
+            });
+        }
+    }
+
 
     return (
 
         <div className="overflow-auto playlistItens">
             <ul className="list-group">
-                {playlistItems}
+
+                <DndContext
+                    sensors={sensors}
+                    collisionDetection={closestCenter}
+                    onDragEnd={handleDragEnd}
+                    modifiers={[restrictToWindowEdges]}
+                >
+                    <SortableContext
+                        items={playlistGeneralizedResults.map((playlist) => playlist.id)}
+                        strategy={rectSortingStrategy}
+                    >
+
+                        {playlistGeneralizedResults.map((playlist) => (
+                            <PlaylistItem
+                                key={playlist.id}
+                                playlistId={props.playlistId}
+                                genericResult={playlist}
+                            />)
+                        )}
+
+                    </SortableContext>
+                </DndContext>
+
             </ul>
 
         </div>
