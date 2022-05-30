@@ -25,66 +25,66 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
         <div className="col-lg-4 col-md-6 col-sm-6 col-12 position-relative"
              data-aos="fade-down">
             <div className="card scale clickable">
-            <div className="options-dropdown">
-                <div className="btn-group">
-                    <button type="button" className="btn dropdown-toggle-split"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                        <i className='bx bx-dots-horizontal-rounded'></i>
-                        <span className="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <ul className="dropdown-menu dropdown-menu-dark">
-                        <li
-                            onClick={() => {
-                                const sessionToken = sessionStorage.getItem("sessionToken")
-                                if (sessionToken) {
-                                    setShowingEditOrCreatePlaylistModal(true)
-                                    let playlistToEdit: EditPlaylist = {
-                                        playlistId: props.basicDetails.id,
-                                        title: props.basicDetails.title,
-                                        description: props.basicDetails.description,
-                                        visibility: props.basicDetails.visibility,
-                                        sessionToken: sessionToken
-                                    }
-                                    setPlaylistToEditOrCreate(playlistToEdit)
-                                } else prettyAlert("You must be logged in to edit a playlist.", false)
+                <div className="options-dropdown">
+                    <div className="btn-group">
+                        <button type="button" className="btn dropdown-toggle-split"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <i className='bx bx-dots-horizontal-rounded'></i>
+                            <span className="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul className="dropdown-menu dropdown-menu-dark">
+                            <li
+                                onClick={() => {
+                                    const sessionToken = sessionStorage.getItem("sessionToken")
+                                    if (sessionToken) {
+                                        setShowingEditOrCreatePlaylistModal(true)
+                                        let playlistToEdit: EditPlaylist = {
+                                            playlistId: props.basicDetails.id,
+                                            title: props.basicDetails.title,
+                                            description: props.basicDetails.description,
+                                            visibility: props.basicDetails.visibility,
+                                            sessionToken: sessionToken
+                                        }
+                                        setPlaylistToEditOrCreate(playlistToEdit)
+                                    } else prettyAlert("You must be logged in to edit a playlist.", false)
 
-                            }}>
-                            <div className="dropdown-item">Edit</div>
-                        </li>
-                        <li
-                            onClick={async () => {
-                                const sessionToken = sessionStorage.getItem("sessionToken")
-                                if (sessionToken) {
-                                    try {
-                                        let response = await PlaylistRequests.setCoverItem(props.basicDetails.id, "", sessionToken)
-                                        prettyAlert(response, true)
-                                        setResetCoverResponse(response)
-                                    } catch (e: any) {
-                                        prettyAlert(e.response?.data || e.toJSON().message, true)
-                                    }
-                                } else prettyAlert("You must be logged in to edit a playlist.", false)
-                            }}>
-                            <div className="dropdown-item">Reset cover</div>
-                        </li>
-                        <li
-                            onClick={async () => {
-                                const sessionToken = sessionStorage.getItem("sessionToken")
-                                if (sessionToken) {
-                                    try {
-                                        let response = await PlaylistRequests.deletePlaylist(props.basicDetails.id, sessionToken)
-                                        prettyAlert(response, true)
-                                        setDeletePlaylistResponse(response)
-                                    } catch (e: any) {
-                                        prettyAlert(e.response?.data || e.toJSON().message, false)
-                                    }
-                                } else prettyAlert("You must be logged in to delete a playlist.", false)
-                            }}
-                        >
-                            <div className="dropdown-item text-danger">Delete</div>
-                        </li>
-                    </ul>
+                                }}>
+                                <div className="dropdown-item">Edit</div>
+                            </li>
+                            <li
+                                onClick={async () => {
+                                    const sessionToken = sessionStorage.getItem("sessionToken")
+                                    if (sessionToken) {
+                                        try {
+                                            let response = await PlaylistRequests.setCoverItem(props.basicDetails.id, "", sessionToken)
+                                            prettyAlert(response, true)
+                                            setResetCoverResponse(response)
+                                        } catch (e: any) {
+                                            prettyAlert(e.response?.data || e.toJSON().message, true)
+                                        }
+                                    } else prettyAlert("You must be logged in to edit a playlist.", false)
+                                }}>
+                                <div className="dropdown-item">Reset cover</div>
+                            </li>
+                            <li
+                                onClick={async () => {
+                                    const sessionToken = sessionStorage.getItem("sessionToken")
+                                    if (sessionToken) {
+                                        try {
+                                            let response = await PlaylistRequests.deletePlaylist(props.basicDetails.id, sessionToken)
+                                            prettyAlert(response, true)
+                                            setDeletePlaylistResponse(response)
+                                        } catch (e: any) {
+                                            prettyAlert(e.response?.data || e.toJSON().message, false)
+                                        }
+                                    } else prettyAlert("You must be logged in to delete a playlist.", false)
+                                }}
+                            >
+                                <div className="dropdown-item text-danger">Delete</div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
                 <img src={props.basicDetails.thumbnailUrl} className="card-img" alt="..."></img>
                 <div className="card-img-overlay text-end"
                      onClick={() => {

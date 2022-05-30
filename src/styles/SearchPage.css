@@ -313,9 +313,9 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    z-index: 10;
-    margin-right: 15px;
-    margin-bottom: 25px;
+    z-index: 50;
+    /* margin-right: 15px;
+    margin-bottom: 25px;*/
 }
 
 .result .options .btn {

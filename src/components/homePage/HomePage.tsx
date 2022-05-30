@@ -36,17 +36,6 @@ function HomePage(): JSX.Element {
 
                 <div className="col-md-4 offset-md-2 position-absolute top-50 start-50 translate-middle logo">
                     {/* <img src={logo} alt="" /> */}
-
-                    <div className="row">
-                        <div className="col-6 p-5 bg-danger">s</div>
-                        <div className="col-6 p-5 bg-success">f</div>
-                        <div className="col-6 p-5 bg-warning">f</div>
-                        <div className="col-6 p-5 bg-primary">f</div>
-
-
-                        
-                    </div>
-
                 </div>
 
             </div>

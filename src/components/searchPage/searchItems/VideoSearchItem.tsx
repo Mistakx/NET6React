@@ -22,22 +22,22 @@ function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
                 onClick={() => {
                     setCurrentPlayerToClickedItem()
                 }}>
+                <div className="options">
+                    <button className="btn btn-lg btn-add"
+                        type="button"
+                        onClick={() => {
+                            setShowingPlaylistsModal(true)
+                            setResultToAdd(props.item)
+                        }}
+                        >
+                    <i className='bx bx-plus'></i></button>
+                </div>
                 <img src={props.item.thumbnailUrl} className="card-img" alt="..."></img>
                 <div className="card-img-overlay text-end">
                     <h5 className="card-title text-uppercase text-truncate">{props.item.title}</h5>
                     <p className="card-text text-truncate">{props.item.creator}</p>
                     {/* <p className="card-text">{props.item.createdAt}</p> */}
                 </div>
-            </div>
-            <div className="options">
-                <button className="btn btn-add"
-                    type="button"
-                    onClick={() => {
-                        setShowingPlaylistsModal(true)
-                        setResultToAdd(props.item)
-                    }}
-                    >
-                <i className='bx bx-plus'></i></button>
             </div>
         </div>
 
