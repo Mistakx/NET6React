@@ -8,10 +8,7 @@ import PlaylistItemsList from "./PlaylistItems/PlaylistItemsList";
 import PlaylistCover from "./PlaylistItems/PlaylistCover";
 import PlaylistPlayer from "./PlaylistPlayer/PlaylistPlayer";
 import PlaylistPagePlayerStore from "../../stores/PlaylistPagePlayerStore";
-import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
-import PlaylistRequests from "../../requests/backendRequests/PlaylistRequests";
 import AOS from "aos";
-import AlertStore from "../../stores/AlertStore";
 
 function PlaylistPage(): JSX.Element {
 
@@ -28,6 +25,16 @@ function PlaylistPage(): JSX.Element {
         })()
     }, []);
 
+    let playlistCover;
+    if (playlistId) {
+        playlistCover = <PlaylistCover playlistId={playlistId}/>
+    }
+
+    let playlistsItemsList;
+    if (playlistId) {
+        playlistsItemsList = <PlaylistItemsList playlistId={playlistId}/>
+    }
+
     return (
 
         <div>
@@ -41,8 +48,6 @@ function PlaylistPage(): JSX.Element {
 
                         <div className="row">
 
-                            {/* <div className="d-flex flex-wrap" id="grid"> */}
-
                             <PlaylistPlayer/>
 
                             <div className="col-lg-4 col-md-4 col-12" id="playlist" data-aos="fade-left"
@@ -50,9 +55,8 @@ function PlaylistPage(): JSX.Element {
 
                                 <div className="card align-items-stretch mt-4 mt-md-0">
 
-                                    <PlaylistCover playlistId={playlistId}/>
-
-                                    <PlaylistItemsList playlistId={playlistId!}/>
+                                    {playlistCover}
+                                    {playlistsItemsList}
 
                                 </div>
 

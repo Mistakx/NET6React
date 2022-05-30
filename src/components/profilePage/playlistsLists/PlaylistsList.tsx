@@ -7,12 +7,29 @@ import AddPlaylistItem from "./AddPlaylistItem";
 import EditOrCreatePlaylistModal from "./EditOrCreatePlaylistModal";
 import AlertStore from "../../../stores/AlertStore";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
+import {
+    DndContext,
+    closestCenter,
+    KeyboardSensor,
+    PointerSensor,
+    MouseSensor,
+    useSensor,
+    useSensors, DragEndEvent,
+} from '@dnd-kit/core';
+import {
+    arrayMove,
+    SortableContext,
+    sortableKeyboardCoordinates,
+    rectSortingStrategy,
+} from '@dnd-kit/sortable';
+import {restrictToParentElement, restrictToWindowEdges} from "@dnd-kit/modifiers";
+
 
 function PlaylistsList(): JSX.Element {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
-    const [userPlaylists, setUserPlaylists] = React.useState<PlaylistBasicDetails[]>();
+    const [userPlaylistItems, setUserPlaylistItems] = React.useState<PlaylistBasicDetails[]>([]);
 
     const setEditOrCreatePlaylistResponse = BackendResponsesStore(state => state.setEditOrCreatePlaylistResponse)
     const editOrCreatePlaylistResponse = BackendResponsesStore(state => state.editOrCreatePlaylistResponse)
@@ -28,7 +45,9 @@ function PlaylistsList(): JSX.Element {
             const sessionToken = window.sessionStorage.getItem("sessionToken");
             if (sessionToken) {
                 try {
-                    setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+                    const userPlaylists = await UserRequests.getPlaylists(sessionToken)
+                    userPlaylists.sort(compare)
+                    setUserPlaylistItems(userPlaylists);
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
                 }
@@ -42,7 +61,9 @@ function PlaylistsList(): JSX.Element {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
                     try {
-                        setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+                        const userPlaylists = await UserRequests.getPlaylists(sessionToken)
+                        userPlaylists.sort(compare)
+                        setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
                         prettyAlert(e.response?.data || e.toJSON().message, false)
                     }
@@ -58,7 +79,9 @@ function PlaylistsList(): JSX.Element {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
                     try {
-                        setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+                        const userPlaylists = await UserRequests.getPlaylists(sessionToken)
+                        userPlaylists.sort(compare)
+                        setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
                         prettyAlert(e.response?.data || e.toJSON().message, false)
                     }
@@ -74,9 +97,11 @@ function PlaylistsList(): JSX.Element {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
                     try {
-                        setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+                        const userPlaylists = await UserRequests.getPlaylists(sessionToken)
+                        userPlaylists.sort(compare)
+                        setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
-                        prettyAlert(e.response?.data || e.toJSON().message, false)
+                        // prettyAlert(e.response?.data || e.toJSON().message, false)
                     }
                     setEditOrCreatePlaylistResponse(null);
                 } else prettyAlert("No session token found.", false)
@@ -84,15 +109,30 @@ function PlaylistsList(): JSX.Element {
         }
     }, [editOrCreatePlaylistResponse]);
 
-    let playlistsList: JSX.Element[] = [];
-    if (userPlaylists) {
-        for (let currentPlaylistBasicDetails of userPlaylists) {
+    function compare(a: PlaylistBasicDetails, b: PlaylistBasicDetails) {
+        return (a.title.localeCompare(b.title));
+    }
 
-            let currentPlaylistItem = <ProfilePlaylistItem
-                basicDetails={currentPlaylistBasicDetails}
-            />
-            playlistsList.push(currentPlaylistItem);
+    const sensors = useSensors(
+        useSensor(PointerSensor, {
+            activationConstraint: {
+                distance: 1
+            }
+        }),
+        useSensor(KeyboardSensor, {
+            coordinateGetter: sortableKeyboardCoordinates,
+        }),
+    );
 
+    function handleDragEnd(event: DragEndEvent) {
+        const {active, over} = event;
+
+        if (active.id !== over?.id) {
+            setUserPlaylistItems((items) => {
+                const oldIndex = items.findIndex((item) => item.id === active.id);
+                const newIndex = items.findIndex((item) => item.id === over?.id);
+                return arrayMove(items, oldIndex, newIndex);
+            });
         }
     }
 
@@ -100,16 +140,30 @@ function PlaylistsList(): JSX.Element {
 
         <div className="col-lg-8 col-md-6 col-sm-12 col-12">
 
-            <div className="row results">
-
-                <AddPlaylistItem/>
-
-                {playlistsList}
-
-            </div>
-
             <EditOrCreatePlaylistModal/>
 
+            <div className="row results">
+
+                <DndContext
+                    sensors={sensors}
+                    collisionDetection={closestCenter}
+                    onDragEnd={handleDragEnd}
+                    modifiers={[restrictToWindowEdges]}
+                >
+                    <SortableContext
+                        items={userPlaylistItems.map((playlist) => playlist.id)}
+                        strategy={rectSortingStrategy}
+                    >
+                        <AddPlaylistItem/>
+
+                        {userPlaylistItems.map((playlist) => (
+                            <ProfilePlaylistItem key={playlist.id} basicDetails={playlist}/>
+                        ))}
+
+                    </SortableContext>
+                </DndContext>
+
+            </div>
         </div>
 
 

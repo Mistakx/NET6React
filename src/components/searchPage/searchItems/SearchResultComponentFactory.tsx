@@ -19,6 +19,7 @@ class SearchResultComponentFactory {
 
                 case "GenericVideoResult":
                     let currentVideoItem = <VideoSearchItem
+                        key={currentGenericItem.id}
                         item={currentGenericItem as GenericVideoResult}
                     />
                     searchResultItems.push(currentVideoItem);
@@ -26,6 +27,7 @@ class SearchResultComponentFactory {
 
                 case "GenericTrackResult":
                     let currentTrackItem = <TrackSearchItem
+                        key={currentGenericItem.id}
                         item={currentGenericItem as GenericTrackResult}
                     />
                     searchResultItems.push(currentTrackItem);
@@ -34,6 +36,7 @@ class SearchResultComponentFactory {
                 case "GenericLivestreamResult":
                     let currentLivestreamItem =
                         <LivestreamSearchItem
+                            key={currentGenericItem.id}
                             item={currentGenericItem as GenericLivestreamResult}
                         />
                     searchResultItems.push(currentLivestreamItem);

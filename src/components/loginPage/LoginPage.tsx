@@ -5,6 +5,7 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import {useNavigate} from "react-router-dom";
 import AlertStore from "../../stores/AlertStore";
+import LogRocket from 'logrocket';
 
 function LoginPage(): JSX.Element {
 
@@ -16,21 +17,35 @@ function LoginPage(): JSX.Element {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
-
     useEffect(() => {
         AOS.init();
         if (window.sessionStorage.getItem("sessionToken")) {
-            navigate("/home")
+            setSessionToken(window.sessionStorage.getItem("sessionToken")!)
         }
     }, []);
 
     useEffect(() => {
-        if (sessionToken) {
-            window.sessionStorage.setItem("sessionToken", sessionToken)
-            navigate("/home")
-        }
-    }, [sessionToken]);
 
+        (async () => {
+            if (sessionToken) {
+                window.sessionStorage.setItem("sessionToken", sessionToken)
+                try {
+                    const userProfile = await UserRequests.getProfile(sessionToken)
+                    LogRocket.identify(sessionToken, {
+                        username: userProfile?.username!,
+                        name: userProfile?.name!,
+                        email: userProfile?.email!
+                    });
+                } catch (e: any) {
+                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                    LogRocket.identify(sessionToken);
+                }
+                navigate("/home")
+
+            }
+
+        })()
+    }, [sessionToken]);
 
     return (
 

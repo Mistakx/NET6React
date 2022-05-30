@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../../styles/style.css';
 import {Modal, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
 import AlertStore from "../../../stores/AlertStore";
@@ -15,6 +15,11 @@ function EditUserPasswordModal(): JSX.Element {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
+    useEffect(()=>{
+        setCurrentPassword("")
+        setNewPassword("")
+    }, [showingEditUserPasswordModal])
+
     async function submitForm() {
         const sessionToken = sessionStorage.getItem("sessionToken")
         if (sessionToken){
@@ -23,7 +28,7 @@ function EditUserPasswordModal(): JSX.Element {
                 prettyAlert(response, true)
                 setShowingEditUserPasswordModal(false)
             } catch (e: any) {
-                prettyAlert(e.response.data || e.toJSON().message, false)
+                prettyAlert(e.response?.data || e.toJSON().message, false)
             }
         } else prettyAlert("You must be logged in to edit your user password", false)
 
@@ -43,7 +48,7 @@ function EditUserPasswordModal(): JSX.Element {
                 <ModalHeader>
 
                     <ModalTitle>
-                        <h5 id="exampleModalLabel">Edit user info</h5>
+                        <h5 id="exampleModalLabel">Edit My Password</h5>
 
                     </ModalTitle>
 
@@ -63,7 +68,7 @@ function EditUserPasswordModal(): JSX.Element {
 
                         {/*Name*/}
                         <div className="form-group mb-3">
-                            <input type="text" className="form-control" placeholder="Current password"
+                            <input type="password" className="form-control" placeholder="Current password"
                                    value={currentPassword}
                                    onChange={(e) => {
                                        setCurrentPassword(e.target.value)
@@ -73,7 +78,7 @@ function EditUserPasswordModal(): JSX.Element {
 
                         {/*Username*/}
                         <div className="form-group mb-3">
-                            <input type="text" className="form-control" placeholder="New password"
+                            <input type="password" className="form-control" placeholder="New password"
                                    value={newPassword}
                                    onChange={(e) => {
                                        setNewPassword(e.target.value)

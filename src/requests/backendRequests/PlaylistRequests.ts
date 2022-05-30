@@ -21,7 +21,8 @@ class PlaylistRequests {
 
         // @ts-ignore
         let playlistResponse = await axios(options);
-        return playlistResponse.data as PlaylistGeneralizedResults;
+        const responseBody = playlistResponse.data as PlaylistGeneralizedResults;
+        return responseBody.contents;
 
     }
 

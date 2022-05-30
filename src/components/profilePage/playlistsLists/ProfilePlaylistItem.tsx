@@ -1,12 +1,14 @@
 import React from 'react';
 import '../../../styles/style.css';
-import {ProfilePlaylistItemProperties} from "../../../models/components/profilePage/ProfilePlaylistItemProperties";
 import {useNavigate} from "react-router-dom";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
 import EditOrCreatePlaylistModalStore from "../../../stores/EditOrCreatePlaylistModalStore";
 import {EditPlaylist} from "../../../models/backendRequests/PlaylistRoute/EditPlaylist";
 import AlertStore from "../../../stores/AlertStore";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
+import {useSortable} from "@dnd-kit/sortable";
+import {CSS} from "@dnd-kit/utilities";
+import {ProfilePlaylistItemProperties} from "../../../models/components/profilePage/ProfilePlaylistItemProperties";
 
 function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
@@ -19,6 +21,24 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
 
     const setDeletePlaylistResponse = BackendResponsesStore(state => state.setDeletePlaylistResponse)
     const setResetCoverResponse = BackendResponsesStore(state => state.setResetCoverResponse)
+
+    const {
+        attributes,
+        listeners,
+        setNodeRef,
+        transform,
+        transition,
+        isDragging
+    } = useSortable({id: props.basicDetails.id});
+
+    const style = {
+        // width: "100%",
+        // height: "100%",
+        // padding: 20,
+        // border: '1px solid',
+        transform: CSS.Transform.toString(transform),
+        transition,
+    };
 
     return (
 
@@ -97,6 +117,7 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
                 </div>
 
             </div>
+
         </div>
     )
 }
