@@ -292,13 +292,6 @@
     transition: 400ms;
 }
 
-
-
-.row .display-flex {
-    display: flex;
-    flex-wrap: wrap;
-}
-
 .results .card {
     max-width: 100%;
 }

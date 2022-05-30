@@ -22,8 +22,9 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
 
     return (
 
-        <div className="col-lg-4 col-md-6 col-sm-6 col-12 position-relative scale"
+        <div className="col-lg-4 col-md-6 col-sm-6 col-12 position-relative"
              data-aos="fade-down">
+            <div className="card scale clickable">
             <div className="options-dropdown">
                 <div className="btn-group">
                     <button type="button" className="btn dropdown-toggle-split"
@@ -84,7 +85,6 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
                     </ul>
                 </div>
             </div>
-            <div className="clickable card">
                 <img src={props.basicDetails.thumbnailUrl} className="card-img" alt="..."></img>
                 <div className="card-img-overlay text-end"
                      onClick={() => {
