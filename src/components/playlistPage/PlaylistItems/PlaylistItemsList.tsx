@@ -118,6 +118,7 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
                     onDragEnd={handleDragEnd}
                     modifiers={[restrictToParentElement]}
                 >
+                    {/* TODO no mobile fica estranho */}
                     <SortableContext
                         items={playlistGeneralizedResults.map((playlist) => playlist.platformId)}
                         strategy={rectSortingStrategy}
