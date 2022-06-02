@@ -10,8 +10,8 @@ export class VimeoVideoResultPageToListItemsConverter {
         vimeoVideosSearchResultPage.data.map(item => {
 
             const currentGenericVideoItem: GenericVideoResult = {
-                interface: "GenericVideoResult",
-                id: item.uri.split("/videos/")[1],
+                resultType: "GenericVideoResult",
+                platformId: item.uri.split("/videos/")[1],
                 title: item.name,
                 creator: item.user.name,
                 // durationInSeconds: item.duration,

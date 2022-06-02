@@ -5,11 +5,10 @@ import React, {useEffect} from "react";
 import "aos/dist/aos.css";
 import {PlaylistItemsListProperties} from "../../../models/components/playlistPage/PlaylistItemsListProperties";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
-import {PlaylistGeneralizedResults} from "../../../models/backendRequests/PlaylistRoute/PlaylistGeneralizedResults";
 import AlertStore from "../../../stores/AlertStore";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 import {GeneralizedResult} from "../../../models/apiRequests/GenericResults";
-import {List, arrayMove} from 'react-movable';
+import {arrayMove} from 'react-movable';
 import {
     closestCenter,
     DndContext,
@@ -19,7 +18,7 @@ import {
     useSensor,
     useSensors
 } from "@dnd-kit/core";
-import {restrictToWindowEdges} from "@dnd-kit/modifiers";
+import {restrictToParentElement} from "@dnd-kit/modifiers";
 import {rectSortingStrategy, SortableContext, sortableKeyboardCoordinates} from "@dnd-kit/sortable";
 
 function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
@@ -35,7 +34,7 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
         (async () => {
             try {
                 let response = await PlaylistRequests.getPlaylistGeneralizedResults(props.playlistId)
-                response.sort(compareTitle)
+                // response.sort(compareTitle)
                 setPlaylistGeneralizedResults(response)
             } catch (e: any) {
                 prettyAlert(e.response?.data || e.toJSON().message, false)
@@ -48,7 +47,7 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
             (async () => {
                 try {
                     let response = await PlaylistRequests.getPlaylistGeneralizedResults(props.playlistId)
-                    response.sort(compareTitle)
+                    // response.sort(compareTitle)
                     setPlaylistGeneralizedResults(response)
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
@@ -77,16 +76,34 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
         }),
     );
 
-    function handleDragEnd(event: DragEndEvent) {
+    async function handleDragEnd(event: DragEndEvent) {
         const {active, over} = event;
 
-        if  (active.id !== over?.id) {
-            setPlaylistGeneralizedResults((items) => {
-                const oldIndex = items.findIndex((item) => item.id === active.id);
-                const newIndex = items.findIndex((item) => item.id === over?.id);
-                return arrayMove(items, oldIndex, newIndex);
-            });
+        if (active.id !== over?.id) {
+
+            const sessionToken = sessionStorage.getItem("sessionToken");
+            if (sessionToken) {
+                try {
+                    const oldIndex = playlistGeneralizedResults.findIndex((item) => item.platformId === active.id);
+                    const newIndex = playlistGeneralizedResults.findIndex((item) => item.platformId === over?.id);
+                    PlaylistRequests.sortGeneralizedResult(props.playlistId, playlistGeneralizedResults[oldIndex].databaseId!, newIndex, sessionToken).then(
+                        (response) => {
+                            prettyAlert(response, true)
+                        }
+                    )
+                    setPlaylistGeneralizedResults(arrayMove(playlistGeneralizedResults, oldIndex, newIndex));
+                } catch (e: any) {
+                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                }
+            } else prettyAlert("User needs to be logged in to sort playlist contents", false)
+
         }
+
+        // if  (active.id !== over?.id) {
+        //     const oldIndex = playlistGeneralizedResults.findIndex((item) => item.platformId === active.id);
+        //     const newIndex = playlistGeneralizedResults.findIndex((item) => item.platformId === over?.id);
+        //     setPlaylistGeneralizedResults(arrayMove(playlistGeneralizedResults, oldIndex, newIndex));
+        // }
     }
 
 
@@ -99,20 +116,20 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
                     sensors={sensors}
                     collisionDetection={closestCenter}
                     onDragEnd={handleDragEnd}
-                    modifiers={[restrictToWindowEdges]}
+                    modifiers={[restrictToParentElement]}
                 >
                     <SortableContext
-                        items={playlistGeneralizedResults.map((playlist) => playlist.id)}
+                        items={playlistGeneralizedResults.map((playlist) => playlist.platformId)}
                         strategy={rectSortingStrategy}
                     >
 
-                        {playlistGeneralizedResults.map((playlist) => (
+                        {playlistGeneralizedResults.map((result) => (
                             <PlaylistItem
-                                key={playlist.id}
+                                key={result.platformId}
                                 playlistId={props.playlistId}
-                                genericResult={playlist}
-                            />)
-                        )}
+                                genericResult={result}
+                            />
+                        ))}
 
                     </SortableContext>
                 </DndContext>

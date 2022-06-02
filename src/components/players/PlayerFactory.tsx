@@ -12,20 +12,20 @@ export class PlayerFactory {
 
             case "MultiPlatformPlayerFactory":
                 return <MultiPlatformPlayer
-                    contentId={item.id}
+                    contentId={item.platformId}
                     playerUrl={item.platformPlayerUrl as string}
                     setPlayerStarted={setPlayerStarted}
                 />
 
             case "TwitchClipPlayerFactory":
                 return <TwitchClipPlayer
-                    contentId={item.id}
+                    contentId={item.platformId}
                     setPlayerStarted={setPlayerStarted}
                 />;
 
             case "SpotifyPlayerFactory":
                 return <SpotifyPlayer
-                    contentId={item.id}
+                    contentId={item.platformId}
                     thumbnailUrl={item.thumbnailUrl}
                     setPlayerStarted={setPlayerStarted}
                 />;

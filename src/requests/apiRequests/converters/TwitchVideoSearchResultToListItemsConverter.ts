@@ -39,8 +39,8 @@ export class TwitchVideoSearchResultToListItemsConverter {
         twitchVideosSearchResult.data.map(item => {
 
             const currentGenericVideoItem: GenericVideoResult = {
-                interface: "GenericVideoResult",
-                id: item.id,
+                resultType: "GenericVideoResult",
+                platformId: item.id,
                 title: item.title,
                 creator: item.user_name,
                 // durationInSeconds: this.parseDuration(item.duration),
