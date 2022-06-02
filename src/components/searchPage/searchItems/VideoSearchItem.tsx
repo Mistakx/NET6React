@@ -21,7 +21,8 @@ function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
             <div className="card scale clickable"
                 onClick={() => {
                     setCurrentPlayerToClickedItem()
-                }}>
+                }}
+                style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.item.thumbnailUrl + ")"}}>
                 <div className="options">
                     <button className="btn btn-lg btn-add"
                         type="button"
@@ -32,7 +33,6 @@ function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
                         >
                     <i className='bx bx-plus'></i></button>
                 </div>
-                <img src={props.item.thumbnailUrl} className="card-img" alt="..."></img>
                 <div className="card-img-overlay text-end">
                     <h5 className="card-title text-uppercase text-truncate">{props.item.title}</h5>
                     <p className="card-text text-truncate">{props.item.creator}</p>

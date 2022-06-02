@@ -21,23 +21,23 @@ function LivestreamSearchItem(props: LivestreamSearchItemProperties): JSX.Elemen
             <div className="card scale clickable"
                 onClick={() => {
                     setCurrentPlayerToClickedItem()
-                }}>
-                <img src={props.item.thumbnailUrl} className="card-img" alt="..."></img>
+                }}
+                style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.item.thumbnailUrl + ")"}}>
+                <div className="options">
+                    <button className="btn btn-add"
+                        type="button"
+                        onClick={() => {
+                            setShowingPlaylistsModal(true)
+                            setResultToAdd(props.item)
+                        }}
+                        >
+                    <i className='bx bx-plus'></i></button>
+                </div>
                 <div className="card-img-overlay text-end">
                     <h5 className="card-title text-uppercase text-truncate">{props.item.title}</h5>
                     <p className="card-text text-truncate">{props.item.gameName}</p>
                     <p className="card-text text-truncate">{props.item.creator}</p>
                 </div>
-            </div>
-            <div className="options">
-                <button className="btn btn-add"
-                    type="button"
-                    onClick={() => {
-                        setShowingPlaylistsModal(true)
-                        setResultToAdd(props.item)
-                    }}
-                    >
-                <i className='bx bx-plus'></i></button>
             </div>
         </div>
 

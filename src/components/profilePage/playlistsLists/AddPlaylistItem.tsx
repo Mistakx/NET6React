@@ -13,7 +13,7 @@ function AddPlaylistItem(): JSX.Element {
 
     return (
 
-        <div className="col-lg-4 col-md-6 col-sm-6 col-12"
+        <div className="col-lg-4 col-md-6 col-sm-6 col-6"
             data-aos="fade-down"
             onClick={() => {
                 const sessionToken = window.sessionStorage.getItem("sessionToken")
@@ -31,7 +31,7 @@ function AddPlaylistItem(): JSX.Element {
         >
 
             <div className="card scale clickable align-middle add-playlist">
-                <i className="bx bx-plus h1 text-center mt-4"
+                <i className="bx bx-plus h1 text-center mt-5"
                     style={{fontSize: 120}}
                 ></i>
             </div>
