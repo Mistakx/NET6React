@@ -43,7 +43,7 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
     return (
 
         <div className="col-lg-4 col-md-6 col-sm-6 col-6 position-relative"
-             data-aos="fade-down">
+             data-aos="fade-up">
             <div className="card scale clickable"
                 style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.basicDetails.thumbnailUrl + ")"}}>
                 <div className="options-dropdown">

@@ -81,6 +81,11 @@
   border-top-right-radius: 10px;
 }
 
+.playlist .card-profile h2 {
+  background-color: rgba(9, 41, 83, 0.5);
+  border-radius: 20px;
+}
+
 .playlist .card {
   border-radius: 10px;
   background-color: #0678e3;

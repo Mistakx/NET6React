@@ -17,7 +17,7 @@ function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
 
     return (
 
-        <div className="result col-lg-3 col-md-4 col-sm-6 col-12 position-relative" data-aos="fade-up">
+        <div className="result col-lg-3 col-md-4 col-sm-6 col-6 position-relative" data-aos="fade-up">
             <div className="card scale clickable"
                 onClick={() => {
                     setCurrentPlayerToClickedItem()

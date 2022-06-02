@@ -14,7 +14,7 @@ function AddPlaylistItem(): JSX.Element {
     return (
 
         <div className="col-lg-4 col-md-6 col-sm-6 col-6"
-            data-aos="fade-down"
+            data-aos="fade-up"
             onClick={() => {
                 const sessionToken = window.sessionStorage.getItem("sessionToken")
                 if (sessionToken) {
