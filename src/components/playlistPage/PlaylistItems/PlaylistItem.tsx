@@ -21,7 +21,7 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
         transform,
         transition,
         isDragging
-    } = useSortable({id: props.genericResult.id});
+    } = useSortable({id: props.genericResult.platformId});
 
     const style = {
         // width: "100%",
@@ -35,6 +35,7 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
     return (
 
         <li className="list-group-item"
+            key={props.genericResult.platformId}
             ref={setNodeRef} style={style} {...attributes} {...listeners}
         >
             <div className="row">

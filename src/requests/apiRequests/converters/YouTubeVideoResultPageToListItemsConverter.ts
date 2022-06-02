@@ -10,8 +10,8 @@ export class YouTubeVideoResultPageToListItemsConverter {
         youtubeVideosSearchResultPage.items.map(item => {
 
             const currentGenericVideoItem: GenericVideoResult = {
-                interface: "GenericVideoResult",
-                id: item.id.videoId,
+                resultType: "GenericVideoResult",
+                platformId: item.id.videoId,
                 title: item.snippet.title,
                 creator: item.snippet.channelTitle,
                 // durationInSeconds: moment.duration(item.details.items[0].contentDetails.duration).asSeconds(),

@@ -10,8 +10,8 @@ export class SpotifyTracksPageToListItemsConverter {
         spotifyTracksPage.items.map(item => {
 
             const currentGenericTrackItem: GenericTrackResult = {
-                interface: "GenericTrackResult",
-                id: item.id,
+                resultType: "GenericTrackResult",
+                platformId: item.id,
                 title: item.name,
                 creator: item.artists[0].name,
                 thumbnailUrl: item.album.images[0].url, // 0-640x640; 1-300x300; 2-64x64
