@@ -110,7 +110,7 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
     return (
 
         <div className="overflow-auto playlistItens">
-            <ul className="list-group">
+            <ul className="list-group pt-2">
 
                 <DndContext
                     sensors={sensors}

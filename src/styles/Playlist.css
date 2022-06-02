@@ -30,7 +30,12 @@
   color: #fff;
 }
 
-#playlist .list-group .active {
+#playlist .list-group .list-group-item:hover {
+  background-color: #1355AD;
+  color: #fff;
+}
+
+#playlist .list-group .list-group-item .active {
   background-color: #067ded;
 }
 
@@ -83,6 +88,7 @@
 
 .playlist .card-profile h2 {
   background-color: rgba(9, 41, 83, 0.5);
+  padding: 10px;
   border-radius: 20px;
 }
 

@@ -20,7 +20,7 @@ function PlaylistPlayer(): JSX.Element {
 
     return (
 
-        <div className="col-lg-8 col-md-8 col-12" id="player">
+        <div className="col-lg-8 col-md-8 col-sm-12 col-12" id="player">
 
             <div className="align-items-stretch position-relative"
                 data-aos="fade-right" data-aos-delay="100">

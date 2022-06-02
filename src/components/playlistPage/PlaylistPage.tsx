@@ -50,7 +50,7 @@ function PlaylistPage(): JSX.Element {
 
                             <PlaylistPlayer/>
 
-                            <div className="col-lg-4 col-md-4 col-12" id="playlist" data-aos="fade-left"
+                            <div className="col-lg-4 col-md-4 col-sm-12 col-12" id="playlist" data-aos="fade-left"
                                  data-aos-delay="200">
 
                                 <div className="card align-items-stretch mt-4 mt-md-0">
