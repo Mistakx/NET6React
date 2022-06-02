@@ -294,6 +294,7 @@
 
 .results .card {
     max-width: 100%;
+    height: 200px;
 }
 
 .results .card img {
@@ -313,7 +314,7 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    z-index: 50;
+    z-index: 100;
     /* margin-right: 15px;
     margin-bottom: 25px;*/
 }
@@ -350,7 +351,7 @@
 }
 
 .options .btn-add {
-    background-color: rgba(242, 243, 245, 0.3);
+    background-color: rgba(25, 112, 227, 0.5);
     padding: 0;
     width: 42px;
     height: 42px;
@@ -364,7 +365,8 @@
 
 .options .btn-add:hover,
 .options .btn-add:active {
-    color: #0d3a76;
+    background-color: rgba(25, 112, 227, 0.8);
+    /* color: #0d3a76; */
 }
 
 .modal-body .list-group .add-list:hover {
