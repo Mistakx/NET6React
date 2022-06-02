@@ -297,6 +297,10 @@
     height: 200px;
 }
 
+.results .card img {
+    border-radius:20px;
+}
+
 .results .add-playlist {
     background-color: rgba(19, 87, 174, .7)
 }
@@ -310,14 +314,22 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    margin-right: 15px;
-    margin-bottom: 25px;
+    z-index: 100;
+    /* margin-right: 15px;
+    margin-bottom: 25px;*/
 }
 
 .result .options .btn {
     font-size: 32px;
     margin-right: 15px;
     margin-bottom: 15px;
+}
+
+.options-dropdown {
+    position: absolute;
+    top:10px;
+    left:10px;
+    z-index: 10;
 }
 
 .options-dropdown .btn {
@@ -339,7 +351,7 @@
 }
 
 .options .btn-add {
-    background-color: rgba(242, 243, 245, 0.3);
+    background-color: rgba(25, 112, 227, 0.5);
     padding: 0;
     width: 42px;
     height: 42px;
@@ -353,7 +365,8 @@
 
 .options .btn-add:hover,
 .options .btn-add:active {
-    color: #0d3a76;
+    background-color: rgba(25, 112, 227, 0.8);
+    /* color: #0d3a76; */
 }
 
 .modal-body .list-group .add-list:hover {

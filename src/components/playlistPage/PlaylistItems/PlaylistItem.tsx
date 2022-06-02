@@ -34,13 +34,13 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
 
     return (
 
-        <li className="list-group-item"
+        <li className="list-group-item align-middle"
             key={props.genericResult.platformId}
             ref={setNodeRef} style={style} {...attributes} {...listeners}
         >
             <div className="row">
                 <div className="col-2">
-                    <span className="badge"><i className='bx bx-menu h4'></i></span>
+                    <span className=" align-middle"><i className='bx bx-menu h4'></i></span>
                 </div>
                 <div className="col-8 p-3 clickable"
                      style={{

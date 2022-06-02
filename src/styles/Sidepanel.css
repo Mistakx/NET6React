@@ -30,7 +30,6 @@
   height: 56px;
   width: 100%;
   overflow: hidden;
-  transition: 0.3s;
 }
 .nav-menu div i, .nav-menu div:focus i {
   font-size: 20px;
@@ -39,7 +38,7 @@
   padding: 0 5px 0 7px;
   color: #45505b;
 }
-@media (min-width: 992px) {
+@media (min-width: 688px) {
   .nav-menu div, .nav-menu div:focus {
     width: 56px;
   }
@@ -66,7 +65,7 @@
 /**
 * Mobile Navigation
 */
-.mobile-nav-toggle {
+/* .mobile-nav-toggle {
   position: fixed;
   right: 10px;
   top: 10px;
@@ -94,4 +93,60 @@
 .mobile-nav-active .mobile-nav-toggle {
   color: #fff;
   background-color: #0563bb;
+} */
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+  position: fixed;
+  left: 0;
+  bottom: 35%;
+  z-index: 9997;
+  transition: all 0.7s;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+@media (max-width: 688px) {
+  #header {
+    position: fixed;
+    width: 100%;
+    min-height: 58px;
+    bottom: 0;
+    padding: 0;
+    margin-bottom: -8px;
+    /* background: rgb(148, 121, 121); */
+  }
+  
+  .nav-menu {
+    position: relative !important;
+  }
+  
+  .nav-menu > ul > li {
+    display: inline-block !important;
+    align-items: center;
+    width:33.33%;
+    text-align: center !important;
+  }
+
+  .nav-menu div, .nav-menu div:focus {
+    display: flex;
+    align-items: center;
+    color: #45505b;
+    padding: 10px 18px;
+    font-size: 15px;
+    border-radius: 6px;
+    background: #f2f3f5;
+    width: auto;
+    overflow: hidden;
+    transition: 0.3s;
+  }
+  
+}
+
+@media (min-width: 688px) {
+  #main {
+    margin-left: 100px;
+  }
 }

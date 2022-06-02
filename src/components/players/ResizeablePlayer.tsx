@@ -24,7 +24,7 @@ function ResizeablePlayer(): JSX.Element {
         resizeablePlayer =
 
             <div className="ratio ratio-16x9">
-
+                {/* TODO botão para fechar não é percetivel no mobile */}
                 <Rnd
                     default={resizeablePlayerDefaultOptions}
                     minWidth="200px"

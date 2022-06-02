@@ -11,6 +11,8 @@ function TopBar(props: TopBarProperties): JSX.Element {
                 <div className="iconbox-blue rounded">
                     <nav aria-label="breadcrumb ">
                         <ol className="breadcrumb p-3">
+                            
+                            {/* <li className="breadcrumb-item text-white" aria-current="page"><i className='bx bx-arrow-back'></i></li> */}
                             <li className="breadcrumb-item active text-white" aria-current="page">{props.text}
                             </li>
                         </ol>

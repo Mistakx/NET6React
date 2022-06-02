@@ -110,7 +110,7 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
     return (
 
         <div className="overflow-auto playlistItens">
-            <ul className="list-group">
+            <ul className="list-group pt-2">
 
                 <DndContext
                     sensors={sensors}
@@ -118,6 +118,7 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
                     onDragEnd={handleDragEnd}
                     modifiers={[restrictToParentElement]}
                 >
+                    {/* TODO no mobile fica estranho */}
                     <SortableContext
                         items={playlistGeneralizedResults.map((playlist) => playlist.platformId)}
                         strategy={rectSortingStrategy}

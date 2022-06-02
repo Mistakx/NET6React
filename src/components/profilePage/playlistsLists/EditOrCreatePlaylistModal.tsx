@@ -119,9 +119,10 @@ function EditOrCreatePlaylistModal(): JSX.Element {
                             <div className="btn-group" role="group"
                                  aria-label="Basic radio toggle button group">
 
-                                <label className="btn btn-outline-primary">
+                                <label className="btn btn-outline-light">
                                     <input
                                         type="radio"
+                                        className="btn-check"
                                         name="btnradio"
                                         id="btnradio1"
                                         defaultChecked={playlistVisibility === "Public"}
@@ -132,9 +133,10 @@ function EditOrCreatePlaylistModal(): JSX.Element {
                                     Public
                                 </label>
 
-                                <label className="btn btn-outline-primary">
+                                <label className="btn btn-outline-light">
                                     <input
                                         type="radio"
+                                        className="btn-check"
                                         name="btnradio"
                                         id="btnradio2"
                                         defaultChecked={playlistVisibility === "Private"}
@@ -149,24 +151,24 @@ function EditOrCreatePlaylistModal(): JSX.Element {
                         </div>
 
                         <div className="form-group">
-                                    <textarea name="" id="" placeholder="Playlist description" className="form-control"
-                                              onChange={(e) => {
-                                                  setPlaylistDescription(e.target.value)
-                                              }}
-                                              value={playlistDescription}
-                                    >
+                            <textarea name="" id="" placeholder="Playlist description" className="form-control"
+                                onChange={(e) => {
+                                    setPlaylistDescription(e.target.value)
+                                }}
+                                value={playlistDescription}
+                            >
 
-                                    </textarea>
+                            </textarea>
                         </div>
                     </form>
                 </ModalBody>
 
                 <div className="modal-footer">
                     <button type="submit" className="btn btn-success"
-                            onClick={async (e) => {
-                                e.preventDefault()
-                                await submitForm()
-                            }}
+                        onClick={async (e) => {
+                            e.preventDefault()
+                            await submitForm()
+                        }}
                     >
                         Save changes
                     </button>
