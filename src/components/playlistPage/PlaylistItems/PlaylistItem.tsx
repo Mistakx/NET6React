@@ -11,6 +11,7 @@ import {CSS} from "@dnd-kit/utilities";
 function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
 
     const setPlayingGlobalGenericResult = GlobalPlayerStore(state => state.setGlobalPlayerCurrentResult)
+    const setSearchCurrentResults = GlobalPlayerStore(state => state.setSearchCurrentResults)
 
     const setPlaylistPlayerGeneralizedResult = PlaylistPagePlayerStore(state => state.setPlaylistPlayerCurrentResult)
     const setPlaylistCurrentResults = PlaylistPagePlayerStore(state => state.setPlaylistCurrentResults)
@@ -55,6 +56,7 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
                          setPlaylistPlayerGeneralizedResult(props.generalizedResult)
                          setPlaylistCurrentResults(props.generalizedResults)
                          setPlayingGlobalGenericResult(null)
+                         setSearchCurrentResults(null)
                      }}
                 >
                     <h6 className="fw-bold text-truncate">{props.generalizedResult.title}</h6>

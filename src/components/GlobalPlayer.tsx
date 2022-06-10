@@ -11,8 +11,6 @@ function GlobalPlayer(): JSX.Element {
     const setGlobalPlayerCurrentResult = GlobalPlayerStore(state => state.setGlobalPlayerCurrentResult)
     const searchCurrentResults = GlobalPlayerStore(state => state.searchCurrentResults)
 
-    const [playerStarted, setPlayerStarted] = useState(false)
-
     let resizeablePlayer;
     if (globalPlayerCurrentResult && searchCurrentResults) {
         let player = PlayerFactory.createPlayer(globalPlayerCurrentResult, searchCurrentResults, setGlobalPlayerCurrentResult)
@@ -26,6 +24,7 @@ function GlobalPlayer(): JSX.Element {
         resizeablePlayer =
 
             <div className="ratio ratio-16x9">
+                {/* TODO botão para fechar não é percetivel no mobile */}
 
                 <Rnd
                     default={resizeablePlayerDefaultOptions}

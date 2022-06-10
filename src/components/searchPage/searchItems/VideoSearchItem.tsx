@@ -7,12 +7,14 @@ import UserPlaylistsModalStore from "../../../stores/UserPlaylistsModalStore";
 function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
 
     const setGlobalPlayerCurrentResult = GlobalPlayerStore(state => state.setGlobalPlayerCurrentResult)
+    const setSearchCurrentResults = GlobalPlayerStore(state => state.setSearchCurrentResults)
 
     const setShowingPlaylistsModal = UserPlaylistsModalStore(state => state.setShowingPlaylistsModal)
     const setResultToAdd = UserPlaylistsModalStore(state => state.setResultToAdd)
 
     function setCurrentPlayerToClickedItem() {
-        setGlobalPlayerCurrentResult(props.item)
+        setGlobalPlayerCurrentResult(props.searchResult)
+        setSearchCurrentResults(props.searchResults)
     }
 
     return (
@@ -22,20 +24,20 @@ function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
                 onClick={() => {
                     setCurrentPlayerToClickedItem()
                 }}
-                style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.item.thumbnailUrl + ")"}}>
+                style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.searchResult.thumbnailUrl + ")"}}>
                 <div className="options">
                     <button className="btn btn-lg btn-add"
                         type="button"
                         onClick={() => {
                             setShowingPlaylistsModal(true)
-                            setResultToAdd(props.item)
+                            setResultToAdd(props.searchResult)
                         }}
                         >
                     <i className='bx bx-plus'></i></button>
                 </div>
                 <div className="card-img-overlay text-end">
-                    <h5 className="card-title text-uppercase text-truncate">{props.item.title}</h5>
-                    <p className="card-text text-truncate">{props.item.creator}</p>
+                    <h5 className="card-title text-uppercase text-truncate">{props.searchResult.title}</h5>
+                    <p className="card-text text-truncate">{props.searchResult.creator}</p>
                     {/* <p className="card-text">{props.item.createdAt}</p> */}
                 </div>
             </div>

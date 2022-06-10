@@ -1,5 +1,6 @@
-import {GenericTrackResult} from "../../../apiRequests/GenericResults";
+import {GeneralizedResult, GenericTrackResult} from "../../../apiRequests/GenericResults";
 
 export interface TrackSearchItemProperties {
-    item: GenericTrackResult
+    searchResult: GenericTrackResult
+    searchResults: GeneralizedResult[]
 }
