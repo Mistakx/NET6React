@@ -3,14 +3,14 @@ import {PlaylistPagePlayerState} from "../models/states/PlaylistPagePlayerState"
 
 const PlaylistPlayerPageStore = create<PlaylistPagePlayerState>((set) => ({
 
-    playingGenericResultPlaylistIndex: null,
-    setPlayingGenericResultPlaylistIndex: (playingGenericResultPlaylistIndex) => set(state => ({
-        playingGenericResultPlaylistIndex: playingGenericResultPlaylistIndex
+    playlistPlayerCurrentResult: null,
+    setPlaylistPlayerCurrentResult: (playlistPlayerCurrentResult) => set(state => ({
+        playlistPlayerCurrentResult: playlistPlayerCurrentResult
     })),
 
-    playingGenericResult: null,
-    setPlayingGenericResult: (playingGenericResult) => set(state => ({
-        playingGenericResult: playingGenericResult
+    playlistCurrentResults: null,
+    setPlaylistCurrentResults: (playlistCurrentResults) => set(state => ({
+        playlistCurrentResults: playlistCurrentResults
     }))
 
 }))

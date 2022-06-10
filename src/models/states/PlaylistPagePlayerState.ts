@@ -2,10 +2,10 @@ import {GeneralizedResult} from "../apiRequests/GenericResults";
 
 export interface PlaylistPagePlayerState {
 
-    playingGenericResultPlaylistIndex: number | null
-    setPlayingGenericResultPlaylistIndex: (playingGenericResultPlaylistIndex: number | null) => void
+    playlistPlayerCurrentResult: GeneralizedResult | null
+    setPlaylistPlayerCurrentResult: (playlistPlayerCurrentResult: GeneralizedResult | null) => void
 
-    playingGenericResult: GeneralizedResult | null
-    setPlayingGenericResult: (playingGenericResult: GeneralizedResult | null) => void
+    playlistCurrentResults: GeneralizedResult[] | null
+    setPlaylistCurrentResults: (playlistCurrentResults: GeneralizedResult[] | null) => void
 
 }

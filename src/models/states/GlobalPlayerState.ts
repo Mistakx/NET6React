@@ -2,7 +2,10 @@ import {GeneralizedResult} from "../apiRequests/GenericResults";
 
 export interface GlobalPlayerState {
 
-    playingGenericResult: GeneralizedResult | null
-    setPlayingGenericResult: (playingGenericResult: GeneralizedResult | null) => void
+    globalPlayerCurrentResult: GeneralizedResult | null
+    setGlobalPlayerCurrentResult: (globalPlayerCurrentResult: GeneralizedResult | null) => void
+
+    searchCurrentResults: GeneralizedResult[] | null
+    setSearchCurrentResults: (searchCurrentResults: GeneralizedResult[] | null) => void
 
 }

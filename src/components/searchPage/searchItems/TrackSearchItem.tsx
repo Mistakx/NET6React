@@ -6,13 +6,13 @@ import UserPlaylistsModalStore from "../../../stores/UserPlaylistsModalStore";
 
 function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
 
-    const setPlayingGenericResult = GlobalPlayerStore(state => state.setPlayingGenericResult)
+    const setGlobalPlayerCurrentResult = GlobalPlayerStore(state => state.setGlobalPlayerCurrentResult)
 
     const setShowingPlaylistsModal =  UserPlaylistsModalStore(state => state.setShowingPlaylistsModal)
     const setResultToAdd =  UserPlaylistsModalStore(state => state.setResultToAdd)
 
     function setCurrentPlayerToClickedItem() {
-        setPlayingGenericResult(props.item)
+        setGlobalPlayerCurrentResult(props.item)
     }
 
     return (

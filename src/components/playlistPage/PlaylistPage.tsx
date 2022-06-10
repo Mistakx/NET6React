@@ -14,14 +14,14 @@ function PlaylistPage(): JSX.Element {
 
     const playlistId = useParams().playlistId
 
-    const setPlayingGenericResult = PlaylistPagePlayerStore(state => state.setPlayingGenericResult)
-    const setPlayingGenericResultPlaylistIndex = PlaylistPagePlayerStore(state => state.setPlayingGenericResultPlaylistIndex)
+    const setPlaylistPlayerGeneralizedResult = PlaylistPagePlayerStore(state => state.setPlaylistPlayerCurrentResult)
+    const setPlaylistCurrentResults = PlaylistPagePlayerStore(state => state.setPlaylistCurrentResults)
 
     useEffect(() => {
         AOS.init();
         (async () => {
-            setPlayingGenericResult(null)
-            setPlayingGenericResultPlaylistIndex(null)
+            setPlaylistPlayerGeneralizedResult(null)
+            setPlaylistCurrentResults(null)
         })()
     }, []);
 
