@@ -6,14 +6,21 @@ export function MultiPlatformPlayer(props: MultiPlatformPlayerProperties): JSX.E
     return (
         <ReactPlayer
             config={{vimeo: {playerOptions: {transparent: false}}}}
-            url={props.playerUrl + props.contentId}
+            url={props.currentResult.platformPlayerUrl + props.currentResult.platformId}
             playing={true}
             controls={true}
             pip={true}
             width={"100%"}
             height={"100%"}
-            onReady={() => {
-                props.setPlayerStarted(true)
+            onEnded={() => {
+                let resultBeingPlayedIndex = 0;
+                for (let i = 0; i < props.results.length; i++) {
+                    if (props.results[i] == props.currentResult) {
+                        resultBeingPlayedIndex = i;
+                        break;
+                    }
+                }
+                props.setNextResult(props.results[resultBeingPlayedIndex + 1]);
             }}
         />
     )

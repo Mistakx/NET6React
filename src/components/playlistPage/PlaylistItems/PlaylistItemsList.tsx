@@ -128,7 +128,8 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
                             <PlaylistItem
                                 key={result.platformId}
                                 playlistId={props.playlistId}
-                                genericResult={result}
+                                generalizedResult={result}
+                                generalizedResults={playlistGeneralizedResults}
                             />
                         ))}
 

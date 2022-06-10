@@ -2,6 +2,7 @@ import {GeneralizedResult} from "../../apiRequests/GenericResults";
 import React from "react";
 
 export interface PlaylistItemProperties {
-    genericResult: GeneralizedResult
+    generalizedResult: GeneralizedResult
+    generalizedResults: GeneralizedResult[]
     playlistId: string | undefined
 }

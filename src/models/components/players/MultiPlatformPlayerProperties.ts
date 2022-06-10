@@ -1,7 +1,7 @@
-import React from "react";
+import {GeneralizedResult} from "../../apiRequests/GenericResults";
 
 export interface MultiPlatformPlayerProperties {
-    contentId: string
-    playerUrl: string
-    setPlayerStarted: React.Dispatch<React.SetStateAction<boolean>>
+    currentResult: GeneralizedResult
+    results: GeneralizedResult[]
+    setNextResult: (currentResult: (GeneralizedResult | null)) => void
 }

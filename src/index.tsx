@@ -10,7 +10,7 @@ import PlaylistPage from "./components/playlistPage/PlaylistPage";
 import Login from "./components/loginPage/LoginPage";
 import RegisterPage from "./components/registerPage/RegisterPage";
 import SidePanel from "./components/SidePanel";
-import FloatingPlayer from "./components/FloatingPlayer";
+import GlobalPlayer from "./components/GlobalPlayer";
 import Alert from "./components/Alert";
 import LogRocket from 'logrocket';
 
@@ -26,7 +26,7 @@ if (container !== null) {
 
             <SidePanel/>
             <Alert/>
-            <FloatingPlayer/>
+            <GlobalPlayer/>
 
             <Routes>
                 <Route path="/" element={<Login/>}/>

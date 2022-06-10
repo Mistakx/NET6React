@@ -3,9 +3,14 @@ import {GlobalPlayerState} from "../models/states/GlobalPlayerState";
 
 const GlobalPlayerStore = create<GlobalPlayerState>((set) => ({
 
-    playingGenericResult: null,
-    setPlayingGenericResult: (playingGenericResult) => set(state => ({
-        playingGenericResult: playingGenericResult
+    globalPlayerCurrentResult: null,
+    setGlobalPlayerCurrentResult: (globalPlayerCurrentResult) => set(state => ({
+        globalPlayerCurrentResult: globalPlayerCurrentResult
+    })),
+
+    searchCurrentResults: null,
+    setSearchCurrentResults: (searchCurrentResults) => set(state => ({
+        searchCurrentResults: searchCurrentResults
     }))
 
 }))

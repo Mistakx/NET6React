@@ -8,14 +8,21 @@ export function TwitchClipPlayer(props: TwitchClipPlayerProperties): JSX.Element
     return (
 
         <iframe
-            src={"https://clips.twitch.tv/embed?clip=" + props.contentId + parent + "&autoplay=true"}
+            src={"https://clips.twitch.tv/embed?clip=" + props.currentResult.platformId + parent + "&autoplay=true"}
             frameBorder={0}
             allowFullScreen={true}
             scrolling={"no"}
             height={"100%"}
             width={"100%"}
-            onLoad={() => {
-                props.setPlayerStarted(true)
+            onEnded={() => {
+                let resultBeingPlayedIndex = 0;
+                for (let i = 0; i < props.results.length; i++) {
+                    if (props.results[i] == props.currentResult) {
+                        resultBeingPlayedIndex = i;
+                        break;
+                    }
+                }
+                props.setNextResult(props.results[resultBeingPlayedIndex + 1]);
             }}
         />
     )

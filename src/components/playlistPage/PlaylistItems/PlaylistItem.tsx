@@ -10,9 +10,11 @@ import {CSS} from "@dnd-kit/utilities";
 
 function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
 
-    const setPlayingGlobalGenericResult = GlobalPlayerStore(state => state.setPlayingGenericResult)
+    const setPlayingGlobalGenericResult = GlobalPlayerStore(state => state.setGlobalPlayerCurrentResult)
 
-    const setPlayingGenericResult = PlaylistPagePlayerStore(state => state.setPlayingGenericResult)
+    const setPlaylistPlayerGeneralizedResult = PlaylistPagePlayerStore(state => state.setPlaylistPlayerCurrentResult)
+    const setPlaylistCurrentResults = PlaylistPagePlayerStore(state => state.setPlaylistCurrentResults)
+
 
     const {
         attributes,
@@ -21,7 +23,7 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
         transform,
         transition,
         isDragging
-    } = useSortable({id: props.genericResult.platformId});
+    } = useSortable({id: props.generalizedResult.platformId});
 
     const style = {
         // width: "100%",
@@ -35,7 +37,7 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
     return (
 
         <li className="list-group-item align-middle"
-            key={props.genericResult.platformId}
+            key={props.generalizedResult.platformId}
             ref={setNodeRef} style={style} {...attributes} {...listeners}
         >
             <div className="row">
@@ -47,14 +49,15 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
                          backgroundSize: "100% auto",
                          backgroundRepeat: "no-repeat",
                          backgroundPosition: "center",
-                         backgroundImage: "url(" + props.genericResult.thumbnailUrl + ")"
+                         backgroundImage: "url(" + props.generalizedResult.thumbnailUrl + ")"
                      }}
                      onClick={() => {
-                         setPlayingGenericResult(props.genericResult)
+                         setPlaylistPlayerGeneralizedResult(props.generalizedResult)
+                         setPlaylistCurrentResults(props.generalizedResults)
                          setPlayingGlobalGenericResult(null)
                      }}
                 >
-                    <h6 className="fw-bold text-truncate">{props.genericResult.title}</h6>
+                    <h6 className="fw-bold text-truncate">{props.generalizedResult.title}</h6>
                 </div>
 
                 <div className="col-1">
@@ -64,7 +67,7 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
                         </button>
                         <PlaylistItemDropdown
                             playlistId={props.playlistId}
-                            genericResult={props.genericResult}
+                            genericResult={props.generalizedResult}
                         />
                     </div>
                 </div>

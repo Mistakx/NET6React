@@ -7,16 +7,16 @@ import PlaylistPagePlayerStore from "../../../stores/PlaylistPagePlayerStore";
 
 function PlaylistPlayer(): JSX.Element {
 
-    const playingGenericResult = PlaylistPagePlayerStore(state => state.playingGenericResult)
-
-    const [playerStarted, setPlayerStarted] = useState(false)
+    const playlistPlayerCurrentResult = PlaylistPagePlayerStore(state => state.playlistPlayerCurrentResult)
+    const setPlaylistPlayerCurrentResult = PlaylistPagePlayerStore(state => state.setPlaylistPlayerCurrentResult)
+    const playlistCurrentResults = PlaylistPagePlayerStore(state => state.playlistCurrentResults)
 
     let playlistPlayer;
-    if (playingGenericResult) {
-        playlistPlayer = PlayerFactory.createPlayer(playingGenericResult, setPlayerStarted)
+    if (playlistPlayerCurrentResult && playlistCurrentResults) {
+        playlistPlayer = PlayerFactory.createPlayer(playlistPlayerCurrentResult, playlistCurrentResults, setPlaylistPlayerCurrentResult)
     }
 
-    let currentlyPlayingText = playingGenericResult?.title ? playingGenericResult?.title : "Not playing content"
+    let currentlyPlayingText = playlistPlayerCurrentResult?.title ? playlistPlayerCurrentResult?.title : "Not playing content"
 
     return (
 
