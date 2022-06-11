@@ -23,6 +23,7 @@ import {
     rectSortingStrategy,
 } from '@dnd-kit/sortable';
 import {restrictToParentElement, restrictToWindowEdges} from "@dnd-kit/modifiers";
+import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
 
 
 function PlaylistsList(): JSX.Element {
@@ -46,7 +47,7 @@ function PlaylistsList(): JSX.Element {
             if (sessionToken) {
                 try {
                     const userPlaylists = await UserRequests.getPlaylists(sessionToken)
-                    userPlaylists.sort(compare)
+                    // userPlaylists.sort(compare)
                     setUserPlaylistItems(userPlaylists);
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
@@ -62,7 +63,7 @@ function PlaylistsList(): JSX.Element {
                 if (sessionToken) {
                     try {
                         const userPlaylists = await UserRequests.getPlaylists(sessionToken)
-                        userPlaylists.sort(compare)
+                        // userPlaylists.sort(compare)
                         setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
                         prettyAlert(e.response?.data || e.toJSON().message, false)
@@ -80,7 +81,7 @@ function PlaylistsList(): JSX.Element {
                 if (sessionToken) {
                     try {
                         const userPlaylists = await UserRequests.getPlaylists(sessionToken)
-                        userPlaylists.sort(compare)
+                        // userPlaylists.sort(compare)
                         setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
                         prettyAlert(e.response?.data || e.toJSON().message, false)
@@ -98,7 +99,7 @@ function PlaylistsList(): JSX.Element {
                 if (sessionToken) {
                     try {
                         const userPlaylists = await UserRequests.getPlaylists(sessionToken)
-                        userPlaylists.sort(compare)
+                        // userPlaylists.sort(compare)
                         setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
                         // prettyAlert(e.response?.data || e.toJSON().message, false)
@@ -128,14 +129,26 @@ function PlaylistsList(): JSX.Element {
         const {active, over} = event;
 
         if (active.id !== over?.id) {
-            setUserPlaylistItems((items) => {
-                const oldIndex = items.findIndex((item) => item.id === active.id);
-                const newIndex = items.findIndex((item) => item.id === over?.id);
-                return arrayMove(items, oldIndex, newIndex);
-            });
+            
+            const sessionToken = sessionStorage.getItem("sessionToken");
+            if (sessionToken) {
+                try {
+                    const oldIndex = userPlaylistItems.findIndex((item) => item.id === active.id);
+                    const newIndex = userPlaylistItems.findIndex((item) => item.id === over?.id);
+                    PlaylistRequests.sortPlaylist(userPlaylistItems[oldIndex].id!, newIndex, sessionToken).then(
+                        (response) => {
+                            prettyAlert(response, true)
+                        }
+                    )
+                    setUserPlaylistItems(arrayMove(userPlaylistItems, oldIndex, newIndex));
+                } catch (e: any) {
+                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                }
+            } else prettyAlert("User needs to be logged in to sort playlists", false)
+            
         }
     }
-
+    
     return (
 
         <div className="col-lg-8 col-md-6 col-sm-12 col-12">

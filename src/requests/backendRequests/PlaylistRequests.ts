@@ -6,9 +6,9 @@ import {CreatePlaylist} from "../../models/backendRequests/PlaylistRoute/CreateP
 import {DeletePlaylist} from "../../models/backendRequests/PlaylistRoute/DeletePlaylist";
 import {DeleteGeneralizedResult} from "../../models/backendRequests/PlaylistRoute/DeleteGeneralizedResult";
 import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
-import {PlaylistGeneralizedResults} from "../../models/backendRequests/PlaylistRoute/PlaylistGeneralizedResults";
 import {SetCoverItem} from "../../models/backendRequests/PlaylistRoute/SetCoverItem";
 import {SortGeneralizedResult} from "../../models/backendRequests/PlaylistRoute/SortGeneralizedResult";
+import {SortPlaylist} from "../../models/backendRequests/PlaylistRoute/SortPlaylist";
 
 class PlaylistRequests {
 
@@ -22,8 +22,7 @@ class PlaylistRequests {
 
         // @ts-ignore
         let playlistResponse = await axios(options);
-        const responseBody = playlistResponse.data as PlaylistGeneralizedResults;
-        return responseBody.contents;
+        return playlistResponse.data;
 
     }
 
@@ -186,6 +185,29 @@ class PlaylistRequests {
         let data: SortGeneralizedResult = {
             playlistId: playlistId,
             generalizedResultDatabaseId: generalizedResultDatabaseId,
+            newIndex: newIndex,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+
+        // @ts-ignore
+        let response = await axios(options);
+        return response.data as string;
+
+    }
+
+    static async sortPlaylist(playlistId: string, newIndex: number, sessionToken: string) {
+
+        const url = "/Playlist/sortPlaylist";
+
+        let data: SortPlaylist = {
+            playlistId: playlistId,
             newIndex: newIndex,
             sessionToken: sessionToken
         }
