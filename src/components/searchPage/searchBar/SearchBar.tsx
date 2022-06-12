@@ -10,7 +10,7 @@ import PlatformDropdownList from "./PlatformDropdownList";
 import PlatformDropdownStore from "../../../stores/PlatformDropdownStore";
 import {
     GeneralizedResult,
-} from "../../../models/apiRequests/GenericResults";
+} from "../../../models/apiResponses/GenericResults";
 import AlertStore from "../../../stores/AlertStore";
 
 function SearchBar(props: SearchBarProperties): JSX.Element {

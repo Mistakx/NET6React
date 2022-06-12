@@ -1,5 +1,5 @@
-import {GenericVideoResult} from "../../../models/apiRequests/GenericResults";
-import {YouTubeVideoSearchResultPage} from "../../../models/apiRequests/YouTubeSearchResult";
+import {GenericVideoResult} from "../../../models/apiResponses/GenericResults";
+import {YouTubeVideoSearchResultPage} from "../../../models/apiResponses/YouTubeSearchResult";
 
 export class YouTubeVideoResultPageToListItemsConverter {
 

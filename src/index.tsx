@@ -13,8 +13,9 @@ import SidePanel from "./components/SidePanel";
 import GlobalPlayer from "./components/GlobalPlayer";
 import Alert from "./components/Alert";
 import LogRocket from 'logrocket';
+import TrendingPage from "./components/trendingPage/TrendingPage";
 
-LogRocket.init('tcdmcx/playlist-manager');
+// LogRocket.init('tcdmcx/playlist-manager');
 
 const container = document.getElementById('root');
 
@@ -36,6 +37,7 @@ if (container !== null) {
                 <Route path="/register" element={<RegisterPage/>}/>
                 <Route path="/user/:username" element={<UsernamePage/>}/>
                 <Route path="/playlist/:playlistId" element={<PlaylistPage/>}/>
+                <Route path="/trending" element={<TrendingPage/>}/>
             </Routes>
         </BrowserRouter>
     );

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {TwitchSearchCategoriesResultPage} from "../../../models/apiRequests/TwitchSearchResults";
+import {TwitchSearchCategoriesResultPage} from "../../../models/apiResponses/TwitchSearchResults";
 
 export class TwitchGamesSearch {
 

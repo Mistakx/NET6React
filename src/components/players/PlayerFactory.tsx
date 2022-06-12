@@ -1,15 +1,22 @@
 import React from "react";
 import {MultiPlatformPlayer} from "./MultiPlatformPlayer";
-import {GeneralizedResult} from "../../models/apiRequests/GenericResults";
+import {GeneralizedResult} from "../../models/apiResponses/GenericResults";
 import {TwitchClipPlayer} from "./TwitchClipPlayer";
 import {SpotifyPlayer} from "./SpotifyPlayer";
+import RecommendationRequests from "../../requests/backendRequests/RecommendationRequests";
+import UserRequests from "../../requests/backendRequests/UserRequests";
 
 export class PlayerFactory {
 
     public static createPlayer(item: GeneralizedResult,
                                items: GeneralizedResult[],
-                               setNextItem: (playlistPlayerCurrentResult: (GeneralizedResult | null)) => void)
-    {
+                               setNextItem: (playlistPlayerCurrentResult: (GeneralizedResult | null)) => void) {
+
+        const sessionToken = window.sessionStorage.getItem("sessionToken");
+
+        if (sessionToken) {
+            RecommendationRequests.saveView(item, sessionToken)
+        }
 
         switch (item.playerFactoryName) {
 

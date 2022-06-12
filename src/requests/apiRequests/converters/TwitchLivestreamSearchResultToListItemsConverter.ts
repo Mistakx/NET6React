@@ -1,5 +1,5 @@
-import {GenericLivestreamResult} from "../../../models/apiRequests/GenericResults";
-import {TwitchSearchChannelsResultPage} from "../../../models/apiRequests/TwitchSearchResults";
+import {GenericLivestreamResult} from "../../../models/apiResponses/GenericResults";
+import {TwitchSearchChannelsResultPage} from "../../../models/apiResponses/TwitchSearchResults";
 
 export class TwitchLivestreamSearchResultToListItemsConverter {
 

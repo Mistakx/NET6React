@@ -3,7 +3,7 @@ import {
     GenericLivestreamResult, GeneralizedResult,
     GenericTrackResult,
     GenericVideoResult
-} from "../../../models/apiRequests/GenericResults";
+} from "../../../models/apiResponses/GenericResults";
 
 export abstract class ApiSearch {
 

@@ -1,4 +1,4 @@
-import {GeneralizedResult} from "../../apiRequests/GenericResults";
+import {GeneralizedResult} from "../../apiResponses/GenericResults";
 import React from "react";
 
 export interface PlaylistItemProperties {

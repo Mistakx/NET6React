@@ -1,5 +1,5 @@
-import {GenericVideoResult} from "../../../models/apiRequests/GenericResults";
-import {TwitchSearchVideoResultPage} from "../../../models/apiRequests/TwitchSearchResults";
+import {GenericVideoResult} from "../../../models/apiResponses/GenericResults";
+import {TwitchSearchVideoResultPage} from "../../../models/apiResponses/TwitchSearchResults";
 
 export class TwitchVideoSearchResultToListItemsConverter {
 

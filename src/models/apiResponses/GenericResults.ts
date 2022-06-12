@@ -11,6 +11,7 @@ export interface GeneralizedResult {
     playerFactoryName: string
     platformPlayerUrl?: string
     databaseId?: string
+    viewsAmount?: number
 }
 
 /**

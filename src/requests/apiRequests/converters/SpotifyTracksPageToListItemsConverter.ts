@@ -1,5 +1,5 @@
-import {SpotifyTracksPage} from "../../../models/apiRequests/SpotifySearchResults";
-import {GenericTrackResult} from "../../../models/apiRequests/GenericResults";
+import {SpotifyTracksPage} from "../../../models/apiResponses/SpotifySearchResults";
+import {GenericTrackResult} from "../../../models/apiResponses/GenericResults";
 
 export class SpotifyTracksPageToListItemsConverter {
 

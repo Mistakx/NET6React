@@ -1,5 +1,5 @@
-import {GenericVideoResult} from "../../../models/apiRequests/GenericResults";
-import {VimeoSearchVideoResultPage} from "../../../models/apiRequests/VimeoSearchResult";
+import {GenericVideoResult} from "../../../models/apiResponses/GenericResults";
+import {VimeoSearchVideoResultPage} from "../../../models/apiResponses/VimeoSearchResult";
 
 export class VimeoVideoResultPageToListItemsConverter {
 

@@ -1,6 +1,6 @@
 import {ApiSearch} from "./ApiSearch";
 import axios from "axios";
-import {TwitchSearchVideoResultPage} from "../../../models/apiRequests/TwitchSearchResults";
+import {TwitchSearchVideoResultPage} from "../../../models/apiResponses/TwitchSearchResults";
 import {TwitchChannelSearch} from "../auxiliarySearches/TwitchChannelSearch";
 import {Platform} from "../platforms/Platform";
 import {TwitchVideoSearchResultToListItemsConverter} from "../converters/TwitchVideoSearchResultToListItemsConverter";

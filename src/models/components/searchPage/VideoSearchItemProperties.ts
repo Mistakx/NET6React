@@ -1,4 +1,4 @@
-import {GeneralizedResult, GenericVideoResult} from "../../apiRequests/GenericResults";
+import {GeneralizedResult, GenericVideoResult} from "../../apiResponses/GenericResults";
 
 export interface VideoSearchItemProperties {
     searchResult: GenericVideoResult

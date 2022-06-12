@@ -3,7 +3,7 @@ import {
     GeneralizedResult,
     GenericTrackResult,
     GenericVideoResult
-} from "../apiRequests/GenericResults";
+} from "../apiResponses/GenericResults";
 
 export interface SearchedResultsState {
 

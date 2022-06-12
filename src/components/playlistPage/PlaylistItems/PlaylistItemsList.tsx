@@ -7,7 +7,7 @@ import {PlaylistItemsListProperties} from "../../../models/components/playlistPa
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
 import AlertStore from "../../../stores/AlertStore";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
-import {GeneralizedResult} from "../../../models/apiRequests/GenericResults";
+import {GeneralizedResult} from "../../../models/apiResponses/GenericResults";
 import {arrayMove} from 'react-movable';
 import {
     closestCenter,

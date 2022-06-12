@@ -5,7 +5,7 @@ import {
     GeneralizedResult,
     GenericTrackResult,
     GenericVideoResult
-} from "../models/apiRequests/GenericResults";
+} from "../models/apiResponses/GenericResults";
 
 const SearchedListStore = create<SearchedResultsState>((set) => ({
 

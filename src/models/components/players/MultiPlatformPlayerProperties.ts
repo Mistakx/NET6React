@@ -1,4 +1,4 @@
-import {GeneralizedResult} from "../../apiRequests/GenericResults";
+import {GeneralizedResult} from "../../apiResponses/GenericResults";
 
 export interface MultiPlatformPlayerProperties {
     currentResult: GeneralizedResult

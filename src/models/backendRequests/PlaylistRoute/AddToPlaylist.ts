@@ -1,5 +1,5 @@
 // /Playlist/addToPlaylist
-import {GeneralizedResult} from "../../apiRequests/GenericResults";
+import {GeneralizedResult} from "../../apiResponses/GenericResults";
 
 export interface AddToPlaylist extends GeneralizedResult {
     playlistId: string

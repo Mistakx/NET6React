@@ -1,6 +1,6 @@
 import {ApiSearch} from "./ApiSearch";
 import axios from "axios";
-import {SpotifySearchAlbumsResult, SpotifyTracksPage} from "../../../models/apiRequests/SpotifySearchResults";
+import {SpotifySearchAlbumsResult, SpotifyTracksPage} from "../../../models/apiResponses/SpotifySearchResults";
 import {SimplifiedAlbum} from "spotify-types";
 import {SpotifyTracksPageToListItemsConverter} from "../converters/SpotifyTracksPageToListItemsConverter";
 import {Platform} from "../platforms/Platform";

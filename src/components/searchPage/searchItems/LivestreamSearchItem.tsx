@@ -39,6 +39,8 @@ function LivestreamSearchItem(props: LivestreamSearchItemProperties): JSX.Elemen
                     <h5 className="card-title text-uppercase text-truncate">{props.searchResult.title}</h5>
                     <p className="card-text text-truncate">{props.searchResult.gameName}</p>
                     <p className="card-text text-truncate">{props.searchResult.creator}</p>
+                    <p className="card-text text-truncate">Views: {props.searchResult.viewsAmount}</p>
+
                 </div>
             </div>
         </div>

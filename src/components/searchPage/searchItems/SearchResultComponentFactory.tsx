@@ -2,7 +2,7 @@ import {
     GenericLivestreamResult, GeneralizedResult,
     GenericTrackResult,
     GenericVideoResult
-} from "../../../models/apiRequests/GenericResults";
+} from "../../../models/apiResponses/GenericResults";
 import LivestreamSearchItem from "./LivestreamSearchItem";
 import VideoSearchItem from "./VideoSearchItem";
 import TrackSearchItem from "./TrackSearchItem";
@@ -13,7 +13,11 @@ class SearchResultComponentFactory {
 
         let searchResultItems: JSX.Element[] = []
 
+        console.log(results)
+
         for (const currentGenericItem of results) {
+
+            console.log(currentGenericItem)
 
             switch (currentGenericItem.resultType) {
 

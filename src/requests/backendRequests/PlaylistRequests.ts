@@ -1,5 +1,5 @@
 import axios from "axios";
-import {GeneralizedResult} from "../../models/apiRequests/GenericResults";
+import {GeneralizedResult} from "../../models/apiResponses/GenericResults";
 import {EditPlaylist} from "../../models/backendRequests/PlaylistRoute/EditPlaylist";
 import {AddToPlaylist} from "../../models/backendRequests/PlaylistRoute/AddToPlaylist";
 import {CreatePlaylist} from "../../models/backendRequests/PlaylistRoute/CreatePlaylist";

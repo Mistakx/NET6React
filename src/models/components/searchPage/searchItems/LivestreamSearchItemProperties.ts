@@ -1,4 +1,4 @@
-import {GeneralizedResult, GenericLivestreamResult} from "../../../apiRequests/GenericResults";
+import {GeneralizedResult, GenericLivestreamResult} from "../../../apiResponses/GenericResults";
 
 export interface LivestreamSearchItemProperties {
     searchResult: GenericLivestreamResult

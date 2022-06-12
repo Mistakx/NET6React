@@ -39,6 +39,8 @@ function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
                     <h5 className="card-title text-uppercase text-truncate">{props.searchResult.title}</h5>
                     <p className="card-text text-truncate">{props.searchResult.albumName}</p>
                     <p className="card-text text-wrap">{props.searchResult.creator}</p>
+                    <p className="card-text text-truncate">Views: {props.searchResult.viewsAmount}</p>
+
                 </div>
             </div>
         </div>

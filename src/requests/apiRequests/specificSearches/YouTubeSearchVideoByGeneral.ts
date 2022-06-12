@@ -4,7 +4,7 @@ import axios from "axios";
 import {
     YouTubeVideoDetailsSearchResultPage,
     YouTubeVideoSearchResultPage
-} from "../../../models/apiRequests/YouTubeSearchResult";
+} from "../../../models/apiResponses/YouTubeSearchResult";
 import {Platform} from "../platforms/Platform";
 import {YouTubeVideoResultPageToListItemsConverter} from "../converters/YouTubeVideoResultPageToListItemsConverter";
 import YouTube from '../platforms/YouTube';
