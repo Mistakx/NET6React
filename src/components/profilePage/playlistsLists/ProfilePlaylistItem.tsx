@@ -54,6 +54,7 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
                      }}>
                     <div className="options-dropdown">
                         <div className="btn-group">
+
                             <button type="button" className="btn dropdown-toggle-split"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                 <i className='bx bx-dots-horizontal-rounded'></i>
@@ -110,6 +111,7 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
                                     <div className="dropdown-item text-danger">Delete</div>
                                 </li>
                             </ul>
+
                         </div>
                     </div>
                     <div className="card-img-overlay text-end"
@@ -117,9 +119,18 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
                              navigate("/playlist/" + props.basicDetails.id)
                          }}
                     >
-                        <h5 className="card-title text-uppercase">{props.basicDetails.title}</h5>
-                        <p className="card-text">{props.basicDetails.visibility}</p>
-                        <p className="card-text">{props.basicDetails.description}</p>
+                        <h5 className="card-title text-uppercase text-center">{props.basicDetails.title}</h5>
+                        <p className="card-text text-start">{props.basicDetails.visibility}</p>
+                        <p className="card-text text-start">{props.basicDetails.description}</p>
+                    </div>
+                    <div className="options-dropdown position-absolute" style={{top:0, right:0}}>
+                        <div className="btn-group" style={{position:"absolute", top:"10px", right:"10px"}}>
+
+                            <button type="button" className="btn dropdown-toggle-split">
+                                <i className='bx bx-menu'></i>
+                            </button>
+
+                        </div>
                     </div>
 
                 </div>
