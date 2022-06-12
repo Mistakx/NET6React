@@ -1,8 +1,10 @@
 import GlobalPlayerStore from "../../../stores/GlobalPlayerStore";
 import {TrackSearchItemProperties} from "../../../models/components/searchPage/searchItems/TrackSearchItemProperties";
-import React from "react";
+import React, {useEffect} from "react";
 import "aos/dist/aos.css";
 import UserPlaylistsModalStore from "../../../stores/UserPlaylistsModalStore";
+import {ViewAmounts} from "../../../models/backendRequests/RecommendationsRoute/ViewAmounts";
+import RecommendationRequests from "../../../requests/backendRequests/RecommendationRequests";
 
 function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
 
@@ -12,6 +14,14 @@ function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
     const setShowingPlaylistsModal = UserPlaylistsModalStore(state => state.setShowingPlaylistsModal)
     const setResultToAdd = UserPlaylistsModalStore(state => state.setResultToAdd)
 
+    const [viewAmounts, setViewAmounts] = React.useState<ViewAmounts | null>(null)
+
+    useEffect(() => {
+        (async () => {
+            setViewAmounts(await RecommendationRequests.getViews(props.searchResult.platformId, props.searchResult.playerFactoryName, props.searchResult.platformPlayerUrl))
+        })()
+    }, [])
+    
     function setCurrentPlayerToClickedItem() {
         setGlobalPlayerCurrentResult(props.searchResult)
         setSearchCurrentResults(props.searchResults)
@@ -39,8 +49,8 @@ function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
                     <h5 className="card-title text-uppercase text-truncate">{props.searchResult.title}</h5>
                     <p className="card-text text-truncate">{props.searchResult.albumName}</p>
                     <p className="card-text text-wrap">{props.searchResult.creator}</p>
-                    <p className="card-text text-truncate">Views: {props.searchResult.viewsAmount}</p>
-
+                    <p className="card-text text-truncate">Weekly Views: {viewAmounts?.weeklyViewsAmount}</p>
+                    <p className="card-text text-truncate">Total Views: {viewAmounts?.totalViewsAmount}</p>
                 </div>
             </div>
         </div>

@@ -13,11 +13,7 @@ class SearchResultComponentFactory {
 
         let searchResultItems: JSX.Element[] = []
 
-        console.log(results)
-
         for (const currentGenericItem of results) {
-
-            console.log(currentGenericItem)
 
             switch (currentGenericItem.resultType) {
 

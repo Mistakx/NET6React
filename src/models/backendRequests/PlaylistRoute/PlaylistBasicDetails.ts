@@ -6,6 +6,7 @@ export interface PlaylistBasicDetails {
     creationDate: Date
     description: string
     thumbnailUrl: string
+    resultsAmount:number
 }
 
 

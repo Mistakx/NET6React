@@ -12,14 +12,7 @@ function TrendingResultsList(): JSX.Element {
 
     useEffect(() => {
         (async () => {
-            const trendingResults = await RecommendationRequests.getTrending();
-            let generalizedResultsWithViews = [];
-            for (const trendingResult of trendingResults) {
-                let generalizedResultWithViews = {...trendingResult.generalizedResult, viewsAmount: trendingResult.viewsAmount};
-                generalizedResultsWithViews.push(generalizedResultWithViews);
-            }
-            console.log(generalizedResultsWithViews);
-            setTrendingResults(generalizedResultsWithViews);
+            setTrendingResults(await RecommendationRequests.getTrending());
         })()
     }, []);
 

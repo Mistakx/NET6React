@@ -121,6 +121,7 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
                     >
                         <h5 className="card-title text-uppercase text-center">{props.basicDetails.title}</h5>
                         <p className="card-text text-start">{props.basicDetails.visibility}</p>
+                        <p className="card-text text-start">Items: {props.basicDetails.resultsAmount}</p>
                         <p className="card-text text-start">{props.basicDetails.description}</p>
                     </div>
                     <div className="options-dropdown position-absolute" style={{top:0, right:0}}>

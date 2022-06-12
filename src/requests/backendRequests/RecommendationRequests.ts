@@ -1,7 +1,8 @@
 import axios from "axios";
 import {SaveView} from "../../models/backendRequests/RecommendationsRoute/SaveView";
 import {GeneralizedResult} from "../../models/apiResponses/GenericResults";
-import {GetTrending} from "../../models/backendRequests/RecommendationsRoute/GetTrending";
+import {ViewAmounts} from "../../models/backendRequests/RecommendationsRoute/ViewAmounts";
+import {GetViews} from "../../models/backendRequests/RecommendationsRoute/GetViews";
 
 class RecommendationRequests {
 
@@ -37,7 +38,31 @@ class RecommendationRequests {
 
         // @ts-ignore
         let response = await axios(options)
-        return response.data as GetTrending[]
+        return response.data as GeneralizedResult[]
+    }
+
+    static async getViews(platformId: string, playerFactoryName: string, platformPlayerUrl?: string) {
+
+        const url = "/Recommendations/getViews";
+
+        const data: GetViews = {
+            platformId: platformId,
+            playerFactoryName: playerFactoryName,
+            platformPlayerUrl: platformPlayerUrl
+        }
+        
+        console.log(data)
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        console.log(response.data)
+        return response.data as ViewAmounts
     }
 
 }
