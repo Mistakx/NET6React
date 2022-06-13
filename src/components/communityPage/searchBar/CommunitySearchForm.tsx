@@ -2,16 +2,16 @@ import React from 'react';
 import '../../../styles/style.css'
 import SelectedPlatformSearchStore from "../../../stores/searches/SelectedPlatformSearchStore";
 import {SearchFormProperties} from "../../../models/components/searchBar/SearchFormProperties";
+import SelectedCommunitySearchStore from "../../../stores/searches/SelectedCommunitySearchStore";
 
-function SearchForm(props: SearchFormProperties): JSX.Element {
+function CommunitySearchForm(): JSX.Element {
 
-    const selectedSearch = SelectedPlatformSearchStore(state => state.selectedSearch)
-    const searchBarQuery = SelectedPlatformSearchStore(state => state.searchBarQuery)
-    const setSearchBarQuery = SelectedPlatformSearchStore(state => state.setSearchBarQuery)
+    const searchBarQuery = SelectedCommunitySearchStore(state => state.searchBarQuery)
+    const setSearchBarQuery = SelectedCommunitySearchStore(state => state.setSearchBarQuery)
 
     return (
         <input type="text submit" id="search"
-                className={"form-control " + selectedSearch.getPlatform().getColorClass()}
+                className={"form-control blue"}
                 autoFocus
                 autoComplete={"off"}
                 value={searchBarQuery}
@@ -26,4 +26,4 @@ function SearchForm(props: SearchFormProperties): JSX.Element {
 
 }
 
-export default SearchForm;
+export default CommunitySearchForm;

@@ -1,17 +1,23 @@
 import axios from "axios";
-import {SaveView} from "../../models/backendRequests/RecommendationsRoute/SaveView";
+import {SaveContentView} from "../../models/backendRequests/RecommendationsRoute/SaveContentView";
 import {GeneralizedResult} from "../../models/apiResponses/GenericResults";
 import {ViewAmounts} from "../../models/backendRequests/RecommendationsRoute/ViewAmounts";
-import {GetViews} from "../../models/backendRequests/RecommendationsRoute/GetViews";
+import {GetContentViews} from "../../models/backendRequests/RecommendationsRoute/GetContentViews";
+import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import {SavePlaylistView} from "../../models/backendRequests/RecommendationsRoute/SavePlaylistView";
+import {GetTrendingPlaylists} from "../../models/backendRequests/RecommendationsRoute/GetTrendingPlaylists";
+import {GetPlaylistViews} from "../../models/backendRequests/RecommendationsRoute/GetPlaylistViews";
+import {SaveUserView} from "../../models/backendRequests/RecommendationsRoute/SaveUserView";
+import {UserProfile} from "../../models/backendRequests/UserRoute/UserProfile";
 
 class RecommendationRequests {
 
+    //! Content
+    static async saveContentView(generalizedResult: GeneralizedResult, sessionToken: string) {
 
-    static async saveView(generalizedResult: GeneralizedResult, sessionToken: string) {
+        const url = "/Recommendations/saveContentView";
 
-        const url = "/Recommendations/saveView";
-
-        const data: SaveView = {
+        const data: SaveContentView = {
             generalizedResult: generalizedResult,
             sessionToken: sessionToken
         }
@@ -27,9 +33,9 @@ class RecommendationRequests {
         return response.data as string
     }
 
-    static async getTrending() {
+    static async getTrendingContent() {
 
-        const url = "/Recommendations/getTrending";
+        const url = "/Recommendations/getTrendingContent";
 
         const options = {
             method: 'GET',
@@ -41,17 +47,15 @@ class RecommendationRequests {
         return response.data as GeneralizedResult[]
     }
 
-    static async getViews(platformId: string, playerFactoryName: string, platformPlayerUrl?: string) {
+    static async getContentViews(platformId: string, playerFactoryName: string, platformPlayerUrl?: string) {
 
-        const url = "/Recommendations/getViews";
+        const url = "/Recommendations/getContentViews";
 
-        const data: GetViews = {
+        const data: GetContentViews = {
             platformId: platformId,
             playerFactoryName: playerFactoryName,
             platformPlayerUrl: platformPlayerUrl
         }
-        
-        console.log(data)
 
         const options = {
             method: 'POST',
@@ -61,7 +65,116 @@ class RecommendationRequests {
 
         // @ts-ignore
         let response = await axios(options)
-        console.log(response.data)
+        return response.data as ViewAmounts
+    }
+
+    // Playlist
+    static async savePlaylistView(playlistId: string, sessionToken: string) {
+
+        const url = "/Recommendations/savePlaylistView";
+
+        const data: SavePlaylistView = {
+            playlistId: playlistId,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as string
+    }
+
+    static async getTrendingPlaylists(beginningOfPlaylistName: string, sessionToken: string) {
+
+        const url = "/Recommendations/getTrendingPlaylists";
+
+        const data: GetTrendingPlaylists = {
+            playlistNameBeginningLetters: beginningOfPlaylistName,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as PlaylistBasicDetails[]
+    }
+
+    static async getPlaylistViews(playlistId: string, sessionToken: string) {
+
+        const url = "/Recommendations/getContentViews";
+
+        const data: GetPlaylistViews = {
+            playlistId: playlistId,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as ViewAmounts
+    }
+
+    // User
+    static async saveUserView(userId: string, sessionToken: string) {
+
+        const url = "/Recommendations/saveUserView";
+
+        const data: SaveUserView = {
+            userId: userId,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as string
+    }
+
+    static async getTrendingUsers(beginningOfUsername: string) {
+
+        const url = "/Recommendations/getTrendingUsers/" + beginningOfUsername;
+
+        const options = {
+            method: 'GET',
+            url: url,
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as UserProfile[]
+    }
+
+    static async getUserViews(userId: string) {
+
+        const url = "/Recommendations/getUserViews";
+
+        const options = {
+            method: 'GET',
+            url: url,
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
         return response.data as ViewAmounts
     }
 

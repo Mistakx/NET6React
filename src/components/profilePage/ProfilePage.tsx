@@ -20,7 +20,7 @@ function ProfilePage(): JSX.Element {
                 <section id="services" className="services">
                     <div className="container">
 
-                        <TopBar text="My Playlists Page"/>
+                        <TopBar text="My Profile 🎵"/>
 
                         <div className="row">
                             <User/>

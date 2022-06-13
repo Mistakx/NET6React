@@ -3,7 +3,7 @@ import '../../../styles/style.css';
 import {Modal, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
 import AlertStore from "../../../stores/AlertStore";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
-import EditUserInfoModalStore from "../../../stores/EditUserInfoModalStore";
+import EditUserInfoModalStore from "../../../stores/modals/EditUserInfoModalStore";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
 
 function EditUserInfoModal(): JSX.Element {

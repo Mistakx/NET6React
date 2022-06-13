@@ -18,16 +18,6 @@ function SidePanel(): JSX.Element {
                     <li>
                         <div className="clickable nav-link scrollto"
                              onClick={() => {
-                                 navigate('/trending');
-                             }}>
-                            <i className="bx bxs-flame"></i>
-                            <span>Trending</span>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div className="clickable nav-link scrollto"
-                             onClick={() => {
                                  navigate('/home');
                              }}>
                             <i className="bx bx-home"></i>
@@ -38,10 +28,40 @@ function SidePanel(): JSX.Element {
                     <li>
                         <div className="clickable nav-link scrollto"
                              onClick={() => {
+                                 navigate('/trending');
+                             }}>
+                            <i className="bx bxs-flame"></i>
+                            <span>Trending</span>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div className="clickable nav-link scrollto"
+                             onClick={() => {
                                  navigate('/search');
                              }}>
                             <i className="bx bx-search-alt"></i>
                             <span>Search</span>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div className="clickable nav-link scrollto"
+                             onClick={() => {
+                                 navigate('/following');
+                             }}>
+                            <i className="bx bx-user" style={{position: "relative"}}></i>
+                            <span>Community</span>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div className="clickable nav-link scrollto"
+                             onClick={() => {
+                                 navigate('/following');
+                             }}>
+                            <i className="bx bx-heart"></i>
+                            <span>Following</span>
                         </div>
                     </li>
 

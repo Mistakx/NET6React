@@ -7,7 +7,7 @@ import {useParams} from "react-router-dom";
 import PlaylistItemsList from "./PlaylistItems/PlaylistItemsList";
 import PlaylistCover from "./PlaylistItems/PlaylistCover";
 import PlaylistPlayer from "./PlaylistPlayer/PlaylistPlayer";
-import PlaylistPagePlayerStore from "../../stores/PlaylistPagePlayerStore";
+import PlaylistPagePlayerStore from "../../stores/players/PlaylistPagePlayerStore";
 import AOS from "aos";
 
 function PlaylistPage(): JSX.Element {

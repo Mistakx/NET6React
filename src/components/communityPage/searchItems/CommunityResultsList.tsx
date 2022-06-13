@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import SearchedPlatformResultsStore from "../../../stores/searches/SearchedPlatformResultsStore";
-import UserPlaylistsModal from "../userPlaylistsModal/UserPlaylistsModal";
-import SearchResultComponentFactory from "./SearchResultComponentFactory";
+import CommunityResultComponentFactory from "./CommunityResultComponentFactory";
+import SearchedCommunityResultsStore from "../../../stores/searches/SearchedCommunityResultsStore";
 
-function SearchResultsList(): JSX.Element {
+function CommunityResultsList(): JSX.Element {
 
     const [searchList, setSearchList] = useState<JSX.Element[]>();
 
-    const searchedResults = SearchedPlatformResultsStore(state => state.searchedResults)
+    const searchedResults = SearchedCommunityResultsStore(state => state.searchedCommunityResults)
 
     useEffect(() => {
 
@@ -21,7 +21,7 @@ function SearchResultsList(): JSX.Element {
 
             // Valid results
             else if (searchedResults.length > 0) {
-                setSearchList(SearchResultComponentFactory.create(searchedResults));
+                setSearchList(CommunityResultComponentFactory.create(searchedResults));
             }
         }
 
@@ -32,8 +32,6 @@ function SearchResultsList(): JSX.Element {
 
         <div>
 
-            <UserPlaylistsModal/>
-
             <div className="results">
                 <div className="row">
 
@@ -41,10 +39,11 @@ function SearchResultsList(): JSX.Element {
 
                 </div>
             </div>
+
         </div>
 
     )
 
 }
 
-export default SearchResultsList;
+export default CommunityResultsList;

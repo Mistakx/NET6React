@@ -1,4 +1,4 @@
-import {GeneralizedResult} from "../apiResponses/GenericResults";
+import {GeneralizedResult} from "../../apiResponses/GenericResults";
 
 export interface GlobalPlayerState {
 

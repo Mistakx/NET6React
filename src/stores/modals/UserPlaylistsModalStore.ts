@@ -1,5 +1,5 @@
 import create from 'zustand'
-import {UserPlaylistsModalState} from "../models/states/UserPlaylistsModalState";
+import {UserPlaylistsModalState} from "../../models/states/modals/UserPlaylistsModalState";
 
 const UserPlaylistsModalStore = create<UserPlaylistsModalState>((set) => ({
 

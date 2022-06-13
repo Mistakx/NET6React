@@ -3,7 +3,7 @@ import React from "react";
 import "aos/dist/aos.css";
 import {PlaylistItemProperties} from "../../../models/components/searchPage/playlistsModal/PlaylistItemProperties";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
-import UserPlaylistsModalStore from "../../../stores/UserPlaylistsModalStore";
+import UserPlaylistsModalStore from "../../../stores/modals/UserPlaylistsModalStore";
 import AlertStore from "../../../stores/AlertStore";
 
 function PlaylistItem(props: PlaylistItemProperties): JSX.Element {

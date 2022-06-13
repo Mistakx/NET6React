@@ -1,5 +1,5 @@
-import {EditPlaylist} from "../backendRequests/PlaylistRoute/EditPlaylist";
-import {CreatePlaylist} from "../backendRequests/PlaylistRoute/CreatePlaylist";
+import {EditPlaylist} from "../../backendRequests/PlaylistRoute/EditPlaylist";
+import {CreatePlaylist} from "../../backendRequests/PlaylistRoute/CreatePlaylist";
 
 export interface EditOrCreatePlaylistModalState {
 

@@ -3,9 +3,9 @@ import {
     GeneralizedResult,
     GenericTrackResult,
     GenericVideoResult
-} from "../apiResponses/GenericResults";
+} from "../../apiResponses/GenericResults";
 
-export interface SearchedResultsState {
+export interface SearchedPlaftormResultsState {
 
     searchedResults: GeneralizedResult[] | null
     setSearchedResults: (searchedResults: GeneralizedResult[]) => void

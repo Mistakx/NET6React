@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react';
 import '../../../styles/style.css'
 import SearchForm from "./SearchForm";
 import {SearchBarProperties} from "../../../models/components/searchBar/SearchBarProperties";
-import SelectedSearchStore from "../../../stores/SelectedSearchStore";
+import SelectedPlatformSearchStore from "../../../stores/searches/SelectedPlatformSearchStore";
 import SearchLabel from "./SearchLabel";
-import SearchedListStore from "../../../stores/SearchedListStore";
+import SearchedPlatformResultsStore from "../../../stores/searches/SearchedPlatformResultsStore";
 import PlatformDropdownButton from "./PlatformDropdownButton";
 import PlatformDropdownList from "./PlatformDropdownList";
-import PlatformDropdownStore from "../../../stores/PlatformDropdownStore";
+import PlatformDropdownStore from "../../../stores/searches/PlatformDropdownStore";
 import {
     GeneralizedResult,
 } from "../../../models/apiResponses/GenericResults";
@@ -18,13 +18,13 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
     const openedDropdown = "dropdown-menu dropdown-menu-dark align-items-center bg-dark show"
     const closedDropdown = "dropdown-menu dropdown-menu-dark align-items-center bg-dark"
 
-    const selectedSearch = SelectedSearchStore(state => state.selectedSearch)
-    const searchBarQuery = SelectedSearchStore(state => state.searchBarQuery)
+    const selectedSearch = SelectedPlatformSearchStore(state => state.selectedSearch)
+    const searchBarQuery = SelectedPlatformSearchStore(state => state.searchBarQuery)
 
     const platformDropdownList = PlatformDropdownStore(state => state.platformDropdownList)
     const setPlatformDropdownList = PlatformDropdownStore(state => state.setPlatformDropdownList)
 
-    const setSearchedResults = SearchedListStore(state => state.setSearchedResults)
+    const setSearchedResults = SearchedPlatformResultsStore(state => state.setSearchedResults)
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 

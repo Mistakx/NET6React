@@ -3,7 +3,7 @@ import '../../../styles/style.css';
 import {Modal, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
 import AlertStore from "../../../stores/AlertStore";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
-import EditUserPasswordModalStore from "../../../stores/EditUserPasswordModal";
+import EditUserPasswordModalStore from "../../../stores/modals/EditUserPasswordModalStore";
 
 function EditUserPasswordModal(): JSX.Element {
 

@@ -1,6 +1,6 @@
-import {ApiSearch} from "../../requests/apiRequests/specificSearches/ApiSearch";
+import {ApiSearch} from "../../../requests/apiRequests/specificSearches/ApiSearch";
 
-export interface SearchState {
+export interface SelectedPlatformSearchState {
 
     searchBarQuery: string
     setSearchBarQuery: (searchBarQuery: string) => void

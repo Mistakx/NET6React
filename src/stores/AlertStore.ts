@@ -1,7 +1,7 @@
 import create from 'zustand'
-import {EditOrCreatePlaylistModalState} from "../models/states/EditOrCreatePlaylistModalState";
+import {EditOrCreatePlaylistModalState} from "../models/states/modals/EditOrCreatePlaylistModalState";
 import {AlertState} from "../models/states/AlertState";
-import EditOrCreatePlaylistModalStore from "./EditOrCreatePlaylistModalStore";
+import EditOrCreatePlaylistModalStore from "./modals/EditOrCreatePlaylistModalStore";
 
 const AlertStore = create<AlertState>((set) => ({
 

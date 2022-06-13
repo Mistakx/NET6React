@@ -2,7 +2,7 @@ import React from 'react';
 import '../../../styles/style.css';
 import {useNavigate} from "react-router-dom";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
-import EditOrCreatePlaylistModalStore from "../../../stores/EditOrCreatePlaylistModalStore";
+import EditOrCreatePlaylistModalStore from "../../../stores/modals/EditOrCreatePlaylistModalStore";
 import {EditPlaylist} from "../../../models/backendRequests/PlaylistRoute/EditPlaylist";
 import AlertStore from "../../../stores/AlertStore";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";

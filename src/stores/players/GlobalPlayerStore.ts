@@ -1,5 +1,5 @@
 import create from 'zustand'
-import {GlobalPlayerState} from "../models/states/GlobalPlayerState";
+import {GlobalPlayerState} from "../../models/states/players/GlobalPlayerState";
 
 const GlobalPlayerStore = create<GlobalPlayerState>((set) => ({
 

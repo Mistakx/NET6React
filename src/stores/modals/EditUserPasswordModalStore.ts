@@ -1,5 +1,5 @@
 import create from 'zustand'
-import {EditUserPasswordModalState} from "../models/states/EditUserPasswordModalState";
+import {EditUserPasswordModalState} from "../../models/states/modals/EditUserPasswordModalState";
 
 const EditUserPasswordModalStore = create<EditUserPasswordModalState>((set) => ({
 

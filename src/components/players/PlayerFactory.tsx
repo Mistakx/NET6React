@@ -15,7 +15,7 @@ export class PlayerFactory {
         const sessionToken = window.sessionStorage.getItem("sessionToken");
 
         if (sessionToken) {
-            RecommendationRequests.saveView(item, sessionToken)
+            RecommendationRequests.saveContentView(item, sessionToken)
         }
 
         switch (item.playerFactoryName) {

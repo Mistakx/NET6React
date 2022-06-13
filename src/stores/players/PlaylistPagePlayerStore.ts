@@ -1,5 +1,5 @@
 import create from 'zustand'
-import {PlaylistPagePlayerState} from "../models/states/PlaylistPagePlayerState";
+import {PlaylistPagePlayerState} from "../../models/states/players/PlaylistPagePlayerState";
 
 const PlaylistPlayerPageStore = create<PlaylistPagePlayerState>((set) => ({
 

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import GlobalPlayerStore from '../stores/GlobalPlayerStore'
+import GlobalPlayerStore from '../stores/players/GlobalPlayerStore'
 import CloseVideoButton from "./CloseVideoButton";
 import {Rnd} from "react-rnd";
 import MoveVideoButton from "./MoveVideoButton";

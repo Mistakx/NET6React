@@ -1,5 +1,5 @@
 import React from 'react';
-import GlobalPlayerStore from '../stores/GlobalPlayerStore'
+import GlobalPlayerStore from '../stores/players/GlobalPlayerStore'
 
 function CloseVideoButton(): JSX.Element {
 

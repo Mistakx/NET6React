@@ -1,7 +1,7 @@
-// /Recommendations/SaveView
+// /Recommendations/SaveContentView
 import {GeneralizedResult} from "../../apiResponses/GenericResults";
 
-export interface SaveView {
+export interface SaveContentView {
     generalizedResult: GeneralizedResult
     sessionToken: string
 }

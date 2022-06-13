@@ -5,9 +5,9 @@ import UserRequests from "../../../requests/backendRequests/UserRequests";
 import {EditPhotoButton} from "./EditPhotoButton";
 import AlertStore from "../../../stores/AlertStore";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
-import EditUserInfoModalStore from "../../../stores/EditUserInfoModalStore";
+import EditUserInfoModalStore from "../../../stores/modals/EditUserInfoModalStore";
 import EditUserInfoModal from "./EditUserInfoModal";
-import EditUserPasswordModalStore from "../../../stores/EditUserPasswordModal";
+import EditUserPasswordModalStore from "../../../stores/modals/EditUserPasswordModalStore";
 import EditUserPasswordModal from "./EditUserPasswordModal";
 
 function User(): JSX.Element {

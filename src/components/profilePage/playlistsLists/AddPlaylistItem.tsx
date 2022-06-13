@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../../styles/style.css';
-import EditOrCreatePlaylistModalStore from "../../../stores/EditOrCreatePlaylistModalStore";
+import EditOrCreatePlaylistModalStore from "../../../stores/modals/EditOrCreatePlaylistModalStore";
 import {CreatePlaylist} from "../../../models/backendRequests/PlaylistRoute/CreatePlaylist";
 import AlertStore from "../../../stores/AlertStore";
 

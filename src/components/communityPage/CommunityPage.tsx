@@ -1,11 +1,11 @@
 import '../../styles/SearchPage.css';
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
-import TrendingResultsList from "./searchItems/TrendingResultsList";
-import TopBar from "../TopBar";
+import CommunitySearchBar from "./searchBar/CommunitySearchBar";
+import CommunityResultsList from "./searchItems/CommunityResultsList";
 
-function TrendingPage(): JSX.Element {
+function CommunityPage(): JSX.Element {
 
     useEffect(() => {
         AOS.init();
@@ -15,24 +15,18 @@ function TrendingPage(): JSX.Element {
 
         <div>
 
-
-
             <section id="services" className="services">
-                <div className="container">
-
-
+                <div className="container" >
 
                     <div className="row">
 
-
-
                         <div className="col-md-10 offset-md-1">
-
-                            <TopBar text={"Trending This Week 🔥"}></TopBar>
 
                             <div className="search-body">
 
-                                <TrendingResultsList/>
+                                <CommunitySearchBar/>
+                                
+                                <CommunityResultsList/>
 
                             </div>
 
@@ -48,4 +42,4 @@ function TrendingPage(): JSX.Element {
     )
 }
 
-export default TrendingPage;
+export default CommunityPage;

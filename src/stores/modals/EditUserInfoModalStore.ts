@@ -1,5 +1,5 @@
 import create from 'zustand'
-import {EditUserInfoModalState} from "../models/states/EditUserInfoModalState";
+import {EditUserInfoModalState} from "../../models/states/modals/EditUserInfoModalState";
 
 const EditUserInfoModalStore = create<EditUserInfoModalState>((set) => ({
 

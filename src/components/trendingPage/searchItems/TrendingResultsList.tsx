@@ -12,7 +12,7 @@ function TrendingResultsList(): JSX.Element {
 
     useEffect(() => {
         (async () => {
-            setTrendingResults(await RecommendationRequests.getTrending());
+            setTrendingResults(await RecommendationRequests.getTrendingContent());
         })()
     }, []);
 

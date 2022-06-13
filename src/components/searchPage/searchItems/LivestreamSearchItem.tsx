@@ -1,10 +1,10 @@
-import GlobalPlayerStore from "../../../stores/GlobalPlayerStore";
+import GlobalPlayerStore from "../../../stores/players/GlobalPlayerStore";
 import {
     LivestreamSearchItemProperties
 } from "../../../models/components/searchPage/searchItems/LivestreamSearchItemProperties";
 import React, {useEffect} from "react";
 import "aos/dist/aos.css";
-import UserPlaylistsModalStore from "../../../stores/UserPlaylistsModalStore";
+import UserPlaylistsModalStore from "../../../stores/modals/UserPlaylistsModalStore";
 import {ViewAmounts} from "../../../models/backendRequests/RecommendationsRoute/ViewAmounts";
 import RecommendationRequests from "../../../requests/backendRequests/RecommendationRequests";
 
@@ -20,7 +20,7 @@ function LivestreamSearchItem(props: LivestreamSearchItemProperties): JSX.Elemen
 
     useEffect(() => {
         (async () => {
-            setViewAmounts(await RecommendationRequests.getViews(props.searchResult.platformId, props.searchResult.playerFactoryName, props.searchResult.platformPlayerUrl))
+            setViewAmounts(await RecommendationRequests.getContentViews(props.searchResult.platformId, props.searchResult.playerFactoryName, props.searchResult.platformPlayerUrl))
         })()
     }, [])
 

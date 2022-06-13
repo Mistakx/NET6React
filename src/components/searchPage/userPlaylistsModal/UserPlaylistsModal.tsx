@@ -2,7 +2,7 @@ import '../../../styles/SearchPage.css';
 import React, {useEffect} from "react";
 import "aos/dist/aos.css";
 import {Modal} from "react-bootstrap";
-import UserPlaylistsModalStore from "../../../stores/UserPlaylistsModalStore";
+import UserPlaylistsModalStore from "../../../stores/modals/UserPlaylistsModalStore";
 import axios from "axios";
 import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
 import PlaylistItemsList from "./PlaylistItemsList";

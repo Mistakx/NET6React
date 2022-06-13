@@ -1,5 +1,5 @@
 import create from 'zustand'
-import {PlatformDropdownState} from "../models/states/PlatformDropdownState";
+import {PlatformDropdownState} from "../../models/states/searches/PlatformDropdownState";
 
 const PlatformDropdownStore = create<PlatformDropdownState>((set) => ({
 

@@ -1,13 +1,13 @@
 import create from 'zustand'
-import {SearchedResultsState} from "../models/states/SearchedResultsState";
+import {SearchedPlaftormResultsState} from "../../models/states/searches/SearchedPlaftormResultsState";
 import {
     GenericLivestreamResult,
     GeneralizedResult,
     GenericTrackResult,
     GenericVideoResult
-} from "../models/apiResponses/GenericResults";
+} from "../../models/apiResponses/GenericResults";
 
-const SearchedListStore = create<SearchedResultsState>((set) => ({
+const SearchedPlatformResultsStore = create<SearchedPlaftormResultsState>((set) => ({
 
     searchedResults: null,
     setSearchedResults: (searchedResults: GeneralizedResult[]) => set(state => ({
@@ -17,5 +17,5 @@ const SearchedListStore = create<SearchedResultsState>((set) => ({
 
 }))
 
-export default SearchedListStore;
+export default SearchedPlatformResultsStore;
 

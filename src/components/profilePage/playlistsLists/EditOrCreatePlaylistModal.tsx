@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import '../../../styles/style.css';
-import EditOrCreatePlaylistModalStore from "../../../stores/EditOrCreatePlaylistModalStore";
+import EditOrCreatePlaylistModalStore from "../../../stores/modals/EditOrCreatePlaylistModalStore";
 import {Modal, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
 import AlertStore from "../../../stores/AlertStore";
