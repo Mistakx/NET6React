@@ -149,7 +149,12 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
             
         }
     }
-    
+
+    let addPlaylistItem;
+    if (props.username === sessionStorage.getItem("username")) {
+        addPlaylistItem = <AddPlaylistItem/>
+    }
+
     return (
 
         <div className="col-lg-8 col-md-6 col-sm-12 col-12">
@@ -168,7 +173,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                         items={userPlaylistItems.map((playlist) => playlist.id)}
                         strategy={rectSortingStrategy}
                     >
-                        <AddPlaylistItem/>
+                        {addPlaylistItem}
 
                         {userPlaylistItems.map((playlist) => (
                             <ProfilePlaylistItem key={playlist.id} basicDetails={playlist}/>

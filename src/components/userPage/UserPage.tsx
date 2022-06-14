@@ -11,7 +11,7 @@ function UserPage(props: {username:string}) {
     const [userPlaylistItems, setUserPlaylistItems] = React.useState<JSX.Element>();
 
     useEffect(() => {
-    if (props.username === window.sessionStorage.getItem("props.username")) {
+    if (props.username === window.sessionStorage.getItem("username")) {
         setTopBar(<TopBar text="My Profile 🎵"/>)
         setUserProfile(<UserProfile username={props.username}/>)
         setUserPlaylistItems(<UserPlaylistsList username={props.username}/>)
