@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import SearchedPlatformResultsStore from "../../../stores/searches/SearchedPlatformResultsStore";
 import CommunityResultComponentFactory from "./CommunityResultComponentFactory";
 import SearchedCommunityResultsStore from "../../../stores/searches/SearchedCommunityResultsStore";
 

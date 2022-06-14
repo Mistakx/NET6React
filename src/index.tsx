@@ -4,8 +4,7 @@ import {BrowserRouter, Route, Routes,} from "react-router-dom";
 import SearchPage from "./components/searchPage/SearchPage";
 import HomePage from "./components/homePage/HomePage";
 import {createRoot} from "react-dom/client";
-import ProfilePage from "./components/profilePage/ProfilePage";
-import UsernamePage from "./components/userPage/UsernamePage";
+import UserPage from "./components/userPage/UserPage";
 import PlaylistPage from "./components/playlistPage/PlaylistPage";
 import Login from "./components/loginPage/LoginPage";
 import RegisterPage from "./components/registerPage/RegisterPage";
@@ -14,6 +13,8 @@ import GlobalPlayer from "./components/GlobalPlayer";
 import Alert from "./components/Alert";
 import LogRocket from 'logrocket';
 import TrendingPage from "./components/trendingPage/TrendingPage";
+import CommunityPage from "./components/communityPage/CommunityPage";
+import RefreshedUserPage from "./components/userPage/RefreshedOtherUserPage";
 
 // LogRocket.init('tcdmcx/playlist-manager');
 
@@ -33,11 +34,11 @@ if (container !== null) {
                 <Route path="/" element={<Login/>}/>
                 <Route path="/home" element={<HomePage/>}/>
                 <Route path="/search" element={<SearchPage/>}/>
-                <Route path="/profile" element={<ProfilePage/>}/>
                 <Route path="/register" element={<RegisterPage/>}/>
-                <Route path="/user/:username" element={<UsernamePage/>}/>
+                <Route path="/user/:username" element={<RefreshedUserPage/>}/>
                 <Route path="/playlist/:playlistId" element={<PlaylistPage/>}/>
                 <Route path="/trending" element={<TrendingPage/>}/>
+                <Route path="/community" element={<CommunityPage/>}/>
             </Routes>
         </BrowserRouter>
     );

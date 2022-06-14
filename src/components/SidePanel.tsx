@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import '../styles/Sidepanel.css';
 import {useNavigate} from "react-router-dom";
-import AOS from "aos";
 
 function SidePanel(): JSX.Element {
 
@@ -48,9 +47,9 @@ function SidePanel(): JSX.Element {
                     <li>
                         <div className="clickable nav-link scrollto"
                              onClick={() => {
-                                 navigate('/following');
+                                 navigate('/community');
                              }}>
-                            <i className="bx bx-user" style={{position: "relative"}}></i>
+                            <i className="bx bx-user"></i>
                             <span>Community</span>
                         </div>
                     </li>
@@ -68,7 +67,7 @@ function SidePanel(): JSX.Element {
                     <li>
                         <div className="clickable nav-link scrollto"
                              onClick={() => {
-                                 navigate('/profile');
+                                 navigate('/user/' + window.sessionStorage.getItem("username"));
 
                              }}>
                             <i className='bx bxs-playlist'></i>

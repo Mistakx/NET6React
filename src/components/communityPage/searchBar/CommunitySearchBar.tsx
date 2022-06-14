@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react';
 import '../../../styles/style.css'
 import CommunitySearchForm from "./CommunitySearchForm";
-import SearchLabel from "./SearchLabel";
-import PlatformDropdownButton from "./PlatformDropdownButton";
-import PlatformDropdownList from "./PlatformDropdownList";
+import CommunityDropdownButton from "./CommunityDropdownButton";
+import CommunityDropdownList from "./CommunityDropdownList";
 import AlertStore from "../../../stores/AlertStore";
 import SelectedCommunitySearchStore from "../../../stores/searches/SelectedCommunitySearchStore";
 import CommunityDropdownStore from "../../../stores/searches/CommunityDropdownStore";
 import SearchedCommunityResultsStore from "../../../stores/searches/SearchedCommunityResultsStore";
 import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
-import {UserProfile} from "../../../models/backendRequests/UserRoute/UserProfile";
+import {UserProfileResponseDto} from "../../../models/backendResponses/userRoute/UserProfileResponseDto";
+import CommunitySearchLabel from "./CommunitySearchLabel";
 
 function CommunitySearchBar(): JSX.Element {
 
@@ -41,17 +41,18 @@ function CommunitySearchBar(): JSX.Element {
 
     async function searchPlatformItems(chosenSearchQuery: string) {
 
-        let searchList: PlaylistBasicDetails[] | UserProfile[] = [];
+        let searchList: PlaylistBasicDetails[] | UserProfileResponseDto[] = [];
 
         try {
-            if (selectedSearch.getButtonText() === "User") {
-                searchList = await selectedSearch.getSearchResults(chosenSearchQuery)
-            } else if (selectedSearch.getButtonText() === "Playlist") {
-                const sessionToken = window.sessionStorage.getItem("sessionToken")
-                if (sessionToken) {
+            const sessionToken = window.sessionStorage.getItem("sessionToken")
+            if (sessionToken) {
+
+                if (selectedSearch.getButtonText() === "User") {
                     searchList = await selectedSearch.getSearchResults(chosenSearchQuery, sessionToken)
-                } else prettyAlert("You need to be logged in to add a playlist.", false)
-            }
+                } else if (selectedSearch.getButtonText() === "Playlist") {
+                    searchList = await selectedSearch.getSearchResults(chosenSearchQuery, sessionToken)
+                }
+            } else prettyAlert("You need to be logged in to add a playlist.", false)
             return searchList
         } catch (e: any) {
             prettyAlert(e.response?.data || e.toJSON().message, false)
@@ -62,7 +63,7 @@ function CommunitySearchBar(): JSX.Element {
     return (
         <div className="form-wrapper top-stick">
 
-            <SearchLabel/>
+            <CommunitySearchLabel/>
 
             <form onSubmit={async (event) => {
                 event.preventDefault()
@@ -74,13 +75,13 @@ function CommunitySearchBar(): JSX.Element {
 
                 <div className="input-group">
 
-                    <PlatformDropdownButton togglePlatformDropdownList={togglePlatformDropdownList}/>
+                    <CommunityDropdownButton togglePlatformDropdownList={togglePlatformDropdownList}/>
 
-                    <PlatformDropdownList togglePlatformDropdownList={togglePlatformDropdownList}/>
+                    <CommunityDropdownList togglePlatformDropdownList={togglePlatformDropdownList}/>
 
                     <CommunitySearchForm/>
 
-                    <button className={"btn btn-search blue"} type="submit"
+                    <button className={"btn btn-search sparta"} type="submit"
                             id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
                 </div>
             </form>

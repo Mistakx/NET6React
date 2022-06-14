@@ -8,7 +8,7 @@ import AlertStore from "../../../stores/AlertStore";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 import {useSortable} from "@dnd-kit/sortable";
 import {CSS} from "@dnd-kit/utilities";
-import {ProfilePlaylistItemProperties} from "../../../models/components/profilePage/ProfilePlaylistItemProperties";
+import {ProfilePlaylistItemProperties} from "../../../models/components/communityPage/ProfilePlaylistItemProperties";
 
 function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 

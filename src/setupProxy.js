@@ -8,7 +8,8 @@ const context = [
     "/User",
     "/Playlist",
     "/GetImage",
-    "/Recommendations"
+    "/Recommendations",
+    "/Community"
 ];
 
 module.exports = function (app) {

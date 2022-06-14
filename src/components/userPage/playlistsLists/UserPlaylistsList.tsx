@@ -24,9 +24,10 @@ import {
 } from '@dnd-kit/sortable';
 import {restrictToParentElement, restrictToWindowEdges} from "@dnd-kit/modifiers";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
+import {UserPlaylistsListProperties} from "../../../models/components/userPage/UserPlaylistsListProperties";
 
 
-function PlaylistsList(): JSX.Element {
+function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
@@ -46,7 +47,7 @@ function PlaylistsList(): JSX.Element {
             const sessionToken = window.sessionStorage.getItem("sessionToken");
             if (sessionToken) {
                 try {
-                    const userPlaylists = await UserRequests.getPlaylists(sessionToken)
+                    const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
                     // userPlaylists.sort(compare)
                     setUserPlaylistItems(userPlaylists);
                 } catch (e: any) {
@@ -54,7 +55,7 @@ function PlaylistsList(): JSX.Element {
                 }
             } else prettyAlert("No session token found.", false)
         })()
-    }, []);
+    }, [props.username]);
 
     useEffect(() => {
         if (deletePlaylistResponse) {
@@ -62,7 +63,7 @@ function PlaylistsList(): JSX.Element {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
                     try {
-                        const userPlaylists = await UserRequests.getPlaylists(sessionToken)
+                        const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
                         // userPlaylists.sort(compare)
                         setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
@@ -80,7 +81,7 @@ function PlaylistsList(): JSX.Element {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
                     try {
-                        const userPlaylists = await UserRequests.getPlaylists(sessionToken)
+                        const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
                         // userPlaylists.sort(compare)
                         setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
@@ -98,11 +99,11 @@ function PlaylistsList(): JSX.Element {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
                     try {
-                        const userPlaylists = await UserRequests.getPlaylists(sessionToken)
+                        const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
                         // userPlaylists.sort(compare)
                         setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
-                        // prettyAlert(e.response?.data || e.toJSON().message, false)
+                        prettyAlert(e.response?.data || e.toJSON().message, false)
                     }
                     setEditOrCreatePlaylistResponse(null);
                 } else prettyAlert("No session token found.", false)
@@ -184,4 +185,4 @@ function PlaylistsList(): JSX.Element {
 
 }
 
-export default PlaylistsList;
+export default UserPlaylistsList;

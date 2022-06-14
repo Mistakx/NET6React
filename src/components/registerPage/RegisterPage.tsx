@@ -20,11 +20,13 @@ function RegisterPage(): JSX.Element {
     const [password, setPassword] = useState("")
     const [confirmationPassword, setConfirmationPassword] = useState("")
     const [sessionToken, setSessionToken] = useState<string>()
+    const [sessionUsername, setSessionUsername] = useState<string>()
 
     useEffect(() => {
         AOS.init();
         if (window.sessionStorage.getItem("sessionToken")) {
             setSessionToken(window.sessionStorage.getItem("sessionToken")!)
+            setSessionToken(window.sessionStorage.getItem("username")!)
         }
     }, []);
 
@@ -33,8 +35,9 @@ function RegisterPage(): JSX.Element {
         (async () => {
             if (sessionToken) {
                 window.sessionStorage.setItem("sessionToken", sessionToken)
+                window.sessionStorage.setItem("username", sessionUsername!)
                 try {
-                    const userProfile = await UserRequests.getProfile(sessionToken)
+                    const userProfile = await UserRequests.getProfile(username, sessionToken)
                     LogRocket.identify(sessionToken, {
                         username: userProfile?.username!,
                         name: userProfile?.name!,
@@ -70,8 +73,9 @@ function RegisterPage(): JSX.Element {
                                     } else {
                                         try {
                                             await UserRequests.register(username, name, email, password, userPhoto!)
-                                            let sessionToken = await UserRequests.login(email, password)
-                                            setSessionToken(sessionToken)
+                                            let loginResponse = await UserRequests.login(email, password)
+                                            setSessionToken(loginResponse.sessionToken);
+                                            setSessionUsername(loginResponse.username);
                                         } catch (e: any) {
                                             prettyAlert(e.response.data.title || e.response?.data || e.toJSON().message, false)
                                         }

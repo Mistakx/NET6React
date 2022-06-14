@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import '../../../styles/style.css';
-import {UserProfile} from "../../../models/backendRequests/UserRoute/UserProfile";
+import {UserProfileResponseDto} from "../../../models/backendResponses/userRoute/UserProfileResponseDto";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
 import {EditPhotoButton} from "./EditPhotoButton";
 import AlertStore from "../../../stores/AlertStore";
@@ -9,12 +9,13 @@ import EditUserInfoModalStore from "../../../stores/modals/EditUserInfoModalStor
 import EditUserInfoModal from "./EditUserInfoModal";
 import EditUserPasswordModalStore from "../../../stores/modals/EditUserPasswordModalStore";
 import EditUserPasswordModal from "./EditUserPasswordModal";
+import {UserProfileProperties} from "../../../models/components/userPage/UserProfileProperties";
 
-function User(): JSX.Element {
+function UserProfile(props: UserProfileProperties): JSX.Element {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
-    const [userProfile, setProfile] = React.useState<UserProfile>();
+    const [userProfile, setProfile] = React.useState<UserProfileResponseDto>();
 
     const setModalUsername = EditUserInfoModalStore(state => state.setUsername)
     const setModalName = EditUserInfoModalStore(state => state.setName)
@@ -33,20 +34,20 @@ function User(): JSX.Element {
             const sessionToken = window.sessionStorage.getItem("sessionToken");
             if (sessionToken) {
                 try {
-                    setProfile(await UserRequests.getProfile(sessionToken))
+                    setProfile(await UserRequests.getProfile(props.username, sessionToken))
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
                 }
             } else prettyAlert("No session token found.", false)
         })()
-    }, []);
+    }, [props.username]);
 
     useEffect(() => {
         if (updatedUserPhotoResponse) {
             (async () => {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
-                    setProfile(await UserRequests.getProfile(sessionToken))
+                    setProfile(await UserRequests.getProfile(props.username, sessionToken))
                     setUpdatedUserPhotoResponse(null)
                 } else prettyAlert("No session token found.", false)
             })()
@@ -58,71 +59,68 @@ function User(): JSX.Element {
             (async () => {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
-                    setProfile(await UserRequests.getProfile(sessionToken))
+                    setProfile(await UserRequests.getProfile(props.username, sessionToken))
                     setUpdatedUserInfoResponse(null)
                 } else prettyAlert("No session token found.", false)
             })()
         }
     }, [updatedUserInfoResponse]);
 
+    let editUserInfoModal;
+    let editUserPasswordModal;
+    let dropdownMenu;
+    let editPhotoButton;
+    if (props.username === window.sessionStorage.getItem("username")) {
+        editUserInfoModal = <EditUserInfoModal/>
+        editUserPasswordModal = <EditUserPasswordModal/>
+        dropdownMenu = <div className="options-top mr-5 mb-5">
+            <div className="options-dropdown">
+                <div className="btn-group">
+                    <button className="btn dropdown-toggle-split"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <i className='bx bx-edit-alt'></i>
+                    </button>
+                    <ul className="dropdown-menu dropdown-menu-dark">
+                        <li
+                            onClick={() => {
+                                setModalName(userProfile?.name!)
+                                setModalUsername(userProfile?.username!)
+                                setModalEmail(userProfile?.email!)
+                                setShowingEditUserInfoModal(true)
+                            }}>
+                            <div className="dropdown-item">Edit Information</div>
+                        </li>
+                        <li
+                            onClick={() => {
+                                setShowingEditUserPasswordModal(true)
+                            }}>
+                            <div className="dropdown-item">Edit Password</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        editPhotoButton = <><EditPhotoButton/><EditPhotoButton/></>
+    }
+
     return (
 
         <div className="col-lg-4 col-md-6 col-sm-12 col-12 position-relative">
 
-            <EditUserInfoModal/>
-            <EditUserPasswordModal/>
+            {editUserInfoModal}
+            {editUserPasswordModal}
+
             <div className="align-items-stretch mb-4 " data-aos="zoom-in" data-aos-delay="100">
 
-                <div className="options-top mr-5 mb-5">
-
-                    {/*<button className="btn text-white"*/}
-                    {/*        onClick={() => {*/}
-                    {/*            setModalName(userProfile?.name!)*/}
-                    {/*            setModalUsername(userProfile?.username!)*/}
-                    {/*            setModalEmail(userProfile?.email!)*/}
-                    {/*            setShowingEditUserInfoModal(true)*/}
-                    {/*        }}*/}
-                    {/*>*/}
-                    {/*    <i className='bx bx-edit-alt'></i>*/}
-                    {/*</button>*/}
-
-                    <div className="options-dropdown">
-                        <div className="btn-group">
-                            <button className="btn dropdown-toggle-split"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                <i className='bx bx-edit-alt'></i>
-                            </button>
-                            <ul className="dropdown-menu dropdown-menu-dark">
-                                <li
-                                    onClick={() => {
-                                        setModalName(userProfile?.name!)
-                                        setModalUsername(userProfile?.username!)
-                                        setModalEmail(userProfile?.email!)
-                                        setShowingEditUserInfoModal(true)
-                                    }}>
-                                    <div className="dropdown-item">Edit Information</div>
-                                </li>
-                                <li
-                                    onClick={() => {
-                                        setShowingEditUserPasswordModal(true)
-                                    }}>
-                                    <div className="dropdown-item">Edit Password</div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-
+                {dropdownMenu}
 
                 <div className="icon-box icon-box-lightblue">
                     <h3 className="text-white"><strong>{userProfile?.name}</strong></h3>
                     <h4 className="text-white">{userProfile?.username}</h4>
-                    <h6 className="text-white">({userProfile?.email})</h6>
-                    <img src={userProfile?.profilePhotoUrl}
+                    <img src={"/" + userProfile?.profilePhotoUrl}
                          width="250"
                          className="img-fluid rounded-circle img-centered"/>
-                    <EditPhotoButton/>
+                    {editPhotoButton}
                 </div>
 
 
@@ -133,4 +131,4 @@ function User(): JSX.Element {
     )
 }
 
-export default User
+export default UserProfile;

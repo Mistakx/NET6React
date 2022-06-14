@@ -7,6 +7,7 @@ import axios from "axios";
 import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
 import PlaylistItemsList from "./PlaylistItemsList";
 import AlertStore from "../../../stores/AlertStore";
+import UserRequests from "../../../requests/backendRequests/UserRequests";
 
 function UserPlaylistsModal(): JSX.Element {
 
@@ -18,20 +19,7 @@ function UserPlaylistsModal(): JSX.Element {
     const showingPlaylistsModal = UserPlaylistsModalStore(state => state.showingPlaylistsModal)
     const setShowingPlaylistsModal = UserPlaylistsModalStore(state => state.setShowingPlaylistsModal)
 
-    async function getPlaylists(userId: string) {
-        const url = "/User/Playlists/" + userId;
-
-        const options = {
-            method: 'GET',
-            url: url,
-        };
-
-        // @ts-ignore
-        let profileResponse = await axios(options);
-        let profile: PlaylistBasicDetails[] = profileResponse.data;
-        return profile;
-
-    }
+    let username = sessionStorage.getItem("username");
 
     useEffect(() => {
         if (!userPlaylists) {
@@ -39,7 +27,7 @@ function UserPlaylistsModal(): JSX.Element {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
                     try {
-                        setUserPlaylists(await getPlaylists(sessionToken));
+                        setUserPlaylists(await UserRequests.getPlaylists(username!, sessionToken));
                     } catch (e: any) {
                         prettyAlert(e.response?.data || e.toJSON().message, false)
                     }

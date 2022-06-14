@@ -1,22 +1,22 @@
 import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
-import ProfilePlaylistItem from "../../profilePage/playlistsLists/ProfilePlaylistItem";
-import {UserProfile} from "../../../models/backendRequests/UserRoute/UserProfile";
+import ProfilePlaylistItem from "../../userPage/playlistsLists/ProfilePlaylistItem";
+import {UserProfileResponseDto} from "../../../models/backendResponses/userRoute/UserProfileResponseDto";
+import UserItem from "./UserItem";
 
 class CommunityResultComponentFactory {
 
-    static create(results: PlaylistBasicDetails[] | UserProfile[]) {
+    static create(results: PlaylistBasicDetails[] | UserProfileResponseDto[]) {
 
         let searchResultItems: JSX.Element[] = []
 
         for (const currentCommunityItem of results) {
 
             if ("visibility" in currentCommunityItem) {
-                    let currentVideoItem = <ProfilePlaylistItem basicDetails={currentCommunityItem}/>
-                    searchResultItems.push(currentVideoItem);
-                    break;
-            }
-            else {
-
+                let currentPlaylistItem = <ProfilePlaylistItem basicDetails={currentCommunityItem}/>
+                searchResultItems.push(currentPlaylistItem);
+            } else {
+                let currentUserItem = <UserItem basicDetails={currentCommunityItem}/>
+                searchResultItems.push(currentUserItem);
             }
 
         }

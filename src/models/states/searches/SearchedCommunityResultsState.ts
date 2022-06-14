@@ -4,12 +4,12 @@ import {
     GenericTrackResult,
     GenericVideoResult
 } from "../../apiResponses/GenericResults";
-import {UserProfile} from "../../backendRequests/UserRoute/UserProfile";
+import {UserProfileResponseDto} from "../../backendResponses/userRoute/UserProfileResponseDto";
 import {PlaylistBasicDetails} from "../../backendRequests/PlaylistRoute/PlaylistBasicDetails";
 
 export interface SearchedCommunityResultsState {
 
-    searchedCommunityResults: UserProfile[] | PlaylistBasicDetails[] | null
-    setSearchedCommunityResults: (searchedCommunityResults: UserProfile[] | PlaylistBasicDetails[]) => void
+    searchedCommunityResults: UserProfileResponseDto[] | PlaylistBasicDetails[] | null
+    setSearchedCommunityResults: (searchedCommunityResults: UserProfileResponseDto[] | PlaylistBasicDetails[]) => void
 
 }

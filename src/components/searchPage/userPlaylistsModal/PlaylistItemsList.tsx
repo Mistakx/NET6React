@@ -18,12 +18,14 @@ function PlaylistItemsList(): JSX.Element {
 
     const [userPlaylists, setUserPlaylists] = React.useState<PlaylistBasicDetails[]>();
 
+    const username = sessionStorage.getItem("username");
+
     useEffect(() => {
         (async () => {
             const sessionToken = window.sessionStorage.getItem("sessionToken");
             if (sessionToken) {
                 try {
-                    setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+                    setUserPlaylists(await UserRequests.getPlaylists(username!, sessionToken));
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
                 }
@@ -37,7 +39,7 @@ function PlaylistItemsList(): JSX.Element {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
                     try {
-                        setUserPlaylists(await UserRequests.getPlaylists(sessionToken));
+                        setUserPlaylists(await UserRequests.getPlaylists(username!, sessionToken));
                     } catch (e: any) {
                         prettyAlert(e.response?.data || e.toJSON().message, false)
                     }

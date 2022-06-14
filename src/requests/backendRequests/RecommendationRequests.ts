@@ -8,7 +8,7 @@ import {SavePlaylistView} from "../../models/backendRequests/RecommendationsRout
 import {GetTrendingPlaylists} from "../../models/backendRequests/RecommendationsRoute/GetTrendingPlaylists";
 import {GetPlaylistViews} from "../../models/backendRequests/RecommendationsRoute/GetPlaylistViews";
 import {SaveUserView} from "../../models/backendRequests/RecommendationsRoute/SaveUserView";
-import {UserProfile} from "../../models/backendRequests/UserRoute/UserProfile";
+import {UserProfileResponseDto} from "../../models/backendResponses/userRoute/UserProfileResponseDto";
 
 class RecommendationRequests {
 
@@ -94,7 +94,7 @@ class RecommendationRequests {
         const url = "/Recommendations/getTrendingPlaylists";
 
         const data: GetTrendingPlaylists = {
-            playlistNameBeginningLetters: beginningOfPlaylistName,
+            playlistName: beginningOfPlaylistName,
             sessionToken: sessionToken
         }
 
@@ -161,7 +161,7 @@ class RecommendationRequests {
 
         // @ts-ignore
         let response = await axios(options)
-        return response.data as UserProfile[]
+        return response.data as UserProfileResponseDto[]
     }
 
     static async getUserViews(userId: string) {

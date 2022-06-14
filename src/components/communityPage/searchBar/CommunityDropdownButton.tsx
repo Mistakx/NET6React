@@ -2,20 +2,23 @@ import React from 'react';
 import '../../../styles/style.css'
 import SelectedPlatformSearchStore from "../../../stores/searches/SelectedPlatformSearchStore";
 import {PlatformDropdownButtonProperties} from "../../../models/components/searchBar/PlatformDropdownButtonProperties";
+import SelectedCommunitySearchStore from "../../../stores/searches/SelectedCommunitySearchStore";
 
-function PlatformDropdownButton(props: PlatformDropdownButtonProperties): JSX.Element {
+function CommunityDropdownButton(props: PlatformDropdownButtonProperties): JSX.Element {
 
-    const selectedSearch = SelectedPlatformSearchStore(state => state.selectedSearch)
+    const selectedSearch = SelectedCommunitySearchStore(state => state.selectedCommunitySearch)
 
     return (
 
-        <button className={"btn dropdown-toggle " + selectedSearch.getPlatform().getDropdownButtonClass()}
+        <button className={"btn dropdown-toggle btn-sparta"}
                 id="choose"
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false" onClick={() => {
             props.togglePlatformDropdownList()
-        }}>{selectedSearch.getPlatform().getDropdownButtonIcon()}
+        }}>{
+            <i className='h3' style={{"fontStyle":"normal"}}>{selectedSearch.getButtonText()}</i>
+        }
 
         </button>
 
@@ -23,4 +26,4 @@ function PlatformDropdownButton(props: PlatformDropdownButtonProperties): JSX.El
     )
 }
 
-export default PlatformDropdownButton;
+export default CommunityDropdownButton;
