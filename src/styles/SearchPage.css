@@ -19,6 +19,10 @@
     --vimeoHiglightColor: #29c0ff;
     --vimeoNeutralColor: #19b7ea;
     --vimeoHoveredColor: #147ea1;
+
+    --soundCloudHiglightColor: #F79C58;
+    --soundCloudNeutralColor: #F26F23;
+    --soundCloudHoveredColor: #D05119;
 }
 
 /*--------------------------------------------------------------
@@ -90,6 +94,16 @@
     color: var(--vimeoHiglightColor);
 }
 
+.search-body .soundCloud {
+    color: var(--soundCloudHiglightColor);
+    border-bottom-color: var(--soundCloudNeutralColor);
+}
+
+.search-body .soundCloud .btn-search,
+.search-body .soundCloud::placeholder {
+    color: var(--soundCloudHiglightColor);
+}
+
 .search-body .results {
     margin-top: 30px;
 }
@@ -156,6 +170,21 @@
 
 .btn-spotify:active {
     background-color: var(--spotifyHoveredColor) !important;
+}
+
+.btn-soundCloud {
+    background-color: var(--soundCloudNeutralColor);
+    border-color: var(--soundCloudNeutralColor);
+    color: var(--iconColor) !important;
+}
+
+.btn-soundCloud:hover {
+    background-color: var(--soundCloudHoveredColor) !important;
+    color: var(--iconColor);
+}
+
+.btn-soundCloud:active {
+    background-color: var(--soundCloudHoveredColor) !important;
 }
 
 
