@@ -3,7 +3,6 @@ import '../../../styles/style.css'
 import SearchForm from "./SearchForm";
 import {SearchBarProperties} from "../../../models/components/searchBar/SearchBarProperties";
 import SelectedPlatformSearchStore from "../../../stores/searches/SelectedPlatformSearchStore";
-import SearchLabel from "./SearchLabel";
 import SearchedPlatformResultsStore from "../../../stores/searches/SearchedPlatformResultsStore";
 import PlatformDropdownButton from "./PlatformDropdownButton";
 import PlatformDropdownList from "./PlatformDropdownList";
@@ -12,6 +11,7 @@ import {
     GeneralizedResult,
 } from "../../../models/apiResponses/GenericResults";
 import AlertStore from "../../../stores/AlertStore";
+import SearchLabel from "./SearchLabel";
 
 function SearchBar(props: SearchBarProperties): JSX.Element {
 

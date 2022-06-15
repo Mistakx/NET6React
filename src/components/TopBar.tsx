@@ -14,6 +14,14 @@ function TopBar(props: TopBarProperties): JSX.Element {
                             
                             {/* <li className="breadcrumb-item text-white" aria-current="page"><i className='bx bx-arrow-back'></i></li> */}
                             <li className="breadcrumb-item active text-white" aria-current="page">{props.text}
+
+                            </li>
+                            <li className="text-end">
+                                <select className="form-control form-select-sm " id="exampleFormControlSelect1">
+                                    <option>1</option>
+                                    <option>1</option>
+                                    <option>1</option>
+                                </select>
                             </li>
                         </ol>
                     </nav>

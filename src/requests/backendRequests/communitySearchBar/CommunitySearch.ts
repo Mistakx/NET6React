@@ -1,10 +1,10 @@
-import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
-import {UserProfile} from "../../../models/backendRequests/UserRoute/UserProfile";
+import {PlaylistDto} from "../../../models/backendRequests/PlaylistRoute/PlaylistDto";
+import {UserProfileResponseDto} from "../../../models/backendResponses/userRoute/UserProfileResponseDto";
 
 export abstract class CommunitySearch {
 
     abstract getButtonText(): string
 
-    abstract getSearchResults(searchQuery: string, sessionToken?: string): Promise<PlaylistBasicDetails[] | UserProfile[]>
+    abstract getSearchResults(searchQuery: string, page: number, limit: number, sessionToken: string): Promise<PlaylistDto[] | UserProfileResponseDto[]>
 
 }

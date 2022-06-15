@@ -1,7 +1,5 @@
 import React from 'react';
 import '../../../styles/style.css'
-import SelectedPlatformSearchStore from "../../../stores/searches/SelectedPlatformSearchStore";
-import {SearchFormProperties} from "../../../models/components/searchBar/SearchFormProperties";
 import SelectedCommunitySearchStore from "../../../stores/searches/SelectedCommunitySearchStore";
 
 function CommunitySearchForm(): JSX.Element {
@@ -11,15 +9,15 @@ function CommunitySearchForm(): JSX.Element {
 
     return (
         <input type="text submit" id="search"
-                className={"form-control blue"}
-                autoFocus
-                autoComplete={"off"}
-                value={searchBarQuery}
-                placeholder="I want that content..."
+               className={"form-control sparta"}
+               autoFocus
+               autoComplete={"off"}
+               value={searchBarQuery}
+               placeholder="Search..."
 
-                onChange={(event) => {
-                    setSearchBarQuery(event.target.value)
-                }}
+               onChange={(event) => {
+                   setSearchBarQuery(event.target.value)
+               }}
         />
 
     )

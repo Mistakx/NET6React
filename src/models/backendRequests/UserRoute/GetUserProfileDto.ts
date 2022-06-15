@@ -1,5 +1,6 @@
-export interface SaveUserView {
+export interface GetUserProfileDto {
     username: string
     sessionToken: string
 }
+
 

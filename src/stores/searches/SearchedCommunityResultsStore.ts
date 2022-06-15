@@ -1,12 +1,12 @@
 import create from 'zustand'
 import {SearchedCommunityResultsState} from "../../models/states/searches/SearchedCommunityResultsState";
-import {UserProfile} from "../../models/backendRequests/UserRoute/UserProfile";
-import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import {UserProfileResponseDto} from "../../models/backendResponses/userRoute/UserProfileResponseDto";
+import {PlaylistDto} from "../../models/backendRequests/PlaylistRoute/PlaylistDto";
 
 const SearchedCommunityResultsStore = create<SearchedCommunityResultsState>((set) => ({
 
     searchedCommunityResults: null,
-    setSearchedCommunityResults: (searchedCommunityResults: UserProfile[] | PlaylistBasicDetails[]) => set(state => ({
+    setSearchedCommunityResults: (searchedCommunityResults: UserProfileResponseDto[] | PlaylistDto[]) => set(state => ({
         searchedCommunityResults: searchedCommunityResults
     }))
 

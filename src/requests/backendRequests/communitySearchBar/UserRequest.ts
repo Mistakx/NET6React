@@ -1,9 +1,4 @@
-import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
-import {UserProfile} from "../../../models/backendRequests/UserRoute/UserProfile";
 import {CommunitySearch} from "./CommunitySearch";
-import {ApiSearch} from "../../apiRequests/specificSearches/ApiSearch";
-import {Platform} from "../../apiRequests/platforms/Platform";
-import Spotify from "../../apiRequests/platforms/Spotify";
 import RecommendationRequests from "../RecommendationRequests";
 
 export class UserRequest extends CommunitySearch {
@@ -27,8 +22,8 @@ export class UserRequest extends CommunitySearch {
         return "User";
     }
 
-    public getSearchResults(searchQuery: string) {
-        return RecommendationRequests.getTrendingUsers(searchQuery);
+    public getSearchResults(searchQuery: string, page: number, limit: number, sessionToken: string) {
+        return RecommendationRequests.getTrendingUsers(searchQuery, page, limit, sessionToken);
     }
 
 }

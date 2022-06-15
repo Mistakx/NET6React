@@ -1,4 +1,4 @@
 export interface GetTrendingPlaylists {
-    playlistNameBeginningLetters: string
+    playlistName: string
     sessionToken: string
 }

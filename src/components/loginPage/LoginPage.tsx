@@ -14,6 +14,7 @@ function LoginPage(): JSX.Element {
     const [loginEmail, setLoginEmail] = useState("")
     const [loginPassword, setLoginPassword] = useState("")
     const [sessionToken, setSessionToken] = useState<string>()
+    const [username, setUsername] = useState<string>()
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
@@ -21,6 +22,7 @@ function LoginPage(): JSX.Element {
         AOS.init();
         if (window.sessionStorage.getItem("sessionToken")) {
             setSessionToken(window.sessionStorage.getItem("sessionToken")!)
+            setUsername(window.sessionStorage.getItem("username")!)
         }
     }, []);
 
@@ -29,8 +31,9 @@ function LoginPage(): JSX.Element {
         (async () => {
             if (sessionToken) {
                 window.sessionStorage.setItem("sessionToken", sessionToken)
+                window.sessionStorage.setItem("username", username!)
                 try {
-                    const userProfile = await UserRequests.getProfile(sessionToken)
+                    const userProfile = await UserRequests.getProfile(username!, sessionToken)
                     LogRocket.identify(sessionToken, {
                         username: userProfile?.username!,
                         name: userProfile?.name!,
@@ -61,9 +64,10 @@ function LoginPage(): JSX.Element {
                                 async (e) => {
                                     e.preventDefault()
                                     try {
-                                        let sessionToken = await UserRequests.login(loginEmail, loginPassword)
+                                        let loginResponse = await UserRequests.login(loginEmail, loginPassword)
                                         prettyAlert("Successfully logged in.", true)
-                                        setSessionToken(sessionToken)
+                                        setSessionToken(loginResponse.sessionToken)
+                                        setUsername(loginResponse.username)
                                     } catch (e: any) {
                                         prettyAlert(e.response?.data || e.toJSON().message, false)
                                     }

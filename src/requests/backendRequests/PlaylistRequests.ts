@@ -5,7 +5,7 @@ import {AddToPlaylist} from "../../models/backendRequests/PlaylistRoute/AddToPla
 import {CreatePlaylist} from "../../models/backendRequests/PlaylistRoute/CreatePlaylist";
 import {DeletePlaylist} from "../../models/backendRequests/PlaylistRoute/DeletePlaylist";
 import {DeleteGeneralizedResult} from "../../models/backendRequests/PlaylistRoute/DeleteGeneralizedResult";
-import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import {PlaylistDto} from "../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import {SetCoverItem} from "../../models/backendRequests/PlaylistRoute/SetCoverItem";
 import {SortGeneralizedResult} from "../../models/backendRequests/PlaylistRoute/SortGeneralizedResult";
 import {SortPlaylist} from "../../models/backendRequests/PlaylistRoute/SortPlaylist";
@@ -36,7 +36,7 @@ class PlaylistRequests {
 
         // @ts-ignore
         let playlistResponse = await axios(options);
-        return playlistResponse.data as PlaylistBasicDetails;
+        return playlistResponse.data as PlaylistDto;
 
     }
 

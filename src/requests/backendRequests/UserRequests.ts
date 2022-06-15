@@ -1,37 +1,52 @@
 import axios from "axios";
-import {UserProfile} from "../../models/backendRequests/UserRoute/UserProfile";
-import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import {UserProfileResponseDto} from "../../models/backendResponses/userRoute/UserProfileResponseDto";
+import {PlaylistDto} from "../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import {EditUserInfo} from "../../models/backendRequests/UserRoute/EditUserInfo";
 import {EditUserPassword} from "../../models/backendRequests/UserRoute/EditUserPassword";
+import {LoginResponseDto} from "../../models/backendResponses/userRoute/LoginResponseDto";
+import {GetUserProfileDto} from "../../models/backendRequests/UserRoute/GetUserProfileDto";
+import {GetUserPlaylistsDto} from "../../models/backendRequests/UserRoute/GetUserPlaylistsDto";
 
 class UserRequests {
 
-    static async getProfile(sessionToken: string) {
-        const url = "/User/Profile/" + sessionToken;
+    static async getProfile(username: string, sessionToken: string) {
+        const url = "/User/Profile/";
+
+        const data: GetUserProfileDto = {
+            username: username,
+            sessionToken: sessionToken
+        }
 
         const options = {
-            method: 'GET',
+            method: 'POST',
             url: url,
+            data: data
         };
 
         // @ts-ignore
         let profileResponse = await axios(options);
-        let profile: UserProfile = profileResponse.data;
+        let profile: UserProfileResponseDto = profileResponse.data;
         return profile;
 
     }
 
-    static async getPlaylists(userId: string) {
-        const url = "/User/Playlists/" + userId;
+    static async getPlaylists(username: string, sessionToken: string) {
+        const url = "/User/Playlists/";
+
+        const data: GetUserPlaylistsDto = {
+            username: username,
+            sessionToken: sessionToken
+        }
 
         const options = {
-            method: 'GET',
+            method: 'POST',
             url: url,
+            data: data
         };
 
         // @ts-ignore
         let profileResponse = await axios(options);
-        return profileResponse.data as PlaylistBasicDetails[];
+        return profileResponse.data as PlaylistDto[];
 
     }
 
@@ -73,7 +88,7 @@ class UserRequests {
 
         // @ts-ignore
         let loginResponse = await axios(options)
-        return loginResponse.data as string
+        return loginResponse.data as LoginResponseDto
 
     }
 

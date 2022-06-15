@@ -23,6 +23,10 @@
     --soundCloudHiglightColor: #F79C58;
     --soundCloudNeutralColor: #F26F23;
     --soundCloudHoveredColor: #D05119;
+    
+    --spartaHiglightColor: #1568d3;
+    --spartaNeutralColor: #1355ad;
+    --spartaHoveredColor: #132dad;
 }
 
 /*--------------------------------------------------------------
@@ -104,9 +108,21 @@
     color: var(--soundCloudHiglightColor);
 }
 
+.search-body .sparta {
+    color: var(--spartaHiglightColor);
+    /*border-bottom-color: var(--vimeoNeutralColor);*/
+}
+
+.search-body .sparta .btn-search,
+.search-body .sparta::placeholder {
+    color: var(--spartaHiglightColor);
+}
+
 .search-body .results {
     margin-top: 30px;
 }
+
+
 
 /*--------------------------------------------------------------
 # Dropdown buttons
@@ -155,6 +171,23 @@
 
 .btn-vimeo:active {
     background-color: var(--vimeoHoveredColor) !important;
+}
+
+
+
+.btn-sparta {
+    background-color: var(--spartaNeutralColor);
+    border-color: var(--spartaNeutralColor);
+    color: var(--iconColor) !important;
+}
+
+.btn-sparta:hover {
+    background-color: var(--spartaHoveredColor) !important;
+    color: var(--iconColor);
+}
+
+.btn-sparta:active {
+    background-color: var(--spartaHoveredColor) !important;
 }
 
 .btn-spotify {
