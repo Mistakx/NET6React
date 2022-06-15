@@ -1,5 +1,5 @@
 export interface SaveUserView {
-    userId: string
+    username: string
     sessionToken: string
 }
 

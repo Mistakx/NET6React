@@ -4,14 +4,14 @@ import "aos/dist/aos.css";
 import {Modal} from "react-bootstrap";
 import UserPlaylistsModalStore from "../../../stores/modals/UserPlaylistsModalStore";
 import axios from "axios";
-import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import {PlaylistDto} from "../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import PlaylistItemsList from "./PlaylistItemsList";
 import AlertStore from "../../../stores/AlertStore";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
 
 function UserPlaylistsModal(): JSX.Element {
 
-    const [userPlaylists, setUserPlaylists] = React.useState<PlaylistBasicDetails[]>();
+    const [userPlaylists, setUserPlaylists] = React.useState<PlaylistDto[]>();
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 

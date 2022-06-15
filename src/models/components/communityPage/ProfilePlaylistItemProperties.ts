@@ -1,5 +1,6 @@
-import {PlaylistBasicDetails} from "../../backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import {PlaylistDto} from "../../backendRequests/PlaylistRoute/PlaylistDto";
 
 export interface ProfilePlaylistItemProperties {
-    basicDetails: PlaylistBasicDetails
+    basicDetails: PlaylistDto
+    showingMyPlaylists: boolean
 }

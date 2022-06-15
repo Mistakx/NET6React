@@ -1,5 +1,5 @@
 // /User/Playlists/{userId}
-export interface PlaylistBasicDetails {
+export interface PlaylistDto {
     id: string
     title: string
     visibility: "Public" | "Private"
@@ -7,6 +7,8 @@ export interface PlaylistBasicDetails {
     description: string
     thumbnailUrl: string
     resultsAmount: number
+    weeklyViewsAmount: number
+    totalViewsAmount: number
 }
 
 

@@ -1,5 +1,5 @@
 import {CommunitySearch} from "./CommunitySearch";
-import CommunityRequests from "../CommunityRequests";
+import RecommendationRequests from "../RecommendationRequests";
 
 export class UserRequest extends CommunitySearch {
 
@@ -22,8 +22,8 @@ export class UserRequest extends CommunitySearch {
         return "User";
     }
 
-    public getSearchResults(searchQuery: string, sessionToken: string) {
-        return CommunityRequests.getUsers(searchQuery, sessionToken);
+    public getSearchResults(searchQuery: string, page: number, limit: number, sessionToken: string) {
+        return RecommendationRequests.getTrendingUsers(searchQuery, page, limit, sessionToken);
     }
 
 }

@@ -1,6 +1,6 @@
 import axios from "axios";
 import {UserProfileResponseDto} from "../../models/backendResponses/userRoute/UserProfileResponseDto";
-import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import {PlaylistDto} from "../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import {EditUserInfo} from "../../models/backendRequests/UserRoute/EditUserInfo";
 import {EditUserPassword} from "../../models/backendRequests/UserRoute/EditUserPassword";
 import {LoginResponseDto} from "../../models/backendResponses/userRoute/LoginResponseDto";
@@ -46,7 +46,7 @@ class UserRequests {
 
         // @ts-ignore
         let profileResponse = await axios(options);
-        return profileResponse.data as PlaylistBasicDetails[];
+        return profileResponse.data as PlaylistDto[];
 
     }
 

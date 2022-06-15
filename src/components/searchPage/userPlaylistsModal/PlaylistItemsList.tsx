@@ -1,7 +1,7 @@
 import '../../../styles/SearchPage.css';
 import React, {useEffect} from "react";
 import "aos/dist/aos.css";
-import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import {PlaylistDto} from "../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
 import PlaylistItem from "./PlaylistItem";
 import AddPlaylistForm from "./AddPlaylistForm";
@@ -16,7 +16,7 @@ function PlaylistItemsList(): JSX.Element {
     const newPlaylistResponse = BackendResponsesStore(state => state.newPlaylistResponse)
     const setNewPlaylistResponse = BackendResponsesStore(state => state.setNewPlaylistResponse)
 
-    const [userPlaylists, setUserPlaylists] = React.useState<PlaylistBasicDetails[]>();
+    const [userPlaylists, setUserPlaylists] = React.useState<PlaylistDto[]>();
 
     const username = sessionStorage.getItem("username");
 

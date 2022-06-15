@@ -5,11 +5,11 @@ import {
     GenericVideoResult
 } from "../../apiResponses/GenericResults";
 import {UserProfileResponseDto} from "../../backendResponses/userRoute/UserProfileResponseDto";
-import {PlaylistBasicDetails} from "../../backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import {PlaylistDto} from "../../backendRequests/PlaylistRoute/PlaylistDto";
 
 export interface SearchedCommunityResultsState {
 
-    searchedCommunityResults: UserProfileResponseDto[] | PlaylistBasicDetails[] | null
-    setSearchedCommunityResults: (searchedCommunityResults: UserProfileResponseDto[] | PlaylistBasicDetails[]) => void
+    searchedCommunityResults: UserProfileResponseDto[] | PlaylistDto[] | null
+    setSearchedCommunityResults: (searchedCommunityResults: UserProfileResponseDto[] | PlaylistDto[]) => void
 
 }

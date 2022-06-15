@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import '../../../styles/style.css';
 import ProfilePlaylistItem from "./ProfilePlaylistItem";
-import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import {PlaylistDto} from "../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
 import AddPlaylistItem from "./AddPlaylistItem";
 import EditOrCreatePlaylistModal from "./EditOrCreatePlaylistModal";
@@ -31,7 +31,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
-    const [userPlaylistItems, setUserPlaylistItems] = React.useState<PlaylistBasicDetails[]>([]);
+    const [userPlaylistItems, setUserPlaylistItems] = React.useState<PlaylistDto[]>([]);
 
     const setEditOrCreatePlaylistResponse = BackendResponsesStore(state => state.setEditOrCreatePlaylistResponse)
     const editOrCreatePlaylistResponse = BackendResponsesStore(state => state.editOrCreatePlaylistResponse)
@@ -111,7 +111,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
         }
     }, [editOrCreatePlaylistResponse]);
 
-    function compare(a: PlaylistBasicDetails, b: PlaylistBasicDetails) {
+    function compare(a: PlaylistDto, b: PlaylistDto) {
         return (a.title.localeCompare(b.title));
     }
 
@@ -130,7 +130,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
         const {active, over} = event;
 
         if (active.id !== over?.id) {
-            
+
             const sessionToken = sessionStorage.getItem("sessionToken");
             if (sessionToken) {
                 try {
@@ -146,7 +146,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
                 }
             } else prettyAlert("User needs to be logged in to sort playlists", false)
-            
+
         }
     }
 
@@ -155,32 +155,49 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
         addPlaylistItem = <AddPlaylistItem/>
     }
 
+    let editOrCreatePlaylistModal;
+    if (props.username === sessionStorage.getItem("username")) {
+      editOrCreatePlaylistModal = <EditOrCreatePlaylistModal/>
+    }
+
+    let playlistList;
+    if (props.username === sessionStorage.getItem("username")) {
+        playlistList = <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+            modifiers={[restrictToWindowEdges]}
+        >
+            <SortableContext
+                items={userPlaylistItems.map((playlist) => playlist.id)}
+                strategy={rectSortingStrategy}
+            >
+                {addPlaylistItem}
+
+                {userPlaylistItems.map((playlist) => (
+                    <ProfilePlaylistItem  key={playlist.id} basicDetails={playlist} showingMyPlaylists={true}/>
+                ))}
+
+            </SortableContext>
+        </DndContext>
+    } else {
+        playlistList = <>
+            {
+                userPlaylistItems.map((playlist) => (
+                    <ProfilePlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={false}/>
+                ))
+            }
+        </>
+    }
     return (
 
         <div className="col-lg-8 col-md-6 col-sm-12 col-12">
 
-            <EditOrCreatePlaylistModal/>
+            {editOrCreatePlaylistModal}
 
             <div className="row results">
 
-                <DndContext
-                    sensors={sensors}
-                    collisionDetection={closestCenter}
-                    onDragEnd={handleDragEnd}
-                    modifiers={[restrictToWindowEdges]}
-                >
-                    <SortableContext
-                        items={userPlaylistItems.map((playlist) => playlist.id)}
-                        strategy={rectSortingStrategy}
-                    >
-                        {addPlaylistItem}
-
-                        {userPlaylistItems.map((playlist) => (
-                            <ProfilePlaylistItem key={playlist.id} basicDetails={playlist}/>
-                        ))}
-
-                    </SortableContext>
-                </DndContext>
+                {playlistList}
 
             </div>
         </div>

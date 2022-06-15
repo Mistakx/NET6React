@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import "aos/dist/aos.css";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
-import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import {PlaylistDto} from "../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import {PlaylistCoverProperties} from "../../../models/components/playlistPage/PlaylistCoverProperties";
 import AlertStore from "../../../stores/AlertStore";
 
@@ -15,7 +15,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
-    const [playlistBasicDetails, setPlaylistBasicDetails] = useState<PlaylistBasicDetails>()
+    const [playlistBasicDetails, setPlaylistBasicDetails] = useState<PlaylistDto>()
 
     useEffect(() => {
             (async () => {

@@ -7,7 +7,7 @@ import AlertStore from "../../../stores/AlertStore";
 import SelectedCommunitySearchStore from "../../../stores/searches/SelectedCommunitySearchStore";
 import CommunityDropdownStore from "../../../stores/searches/CommunityDropdownStore";
 import SearchedCommunityResultsStore from "../../../stores/searches/SearchedCommunityResultsStore";
-import {PlaylistBasicDetails} from "../../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import {PlaylistDto} from "../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import {UserProfileResponseDto} from "../../../models/backendResponses/userRoute/UserProfileResponseDto";
 import CommunitySearchLabel from "./CommunitySearchLabel";
 
@@ -41,16 +41,16 @@ function CommunitySearchBar(): JSX.Element {
 
     async function searchPlatformItems(chosenSearchQuery: string) {
 
-        let searchList: PlaylistBasicDetails[] | UserProfileResponseDto[] = [];
+        let searchList: PlaylistDto[] | UserProfileResponseDto[] = [];
 
         try {
             const sessionToken = window.sessionStorage.getItem("sessionToken")
             if (sessionToken) {
 
                 if (selectedSearch.getButtonText() === "User") {
-                    searchList = await selectedSearch.getSearchResults(chosenSearchQuery, sessionToken)
+                    searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40, sessionToken)
                 } else if (selectedSearch.getButtonText() === "Playlist") {
-                    searchList = await selectedSearch.getSearchResults(chosenSearchQuery, sessionToken)
+                    searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40, sessionToken)
                 }
             } else prettyAlert("You need to be logged in to add a playlist.", false)
             return searchList

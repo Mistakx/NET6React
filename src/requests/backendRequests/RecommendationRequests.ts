@@ -3,12 +3,13 @@ import {SaveContentView} from "../../models/backendRequests/RecommendationsRoute
 import {GeneralizedResult} from "../../models/apiResponses/GenericResults";
 import {ViewAmounts} from "../../models/backendRequests/RecommendationsRoute/ViewAmounts";
 import {GetContentViews} from "../../models/backendRequests/RecommendationsRoute/GetContentViews";
-import {PlaylistBasicDetails} from "../../models/backendRequests/PlaylistRoute/PlaylistBasicDetails";
+import {PlaylistDto} from "../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import {SavePlaylistView} from "../../models/backendRequests/RecommendationsRoute/SavePlaylistView";
 import {GetTrendingPlaylists} from "../../models/backendRequests/RecommendationsRoute/GetTrendingPlaylists";
 import {GetPlaylistViews} from "../../models/backendRequests/RecommendationsRoute/GetPlaylistViews";
 import {SaveUserView} from "../../models/backendRequests/RecommendationsRoute/SaveUserView";
 import {UserProfileResponseDto} from "../../models/backendResponses/userRoute/UserProfileResponseDto";
+import {GetTrendingUsersDto} from "../../models/backendRequests/RecommendationsRoute/GetTrendingUsersDto";
 
 class RecommendationRequests {
 
@@ -106,7 +107,7 @@ class RecommendationRequests {
 
         // @ts-ignore
         let response = await axios(options)
-        return response.data as PlaylistBasicDetails[]
+        return response.data as PlaylistDto[]
     }
 
     static async getPlaylistViews(playlistId: string, sessionToken: string) {
@@ -130,12 +131,12 @@ class RecommendationRequests {
     }
 
     // User
-    static async saveUserView(userId: string, sessionToken: string) {
+    static async saveUserView(username: string, sessionToken: string) {
 
         const url = "/Recommendations/saveUserView";
 
         const data: SaveUserView = {
-            userId: userId,
+            username: username,
             sessionToken: sessionToken
         }
 
@@ -150,13 +151,21 @@ class RecommendationRequests {
         return response.data as string
     }
 
-    static async getTrendingUsers(beginningOfUsername: string) {
+    static async getTrendingUsers(beginningOfUsername: string, page: number, limit:number, accessToken: string) {
 
-        const url = "/Recommendations/getTrendingUsers/" + beginningOfUsername;
+        const url = "/Recommendations/getTrendingUsers";
 
+        const data: GetTrendingUsersDto = {
+            username: beginningOfUsername,
+            sessionToken: accessToken,
+            pageNumber: page,
+            limit: limit
+        }
+        
         const options = {
-            method: 'GET',
+            method: 'POST',
             url: url,
+            data: data
         };
 
         // @ts-ignore
