@@ -2,13 +2,12 @@
 export interface PlaylistDto {
     id: string
     title: string
-    visibility: "Public" | "Private"
-    creationDate: Date
     description: string
     thumbnailUrl: string
     resultsAmount: number
-    weeklyViewsAmount: number
-    totalViewsAmount: number
+    visibility?: "Public" | "Private"
+    weeklyViewsAmount?: number
+    totalViewsAmount?: number
 }
 
 

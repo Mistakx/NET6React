@@ -18,7 +18,6 @@ export class SpotifyTracksPageToListItemsConverter {
                 // createdAt: item.album.release_date,
                 albumName: item.album.name,
                 playerFactoryName: "SpotifyPlayerFactory"
-
             }
 
             items.push(currentGenericTrackItem)

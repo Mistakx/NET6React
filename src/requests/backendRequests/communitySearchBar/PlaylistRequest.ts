@@ -23,7 +23,7 @@ export class PlaylistRequest extends CommunitySearch {
     }
 
     public getSearchResults(searchQuery: string, page: number, limit: number, sessionToken: string) {
-        return RecommendationRequests.getTrendingPlaylists(searchQuery, sessionToken);
+        return RecommendationRequests.getTrendingPlaylists(searchQuery, page, limit, sessionToken);
     }
 
 }

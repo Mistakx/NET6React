@@ -90,13 +90,15 @@ class RecommendationRequests {
         return response.data as string
     }
 
-    static async getTrendingPlaylists(beginningOfPlaylistName: string, sessionToken: string) {
+    static async getTrendingPlaylists(beginningOfPlaylistName: string, page: number, limit: number, sessionToken: string) {
 
         const url = "/Recommendations/getTrendingPlaylists";
 
         const data: GetTrendingPlaylists = {
             playlistName: beginningOfPlaylistName,
-            sessionToken: sessionToken
+            sessionToken: sessionToken,
+            pageNumber: page,
+            limit: limit
         }
 
         const options = {
@@ -151,7 +153,7 @@ class RecommendationRequests {
         return response.data as string
     }
 
-    static async getTrendingUsers(beginningOfUsername: string, page: number, limit:number, accessToken: string) {
+    static async getTrendingUsers(beginningOfUsername: string, page: number, limit: number, accessToken: string) {
 
         const url = "/Recommendations/getTrendingUsers";
 
@@ -161,7 +163,7 @@ class RecommendationRequests {
             pageNumber: page,
             limit: limit
         }
-        
+
         const options = {
             method: 'POST',
             url: url,

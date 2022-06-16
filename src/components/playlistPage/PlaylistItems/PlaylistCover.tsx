@@ -20,7 +20,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
     useEffect(() => {
             (async () => {
                 try {
-                    setPlaylistBasicDetails(await PlaylistRequests.getPlaylistBasicDetails(props.playlistId))
+                    setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, window.sessionStorage.getItem("sessionToken")!))
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
                 }
@@ -31,7 +31,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
         if (playlistCoverChangedResponse) {
             (async () => {
                 try {
-                    setPlaylistBasicDetails(await PlaylistRequests.getPlaylistBasicDetails(props.playlistId))
+                    setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, window.sessionStorage.getItem("sessionToken")!))
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
                 }

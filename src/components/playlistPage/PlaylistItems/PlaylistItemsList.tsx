@@ -33,7 +33,7 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
     useEffect(() => {
         (async () => {
             try {
-                let response = await PlaylistRequests.getPlaylistGeneralizedResults(props.playlistId)
+                let response = await PlaylistRequests.getPlaylistContent(props.playlistId)
                 // response.sort(compareTitle)
                 setPlaylistGeneralizedResults(response)
             } catch (e: any) {
@@ -46,7 +46,7 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
         if (deleteGeneralizedResultResponse) {
             (async () => {
                 try {
-                    let response = await PlaylistRequests.getPlaylistGeneralizedResults(props.playlistId)
+                    let response = await PlaylistRequests.getPlaylistContent(props.playlistId)
                     // response.sort(compareTitle)
                     setPlaylistGeneralizedResults(response)
                 } catch (e: any) {

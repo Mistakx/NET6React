@@ -9,6 +9,8 @@ export interface GeneralizedResult {
     thumbnailUrl: string
     creator: string
     playerFactoryName: string
+    weeklyViewsAmount?: number
+    totalViewsAmount?: number
     platformPlayerUrl?: string
     databaseId?: string
 }

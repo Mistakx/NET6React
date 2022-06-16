@@ -32,8 +32,9 @@ function UserItem(props: UserItemProperties): JSX.Element {
                 </div>
                 <div className="card-img-overlay text-end">
                     <h5 className="card-title text-uppercase text-truncate">{props.basicDetails.username}</h5>
-                    <p className="card-text text-start">Weekly Views: {props.basicDetails.weeklyViewsAmount}</p>
-                    <p className="card-text text-start">Total Views: {props.basicDetails.totalViewsAmount}</p>
+                    <div className="card-text text-start">{props.basicDetails.name}</div>
+                    <div className="card-text text-start">Weekly Views: {props.basicDetails.weeklyViewsAmount}</div>
+                    <div className="card-text text-start">Total Views: {props.basicDetails.totalViewsAmount}</div>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import {PlaylistDto} from "../../../models/backendRequests/PlaylistRoute/PlaylistDto";
-import ProfilePlaylistItem from "../../userPage/playlistsLists/ProfilePlaylistItem";
+import UserPlaylistItem from "../../userPage/playlistsLists/UserPlaylistItem";
 import {UserProfileResponseDto} from "../../../models/backendResponses/userRoute/UserProfileResponseDto";
 import UserItem from "./UserItem";
 
@@ -12,9 +12,9 @@ class CommunityResultComponentFactory {
         for (const currentCommunityItem of results) {
 
             if ("visibility" in currentCommunityItem) {
-                let currentPlaylistItem = <ProfilePlaylistItem basicDetails={currentCommunityItem} showingMyPlaylists={false}/>
+                let currentPlaylistItem = <UserPlaylistItem basicDetails={currentCommunityItem} showingMyPlaylists={false} showingPlaylistInSearch={true}/>
                 searchResultItems.push(currentPlaylistItem);
-            } else {
+            } else if ("username" in currentCommunityItem) {
                 let currentUserItem = <UserItem basicDetails={currentCommunityItem}/>
                 searchResultItems.push(currentUserItem);
             }

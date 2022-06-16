@@ -4,8 +4,8 @@ export interface UserProfileResponseDto {
     username: string
     profilePhotoUrl: string
     email?: string
-    weeklyViewsAmount: number
-    totalViewsAmount: number
+    weeklyViewsAmount?: number
+    totalViewsAmount?: number
 }
 
 

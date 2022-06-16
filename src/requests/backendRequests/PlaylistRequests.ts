@@ -9,11 +9,12 @@ import {PlaylistDto} from "../../models/backendRequests/PlaylistRoute/PlaylistDt
 import {SetCoverItem} from "../../models/backendRequests/PlaylistRoute/SetCoverItem";
 import {SortGeneralizedResult} from "../../models/backendRequests/PlaylistRoute/SortGeneralizedResult";
 import {SortPlaylist} from "../../models/backendRequests/PlaylistRoute/SortPlaylist";
+import {GetPlaylistInformationDto} from "../../models/backendRequests/PlaylistRoute/GetPlaylistInformationDto";
 
 class PlaylistRequests {
 
-    static async getPlaylistGeneralizedResults(playlistId: string) {
-        const url = "/Playlist/getGeneralizedResults/" + playlistId;
+    static async getPlaylistContent(playlistId: string) {
+        const url = "/Playlist/getPlaylistContent/" + playlistId;
 
         const options = {
             method: 'GET',
@@ -26,12 +27,18 @@ class PlaylistRequests {
 
     }
 
-    static async getPlaylistBasicDetails(playlistId: string) {
-        const url = "/Playlist/getBasicDetails/" + playlistId;
+    static async getPlaylistInformation(playlistId: string, sessionToken: string) {
+        const url = "/Playlist/getPlaylistInformation";
+
+        const data: GetPlaylistInformationDto = {
+            playlistId: playlistId,
+            sessionToken: sessionToken
+        }
 
         const options = {
-            method: 'GET',
+            method: 'POST',
             url: url,
+            data: data
         };
 
         // @ts-ignore

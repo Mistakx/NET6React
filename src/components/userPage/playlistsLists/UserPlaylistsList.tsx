@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import '../../../styles/style.css';
-import ProfilePlaylistItem from "./ProfilePlaylistItem";
+import UserPlaylistItem from "./UserPlaylistItem";
 import {PlaylistDto} from "../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
 import AddPlaylistItem from "./AddPlaylistItem";
@@ -175,7 +175,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                 {addPlaylistItem}
 
                 {userPlaylistItems.map((playlist) => (
-                    <ProfilePlaylistItem  key={playlist.id} basicDetails={playlist} showingMyPlaylists={true}/>
+                    <UserPlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={true} showingPlaylistInSearch={false}/>
                 ))}
 
             </SortableContext>
@@ -184,7 +184,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
         playlistList = <>
             {
                 userPlaylistItems.map((playlist) => (
-                    <ProfilePlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={false}/>
+                    <UserPlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={false} showingPlaylistInSearch={false}/>
                 ))
             }
         </>

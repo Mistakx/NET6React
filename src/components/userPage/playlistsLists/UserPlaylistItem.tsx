@@ -9,8 +9,9 @@ import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 import {useSortable} from "@dnd-kit/sortable";
 import {CSS} from "@dnd-kit/utilities";
 import {ProfilePlaylistItemProperties} from "../../../models/components/communityPage/ProfilePlaylistItemProperties";
+import RecommendationRequests from "../../../requests/backendRequests/RecommendationRequests";
 
-function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
+function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
     let navigate = useNavigate()
 
@@ -28,14 +29,9 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
         setNodeRef,
         transform,
         transition,
-        isDragging
     } = useSortable({id: props.basicDetails.id});
 
     const style = {
-        // width: "100%",
-        // height: "100%",
-        // padding: 20,
-        // border: '1px solid',
         transform: CSS.Transform.toString(transform),
         transition,
     };
@@ -59,7 +55,7 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
                                     playlistId: props.basicDetails.id,
                                     title: props.basicDetails.title,
                                     description: props.basicDetails.description,
-                                    visibility: props.basicDetails.visibility,
+                                    visibility: props.basicDetails.visibility!,
                                     sessionToken: sessionToken
                                 }
                                 setPlaylistToEditOrCreate(playlistToEdit)
@@ -118,9 +114,35 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
         </div>
     }
 
+    // The backend only sends the needed information to render a playlist item.
+
+    let visibility;
+    if (props.basicDetails.visibility) {
+        visibility = <div className="card-text text-start">{props.basicDetails.visibility}</div>
+    }
+
+    let weeklyViews;
+    if (props.basicDetails.weeklyViewsAmount || props.basicDetails.weeklyViewsAmount === 0) {
+        weeklyViews = <div className="card-text text-start">Weekly Views: {props.basicDetails.weeklyViewsAmount}</div>
+
+    }
+    let totalViews;
+    if (props.basicDetails.totalViewsAmount || props.basicDetails.totalViewsAmount === 0) {
+        totalViews = <div className="card-text text-start">Total Views: {props.basicDetails.totalViewsAmount}</div>
+    }
+
+    let playlistItemClass;
+    if (!props.showingPlaylistInSearch) {
+        console.log(props.showingPlaylistInSearch)
+        playlistItemClass = "col-lg-4 col-md-6 col-sm-6 col-6 position-relative"
+    } else {
+        playlistItemClass = "result col-lg-3 col-md-4 col-sm-6 col-6 position-relative"
+    }
+
+
     return (
 
-        <div className="col-lg-4 col-md-6 col-sm-6 col-6 position-relative"
+        <div className={playlistItemClass}
              data-aos="fade-up">
 
             <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
@@ -136,14 +158,16 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
                     <div className="card-img-overlay text-end"
                          onClick={() => {
                              navigate("/playlist/" + props.basicDetails.id)
+                             RecommendationRequests.savePlaylistView(props.basicDetails.id, window.sessionStorage.getItem("sessionToken")!)
                          }}
                     >
                         <h5 className="card-title text-uppercase text-center">{props.basicDetails.title}</h5>
-                        <p className="card-text text-start">{props.basicDetails.visibility}</p>
-                        <p className="card-text text-start">Items: {props.basicDetails.resultsAmount}</p>
-                        <p className="card-text text-start">Weekly Views: {props.basicDetails.weeklyViewsAmount}</p>
-                        <p className="card-text text-start">Total Views: {props.basicDetails.totalViewsAmount}</p>
-                        <p className="card-text text-start">{props.basicDetails.description}</p>
+                        {visibility}
+                        <div className="card-text text-start">Items: {props.basicDetails.resultsAmount}</div>
+                        {weeklyViews}
+                        {totalViews}
+                        <div className="card-text text-start"
+                             style={{"fontStyle": "italic"}}>{props.basicDetails.description}</div>
                     </div>
                     {playlistDraggableIcon}
                 </div>
@@ -154,4 +178,4 @@ function ProfilePlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element 
     )
 }
 
-export default ProfilePlaylistItem;
+export default UserPlaylistItem;

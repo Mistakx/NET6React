@@ -5,8 +5,6 @@ import {
 import React, {useEffect} from "react";
 import "aos/dist/aos.css";
 import UserPlaylistsModalStore from "../../../stores/modals/UserPlaylistsModalStore";
-import {ViewAmounts} from "../../../models/backendRequests/RecommendationsRoute/ViewAmounts";
-import RecommendationRequests from "../../../requests/backendRequests/RecommendationRequests";
 
 function LivestreamSearchItem(props: LivestreamSearchItemProperties): JSX.Element {
 
@@ -16,18 +14,21 @@ function LivestreamSearchItem(props: LivestreamSearchItemProperties): JSX.Elemen
     const setShowingPlaylistsModal = UserPlaylistsModalStore(state => state.setShowingPlaylistsModal)
     const setResultToAdd = UserPlaylistsModalStore(state => state.setResultToAdd)
 
-    const [viewAmounts, setViewAmounts] = React.useState<ViewAmounts | null>(null)
-
-    useEffect(() => {
-        (async () => {
-            setViewAmounts(await RecommendationRequests.getContentViews(props.searchResult.platformId, props.searchResult.playerFactoryName, props.searchResult.platformPlayerUrl))
-        })()
-    }, [])
-
     function setCurrentPlayerToClickedItem() {
         setGlobalPlayerCurrentResult(props.searchResult)
         setSearchCurrentResults(props.searchResults)
     }
+
+    let weeklyViewsAmount;
+    if (props.searchResult.weeklyViewsAmount || props.searchResult.weeklyViewsAmount === 0) {
+        weeklyViewsAmount = <p className="card-text text-truncate">Weekly Views: {props.searchResult.weeklyViewsAmount}</p>
+    }
+
+    let totalViewsAmount;
+    if (props.searchResult.totalViewsAmount || props.searchResult.totalViewsAmount === 0) {
+        totalViewsAmount = <p className="card-text text-truncate">Total Views: {props.searchResult.totalViewsAmount}</p>
+    }
+
 
     return (
 
@@ -49,10 +50,10 @@ function LivestreamSearchItem(props: LivestreamSearchItemProperties): JSX.Elemen
                 </div>
                 <div className="card-img-overlay text-end">
                     <h5 className="card-title text-uppercase text-truncate">{props.searchResult.title}</h5>
-                    <p className="card-text text-truncate">{props.searchResult.gameName}</p>
-                    <p className="card-text text-truncate">{props.searchResult.creator}</p>
-                    <p className="card-text text-truncate">Weekly Views: {viewAmounts?.weeklyViewsAmount}</p>
-                    <p className="card-text text-truncate">Total Views: {viewAmounts?.totalViewsAmount}</p>
+                    <div className="card-text text-truncate">{props.searchResult.gameName}</div>
+                    <div className="card-text text-truncate">{props.searchResult.creator}</div>
+                    {weeklyViewsAmount}
+                    {totalViewsAmount}
 
                 </div>
             </div>
