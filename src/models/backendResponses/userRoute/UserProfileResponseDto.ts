@@ -1,4 +1,3 @@
-// /User/Profile/{profileId}
 export interface UserProfileResponseDto {
     name: string
     username: string
@@ -6,6 +5,7 @@ export interface UserProfileResponseDto {
     email?: string
     weeklyViewsAmount?: number
     totalViewsAmount?: number
+    followed?: boolean
 }
 
 

@@ -1,32 +1,43 @@
 import axios from "axios";
 import {GeneralizedResult} from "../../models/apiResponses/GenericResults";
 import {EditPlaylist} from "../../models/backendRequests/PlaylistRoute/EditPlaylist";
-import {AddToPlaylist} from "../../models/backendRequests/PlaylistRoute/AddToPlaylist";
+import {AddContentToPlaylistDto} from "../../models/backendRequests/PlaylistRoute/AddContentToPlaylistDto";
 import {CreatePlaylist} from "../../models/backendRequests/PlaylistRoute/CreatePlaylist";
 import {DeletePlaylist} from "../../models/backendRequests/PlaylistRoute/DeletePlaylist";
-import {DeleteGeneralizedResult} from "../../models/backendRequests/PlaylistRoute/DeleteGeneralizedResult";
+import {DeleteContent} from "../../models/backendRequests/PlaylistRoute/DeleteContent";
 import {PlaylistDto} from "../../models/backendRequests/PlaylistRoute/PlaylistDto";
-import {SetCoverItem} from "../../models/backendRequests/PlaylistRoute/SetCoverItem";
-import {SortGeneralizedResult} from "../../models/backendRequests/PlaylistRoute/SortGeneralizedResult";
-import {SortPlaylist} from "../../models/backendRequests/PlaylistRoute/SortPlaylist";
+import {SetPlaylistCoverDto} from "../../models/backendRequests/PlaylistRoute/SetPlaylistCoverDto";
+import {SortPlaylistContent} from "../../models/backendRequests/PlaylistRoute/SortPlaylistContent";
 import {GetPlaylistInformationDto} from "../../models/backendRequests/PlaylistRoute/GetPlaylistInformationDto";
 
 class PlaylistRequests {
 
-    static async getPlaylistContent(playlistId: string) {
-        const url = "/Playlist/getPlaylistContent/" + playlistId;
+    // CREATE
+    static async createPlaylist(playlistTitle: string, visibility: "Public" | "Private", description: string, sessionToken: string) {
+
+        const url = "/Playlist/createPlaylist";
+
+        let data: CreatePlaylist = {
+            title: playlistTitle,
+            sessionToken: sessionToken,
+            visibility: visibility,
+            description: description
+        }
 
         const options = {
-            method: 'GET',
+            method: 'POST',
             url: url,
+            data: data
         };
 
+
         // @ts-ignore
-        let playlistResponse = await axios(options);
-        return playlistResponse.data;
+        let addToPlaylistResponse = await axios(options);
+        return addToPlaylistResponse.data as string;
 
     }
 
+    // READ
     static async getPlaylistInformation(playlistId: string, sessionToken: string) {
         const url = "/Playlist/getPlaylistInformation";
 
@@ -47,12 +58,52 @@ class PlaylistRequests {
 
     }
 
-    static async addToPlaylist(playlistId: string, genericResult: GeneralizedResult) {
+    static async getPlaylistContent(playlistId: string) {
+        const url = "/Playlist/getPlaylistContent/" + playlistId;
 
-        const url = "/Playlist/addToPlaylist";
+        const options = {
+            method: 'GET',
+            url: url,
+        };
 
-        let data: AddToPlaylist = {
-            ...genericResult,
+        // @ts-ignore
+        let playlistResponse = await axios(options);
+        return playlistResponse.data;
+
+    }
+
+
+    // UPDATE
+    static async sortContent(playlistId: string, generalizedResultDatabaseId: string, newIndex: number, sessionToken: string) {
+
+        const url = "/Playlist/sortContent";
+
+        let data: SortPlaylistContent = {
+            playlistId: playlistId,
+            generalizedResultDatabaseId: generalizedResultDatabaseId,
+            newIndex: newIndex,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+
+        // @ts-ignore
+        let response = await axios(options);
+        return response.data as string;
+
+    }
+
+    static async addContentToPlaylist(playlistId: string, genericResult: GeneralizedResult) {
+
+        const url = "/Playlist/addContent";
+
+        let data: AddContentToPlaylistDto = {
+            content: genericResult,
             playlistId: playlistId
         }
 
@@ -68,15 +119,14 @@ class PlaylistRequests {
         return addToPlaylistResponse.data as string;
     }
 
-    static async createPlaylist(playlistTitle: string, visibility: "Public" | "Private", description: string, sessionToken: string) {
+    static async setCover(playlistId: string, thumbnailUrl: string, sessionToken: string) {
 
-        const url = "/Playlist/create";
+        const url = "/Playlist/setCover";
 
-        let data: CreatePlaylist = {
-            title: playlistTitle,
-            sessionToken: sessionToken,
-            visibility: visibility,
-            description: description
+        let data: SetPlaylistCoverDto = {
+            playlistId: playlistId,
+            coverUrl: thumbnailUrl,
+            sessionToken: sessionToken
         }
 
         const options = {
@@ -87,8 +137,8 @@ class PlaylistRequests {
 
 
         // @ts-ignore
-        let addToPlaylistResponse = await axios(options);
-        return addToPlaylistResponse.data as string;
+        let response = await axios(options);
+        return response.data as string;
 
     }
 
@@ -117,6 +167,8 @@ class PlaylistRequests {
 
     }
 
+
+    // DELETE
     static async deletePlaylist(playlistId: string, sessionToken: string) {
 
         const url = "/Playlist/deletePlaylist";
@@ -139,11 +191,11 @@ class PlaylistRequests {
 
     }
 
-    static async deleteGeneralizedResult(playlistId: string, generalizedResultDatabaseId: string, sessionToken: string) {
+    static async deleteContent(playlistId: string, generalizedResultDatabaseId: string, sessionToken: string) {
 
-        const url = "/Playlist/deleteGeneralizedResult";
+        const url = "/Playlist/deleteContent";
 
-        let data: DeleteGeneralizedResult = {
+        let data: DeleteContent = {
             playlistId: playlistId,
             generalizedResultDatabaseId: generalizedResultDatabaseId,
             sessionToken: sessionToken
@@ -162,75 +214,6 @@ class PlaylistRequests {
 
     }
 
-    static async setCoverItem(playlistId: string, thumbnailUrl: string, sessionToken: string) {
-
-        const url = "/Playlist/setCoverItem";
-
-        let data: SetCoverItem = {
-            playlistId: playlistId,
-            coverUrl: thumbnailUrl,
-            sessionToken: sessionToken
-        }
-
-        const options = {
-            method: 'POST',
-            url: url,
-            data: data
-        };
-
-
-        // @ts-ignore
-        let response = await axios(options);
-        return response.data as string;
-
-    }
-
-    static async sortGeneralizedResult(playlistId: string, generalizedResultDatabaseId: string, newIndex: number,  sessionToken: string) {
-
-        const url = "/Playlist/sortResult";
-
-        let data: SortGeneralizedResult = {
-            playlistId: playlistId,
-            generalizedResultDatabaseId: generalizedResultDatabaseId,
-            newIndex: newIndex,
-            sessionToken: sessionToken
-        }
-
-        const options = {
-            method: 'POST',
-            url: url,
-            data: data
-        };
-
-
-        // @ts-ignore
-        let response = await axios(options);
-        return response.data as string;
-
-    }
-
-    static async sortPlaylist(playlistId: string, newIndex: number, sessionToken: string) {
-
-        const url = "/Playlist/sortPlaylist";
-
-        let data: SortPlaylist = {
-            playlistId: playlistId,
-            newIndex: newIndex,
-            sessionToken: sessionToken
-        }
-
-        const options = {
-            method: 'POST',
-            url: url,
-            data: data
-        };
-
-
-        // @ts-ignore
-        let response = await axios(options);
-        return response.data as string;
-
-    }
 
 }
 

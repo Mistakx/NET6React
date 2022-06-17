@@ -1,8 +1,8 @@
-// /Playlist/deleteGeneralizedResult
-
-export interface DeleteGeneralizedResult {
+// /Playlist/sortResult
+export interface SortPlaylistContent {
     playlistId: string
     generalizedResultDatabaseId: string
+    newIndex: number
     sessionToken: string
 }
 

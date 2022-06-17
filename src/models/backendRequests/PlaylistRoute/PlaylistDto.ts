@@ -1,4 +1,6 @@
 // /User/Playlists/{userId}
+import {UserProfileDto} from "../UserRoute/UserProfileDto";
+
 export interface PlaylistDto {
     id: string
     title: string
@@ -8,6 +10,8 @@ export interface PlaylistDto {
     visibility?: "Public" | "Private"
     weeklyViewsAmount?: number
     totalViewsAmount?: number
+    followed?: boolean
+    owner: UserProfileDto
 }
 
 

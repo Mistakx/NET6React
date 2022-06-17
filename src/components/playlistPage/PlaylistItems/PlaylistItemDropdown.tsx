@@ -23,7 +23,7 @@ function PlaylistItemDropdown(props: PlaylistItemDropdownProperties): JSX.Elemen
                          const sessionToken = sessionStorage.getItem("sessionToken");
                          if (sessionToken) {
                              try {
-                                 let response = await PlaylistRequests.setCoverItem(props.playlistId!, props.genericResult.thumbnailUrl, sessionToken)
+                                 let response = await PlaylistRequests.setCover(props.playlistId!, props.genericResult.thumbnailUrl, sessionToken)
                                  setPlaylistCoverChangedResponse(response)
                                  prettyAlert(response, true)
                              } catch (e: any) {
@@ -40,7 +40,7 @@ function PlaylistItemDropdown(props: PlaylistItemDropdownProperties): JSX.Elemen
                 const sessionToken = sessionStorage.getItem("sessionToken")
                 if (sessionToken) {
                     try {
-                        let response = await PlaylistRequests.deleteGeneralizedResult(props.playlistId!, props.genericResult.databaseId!, sessionToken)
+                        let response = await PlaylistRequests.deleteContent(props.playlistId!, props.genericResult.databaseId!, sessionToken)
                         prettyAlert(response, true)
                         setDeleteGeneralizedResultResponse(response)
                     } catch (e: any) {

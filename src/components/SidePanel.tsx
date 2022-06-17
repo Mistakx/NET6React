@@ -71,7 +71,7 @@ function SidePanel(): JSX.Element {
 
                              }}>
                             <i className='bx bxs-playlist'></i>
-                            <span>My Playlists</span>
+                            <span>My Profile</span>
                         </div>
                     </li>
 

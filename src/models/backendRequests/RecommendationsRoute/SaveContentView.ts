@@ -2,7 +2,7 @@
 import {GeneralizedResult} from "../../apiResponses/GenericResults";
 
 export interface SaveContentView {
-    generalizedResult: GeneralizedResult
+    content: GeneralizedResult
     sessionToken: string
 }
 

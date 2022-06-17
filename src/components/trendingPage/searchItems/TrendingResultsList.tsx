@@ -12,7 +12,7 @@ function TrendingResultsList(): JSX.Element {
 
     useEffect(() => {
         (async () => {
-            setTrendingResults(await RecommendationRequests.getTrendingContent());
+            setTrendingResults(await RecommendationRequests.getTrendingContent(1, 40, window.sessionStorage.getItem("sessionToken")!));
         })()
     }, []);
 

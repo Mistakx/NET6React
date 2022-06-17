@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../../../styles/style.css';
 import {useNavigate} from "react-router-dom";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
@@ -10,6 +10,7 @@ import {useSortable} from "@dnd-kit/sortable";
 import {CSS} from "@dnd-kit/utilities";
 import {ProfilePlaylistItemProperties} from "../../../models/components/communityPage/ProfilePlaylistItemProperties";
 import RecommendationRequests from "../../../requests/backendRequests/RecommendationRequests";
+import CommunityRequests from "../../../requests/backendRequests/CommunityRequests";
 
 function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
@@ -30,6 +31,24 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
         transform,
         transition,
     } = useSortable({id: props.basicDetails.id});
+
+    const [followingButtonShapeClass, setFollowingButtonShapeClass] = React.useState<string>()
+
+    useEffect(() => {
+        if (props.basicDetails.followed) {
+            setFollowingButtonShapeClass("bxs-heart")
+        } else {
+            setFollowingButtonShapeClass("bx-heart")
+        }
+    }, [])
+
+    function toggleFollowingButton() {
+        if (followingButtonShapeClass === "bxs-heart") {
+            setFollowingButtonShapeClass("bx-heart")
+        } else {
+            setFollowingButtonShapeClass("bxs-heart")
+        }
+    }
 
     const style = {
         transform: CSS.Transform.toString(transform),
@@ -69,7 +88,7 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                             const sessionToken = sessionStorage.getItem("sessionToken")
                             if (sessionToken) {
                                 try {
-                                    let response = await PlaylistRequests.setCoverItem(props.basicDetails.id, "", sessionToken)
+                                    let response = await PlaylistRequests.setCover(props.basicDetails.id, "", sessionToken)
                                     prettyAlert(response, true)
                                     setResetCoverResponse(response)
                                 } catch (e: any) {
@@ -139,6 +158,27 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
         playlistItemClass = "result col-lg-3 col-md-4 col-sm-6 col-6 position-relative"
     }
 
+    let followButton;
+    if (!props.showingMyPlaylists) {
+        followButton = <div className="options">
+            <button className="btn btn-lg btn-add"
+                    type="button"
+                    onClick={async () => {
+                        try {
+                            const sessionToken = window.sessionStorage.getItem("sessionToken")
+                            if (sessionToken) {
+                                prettyAlert(await CommunityRequests.togglePlaylistFollow(props.basicDetails.id, sessionToken), true)
+                                toggleFollowingButton()
+                            } else prettyAlert("You need to be logged in to follow a playlist", false)
+                        } catch (e: any) {
+                            prettyAlert(e.response?.data || e.toJSON().message, false)
+                        }
+                    }}
+            >
+                <i className={'bx ' + followingButtonShapeClass}></i>
+            </button>
+        </div>
+    }
 
     return (
 
@@ -154,7 +194,7 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                      }}>
 
                     {playlistItemDropdown}
-
+                    {followButton}
                     <div className="card-img-overlay text-end"
                          onClick={() => {
                              navigate("/playlist/" + props.basicDetails.id)

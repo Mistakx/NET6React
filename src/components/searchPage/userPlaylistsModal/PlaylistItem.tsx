@@ -16,7 +16,7 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
 
         <li className="list-group-item clickable" onClick={async () => {
             try {
-                let response = await PlaylistRequests.addToPlaylist(props.id, resultToAdd!)
+                let response = await PlaylistRequests.addContentToPlaylist(props.id, resultToAdd!)
                 prettyAlert(response, true)
             } catch (e: any) {
                 prettyAlert(e.response?.data || e.toJSON().message, false)

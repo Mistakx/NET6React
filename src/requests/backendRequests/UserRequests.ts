@@ -4,51 +4,13 @@ import {PlaylistDto} from "../../models/backendRequests/PlaylistRoute/PlaylistDt
 import {EditUserInfo} from "../../models/backendRequests/UserRoute/EditUserInfo";
 import {EditUserPassword} from "../../models/backendRequests/UserRoute/EditUserPassword";
 import {LoginResponseDto} from "../../models/backendResponses/userRoute/LoginResponseDto";
-import {GetUserProfileDto} from "../../models/backendRequests/UserRoute/GetUserProfileDto";
+import {UserProfileDto} from "../../models/backendRequests/UserRoute/UserProfileDto";
 import {GetUserPlaylistsDto} from "../../models/backendRequests/UserRoute/GetUserPlaylistsDto";
+import {SortPlaylist} from "../../models/backendRequests/PlaylistRoute/SortPlaylist";
 
 class UserRequests {
 
-    static async getProfile(username: string, sessionToken: string) {
-        const url = "/User/Profile/";
-
-        const data: GetUserProfileDto = {
-            username: username,
-            sessionToken: sessionToken
-        }
-
-        const options = {
-            method: 'POST',
-            url: url,
-            data: data
-        };
-
-        // @ts-ignore
-        let profileResponse = await axios(options);
-        let profile: UserProfileResponseDto = profileResponse.data;
-        return profile;
-
-    }
-
-    static async getPlaylists(username: string, sessionToken: string) {
-        const url = "/User/Playlists/";
-
-        const data: GetUserPlaylistsDto = {
-            username: username,
-            sessionToken: sessionToken
-        }
-
-        const options = {
-            method: 'POST',
-            url: url,
-            data: data
-        };
-
-        // @ts-ignore
-        let profileResponse = await axios(options);
-        return profileResponse.data as PlaylistDto[];
-
-    }
+    // CREATE
 
     static async register(username: string, name: string, email: string, password: string, userPhoto: File) {
         const url = "/User/register";
@@ -70,6 +32,9 @@ class UserRequests {
 
     }
 
+
+    // READ
+
     // Logs in to the application and returns a session token
     static async login(email: string, password: string) {
         const url = "/User/login";
@@ -89,6 +54,73 @@ class UserRequests {
         // @ts-ignore
         let loginResponse = await axios(options)
         return loginResponse.data as LoginResponseDto
+
+    }
+
+    static async getProfile(username: string, sessionToken: string) {
+        const url = "/User/getProfile/";
+
+        const data: UserProfileDto = {
+            username: username,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let profileResponse = await axios(options);
+        let profile: UserProfileResponseDto = profileResponse.data;
+        return profile;
+
+    }
+
+    static async getPlaylists(username: string, sessionToken: string) {
+        const url = "/User/getPlaylists/";
+
+        const data: GetUserPlaylistsDto = {
+            username: username,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let profileResponse = await axios(options);
+        return profileResponse.data as PlaylistDto[];
+
+    }
+
+
+    // UPDATE
+
+    static async sortPlaylist(playlistId: string, newIndex: number, sessionToken: string) {
+
+        const url = "/Playlist/sortPlaylist";
+
+        let data: SortPlaylist = {
+            playlistId: playlistId,
+            newIndex: newIndex,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+
+        // @ts-ignore
+        let response = await axios(options);
+        return response.data as string;
 
     }
 

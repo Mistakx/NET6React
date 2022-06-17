@@ -86,7 +86,7 @@ function PlaylistItemsList(props: PlaylistItemsListProperties): JSX.Element {
                 try {
                     const oldIndex = playlistGeneralizedResults.findIndex((item) => item.platformId === active.id);
                     const newIndex = playlistGeneralizedResults.findIndex((item) => item.platformId === over?.id);
-                    PlaylistRequests.sortGeneralizedResult(props.playlistId, playlistGeneralizedResults[oldIndex].databaseId!, newIndex, sessionToken).then(
+                    PlaylistRequests.sortContent(props.playlistId, playlistGeneralizedResults[oldIndex].databaseId!, newIndex, sessionToken).then(
                         (response) => {
                             prettyAlert(response, true)
                         }

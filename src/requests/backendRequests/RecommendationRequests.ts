@@ -10,6 +10,7 @@ import {GetPlaylistViews} from "../../models/backendRequests/RecommendationsRout
 import {SaveUserView} from "../../models/backendRequests/RecommendationsRoute/SaveUserView";
 import {UserProfileResponseDto} from "../../models/backendResponses/userRoute/UserProfileResponseDto";
 import {GetTrendingUsersDto} from "../../models/backendRequests/RecommendationsRoute/GetTrendingUsersDto";
+import {GetTrendingContentDto} from "../../models/backendRequests/RecommendationsRoute/GetTrendingContentDto";
 
 class RecommendationRequests {
 
@@ -19,7 +20,7 @@ class RecommendationRequests {
         const url = "/Recommendations/saveContentView";
 
         const data: SaveContentView = {
-            generalizedResult: generalizedResult,
+            content: generalizedResult,
             sessionToken: sessionToken
         }
 
@@ -34,13 +35,20 @@ class RecommendationRequests {
         return response.data as string
     }
 
-    static async getTrendingContent() {
+    static async getTrendingContent(page: number, limit: number, sessionToken: string) {
 
         const url = "/Recommendations/getTrendingContent";
 
+        const data: GetTrendingContentDto = {
+            limit: limit,
+            pageNumber: page,
+            sessionToken: sessionToken
+        }
+
         const options = {
-            method: 'GET',
+            method: 'POST',
             url: url,
+            data: data
         };
 
         // @ts-ignore

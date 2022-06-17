@@ -136,7 +136,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                 try {
                     const oldIndex = userPlaylistItems.findIndex((item) => item.id === active.id);
                     const newIndex = userPlaylistItems.findIndex((item) => item.id === over?.id);
-                    PlaylistRequests.sortPlaylist(userPlaylistItems[oldIndex].id!, newIndex, sessionToken).then(
+                    UserRequests.sortPlaylist(userPlaylistItems[oldIndex].id!, newIndex, sessionToken).then(
                         (response) => {
                             prettyAlert(response, true)
                         }
