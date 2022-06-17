@@ -51,8 +51,8 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
             if (sessionToken) {
                 try {
                     const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
-                    if (showing === "Custom Order"){}
-                    else if (showing === "Order by Title") userPlaylists.sort(compareTitle)
+                    if (showing === "Custom Order") {
+                    } else if (showing === "Order by Title") userPlaylists.sort(compareTitle)
                     else if (showing === "Order by Items Amount") userPlaylists.sort(compareResultsAmount)
                     else if (showing === "Order by Weekly Views") userPlaylists.sort(compareWeeklyViews)
                     else if (showing === "Order by Total Views") userPlaylists.sort(compareTotalViews)
@@ -124,15 +124,15 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
     }
 
     function compareWeeklyViews(a: PlaylistDto, b: PlaylistDto) {
-        return (a.weeklyViewsAmount! - b.weeklyViewsAmount!);
+        return (b.weeklyViewsAmount! - a.weeklyViewsAmount!);
     }
 
     function compareTotalViews(a: PlaylistDto, b: PlaylistDto) {
-        return (a.totalViewsAmount! - b.totalViewsAmount!);
+        return (b.totalViewsAmount! - a.totalViewsAmount!);
     }
 
     function compareResultsAmount(a: PlaylistDto, b: PlaylistDto) {
-        return (a.resultsAmount! - b.weeklyViewsAmount!);
+        return (b.resultsAmount! - a.resultsAmount!);
     }
 
     const sensors = useSensors(
@@ -177,7 +177,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
 
     let editOrCreatePlaylistModal;
     if (props.username === sessionStorage.getItem("username")) {
-      editOrCreatePlaylistModal = <EditOrCreatePlaylistModal/>
+        editOrCreatePlaylistModal = <EditOrCreatePlaylistModal/>
     }
 
     let playlistList;
@@ -195,7 +195,8 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                 {addPlaylistItem}
 
                 {userPlaylistItems.map((playlist) => (
-                    <UserPlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={true} showingPlaylistInSearch={false}/>
+                    <UserPlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={true}
+                                      showingPlaylistInSearch={false} draggable={showing === "Custom Order"}/>
                 ))}
 
             </SortableContext>
@@ -204,7 +205,8 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
         playlistList = <>
             {
                 userPlaylistItems.map((playlist) => (
-                    <UserPlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={false} showingPlaylistInSearch={false}/>
+                    <UserPlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={false}
+                                      showingPlaylistInSearch={false} draggable={false}/>
                 ))
             }
         </>

@@ -121,7 +121,7 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
     }
 
     let playlistDraggableIcon;
-    if (props.showingMyPlaylists) {
+    if (props.draggable) {
         playlistDraggableIcon = <div className="options-dropdown position-absolute" style={{top: 0, right: 0}}>
             <div className="btn-group" style={{position: "absolute", top: "10px", right: "10px"}}>
 
@@ -152,14 +152,13 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
     let playlistItemClass;
     if (!props.showingPlaylistInSearch) {
-        console.log(props.showingPlaylistInSearch)
         playlistItemClass = "col-lg-4 col-md-6 col-sm-6 col-6 position-relative"
     } else {
         playlistItemClass = "result col-lg-3 col-md-4 col-sm-6 col-6 position-relative"
     }
 
     let followButton;
-    if (!props.showingMyPlaylists) {
+    if (props.basicDetails.followed !== null) {
         followButton = <div className="options">
             <button className="btn btn-lg btn-add"
                     type="button"

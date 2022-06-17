@@ -28,7 +28,6 @@ function TopBar(props: TopBarProperties): JSX.Element {
                                     <option>Custom Order</option>
                                     <option>Order by Title</option>
                                     <option>Order by Items Amount</option>
-                                    <option>Order by Items Amount</option>
                                     <option>Order by Weekly Views</option>
                                     <option>Order by Total Views</option>
                                 </select>

@@ -12,7 +12,9 @@ class CommunityResultComponentFactory {
         for (const currentCommunityItem of results) {
 
             if ("visibility" in currentCommunityItem) {
-                let currentPlaylistItem = <UserPlaylistItem basicDetails={currentCommunityItem} showingMyPlaylists={false} showingPlaylistInSearch={true}/>
+                let currentPlaylistItem = <UserPlaylistItem basicDetails={currentCommunityItem}
+                                                            showingMyPlaylists={false} showingPlaylistInSearch={true}
+                                                            draggable={false}/>
                 searchResultItems.push(currentPlaylistItem);
             } else if ("username" in currentCommunityItem) {
                 let currentUserItem = <UserItem basicDetails={currentCommunityItem}/>
