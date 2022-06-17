@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import '../../../styles/style.css';
-import {UserProfileResponseDto} from "../../../models/backendResponses/userRoute/UserProfileResponseDto";
+import {UserProfileDto} from "../../../models/backendResponses/userRoute/UserProfileDto";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
 import {EditPhotoButton} from "./EditPhotoButton";
 import AlertStore from "../../../stores/AlertStore";
@@ -15,7 +15,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
-    const [userProfile, setProfile] = React.useState<UserProfileResponseDto>();
+    const [userProfile, setProfile] = React.useState<UserProfileDto>();
 
     const setModalUsername = EditUserInfoModalStore(state => state.setUsername)
     const setModalName = EditUserInfoModalStore(state => state.setName)

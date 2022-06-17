@@ -1,4 +1,4 @@
-export interface UserProfileResponseDto {
+export interface UserProfileDto {
     name: string
     username: string
     profilePhotoUrl: string

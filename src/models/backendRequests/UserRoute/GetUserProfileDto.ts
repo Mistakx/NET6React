@@ -1,4 +1,4 @@
-export interface UserProfileDto {
+export interface GetUserProfileDto {
     username: string
     sessionToken: string
 }

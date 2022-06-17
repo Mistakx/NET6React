@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {GeneralizedResult} from "../../../models/apiResponses/GenericResults";
-import RecommendationRequests from "../../../requests/backendRequests/RecommendationRequests";
-import SearchResultComponentFactory from "../../searchPage/searchItems/SearchResultComponentFactory";
-import UserPlaylistsModal from "../../searchPage/userPlaylistsModal/UserPlaylistsModal";
+import {GeneralizedResult} from "../../models/apiResponses/GenericResults";
+import RecommendationRequests from "../../requests/backendRequests/RecommendationRequests";
+import SearchResultComponentFactory from "../searchPage/searchItems/SearchResultComponentFactory";
+import UserPlaylistsModal from "../searchPage/userPlaylistsModal/UserPlaylistsModal";
 
 function TrendingResultsList(): JSX.Element {
 

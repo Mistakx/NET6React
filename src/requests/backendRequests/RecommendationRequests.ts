@@ -8,7 +8,7 @@ import {SavePlaylistView} from "../../models/backendRequests/RecommendationsRout
 import {GetTrendingPlaylists} from "../../models/backendRequests/RecommendationsRoute/GetTrendingPlaylists";
 import {GetPlaylistViews} from "../../models/backendRequests/RecommendationsRoute/GetPlaylistViews";
 import {SaveUserView} from "../../models/backendRequests/RecommendationsRoute/SaveUserView";
-import {UserProfileResponseDto} from "../../models/backendResponses/userRoute/UserProfileResponseDto";
+import {UserProfileDto} from "../../models/backendResponses/userRoute/UserProfileDto";
 import {GetTrendingUsersDto} from "../../models/backendRequests/RecommendationsRoute/GetTrendingUsersDto";
 import {GetTrendingContentDto} from "../../models/backendRequests/RecommendationsRoute/GetTrendingContentDto";
 
@@ -180,7 +180,7 @@ class RecommendationRequests {
 
         // @ts-ignore
         let response = await axios(options)
-        return response.data as UserProfileResponseDto[]
+        return response.data as UserProfileDto[]
     }
 
     static async getUserViews(userId: string) {

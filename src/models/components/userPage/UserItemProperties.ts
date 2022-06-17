@@ -1,5 +1,5 @@
-import {UserProfileResponseDto} from "../../backendResponses/userRoute/UserProfileResponseDto";
+import {UserProfileDto} from "../../backendResponses/userRoute/UserProfileDto";
 
 export interface UserItemProperties {
-    basicDetails: UserProfileResponseDto
+    basicDetails: UserProfileDto
 }

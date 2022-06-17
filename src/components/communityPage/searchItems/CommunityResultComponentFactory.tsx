@@ -1,11 +1,11 @@
 import {PlaylistDto} from "../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import UserPlaylistItem from "../../userPage/playlistsLists/UserPlaylistItem";
-import {UserProfileResponseDto} from "../../../models/backendResponses/userRoute/UserProfileResponseDto";
+import {UserProfileDto} from "../../../models/backendResponses/userRoute/UserProfileDto";
 import UserItem from "./UserItem";
 
 class CommunityResultComponentFactory {
 
-    static create(results: PlaylistDto[] | UserProfileResponseDto[]) {
+    static create(results: PlaylistDto[] | UserProfileDto[]) {
 
         let searchResultItems: JSX.Element[] = []
 

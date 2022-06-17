@@ -8,7 +8,7 @@ import SelectedCommunitySearchStore from "../../../stores/searches/SelectedCommu
 import CommunityDropdownStore from "../../../stores/searches/CommunityDropdownStore";
 import SearchedCommunityResultsStore from "../../../stores/searches/SearchedCommunityResultsStore";
 import {PlaylistDto} from "../../../models/backendRequests/PlaylistRoute/PlaylistDto";
-import {UserProfileResponseDto} from "../../../models/backendResponses/userRoute/UserProfileResponseDto";
+import {UserProfileDto} from "../../../models/backendResponses/userRoute/UserProfileDto";
 import CommunitySearchLabel from "./CommunitySearchLabel";
 
 function CommunitySearchBar(): JSX.Element {
@@ -41,7 +41,7 @@ function CommunitySearchBar(): JSX.Element {
 
     async function searchPlatformItems(chosenSearchQuery: string) {
 
-        let searchList: PlaylistDto[] | UserProfileResponseDto[] = [];
+        let searchList: PlaylistDto[] | UserProfileDto[] = [];
 
         try {
             const sessionToken = window.sessionStorage.getItem("sessionToken")

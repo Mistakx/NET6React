@@ -1,5 +1,5 @@
 // /User/Playlists/{userId}
-import {UserProfileDto} from "../UserRoute/UserProfileDto";
+import {GetUserProfileDto} from "../UserRoute/GetUserProfileDto";
 
 export interface PlaylistDto {
     id: string
@@ -11,7 +11,7 @@ export interface PlaylistDto {
     weeklyViewsAmount?: number
     totalViewsAmount?: number
     followed?: boolean
-    owner: UserProfileDto
+    owner: GetUserProfileDto
 }
 
 

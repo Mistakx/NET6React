@@ -2,10 +2,10 @@ import '../../styles/SearchPage.css';
 import React, {useEffect} from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
-import TrendingResultsList from "./TrendingResultsList";
-import TopBar from "../TopBar";
+import FollowingTopBar from "./FollowingTopBar";
+import FollowedList from "./FollowedList";
 
-function TrendingPage(): JSX.Element {
+function FollowingPage(): JSX.Element {
 
     useEffect(() => {
         AOS.init();
@@ -15,24 +15,18 @@ function TrendingPage(): JSX.Element {
 
         <div>
 
-
-
             <section id="services" className="services">
                 <div className="container">
 
-
-
                     <div className="row">
-
-
 
                         <div className="col-md-10 offset-md-1">
 
-                            <TopBar text={"Trending This Week 🔥"}></TopBar>
+                            <FollowingTopBar/>
 
                             <div className="search-body">
 
-                                <TrendingResultsList/>
+                                <FollowedList/>
 
                             </div>
 
@@ -48,4 +42,4 @@ function TrendingPage(): JSX.Element {
     )
 }
 
-export default TrendingPage;
+export default FollowingPage;

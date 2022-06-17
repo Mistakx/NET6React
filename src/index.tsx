@@ -15,6 +15,7 @@ import LogRocket from 'logrocket';
 import TrendingPage from "./components/trendingPage/TrendingPage";
 import CommunityPage from "./components/communityPage/CommunityPage";
 import RefreshedUserPage from "./components/userPage/RefreshedOtherUserPage";
+import FollowingPage from "./components/followedPage/FollowingPage";
 
 // LogRocket.init('tcdmcx/playlist-manager');
 
@@ -39,6 +40,7 @@ if (container !== null) {
                 <Route path="/playlist/:playlistId" element={<PlaylistPage/>}/>
                 <Route path="/trending" element={<TrendingPage/>}/>
                 <Route path="/community" element={<CommunityPage/>}/>
+                <Route path="/following" element={<FollowingPage/>}/>
             </Routes>
         </BrowserRouter>
     );

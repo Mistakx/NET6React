@@ -1,10 +1,10 @@
 import axios from "axios";
-import {UserProfileResponseDto} from "../../models/backendResponses/userRoute/UserProfileResponseDto";
+import {UserProfileDto} from "../../models/backendResponses/userRoute/UserProfileDto";
 import {PlaylistDto} from "../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import {EditUserInfo} from "../../models/backendRequests/UserRoute/EditUserInfo";
 import {EditUserPassword} from "../../models/backendRequests/UserRoute/EditUserPassword";
 import {LoginResponseDto} from "../../models/backendResponses/userRoute/LoginResponseDto";
-import {UserProfileDto} from "../../models/backendRequests/UserRoute/UserProfileDto";
+import {GetUserProfileDto} from "../../models/backendRequests/UserRoute/GetUserProfileDto";
 import {GetUserPlaylistsDto} from "../../models/backendRequests/UserRoute/GetUserPlaylistsDto";
 import {SortPlaylist} from "../../models/backendRequests/PlaylistRoute/SortPlaylist";
 
@@ -60,7 +60,7 @@ class UserRequests {
     static async getProfile(username: string, sessionToken: string) {
         const url = "/User/getProfile/";
 
-        const data: UserProfileDto = {
+        const data: GetUserProfileDto = {
             username: username,
             sessionToken: sessionToken
         }
@@ -73,7 +73,7 @@ class UserRequests {
 
         // @ts-ignore
         let profileResponse = await axios(options);
-        let profile: UserProfileResponseDto = profileResponse.data;
+        let profile: UserProfileDto = profileResponse.data;
         return profile;
 
     }
