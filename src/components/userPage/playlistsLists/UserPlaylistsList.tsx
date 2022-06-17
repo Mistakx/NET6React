@@ -25,6 +25,7 @@ import {
 import {restrictToParentElement, restrictToWindowEdges} from "@dnd-kit/modifiers";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
 import {UserPlaylistsListProperties} from "../../../models/components/userPage/UserPlaylistsListProperties";
+import UserTopBarStore from "../../../stores/topBars/UserTopBarStore";
 
 
 function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
@@ -32,6 +33,8 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const [userPlaylistItems, setUserPlaylistItems] = React.useState<PlaylistDto[]>([]);
+
+    const showing = UserTopBarStore(state => state.showing)
 
     const setEditOrCreatePlaylistResponse = BackendResponsesStore(state => state.setEditOrCreatePlaylistResponse)
     const editOrCreatePlaylistResponse = BackendResponsesStore(state => state.editOrCreatePlaylistResponse)
@@ -48,14 +51,19 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
             if (sessionToken) {
                 try {
                     const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
-                    // userPlaylists.sort(compare)
+                    if (showing === "Custom Order"){}
+                    else if (showing === "Order by Title") userPlaylists.sort(compareTitle)
+                    else if (showing === "Order by Items Amount") userPlaylists.sort(compareResultsAmount)
+                    else if (showing === "Order by Weekly Views") userPlaylists.sort(compareWeeklyViews)
+                    else if (showing === "Order by Total Views") userPlaylists.sort(compareTotalViews)
+
                     setUserPlaylistItems(userPlaylists);
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
                 }
             } else prettyAlert("No session token found.", false)
         })()
-    }, [props.username]);
+    }, [props.username, showing]);
 
     useEffect(() => {
         if (deletePlaylistResponse) {
@@ -111,8 +119,20 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
         }
     }, [editOrCreatePlaylistResponse]);
 
-    function compare(a: PlaylistDto, b: PlaylistDto) {
+    function compareTitle(a: PlaylistDto, b: PlaylistDto) {
         return (a.title.localeCompare(b.title));
+    }
+
+    function compareWeeklyViews(a: PlaylistDto, b: PlaylistDto) {
+        return (a.weeklyViewsAmount! - b.weeklyViewsAmount!);
+    }
+
+    function compareTotalViews(a: PlaylistDto, b: PlaylistDto) {
+        return (a.totalViewsAmount! - b.totalViewsAmount!);
+    }
+
+    function compareResultsAmount(a: PlaylistDto, b: PlaylistDto) {
+        return (a.resultsAmount! - b.weeklyViewsAmount!);
     }
 
     const sensors = useSensors(
@@ -161,7 +181,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
     }
 
     let playlistList;
-    if (props.username === sessionStorage.getItem("username")) {
+    if (props.username === sessionStorage.getItem("username") && showing === "Custom Order") {
         playlistList = <DndContext
             sensors={sensors}
             collisionDetection={closestCenter}

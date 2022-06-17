@@ -2,24 +2,23 @@ import React, {useEffect} from 'react';
 import '../../styles/style.css';
 import UserPlaylistsList from "./playlistsLists/UserPlaylistsList";
 import UserProfile from "./profilePanel/UserProfile";
-import TopBar from "../TopBar";
+import UserTopBar from "./UserTopBar";
 
-function UserPage(props: {username:string}) {
+function UserPage(props: { username: string }) {
 
     const [topBar, setTopBar] = React.useState<JSX.Element>();
     const [userProfile, setUserProfile] = React.useState<JSX.Element>();
     const [userPlaylistItems, setUserPlaylistItems] = React.useState<JSX.Element>();
 
     useEffect(() => {
-    if (props.username === window.sessionStorage.getItem("username")) {
-        setTopBar(<TopBar text="My Profile 🎵"/>)
-        setUserProfile(<UserProfile username={props.username}/>)
-        setUserPlaylistItems(<UserPlaylistsList username={props.username}/>)
-    } else {
-        setTopBar(<TopBar text={props.username + " Profile 🎵"}/>)
+        if (props.username === window.sessionStorage.getItem("username")) {
+            setTopBar(<UserTopBar text="My Profile 🎵"/>)
+        } else {
+            setTopBar(<UserTopBar text={props.username + " Profile 🎵"}/>)
+        }
         setUserProfile(<UserProfile username={props.username!}/>)
         setUserPlaylistItems(<UserPlaylistsList username={props.username!}/>)
-    }
+
     }, [props.username])
 
     return (

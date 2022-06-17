@@ -20,12 +20,12 @@ function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
     let weeklyViewsAmount;
     if (props.searchResult.weeklyViewsAmount || props.searchResult.weeklyViewsAmount === 0) {
         weeklyViewsAmount =
-            <p className="card-text text-truncate">Weekly Views: {props.searchResult.weeklyViewsAmount}</p>
+            <div className="card-text text-truncate">Weekly Views: {props.searchResult.weeklyViewsAmount}</div>
     }
 
     let totalViewsAmount;
     if (props.searchResult.totalViewsAmount || props.searchResult.totalViewsAmount === 0) {
-        totalViewsAmount = <p className="card-text text-truncate">Total Views: {props.searchResult.totalViewsAmount}</p>
+        totalViewsAmount = <div className="card-text text-truncate">Total Views: {props.searchResult.totalViewsAmount}</div>
     }
 
     return (
