@@ -51,8 +51,8 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
             if (sessionToken) {
                 try {
                     const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
-                    if (showing === "Custom Order") {
-                    } else if (showing === "Order by Title") userPlaylists.sort(compareTitle)
+                    if (showing === "Custom Order") userPlaylists.sort()
+                    else if (showing === "Order by Title") userPlaylists.sort(compareTitle)
                     else if (showing === "Order by Items Amount") userPlaylists.sort(compareResultsAmount)
                     else if (showing === "Order by Weekly Views") userPlaylists.sort(compareWeeklyViews)
                     else if (showing === "Order by Total Views") userPlaylists.sort(compareTotalViews)
@@ -170,18 +170,17 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
         }
     }
 
-    let addPlaylistItem;
-    if (props.username === sessionStorage.getItem("username")) {
-        addPlaylistItem = <AddPlaylistItem/>
-    }
-
     let editOrCreatePlaylistModal;
     if (props.username === sessionStorage.getItem("username")) {
         editOrCreatePlaylistModal = <EditOrCreatePlaylistModal/>
     }
 
     let playlistList;
+    let addPlaylistItem;
+
+    // Showing my playlist, and a custom order
     if (props.username === sessionStorage.getItem("username") && showing === "Custom Order") {
+        addPlaylistItem = <AddPlaylistItem/>
         playlistList = <DndContext
             sensors={sensors}
             collisionDetection={closestCenter}
@@ -192,16 +191,31 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                 items={userPlaylistItems.map((playlist) => playlist.id)}
                 strategy={rectSortingStrategy}
             >
-                {addPlaylistItem}
 
                 {userPlaylistItems.map((playlist) => (
                     <UserPlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={true}
-                                      showingPlaylistInSearch={false} draggable={showing === "Custom Order"}/>
+                                      showingPlaylistInSearch={false} draggable={true}/>
                 ))}
 
             </SortableContext>
         </DndContext>
-    } else {
+    }
+
+    // Showing my playlist, but not a custom order
+    else if (props.username === sessionStorage.getItem("username") && showing !== "Custom Order") {
+        addPlaylistItem = <AddPlaylistItem/>
+        playlistList = <>
+                {userPlaylistItems.map((playlist) => (
+                    <UserPlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={true}
+                                      showingPlaylistInSearch={false} draggable={false}/>
+                ))}
+        </>
+
+
+    }
+
+    // Showing another user playlist
+    else {
         playlistList = <>
             {
                 userPlaylistItems.map((playlist) => (
@@ -211,6 +225,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
             }
         </>
     }
+
     return (
 
         <div className="col-lg-8 col-md-6 col-sm-12 col-12">
@@ -218,6 +233,8 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
             {editOrCreatePlaylistModal}
 
             <div className="row results">
+
+                {addPlaylistItem}
 
                 {playlistList}
 
