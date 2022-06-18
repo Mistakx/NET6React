@@ -315,7 +315,6 @@
     font-size: 20px;
     z-index: 1071;
     padding-top: 0px;
-    padding-right: 4px;
 }
 
 .player-flutuante iframe {
@@ -452,9 +451,14 @@
     /* color: #0d3a76; */
 }
 
-.modal-body .list-group .add-list:hover {
-    background-color: #027cee;
-    color: #fff;
+.add-list .form-control::placeholder {
+    color: var(--text);
+}
+
+.add-list .form-control {
+    color: var(--text);
+    border:none;
+    border-bottom: solid 3px var(--spartaHiglightColor);
 }
 
 .modal-body .list-group-item:hover {

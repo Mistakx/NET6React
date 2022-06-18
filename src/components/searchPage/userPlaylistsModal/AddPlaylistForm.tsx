@@ -15,7 +15,7 @@ function AddPlaylistForm(): JSX.Element {
 
     return (
 
-        <li className="list-group-item add-list clickable">
+        <div className="add-list clickable">
 
             <form
                 onSubmit={async (e) => {
@@ -39,7 +39,7 @@ function AddPlaylistForm(): JSX.Element {
                 </div>
             </form>
 
-        </li>
+        </div>
 
     )
 }
