@@ -5,12 +5,15 @@ import {useNavigate} from "react-router-dom";
 import RecommendationRequests from "../../../requests/backendRequests/RecommendationRequests";
 import CommunityRequests from "../../../requests/backendRequests/CommunityRequests";
 import AlertStore from "../../../stores/AlertStore";
+import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 
 function UserItem(props: UserItemProperties): JSX.Element {
 
     let navigate = useNavigate()
 
     const [followingButtonShapeClass, setFollowingButtonShapeClass] = React.useState<string>()
+
+    const setToggledFollowResponse = BackendResponsesStore(state => state.setToggledFollowResponse)
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
@@ -45,7 +48,9 @@ function UserItem(props: UserItemProperties): JSX.Element {
                                 try {
                                     const sessionToken = window.sessionStorage.getItem("sessionToken")
                                     if (sessionToken) {
-                                        prettyAlert(await CommunityRequests.toggleUserFollow(props.basicDetails.username, sessionToken), true)
+                                        const response = await CommunityRequests.toggleUserFollow(props.basicDetails.username, sessionToken)
+                                        prettyAlert(response, true)
+                                        setToggledFollowResponse(response)
                                         toggleFollowingButton()
                                     } else prettyAlert("You need to be logged in to follow a user", false)
                                 } catch (e: any) {
