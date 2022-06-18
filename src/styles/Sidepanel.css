@@ -99,9 +99,9 @@
 # Header
 --------------------------------------------------------------*/
 #header {
-  position: fixed;
-  left: 0;
-  bottom: 35%;
+  position: fixed;margin: 0;
+  bottom: 50%;                        
+  transform: translate(0, 50%);
   z-index: 9997;
   transition: all 0.7s;
   padding: 15px;
@@ -115,18 +115,24 @@
     min-height: 58px;
     bottom: 0;
     padding: 0;
+    transform: translate(0, 0);
     margin-bottom: -8px;
-    /* background: rgb(148, 121, 121); */
+    background: rgb(148, 121, 121);
   }
   
   .nav-menu {
     position: relative !important;
+    width: 100%;
+    background-color: #f2f3f5;
+    align-items: center;
+    text-align: center !important;
+    border-top-left-radius: 6px ;
+    border-top-right-radius: 6px ;
   }
   
   .nav-menu > ul > li {
     display: inline-block !important;
     align-items: center;
-    width:33.33%;
     text-align: center !important;
   }
 
@@ -136,13 +142,13 @@
     color: #45505b;
     padding: 10px 18px;
     font-size: 15px;
-    border-radius: 6px;
+    border-radius:0px;
     background: #f2f3f5;
     width: auto;
     overflow: hidden;
     transition: 0.3s;
   }
-  
+
 }
 
 @media (min-width: 688px) {

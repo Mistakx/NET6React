@@ -394,12 +394,21 @@
     z-index: 10;
 }
 
+.options-dropdown-right {
+    position: absolute;
+    top:0px;
+    right:0px;
+    z-index: 10;
+}
+
+.options-dropdown-right .btn,
 .options-dropdown .btn {
     color: #fff;
     border-top-left-radius: 20px;
     padding: 0;
 }
 
+.options-dropdown-right .btn i,
 .options-dropdown .btn i,
 .options-top .btn {
     color: #fff;
