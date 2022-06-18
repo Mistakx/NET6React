@@ -2,10 +2,11 @@ import React from 'react';
 import '../../styles/style.css';
 import {TopBarProperties} from "../../models/components/TopBarProperties";
 import UserTopBarStore from "../../stores/topBars/UserTopBarStore";
+import PlaylistTopBarStore from "../../stores/topBars/PlaylistTopBarStore";
 
-function TopBar(props: TopBarProperties): JSX.Element {
+function PlaylistTopBar(): JSX.Element {
 
-    const setOrder = UserTopBarStore(state => state.setOrder)
+    const setOrder = PlaylistTopBarStore(state => state.setOrder)
 
     return (
 
@@ -16,20 +17,18 @@ function TopBar(props: TopBarProperties): JSX.Element {
                         <ol className="breadcrumb p-3">
 
                             {/* <li className="breadcrumb-item text-white" aria-current="page"><i className='bx bx-arrow-back'></i></li> */}
-                            <li className="breadcrumb-item active text-white" aria-current="page">{props.text}
+                            <li className="breadcrumb-item active text-white" aria-current="page">Playlist Page
 
                             </li>
                             <li className="text-end">
                                 <select className="form-control form-select-sm " id="exampleFormControlSelect1"
                                         onChange={(e) => {
-                                            setOrder(e.target.value as "Custom Order" | "Order by Title")
+                                            setOrder(e.target.value as "Custom Order" | "Order by Title" | "Order by Creator")
                                         }}
                                 >
                                     <option>Custom Order</option>
                                     <option>Order by Title</option>
-                                    <option>Order by Items Amount</option>
-                                    <option>Order by Weekly Views</option>
-                                    <option>Order by Total Views</option>
+                                    <option>Order by Creator</option>
                                 </select>
                             </li>
                         </ol>
@@ -43,4 +42,4 @@ function TopBar(props: TopBarProperties): JSX.Element {
 
 }
 
-export default TopBar;
+export default PlaylistTopBar;

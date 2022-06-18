@@ -23,6 +23,7 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
     const setDeletePlaylistResponse = BackendResponsesStore(state => state.setDeletePlaylistResponse)
     const setResetCoverResponse = BackendResponsesStore(state => state.setResetCoverResponse)
+    const setToggledFollowResponse = BackendResponsesStore(state => state.setToggledFollowResponse)
 
     const {
         attributes,
@@ -156,6 +157,7 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
     }
 
 
+    // The playlist item card grid depends varies if it is showing on a playlist or on a search result
     let playlistItemClass;
     if (!props.showingPlaylistInSearch) {
         playlistItemClass = "col-lg-4 col-md-6 col-sm-6 col-6 position-relative"
@@ -172,7 +174,9 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                         try {
                             const sessionToken = window.sessionStorage.getItem("sessionToken")
                             if (sessionToken) {
-                                prettyAlert(await CommunityRequests.togglePlaylistFollow(props.basicDetails.id, sessionToken), true)
+                                const response = await CommunityRequests.togglePlaylistFollow(props.basicDetails.id, sessionToken)
+                                prettyAlert(response, true)
+                                setToggledFollowResponse(response)
                                 toggleFollowingButton()
                             } else prettyAlert("You need to be logged in to follow a playlist", false)
                         } catch (e: any) {

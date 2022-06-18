@@ -24,4 +24,7 @@ export interface BackendResponsesState {
     updatedUserInfoResponse: string | null;
     setUpdatedUserInfoResponse: (updatedUserInfoResponse: string | null) => void
 
+    toggledFollowResponse: string | null;
+    setToggledFollowResponse: (toggledFollowResponse: string | null) => void
+
 }

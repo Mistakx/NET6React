@@ -422,16 +422,13 @@
 }
 
 .options .btn-user {
+    background-color: rgba(25, 112, 227, 0.5);
     padding: 0;
     width: 42px;
     height: 42px;
     padding-bottom: -20px;
     margin-right: 60px !important;
-}
-
-.btn-user:hover {
-    /*for demo, move this line up if you want to darken it as default*/
-    background: rgba(0,0,0, .5);
+    color: #fff;
 }
 
 .options .btn-add {

@@ -2,13 +2,13 @@ import '../../styles/Playlist.css'
 import '../../styles/SearchPage.css'
 import React, {useEffect, useState} from "react";
 import "aos/dist/aos.css";
-import TopBar from "../TopBar";
 import {useParams} from "react-router-dom";
-import PlaylistItemsList from "./PlaylistItems/PlaylistItemsList";
+import PlaylistContentList from "./PlaylistItems/PlaylistContentList";
 import PlaylistCover from "./PlaylistItems/PlaylistCover";
 import PlaylistPlayer from "./PlaylistPlayer/PlaylistPlayer";
 import PlaylistPagePlayerStore from "../../stores/players/PlaylistPagePlayerStore";
 import AOS from "aos";
+import PlaylistTopBar from "./PlaylistTopBar";
 
 function PlaylistPage(): JSX.Element {
 
@@ -32,7 +32,7 @@ function PlaylistPage(): JSX.Element {
 
     let playlistsItemsList;
     if (playlistId) {
-        playlistsItemsList = <PlaylistItemsList playlistId={playlistId}/>
+        playlistsItemsList = <PlaylistContentList playlistId={playlistId}/>
     }
 
     return (
@@ -44,7 +44,7 @@ function PlaylistPage(): JSX.Element {
                 <section id="services" className="playlist">
                     <div className="container">
 
-                        <TopBar text={"Playlist Page"}/>
+                        <PlaylistTopBar/>
 
                         <div className="row">
 
@@ -61,8 +61,6 @@ function PlaylistPage(): JSX.Element {
                                 </div>
 
                             </div>
-
-                            {/* </div> */}
 
                         </div>
                     </div>

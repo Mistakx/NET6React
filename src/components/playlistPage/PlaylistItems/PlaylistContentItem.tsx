@@ -8,7 +8,7 @@ import PlaylistItemDropdown from "./PlaylistItemDropdown";
 import {useSortable} from "@dnd-kit/sortable";
 import {CSS} from "@dnd-kit/utilities";
 
-function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
+function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
 
     const setPlayingGlobalGenericResult = GlobalPlayerStore(state => state.setGlobalPlayerCurrentResult)
     const setSearchCurrentResults = GlobalPlayerStore(state => state.setSearchCurrentResults)
@@ -16,24 +16,41 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
     const setPlaylistPlayerGeneralizedResult = PlaylistPagePlayerStore(state => state.setPlaylistPlayerCurrentResult)
     const setPlaylistCurrentResults = PlaylistPagePlayerStore(state => state.setPlaylistCurrentResults)
 
-
     const {
         attributes,
         listeners,
         setNodeRef,
         transform,
         transition,
-        isDragging
     } = useSortable({id: props.generalizedResult.platformId});
 
     const style = {
-        // width: "100%",
-        // height: "100%",
-        // padding: 20,
-        // border: '1px solid',
         transform: CSS.Transform.toString(transform),
         transition,
     };
+
+    let draggableButton;
+    if (props.draggable) {
+        draggableButton =                     <span className=" align-middle"><i className='bx bx-menu h4'></i></span>
+
+    }
+
+    let contentDropdown;
+    if (props.showingMyPlaylist) {
+        contentDropdown = <div className="col-1">
+            <div className="btn-group dropstart">
+                <button type="button" className="btn btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i className='bx bx-dots-vertical-rounded h4'></i>
+                </button>
+                <PlaylistItemDropdown
+                    playlistId={props.playlistId}
+                    genericResult={props.generalizedResult}
+                />
+            </div>
+        </div>
+    }
+
+
 
     return (
 
@@ -43,7 +60,7 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
         >
             <div className="row">
                 <div className="col-2">
-                    <span className=" align-middle"><i className='bx bx-menu h4'></i></span>
+                    {draggableButton}
                 </div>
                 <div className="col-8 p-3 clickable"
                      style={{
@@ -62,17 +79,7 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
                     <h6 className="fw-bold text-truncate">{props.generalizedResult.title}</h6>
                 </div>
 
-                <div className="col-1">
-                    <div className="btn-group dropstart">
-                        <button type="button" className="btn btn-link" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i className='bx bx-dots-vertical-rounded h4'></i>
-                        </button>
-                        <PlaylistItemDropdown
-                            playlistId={props.playlistId}
-                            genericResult={props.generalizedResult}
-                        />
-                    </div>
-                </div>
+                {contentDropdown}
 
             </div>
 
@@ -81,4 +88,4 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
 
 }
 
-export default PlaylistItem;
+export default PlaylistContentItem;

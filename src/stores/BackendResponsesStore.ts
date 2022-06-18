@@ -43,6 +43,11 @@ const BackendResponsesStore = create<BackendResponsesState>((set) => ({
         updatedUserInfoResponse: updatedUserInfoResponse
     })),
 
+    toggledFollowResponse: null,
+    setToggledFollowResponse: (toggledFollowResponse) => set(state => ({
+        toggledFollowResponse: toggledFollowResponse
+    })),
+
 }))
 
 export default BackendResponsesStore;
