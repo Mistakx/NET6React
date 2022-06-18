@@ -12,12 +12,12 @@ function FollowingTopBar(): JSX.Element {
             <div className="col-12">
                 <div className="iconbox-blue rounded">
                     <nav aria-label="breadcrumb ">
-                        <ol className="breadcrumb p-3">
+                        <ol className="breadcrumb p-3 position-relative">
 
                             {/* <li className="breadcrumb-item text-white" aria-current="page"><i className='bx bx-arrow-back'></i></li> */}
                             <li className="breadcrumb-item active text-white" aria-current="page">Following 👥</li>
-                            <li className="text-end">
-                                <select className="form-control form-select-sm " id="exampleFormControlSelect1"
+                            <li className="position-absolute top-50 end-0 translate-middle-y me-3">
+                                <select className="form-select form-select-sm bg-dark text-white" id="exampleFormControlSelect1"
                                         onChange={(e) => {
                                             setShowing(e.target.value as "Users" | "Playlists")
                                         }}
