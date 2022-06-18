@@ -20,7 +20,7 @@ function SidePanel(): JSX.Element {
                                  navigate('/home');
                              }}>
                             <i className="bx bx-home"></i>
-                            <span>Home</span>
+                            <span className='d-none d-sm-block'>Home</span>
                         </div>
                     </li>
 
@@ -29,8 +29,8 @@ function SidePanel(): JSX.Element {
                              onClick={() => {
                                  navigate('/trending');
                              }}>
-                            <i className="bx bxs-flame"></i>
-                            <span>Trending</span>
+                            <i className='bx bxs-hot'></i>
+                            <span className='d-none d-sm-block'>Trending</span>
                         </div>
                     </li>
 
@@ -40,7 +40,7 @@ function SidePanel(): JSX.Element {
                                  navigate('/search');
                              }}>
                             <i className="bx bx-search-alt"></i>
-                            <span>Search</span>
+                            <span className='d-none d-sm-block'>Search</span>
                         </div>
                     </li>
 
@@ -49,8 +49,8 @@ function SidePanel(): JSX.Element {
                              onClick={() => {
                                  navigate('/community');
                              }}>
-                            <i className="bx bx-user"></i>
-                            <span>Community</span>
+                            <i className='bx bx-shape-circle'></i>
+                            <span className='d-none d-sm-block'>Community</span>
                         </div>
                     </li>
 
@@ -60,7 +60,7 @@ function SidePanel(): JSX.Element {
                                  navigate('/following');
                              }}>
                             <i className="bx bx-heart"></i>
-                            <span>Following</span>
+                            <span className='d-none d-sm-block'>Following</span>
                         </div>
                     </li>
 
@@ -71,7 +71,7 @@ function SidePanel(): JSX.Element {
 
                              }}>
                             <i className='bx bxs-playlist'></i>
-                            <span>My Profile</span>
+                            <span className='d-none d-sm-block'>My Profile</span>
                         </div>
                     </li>
 
