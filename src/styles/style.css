@@ -353,29 +353,29 @@ section {
   background-color: #071E3D;
   font-size: 14px;
 }
-  
-  /*--------------------------------------------------------------
-  # Sections General
-  --------------------------------------------------------------*/
-  .modal-content {
-    background-color: #0D3A76;
-    color: var(--text);
-  }
-  .modal-header  {
-    background-color: #f2f3f5;
-    border-bottom-color: #f2f3f5;
-    color:#1355AD;
-  }
-  .modal-footer {
-    border-top-color: #f2f3f5;
-  }
-  .modal-body .card {
-    background-color: #1355AD;
-  }
-  
-  /*--------------------------------------------------------------
-  # Sections General
-  --------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+.modal-content {
+  background-color: #0D3A76;
+  color: var(--text);
+}
+.modal-header  {
+  background-color: #f2f3f5;
+  border-bottom-color: #f2f3f5;
+  color:#1355AD;
+}
+.modal-footer {
+  border-top-color: #f2f3f5;
+}
+.modal-body .card {
+  background-color: #1355AD;
+}
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
 
 .playlistItens .list-group .list-group-item{
   vertical-align: middle;
@@ -384,4 +384,14 @@ section {
 
 .card iframe {
   border-radius: 10px;
+}
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+.edit-profile-photo .btn{
+  color: var(--spartaHiglightColor);
+}
+.edit-profile-photo .btn:hover{
+  color: var(--text);
 }
