@@ -43,7 +43,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
     return (
 
         <div className="card-profile position-relative"
-             style={{backgroundSize: "100% auto", backgroundPosition: "center", backgroundImage: "url(" + playlistBasicDetails?.thumbnailUrl + ")"}}>
+             style={{backgroundColor: "#0678e3", backgroundSize: "100% auto", backgroundPosition: "center", backgroundImage: "url(" + playlistBasicDetails?.thumbnailUrl + ")"}}>
 
             <h2 className="text-white text-center text-wrap position-absolute top-50 start-50 translate-middle">
                 {playlistBasicDetails?.title}

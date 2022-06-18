@@ -34,7 +34,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
 
     const [userPlaylistItems, setUserPlaylistItems] = React.useState<PlaylistDto[]>([]);
 
-    const showing = UserTopBarStore(state => state.showing)
+    const order = UserTopBarStore(state => state.order)
 
     const setEditOrCreatePlaylistResponse = BackendResponsesStore(state => state.setEditOrCreatePlaylistResponse)
     const editOrCreatePlaylistResponse = BackendResponsesStore(state => state.editOrCreatePlaylistResponse)
@@ -51,11 +51,11 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
             if (sessionToken) {
                 try {
                     const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
-                    if (showing === "Custom Order") userPlaylists.sort()
-                    else if (showing === "Order by Title") userPlaylists.sort(compareTitle)
-                    else if (showing === "Order by Items Amount") userPlaylists.sort(compareResultsAmount)
-                    else if (showing === "Order by Weekly Views") userPlaylists.sort(compareWeeklyViews)
-                    else if (showing === "Order by Total Views") userPlaylists.sort(compareTotalViews)
+                    if (order === "Custom Order") userPlaylists.sort()
+                    else if (order === "Order by Title") userPlaylists.sort(compareTitle)
+                    else if (order === "Order by Items Amount") userPlaylists.sort(compareResultsAmount)
+                    else if (order === "Order by Weekly Views") userPlaylists.sort(compareWeeklyViews)
+                    else if (order === "Order by Total Views") userPlaylists.sort(compareTotalViews)
 
                     setUserPlaylistItems(userPlaylists);
                 } catch (e: any) {
@@ -63,7 +63,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                 }
             } else prettyAlert("No session token found.", false)
         })()
-    }, [props.username, showing]);
+    }, [order]);
 
     useEffect(() => {
         if (deletePlaylistResponse) {
@@ -72,7 +72,11 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                 if (sessionToken) {
                     try {
                         const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
-                        // userPlaylists.sort(compare)
+                        if (order === "Custom Order") userPlaylists.sort()
+                        else if (order === "Order by Title") userPlaylists.sort(compareTitle)
+                        else if (order === "Order by Items Amount") userPlaylists.sort(compareResultsAmount)
+                        else if (order === "Order by Weekly Views") userPlaylists.sort(compareWeeklyViews)
+                        else if (order === "Order by Total Views") userPlaylists.sort(compareTotalViews)
                         setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
                         prettyAlert(e.response?.data || e.toJSON().message, false)
@@ -90,7 +94,11 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                 if (sessionToken) {
                     try {
                         const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
-                        // userPlaylists.sort(compare)
+                        if (order === "Custom Order") userPlaylists.sort()
+                        else if (order === "Order by Title") userPlaylists.sort(compareTitle)
+                        else if (order === "Order by Items Amount") userPlaylists.sort(compareResultsAmount)
+                        else if (order === "Order by Weekly Views") userPlaylists.sort(compareWeeklyViews)
+                        else if (order === "Order by Total Views") userPlaylists.sort(compareTotalViews)
                         setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
                         prettyAlert(e.response?.data || e.toJSON().message, false)
@@ -108,7 +116,11 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                 if (sessionToken) {
                     try {
                         const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
-                        // userPlaylists.sort(compare)
+                        if (order === "Custom Order") userPlaylists.sort()
+                        else if (order === "Order by Title") userPlaylists.sort(compareTitle)
+                        else if (order === "Order by Items Amount") userPlaylists.sort(compareResultsAmount)
+                        else if (order === "Order by Weekly Views") userPlaylists.sort(compareWeeklyViews)
+                        else if (order === "Order by Total Views") userPlaylists.sort(compareTotalViews)
                         setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
                         prettyAlert(e.response?.data || e.toJSON().message, false)
@@ -179,7 +191,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
     let addPlaylistItem;
 
     // Showing my playlist, and a custom order
-    if (props.username === sessionStorage.getItem("username") && showing === "Custom Order") {
+    if (props.username === sessionStorage.getItem("username") && order === "Custom Order") {
         addPlaylistItem = <AddPlaylistItem/>
         playlistList = <DndContext
             sensors={sensors}
@@ -202,7 +214,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
     }
 
     // Showing my playlist, but not a custom order
-    else if (props.username === sessionStorage.getItem("username") && showing !== "Custom Order") {
+    else if (props.username === sessionStorage.getItem("username") && order !== "Custom Order") {
         addPlaylistItem = <AddPlaylistItem/>
         playlistList = <>
                 {userPlaylistItems.map((playlist) => (

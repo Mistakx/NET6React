@@ -5,4 +5,6 @@ export interface PlaylistItemProperties {
     generalizedResult: GeneralizedResult
     generalizedResults: GeneralizedResult[]
     playlistId: string | undefined
+    showingMyPlaylist: boolean
+    draggable: boolean
 }

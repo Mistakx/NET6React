@@ -3,9 +3,9 @@ import {SearchedCommunityResultsState} from "../../models/states/searches/Search
 import {UserProfileDto} from "../../models/backendResponses/userRoute/UserProfileDto";
 import {PlaylistDto} from "../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import {FollowedTopBarState} from "../../models/states/topBars/FollowedTopBarState";
-import {UserTopBarState} from "../../models/states/topBars/UserTopBarState";
+import {PlaylistTopBarState} from "../../models/states/topBars/PlaylistTopBarState";
 
-const UserTopBarStore = create<UserTopBarState>((set) => ({
+const PlaylistTopBarStore = create<PlaylistTopBarState>((set) => ({
 
     order: "Custom Order",
     setOrder: (order) => set(state => ({
@@ -14,5 +14,5 @@ const UserTopBarStore = create<UserTopBarState>((set) => ({
 
 }))
 
-export default UserTopBarStore;
+export default PlaylistTopBarStore;
 

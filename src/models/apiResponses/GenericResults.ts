@@ -5,7 +5,6 @@ export interface GeneralizedResult {
     resultType: string
     platformId: string
     title: string
-    // createdAt: string
     thumbnailUrl: string
     creator: string
     playerFactoryName: string
