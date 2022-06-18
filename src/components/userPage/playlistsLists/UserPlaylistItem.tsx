@@ -140,6 +140,11 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
         visibility = <div className="card-text text-start">{props.basicDetails.visibility}</div>
     }
 
+    let ownerName;
+    if (props.basicDetails.owner !== null) {
+        ownerName = <div className="card-text text-start">Owner: {props.basicDetails.owner.username}</div>
+    }
+
     let weeklyViews;
     if (props.basicDetails.weeklyViewsAmount || props.basicDetails.weeklyViewsAmount === 0) {
         weeklyViews = <div className="card-text text-start">Weekly Views: {props.basicDetails.weeklyViewsAmount}</div>
@@ -149,6 +154,7 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
     if (props.basicDetails.totalViewsAmount || props.basicDetails.totalViewsAmount === 0) {
         totalViews = <div className="card-text text-start">Total Views: {props.basicDetails.totalViewsAmount}</div>
     }
+
 
     let playlistItemClass;
     if (!props.showingPlaylistInSearch) {
@@ -179,6 +185,22 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
         </div>
     }
 
+
+    let ownerButton;
+    if (props.basicDetails.owner !== null) {
+        ownerButton =
+            <button className="btn btn-lg btn-user"
+                    type="button" style={{
+                backgroundSize: "100% 100%",
+                backgroundImage: "url(" + props.basicDetails.owner.profilePhotoUrl + ")"
+            }}
+                    onClick={() => {
+                        navigate(`/user/${props.basicDetails.owner.username}`)
+                    }}
+            >
+            </button>
+    }
+
     return (
 
         <div className={playlistItemClass}
@@ -193,7 +215,10 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                      }}>
 
                     {playlistItemDropdown}
-                    {followButton}
+                    <div className="options">
+                        {followButton}
+                        {ownerButton}
+                    </div>
                     <div className="card-img-overlay text-end"
                          onClick={() => {
                              navigate("/playlist/" + props.basicDetails.id)
@@ -202,6 +227,7 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                     >
                         <h5 className="card-title text-uppercase text-center">{props.basicDetails.title}</h5>
                         {visibility}
+                        {ownerName}
                         <div className="card-text text-start">Items: {props.basicDetails.resultsAmount}</div>
                         {weeklyViews}
                         {totalViews}
