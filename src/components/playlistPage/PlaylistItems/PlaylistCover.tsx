@@ -49,6 +49,43 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                 {playlistBasicDetails?.title}
             </h2>
 
+            <div className="options-dropdown">
+                <div className="btn-group">
+
+                    <button type="button" className="btn dropdown-toggle-split"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <i className='bx bx-dots-horizontal-rounded'></i>
+                    </button>
+                    <ul className="dropdown-menu dropdown-menu-dark">
+                        <li>
+                            <div className="dropdown-item">Edit</div>
+                        </li>
+                        <li>
+                            <div className="dropdown-item">Reset cover</div>
+                        </li>
+                        <li>
+                            <div className="dropdown-item text-danger">Delete</div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div className="options-dropdown-right">
+                <div className="btn-group" style={{position: "absolute", top: "10px", right: "10px"}}>
+
+                    <button type="button" className="btn dropdown-toggle-split">
+                        <i className='bx bx-heart'></i>
+                    </button>
+
+                    <button type="button" className="btn dropdown-toggle-split">
+                        <i className='bx bx-plus'></i>
+                    </button>
+
+                </div>
+            </div>
+
+
         </div>
 
 

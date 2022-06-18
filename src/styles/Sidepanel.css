@@ -99,9 +99,9 @@
 # Header
 --------------------------------------------------------------*/
 #header {
-  position: fixed;
-  left: 0;
-  bottom: 50%;
+  position: fixed;margin: 0;
+  bottom: 50%;                        
+  transform: translate(0, 50%);
   z-index: 9997;
   transition: all 0.7s;
   padding: 15px;
@@ -115,8 +115,9 @@
     min-height: 58px;
     bottom: 0;
     padding: 0;
+    transform: translate(0, 0);
     margin-bottom: -8px;
-    /* background: rgb(148, 121, 121); */
+    background: rgb(148, 121, 121);
   }
   
   .nav-menu {
