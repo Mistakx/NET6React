@@ -2,12 +2,19 @@ import React, {useEffect, useState} from 'react';
 import SearchedPlatformResultsStore from "../../../stores/searches/SearchedPlatformResultsStore";
 import UserPlaylistsModal from "../userPlaylistsModal/UserPlaylistsModal";
 import SearchResultComponentFactory from "./SearchResultComponentFactory";
+import UserPlaylistsModalStore from "../../../stores/modals/UserPlaylistsModalStore";
 
 function SearchResultsList(): JSX.Element {
 
     const [searchList, setSearchList] = useState<JSX.Element[]>();
 
     const searchedResults = SearchedPlatformResultsStore(state => state.searchedResults)
+
+    const setShowingPlaylistsModal = UserPlaylistsModalStore(state => state.setShowingPlaylistsModal)
+
+    useEffect(() => {
+        setShowingPlaylistsModal(false)
+    }, []);
 
     useEffect(() => {
 

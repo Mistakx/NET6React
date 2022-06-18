@@ -3,12 +3,19 @@ import {GeneralizedResult} from "../../models/apiResponses/GenericResults";
 import RecommendationRequests from "../../requests/backendRequests/RecommendationRequests";
 import SearchResultComponentFactory from "../searchPage/searchItems/SearchResultComponentFactory";
 import UserPlaylistsModal from "../searchPage/userPlaylistsModal/UserPlaylistsModal";
+import UserPlaylistsModalStore from "../../stores/modals/UserPlaylistsModalStore";
 
 function TrendingResultsList(): JSX.Element {
 
     const [searchList, setSearchList] = useState<JSX.Element[]>();
 
     const [trendingResults, setTrendingResults] = useState<GeneralizedResult[]>([]);
+
+    const setShowingPlaylistsModal = UserPlaylistsModalStore(state => state.setShowingPlaylistsModal)
+
+    useEffect(() => {
+        setShowingPlaylistsModal(false)
+    }, []);
 
     useEffect(() => {
         (async () => {
