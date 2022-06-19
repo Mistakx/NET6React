@@ -151,6 +151,10 @@ h2, h3, h4, h5, h6 {
   align-items: center;
 }
 
+.bg-dark {
+  /* background-color: var(--dark) !important; */
+}
+
 /*--------------------------------------------------------------
 # Scroll bar
 --------------------------------------------------------------*/
@@ -387,11 +391,24 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Sections General
+# editing profile photo button
 --------------------------------------------------------------*/
 .edit-profile-photo .btn{
   color: var(--spartaHiglightColor);
 }
 .edit-profile-photo .btn:hover{
   color: var(--text);
+}
+
+/*--------------------------------------------------------------
+# side panel
+--------------------------------------------------------------*/
+.offcanvas {
+  background-color: var(--spartaHoveredColor);
+}
+
+.offcanvas .divisor {
+  height: 3px;
+  margin-bottom: 16px ;
+  background-color: var(--text);
 }
