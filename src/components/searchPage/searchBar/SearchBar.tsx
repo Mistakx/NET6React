@@ -62,7 +62,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
     }
 
     return (
-        <div className="form-wrapper top-stick">
+        <div className="form-wrapper">
 
             <SearchLabel/>
 

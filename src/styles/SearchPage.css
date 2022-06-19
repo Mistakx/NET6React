@@ -23,10 +23,10 @@
     --soundCloudHiglightColor: #F79C58;
     --soundCloudNeutralColor: #F26F23;
     --soundCloudHoveredColor: #D05119;
-    
-    --spartaHiglightColor: #1568d3;
-    --spartaNeutralColor: #1355ad;
-    --spartaHoveredColor: #132dad;
+
+    --spartaHiglightColor: #1970E3;
+    --spartaNeutralColor: #1355AD;
+    --spartaHoveredColor: #0D3A76;
 }
 
 /*--------------------------------------------------------------
@@ -50,7 +50,6 @@
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 3;
 }
 
 .search-body .btn-search:hover,
@@ -122,8 +121,6 @@
     margin-top: 30px;
 }
 
-
-
 /*--------------------------------------------------------------
 # Dropdown buttons
 --------------------------------------------------------------*/
@@ -172,8 +169,6 @@
 .btn-vimeo:active {
     background-color: var(--vimeoHoveredColor) !important;
 }
-
-
 
 .btn-sparta {
     background-color: var(--spartaNeutralColor);
@@ -313,9 +308,8 @@
 .moveButton:hover {
     background-color: rgb(255, 255, 255, 0.4);
     font-size: 20px;
-    z-index: 1071;
+    z-index: 1000;
     padding-top: 0px;
-    padding-right: 4px;
 }
 
 .player-flutuante iframe {
@@ -332,7 +326,7 @@
     margin-bottom: 30px;
     border-radius: 20px;
     background-color: #0D3A76;
-    padding:none;
+    padding: none;
 }
 
 .card-img-overlay {
@@ -340,7 +334,7 @@
     background: rgba(7, 30, 61, 0.5);
     height: 50px;
     overflow: hidden;
-    margin:none;
+    margin: none;
 }
 
 .card:hover .card-img-overlay {
@@ -360,7 +354,7 @@
 }
 
 .results .card img {
-    border-radius:20px;
+    border-radius: 20px;
 }
 
 .results .add-playlist {
@@ -377,8 +371,6 @@
     bottom: 0;
     right: 0;
     z-index: 100;
-    /* margin-right: 15px;
-    margin-bottom: 25px;*/
 }
 
 .result .options .btn {
@@ -389,15 +381,15 @@
 
 .options-dropdown {
     position: absolute;
-    top:10px;
-    left:10px;
+    top: 10px;
+    left: 10px;
     z-index: 10;
 }
 
 .options-dropdown-right {
     position: absolute;
-    top:0px;
-    right:0px;
+    top: 0px;
+    right: 0px;
     z-index: 10;
 }
 
@@ -421,22 +413,21 @@
     top: 0;
 }
 
-.options .btn-user {
-    background-color: rgba(25, 112, 227, 0.5);
-    padding: 0;
-    width: 42px;
-    height: 42px;
-    padding-bottom: -20px;
-    margin-right: 60px !important;
-    color: #fff;
+.options-bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
 }
 
-.options .btn-add {
+.options .btn-add,
+.options .btn-user,
+.options-bottom-right .btn-add,
+.options-bottom-right .btn-user {
     background-color: rgba(25, 112, 227, 0.5);
     padding: 0;
     width: 42px;
     height: 42px;
-    padding-bottom: -20px;
     color: #fff;
 }
 
@@ -444,20 +435,35 @@
     padding: 0;
 }
 
-
-
 .options .btn-add:hover,
-.options .btn-add:active {
+.options .btn-add:active,
+.options-bottom-right .btn-add:hover,
+.options-bottom-right .btn-user:hover {
     background-color: rgba(25, 112, 227, 0.8);
-    /* color: #0d3a76; */
 }
 
-.modal-body .list-group .add-list:hover {
-    background-color: #027cee;
-    color: #fff;
+.add-list .form-control::placeholder {
+    color: var(--text);
+}
+
+.add-list .form-control {
+    color: var(--text);
+    border: none;
+    border-radius: 0;
+    border-bottom: solid 3px var(--spartaHiglightColor);
 }
 
 .modal-body .list-group-item:hover {
     background-color: #1355AD;
     color: #fff;
+}
+
+.badge {
+    color: var(--spartaNeutralColor);
+    font-size: 20px;
+    padding: 0;
+}
+
+.list-group-item:hover .badge {
+    color: var(--text);
 }
