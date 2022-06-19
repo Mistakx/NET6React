@@ -14,14 +14,7 @@ function LiveRoom(): JSX.Element {
     let liveRoom;
     if (window.sessionStorage.getItem("sessionToken")) {
         liveRoom = 
-            <div className="live-room">
-                <a className="intro-banner-vdo-play-btn green-sinal" type="button"
-                data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" title="See people online">
-                    <i className="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
-                    <span className="ripple green-sinal"></span>
-                    <span className="ripple green-sinal"></span>
-                    <span className="ripple green-sinal"></span>
-                </a>
+            
 
                 <div className="offcanvas offcanvas-end" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                     <div className="offcanvas-header">
@@ -57,13 +50,21 @@ function LiveRoom(): JSX.Element {
 
                     </div>
                 </div>
-            </div>
 
     }
 
     return (
 
         <div className="position-relative">
+            <div className="live-room">
+                <a className="intro-banner-vdo-play-btn green-sinal" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" title="See people online">
+                    <i className="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
+                    <span className="ripple green-sinal"></span>
+                    <span className="ripple green-sinal"></span>
+                    <span className="ripple green-sinal"></span>
+                </a>
+            </div>
             {liveRoom}
         </div>
 
