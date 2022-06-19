@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../../styles/style.css';
 import {TopBarProperties} from "../../models/components/TopBarProperties";
 import UserTopBarStore from "../../stores/topBars/UserTopBarStore";
@@ -6,6 +6,12 @@ import UserTopBarStore from "../../stores/topBars/UserTopBarStore";
 function TopBar(props: TopBarProperties): JSX.Element {
 
     const setOrder = UserTopBarStore(state => state.setOrder)
+    const order = UserTopBarStore(state => state.order)
+
+    useEffect(() => {
+        // @ts-ignore
+        document.getElementById('TopBarSelect')!.value=order;
+    }, [])
 
     return (
 

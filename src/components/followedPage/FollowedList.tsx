@@ -9,7 +9,6 @@ import BackendResponsesStore from "../../stores/BackendResponsesStore";
 
 function FollowedList(): JSX.Element {
 
-
     const [followedList, setFollowedList] = useState<JSX.Element[]>();
     const [followedResults, setFollowedResults] = useState<UserProfileDto[] | PlaylistDto[]>([]);
 
@@ -17,6 +16,13 @@ function FollowedList(): JSX.Element {
     const toggledFollowResponse = BackendResponsesStore(state => state.toggledFollowResponse)
 
     const showing = FollowedTopBarStore(state => state.showing)
+
+    useEffect(() => {
+        (async () => {
+            if (showing == "Playlists") setFollowedResults(await CommunityRequests.getFollowedPlaylists(window.sessionStorage.getItem("sessionToken")!));
+            else if (showing == "Users") setFollowedResults(await CommunityRequests.getFollowedUsers(window.sessionStorage.getItem("sessionToken")!));
+        })()
+    }, []);
 
     useEffect(() => {
         (async () => {
@@ -42,11 +48,9 @@ function FollowedList(): JSX.Element {
     }, [followedResults]);
 
     useEffect(() => {
-        console.log("DEBUG1")
 
         if (toggledFollowResponse) {
             (async () => {
-                console.log("DEBUG")
                 if (showing == "Playlists") setFollowedResults(await CommunityRequests.getFollowedPlaylists(window.sessionStorage.getItem("sessionToken")!));
                 else if (showing == "Users") setFollowedResults(await CommunityRequests.getFollowedUsers(window.sessionStorage.getItem("sessionToken")!));
                 setToggledFollowResponse(null)

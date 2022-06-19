@@ -1,10 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../../styles/style.css';
 import FollowedTopBarStore from "../../stores/topBars/FollowedTopBarStore";
 
 function FollowingTopBar(): JSX.Element {
 
+    const showing = FollowedTopBarStore(state => state.showing)
     const setShowing = FollowedTopBarStore(state => state.setShowing)
+
+    useEffect(() => {
+        // @ts-ignore
+        document.getElementById('TopBarSelect')!.value = showing;
+    }, [])
 
     return (
 

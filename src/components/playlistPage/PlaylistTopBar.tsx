@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../../styles/style.css';
 import {TopBarProperties} from "../../models/components/TopBarProperties";
 import UserTopBarStore from "../../stores/topBars/UserTopBarStore";
@@ -7,6 +7,13 @@ import PlaylistTopBarStore from "../../stores/topBars/PlaylistTopBarStore";
 function PlaylistTopBar(): JSX.Element {
 
     const setOrder = PlaylistTopBarStore(state => state.setOrder)
+    const order = PlaylistTopBarStore(state => state.order)
+
+    useEffect(() => {
+        // setOrder("Custom Order")
+        // @ts-ignore
+        document.getElementById('TopBarSelect')!.value=order;
+    }, [])
 
     return (
 
@@ -25,6 +32,7 @@ function PlaylistTopBar(): JSX.Element {
                                         onChange={(e) => {
                                             setOrder(e.target.value as "Custom Order" | "Order by Title" | "Order by Creator")
                                         }}
+
                                 >
                                     <option>Custom Order</option>
                                     <option>Order by Title</option>
