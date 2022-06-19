@@ -31,21 +31,22 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
 
     let draggableButton;
     if (props.draggable) {
-        draggableButton = <span className="align-middle"><i className='bx bx-menu h4'></i></span>
+        draggableButton =                     <span className=" align-middle"><i className='bx bx-menu h4'></i></span>
 
     }
 
     let contentDropdown;
     if (props.showingMyPlaylist) {
-        contentDropdown = 
-        <div className="btn-group text-end position-absolute top-0 end-0">
-            <button type="button" className="btn btn-link" data-bs-toggle="dropdown" aria-expanded="false">
-                <i className='bx bx-dots-vertical-rounded h4'></i>
-            </button>
-            <PlaylistItemDropdown
-                playlistId={props.playlistId}
-                genericResult={props.generalizedResult}
-            />
+        contentDropdown = <div className="col-1">
+            <div className="btn-group dropstart">
+                <button type="button" className="btn btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i className='bx bx-dots-vertical-rounded h4'></i>
+                </button>
+                <PlaylistItemDropdown
+                    playlistId={props.playlistId}
+                    genericResult={props.generalizedResult}
+                />
+            </div>
         </div>
     }
 
@@ -53,15 +54,15 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
 
     return (
 
-        <li className="list-group-item"
+        <li className="list-group-item align-middle"
             key={props.generalizedResult.platformId}
             ref={setNodeRef} style={style} {...attributes} {...listeners}
         >
-            <div className="row align-middle">
-                <div className="col-1">
+            <div className="row">
+                <div className="col-2">
                     {draggableButton}
                 </div>
-                <div className="col-10 p-3 clickable"
+                <div className="col-8 p-3 clickable"
                      style={{
                          backgroundSize: "100% auto",
                          backgroundRepeat: "no-repeat",
@@ -77,9 +78,9 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
                 >
                     <h6 className="fw-bold text-truncate">{props.generalizedResult.title}</h6>
                 </div>
-                <div className="col-1">
-                    {contentDropdown}
-                </div>
+
+                {contentDropdown}
+
             </div>
 
         </li>

@@ -14,7 +14,7 @@ export function EditPhotoButton() {
     const setUpdatedUserPhotoResponse = BackendResponsesStore(state => state.setUpdatedUserPhotoResponse)
 
     return (
-        <div className="edit-profile-photo">
+        <div>
 
             <button className="btn btn-rounded rounded position-absolute bottom-0 start-50 translate-middle mb-5"
                 /*@ts-ignore*/

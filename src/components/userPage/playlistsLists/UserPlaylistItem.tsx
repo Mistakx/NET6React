@@ -160,14 +160,14 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
     // The playlist item card grid depends varies if it is showing on a playlist or on a search result
     let playlistItemClass;
     if (!props.showingPlaylistInSearch) {
-        playlistItemClass = "result col-lg-4 col-md-6 col-sm-6 col-6 position-relative"
+        playlistItemClass = "col-lg-4 col-md-6 col-sm-6 col-6 position-relative"
     } else {
-        playlistItemClass = "result col-lg-4 col-md-6 col-sm-6 col-6 position-relative"
+        playlistItemClass = "result col-lg-3 col-md-4 col-sm-6 col-6 position-relative"
     }
 
     let followButton;
     if (props.basicDetails.followed !== null) {
-        followButton = 
+        followButton = <div className="options">
             <button className="btn btn-lg btn-add"
                     type="button"
                     onClick={async () => {
@@ -186,6 +186,7 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
             >
                 <i className={'bx ' + followingButtonShapeClass}></i>
             </button>
+        </div>
     }
 
 
@@ -193,7 +194,7 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
     if (props.basicDetails.owner !== null) {
         ownerButton =
             <button className="btn btn-lg btn-user"
-                type="button" style={{
+                    type="button" style={{
                 backgroundSize: "100% 100%",
                 backgroundImage: "url(" + props.basicDetails.owner.profilePhotoUrl + ")"
             }}
@@ -201,9 +202,7 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                         navigate(`/user/${props.basicDetails.owner.username}`)
                     }}
             >
-                <i className='bx bx-user'></i>
             </button>
-
     }
 
     return (
@@ -213,18 +212,18 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
             <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
 
-                <div className="card scale clickable position-relative"
+                <div className="card scale clickable"
                      style={{
                          backgroundSize: "100% 100%",
                          backgroundImage: "url(" + props.basicDetails.thumbnailUrl + ")"
                      }}>
 
                     {playlistItemDropdown}
-                    <div className="options-bottom-right m-3">
-                        {ownerButton}
+                    <div className="options">
                         {followButton}
+                        {ownerButton}
                     </div>
-                    <div className="card-img-overlay"
+                    <div className="card-img-overlay text-end"
                          onClick={() => {
                              navigate("/playlist/" + props.basicDetails.id)
                              RecommendationRequests.savePlaylistView(props.basicDetails.id, window.sessionStorage.getItem("sessionToken")!)
@@ -238,7 +237,6 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                         {totalViews}
                         <div className="card-text text-start"
                              style={{"fontStyle": "italic"}}>{props.basicDetails.description}</div>
-                        
                     </div>
                     {playlistDraggableIcon}
                 </div>

@@ -14,7 +14,7 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
 
     return (
 
-        <li className="list-group-item d-flex justify-content-between align-items-start clickable" onClick={async () => {
+        <li className="list-group-item clickable" onClick={async () => {
             try {
                 let response = await PlaylistRequests.addContentToPlaylist(props.id, resultToAdd!)
                 prettyAlert(response, true)
@@ -23,8 +23,6 @@ function PlaylistItem(props: PlaylistItemProperties): JSX.Element {
             }
         }}>
             {props.title}
-
-            <span className="badge"><i className='bx bx-list-plus'></i></span>
         </li>
 
     )
