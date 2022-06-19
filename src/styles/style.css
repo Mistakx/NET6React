@@ -437,7 +437,7 @@ section {
 --------------------------------------------------------------*/
 .offcanvas {
   background-color: var(--spartaHoveredColor);
-  z-index: 1080;
+ 
 }
 
 .offcanvas .divisor {
@@ -455,6 +455,7 @@ section {
   position: fixed;
   bottom: 10%;
   right: 5%;
+  z-index: 10;
 }
 
 .green-sinal {
@@ -531,8 +532,6 @@ section {
 }
 
 .image_outer_container {
-  margin-top: auto;
-  margin-bottom: auto;
   border-radius: 50%;
   position: relative;
 }
@@ -543,7 +542,6 @@ section {
 
 .image_inner_container img {
   border-radius: 50%;
-  border: 5px solid var(--text);
 }
 
 .image_outer_container .green_icon {
