@@ -15,7 +15,7 @@ function AddPlaylistForm(): JSX.Element {
 
     return (
 
-        <div className="add-list clickable">
+        <div className="add-list clickable mb-2">
 
             <form
                 onSubmit={async (e) => {
