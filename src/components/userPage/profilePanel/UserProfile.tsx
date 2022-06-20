@@ -72,39 +72,32 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
     let editPhotoButton;
     if (props.username === window.sessionStorage.getItem("username")) {
         editUserInfoModal = <EditUserInfoModal/>
+        editUserPasswordModal = <EditUserPasswordModal/>
         dropdownMenu = <div className="options-top mr-5 mb-5">
             <div className="options-dropdown">
-                
-                <button className="btn" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
-                onClick={() => {
-                        setModalName(userProfile?.name!)
-                        setModalUsername(userProfile?.username!)
-                        setModalEmail(userProfile?.email!)
-                        setShowingEditUserInfoModal(true)
-                        setShowingEditUserPasswordModal(true)
-                    }}>
-                    <i className='bx bx-edit-alt'></i>
-                </button>
-
-                {/* <div className="btn-group">
+                <div className="btn-group">
                     <button className="btn dropdown-toggle-split"
                             data-bs-toggle="dropdown" aria-expanded="false">
                         <i className='bx bx-edit-alt'></i>
                     </button>
                     <ul className="dropdown-menu dropdown-menu-dark">
                         <li
-                            >
+                            onClick={() => {
+                                setModalName(userProfile?.name!)
+                                setModalUsername(userProfile?.username!)
+                                setModalEmail(userProfile?.email!)
+                                setShowingEditUserInfoModal(true)
+                            }}>
                             <div className="dropdown-item">Edit Information</div>
                         </li>
                         <li
                             onClick={() => {
+                                setShowingEditUserPasswordModal(true)
                             }}>
                             <div className="dropdown-item">Edit Password</div>
                         </li>
                     </ul>
-                </div> */}
-
+                </div>
             </div>
         </div>
         editPhotoButton = <><EditPhotoButton/><EditPhotoButton/></>
@@ -116,8 +109,14 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
 
             {editUserInfoModal}
             {editUserPasswordModal}
-
+        
             <div className="align-items-stretch mb-4 " data-aos="zoom-in" data-aos-delay="100">
+
+                <div className="position-absolute top-0 end-0 me-2 mt-2">
+                    <button className="btn text-white">
+                        <i className='bx bxs-user-detail h1 p-0'></i>
+                    </button>
+                </div>
 
                 {dropdownMenu}
 
@@ -129,6 +128,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                          className="img-fluid rounded-circle img-centered"/>
                     {editPhotoButton}
                 </div>
+
 
             </div>
         </div>

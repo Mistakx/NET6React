@@ -30,8 +30,8 @@ function FollowingTopBar(): JSX.Element {
 
     let orderSelect;
     if (showing == "Users") {
-        orderSelect = <li className="text-end">
-            <select className="form-control form-select-sm " id="TopOrderBarSelect"
+        orderSelect = <li>
+            <select className="form-select form-select-sm bg-dark text-white" id="TopOrderBarSelect"
                     onChange={(e) => {
                         setUserOrder(e.target.value as UsernameSortingOptions)
                     }}
@@ -43,8 +43,8 @@ function FollowingTopBar(): JSX.Element {
         </li>
     }
     else if (showing == "Playlists") {
-        orderSelect = <li className="text-end">
-            <select className="form-control form-select-sm " id="TopOrderBarSelect"
+        orderSelect = <li>
+            <select className="form-select form-select-sm bg-dark text-white" id="TopOrderBarSelect"
                     onChange={(e) => {
                         setPlaylistOrder(e.target.value as PlaylistSortingOptions)
                     }}
@@ -62,11 +62,11 @@ function FollowingTopBar(): JSX.Element {
             <div className="col-12">
                 <div className="iconbox-blue rounded">
                     <nav aria-label="breadcrumb ">
-                        <ol className="breadcrumb p-3 position-relative">
+                        <ol className="breadcrumb p-3 position-relative hstack ">
 
                             {/* <li className="breadcrumb-item text-white" aria-current="page"><i className='bx bx-arrow-back'></i></li> */}
                             <li className="breadcrumb-item active text-white" aria-current="page">Following 👥</li>
-                            <li className="position-absolute top-50 end-0 translate-middle-y me-3">
+                            <li className="ms-auto align-middle me-3">
                                 <select className="form-select form-select-sm bg-dark text-white" id="TopTypeBarSelect"
                                         onChange={(e) => {
                                             setShowing(e.target.value as "Users" | "Playlists")

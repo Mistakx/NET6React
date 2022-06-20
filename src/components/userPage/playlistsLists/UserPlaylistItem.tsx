@@ -160,9 +160,9 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
     // The playlist item card grid depends varies if it is showing on a playlist or on a search result
     let playlistItemClass;
     if (!props.showingPlaylistInSearch) {
-        playlistItemClass = "result col-lg-4 col-md-6 col-sm-6 col-6 position-relative"
+        playlistItemClass = "col-lg-4 col-md-6 col-sm-6 col-6 position-relative"
     } else {
-        playlistItemClass = "result col-lg-4 col-md-6 col-sm-6 col-6 position-relative"
+        playlistItemClass = "result col-lg-3 col-md-4 col-sm-6 col-6 position-relative"
     }
 
     let followButton;

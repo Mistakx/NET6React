@@ -8,16 +8,20 @@
   padding: 0;
   display: block;
 }
+
 .nav-menu * {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.nav-menu > ul > li {
+
+.nav-menu>ul>li {
   position: relative;
   white-space: nowrap;
 }
-.nav-menu div, .nav-menu div:focus {
+
+.nav-menu div,
+.nav-menu div:focus {
   display: flex;
   align-items: center;
   color: #45505b;
@@ -31,34 +35,55 @@
   width: 100%;
   overflow: hidden;
 }
-.nav-menu div i, .nav-menu div:focus i {
+
+.nav-menu div i,
+.nav-menu div:focus i {
   font-size: 20px;
 }
-.nav-menu div span, .nav-menu div:focus span {
+
+.nav-menu div span,
+.nav-menu div:focus span {
   padding: 0 5px 0 7px;
   color: #45505b;
 }
+
 @media (min-width: 688px) {
-  .nav-menu div, .nav-menu div:focus {
+
+  .nav-menu div,
+  .nav-menu div:focus {
     width: 56px;
   }
-  .nav-menu div span, .nav-menu div:focus span {
+
+  .nav-menu div span,
+  .nav-menu div:focus span {
     display: none;
     color: #fff;
   }
 }
-.nav-menu div:hover, .nav-menu .active, .nav-menu .active:focus, .nav-menu li:hover > div {
+
+.nav-menu div:hover,
+.nav-menu .active,
+.nav-menu .active:focus,
+.nav-menu li:hover>div {
   color: #fff;
   background: #0D3A76;
 }
-.nav-menu div:hover span, .nav-menu .active span, .nav-menu .active:focus span, .nav-menu li:hover > div span {
+
+.nav-menu div:hover span,
+.nav-menu .active span,
+.nav-menu .active:focus span,
+.nav-menu li:hover>div span {
   color: #fff;
 }
-.nav-menu div:hover, .nav-menu li:hover > div {
+
+.nav-menu div:hover,
+.nav-menu li:hover>div {
   width: 100%;
   color: #fff;
 }
-.nav-menu div:hover span, .nav-menu li:hover > div span {
+
+.nav-menu div:hover span,
+.nav-menu li:hover>div span {
   display: block;
 }
 
@@ -68,7 +93,7 @@
 #header {
   position: fixed;
   margin: 0;
-  bottom: 50%;                        
+  bottom: 50%;
   transform: translate(0, 50%);
   z-index: 9997;
   transition: all 0.7s;
@@ -87,30 +112,39 @@
     margin-bottom: -8px;
     background: rgb(148, 121, 121);
   }
-  
+
   .nav-menu {
     position: relative !important;
     width: 100%;
     background-color: #f2f3f5;
     align-items: center;
     text-align: center !important;
-    border-top-left-radius: 6px ;
-    border-top-right-radius: 6px ;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
   }
-  
-  .nav-menu > ul > li {
+
+  .nav-menu>ul>li {
     display: inline-block !important;
     align-items: center;
     text-align: center !important;
   }
 
-  .nav-menu div, .nav-menu div:focus {
+  .nav-menu ul li div span,
+  .nav-menu div:hover span,
+  .nav-menu .active span,
+  .nav-menu .active:focus span,
+  .nav-menu li:hover>div span {
+    display: none;
+  }
+
+  .nav-menu div,
+  .nav-menu div:focus {
     display: flex;
     align-items: center;
     color: #45505b;
     padding: 10px 18px;
     font-size: 15px;
-    border-radius:0px;
+    border-radius: 0px;
     background: #f2f3f5;
     width: auto;
     overflow: hidden;

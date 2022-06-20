@@ -20,7 +20,7 @@ function SidePanel(): JSX.Element {
                                  navigate('/home');
                              }}>
                             <i className="bx bx-home"></i>
-                            <span className='d-none d-sm-block'>Home</span>
+                            <span>Home</span>
                         </div>
                     </li>
 
@@ -30,7 +30,7 @@ function SidePanel(): JSX.Element {
                                  navigate('/trending');
                              }}>
                             <i className='bx bxs-hot'></i>
-                            <span className='d-none d-sm-block'>Trending</span>
+                            <span>Trending</span>
                         </div>
                     </li>
 
@@ -40,7 +40,7 @@ function SidePanel(): JSX.Element {
                                  navigate('/search');
                              }}>
                             <i className="bx bx-search-alt"></i>
-                            <span className='d-none d-sm-block'>Search</span>
+                            <span>Search</span>
                         </div>
                     </li>
 
@@ -50,7 +50,7 @@ function SidePanel(): JSX.Element {
                                  navigate('/community');
                              }}>
                             <i className='bx bx-shape-circle'></i>
-                            <span className='d-none d-sm-block'>Community</span>
+                            <span>Community</span>
                         </div>
                     </li>
 
@@ -60,7 +60,7 @@ function SidePanel(): JSX.Element {
                                  navigate('/following');
                              }}>
                             <i className="bx bx-heart"></i>
-                            <span className='d-none d-sm-block'>Following</span>
+                            <span>Following</span>
                         </div>
                     </li>
 
@@ -71,7 +71,7 @@ function SidePanel(): JSX.Element {
 
                              }}>
                             <i className='bx bxs-playlist'></i>
-                            <span className='d-none d-sm-block'>My Profile</span>
+                            <span>My Profile</span>
                         </div>
                     </li>
 
