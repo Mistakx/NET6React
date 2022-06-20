@@ -188,7 +188,7 @@ function FollowedList(): JSX.Element {
                     >
 
                         {followedResults.map((playlist) => (
-                            <UserPlaylistItem basicDetails={playlist as PlaylistDto} showingMyPlaylists={false}
+                            <UserPlaylistItem  key={(playlist as PlaylistDto).id} basicDetails={playlist as PlaylistDto} showingMyPlaylists={false}
                                               showingPlaylistInSearch={true}
                                               draggable={true}/>
                         ))}
@@ -220,7 +220,7 @@ function FollowedList(): JSX.Element {
                     >
 
                         {followedResults.map((user) => (
-                            <UserItem basicDetails={user as UserProfileDto} draggable={true}/>
+                            <UserItem key={(user as UserProfileDto).username} basicDetails={user as UserProfileDto} draggable={true}/>
                         ))}
 
                     </SortableContext>
