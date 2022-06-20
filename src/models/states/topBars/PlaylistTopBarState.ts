@@ -1,6 +1,8 @@
+import {ContentSortingOptions} from "../../../utils/sorting/contentSorting";
+
 export interface PlaylistTopBarState {
 
-    order: "Custom Order" | "Order by Title" | "Order by Creator"
-    setOrder: (order: "Custom Order" | "Order by Title" | "Order by Creator") => void
+    order: ContentSortingOptions
+    setOrder: (order: ContentSortingOptions) => void
 
 }

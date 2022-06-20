@@ -22,6 +22,7 @@ import {restrictToParentElement} from "@dnd-kit/modifiers";
 import {rectSortingStrategy, SortableContext, sortableKeyboardCoordinates} from "@dnd-kit/sortable";
 import PlaylistTopBarStore from "../../../stores/topBars/PlaylistTopBarStore";
 import {PlaylistDto} from "../../../models/backendRequests/PlaylistRoute/PlaylistDto";
+import {compareContentCreator, compareContentTitle} from "../../../utils/sorting/contentSorting";
 
 function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
 
@@ -46,8 +47,8 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
             try {
                 let response = await PlaylistRequests.getPlaylistContent(props.playlistId)
                 if (order === "Custom Order") response.sort()
-                else if (order === "Order by Title") response.sort(compareTitle)
-                else if (order === "Order by Creator") response.sort(compareCreator)
+                else if (order === "Order by Title") response.sort(compareContentTitle)
+                else if (order === "Order by Creator") response.sort(compareContentCreator)
                 setPlaylistContent(response)
             } catch (e: any) {
                 prettyAlert(e.response?.data || e.toJSON().message, false)
@@ -62,8 +63,8 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
                 try {
                     let response = await PlaylistRequests.getPlaylistContent(props.playlistId)
                     if (order === "Custom Order") response.sort()
-                    else if (order === "Order by Title") response.sort(compareTitle)
-                    else if (order === "Order by Creator") response.sort(compareCreator)
+                    else if (order === "Order by Title") response.sort(compareContentTitle)
+                    else if (order === "Order by Creator") response.sort(compareContentCreator)
                     setPlaylistContent(response)
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
@@ -73,13 +74,7 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
         }
     }, [deleteGeneralizedResultResponse]);
 
-    function compareTitle(a: GeneralizedResult, b: GeneralizedResult) {
-        return a.title.localeCompare(b.title)
-    }
 
-    function compareCreator(a: GeneralizedResult, b: GeneralizedResult) {
-        return a.creator.localeCompare(b.creator)
-    }
 
     const sensors = useSensors(
         useSensor(PointerSensor, {

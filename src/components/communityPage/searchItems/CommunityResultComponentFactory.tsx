@@ -17,7 +17,7 @@ class CommunityResultComponentFactory {
                                                             draggable={false}/>
                 searchResultItems.push(currentPlaylistItem);
             } else if ("username" in currentCommunityItem) {
-                let currentUserItem = <UserItem basicDetails={currentCommunityItem}/>
+                let currentUserItem = <UserItem basicDetails={currentCommunityItem} draggable={false}/>
                 searchResultItems.push(currentUserItem);
             }
 

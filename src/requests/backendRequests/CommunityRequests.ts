@@ -54,7 +54,7 @@ class UserRequests {
 
         // @ts-ignore
         let response = await axios(options);
-        return response.data as PlaylistDto[];
+        return response.data as UserProfileDto[];
 
     }
 

@@ -11,12 +11,12 @@ const FollowedTopBarStore = create<FollowedTopBarState>((set) => ({
         showing: showing
     })),
 
-    userOrder: "Order By Custom",
+    userOrder: "Custom Order",
     setUserOrder: (userOrder) => set(state => ({
         userOrder: userOrder
     })),
 
-    playlistOrder: "Order By Custom",
+    playlistOrder: "Custom Order",
     setPlaylistOrder: (playlistOrder) => set(state => ({
         playlistOrder: playlistOrder
     }))
