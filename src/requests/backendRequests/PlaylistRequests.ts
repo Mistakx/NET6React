@@ -37,6 +37,7 @@ class PlaylistRequests {
 
     }
 
+
     // READ
     static async getPlaylistInformation(playlistId: string, sessionToken: string) {
         const url = "/Playlist/getPlaylistInformation";

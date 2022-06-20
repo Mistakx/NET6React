@@ -11,6 +11,8 @@ import {ToggleUserFollowDto} from "../../models/backendRequests/CommunityRoute/T
 import {TogglePlaylistFollowDto} from "../../models/backendRequests/CommunityRoute/TogglePlaylistFollowDto";
 import {GetFollowedPlaylistsDto} from "../../models/backendRequests/CommunityRoute/GetFollowedPlaylistsDto";
 import {GetFollowedUsersDto} from "../../models/backendRequests/CommunityRoute/GetFollowedUsersDto";
+import {GetUsersFollowingUserDto} from "../../models/backendRequests/CommunityRoute/GetUsersFollowingUserDto";
+import {GetUsersFollowingPlaylistDto} from "../../models/backendRequests/CommunityRoute/GetUsersFollowingPlaylistDto";
 
 class UserRequests {
 
@@ -43,6 +45,48 @@ class UserRequests {
 
         let data: GetFollowedUsersDto = {
             sessionToken: sessionToken,
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+
+        // @ts-ignore
+        let response = await axios(options);
+        return response.data as UserProfileDto[];
+
+    }
+
+    static async getUsersFollowingUser(username: string) {
+
+        const url = "/Community/getFollowedUsers";
+
+        let data: GetUsersFollowingUserDto = {
+            username: username,
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+
+        // @ts-ignore
+        let response = await axios(options);
+        return response.data as UserProfileDto[];
+
+    }
+
+    static async getUsersFollowingPlaylist(playlistId: string) {
+
+        const url = "/Community/getFollowedUsers";
+
+        let data: GetUsersFollowingPlaylistDto = {
+            playlistId: playlistId
         }
 
         const options = {

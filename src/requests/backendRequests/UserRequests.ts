@@ -7,6 +7,7 @@ import {LoginResponseDto} from "../../models/backendResponses/userRoute/LoginRes
 import {GetUserProfileDto} from "../../models/backendRequests/UserRoute/GetUserProfileDto";
 import {GetUserPlaylistsDto} from "../../models/backendRequests/UserRoute/GetUserPlaylistsDto";
 import {SortPlaylist} from "../../models/backendRequests/PlaylistRoute/SortPlaylist";
+import {SortPlaylistContent} from "../../models/backendRequests/PlaylistRoute/SortPlaylistContent";
 
 class UserRequests {
 
@@ -103,7 +104,7 @@ class UserRequests {
 
     static async sortPlaylist(playlistId: string, newIndex: number, sessionToken: string) {
 
-        const url = "/Playlist/sortPlaylist";
+        const url = "/User/sortPlaylist";
 
         let data: SortPlaylist = {
             playlistId: playlistId,
