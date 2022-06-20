@@ -192,7 +192,6 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
 
                 {contentList}
 
-
             </ul>
 
         </div>

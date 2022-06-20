@@ -34,7 +34,7 @@ function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
             <div className="card scale clickable"
 
                  style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.searchResult.thumbnailUrl + ")"}}>
-                <div className="options ">
+                <div className="options">
                     <button className="btn btn-add"
                             type="button"
                             onClick={() => {

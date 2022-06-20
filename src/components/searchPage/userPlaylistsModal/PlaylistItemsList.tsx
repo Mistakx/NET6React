@@ -60,10 +60,13 @@ function PlaylistItemsList(): JSX.Element {
     }
 
     return (
-        <ul className="list-group">
+        <div>
+
             <AddPlaylistForm/>
-            {playlistItemsList}
-        </ul>
+            <ul className="list-group">
+                {playlistItemsList}
+            </ul>
+        </div>
     )
 }
 
