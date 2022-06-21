@@ -88,7 +88,7 @@ class UserRequests {
 
     static async getUsersFollowingPlaylist(playlistId: string) {
 
-        const url = "/Community/getFollowedUsers";
+        const url = "/Community/getUsersFollowingPlaylist";
 
         let data: GetUsersFollowingPlaylistDto = {
             playlistId: playlistId

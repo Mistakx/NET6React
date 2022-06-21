@@ -4,7 +4,7 @@ import UserPlaylistItem from "../../../cards/playlist/UserPlaylistItem";
 import {PlaylistDto} from "../../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import UserRequests from "../../../../requests/backendRequests/UserRequests";
 import AddPlaylistItem from "./AddPlaylistItem";
-import EditOrCreatePlaylistModal from "./EditOrCreatePlaylistModal";
+import EditOrCreatePlaylistModal from "../../../modals/EditOrCreatePlaylistModal";
 import AlertStore from "../../../../stores/AlertStore";
 import BackendResponsesStore from "../../../../stores/BackendResponsesStore";
 import {
@@ -12,7 +12,6 @@ import {
     closestCenter,
     KeyboardSensor,
     PointerSensor,
-    MouseSensor,
     useSensor,
     useSensors, DragEndEvent,
 } from '@dnd-kit/core';
@@ -22,8 +21,7 @@ import {
     sortableKeyboardCoordinates,
     rectSortingStrategy,
 } from '@dnd-kit/sortable';
-import {restrictToParentElement, restrictToWindowEdges} from "@dnd-kit/modifiers";
-import PlaylistRequests from "../../../../requests/backendRequests/PlaylistRequests";
+import {restrictToWindowEdges} from "@dnd-kit/modifiers";
 import {UserPlaylistsListProperties} from "../../../../models/components/pages/userPage/UserPlaylistsListProperties";
 import UserTopBarStore from "../../../../stores/topBars/UserTopBarStore";
 
@@ -36,8 +34,11 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
 
     const order = UserTopBarStore(state => state.order)
 
-    const setEditOrCreatePlaylistResponse = BackendResponsesStore(state => state.setEditOrCreatePlaylistResponse)
-    const editOrCreatePlaylistResponse = BackendResponsesStore(state => state.editOrCreatePlaylistResponse)
+    const editPlaylistResponse = BackendResponsesStore(state => state.editPlaylistResponse)
+    const setEditPlaylistResponse = BackendResponsesStore(state => state.setEditPlaylistResponse)
+
+    const createPlaylistResponse = BackendResponsesStore(state => state.createPlaylistResponse)
+    const setCreatePlaylistResponse = BackendResponsesStore(state => state.setCreatePlaylistResponse)
 
     const deletePlaylistResponse = BackendResponsesStore(state => state.deletePlaylistResponse)
     const setDeletePlaylistResponse = BackendResponsesStore(state => state.setDeletePlaylistResponse)
@@ -110,7 +111,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
     }, [resetCoverResponse]);
 
     useEffect(() => {
-        if (editOrCreatePlaylistResponse) {
+        if (editPlaylistResponse) {
             (async () => {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
@@ -125,11 +126,34 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                     } catch (e: any) {
                         prettyAlert(e.response?.data || e.toJSON().message, false)
                     }
-                    setEditOrCreatePlaylistResponse(null);
+                    setEditPlaylistResponse(null);
                 } else prettyAlert("No session token found.", false)
             })()
         }
-    }, [editOrCreatePlaylistResponse]);
+    }, [editPlaylistResponse]);
+
+    useEffect(() => {
+        if (createPlaylistResponse) {
+            (async () => {
+                const sessionToken = window.sessionStorage.getItem("sessionToken");
+                if (sessionToken) {
+                    try {
+                        const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
+                        if (order === "Custom Order") userPlaylists.sort()
+                        else if (order === "Order by Title") userPlaylists.sort(compareTitle)
+                        else if (order === "Order by Items Amount") userPlaylists.sort(compareResultsAmount)
+                        else if (order === "Order by Weekly Views") userPlaylists.sort(compareWeeklyViews)
+                        else if (order === "Order by Total Views") userPlaylists.sort(compareTotalViews)
+                        setUserPlaylistItems(userPlaylists);
+                    } catch (e: any) {
+                        prettyAlert(e.response?.data || e.toJSON().message, false)
+                    }
+                    setCreatePlaylistResponse(null);
+                } else prettyAlert("No session token found.", false)
+            })()
+        }
+    }, [createPlaylistResponse]);
+
 
     function compareTitle(a: PlaylistDto, b: PlaylistDto) {
         return (a.title.localeCompare(b.title));

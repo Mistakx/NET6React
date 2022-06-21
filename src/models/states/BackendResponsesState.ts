@@ -12,8 +12,11 @@ export interface BackendResponsesState {
     updatedUserPhotoResponse: string | null;
     setUpdatedUserPhotoResponse: (updatedUserPhotoResponse: string | null) => void
 
-    editOrCreatePlaylistResponse: string | null;
-    setEditOrCreatePlaylistResponse: (editOrCreatePlaylistResponse: string | null) => void
+    editPlaylistResponse: string | null;
+    setEditPlaylistResponse: (editPlaylistResponse: string | null) => void
+
+    createPlaylistResponse: string | null;
+    setCreatePlaylistResponse: (createPlaylistResponse: string | null) => void
 
     deletePlaylistResponse: string | null;
     setDeletePlaylistResponse: (editOrCreatePlaylistResponse: string | null) => void

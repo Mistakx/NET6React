@@ -42,7 +42,7 @@ function FollowersModalItem(props: FollowersModalItemProperties): JSX.Element {
                             response = await CommunityRequests.removeFollowFromUser(props.follower.username, sessionToken)
 
                         } else if ("title" in props.showingFollowerOf) {
-                            response = await CommunityRequests.removeFollowFromPlaylist(props.showingFollowerOf.title, props.follower.username, sessionToken)
+                            response = await CommunityRequests.removeFollowFromPlaylist(props.showingFollowerOf.id, props.follower.username, sessionToken)
                         }
                         setRemovedFollowerResponse(response!)
                         prettyAlert(response!, true)

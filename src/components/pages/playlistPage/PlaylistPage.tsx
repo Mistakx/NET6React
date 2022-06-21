@@ -9,6 +9,10 @@ import PlaylistPlayer from "./PlaylistPlayer/PlaylistPlayer";
 import PlaylistPagePlayerStore from "../../../stores/players/PlaylistPagePlayerStore";
 import AOS from "aos";
 import PlaylistTopBar from "./PlaylistTopBar";
+import EditOrCreatePlaylistModal from "../../modals/EditOrCreatePlaylistModal";
+import EditOrCreatePlaylistModalStore from "../../../stores/modals/EditOrCreatePlaylistModalStore";
+import FollowersModalStore from "../../../stores/modals/FollowersModalStore";
+import FollowersModal from "../../modals/userFollowersModal/FollowersModal";
 
 function PlaylistPage(): JSX.Element {
 
@@ -16,6 +20,11 @@ function PlaylistPage(): JSX.Element {
 
     const setPlaylistPlayerGeneralizedResult = PlaylistPagePlayerStore(state => state.setPlaylistPlayerCurrentResult)
     const setPlaylistCurrentResults = PlaylistPagePlayerStore(state => state.setPlaylistCurrentResults)
+
+    const showingEditOrCreatePlaylistModal = EditOrCreatePlaylistModalStore(state => state.showingEditOrCreatePlaylistModal)
+
+    const showingFollowersModal = FollowersModalStore(state => state.showingFollowersModal)
+
 
     useEffect(() => {
         AOS.init();
@@ -35,9 +44,22 @@ function PlaylistPage(): JSX.Element {
         playlistsItemsList = <PlaylistContentList playlistId={playlistId}/>
     }
 
+    let editPlaylistModal;
+    if (showingEditOrCreatePlaylistModal) {
+        editPlaylistModal = <EditOrCreatePlaylistModal/>
+    }
+
+    let userFollowersModal;
+    if (showingFollowersModal) {
+        userFollowersModal = <FollowersModal/>
+    }
+
     return (
 
         <div>
+
+            {editPlaylistModal}
+            {userFollowersModal}
 
             <main id="main">
 

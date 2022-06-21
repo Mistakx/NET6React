@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import '../../../../styles/style.css';
-import EditOrCreatePlaylistModalStore from "../../../../stores/modals/EditOrCreatePlaylistModalStore";
+import '../../styles/style.css';
+import EditOrCreatePlaylistModalStore from "../../stores/modals/EditOrCreatePlaylistModalStore";
 import {Modal, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
-import PlaylistRequests from "../../../../requests/backendRequests/PlaylistRequests";
-import AlertStore from "../../../../stores/AlertStore";
-import BackendResponsesStore from "../../../../stores/BackendResponsesStore";
+import PlaylistRequests from "../../requests/backendRequests/PlaylistRequests";
+import AlertStore from "../../stores/AlertStore";
+import BackendResponsesStore from "../../stores/BackendResponsesStore";
 
 
 function EditOrCreatePlaylistModal(): JSX.Element {
@@ -15,7 +15,8 @@ function EditOrCreatePlaylistModal(): JSX.Element {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
-    const setEditOrCreatePlaylistResponse = BackendResponsesStore(state => state.setEditOrCreatePlaylistResponse)
+    const setEditPlaylistResponse = BackendResponsesStore(state => state.setEditPlaylistResponse)
+    const setCreatePlaylistResponse = BackendResponsesStore(state => state.setCreatePlaylistResponse)
 
 
     const [playlistTitle, setPlaylistTitle] = useState("")
@@ -56,7 +57,7 @@ function EditOrCreatePlaylistModal(): JSX.Element {
                 try {
                     response = await PlaylistRequests.editPlaylist(playlistId, playlistTitle, playlistVisibility, playlistDescription, sessionToken)
                     prettyAlert(response, true)
-                    setEditOrCreatePlaylistResponse(response)
+                    setEditPlaylistResponse(response)
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message , false)
                 }
@@ -64,7 +65,7 @@ function EditOrCreatePlaylistModal(): JSX.Element {
                 try {
                     response = await PlaylistRequests.createPlaylist(playlistTitle, playlistVisibility, playlistDescription, sessionToken)
                     prettyAlert(response, true)
-                    setEditOrCreatePlaylistResponse(response)
+                    setCreatePlaylistResponse(response)
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
                 }

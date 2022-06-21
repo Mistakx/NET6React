@@ -55,67 +55,6 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
     let playlistItemDropdown;
     if (props.showingMyPlaylists) {
         playlistItemDropdown = <PlaylistDropdownMenu basicDetails={props.basicDetails}/>
-        // playlistItemDropdown = <div className="options-dropdown">
-        //     <div className="btn-group">
-        //
-        //         <button type="button" className="btn dropdown-toggle-split"
-        //                 data-bs-toggle="dropdown" aria-expanded="false">
-        //             <i className='bx bx-dots-horizontal-rounded'></i>
-        //         </button>
-        //         <ul className="dropdown-menu dropdown-menu-dark">
-        //             <li
-        //                 onClick={() => {
-        //                     const sessionToken = sessionStorage.getItem("sessionToken")
-        //                     if (sessionToken) {
-        //                         setShowingEditOrCreatePlaylistModal(true)
-        //                         let playlistToEdit: EditPlaylist = {
-        //                             playlistId: props.basicDetails.id,
-        //                             title: props.basicDetails.title,
-        //                             description: props.basicDetails.description,
-        //                             visibility: props.basicDetails.visibility!,
-        //                             sessionToken: sessionToken
-        //                         }
-        //                         setPlaylistToEditOrCreate(playlistToEdit)
-        //                     } else prettyAlert("You must be logged in to edit a playlist.", false)
-        //
-        //                 }}>
-        //                 <div className="dropdown-item">Edit</div>
-        //             </li>
-        //             <li
-        //                 onClick={async () => {
-        //                     const sessionToken = sessionStorage.getItem("sessionToken")
-        //                     if (sessionToken) {
-        //                         try {
-        //                             let response = await PlaylistRequests.setCover(props.basicDetails.id, "", sessionToken)
-        //                             prettyAlert(response, true)
-        //                             setResetCoverResponse(response)
-        //                         } catch (e: any) {
-        //                             prettyAlert(e.response?.data || e.toJSON().message, true)
-        //                         }
-        //                     } else prettyAlert("You must be logged in to edit a playlist.", false)
-        //                 }}>
-        //                 <div className="dropdown-item">Reset cover</div>
-        //             </li>
-        //             <li
-        //                 onClick={async () => {
-        //                     const sessionToken = sessionStorage.getItem("sessionToken")
-        //                     if (sessionToken) {
-        //                         try {
-        //                             let response = await PlaylistRequests.deletePlaylist(props.basicDetails.id, sessionToken)
-        //                             prettyAlert(response, true)
-        //                             setDeletePlaylistResponse(response)
-        //                         } catch (e: any) {
-        //                             prettyAlert(e.response?.data || e.toJSON().message, false)
-        //                         }
-        //                     } else prettyAlert("You must be logged in to delete a playlist.", false)
-        //                 }}
-        //             >
-        //                 <div className="dropdown-item text-danger">Delete</div>
-        //             </li>
-        //         </ul>
-        //
-        //     </div>
-        // </div>
     }
 
     let playlistDraggableIcon;

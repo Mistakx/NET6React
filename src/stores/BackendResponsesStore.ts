@@ -23,9 +23,14 @@ const BackendResponsesStore = create<BackendResponsesState>((set) => ({
         updatedUserPhotoResponse: updatedUserPhotoResponse
     })),
 
-    editOrCreatePlaylistResponse: null,
-    setEditOrCreatePlaylistResponse: (editOrCreatePlaylistResponse) => set(state => ({
-        editOrCreatePlaylistResponse: editOrCreatePlaylistResponse
+    createPlaylistResponse: null,
+    setCreatePlaylistResponse: (createPlaylistResponse) => set(state => ({
+        createPlaylistResponse: createPlaylistResponse
+    })),
+
+    editPlaylistResponse: null,
+    setEditPlaylistResponse: (editPlaylistResponse) => set(state => ({
+        editPlaylistResponse: editPlaylistResponse
     })),
 
     deletePlaylistResponse: null,
