@@ -126,11 +126,11 @@ function FollowedList(): JSX.Element {
                 try {
                     const oldIndex = (followedResults as PlaylistDto[]).findIndex((item) => item.id === active.id);
                     const newIndex = (followedResults as PlaylistDto[]).findIndex((item) => item.id === over?.id);
-                    // CommunityRequests.sortFollowedPlaylist((followedResults as PlaylistDto[])[oldIndex].id!, newIndex, sessionToken).then(
-                    //     (response) => {
-                    //         prettyAlert(response, true)
-                    //     }
-                    // )
+                    CommunityRequests.sortPlaylistFollow((followedResults as PlaylistDto[])[oldIndex].id!, newIndex, sessionToken).then(
+                        (response) => {
+                            prettyAlert(response, true)
+                        }
+                    )
                     setFollowedResults(arrayMove((followedResults as PlaylistDto[]), oldIndex, newIndex));
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
@@ -150,11 +150,11 @@ function FollowedList(): JSX.Element {
                 try {
                     const oldIndex = (followedResults as UserProfileDto[]).findIndex((item) => item.username === active.id);
                     const newIndex = (followedResults as UserProfileDto[]).findIndex((item) => item.username === over?.id);
-                    // CommunityRequest.sortFollowedUser((followedResults as UserProfileDto[])[oldIndex].username!, newIndex, sessionToken).then(
-                    //     (response) => {
-                    //         prettyAlert(response, true)
-                    //     }
-                    // )
+                    CommunityRequests.sortUserFollow((followedResults as UserProfileDto[])[oldIndex].username!, newIndex, sessionToken).then(
+                        (response) => {
+                            prettyAlert(response, true)
+                        }
+                    )
                     setFollowedResults(arrayMove((followedResults as UserProfileDto[]), oldIndex, newIndex));
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)

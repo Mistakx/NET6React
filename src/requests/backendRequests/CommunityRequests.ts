@@ -13,6 +13,9 @@ import {GetFollowedPlaylistsDto} from "../../models/backendRequests/CommunityRou
 import {GetFollowedUsersDto} from "../../models/backendRequests/CommunityRoute/GetFollowedUsersDto";
 import {GetUsersFollowingUserDto} from "../../models/backendRequests/CommunityRoute/GetUsersFollowingUserDto";
 import {GetUsersFollowingPlaylistDto} from "../../models/backendRequests/CommunityRoute/GetUsersFollowingPlaylistDto";
+import {SortPlaylistContent} from "../../models/backendRequests/PlaylistRoute/SortPlaylistContent";
+import {SortUserFollowDto} from "../../models/backendRequests/CommunityRoute/SortUserFollowDto";
+import {SortPlaylistFollowDto} from "../../models/backendRequests/CommunityRoute/SortPlaylistFollowDto";
 
 class UserRequests {
 
@@ -148,6 +151,53 @@ class UserRequests {
         return response.data as string;
 
     }
+
+    static async sortUserFollow(followedUserUsername: string, newIndex: number, sessionToken: string) {
+
+        const url = "/Community/sortUserFollow";
+
+        let data: SortUserFollowDto = {
+            followedUserUsername: followedUserUsername,
+            newIndex: newIndex,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+
+        // @ts-ignore
+        let response = await axios(options);
+        return response.data as string;
+
+    }
+
+    static async sortPlaylistFollow(followedPlaylistId: string, newIndex: number, sessionToken: string) {
+
+        const url = "/Community/sortPlaylistFollow";
+
+        let data: SortPlaylistFollowDto = {
+            followedPlaylistId: followedPlaylistId,
+            newIndex: newIndex,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+
+        // @ts-ignore
+        let response = await axios(options);
+        return response.data as string;
+
+    }
+
 
 
 }

@@ -5,6 +5,7 @@ import AlertStore from "../../../stores/AlertStore";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 import EditUserInfoModalStore from "../../../stores/modals/EditUserInfoModalStore";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
+import {useNavigate} from "react-router-dom";
 
 function EditUserInfoModal(): JSX.Element {
 
@@ -21,6 +22,8 @@ function EditUserInfoModal(): JSX.Element {
 
     const setUpdatedUserInfoResponse = BackendResponsesStore(state => state.setUpdatedUserInfoResponse)
 
+    const navigate = useNavigate();
+
     async function submitForm() {
         const sessionToken = sessionStorage.getItem("sessionToken")
         if (sessionToken){
@@ -29,6 +32,8 @@ function EditUserInfoModal(): JSX.Element {
                 prettyAlert(response, true)
                 setUpdatedUserInfoResponse(response)
                 setShowingEditUserInfoModal(false)
+                window.sessionStorage.setItem("username", username!)
+                navigate('/user/' + window.sessionStorage.getItem("username"));
             } catch (e: any) {
                 prettyAlert(e.response?.data || e.toJSON().message, false)
             }
