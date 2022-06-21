@@ -16,6 +16,8 @@ import {GetUsersFollowingPlaylistDto} from "../../models/backendRequests/Communi
 import {SortPlaylistContent} from "../../models/backendRequests/PlaylistRoute/SortPlaylistContent";
 import {SortUserFollowDto} from "../../models/backendRequests/CommunityRoute/SortUserFollowDto";
 import {SortPlaylistFollowDto} from "../../models/backendRequests/CommunityRoute/SortPlaylistFollowDto";
+import {RemoveFollowFromPlaylist} from "../../models/backendRequests/CommunityRoute/RemoveFollowFromPlaylist";
+import {RemoveFollowFromUser} from "../../models/backendRequests/CommunityRoute/RemoveFollowFromUser";
 
 class UserRequests {
 
@@ -65,7 +67,7 @@ class UserRequests {
 
     static async getUsersFollowingUser(username: string) {
 
-        const url = "/Community/getFollowedUsers";
+        const url = "/Community/getUsersFollowingUser";
 
         let data: GetUsersFollowingUserDto = {
             username: username,
@@ -198,6 +200,50 @@ class UserRequests {
 
     }
 
+    static async removeFollowFromPlaylist(playlistId: string, username: string, sessionToken: string) {
+
+        const url = "/Community/removeFollowFromPlaylist";
+
+        let data: RemoveFollowFromPlaylist = {
+            playlistId: playlistId,
+            username: username,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+
+        // @ts-ignore
+        let response = await axios(options);
+        return response.data as string;
+
+    }
+
+    static async removeFollowFromUser(username: string, sessionToken: string) {
+
+        const url = "/Community/removeFollowFromUser";
+
+        let data: RemoveFollowFromUser = {
+            username: username,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+
+        // @ts-ignore
+        let response = await axios(options);
+        return response.data as string;
+
+    }
 
 
 }

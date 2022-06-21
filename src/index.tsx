@@ -1,22 +1,22 @@
 import React from 'react';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes,} from "react-router-dom";
-import SearchPage from "./components/searchPage/SearchPage";
-import HomePage from "./components/homePage/HomePage";
+import SearchPage from "./components/pages/searchPage/SearchPage";
+import HomePage from "./components/pages/homePage/HomePage";
 import {createRoot} from "react-dom/client";
-import UserPage from "./components/userPage/UserPage";
-import PlaylistPage from "./components/playlistPage/PlaylistPage";
-import Login from "./components/loginPage/LoginPage";
-import RegisterPage from "./components/registerPage/RegisterPage";
+import UserPage from "./components/pages/userPage/UserPage";
+import PlaylistPage from "./components/pages/playlistPage/PlaylistPage";
+import Login from "./components/pages/loginPage/LoginPage";
+import RegisterPage from "./components/pages/registerPage/RegisterPage";
 import SidePanel from "./components/SidePanel";
 import LiveRoom from "./components/LiveRoom";
-import GlobalPlayer from "./components/GlobalPlayer";
+import GlobalPlayer from "./components/globalPlayer/GlobalPlayer";
 import Alert from "./components/Alert";
 import LogRocket from 'logrocket';
-import TrendingPage from "./components/trendingPage/TrendingPage";
-import CommunityPage from "./components/communityPage/CommunityPage";
-import RefreshedUserPage from "./components/userPage/RefreshedOtherUserPage";
-import FollowingPage from "./components/followedPage/FollowingPage";
+import TrendingPage from "./components/pages/trendingPage/TrendingPage";
+import CommunityPage from "./components/pages/communityPage/CommunityPage";
+import RefreshedUserPage from "./components/pages/userPage/RefreshedOtherUserPage";
+import FollowingPage from "./components/pages/followedPage/FollowingPage";
 
 // LogRocket.init('tcdmcx/playlist-manager');
 
