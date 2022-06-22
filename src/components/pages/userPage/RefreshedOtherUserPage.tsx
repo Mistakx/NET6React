@@ -7,6 +7,8 @@ import OtherUserPage from "./OtherUserPage";
 
 function RefreshedUserPage(): JSX.Element {
 
+    // This page is needed in order to refresh the animations when jumping from another user to my profile
+
     const usernameParameter = useParams().username!
 
     let userPage;

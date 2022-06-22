@@ -8,6 +8,9 @@ import AlertStore from "../../stores/AlertStore";
 import BackendResponsesStore from "../../stores/BackendResponsesStore";
 import {useSortable} from "@dnd-kit/sortable";
 import {CSS} from "@dnd-kit/utilities";
+import {PlaylistDto} from "../../models/backendRequests/PlaylistRoute/PlaylistDto";
+import SearchedCommunityResultsStore from "../../stores/searches/SearchedCommunityResultsStore";
+import {UserProfileDto} from "../../models/backendResponses/userRoute/UserProfileDto";
 
 function UserItem(props: UserItemProperties): JSX.Element {
 
@@ -15,9 +18,13 @@ function UserItem(props: UserItemProperties): JSX.Element {
 
     const [followingButtonShapeClass, setFollowingButtonShapeClass] = React.useState<string>()
 
-    const setToggledFollowResponse = BackendResponsesStore(state => state.setToggledFollowResponse)
+    const searchedCommunityResults = SearchedCommunityResultsStore(state => state.searchedCommunityResults)
+    const setSearchedCommunityResults = SearchedCommunityResultsStore(state => state.setSearchedCommunityResults)
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
+
+    const setToggledFollowResponse = BackendResponsesStore(state => state.setToggledFollowResponse)
+
 
     const {
         attributes,
@@ -34,14 +41,25 @@ function UserItem(props: UserItemProperties): JSX.Element {
         } else {
             setFollowingButtonShapeClass("bx-heart")
         }
-    }, [])
+    })
 
     function toggleFollowingButton() {
-        if (followingButtonShapeClass === "bxs-heart") {
-            setFollowingButtonShapeClass("bx-heart")
-        } else {
-            setFollowingButtonShapeClass("bxs-heart")
+
+        let updatedSearchedCommunityResults: UserProfileDto[] = []
+
+        for (let searchedCommunityResult of searchedCommunityResults as UserProfileDto[]) {
+            if (searchedCommunityResult.username === props.basicDetails.username) {
+                let updatedCommunityResult: UserProfileDto = {
+                    ...searchedCommunityResult, followed: !searchedCommunityResult.followed
+                }
+                updatedSearchedCommunityResults.push(updatedCommunityResult)
+            }
+            else {
+                updatedSearchedCommunityResults.push(searchedCommunityResult)
+            }
         }
+        setSearchedCommunityResults(updatedSearchedCommunityResults)
+
     }
 
     const style = {

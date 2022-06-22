@@ -9,7 +9,7 @@ function TrendingResultsList(): JSX.Element {
 
     const [searchList, setSearchList] = useState<JSX.Element[]>();
 
-    const [trendingResults, setTrendingResults] = useState<GeneralizedResult[]>([]);
+    const [trendingResults, setTrendingResults] = useState<GeneralizedResult[]>();
 
     const setShowingPlaylistsModal = UserPlaylistsModalStore(state => state.setShowingPlaylistsModal)
 

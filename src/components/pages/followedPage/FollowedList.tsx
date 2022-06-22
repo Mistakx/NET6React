@@ -3,7 +3,6 @@ import UserPlaylistsModal from "../../modals/userPlaylistsModal/UserPlaylistsMod
 import {PlaylistDto} from "../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import FollowedTopBarStore from "../../../stores/topBars/FollowedTopBarStore";
 import CommunityRequests from "../../../requests/backendRequests/CommunityRequests";
-import CommunityResultComponentFactory from "../communityPage/searchItems/CommunityResultComponentFactory";
 import {UserProfileDto} from "../../../models/backendResponses/userRoute/UserProfileDto";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 import {
@@ -17,8 +16,7 @@ import {
 } from "@dnd-kit/core";
 import {restrictToWindowEdges} from "@dnd-kit/modifiers";
 import {arrayMove, rectSortingStrategy, SortableContext, sortableKeyboardCoordinates} from "@dnd-kit/sortable";
-import UserPlaylistItem from "../../cards/playlist/UserPlaylistItem";
-import UserRequests from "../../../requests/backendRequests/UserRequests";
+import PlaylistItem from "../../cards/playlist/PlaylistItem";
 import AlertStore from "../../../stores/AlertStore";
 import UserItem from "../../cards/UserItem";
 import {
@@ -36,7 +34,7 @@ import {
 
 function FollowedList(): JSX.Element {
 
-    const [followedResults, setFollowedResults] = useState<UserProfileDto[] | PlaylistDto[]>([]);
+    const [followedResults, setFollowedResults] = useState<UserProfileDto[] | PlaylistDto[]>();
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
@@ -108,11 +106,11 @@ function FollowedList(): JSX.Element {
     );
 
     function resultsArePlaylists() {
-        return (followedResults[0] as PlaylistDto).owner != null
+        return (followedResults![0] as PlaylistDto).owner != null
     }
 
     function resultsAreUsers() {
-        return (followedResults[0] as UserProfileDto).username != null
+        return (followedResults![0] as UserProfileDto).username != null
     }
 
 
@@ -165,7 +163,7 @@ function FollowedList(): JSX.Element {
     }
 
     let followedList;
-    if (followedResults.length === 0) {
+    if (followedResults?.length === 0) {
         followedList = <p>No results.</p>;
     } else {
 
@@ -173,7 +171,7 @@ function FollowedList(): JSX.Element {
         // As such a bug would occur, if the user changed from the users option to the playlist option, the code bellow
         // would try to render a playlist component, but would use the previous results that contain users
 
-        if (showing === "Playlists" && resultsArePlaylists()) {
+        if (followedResults && showing === "Playlists" && resultsArePlaylists()) {
 
             if (playlistOrder === "Custom Order") {
                 followedList = <DndContext
@@ -188,24 +186,24 @@ function FollowedList(): JSX.Element {
                     >
 
                         {followedResults.map((playlist) => (
-                            <UserPlaylistItem  key={(playlist as PlaylistDto).id} basicDetails={playlist as PlaylistDto} showingMyPlaylists={false}
-                                              showingPlaylistInSearch={true}
-                                              draggable={true}/>
+                            <PlaylistItem key={(playlist as PlaylistDto).id} basicDetails={playlist as PlaylistDto} showingMyPlaylists={false}
+                                          showingPlaylistInSearch={true}
+                                          draggable={true}/>
                         ))}
 
                     </SortableContext>
                 </DndContext>
             } else {
                 followedList = followedResults.map((playlist) => (
-                    <UserPlaylistItem basicDetails={playlist as PlaylistDto} showingMyPlaylists={false}
-                                      showingPlaylistInSearch={true}
-                                      draggable={false}/>
+                    <PlaylistItem basicDetails={playlist as PlaylistDto} showingMyPlaylists={false}
+                                  showingPlaylistInSearch={true}
+                                  draggable={false}/>
                 ))
 
             }
 
 
-        } else if (showing === "Users" && resultsAreUsers()) {
+        } else if (followedResults && showing === "Users" && resultsAreUsers()) {
 
             if (userOrder === "Custom Order") {
                 followedList = <DndContext

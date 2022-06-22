@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import '../../../styles/style.css';
-import AOS from "aos";
 import UserPage from "./UserPage";
 
 function MyUserPage(props: {username: string}): JSX.Element {

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import '../../../../styles/style.css';
-import UserPlaylistItem from "../../../cards/playlist/UserPlaylistItem";
+import PlaylistItem from "../../../cards/playlist/PlaylistItem";
 import {PlaylistDto} from "../../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import UserRequests from "../../../../requests/backendRequests/UserRequests";
 import AddPlaylistItem from "./AddPlaylistItem";
@@ -229,8 +229,8 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
             >
 
                 {userPlaylistItems.map((playlist) => (
-                    <UserPlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={true}
-                                      showingPlaylistInSearch={false} draggable={true}/>
+                    <PlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={true}
+                                  showingPlaylistInSearch={false} draggable={true}/>
                 ))}
 
             </SortableContext>
@@ -242,8 +242,8 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
         addPlaylistItem = <AddPlaylistItem/>
         playlistList = <>
                 {userPlaylistItems.map((playlist) => (
-                    <UserPlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={true}
-                                      showingPlaylistInSearch={false} draggable={false}/>
+                    <PlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={true}
+                                  showingPlaylistInSearch={false} draggable={false}/>
                 ))}
         </>
 
@@ -255,8 +255,8 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
         playlistList = <>
             {
                 userPlaylistItems.map((playlist) => (
-                    <UserPlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={false}
-                                      showingPlaylistInSearch={false} draggable={false}/>
+                    <PlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={false}
+                                  showingPlaylistInSearch={false} draggable={false}/>
                 ))
             }
         </>

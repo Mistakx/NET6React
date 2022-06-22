@@ -8,14 +8,22 @@ import AlertStore from "../../../stores/AlertStore";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 import {useSortable} from "@dnd-kit/sortable";
 import {CSS} from "@dnd-kit/utilities";
-import {ProfilePlaylistItemProperties} from "../../../models/components/pages/communityPage/ProfilePlaylistItemProperties";
+import {
+    ProfilePlaylistItemProperties
+} from "../../../models/components/pages/communityPage/ProfilePlaylistItemProperties";
 import RecommendationRequests from "../../../requests/backendRequests/RecommendationRequests";
 import CommunityRequests from "../../../requests/backendRequests/CommunityRequests";
 import PlaylistDropdownMenu from "../../dropdownMenus/PlaylistDropdownMenu";
+import SearchedCommunityResultsStore from "../../../stores/searches/SearchedCommunityResultsStore";
+import {UserProfileDto} from "../../../models/backendResponses/userRoute/UserProfileDto";
+import {PlaylistDto} from "../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 
-function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
+function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
     let navigate = useNavigate()
+
+    const searchedCommunityResults = SearchedCommunityResultsStore(state => state.searchedCommunityResults)
+    const setSearchedCommunityResults = SearchedCommunityResultsStore(state => state.setSearchedCommunityResults)
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
@@ -37,14 +45,24 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
         } else {
             setFollowingButtonShapeClass("bx-heart")
         }
-    }, [])
+    })
 
     function toggleFollowingButton() {
-        if (followingButtonShapeClass === "bxs-heart") {
-            setFollowingButtonShapeClass("bx-heart")
-        } else {
-            setFollowingButtonShapeClass("bxs-heart")
+
+        let updatedSearchedCommunityResults: PlaylistDto[] = []
+
+        for (let searchedCommunityResult of searchedCommunityResults as PlaylistDto[]) {
+            if (searchedCommunityResult.id === props.basicDetails.id) {
+                let updatedCommunityResult: PlaylistDto = {
+                    ...searchedCommunityResult, followed: !searchedCommunityResult.followed
+                }
+                updatedSearchedCommunityResults.push(updatedCommunityResult)
+            } else {
+                updatedSearchedCommunityResults.push(searchedCommunityResult)
+            }
         }
+        setSearchedCommunityResults(updatedSearchedCommunityResults)
+
     }
 
     const style = {
@@ -103,33 +121,32 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
     let followButton;
     if (props.basicDetails.followed !== null) {
-        followButton = 
-            <button className="btn btn-lg btn-add"
-                    type="button"
-                    onClick={async () => {
-                        try {
-                            const sessionToken = window.sessionStorage.getItem("sessionToken")
-                            if (sessionToken) {
-                                const response = await CommunityRequests.togglePlaylistFollow(props.basicDetails.id, sessionToken)
-                                prettyAlert(response, true)
-                                setToggledFollowResponse(response)
-                                toggleFollowingButton()
-                            } else prettyAlert("You need to be logged in to follow a playlist", false)
-                        } catch (e: any) {
-                            prettyAlert(e.response?.data || e.toJSON().message, false)
-                        }
-                    }}
-            >
-                <i className={'bx ' + followingButtonShapeClass}></i>
-            </button>
-    }
+        followButton = <button className="btn btn-lg btn-add"
+                               type="button"
+                               onClick={async () => {
+                                   try {
+                                       const sessionToken = window.sessionStorage.getItem("sessionToken")
+                                       if (sessionToken) {
+                                           const response = await CommunityRequests.togglePlaylistFollow(props.basicDetails.id, sessionToken)
+                                           prettyAlert(response, true)
+                                           setToggledFollowResponse(response)
+                                           toggleFollowingButton()
+                                       } else prettyAlert("You need to be logged in to follow a playlist", false)
+                                   } catch (e: any) {
+                                       prettyAlert(e.response?.data || e.toJSON().message, false)
+                                   }
+                               }}
+        >
+            <i className={'bx ' + followingButtonShapeClass}></i>
+        </button>
 
+    }
 
     let ownerButton;
     if (props.basicDetails.owner !== null) {
         ownerButton =
             <button className="btn btn-lg btn-user"
-                type="button" style={{
+                    type="button" style={{
                 backgroundSize: "100% 100%",
                 backgroundImage: "url(" + props.basicDetails.owner.profilePhotoUrl + ")"
             }}
@@ -137,7 +154,6 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                         navigate(`/user/${props.basicDetails.owner.username}`)
                     }}
             >
-                <i className='bx bx-user'></i>
             </button>
 
     }
@@ -156,7 +172,7 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                      }}>
 
                     {playlistItemDropdown}
-                    <div className="options-bottom-right m-3">
+                    <div className="options options-bottom-right m-3">
                         {ownerButton}
                         {followButton}
                     </div>
@@ -174,7 +190,7 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                         {totalViews}
                         <div className="card-text text-start"
                              style={{"fontStyle": "italic"}}>{props.basicDetails.description}</div>
-                        
+
                     </div>
                     {playlistDraggableIcon}
                 </div>
@@ -185,4 +201,4 @@ function UserPlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
     )
 }
 
-export default UserPlaylistItem;
+export default PlaylistItem;
