@@ -10,8 +10,11 @@ import AlertStore from "../../../../stores/AlertStore";
 import {useNavigate} from "react-router-dom";
 import PlaylistDropdownMenu from "../../../dropdownMenus/PlaylistDropdownMenu";
 import FollowersModalStore from "../../../../stores/modals/FollowersModalStore";
+import CommunityRequests from "../../../../requests/backendRequests/CommunityRequests";
 
 function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
+
+    const [followingButtonShapeClass, setFollowingButtonShapeClass] = React.useState<string>()
 
     const [playlistBasicDetails, setPlaylistBasicDetails] = useState<PlaylistDto>()
 
@@ -32,8 +35,19 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
     const setEditPlaylistResponse = BackendResponsesStore(state => state.setEditPlaylistResponse)
     const editPlaylistResponse = BackendResponsesStore(state => state.editPlaylistResponse)
 
+    const toggledFollowResponse = BackendResponsesStore(state => state.toggledFollowResponse)
+    const setToggledFollowResponse = BackendResponsesStore(state => state.setToggledFollowResponse)
+
+
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
+    useEffect(() => {
+        if (playlistBasicDetails?.followed) {
+            setFollowingButtonShapeClass("bxs-heart")
+        } else {
+            setFollowingButtonShapeClass("bx-heart")
+        }
+    }, [playlistBasicDetails])
 
     useEffect(() => {
         (async () => {
@@ -98,6 +112,19 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
         }
     }, [editPlaylistResponse]);
 
+    useEffect(() => {
+        if (toggledFollowResponse) {
+            (async () => {
+                try {
+                    setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, window.sessionStorage.getItem("sessionToken")!))
+                } catch (e: any) {
+                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                }
+                setToggledFollowResponse("")
+            })()
+        }
+    }, [toggledFollowResponse]);
+
 
     let ownerButton;
     if (playlistBasicDetails?.owner != null) {
@@ -118,6 +145,31 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
     let playlistDropdown;
     if (playlistBasicDetails?.owner === null) {
         playlistDropdown = <PlaylistDropdownMenu basicDetails={playlistBasicDetails}/>
+    }
+
+    let followButton;
+    if (playlistBasicDetails?.owner != null) {
+        followButton = <button type="button" className="btn dropdown-toggle-split"
+           onClick={async () => {
+               try {
+                   const sessionToken = window.sessionStorage.getItem("sessionToken")
+                   if (playlistBasicDetails && sessionToken) {
+                       const response = await CommunityRequests.togglePlaylistFollow(playlistBasicDetails.id, sessionToken)
+                       prettyAlert(response, true)
+                       if (followingButtonShapeClass === "bxs-heart") {
+                           setFollowingButtonShapeClass("bx-heart")
+                       } else if (followingButtonShapeClass === "bx-heart") {
+                           setFollowingButtonShapeClass("bxs-heart")
+                       }
+                       setToggledFollowResponse(response)
+                   } else prettyAlert("You need to be logged in to follow a user", false)
+               } catch (e: any) {
+                   prettyAlert(e.response?.data || e.toJSON().message, false)
+               }
+           }}
+        >
+            <i className={'bx ' + followingButtonShapeClass}></i>
+        </button>
     }
 
     return (
@@ -142,9 +194,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                 <div className="options-dropdown-right">
                     <div className="btn-group" style={{position: "absolute", top: "10px", right: "10px"}}>
 
-                        <button type="button" className="btn dropdown-toggle-split">
-                            <i className='bx bx-heart'></i>
-                        </button>
+                        {followButton}
 
                         <button type="button" className="btn dropdown-toggle-split"
                                 onClick={() => {

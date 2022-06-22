@@ -7,7 +7,7 @@ export interface UserProfileDto {
     weeklyViewsAmount?: number
     totalViewsAmount?: number
 
-    playlistsAmount?: number
+    viewablePlaylistsAmount?: number
     playlistsWeeklyViewsAmount?: number
     playlistsTotalViewsAmount?: number
     playlistsContentAmount?: number

@@ -8,7 +8,6 @@ import AlertStore from "../../stores/AlertStore";
 import BackendResponsesStore from "../../stores/BackendResponsesStore";
 import {useSortable} from "@dnd-kit/sortable";
 import {CSS} from "@dnd-kit/utilities";
-import {PlaylistDto} from "../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import SearchedCommunityResultsStore from "../../stores/searches/SearchedCommunityResultsStore";
 import {UserProfileDto} from "../../models/backendResponses/userRoute/UserProfileDto";
 
@@ -121,6 +120,7 @@ function UserItem(props: UserItemProperties): JSX.Element {
 
                         <h5 className="card-title text-uppercase text-truncate text-center">{props.basicDetails.username}</h5>
                         <div className="card-text text-start">{props.basicDetails.name}</div>
+                        <div className="card-text text-start">Total playlists: {props.basicDetails.viewablePlaylistsAmount}</div>
                         <div className="card-text text-start">Weekly Views: {props.basicDetails.weeklyViewsAmount}</div>
                         <div className="card-text text-start">Total Views: {props.basicDetails.totalViewsAmount}</div>
                     </div>

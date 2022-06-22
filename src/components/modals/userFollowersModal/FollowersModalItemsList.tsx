@@ -9,6 +9,7 @@ import CommunityRequests from "../../../requests/backendRequests/CommunityReques
 import {
     FollowersModalItemsListProperties
 } from "../../../models/components/pages/communityPage/FollowersModalItemsListProperties";
+import {compareUsername} from "../../../utils/sorting/userSorting";
 
 
 function FollowersModalItemsList(props: FollowersModalItemsListProperties): JSX.Element {
@@ -20,17 +21,19 @@ function FollowersModalItemsList(props: FollowersModalItemsListProperties): JSX.
 
     const [followers, setFollowers] = React.useState<UserProfileDto[]>();
 
-    const username = sessionStorage.getItem("username");
-
     useEffect(() => {
         (async () => {
             const sessionToken = window.sessionStorage.getItem("sessionToken");
             if (sessionToken) {
                 try {
                     if ("username" in props.showingFollowerOf) {
-                        setFollowers(await CommunityRequests.getUsersFollowingUser(props.showingFollowerOf.username));
+                        let response = await CommunityRequests.getUsersFollowingUser(props.showingFollowerOf.username)
+                        response.sort(compareUsername)
+                        setFollowers(response);
                     } else if ("title" in props.showingFollowerOf) {
-                        setFollowers(await CommunityRequests.getUsersFollowingPlaylist(props.showingFollowerOf.id));
+                        let response = await CommunityRequests.getUsersFollowingPlaylist(props.showingFollowerOf.id)
+                        response.sort(compareUsername)
+                        setFollowers(response);
                     }
                 } catch (e: any) {
                     prettyAlert(e.response?.data || e.toJSON().message, false)
@@ -65,7 +68,7 @@ function FollowersModalItemsList(props: FollowersModalItemsListProperties): JSX.
     } else if (followers && followers?.length > 0) {
         for (const currentFollower of followers) {
             playlistItemsList.push(
-                <FollowersModalItem follower={currentFollower} showingFollowerOf={props.showingFollowerOf}/>)
+                <FollowersModalItem key={currentFollower.username} follower={currentFollower} showingFollowerOf={props.showingFollowerOf}/>)
         }
     }
 
