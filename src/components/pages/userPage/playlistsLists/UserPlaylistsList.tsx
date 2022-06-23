@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import '../../../../styles/style.css';
-import PlaylistItem from "../../../cards/playlist/PlaylistItem";
+import PlaylistItem from "../../../cards/PlaylistItem";
 import {PlaylistDto} from "../../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import UserRequests from "../../../../requests/backendRequests/UserRequests";
 import AddPlaylistItem from "./AddPlaylistItem";
@@ -45,6 +45,10 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
 
     const resetCoverResponse = BackendResponsesStore(state => state.resetCoverResponse)
     const setResetCoverResponse = BackendResponsesStore(state => state.setResetCoverResponse)
+
+    const setToggledFollowResponse = BackendResponsesStore(state => state.setToggledFollowResponse)
+    const toggledFollowResponse = BackendResponsesStore(state => state.toggledFollowResponse)
+
 
     useEffect(() => {
         (async () => {
@@ -153,6 +157,28 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
             })()
         }
     }, [createPlaylistResponse]);
+
+    useEffect(() => {
+        if (toggledFollowResponse) {
+            (async () => {
+                const sessionToken = window.sessionStorage.getItem("sessionToken");
+                if (sessionToken) {
+                    try {
+                        const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
+                        if (order === "Custom Order") userPlaylists.sort()
+                        else if (order === "Order by Title") userPlaylists.sort(compareTitle)
+                        else if (order === "Order by Items Amount") userPlaylists.sort(compareResultsAmount)
+                        else if (order === "Order by Weekly Views") userPlaylists.sort(compareWeeklyViews)
+                        else if (order === "Order by Total Views") userPlaylists.sort(compareTotalViews)
+                        setUserPlaylistItems(userPlaylists);
+                    } catch (e: any) {
+                        prettyAlert(e.response?.data || e.toJSON().message, false)
+                    }
+                    setToggledFollowResponse(null);
+                } else prettyAlert("No session token found.", false)
+            })()
+        }
+    }, [toggledFollowResponse]);
 
 
     function compareTitle(a: PlaylistDto, b: PlaylistDto) {

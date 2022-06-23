@@ -24,7 +24,6 @@ function UserItem(props: UserItemProperties): JSX.Element {
 
     const setToggledFollowResponse = BackendResponsesStore(state => state.setToggledFollowResponse)
 
-
     const {
         attributes,
         listeners,
@@ -44,6 +43,12 @@ function UserItem(props: UserItemProperties): JSX.Element {
 
     function toggleFollowingButton() {
 
+        if (followingButtonShapeClass === "bxs-heart") {
+            setFollowingButtonShapeClass("bx-heart")
+        } else if (followingButtonShapeClass === "bx-heart") {
+            setFollowingButtonShapeClass("bxs-heart")
+        }
+
         let updatedSearchedCommunityResults: UserProfileDto[] = []
 
         for (let searchedCommunityResult of searchedCommunityResults as UserProfileDto[]) {
@@ -52,8 +57,7 @@ function UserItem(props: UserItemProperties): JSX.Element {
                     ...searchedCommunityResult, followed: !searchedCommunityResult.followed
                 }
                 updatedSearchedCommunityResults.push(updatedCommunityResult)
-            }
-            else {
+            } else {
                 updatedSearchedCommunityResults.push(searchedCommunityResult)
             }
         }
@@ -106,6 +110,7 @@ function UserItem(props: UserItemProperties): JSX.Element {
                                         prettyAlert(e.response?.data || e.toJSON().message, false)
                                     }
                                 }}
+                                style={{fontSize: "32px"}}
                         >
                             <i className={'bx ' + followingButtonShapeClass}></i>
                         </button>
@@ -120,7 +125,8 @@ function UserItem(props: UserItemProperties): JSX.Element {
 
                         <h5 className="card-title text-uppercase text-truncate text-center">{props.basicDetails.username}</h5>
                         <div className="card-text text-start">{props.basicDetails.name}</div>
-                        <div className="card-text text-start">Total playlists: {props.basicDetails.viewablePlaylistsAmount}</div>
+                        <div className="card-text text-start">Total
+                            playlists: {props.basicDetails.viewablePlaylistsAmount}</div>
                         <div className="card-text text-start">Weekly Views: {props.basicDetails.weeklyViewsAmount}</div>
                         <div className="card-text text-start">Total Views: {props.basicDetails.totalViewsAmount}</div>
                     </div>

@@ -129,6 +129,13 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
         }
     }, [toggledFollowResponse]);
 
+    function toggleFollowButton() {
+        if (followingButtonShapeClass === "bxs-heart") {
+            setFollowingButtonShapeClass("bx-heart")
+        } else if (followingButtonShapeClass === "bx-heart") {
+            setFollowingButtonShapeClass("bxs-heart")
+        }
+    }
 
     let ownerButton;
     if (playlistBasicDetails?.owner != null) {
@@ -160,11 +167,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                    if (playlistBasicDetails && sessionToken) {
                        const response = await CommunityRequests.togglePlaylistFollow(playlistBasicDetails.id, sessionToken)
                        prettyAlert(response, true)
-                       if (followingButtonShapeClass === "bxs-heart") {
-                           setFollowingButtonShapeClass("bx-heart")
-                       } else if (followingButtonShapeClass === "bx-heart") {
-                           setFollowingButtonShapeClass("bxs-heart")
-                       }
+                       toggleFollowButton()
                        setToggledFollowResponse(response)
                    } else prettyAlert("You need to be logged in to follow a user", false)
                } catch (e: any) {

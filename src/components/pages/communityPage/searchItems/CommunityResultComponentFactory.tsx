@@ -1,7 +1,7 @@
 import {PlaylistDto} from "../../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import {UserProfileDto} from "../../../../models/backendResponses/userRoute/UserProfileDto";
 import UserItem from "../../../cards/UserItem";
-import PlaylistItem from "../../../cards/playlist/PlaylistItem";
+import PlaylistItem from "../../../cards/PlaylistItem";
 
 class CommunityResultComponentFactory {
 

@@ -16,7 +16,7 @@ import {
 } from "@dnd-kit/core";
 import {restrictToWindowEdges} from "@dnd-kit/modifiers";
 import {arrayMove, rectSortingStrategy, SortableContext, sortableKeyboardCoordinates} from "@dnd-kit/sortable";
-import PlaylistItem from "../../cards/playlist/PlaylistItem";
+import PlaylistItem from "../../cards/PlaylistItem";
 import AlertStore from "../../../stores/AlertStore";
 import UserItem from "../../cards/UserItem";
 import {

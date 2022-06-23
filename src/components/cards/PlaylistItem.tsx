@@ -1,22 +1,22 @@
 import React, {useEffect} from 'react';
-import '../../../styles/style.css';
+import '../../styles/style.css';
 import {useNavigate} from "react-router-dom";
-import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
-import EditOrCreatePlaylistModalStore from "../../../stores/modals/EditOrCreatePlaylistModalStore";
-import {EditPlaylist} from "../../../models/backendRequests/PlaylistRoute/EditPlaylist";
-import AlertStore from "../../../stores/AlertStore";
-import BackendResponsesStore from "../../../stores/BackendResponsesStore";
+import PlaylistRequests from "../../requests/backendRequests/PlaylistRequests";
+import EditOrCreatePlaylistModalStore from "../../stores/modals/EditOrCreatePlaylistModalStore";
+import {EditPlaylist} from "../../models/backendRequests/PlaylistRoute/EditPlaylist";
+import AlertStore from "../../stores/AlertStore";
+import BackendResponsesStore from "../../stores/BackendResponsesStore";
 import {useSortable} from "@dnd-kit/sortable";
 import {CSS} from "@dnd-kit/utilities";
 import {
     ProfilePlaylistItemProperties
-} from "../../../models/components/pages/communityPage/ProfilePlaylistItemProperties";
-import RecommendationRequests from "../../../requests/backendRequests/RecommendationRequests";
-import CommunityRequests from "../../../requests/backendRequests/CommunityRequests";
-import PlaylistDropdownMenu from "../../dropdownMenus/PlaylistDropdownMenu";
-import SearchedCommunityResultsStore from "../../../stores/searches/SearchedCommunityResultsStore";
-import {UserProfileDto} from "../../../models/backendResponses/userRoute/UserProfileDto";
-import {PlaylistDto} from "../../../models/backendRequests/PlaylistRoute/PlaylistDto";
+} from "../../models/components/pages/communityPage/ProfilePlaylistItemProperties";
+import RecommendationRequests from "../../requests/backendRequests/RecommendationRequests";
+import CommunityRequests from "../../requests/backendRequests/CommunityRequests";
+import PlaylistDropdownMenu from "../dropdownMenus/PlaylistDropdownMenu";
+import SearchedCommunityResultsStore from "../../stores/searches/SearchedCommunityResultsStore";
+import {UserProfileDto} from "../../models/backendResponses/userRoute/UserProfileDto";
+import {PlaylistDto} from "../../models/backendRequests/PlaylistRoute/PlaylistDto";
 
 function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
@@ -45,9 +45,15 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
         } else {
             setFollowingButtonShapeClass("bx-heart")
         }
-    })
+    }, [])
 
     function toggleFollowingButton() {
+
+        if (followingButtonShapeClass === "bxs-heart") {
+            setFollowingButtonShapeClass("bx-heart")
+        } else if (followingButtonShapeClass === "bx-heart") {
+            setFollowingButtonShapeClass("bxs-heart")
+        }
 
         let updatedSearchedCommunityResults: PlaylistDto[] = []
 
@@ -114,7 +120,7 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
     // The playlist item card grid depends varies if it is showing on a playlist or on a search result
     let playlistItemClass;
     if (!props.showingPlaylistInSearch) {
-        playlistItemClass = "col-lg-4 col-md-6 col-sm-6 col-6 position-relative"
+        playlistItemClass = "result col-lg-4 col-md-6 col-sm-6 col-6 position-relative"
     } else {
         playlistItemClass = "result col-lg-3 col-md-4 col-sm-6 col-6 position-relative"
     }

@@ -10,7 +10,6 @@ const SearchedCommunityResultsStore = create<SearchedCommunityResultsState>((set
         searchedCommunityResults: searchedCommunityResults
     }))
 
-
 }))
 
 export default SearchedCommunityResultsStore;
