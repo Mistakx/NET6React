@@ -2,20 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {GeneralizedResult} from "../../../models/apiResponses/GenericResults";
 import RecommendationRequests from "../../../requests/backendRequests/RecommendationRequests";
 import SearchResultComponentFactory from "../../cards/content/SearchResultComponentFactory";
-import UserPlaylistsModal from "../../modals/userPlaylistsModal/UserPlaylistsModal";
-import UserPlaylistsModalStore from "../../../stores/modals/UserPlaylistsModalStore";
 
 function TrendingResultsList(): JSX.Element {
 
     const [searchList, setSearchList] = useState<JSX.Element[]>();
 
     const [trendingResults, setTrendingResults] = useState<GeneralizedResult[]>();
-
-    const setShowingPlaylistsModal = UserPlaylistsModalStore(state => state.setShowingPlaylistsModal)
-
-    useEffect(() => {
-        setShowingPlaylistsModal(false)
-    }, []);
 
     useEffect(() => {
         (async () => {
@@ -44,8 +36,6 @@ function TrendingResultsList(): JSX.Element {
     return (
 
         <div>
-
-            <UserPlaylistsModal/>
 
             <div className="results">
                 <div className="row">

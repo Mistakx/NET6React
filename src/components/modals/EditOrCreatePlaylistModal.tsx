@@ -76,9 +76,8 @@ function EditOrCreatePlaylistModal(): JSX.Element {
         setShowingEditOrCreatePlaylistModal(false)
     }
 
-    let editPlaylistModal;
-    if (showingEditOrCreatePlaylistModal) {
-        editPlaylistModal = <Modal
+    return (
+        <Modal
             show={showingEditOrCreatePlaylistModal}
             backdrop="static"
             keyboard={true}
@@ -153,10 +152,10 @@ function EditOrCreatePlaylistModal(): JSX.Element {
 
                         <div className="form-group">
                             <textarea name="" id="" placeholder="Playlist description" className="form-control"
-                                onChange={(e) => {
-                                    setPlaylistDescription(e.target.value)
-                                }}
-                                value={playlistDescription}
+                                      onChange={(e) => {
+                                          setPlaylistDescription(e.target.value)
+                                      }}
+                                      value={playlistDescription}
                             >
 
                             </textarea>
@@ -166,10 +165,10 @@ function EditOrCreatePlaylistModal(): JSX.Element {
 
                 <div className="modal-footer">
                     <button type="submit" className="btn btn-success"
-                        onClick={async (e) => {
-                            e.preventDefault()
-                            await submitForm()
-                        }}
+                            onClick={async (e) => {
+                                e.preventDefault()
+                                await submitForm()
+                            }}
                     >
                         Save changes
                     </button>
@@ -177,12 +176,6 @@ function EditOrCreatePlaylistModal(): JSX.Element {
             </div>
 
         </Modal>
-    }
-
-    return (
-        <div>
-            {editPlaylistModal}
-        </div>
     )
 
 }

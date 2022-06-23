@@ -8,4 +8,6 @@ export interface PlaylistPagePlayerState {
     playlistCurrentResults: GeneralizedResult[] | null
     setPlaylistCurrentResults: (playlistCurrentResults: GeneralizedResult[] | null) => void
 
+    resetPlaylistPagePlayerState: () => void
+
 }

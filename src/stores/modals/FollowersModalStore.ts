@@ -1,7 +1,7 @@
 import create from 'zustand'
-import {UserFollowersModalState} from "../../models/states/modals/UserFollowersModalState";
+import {FollowersModalState} from "../../models/states/modals/FollowersModalState";
 
-const FollowersModalStore = create<UserFollowersModalState>((set) => ({
+const FollowersModalStore = create<FollowersModalState>((set) => ({
 
     showingFollowersOf: null,
     setShowingFollowersOf: (showingFollowersOf) => set(state => ({
@@ -12,6 +12,11 @@ const FollowersModalStore = create<UserFollowersModalState>((set) => ({
     setShowingFollowersModal: (showingFollowersModal) => set(state => ({
         showingFollowersModal: showingFollowersModal
     })),
+
+    resetFollowersModal: () => set(state => ({
+        showingFollowersOf: null,
+        showingFollowersModal: false
+    }))
 
 }))
 

@@ -9,4 +9,6 @@ export interface EditOrCreatePlaylistModalState {
     showingEditOrCreatePlaylistModal: boolean
     setShowingEditOrCreatePlaylistModal: (showingEditOrCreatePlaylistModal: boolean) => void
 
+    resetEditOrCreatePlaylistModal: () => void
+
 }

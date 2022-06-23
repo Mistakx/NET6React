@@ -14,9 +14,9 @@ function FollowersModal(): JSX.Element {
     const showingUserFollowersModal = FollowersModalStore(state => state.showingFollowersModal)
     const setShowingUserFollowersModal = FollowersModalStore(state => state.setShowingFollowersModal)
 
-    let userFollowersModal;
-    if (showingUserFollowersModal) {
-        userFollowersModal = <Modal
+    let followersModal;
+    if (showingFollowersOf != null) {
+        followersModal = <Modal
             show={showingUserFollowersModal}
             backdrop="static"
             keyboard={true}
@@ -42,7 +42,7 @@ function FollowersModal(): JSX.Element {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <FollowersModalItemsList showingFollowerOf={showingFollowersOf!}/>
+                    <FollowersModalItemsList showingFollowerOf={showingFollowersOf}/>
                 </Modal.Body>
 
             </div>
@@ -52,9 +52,9 @@ function FollowersModal(): JSX.Element {
 
     return (
 
-        <div>
-            {userFollowersModal}
-        </div>
+        <>
+            {followersModal}
+        </>
 
     )
 }

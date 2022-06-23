@@ -1,14 +1,14 @@
 import '../../../styles/SearchPage.css';
 import React from "react";
 import "aos/dist/aos.css";
-import {PlaylistItemProperties} from "../../../models/components/pages/searchPage/playlistsModal/PlaylistItemProperties";
+import {PlaylistItemProperties} from "../../../models/components/modals/userPlaylistsModal/PlaylistItemProperties";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
 import UserPlaylistsModalStore from "../../../stores/modals/UserPlaylistsModalStore";
 import AlertStore from "../../../stores/AlertStore";
 import {useNavigate} from "react-router-dom";
 import {
     FollowersModalItemProperties
-} from "../../../models/components/pages/communityPage/FollowersModalItemProperties";
+} from "../../../models/components/modals/followersModal/FollowersModalItemProperties";
 import CommunityRequests from "../../../requests/backendRequests/CommunityRequests";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
 import UserRequests from "../../../requests/backendRequests/UserRequests";
@@ -23,8 +23,8 @@ function FollowersModalItem(props: FollowersModalItemProperties): JSX.Element {
 
     // Remove follower button appears if showing follower of a user who is me, or a playlist that belongs to me (doesn't have an owner)
     let removeFollowerButton;
-    if ("username" in props.showingFollowerOf && props.showingFollowerOf.username === window.sessionStorage.getItem("username")
-        || "title" in props.showingFollowerOf && props.showingFollowerOf.owner === null) {
+    if (props.showingFollowerOf && "username" in props.showingFollowerOf && props.showingFollowerOf.username === window.sessionStorage.getItem("username")
+        || props.showingFollowerOf && "title" in props.showingFollowerOf && props.showingFollowerOf.owner === null) {
         removeFollowerButton = <button
             style={{
                 height: 100,
@@ -34,7 +34,7 @@ function FollowersModalItem(props: FollowersModalItemProperties): JSX.Element {
             onClick={async () => {
 
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
-                if (sessionToken) {
+                if (props.showingFollowerOf && sessionToken) {
                     try {
                         let response: string;
 

@@ -12,26 +12,28 @@ import PlaylistTopBar from "./PlaylistTopBar";
 import EditOrCreatePlaylistModal from "../../modals/EditOrCreatePlaylistModal";
 import EditOrCreatePlaylistModalStore from "../../../stores/modals/EditOrCreatePlaylistModalStore";
 import FollowersModalStore from "../../../stores/modals/FollowersModalStore";
-import FollowersModal from "../../modals/userFollowersModal/FollowersModal";
+import FollowersModal from "../../modals/followersModal/FollowersModal";
+import StatisticsModalStore from "../../../stores/modals/StatisticsModalStore";
+import StatisticsModal from "../../modals/statisticsModal/StatisticsModal";
+import {EditOrCreatePlaylistModalState} from "../../../models/states/modals/EditOrCreatePlaylistModalState";
 
 function PlaylistPage(): JSX.Element {
 
     const playlistId = useParams().playlistId
 
-    const setPlaylistPlayerGeneralizedResult = PlaylistPagePlayerStore(state => state.setPlaylistPlayerCurrentResult)
-    const setPlaylistCurrentResults = PlaylistPagePlayerStore(state => state.setPlaylistCurrentResults)
-
-    const showingEditOrCreatePlaylistModal = EditOrCreatePlaylistModalStore(state => state.showingEditOrCreatePlaylistModal)
-
-    const showingFollowersModal = FollowersModalStore(state => state.showingFollowersModal)
-
+    const resetPlaylistPagePlayerState = PlaylistPagePlayerStore(state => state.resetPlaylistPagePlayerState)
+    const resetEditOrCreatePlaylistModal = EditOrCreatePlaylistModalStore(state => state.resetEditOrCreatePlaylistModal)
+    const resetFollowersModal = FollowersModalStore(state => state.resetFollowersModal)
+    const resetStatisticsModal = StatisticsModalStore(state => state.resetStatisticsModal)
 
     useEffect(() => {
         AOS.init();
-        (async () => {
-            setPlaylistPlayerGeneralizedResult(null)
-            setPlaylistCurrentResults(null)
-        })()
+
+        resetPlaylistPagePlayerState()
+        resetEditOrCreatePlaylistModal()
+        resetFollowersModal()
+        resetStatisticsModal()
+
     }, []);
 
     let playlistCover;
@@ -44,22 +46,13 @@ function PlaylistPage(): JSX.Element {
         playlistsItemsList = <PlaylistContentList playlistId={playlistId}/>
     }
 
-    let editPlaylistModal;
-    if (showingEditOrCreatePlaylistModal) {
-        editPlaylistModal = <EditOrCreatePlaylistModal/>
-    }
-
-    let userFollowersModal;
-    if (showingFollowersModal) {
-        userFollowersModal = <FollowersModal/>
-    }
-
     return (
 
         <div>
 
-            {editPlaylistModal}
-            {userFollowersModal}
+            <EditOrCreatePlaylistModal/>
+            <FollowersModal/>
+            <StatisticsModal/>
 
             <main id="main">
 

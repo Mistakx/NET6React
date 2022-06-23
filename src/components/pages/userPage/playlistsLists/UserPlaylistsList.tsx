@@ -206,11 +206,6 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
         }
     }
 
-    let editOrCreatePlaylistModal;
-    if (props.username === sessionStorage.getItem("username")) {
-        editOrCreatePlaylistModal = <EditOrCreatePlaylistModal/>
-    }
-
     let playlistList;
     let addPlaylistItem;
 
@@ -265,8 +260,6 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
     return (
 
         <div className="col-lg-8 col-md-6 col-sm-12 col-12">
-
-            {editOrCreatePlaylistModal}
 
             <div className="row results">
 

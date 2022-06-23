@@ -96,7 +96,7 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
     }
 
     let ownerName;
-    if (props.basicDetails.owner !== null) {
+    if (props.basicDetails.owner) {
         ownerName = <div className="card-text text-start">Owner: {props.basicDetails.owner.username}</div>
     }
 
@@ -143,7 +143,7 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
     }
 
     let ownerButton;
-    if (props.basicDetails.owner !== null) {
+    if (props.basicDetails.owner ) {
         ownerButton =
             <button className="btn btn-lg btn-user"
                     type="button" style={{
@@ -151,7 +151,7 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                 backgroundImage: "url(" + props.basicDetails.owner.profilePhotoUrl + ")"
             }}
                     onClick={() => {
-                        navigate(`/user/${props.basicDetails.owner.username}`)
+                        navigate(`/user/${props.basicDetails.owner?.username}`)
                     }}
             >
             </button>

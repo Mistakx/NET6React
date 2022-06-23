@@ -23,6 +23,15 @@ const EditUserInfoModalStore = create<EditUserInfoModalState>((set) => ({
         showingEditUserInfoModal: showingEditUserInfoModal
     })),
 
+    resetEditUserInfoModal: () => set(state => ({
+        name: null,
+        username: null,
+        email: null,
+        showingEditUserInfoModal: false
+    })),
+
+
+
 }))
 
 export default EditUserInfoModalStore;

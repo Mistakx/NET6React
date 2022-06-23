@@ -6,13 +6,11 @@ import {EditPhotoButton} from "./EditPhotoButton";
 import AlertStore from "../../../../stores/AlertStore";
 import BackendResponsesStore from "../../../../stores/BackendResponsesStore";
 import EditUserInfoModalStore from "../../../../stores/modals/EditUserInfoModalStore";
-import EditUserInfoModal from "./EditUserInfoModal";
 import EditUserPasswordModalStore from "../../../../stores/modals/EditUserPasswordModalStore";
-import EditUserPasswordModal from "./EditUserPasswordModal";
 import {UserProfileProperties} from "../../../../models/components/pages/userPage/UserProfileProperties";
-import FollowersModal from "../../../modals/userFollowersModal/FollowersModal";
 import FollowersModalStore from "../../../../stores/modals/FollowersModalStore";
 import CommunityRequests from "../../../../requests/backendRequests/CommunityRequests";
+import StatisticsModalStore from "../../../../stores/modals/StatisticsModalStore";
 
 function UserProfile(props: UserProfileProperties): JSX.Element {
 
@@ -34,6 +32,9 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
     const setShowingUserFollowersModal = FollowersModalStore(state => state.setShowingFollowersModal)
     const setShowingFollowersOf = FollowersModalStore(state => state.setShowingFollowersOf)
 
+    const setShowingStatisticsOf = StatisticsModalStore(state => state.setShowingStatisticsOf)
+    const setShowingStatisticsModal = StatisticsModalStore(state => state.setShowingStatisticsModal)
+
     const updatedUserPhotoResponse = BackendResponsesStore(state => state.updatedUserPhotoResponse)
     const setUpdatedUserPhotoResponse = BackendResponsesStore(state => state.setUpdatedUserPhotoResponse)
     const updatedUserInfoResponse = BackendResponsesStore(state => state.updatedUserInfoResponse)
@@ -52,10 +53,6 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
     useEffect(() => {
 
         (async () => {
-
-            setShowingUserFollowersModal(false)
-            setShowingEditUserPasswordModal(false)
-            setShowingEditUserInfoModal(false)
 
             const sessionToken = window.sessionStorage.getItem("sessionToken");
             if (sessionToken) {
@@ -105,15 +102,10 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
         }
     }, [toggledFollowResponse]);
 
-
-    let editUserInfoModal;
-    let editUserPasswordModal;
     let dropdownMenu;
     let editPhotoButton;
     let followButton;
     if (props.username === window.sessionStorage.getItem("username")) {
-        editUserInfoModal = <EditUserInfoModal/>
-        editUserPasswordModal = <EditUserPasswordModal/>
         dropdownMenu =
             <div className="btn-group">
                 <button className="btn dropdown-toggle-split"
@@ -170,10 +162,6 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
 
         <div className="col-lg-4 col-md-6 col-sm-12 col-12 position-relative">
 
-            {editUserInfoModal}
-            {editUserPasswordModal}
-            <FollowersModal/>
-
             <div className="align-items-stretch mb-4 " data-aos="zoom-in" data-aos-delay="100">
 
                 <div className="position-absolute top-0 end-0 me-2 mt-2">
@@ -189,6 +177,19 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                     </button>
                 </div>
 
+                <div className="position-absolute bottom-0 end-0 me-2 mt-2">
+                    <button className="btn text-white"
+                            onClick={() => {
+                                if (userProfile) {
+                                    setShowingStatisticsModal(true)
+                                    setShowingStatisticsOf(userProfile)
+                                }
+                            }}
+                    >
+                        <i className='bx bx-info-circle h1 p-0'></i>
+                    </button>
+                </div>
+
                 <div className="options-top mr-5 mb-5">
                     <div className="options-dropdown">
                         {dropdownMenu}
@@ -201,7 +202,8 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                     <h4 className="text-white">{userProfile?.username}</h4>
                     <img src={"/" + userProfile?.profilePhotoUrl}
                          width="250"
-                         className="img-fluid rounded-circle img-centered"/>
+                         className="img-fluid rounded-circle img-centered"
+                    />
                     {editPhotoButton}
                 </div>
 

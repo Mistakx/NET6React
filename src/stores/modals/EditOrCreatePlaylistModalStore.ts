@@ -11,6 +11,11 @@ const EditOrCreatePlaylistModalStore = create<EditOrCreatePlaylistModalState>((s
     showingEditOrCreatePlaylistModal: false,
     setShowingEditOrCreatePlaylistModal: (showingEditOrCreatePlaylistModal) => set(state => ({
         showingEditOrCreatePlaylistModal: showingEditOrCreatePlaylistModal
+    })),
+
+    resetEditOrCreatePlaylistModal: () => set(state => ({
+        playlistToEditOrCreate: null,
+        showingEditOrCreatePlaylistModal: false
     }))
 
 }))

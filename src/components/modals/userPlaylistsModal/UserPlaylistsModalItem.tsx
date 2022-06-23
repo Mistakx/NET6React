@@ -1,7 +1,7 @@
 import '../../../styles/SearchPage.css';
 import React from "react";
 import "aos/dist/aos.css";
-import {PlaylistItemProperties} from "../../../models/components/pages/searchPage/playlistsModal/PlaylistItemProperties";
+import {PlaylistItemProperties} from "../../../models/components/modals/userPlaylistsModal/PlaylistItemProperties";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
 import UserPlaylistsModalStore from "../../../stores/modals/UserPlaylistsModalStore";
 import AlertStore from "../../../stores/AlertStore";

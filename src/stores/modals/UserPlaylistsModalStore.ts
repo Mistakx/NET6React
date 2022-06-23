@@ -13,6 +13,11 @@ const UserPlaylistsModalStore = create<UserPlaylistsModalState>((set) => ({
         showingPlaylistsModal: showingPlaylistsModal
     })),
 
+    resetUserPlaylistsModal: () => set(state => ({
+        resultToAdd: null,
+        showingPlaylistsModal: false
+    }))
+
 }))
 
 export default UserPlaylistsModalStore;

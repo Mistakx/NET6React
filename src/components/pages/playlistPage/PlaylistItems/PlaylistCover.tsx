@@ -11,6 +11,7 @@ import {useNavigate} from "react-router-dom";
 import PlaylistDropdownMenu from "../../../dropdownMenus/PlaylistDropdownMenu";
 import FollowersModalStore from "../../../../stores/modals/FollowersModalStore";
 import CommunityRequests from "../../../../requests/backendRequests/CommunityRequests";
+import StatisticsModalStore from "../../../../stores/modals/StatisticsModalStore";
 
 function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
 
@@ -22,6 +23,9 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
 
     const setShowingFollowersModal = FollowersModalStore(state => state.setShowingFollowersModal)
     const setShowingFollowersOf = FollowersModalStore(state => state.setShowingFollowersOf)
+
+    const setShowingStatisticsOf = StatisticsModalStore(state => state.setShowingStatisticsOf)
+    const setShowingStatisticsModal = StatisticsModalStore(state => state.setShowingStatisticsModal)
 
     const playlistCoverChangedResponse = BackendResponsesStore(state => state.playlistCoverChangedResponse)
     const setPlaylistCoverChangedResponse = BackendResponsesStore(state => state.setPlaylistCoverChangedResponse)
@@ -135,7 +139,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
             backgroundImage: "url(/" + playlistBasicDetails.owner.profilePhotoUrl + ")"
         }}
                               onClick={() => {
-                                  navigate(`/user/${playlistBasicDetails.owner.username}`)
+                                  navigate(`/user/${playlistBasicDetails.owner?.username}`)
                               }}
         >
             <i className='bx bx-user'></i>
@@ -205,6 +209,17 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                                 }}
                         >
                             <i className='bx bxs-user-detail'></i>
+                        </button>
+
+                        <button type="button" className="btn dropdown-toggle-split"
+                                onClick={() => {
+                                    if (playlistBasicDetails) {
+                                        setShowingStatisticsModal(true)
+                                        setShowingStatisticsOf(playlistBasicDetails)
+                                    }
+                                }}
+                        >
+                            <i className='bx bx-info-circle'></i>
                         </button>
 
                         {ownerButton}

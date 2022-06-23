@@ -1,19 +1,26 @@
 import AuthenticatedSearchBar from "./searchBar/AuthenticatedSearchBar";
-import SearchResultsList from "../../cards/content/SearchResultsList";
+import SearchResultsList from "./SearchResultsList";
 import '../../../styles/SearchPage.css';
 import React, { useEffect } from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
+import UserPlaylistsModalStore from "../../../stores/modals/UserPlaylistsModalStore";
+import UserPlaylistsModal from "../../modals/userPlaylistsModal/UserPlaylistsModal";
 
 function SearchPage(): JSX.Element {
 
+    const setShowingPlaylistsModal = UserPlaylistsModalStore(state => state.setShowingPlaylistsModal)
+
     useEffect(() => {
         AOS.init();
+        setShowingPlaylistsModal(false)
     }, []);
 
     return (
 
         <div>
+
+            <UserPlaylistsModal/>
 
             <section id="services" className="services">
                 <div className="container" >

@@ -8,4 +8,6 @@ export interface UserPlaylistsModalState {
     showingPlaylistsModal: boolean
     setShowingPlaylistsModal: (showingPlaylistsModal: boolean) => void
 
+    resetUserPlaylistsModal: () => void
+
 }

@@ -1,5 +1,3 @@
-// /User/Playlists/{userId}
-import {GetUserProfileDto} from "../UserRoute/GetUserProfileDto";
 import {UserProfileDto} from "../../backendResponses/userRoute/UserProfileDto";
 
 export interface PlaylistDto {
@@ -8,11 +6,17 @@ export interface PlaylistDto {
     description: string
     thumbnailUrl: string
     resultsAmount: number
+
     visibility?: "Public" | "Private"
+
     weeklyViewsAmount?: number
     totalViewsAmount?: number
+
     followed?: boolean
-    owner: UserProfileDto
+
+    followersAmount?: number
+
+    owner?: UserProfileDto
 }
 
 

@@ -12,4 +12,7 @@ export interface EditUserInfoModalState {
     showingEditUserInfoModal: boolean;
     setShowingEditUserInfoModal: (showingEditUserInfoModal: boolean) => void;
 
+    resetEditUserInfoModal: () => void;
+
+
 }

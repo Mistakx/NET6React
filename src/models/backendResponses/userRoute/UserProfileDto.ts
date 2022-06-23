@@ -4,15 +4,17 @@ export interface UserProfileDto {
     email?: string
     profilePhotoUrl: string
 
-    weeklyViewsAmount?: number
-    totalViewsAmount?: number
-
     viewablePlaylistsAmount?: number
     playlistsWeeklyViewsAmount?: number
     playlistsTotalViewsAmount?: number
     playlistsContentAmount?: number
 
-    followersAmount: number
+    weeklyViewsAmount?: number
+    totalViewsAmount?: number
+
+    followersAmount?: number
+    followingUsersAmount?: number
+    followingPlaylistsAmount?: number
 
     followed?: boolean
 }

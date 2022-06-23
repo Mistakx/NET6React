@@ -11,6 +11,11 @@ const PlaylistPlayerPageStore = create<PlaylistPagePlayerState>((set) => ({
     playlistCurrentResults: null,
     setPlaylistCurrentResults: (playlistCurrentResults) => set(state => ({
         playlistCurrentResults: playlistCurrentResults
+    })),
+
+    resetPlaylistPagePlayerState: () => set(state => ({
+        playlistPlayerCurrentResult: null,
+        playlistCurrentResults: null
     }))
 
 }))

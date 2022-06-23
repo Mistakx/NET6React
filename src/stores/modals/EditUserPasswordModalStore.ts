@@ -8,6 +8,11 @@ const EditUserPasswordModalStore = create<EditUserPasswordModalState>((set) => (
         showingEditUserPasswordModal: showingEditUserPasswordModal
     })),
 
+    resetEditUserPasswordModal: () => set(state => ({
+        showingEditUserPasswordModal: false
+    }))
+
+
 }))
 
 export default EditUserPasswordModalStore;

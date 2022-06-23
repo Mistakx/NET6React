@@ -8,7 +8,7 @@ import {UserProfileDto} from "../../../models/backendResponses/userRoute/UserPro
 import CommunityRequests from "../../../requests/backendRequests/CommunityRequests";
 import {
     FollowersModalItemsListProperties
-} from "../../../models/components/pages/communityPage/FollowersModalItemsListProperties";
+} from "../../../models/components/modals/followersModal/FollowersModalItemsListProperties";
 import {compareUsername} from "../../../utils/sorting/userSorting";
 
 
