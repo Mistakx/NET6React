@@ -6,6 +6,8 @@ import AOS from "aos";
 import {useNavigate} from "react-router-dom";
 import AlertStore from "../../../stores/AlertStore";
 import LogRocket from 'logrocket';
+import { HubConnectionSingleton } from 'utils/HubConnectionSingleton';
+import {ConnectToHubDto} from "../../../models/backendRequests/HubConnections/ConnectToHubDto";
 
 function LoginPage(): JSX.Element {
 
@@ -17,6 +19,29 @@ function LoginPage(): JSX.Element {
     const [username, setUsername] = useState<string>()
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
+
+    const hubConnection = HubConnectionSingleton.getInstance();
+
+
+    function connectToHub(sessionToken: string) {
+        hubConnection.start().then(function () {
+            
+            console.log("Connection started");
+            console.log(hubConnection.connectionId)
+
+            let sendParams : ConnectToHubDto = {
+                sessionToken : sessionToken,
+                hubConnectionId : hubConnection.connectionId
+            }
+
+            hubConnection.send("UserConnected", sendParams);
+            
+        }).catch(function (err) {
+            return console.error(err.toString());
+        });
+    }
+
+
 
     useEffect(() => {
         AOS.init();
@@ -68,6 +93,8 @@ function LoginPage(): JSX.Element {
                                         prettyAlert("Successfully logged in.", true)
                                         setSessionToken(loginResponse.sessionToken)
                                         setUsername(loginResponse.username)
+                                        connectToHub(loginResponse.sessionToken)
+
                                     } catch (e: any) {
                                         prettyAlert(e.response?.data || e.toJSON().message, false)
                                     }

@@ -2,8 +2,23 @@ import React, { useEffect } from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import {useNavigate} from "react-router-dom";
+import { HubConnectionSingleton } from "utils/HubConnectionSingleton";
+import AlertStore from "stores/AlertStore";
 
 function LiveRoom(): JSX.Element {
+
+    const hubConnection = HubConnectionSingleton.getInstance();
+
+    const prettyAlert = AlertStore(state => state.prettyAlert)
+
+    React.useEffect(() => {
+        hubConnection.on("notify", message => {
+            debugger
+            prettyAlert(message, true)
+            console.log(message);
+        })
+    }, []);
+
 
     useEffect(() => {
         AOS.init();
