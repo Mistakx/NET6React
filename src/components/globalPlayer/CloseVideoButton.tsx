@@ -1,5 +1,5 @@
 import React from 'react';
-import GlobalPlayerStore from '../../stores/players/GlobalPlayerStore'
+import GlobalPlayerStore from '../../stores/players/GlobalPlayerStore';
 
 function CloseVideoButton(): JSX.Element {
 
@@ -13,7 +13,7 @@ function CloseVideoButton(): JSX.Element {
 
     return (
         <i
-            className='bx bx-x bx-sm closeButton clickable'
+            className='bx bx-x bx-sm closeButton clickable position-absolute top-100 start-100 translate-middle'
             onClick={() => {
                 stopPlayingVideo()
             }}>

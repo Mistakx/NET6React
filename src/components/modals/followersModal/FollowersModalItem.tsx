@@ -25,12 +25,7 @@ function FollowersModalItem(props: FollowersModalItemProperties): JSX.Element {
     let removeFollowerButton;
     if (props.showingFollowerOf && "username" in props.showingFollowerOf && props.showingFollowerOf.username === window.sessionStorage.getItem("username")
         || props.showingFollowerOf && "title" in props.showingFollowerOf && props.showingFollowerOf.owner === null) {
-        removeFollowerButton = <button
-            style={{
-                height: 100,
-                width: 100,
-                backgroundColor: "red",
-            }}
+        removeFollowerButton = <button className="btn text-danger"
             onClick={async () => {
 
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
@@ -54,27 +49,27 @@ function FollowersModalItem(props: FollowersModalItemProperties): JSX.Element {
 
             }}
 
-        >Remove Follower</button>
+        ><i className='bx bx-trash'></i></button>
     }
 
     return (
 
-        <li className="list-group-item d-flex justify-content-between align-items-start clickable"
+        <li className="list-group-item clickable"
             onClick={() => {
                 navigate(`/user/${props.follower.username}`)
             }}>
-
-            {removeFollowerButton}
-
-            <button style={{
-                height: 100,
-                width: 100,
-                backgroundSize: "100% 100%",
-                backgroundImage: "url(/" + props.follower.profilePhotoUrl + ")"
-            }}></button>
-
-            {props.follower.username}
-
+            <div className="row align-middle">
+                <div className="col-2">
+                    <img src={"/" + props.follower.profilePhotoUrl} className="img-fluid rounded"/>
+                </div>
+                <div className="col-8">
+                    <h5>{props.follower.username}</h5>
+                </div>
+                <div className="col-2">
+                    {removeFollowerButton}
+                </div>
+            </div>
+    
         </li>
 
     )

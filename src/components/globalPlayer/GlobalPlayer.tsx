@@ -29,7 +29,7 @@ function GlobalPlayer(): JSX.Element {
                 <Rnd
                     default={resizeablePlayerDefaultOptions}
                     minWidth="200px"
-                    minHeight="150px"
+                    minHeight="100%"
                 >
                     <MoveVideoButton/>
                     <CloseVideoButton/>

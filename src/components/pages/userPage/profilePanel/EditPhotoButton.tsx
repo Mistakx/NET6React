@@ -14,9 +14,8 @@ export function EditPhotoButton() {
     const setUpdatedUserPhotoResponse = BackendResponsesStore(state => state.setUpdatedUserPhotoResponse)
 
     return (
-        <div className="edit-profile-photo">
-
-            <button className="btn btn-rounded rounded position-absolute bottom-0 start-50 translate-middle mb-5"
+        <div className="edit-profile-photo position-absolute top-50 start-50 translate-middle">
+            <button className="btn btn-light"
                 /*@ts-ignore*/
                     onClick={() => fileInputRef.current.click()}>
                 <i className='bx bx-camera'></i>

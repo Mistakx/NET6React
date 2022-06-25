@@ -18,8 +18,6 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
     const setPlaylistPlayerGeneralizedResult = PlaylistPagePlayerStore(state => state.setPlaylistPlayerCurrentResult)
     const setPlaylistCurrentResults = PlaylistPagePlayerStore(state => state.setPlaylistCurrentResults)
 
-    console.log(props.draggable);
-
     const {
         attributes,
         listeners,
@@ -65,6 +63,7 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
     }
 
 
+
     return (
 
         <li className="list-group-item"
@@ -87,7 +86,8 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
                          setSearchCurrentResults(null)
                      }}
                 >
-                    <h6 className="fw-bold text-truncate text-center">{props.generalizedResult.title}</h6>
+                    <i className='bx bx-play h4 position-absolute top-50 start-0 translate-middle'></i>
+                    <h6 className="fw-bold text-truncate">{props.generalizedResult.title}</h6>
                 </div>
                 {contentDropdown}
             </div>
