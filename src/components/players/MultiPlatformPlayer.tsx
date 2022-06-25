@@ -32,7 +32,7 @@ export function MultiPlatformPlayer(props: MultiPlatformPlayerProperties): JSX.E
                         break;
                     }
                 }
-                props.setNextResult(props.results[resultBeingPlayedIndex + 1]);
+                if (props.autoplay) props.setNextResult(props.results[resultBeingPlayedIndex + 1]);
             }}
         />
     )

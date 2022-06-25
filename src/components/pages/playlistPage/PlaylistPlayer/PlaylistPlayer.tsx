@@ -11,9 +11,11 @@ function PlaylistPlayer(): JSX.Element {
     const setPlaylistPlayerCurrentResult = PlaylistPagePlayerStore(state => state.setPlaylistPlayerCurrentResult)
     const playlistCurrentResults = PlaylistPagePlayerStore(state => state.playlistCurrentResults)
 
+    const [autoPlay, setAutoPlay] = useState(false)
+
     let playlistPlayer;
     if (playlistPlayerCurrentResult && playlistCurrentResults) {
-        playlistPlayer = PlayerFactory.createPlayer(playlistPlayerCurrentResult, playlistCurrentResults, setPlaylistPlayerCurrentResult)
+        playlistPlayer = PlayerFactory.createPlayer(playlistPlayerCurrentResult, playlistCurrentResults, setPlaylistPlayerCurrentResult, autoPlay)
     }
 
     let currentlyPlayingText = playlistPlayerCurrentResult?.title ? playlistPlayerCurrentResult?.title : "Not playing content"
@@ -47,6 +49,10 @@ function PlaylistPlayer(): JSX.Element {
         }
     }
 
+    function toggleAutoPlay() {
+        setAutoPlay(!autoPlay)
+    }
+
     return (
 
         <div className="col-lg-8 col-md-8 col-sm-12 col-12" id="player">
@@ -65,6 +71,12 @@ function PlaylistPlayer(): JSX.Element {
                             onClick={playPreviousContent}
                     >
                         <i className='bx bx-skip-previous h3'></i>
+                    </button>
+                    <button className={"btn btn-link text-" + (autoPlay ? "success" : "white")}
+                            title="Toggle autoplay"
+                            onClick={toggleAutoPlay}
+                    >
+                        <i className='bx bx-reset h3'></i>
                     </button>
                     <button className="btn btn-link text-white"
                             onClick={playNextContent}
