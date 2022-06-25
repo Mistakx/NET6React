@@ -12,6 +12,9 @@ import {TwitchSearchVideoByGame} from "../../../../requests/apiRequests/specific
 import {TwitchSearchLivestreamByGeneral} from "../../../../requests/apiRequests/specificSearches/TwitchSearchLivestreamByGeneral";
 import {PlatformDropdownListProperties} from "../../../../models/components/pages/searchBar/PlatformDropdownListProperties";
 import PlatformDropdownStore from "../../../../stores/searches/PlatformDropdownStore";
+import {SoundcloudSearchTrack} from "../../../../requests/apiRequests/specificSearches/SoundcloudSearchTrackByAlbum";
+import {MixcloudSearchTrack} from "../../../../requests/apiRequests/specificSearches/MixcloudSearchTrack";
+import {DailymotionSearchVideo} from "../../../../requests/apiRequests/specificSearches/DailymotionSearchVideo";
 
 function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Element {
 
@@ -85,6 +88,58 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     </li>
 
                 </ul>
+            </li>
+
+            {/*Soundcloud*/}
+            <li>
+                <div className="dropdown-item text-center text-white h3 btn-soundCloud"
+                     id="platform"
+                     data-id="soundCloud" onClick={(e) => {
+                    props.togglePlatformDropdownList()
+                    e.preventDefault()
+                    setSelectedSearch(SoundcloudSearchTrack.getInstance())
+                }}>
+                    <i className='bx bxl-soundcloud'></i>
+                </div>
+            </li>
+
+            {/*Facebook*/}
+            <li>
+                <div className="dropdown-item text-center text-white h3 btn-facebook"
+                     id="platform"
+                     data-id="facebook" onClick={(e) => {
+                    props.togglePlatformDropdownList()
+                    e.preventDefault()
+                    setSelectedSearch(SoundcloudSearchTrack.getInstance())
+                }}>
+                    <i className='bx bxl-facebook'></i>
+                </div>
+            </li>
+
+            {/*Mixcloud*/}
+            <li>
+                <div className="dropdown-item text-center text-white h3 btn-mixcloud"
+                     id="platform"
+                     data-id="mixcloud" onClick={(e) => {
+                    props.togglePlatformDropdownList()
+                    e.preventDefault()
+                    setSelectedSearch(MixcloudSearchTrack.getInstance())
+                }}>
+                    <i className='bx bxl-mixcloud'></i>
+                </div>
+            </li>
+
+            {/*DailyMotion*/}
+            <li>
+                <div className="dropdown-item text-center text-white h3 btn-dailymotion"
+                     id="platform"
+                     data-id="dailymotion" onClick={(e) => {
+                    props.togglePlatformDropdownList()
+                    e.preventDefault()
+                    setSelectedSearch(DailymotionSearchVideo.getInstance())
+                }}>
+                    <i className='bx bxl-dailymotion'></i>
+                </div>
             </li>
 
             {/*Twitch*/}
