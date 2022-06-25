@@ -26,7 +26,7 @@ export function SpotifyPlayer(props: SpotifyPlayerProperties): JSX.Element {
                             break;
                         }
                     }
-                    props.setNextResult(props.results[resultBeingPlayedIndex + 1]);
+                    if (props.autoplay) props.setNextResult(props.results[resultBeingPlayedIndex + 1]);
                 }}
             />
 

@@ -22,7 +22,7 @@ export function TwitchClipPlayer(props: TwitchClipPlayerProperties): JSX.Element
                         break;
                     }
                 }
-                props.setNextResult(props.results[resultBeingPlayedIndex + 1]);
+                if (props.autoplay) props.setNextResult(props.results[resultBeingPlayedIndex + 1]);
             }}
         />
     )

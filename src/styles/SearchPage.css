@@ -24,6 +24,18 @@
     --soundCloudNeutralColor: #F26F23;
     --soundCloudHoveredColor: #D05119;
 
+    --facebookHiglightColor: #4e71ba;
+    --facebookNeutralColor: #3b5998;
+    --facebookHoveredColor: #2f477a;
+
+    --mixcloudHiglightColor: #8fc8e6;
+    --mixcloudNeutralColor: #52aad8;
+    --mixcloudHoveredColor: #2c8fc3;
+
+    --dailymotionHiglightColor: #00d2f3;
+    --dailymotionNeutralColor: #00aaff;
+    --dailymotionHoveredColor: #00a8ff;
+
     --spartaHiglightColor: #1970E3;
     --spartaNeutralColor: #1355AD;
     --spartaHoveredColor: #0D3A76;
@@ -106,6 +118,36 @@
 .search-body .soundCloud .btn-search,
 .search-body .soundCloud::placeholder {
     color: var(--soundCloudHiglightColor);
+}
+
+.search-body .facebook {
+    color: var(--facebookHiglightColor);
+    border-bottom-color: var(--facebookNeutralColor);
+}
+
+.search-body .facebook .btn-search,
+.search-body .facebook::placeholder {
+    color: var(--facebookHiglightColor);
+}
+
+.search-body .mixcloud {
+    color: var(--mixcloudHiglightColor);
+    border-bottom-color: var(--mixcloudNeutralColor);
+}
+
+.search-body .mixcloud .btn-search,
+.search-body .mixcloud::placeholder {
+    color: var(--mixcloudHiglightColor);
+}
+
+.search-body .dailymotion {
+    color: var(--dailymotionHiglightColor);
+    border-bottom-color: var(--dailymotionNeutralColor);
+}
+
+.search-body .dailymotion .btn-search,
+.search-body .dailymotion::placeholder {
+    color: var(--dailymotionHiglightColor);
 }
 
 .search-body .sparta {
@@ -214,6 +256,51 @@
 
 .btn-soundCloud:active {
     background-color: var(--soundCloudHoveredColor) !important;
+}
+
+.btn-facebook {
+    background-color: var(--facebookNeutralColor);
+    border-color: var(--facebookNeutralColor);
+    color: var(--iconColor) !important;
+}
+
+.btn-facebook:hover {
+    background-color: var(--facebookHoveredColor) !important;
+    color: var(--iconColor);
+}
+
+.btn-facebook:active {
+    background-color: var(--facebookHoveredColor) !important;
+}
+
+.btn-mixcloud {
+    background-color: var(--mixcloudNeutralColor);
+    border-color: var(--mixcloudNeutralColor);
+    color: var(--iconColor) !important;
+}
+
+.btn-mixcloud:hover {
+    background-color: var(--mixcloudHoveredColor) !important;
+    color: var(--iconColor);
+}
+
+.btn-mixcloud:active {
+    background-color: var(--mixcloudHoveredColor) !important;
+}
+
+.btn-dailymotion {
+    background-color: var(--dailymotionNeutralColor);
+    border-color: var(--dailymotionNeutralColor);
+    color: var(--iconColor) !important;
+}
+
+.btn-dailymotion:hover {
+    background-color: var(--dailymotionHoveredColor) !important;
+    color: var(--iconColor);
+}
+
+.btn-dailymotion:active {
+    background-color: var(--dailymotionHoveredColor) !important;
 }
 
 

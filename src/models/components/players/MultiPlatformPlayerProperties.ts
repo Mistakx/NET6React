@@ -4,4 +4,5 @@ export interface MultiPlatformPlayerProperties {
     currentResult: GeneralizedResult
     results: GeneralizedResult[]
     setNextResult: (currentResult: (GeneralizedResult | null)) => void
+    autoplay: boolean
 }

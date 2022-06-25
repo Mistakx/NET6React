@@ -4,13 +4,13 @@ import {GeneralizedResult} from "../../models/apiResponses/GenericResults";
 import {TwitchClipPlayer} from "./TwitchClipPlayer";
 import {SpotifyPlayer} from "./SpotifyPlayer";
 import RecommendationRequests from "../../requests/backendRequests/RecommendationRequests";
-import UserRequests from "../../requests/backendRequests/UserRequests";
 
 export class PlayerFactory {
 
     public static createPlayer(item: GeneralizedResult,
                                items: GeneralizedResult[],
-                               setNextItem: (playlistPlayerCurrentResult: (GeneralizedResult | null)) => void) {
+                               setNextItem: (playlistPlayerCurrentResult: (GeneralizedResult | null)) => void,
+                               autoplay: boolean) {
 
         const sessionToken = window.sessionStorage.getItem("sessionToken");
 
@@ -25,13 +25,15 @@ export class PlayerFactory {
                     currentResult={item}
                     results={items}
                     setNextResult={setNextItem}
-                />
+                    autoplay={autoplay}
+                />;
 
             case "TwitchClipPlayerFactory":
                 return <TwitchClipPlayer
                     currentResult={item}
                     results={items}
                     setNextResult={setNextItem}
+                    autoplay={autoplay}
                 />;
 
             case "SpotifyPlayerFactory":
@@ -39,6 +41,7 @@ export class PlayerFactory {
                     currentResult={item}
                     results={items}
                     setNextResult={setNextItem}
+                    autoplay={autoplay}
                 />;
 
 
