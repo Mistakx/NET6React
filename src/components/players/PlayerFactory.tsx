@@ -25,7 +25,7 @@ export class PlayerFactory {
                     currentResult={item}
                     results={items}
                     setNextResult={setNextItem}
-                />
+                />;
 
             case "TwitchClipPlayerFactory":
                 return <TwitchClipPlayer

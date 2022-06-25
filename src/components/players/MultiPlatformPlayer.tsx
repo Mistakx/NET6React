@@ -3,10 +3,22 @@ import {MultiPlatformPlayerProperties} from "../../models/components/players/Mul
 
 export function MultiPlatformPlayer(props: MultiPlatformPlayerProperties): JSX.Element {
 
+    console.log(props.currentResult.platformPlayerUrl)
+    let url;
+    if (props.currentResult.platformPlayerUrl?.includes("soundcloud") || props.currentResult.platformPlayerUrl?.includes("dailymotion")) {
+        url = props.currentResult.platformPlayerUrl
+        console.log(url)
+    }
+    
+    else {
+        url = props.currentResult.platformPlayerUrl + props.currentResult.platformId
+        console.log(url)
+    }
+
     return (
         <ReactPlayer
             config={{vimeo: {playerOptions: {transparent: false}}}}
-            url={props.currentResult.platformPlayerUrl + props.currentResult.platformId}
+            url={url}
             playing={true}
             controls={true}
             pip={true}
