@@ -46,7 +46,7 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
 
     let draggableButton;
     if (props.draggable) {
-        draggableButton = <div className="col-1">
+        draggableButton = <div className="col-1 align-middle">
             <span className="align-middle"><i className='bx bx-menu h4'></i></span>
         </div>
     }
@@ -54,7 +54,7 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
     let contentDropdown;
     if (props.showingMyPlaylist) {
         contentDropdown = <div className="col-1">
-            <div className="btn-group text-end position-absolute top-0 end-0">
+            <div className="btn-group position-absolute top-0 end-0">
                 <button type="button" className="btn btn-link" data-bs-toggle="dropdown" aria-expanded="false">
                     <i className='bx bx-dots-vertical-rounded h4'></i>
                 </button>
@@ -74,10 +74,9 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
             key={props.generalizedResult.platformId}
             ref={setNodeRef} style={style} {...attributes} {...listeners}
         >
-            <div className="row align-middle">
+            <div className="row align-middle bg-dark">
                 {draggableButton}
                 <div className={"col-" + itemSizeClass + " p-3 clickable"}
-                    
                      onClick={() => {
                          setPlaylistPlayerGeneralizedResult(props.generalizedResult)
                          setPlaylistCurrentResults(props.generalizedResults)

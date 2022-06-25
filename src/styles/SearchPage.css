@@ -402,7 +402,7 @@
     margin-bottom: 30px;
     border-radius: 20px;
     background-color: var(--spartaHoveredColor);
-    padding: none;
+    padding: 0 !important;
 }
 
 .card-img-overlay {
@@ -472,6 +472,12 @@
     right: 0px;
     z-index: 10;
 }
+
+/* .options-dropdown-right-center {
+    position: absolute;
+    top: 50%;
+    right: 0px;
+} */
 
 .options-dropdown-right .btn,
 .options-dropdown .btn {

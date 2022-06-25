@@ -128,20 +128,20 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
     let followButton;
     if (props.basicDetails.followed !== null) {
         followButton = <button className="btn btn-lg btn-add"
-                               type="button"
-                               onClick={async () => {
-                                   try {
-                                       const sessionToken = window.sessionStorage.getItem("sessionToken")
-                                       if (sessionToken) {
-                                           const response = await CommunityRequests.togglePlaylistFollow(props.basicDetails.id, sessionToken)
-                                           prettyAlert(response, true)
-                                           setToggledFollowResponse(response)
-                                           toggleFollowingButton()
-                                       } else prettyAlert("You need to be logged in to follow a playlist", false)
-                                   } catch (e: any) {
-                                       prettyAlert(e.response?.data || e.toJSON().message, false)
-                                   }
-                               }}
+            type="button"
+            onClick={async () => {
+                try {
+                    const sessionToken = window.sessionStorage.getItem("sessionToken")
+                    if (sessionToken) {
+                        const response = await CommunityRequests.togglePlaylistFollow(props.basicDetails.id, sessionToken)
+                        prettyAlert(response, true)
+                        setToggledFollowResponse(response)
+                        toggleFollowingButton()
+                    } else prettyAlert("You need to be logged in to follow a playlist", false)
+                } catch (e: any) {
+                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                }
+            }}
         >
             <i className={'bx ' + followingButtonShapeClass}></i>
         </button>
@@ -151,7 +151,7 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
     let ownerButton;
     if (props.basicDetails.owner ) {
         ownerButton =
-            <button className="btn btn-lg btn-user"
+            <button className="btn btn-lg"
                     type="button" style={{
                 backgroundSize: "100% 100%",
                 backgroundImage: "url(" + props.basicDetails.owner.profilePhotoUrl + ")"
@@ -174,11 +174,12 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                 <div className="card scale clickable position-relative"
                      style={{
                          backgroundSize: "100% 100%",
+                         backgroundPosition: "center center",
                          backgroundImage: "url(" + props.basicDetails.thumbnailUrl + ")"
                      }}>
 
                     {playlistItemDropdown}
-                    <div className="options options-bottom-right m-3">
+                    <div className="options options-bottom-right">
                         {ownerButton}
                         {followButton}
                     </div>
