@@ -115,10 +115,13 @@
   border-radius: 20px;
 }
 
+.list-group-item .bg-dark,
 .playlist .card-profile .bg-dark {
   background-color: rgba(9, 41, 83, 0.5) !important;
   border-top-left-radius: 10px !important;
   border-top-right-radius: 10px !important;
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
 }
 
 .playlist .card {

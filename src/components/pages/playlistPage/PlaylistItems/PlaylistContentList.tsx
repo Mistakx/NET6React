@@ -188,7 +188,7 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
     return (
 
         <div className="overflow-auto playlistItens">
-            <ul className="list-group pt-2">
+            <ul className="list-group mt-2">
 
                 {contentList}
 
