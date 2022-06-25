@@ -200,10 +200,8 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                             width="250"
                             height="250"
                             className="img-fluid rounded-circle"
-                            />  
-                        <div className="edit-profile-photo position-absolute top-50 start-50 translate-middle">
-                            {editPhotoButton}
-                        </div>
+                            />
+                        {editPhotoButton}
                     </div>
                 </div>
 

@@ -75,6 +75,7 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
                          setSearchCurrentResults(null)
                      }}
                 >
+                    <i className='bx bx-play h4 position-absolute top-50 start-0 translate-middle'></i>
                     <h6 className="fw-bold text-truncate">{props.generalizedResult.title}</h6>
                 </div>
                 <div className="col-1">

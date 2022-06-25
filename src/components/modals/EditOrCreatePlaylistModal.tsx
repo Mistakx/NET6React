@@ -133,7 +133,7 @@ function EditOrCreatePlaylistModal(): JSX.Element {
                                     Public
                                 </label>
 
-                                <label className="btn btn-outline-light">
+                                <label className="btn btn-outline-light active">
                                     <input
                                         type="radio"
                                         className="btn-check"
@@ -152,10 +152,10 @@ function EditOrCreatePlaylistModal(): JSX.Element {
 
                         <div className="form-group">
                             <textarea name="" id="" placeholder="Playlist description" className="form-control"
-                                      onChange={(e) => {
-                                          setPlaylistDescription(e.target.value)
-                                      }}
-                                      value={playlistDescription}
+                                onChange={(e) => {
+                                    setPlaylistDescription(e.target.value)
+                                }}
+                                value={playlistDescription}
                             >
 
                             </textarea>
