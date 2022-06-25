@@ -140,8 +140,6 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
         // If the playlist results came without creator field, we can sort the results if the order is custom on the top bar
         else if (playlistBasicDetails && playlistBasicDetails.owner === null) {
 
-            console.log("DEBUG2")
-
             if (order === "Custom Order") {
 
                 contentList = <DndContext
