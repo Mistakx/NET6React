@@ -141,13 +141,14 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
     if (playlistBasicDetails?.owner != null) {
 
         ownerButton = <button className="btn btn-lg btn-user"
-                              type="button" style={{
+            title="Disabled tooltip"
+            type="button" style={{
             backgroundSize: "100% 100%",
             backgroundImage: "url(/" + playlistBasicDetails.owner.profilePhotoUrl + ")"
         }}
-                              onClick={() => {
-                                  navigate(`/user/${playlistBasicDetails.owner?.username}`)
-                              }}
+        onClick={() => {
+            navigate(`/user/${playlistBasicDetails.owner?.username}`)
+        }}
         >
             <i className='bx bx-user'></i>
         </button>
@@ -191,15 +192,17 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                      backgroundPosition: "center",
                      backgroundImage: "url(" + playlistBasicDetails?.thumbnailUrl + ")"
                  }}>
+                    <div className="bg-dark rounded" style={{width: "100%", height: "100%"}}>
 
-                <h2 className="text-white text-center text-wrap position-absolute top-50 start-50 translate-middle">
-                    {playlistBasicDetails?.title}
-                </h2>
+                        <h2 className="text-white text-center text-wrap position-absolute top-50 start-50 translate-middle">
+                            {playlistBasicDetails?.title}
+                        </h2>
 
-                {playlistDropdown}
+                        {playlistDropdown}
+                    </div>
 
                 <div className="options-dropdown-right">
-                    <div className="btn-group" style={{position: "absolute", top: "10px", right: "10px"}}>
+                    <div className="btn-group icons-playlist" style={{position: "absolute", top: "10px", right: "10px"}}>
 
                         {followButton}
 
@@ -226,7 +229,6 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                         </button>
 
                         {ownerButton}
-
 
                     </div>
                 </div>

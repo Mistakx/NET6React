@@ -50,6 +50,7 @@
     position: absolute;
     top: 0;
     right: 0;
+    z-index: 10;
 }
 
 .search-body .btn-search:hover,
@@ -285,36 +286,24 @@
     z-index: 1000;
 }
 
+.moveButton,
 .closeButton {
-    position: absolute;
+    /* position: absolute;
     top: 0px;
-    right: 0px;
-    color: #f5f5f5;
-    background-color: rgb(255, 255, 255, 0.2)
+    right: 25px; */
+    color: var(--text);
+    z-index: 1020;
+    background-color: rgba(19, 86, 173, 0.6)
 }
 
-.closeButton:hover {
-    background-color: rgb(255, 255, 255, 0.4)
-}
-
-.moveButton {
-    position: absolute;
-    top: 0px;
-    right: 25px;
-    color: #f5f5f5;
-    background-color: rgb(255, 255, 255, 0.2)
-}
-
-.moveButton:hover {
-    background-color: rgb(255, 255, 255, 0.4);
-    font-size: 20px;
-    z-index: 1000;
-    padding-top: 0px;
+.moveButton:hover,
+.closeButton:hover  {
+    background-color: rgba(19, 86, 173, 0.8);
 }
 
 .player-flutuante iframe {
     border: none;
-    box-shadow: 0 10px 20px 0 #3b3b3b;
+    box-shadow: 0 0 10px 0 #3b3b3b;
 }
 
 /*--------------------------------------------------------------
@@ -325,7 +314,7 @@
     background-repeat: no-repeat;
     margin-bottom: 30px;
     border-radius: 20px;
-    background-color: #0D3A76;
+    background-color: var(--spartaHoveredColor);
     padding: none;
 }
 
@@ -335,9 +324,13 @@
     height: 50px;
     overflow: hidden;
     margin: none;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 .card:hover .card-img-overlay {
+    background: rgba(7, 30, 61, 0.7);
+    box-shadow: 0 0px 7px 0 var(--text);
     color: #fff;
     transition: 400ms;
     height: 100%;
@@ -358,7 +351,7 @@
 }
 
 .results .add-playlist {
-    background-color: rgba(19, 87, 174, .7)
+    background-color: var(--spartaHoveredColor);
 }
 
 .scale:hover {
@@ -395,7 +388,7 @@
 
 .options-dropdown-right .btn,
 .options-dropdown .btn {
-    color: #fff;
+    color: var(--text);
     border-top-left-radius: 20px;
     padding: 0;
 }
@@ -403,8 +396,8 @@
 .options-dropdown-right .btn i,
 .options-dropdown .btn i,
 .options-top .btn {
-    color: #fff;
-    font-size: 32px;
+    color: var(--text);
+    font-size: 26px;
     margin: 0;
 }
 

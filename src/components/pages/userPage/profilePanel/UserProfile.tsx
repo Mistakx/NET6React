@@ -130,7 +130,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                     </li>
                 </ul>
             </div>
-        editPhotoButton = <><EditPhotoButton/><EditPhotoButton/></>
+        editPhotoButton = <EditPhotoButton/>
     } else {
         followButton = <div className="btn-group">
             <button className="btn dropdown-toggle-split"
@@ -160,55 +160,82 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
 
     return (
 
-        <div className="col-lg-4 col-md-6 col-sm-12 col-12 position-relative">
+        <div className="col-lg-4 col-md-6 col-sm-12 col-12 position-relative  mb-4">
 
-            <div className="align-items-stretch mb-4 " data-aos="zoom-in" data-aos-delay="100">
+            <div className="align-items-stretch mb-4" data-aos="zoom-in" data-aos-delay="100">
 
-                <div className="position-absolute top-0 end-0 me-2 mt-2">
-                    <button className="btn text-white"
+            <div className="options-dropdown">
+                    <div className="btn-group icons-playlist" style={{position: "absolute", top: "0px", left: "0px"}}>
+                        {dropdownMenu}
+                        {followButton}
+                        <button className="btn text-white"
                             onClick={() => {
                                 if (userProfile) {
                                     setShowingUserFollowersModal(true)
                                     setShowingFollowersOf(userProfile)
                                 }
                             }}
-                    >
-                        <i className='bx bxs-user-detail h1 p-0'></i>
-                    </button>
-                </div>
-
-                <div className="position-absolute bottom-0 end-0 me-2 mt-2">
-                    <button className="btn text-white"
+                        >
+                            <i className='bx bxs-user-detail h1 p-0'></i>
+                        </button>
+                        <button className="btn text-white"
                             onClick={() => {
                                 if (userProfile) {
                                     setShowingStatisticsModal(true)
                                     setShowingStatisticsOf(userProfile)
                                 }
                             }}
-                    >
-                        <i className='bx bx-info-circle h1 p-0'></i>
-                    </button>
-                </div>
-
-                <div className="options-top mr-5 mb-5">
-                    <div className="options-dropdown">
-                        {dropdownMenu}
-                        {followButton}
+                        >
+                            <i className='bx bx-info-circle h1 p-0'></i>
+                        </button>
                     </div>
                 </div>
 
                 <div className="icon-box icon-box-lightblue">
                     <h3 className="text-white"><strong>{userProfile?.name}</strong></h3>
                     <h4 className="text-white">{userProfile?.username}</h4>
-                    <img src={"/" + userProfile?.profilePhotoUrl}
-                         width="250"
-                         className="img-fluid rounded-circle img-centered"
-                    />
-                    {editPhotoButton}
+                    <div className="position-relative change-profile-picture">
+
+                        <img src={"/" + userProfile?.profilePhotoUrl}
+                            width="250"
+                            height="250"
+                            className="img-fluid rounded-circle"
+                            />  
+                        <div className="edit-profile-photo position-absolute top-50 start-50 translate-middle">
+                            {editPhotoButton}
+                        </div>
+                    </div>
                 </div>
 
-
             </div>
+            <div className="row">
+                <div className="col-lg-4 col-md-4 col-sm-4 col-4">
+                    <div className="icon-box icon-box-lightblue">
+                        <h1>{userProfile?.viewablePlaylistsAmount!}</h1>
+                        Playlists
+                    </div>
+                </div>
+                <div className="col-lg-4 col-md-4 col-sm-4 col-4">
+                    <div className="icon-box icon-box-lightblue clickable"
+                        onClick={() => {
+                            if (userProfile) {
+                                setShowingUserFollowersModal(true)
+                                setShowingFollowersOf(userProfile)
+                            }
+                        }}
+                    >
+                        <h1>{userProfile?.followersAmount!}</h1>
+                        Followers
+                    </div>
+                </div>
+                <div className="col-lg-4 col-md-4 col-sm-4 col-4">
+                    <div className="icon-box icon-box-lightblue">
+                        <h1>{userProfile?.followingUsersAmount!}</h1>
+                        Following
+                    </div>
+                </div>
+            </div>
+            
         </div>
 
 

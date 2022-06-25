@@ -375,12 +375,6 @@ section {
   margin-bottom: 0;
 }
 
-.icon-box .btn {
-  font-size: 32px;
-  padding: 0;
-  margin: 0;
-}
-
 .dropdown-menu-dark {
   background-color: #071E3D;
   font-size: 14px;
@@ -390,7 +384,7 @@ section {
 # Sections General
 --------------------------------------------------------------*/
 .modal-content {
-  background-color: #0D3A76;
+  background-color: var(--spartaHoveredColor);
   color: var(--text);
 }
 
@@ -425,19 +419,39 @@ section {
 # editing profile photo button
 --------------------------------------------------------------*/
 .edit-profile-photo .btn {
-  color: var(--spartaHiglightColor);
+  display: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
-.edit-profile-photo .btn:hover {
-  color: var(--text);
+.edit-profile-photo .btn i {
+  margin-top: 8px;
+  vertical-align: baseline !important;
 }
+
+.change-profile-picture {
+  margin: 0 60px;
+  height: 250px;
+  border-radius: 50%;
+
+}
+
+.change-profile-picture:hover .edit-profile-photo .btn {
+  display: block;
+  transition: 300ms;
+} 
+
+.change-profile-picture:hover img {
+  opacity: .8;
+  background-color: #278213;
+} 
 
 /*--------------------------------------------------------------
 # side panel
 --------------------------------------------------------------*/
 .offcanvas {
   background-color: var(--spartaHoveredColor);
- 
 }
 
 .offcanvas .divisor {
