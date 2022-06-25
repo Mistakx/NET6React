@@ -122,7 +122,7 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
     else {
 
         // If the playlist results came with the creator field, we can't sort or edit the results
-        if (playlistBasicDetails?.owner != null) {
+        if (playlistBasicDetails && playlistBasicDetails.owner !== null) {
 
             contentList = playlistContent.map((result) => (
                 <PlaylistContentItem
@@ -138,7 +138,9 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
         }
 
         // If the playlist results came without creator field, we can sort the results if the order is custom on the top bar
-        else {
+        else if (playlistBasicDetails && playlistBasicDetails.owner === null) {
+
+            console.log("DEBUG2")
 
             if (order === "Custom Order") {
 
