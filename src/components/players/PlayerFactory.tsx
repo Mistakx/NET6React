@@ -5,6 +5,7 @@ import {TwitchClipPlayer} from "./TwitchClipPlayer";
 import {SpotifyPlayer} from "./SpotifyPlayer";
 import RecommendationRequests from "../../requests/backendRequests/RecommendationRequests";
 import UserRequests from "../../requests/backendRequests/UserRequests";
+import {MixcloudPlayer} from "./MixcloudPlayer";
 
 export class PlayerFactory {
 
@@ -40,6 +41,14 @@ export class PlayerFactory {
                     results={items}
                     setNextResult={setNextItem}
                 />;
+
+            case "MixcloudPlayerFactory":
+                return <MixcloudPlayer
+                    currentResult={item}
+                    results={items}
+                    setNextResult={setNextItem}
+                />;
+                
 
 
         }
