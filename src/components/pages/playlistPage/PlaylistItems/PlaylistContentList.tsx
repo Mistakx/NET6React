@@ -23,18 +23,21 @@ import {rectSortingStrategy, SortableContext, sortableKeyboardCoordinates} from 
 import PlaylistTopBarStore from "../../../../stores/topBars/PlaylistTopBarStore";
 import {PlaylistDto} from "../../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import {compareContentCreator, compareContentTitle} from "../../../../utils/sorting/contentSorting";
+import PlaylistPagePlayerStore from "../../../../stores/players/PlaylistPagePlayerStore";
 
 function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
 
-    const prettyAlert = AlertStore(state => state.prettyAlert)
-
     const order = PlaylistTopBarStore(state => state.order)
+
+    const [playlistContent, setPlaylistContent] = React.useState<GeneralizedResult[]>([]);
+    const [playlistBasicDetails, setPlaylistBasicDetails] = React.useState<PlaylistDto>();
+
+    const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const deleteGeneralizedResultResponse = BackendResponsesStore(state => state.deleteGeneralizedResultResponse)
     const setDeleteGeneralizedResultResponse = BackendResponsesStore(state => state.setDeleteGeneralizedResultResponse)
 
-    const [playlistContent, setPlaylistContent] = React.useState<GeneralizedResult[]>([]);
-    const [playlistBasicDetails, setPlaylistBasicDetails] = React.useState<PlaylistDto>();
+
 
     useEffect(() => {
         (async () => {

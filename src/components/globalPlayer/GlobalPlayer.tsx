@@ -13,7 +13,7 @@ function GlobalPlayer(): JSX.Element {
 
     let resizeablePlayer;
     if (globalPlayerCurrentResult && searchCurrentResults) {
-        let player = PlayerFactory.createPlayer(globalPlayerCurrentResult, searchCurrentResults, setGlobalPlayerCurrentResult, false)
+        let player = PlayerFactory.createPlayer(globalPlayerCurrentResult, setGlobalPlayerCurrentResult, false, searchCurrentResults)
         const resizeablePlayerDefaultOptions = {
             x: 0,
             y: 0,

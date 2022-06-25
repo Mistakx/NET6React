@@ -15,14 +15,16 @@ export function TwitchClipPlayer(props: TwitchClipPlayerProperties): JSX.Element
             height={"100%"}
             width={"100%"}
             onEnded={() => {
-                let resultBeingPlayedIndex = 0;
-                for (let i = 0; i < props.results.length; i++) {
-                    if (props.results[i] == props.currentResult) {
-                        resultBeingPlayedIndex = i;
-                        break;
+                if (props.autoplay && props.results && props.setNextResult) {
+                    let resultBeingPlayedIndex = 0;
+                    for (let i = 0; i < props.results.length; i++) {
+                        if (props.results[i] == props.currentResult) {
+                            resultBeingPlayedIndex = i;
+                            break;
+                        }
                     }
+                    props.setNextResult(props.results[resultBeingPlayedIndex + 1]);
                 }
-                if (props.autoplay) props.setNextResult(props.results[resultBeingPlayedIndex + 1]);
             }}
         />
     )

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import '../../../../styles/style.css';
 import "aos/dist/aos.css";
 import {PlaylistItemProperties} from "../../../../models/components/pages/playlistPage/PlaylistItemProperties";
@@ -10,11 +10,14 @@ import {CSS} from "@dnd-kit/utilities";
 
 function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
 
+    const myRef = useRef(null)
+
     const [itemSizeClass, setItemSizeClass] = React.useState<number>(12);
 
     const setPlayingGlobalGenericResult = GlobalPlayerStore(state => state.setGlobalPlayerCurrentResult)
     const setSearchCurrentResults = GlobalPlayerStore(state => state.setSearchCurrentResults)
 
+    const playlistPlayerCurrentResult = PlaylistPagePlayerStore(state => state.playlistPlayerCurrentResult)
     const setPlaylistPlayerGeneralizedResult = PlaylistPagePlayerStore(state => state.setPlaylistPlayerCurrentResult)
     const setPlaylistCurrentResults = PlaylistPagePlayerStore(state => state.setPlaylistCurrentResults)
 
@@ -40,10 +43,23 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
         }, []
     )
 
-    let draggableButton;
+    useEffect(() => {
+        if (props.generalizedResult === playlistPlayerCurrentResult) {
+            // @ts-ignore
+            myRef.current.scrollIntoViewIfNeeded();
+        }
+    }, [playlistPlayerCurrentResult])
+
+    let leftButton;
     if (props.draggable) {
-        draggableButton = <div className="col-1">
+        leftButton = <div className="col-1">
             <span className="align-middle"><i className='bx bx-menu h4'></i></span>
+        </div>
+    }
+    if (props.generalizedResult === playlistPlayerCurrentResult) {
+
+        leftButton = <div className="col-1">
+            <span className="align-middle"><i className='bx bx-play h4'></i></span>
         </div>
     }
 
@@ -63,15 +79,14 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
     }
 
 
-
     return (
 
         <li className="list-group-item"
             key={props.generalizedResult.platformId}
             ref={setNodeRef} style={style} {...attributes} {...listeners}
         >
-            <div className="row align-middle">
-                {draggableButton}
+            <div className="row align-middle" ref={myRef}>
+                {leftButton}
                 <div className={"col-" + itemSizeClass + " p-3 clickable"}
                      style={{
                          backgroundSize: "100% auto",
@@ -86,8 +101,7 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
                          setSearchCurrentResults(null)
                      }}
                 >
-                    <i className='bx bx-play h4 position-absolute top-50 start-0 translate-middle'></i>
-                    <h6 className="fw-bold text-truncate">{props.generalizedResult.title}</h6>
+                    <h6 className="fw-bold text-truncate text-center">{props.generalizedResult.title}</h6>
                 </div>
                 {contentDropdown}
             </div>

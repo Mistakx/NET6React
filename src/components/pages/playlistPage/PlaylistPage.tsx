@@ -22,6 +22,7 @@ function PlaylistPage(): JSX.Element {
     const playlistId = useParams().playlistId
 
     const resetPlaylistPagePlayerState = PlaylistPagePlayerStore(state => state.resetPlaylistPagePlayerState)
+
     const resetEditOrCreatePlaylistModal = EditOrCreatePlaylistModalStore(state => state.resetEditOrCreatePlaylistModal)
     const resetFollowersModal = FollowersModalStore(state => state.resetFollowersModal)
     const resetStatisticsModal = StatisticsModalStore(state => state.resetStatisticsModal)

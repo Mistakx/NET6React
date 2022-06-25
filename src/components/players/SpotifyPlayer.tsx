@@ -12,21 +12,24 @@ export function SpotifyPlayer(props: SpotifyPlayerProperties): JSX.Element {
         }}>
 
             <iframe
-                style={{position: "absolute", bottom:0}}
+                style={{position: "absolute", bottom: 0}}
                 src={"https://open.spotify.com/embed/track/" + props.currentResult.platformId + "?utm_source=generator"}
                 width="100.1%"
                 height="80"
                 frameBorder="0"
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                 onEnded={() => {
-                    let resultBeingPlayedIndex = 0;
-                    for (let i = 0; i < props.results.length; i++) {
-                        if (props.results[i] == props.currentResult) {
-                            resultBeingPlayedIndex = i;
-                            break;
+                    if (props.autoplay && props.results && props.setNextResult) {
+
+                        let resultBeingPlayedIndex = 0;
+                        for (let i = 0; i < props.results.length; i++) {
+                            if (props.results[i] == props.currentResult) {
+                                resultBeingPlayedIndex = i;
+                                break;
+                            }
                         }
+                        props.setNextResult(props.results[resultBeingPlayedIndex + 1]);
                     }
-                    if (props.autoplay) props.setNextResult(props.results[resultBeingPlayedIndex + 1]);
                 }}
             />
 

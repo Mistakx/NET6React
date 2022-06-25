@@ -8,9 +8,9 @@ import RecommendationRequests from "../../requests/backendRequests/Recommendatio
 export class PlayerFactory {
 
     public static createPlayer(item: GeneralizedResult,
-                               items: GeneralizedResult[],
                                setNextItem: (playlistPlayerCurrentResult: (GeneralizedResult | null)) => void,
-                               autoplay: boolean) {
+                               autoplay: boolean,
+                               items?: GeneralizedResult[]) {
 
         const sessionToken = window.sessionStorage.getItem("sessionToken");
 

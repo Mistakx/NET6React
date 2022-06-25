@@ -7,12 +7,10 @@ export function MultiPlatformPlayer(props: MultiPlatformPlayerProperties): JSX.E
     let url;
     if (props.currentResult.platformPlayerUrl?.includes("soundcloud") || props.currentResult.platformPlayerUrl?.includes("dailymotion")) {
         url = props.currentResult.platformPlayerUrl
-        console.log(url)
     }
     
     else {
         url = props.currentResult.platformPlayerUrl + props.currentResult.platformId
-        console.log(url)
     }
 
     return (
@@ -25,14 +23,17 @@ export function MultiPlatformPlayer(props: MultiPlatformPlayerProperties): JSX.E
             width={"100%"}
             height={"100%"}
             onEnded={() => {
-                let resultBeingPlayedIndex = 0;
-                for (let i = 0; i < props.results.length; i++) {
-                    if (props.results[i] == props.currentResult) {
-                        resultBeingPlayedIndex = i;
-                        break;
+                if (props.autoplay && props.results && props.setNextResult) {
+                    let resultBeingPlayedIndex = 0;
+                    for (let i = 0; i < props.results.length; i++) {
+                        if (props.results[i] == props.currentResult) {
+                            resultBeingPlayedIndex = i;
+                            break;
+                        }
                     }
+                    props.setNextResult(props.results[resultBeingPlayedIndex + 1]);
                 }
-                if (props.autoplay) props.setNextResult(props.results[resultBeingPlayedIndex + 1]);
+
             }}
         />
     )

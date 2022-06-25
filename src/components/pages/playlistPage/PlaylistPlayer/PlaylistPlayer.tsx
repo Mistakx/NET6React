@@ -15,7 +15,7 @@ function PlaylistPlayer(): JSX.Element {
 
     let playlistPlayer;
     if (playlistPlayerCurrentResult && playlistCurrentResults) {
-        playlistPlayer = PlayerFactory.createPlayer(playlistPlayerCurrentResult, playlistCurrentResults, setPlaylistPlayerCurrentResult, autoPlay)
+        playlistPlayer = PlayerFactory.createPlayer(playlistPlayerCurrentResult, setPlaylistPlayerCurrentResult, autoPlay, playlistCurrentResults)
     }
 
     let currentlyPlayingText = playlistPlayerCurrentResult?.title ? playlistPlayerCurrentResult?.title : "Not playing content"
