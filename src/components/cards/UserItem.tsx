@@ -107,7 +107,7 @@ function UserItem(props: UserItemProperties): JSX.Element {
                                             toggleFollowingButton()
                                         } else prettyAlert("You need to be logged in to follow a user", false)
                                     } catch (e: any) {
-                                        prettyAlert(e.response?.data || e.toJSON().message, false)
+                                        prettyAlert(e.response.data, false)
                                     }
                                 }}
                                 style={{fontSize: "32px"}}

@@ -2,6 +2,7 @@
  * A platform-agnostic result, with no API specific details.
  */
 export interface GeneralizedResult {
+    platformName: string;
     resultType: string
     platformId: string
     title: string
@@ -28,7 +29,7 @@ export interface GenericVideoResult extends GeneralizedResult {
  */
 export interface GenericTrackResult extends GeneralizedResult {
     resultType: "GenericTrackResult"
-    albumName: string
+    albumName?: string
 }
 
 /**
@@ -36,5 +37,5 @@ export interface GenericTrackResult extends GeneralizedResult {
  */
 export interface GenericLivestreamResult extends GeneralizedResult{
     resultType: "GenericLivestreamResult"
-    gameName: string // Name of the game being played on the stream.
+    gameName?: string // Name of the game being played on the stream.
 }

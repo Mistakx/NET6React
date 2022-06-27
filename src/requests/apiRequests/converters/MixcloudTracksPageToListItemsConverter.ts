@@ -9,6 +9,7 @@ export class MixcloudTracksPageToListItemsConverter {
         mixcloudTracksPage.data.map((item: any) => {
 
             const currentGenericTrackItem: GenericTrackResult = {
+                platformName: "Mixcloud",
                 resultType: "GenericTrackResult",
                 platformId: item.name,
                 title: item.name,

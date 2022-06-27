@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import SearchedPlatformResultsStore from "../../../stores/searches/SearchedPlatformResultsStore";
-import UserPlaylistsModal from "../../modals/userPlaylistsModal/UserPlaylistsModal";
 import SearchResultComponentFactory from "../../cards/content/SearchResultComponentFactory";
-import UserPlaylistsModalStore from "../../../stores/modals/UserPlaylistsModalStore";
 
 function SearchResultsList(): JSX.Element {
 

@@ -131,7 +131,7 @@ function FollowedList(): JSX.Element {
                     )
                     setFollowedResults(arrayMove((followedResults as PlaylistDto[]), oldIndex, newIndex));
                 } catch (e: any) {
-                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                    prettyAlert(e.response.data, false)
                 }
             } else prettyAlert("User needs to be logged in to sort playlists", false)
 
@@ -155,7 +155,7 @@ function FollowedList(): JSX.Element {
                     )
                     setFollowedResults(arrayMove((followedResults as UserProfileDto[]), oldIndex, newIndex));
                 } catch (e: any) {
-                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                    prettyAlert(e.response.data, false)
                 }
             } else prettyAlert("User needs to be logged in to sort playlists", false)
 

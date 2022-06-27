@@ -1,7 +1,7 @@
 import {ApiSearch} from "./ApiSearch";
 import axios from "axios";
 import {Platform} from "../platforms/Platform";
-import Soundcloud from "../platforms/Soundcloud";
+import SoundCloud from "../platforms/SoundCloud";
 import {GeneralizedResult} from "../../../models/apiResponses/GenericResults";
 import {SoundcloudTracksPageToListItemsConverter} from "../converters/SoundcloudTracksPageToListItemsConverter";
 
@@ -23,11 +23,11 @@ export class SoundcloudSearchTrack extends ApiSearch {
     }
 
     public getPlatform(): Platform {
-        return new Soundcloud();
+        return new SoundCloud();
     }
 
     public getButtonText() {
-        return "Soundcloud (Track)";
+        return "SoundCloud";
     }
 
     private async searchSoundcloudUrlsByName(searchQuery: string) {

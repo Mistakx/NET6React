@@ -64,7 +64,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
 
                     setUserPlaylistItems(userPlaylists);
                 } catch (e: any) {
-                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                    prettyAlert(e.response.data, false)
                 }
             } else prettyAlert("No session token found.", false)
         })()
@@ -84,7 +84,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                         else if (order === "Order by Total Views") userPlaylists.sort(compareTotalViews)
                         setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
-                        prettyAlert(e.response?.data || e.toJSON().message, false)
+                        prettyAlert(e.response.data, false)
                     }
                     setDeletePlaylistResponse(null);
                 } else prettyAlert("No session token found.", false)
@@ -106,7 +106,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                         else if (order === "Order by Total Views") userPlaylists.sort(compareTotalViews)
                         setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
-                        prettyAlert(e.response?.data || e.toJSON().message, false)
+                        prettyAlert(e.response.data, false)
                     }
                     setResetCoverResponse(null);
                 } else prettyAlert("No session token found.", false)
@@ -128,7 +128,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                         else if (order === "Order by Total Views") userPlaylists.sort(compareTotalViews)
                         setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
-                        prettyAlert(e.response?.data || e.toJSON().message, false)
+                        prettyAlert(e.response.data, false)
                     }
                     setEditPlaylistResponse(null);
                 } else prettyAlert("No session token found.", false)
@@ -150,7 +150,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                         else if (order === "Order by Total Views") userPlaylists.sort(compareTotalViews)
                         setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
-                        prettyAlert(e.response?.data || e.toJSON().message, false)
+                        prettyAlert(e.response.data, false)
                     }
                     setCreatePlaylistResponse(null);
                 } else prettyAlert("No session token found.", false)
@@ -172,7 +172,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                         else if (order === "Order by Total Views") userPlaylists.sort(compareTotalViews)
                         setUserPlaylistItems(userPlaylists);
                     } catch (e: any) {
-                        prettyAlert(e.response?.data || e.toJSON().message, false)
+                        prettyAlert(e.response.data, false)
                     }
                     setToggledFollowResponse(null);
                 } else prettyAlert("No session token found.", false)
@@ -225,7 +225,7 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                     )
                     setUserPlaylistItems(arrayMove(userPlaylistItems, oldIndex, newIndex));
                 } catch (e: any) {
-                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                    prettyAlert(e.response.data, false)
                 }
             } else prettyAlert("User needs to be logged in to sort playlists", false)
 

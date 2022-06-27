@@ -1,5 +1,5 @@
 import {GeneralizedResult, GenericTrackResult} from "../../../models/apiResponses/GenericResults";
-import {SoundcloudSearchTrack} from "../specificSearches/SoundcloudSearchTrackByAlbum";
+import {SoundcloudSearchTrack} from "../specificSearches/SoundcloudSearchTrackByName";
 
 export class SoundcloudTracksPageToListItemsConverter {
 
@@ -10,6 +10,7 @@ export class SoundcloudTracksPageToListItemsConverter {
         soundcloudTracksPage.map((item: any) => {
 
             const currentGenericTrackItem: GenericTrackResult = {
+                platformName: "SoundCloud",
                 albumName: "",
                 resultType: "GenericTrackResult",
                 platformId: item.id,

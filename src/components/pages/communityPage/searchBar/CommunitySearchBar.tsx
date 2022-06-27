@@ -55,7 +55,7 @@ function CommunitySearchBar(): JSX.Element {
             } else prettyAlert("You need to be logged in to add a playlist.", false)
             return searchList
         } catch (e: any) {
-            prettyAlert(e.response?.data || e.toJSON().message, false)
+            prettyAlert(e.response.data, false)
         }
 
     }

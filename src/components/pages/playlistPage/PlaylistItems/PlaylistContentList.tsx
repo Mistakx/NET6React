@@ -54,7 +54,7 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
                 else if (order === "Order by Creator") response.sort(compareContentCreator)
                 setPlaylistContent(response)
             } catch (e: any) {
-                prettyAlert(e.response?.data || e.toJSON().message, false)
+                prettyAlert(e.response.data, false)
             }
         })()
 
@@ -70,7 +70,7 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
                     else if (order === "Order by Creator") response.sort(compareContentCreator)
                     setPlaylistContent(response)
                 } catch (e: any) {
-                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                    prettyAlert(e.response.data, false)
                 }
                 setDeleteGeneralizedResultResponse("")
             })()
@@ -107,7 +107,7 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
                     )
                     setPlaylistContent(arrayMove(playlistContent, oldIndex, newIndex));
                 } catch (e: any) {
-                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                    prettyAlert(e.response.data, false)
                 }
             } else prettyAlert("User needs to be logged in to sort playlist contents", false)
 

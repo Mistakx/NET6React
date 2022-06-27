@@ -9,6 +9,7 @@ export class DailymotionVideosPageToListItemsConverter {
         dailymotionVideosPage.list.map((item: any) => {
 
             const currentGenericTrackItem: GenericTrackResult = {
+                platformName: "Dailymotion",
                 resultType: "GenericTrackResult",
                 platformId: item.id,
                 title: item.title,

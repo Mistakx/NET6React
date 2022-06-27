@@ -53,7 +53,7 @@ function PlaylistDropdownMenu(props: PlaylistDropdownMenuProperties) {
                                     prettyAlert(response, true)
                                     setResetCoverResponse(response)
                                 } catch (e: any) {
-                                    prettyAlert(e.response?.data || e.toJSON().message, true)
+                                    prettyAlert(e.response.data, true)
                                 }
                             } else prettyAlert("You must be logged in to edit a playlist.", false)
                         }}>
@@ -68,7 +68,7 @@ function PlaylistDropdownMenu(props: PlaylistDropdownMenuProperties) {
                                     prettyAlert(response, true)
                                     setDeletePlaylistResponse(response)
                                 } catch (e: any) {
-                                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                                    prettyAlert(e.response.data, false)
                                 }
                             } else prettyAlert("You must be logged in to delete a playlist.", false)
                         }}

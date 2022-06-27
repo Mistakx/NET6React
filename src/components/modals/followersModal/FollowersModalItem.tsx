@@ -43,7 +43,7 @@ function FollowersModalItem(props: FollowersModalItemProperties): JSX.Element {
                         prettyAlert(response!, true)
 
                     } catch (e: any) {
-                        prettyAlert(e.response?.data || e.toJSON().message, false)
+                        prettyAlert(e.response.data, false)
                     }
                 } else prettyAlert("No session token found.", false)
 

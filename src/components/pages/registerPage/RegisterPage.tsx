@@ -44,7 +44,7 @@ function RegisterPage(): JSX.Element {
                         email: userProfile?.email!
                     });
                 } catch (e: any) {
-                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                    prettyAlert(e.response.data, false)
                     LogRocket.identify(sessionToken);
                 }
                 navigate("/home")
@@ -77,7 +77,7 @@ function RegisterPage(): JSX.Element {
                                             setSessionToken(loginResponse.sessionToken);
                                             setSessionUsername(loginResponse.username);
                                         } catch (e: any) {
-                                            prettyAlert(e.response.data.title || e.response?.data || e.toJSON().message, false)
+                                            prettyAlert(e.response.data, false)
                                         }
                                     }
                                 }

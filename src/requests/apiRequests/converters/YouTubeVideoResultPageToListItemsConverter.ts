@@ -10,6 +10,7 @@ export class YouTubeVideoResultPageToListItemsConverter {
         youtubeVideosSearchResultPage.items.map(item => {
 
             const currentGenericVideoItem: GenericVideoResult = {
+                platformName: "YouTube",
                 resultType: "GenericVideoResult",
                 platformId: item.id.videoId,
                 title: item.snippet.title,

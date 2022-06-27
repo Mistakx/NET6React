@@ -139,7 +139,7 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                                            toggleFollowingButton()
                                        } else prettyAlert("You need to be logged in to follow a playlist", false)
                                    } catch (e: any) {
-                                       prettyAlert(e.response?.data || e.toJSON().message, false)
+                                       prettyAlert(e.response.data, false)
                                    }
                                }}
         >

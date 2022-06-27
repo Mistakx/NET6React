@@ -59,7 +59,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                 try {
                     setProfile(await UserRequests.getProfile(props.username, sessionToken))
                 } catch (e: any) {
-                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                    prettyAlert(e.response.data, false)
                 }
             } else prettyAlert("No session token found.", false)
         })()
@@ -149,7 +149,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                                 setToggledFollowResponse(response)
                             } else prettyAlert("You need to be logged in to follow a user", false)
                         } catch (e: any) {
-                            prettyAlert(e.response?.data || e.toJSON().message, false)
+                            prettyAlert(e.response.data, false)
                         }
                     }}
             >

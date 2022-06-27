@@ -36,7 +36,7 @@ function FollowersModalItemsList(props: FollowersModalItemsListProperties): JSX.
                         setFollowers(response);
                     }
                 } catch (e: any) {
-                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                    prettyAlert(e.response.data, false)
                 }
             } else prettyAlert("No session token found.", false)
         })()
@@ -54,7 +54,7 @@ function FollowersModalItemsList(props: FollowersModalItemsListProperties): JSX.
                             setFollowers(await CommunityRequests.getUsersFollowingPlaylist(props.showingFollowerOf.id));
                         }
                     } catch (e: any) {
-                        prettyAlert(e.response?.data || e.toJSON().message, false)
+                        prettyAlert(e.response.data, false)
                     }
                     setRemovedFollowerResponse(null);
                 } else prettyAlert("No session token found.", false)

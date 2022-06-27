@@ -27,7 +27,7 @@ function UserPlaylistsModalItemsList(): JSX.Element {
                 try {
                     setUserPlaylists(await UserRequests.getPlaylists(username!, sessionToken));
                 } catch (e: any) {
-                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                    prettyAlert(e.response.data, false)
                 }
             } else prettyAlert("No session token found.", false)
         })()
@@ -41,7 +41,7 @@ function UserPlaylistsModalItemsList(): JSX.Element {
                     try {
                         setUserPlaylists(await UserRequests.getPlaylists(username!, sessionToken));
                     } catch (e: any) {
-                        prettyAlert(e.response?.data || e.toJSON().message, false)
+                        prettyAlert(e.response.data, false)
                     }
                     setNewPlaylistResponse(null);
                 } else prettyAlert("No session token found.", false)

@@ -27,7 +27,7 @@ export class DailymotionSearchVideo extends ApiSearch {
     }
 
     public getButtonText() {
-        return "DailyMotion (Videos)";
+        return "Dailymotion";
     }
 
     private async searchDailymotion(searchQuery: string) {

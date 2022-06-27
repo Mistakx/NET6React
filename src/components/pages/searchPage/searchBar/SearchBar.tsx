@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import '../../../../styles/style.css'
 import SearchForm from "./SearchForm";
 import {SearchBarProperties} from "../../../../models/components/pages/searchBar/SearchBarProperties";
@@ -43,9 +43,8 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
     async function searchPlatformItems(chosenSearchQuery: string) {
 
-        let searchList: GeneralizedResult[] = [];
+        let searchList: GeneralizedResult[];
 
-        try {
             if (selectedSearch.getPlatform().getName() === "Spotify") {
                 searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40, props.spotifyAuthenticator.current)
             } else if (selectedSearch.getPlatform().getName() === "Twitch") {
@@ -53,11 +52,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
             } else {
                 searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40)
             }
-            return searchList
-        } catch (e: any) {
-            prettyAlert(e.response?.data || e.toJSON().message, false)
-        }
-
+            return searchList;
 
     }
 
@@ -67,10 +62,16 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
             <SearchLabel/>
 
             <form onSubmit={async (event) => {
-                event.preventDefault()
-                let results = await searchPlatformItems(searchBarQuery)
-                if (results) {
+                try {
+                    event.preventDefault()
+                    let results = await searchPlatformItems(searchBarQuery)
                     setSearchedResults(results)
+                } catch (e: any) {
+                    console.log(e.response?.data.message)
+                    console.log(e.response?.data.error?.message)
+                    console.log(e.response?.data.error)
+                    console.log(e.toJSON().message)
+                    prettyAlert("Error occurred on search", false)
                 }
             }}>
 

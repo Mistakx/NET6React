@@ -27,7 +27,7 @@ function PlaylistContentDropdown(props: PlaylistItemDropdownProperties): JSX.Ele
                                  setPlaylistCoverChangedResponse(response)
                                  prettyAlert(response, true)
                              } catch (e: any) {
-                                 prettyAlert(e.response?.data || e.toJSON().message, false)
+                                 prettyAlert(e.response.data, false)
                              }
                          } else prettyAlert("You must be logged in to delete a playlist", false)
                      }}
@@ -44,7 +44,7 @@ function PlaylistContentDropdown(props: PlaylistItemDropdownProperties): JSX.Ele
                         prettyAlert(response, true)
                         setDeleteGeneralizedResultResponse(response)
                     } catch (e: any) {
-                        prettyAlert(e.response?.data || e.toJSON().message, false)
+                        prettyAlert(e.response.data, false)
                     }
                 } else prettyAlert("You must be logged in to delete a result.", false)
 

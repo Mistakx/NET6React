@@ -40,7 +40,7 @@ function LoginPage(): JSX.Element {
                         email: userProfile?.email!
                     });
                 } catch (e: any) {
-                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                    prettyAlert(e.response.data, false)
                     LogRocket.identify(sessionToken);
                 }
                 navigate("/home")
@@ -69,7 +69,7 @@ function LoginPage(): JSX.Element {
                                         setSessionToken(loginResponse.sessionToken)
                                         setUsername(loginResponse.username)
                                     } catch (e: any) {
-                                        prettyAlert(e.response?.data || e.toJSON().message, false)
+                                        prettyAlert(e.response.data, false)
                                     }
                                 }
                             }>

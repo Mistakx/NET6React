@@ -1,6 +1,6 @@
 import {Platform} from "./Platform";
 
-class Soundcloud extends Platform {
+class SoundCloud extends Platform {
 
     public getDropdownButtonIcon(){
         return <i className='bx bxl-soundcloud h3'></i>;
@@ -11,7 +11,7 @@ class Soundcloud extends Platform {
     }
 
     public getName() {
-        return "Soundcloud";
+        return "SoundCloud";
     }
 
     public getColorClass() {
@@ -20,4 +20,4 @@ class Soundcloud extends Platform {
 
 }
 
-export default Soundcloud;
+export default SoundCloud;

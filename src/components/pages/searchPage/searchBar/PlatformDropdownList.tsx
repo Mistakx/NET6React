@@ -3,8 +3,8 @@ import '../../../../styles/style.css'
 import SelectedPlatformSearchStore from "../../../../stores/searches/SelectedPlatformSearchStore";
 import {VimeoSearchVideoByName} from "../../../../requests/apiRequests/specificSearches/VimeoSearchVideoByName";
 import {YouTubeSearchVideoByGeneral} from "../../../../requests/apiRequests/specificSearches/YouTubeSearchVideoByGeneral";
-import {SpotifySearchTrackByName} from "../../../../requests/apiRequests/specificSearches/SpotifySearchTrackByName";
 import {SpotifySearchTrackByAlbum} from "../../../../requests/apiRequests/specificSearches/SpotifySearchTrackByAlbum";
+import {SpotifySearchTrackByName} from "../../../../requests/apiRequests/specificSearches/SpotifySearchTrackByName";
 import {TwitchSearchClipByChannel} from "../../../../requests/apiRequests/specificSearches/TwitchSearchClipByChannel";
 import {TwitchSearchClipByGame} from "../../../../requests/apiRequests/specificSearches/TwitchSearchClipByGame";
 import {TwitchSearchVideoByChannel} from "../../../../requests/apiRequests/specificSearches/TwitchSearchVideoByChannel";
@@ -12,7 +12,7 @@ import {TwitchSearchVideoByGame} from "../../../../requests/apiRequests/specific
 import {TwitchSearchLivestreamByGeneral} from "../../../../requests/apiRequests/specificSearches/TwitchSearchLivestreamByGeneral";
 import {PlatformDropdownListProperties} from "../../../../models/components/pages/searchBar/PlatformDropdownListProperties";
 import PlatformDropdownStore from "../../../../stores/searches/PlatformDropdownStore";
-import {SoundcloudSearchTrack} from "../../../../requests/apiRequests/specificSearches/SoundcloudSearchTrackByAlbum";
+import {SoundcloudSearchTrack} from "../../../../requests/apiRequests/specificSearches/SoundcloudSearchTrackByName";
 import {MixcloudSearchTrack} from "../../../../requests/apiRequests/specificSearches/MixcloudSearchTrack";
 import {DailymotionSearchVideo} from "../../../../requests/apiRequests/specificSearches/DailymotionSearchVideo";
 

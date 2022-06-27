@@ -10,6 +10,7 @@ export class SpotifyTracksPageToListItemsConverter {
         spotifyTracksPage.items.map(item => {
 
             const currentGenericTrackItem: GenericTrackResult = {
+                platformName: "Spotify",
                 resultType: "GenericTrackResult",
                 platformId: item.id,
                 title: item.name,

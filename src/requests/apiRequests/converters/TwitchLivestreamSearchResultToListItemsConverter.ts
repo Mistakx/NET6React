@@ -10,6 +10,7 @@ export class TwitchLivestreamSearchResultToListItemsConverter {
         twitchChannelSearchResult.data.map(item => {
 
             const currentGenericLivestreamItem: GenericLivestreamResult = {
+                platformName: "Twitch",
                 resultType: "GenericLivestreamResult",
                 platformId: item.display_name,
                 title: item.title,

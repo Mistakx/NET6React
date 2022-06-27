@@ -58,7 +58,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
             try {
                 setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, window.sessionStorage.getItem("sessionToken")!))
             } catch (e: any) {
-                prettyAlert(e.response?.data || e.toJSON().message, false)
+                prettyAlert(e.response.data, false)
             }
         })()
     }, []);
@@ -69,7 +69,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                 try {
                     setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, window.sessionStorage.getItem("sessionToken")!))
                 } catch (e: any) {
-                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                    prettyAlert(e.response.data, false)
                 }
                 setPlaylistCoverChangedResponse("")
             })()
@@ -83,7 +83,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                     setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, window.sessionStorage.getItem("sessionToken")!))
                     navigate(-1)
                 } catch (e: any) {
-                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                    prettyAlert(e.response.data, false)
                 }
                 setDeletePlaylistResponse("")
             })()
@@ -96,7 +96,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                 try {
                     setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, window.sessionStorage.getItem("sessionToken")!))
                 } catch (e: any) {
-                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                    prettyAlert(e.response.data, false)
                 }
                 setResetCoverResponse("")
             })()
@@ -109,7 +109,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                 try {
                     setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, window.sessionStorage.getItem("sessionToken")!))
                 } catch (e: any) {
-                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                    prettyAlert(e.response.data, false)
                 }
                 setEditPlaylistResponse("")
             })()
@@ -122,7 +122,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                 try {
                     setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, window.sessionStorage.getItem("sessionToken")!))
                 } catch (e: any) {
-                    prettyAlert(e.response?.data || e.toJSON().message, false)
+                    prettyAlert(e.response.data, false)
                 }
                 setToggledFollowResponse("")
             })()
@@ -172,7 +172,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                        setToggledFollowResponse(response)
                    } else prettyAlert("You need to be logged in to follow a user", false)
                } catch (e: any) {
-                   prettyAlert(e.response?.data || e.toJSON().message, false)
+                   prettyAlert(e.response.data, false)
                }
            }}
         >
