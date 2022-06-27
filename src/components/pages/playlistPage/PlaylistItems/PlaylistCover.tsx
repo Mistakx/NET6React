@@ -7,19 +7,24 @@ import PlaylistRequests from "../../../../requests/backendRequests/PlaylistReque
 import {PlaylistDto} from "../../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import {PlaylistCoverProperties} from "../../../../models/components/pages/playlistPage/PlaylistCoverProperties";
 import AlertStore from "../../../../stores/AlertStore";
-import {useNavigate} from "react-router-dom";
 import PlaylistDropdownMenu from "../../../dropdownMenus/PlaylistDropdownMenu";
 import FollowersModalStore from "../../../../stores/modals/FollowersModalStore";
 import CommunityRequests from "../../../../requests/backendRequests/CommunityRequests";
 import StatisticsModalStore from "../../../../stores/modals/StatisticsModalStore";
+import toggleFollowingPlaylistButton from "../../../../utils/following/toggleFollowingPlaylistButton";
+import SearchedCommunityResultsStore from "../../../../stores/searches/SearchedCommunityResultsStore";
+import {useNavigate} from "react-router-dom";
 
 function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
+
+    let navigate = useNavigate();
 
     const [followingButtonShapeClass, setFollowingButtonShapeClass] = React.useState<string>()
 
     const [playlistBasicDetails, setPlaylistBasicDetails] = useState<PlaylistDto>()
 
-    let navigate = useNavigate();
+    const searchedCommunityResults = SearchedCommunityResultsStore(state => state.searchedCommunityResults)
+    const setSearchedCommunityResults = SearchedCommunityResultsStore(state => state.setSearchedCommunityResults)
 
     const setShowingFollowersModal = FollowersModalStore(state => state.setShowingFollowersModal)
     const setShowingFollowersOf = FollowersModalStore(state => state.setShowingFollowersOf)
@@ -129,14 +134,6 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
         }
     }, [toggledFollowResponse]);
 
-    function toggleFollowButton() {
-        if (followingButtonShapeClass === "bxs-heart") {
-            setFollowingButtonShapeClass("bx-heart")
-        } else if (followingButtonShapeClass === "bx-heart") {
-            setFollowingButtonShapeClass("bxs-heart")
-        }
-    }
-
     let ownerButton;
     if (playlistBasicDetails?.owner != null) {
 
@@ -168,7 +165,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                    if (playlistBasicDetails && sessionToken) {
                        const response = await CommunityRequests.togglePlaylistFollow(playlistBasicDetails.id, sessionToken)
                        prettyAlert(response, true)
-                       toggleFollowButton()
+                       toggleFollowingPlaylistButton(playlistBasicDetails, followingButtonShapeClass, setFollowingButtonShapeClass, searchedCommunityResults, setSearchedCommunityResults)
                        setToggledFollowResponse(response)
                    } else prettyAlert("You need to be logged in to follow a user", false)
                } catch (e: any) {

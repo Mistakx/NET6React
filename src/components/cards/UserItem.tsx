@@ -10,6 +10,8 @@ import {useSortable} from "@dnd-kit/sortable";
 import {CSS} from "@dnd-kit/utilities";
 import SearchedCommunityResultsStore from "../../stores/searches/SearchedCommunityResultsStore";
 import {UserProfileDto} from "../../models/backendResponses/userRoute/UserProfileDto";
+import toggleFollowingPlaylistButton from "../../utils/following/toggleFollowingPlaylistButton";
+import toggleFollowingUserButton from "../../utils/following/toggleFollowingUserButton";
 
 function UserItem(props: UserItemProperties): JSX.Element {
 
@@ -40,30 +42,6 @@ function UserItem(props: UserItemProperties): JSX.Element {
             setFollowingButtonShapeClass("bx-heart")
         }
     })
-
-    function toggleFollowingButton() {
-
-        if (followingButtonShapeClass === "bxs-heart") {
-            setFollowingButtonShapeClass("bx-heart")
-        } else if (followingButtonShapeClass === "bx-heart") {
-            setFollowingButtonShapeClass("bxs-heart")
-        }
-
-        let updatedSearchedCommunityResults: UserProfileDto[] = []
-
-        for (let searchedCommunityResult of searchedCommunityResults as UserProfileDto[]) {
-            if (searchedCommunityResult.username === props.basicDetails.username) {
-                let updatedCommunityResult: UserProfileDto = {
-                    ...searchedCommunityResult, followed: !searchedCommunityResult.followed
-                }
-                updatedSearchedCommunityResults.push(updatedCommunityResult)
-            } else {
-                updatedSearchedCommunityResults.push(searchedCommunityResult)
-            }
-        }
-        setSearchedCommunityResults(updatedSearchedCommunityResults)
-
-    }
 
     const style = {
         transform: CSS.Transform.toString(transform),
@@ -104,7 +82,7 @@ function UserItem(props: UserItemProperties): JSX.Element {
                                             const response = await CommunityRequests.toggleUserFollow(props.basicDetails.username, sessionToken)
                                             prettyAlert(response, true)
                                             setToggledFollowResponse(response)
-                                            toggleFollowingButton()
+                                            toggleFollowingUserButton(props.basicDetails, followingButtonShapeClass, setFollowingButtonShapeClass, searchedCommunityResults, setSearchedCommunityResults)
                                         } else prettyAlert("You need to be logged in to follow a user", false)
                                     } catch (e: any) {
                                         prettyAlert(e.response.data, false)

@@ -34,19 +34,26 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
         transition,
     };
 
+    let hasLeftButton = false;
+    if (props.draggable || props.generalizedResult === playlistPlayerCurrentResult) hasLeftButton = true;
+    let hasRightButton = false;
+    if (props.showingMyPlaylist) hasRightButton = true;
+
     useEffect(
         () => {
-            if (props.showingMyPlaylist && props.draggable) setItemSizeClass(itemSizeClass - 2);
-            else if (props.showingMyPlaylist) {
-                setItemSizeClass(itemSizeClass - 1);
-            }
+            if (hasLeftButton) setItemSizeClass(itemSizeClass - 1);
+            if (hasRightButton) setItemSizeClass(itemSizeClass - 1);
         }, []
     )
 
     useEffect(() => {
         if (props.generalizedResult === playlistPlayerCurrentResult) {
-            // @ts-ignore
-            myRef.current.scrollIntoViewIfNeeded();
+            try {
+                // @ts-ignore
+                myRef.current.scrollIntoViewIfNeeded();
+            } catch (e) {
+                console.log(e)
+            }
         }
     }, [playlistPlayerCurrentResult])
 

@@ -11,6 +11,8 @@ import {UserProfileProperties} from "../../../../models/components/pages/userPag
 import FollowersModalStore from "../../../../stores/modals/FollowersModalStore";
 import CommunityRequests from "../../../../requests/backendRequests/CommunityRequests";
 import StatisticsModalStore from "../../../../stores/modals/StatisticsModalStore";
+import toggleFollowingUserButton from "../../../../utils/following/toggleFollowingUserButton";
+import SearchedCommunityResultsStore from "../../../../stores/searches/SearchedCommunityResultsStore";
 
 function UserProfile(props: UserProfileProperties): JSX.Element {
 
@@ -19,8 +21,10 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
 
     const [userProfile, setProfile] = React.useState<UserProfileDto>();
 
-    const prettyAlert = AlertStore(state => state.prettyAlert)
+    const searchedCommunityResults = SearchedCommunityResultsStore(state => state.searchedCommunityResults)
+    const setSearchedCommunityResults = SearchedCommunityResultsStore(state => state.setSearchedCommunityResults)
 
+    const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const setModalUsername = EditUserInfoModalStore(state => state.setUsername)
     const setModalName = EditUserInfoModalStore(state => state.setName)
@@ -141,11 +145,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                             if (userProfile && sessionToken) {
                                 const response = await CommunityRequests.toggleUserFollow(userProfile.username, sessionToken)
                                 prettyAlert(response, true)
-                                if (followingButtonShapeClass === "bxs-heart") {
-                                    setFollowingButtonShapeClass("bx-heart")
-                                } else if (followingButtonShapeClass === "bx-heart") {
-                                    setFollowingButtonShapeClass("bxs-heart")
-                                }
+                                toggleFollowingUserButton(userProfile, followingButtonShapeClass, setFollowingButtonShapeClass, searchedCommunityResults, setSearchedCommunityResults)
                                 setToggledFollowResponse(response)
                             } else prettyAlert("You need to be logged in to follow a user", false)
                         } catch (e: any) {

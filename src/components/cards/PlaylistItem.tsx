@@ -17,6 +17,7 @@ import PlaylistDropdownMenu from "../dropdownMenus/PlaylistDropdownMenu";
 import SearchedCommunityResultsStore from "../../stores/searches/SearchedCommunityResultsStore";
 import {UserProfileDto} from "../../models/backendResponses/userRoute/UserProfileDto";
 import {PlaylistDto} from "../../models/backendRequests/PlaylistRoute/PlaylistDto";
+import toggleFollowingPlaylistButton from "../../utils/following/toggleFollowingPlaylistButton";
 
 function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
@@ -136,7 +137,7 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                                            const response = await CommunityRequests.togglePlaylistFollow(props.basicDetails.id, sessionToken)
                                            prettyAlert(response, true)
                                            setToggledFollowResponse(response)
-                                           toggleFollowingButton()
+                                           toggleFollowingPlaylistButton(props.basicDetails, followingButtonShapeClass, setFollowingButtonShapeClass, searchedCommunityResults, setSearchedCommunityResults)
                                        } else prettyAlert("You need to be logged in to follow a playlist", false)
                                    } catch (e: any) {
                                        prettyAlert(e.response.data, false)
@@ -149,7 +150,7 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
     }
 
     let ownerButton;
-    if (props.basicDetails.owner ) {
+    if (props.basicDetails.owner) {
         ownerButton =
             <button className="btn btn-lg btn-user"
                     type="button" style={{
