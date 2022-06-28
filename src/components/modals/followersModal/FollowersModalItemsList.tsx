@@ -27,11 +27,11 @@ function FollowersModalItemsList(props: FollowersModalItemsListProperties): JSX.
             if (sessionToken) {
                 try {
                     if ("username" in props.showingFollowerOf) {
-                        let response = await CommunityRequests.getUsersFollowingUser(props.showingFollowerOf.username)
+                        let response = await CommunityRequests.getUsersFollowingUser(props.showingFollowerOf.username, sessionToken)
                         response.sort(compareUsername)
                         setFollowers(response);
                     } else if ("title" in props.showingFollowerOf) {
-                        let response = await CommunityRequests.getUsersFollowingPlaylist(props.showingFollowerOf.id)
+                        let response = await CommunityRequests.getUsersFollowingPlaylist(props.showingFollowerOf.id, sessionToken)
                         response.sort(compareUsername)
                         setFollowers(response);
                     }
@@ -49,9 +49,9 @@ function FollowersModalItemsList(props: FollowersModalItemsListProperties): JSX.
                 if (sessionToken) {
                     try {
                         if ("username" in props.showingFollowerOf) {
-                            setFollowers(await CommunityRequests.getUsersFollowingUser(props.showingFollowerOf.username));
+                            setFollowers(await CommunityRequests.getUsersFollowingUser(props.showingFollowerOf.username, sessionToken));
                         } else if ("title" in props.showingFollowerOf) {
-                            setFollowers(await CommunityRequests.getUsersFollowingPlaylist(props.showingFollowerOf.id));
+                            setFollowers(await CommunityRequests.getUsersFollowingPlaylist(props.showingFollowerOf.id, sessionToken));
                         }
                     } catch (e: any) {
                         prettyAlert(e.response.data, false)
@@ -68,7 +68,8 @@ function FollowersModalItemsList(props: FollowersModalItemsListProperties): JSX.
     } else if (followers && followers?.length > 0) {
         for (const currentFollower of followers) {
             playlistItemsList.push(
-                <FollowersModalItem key={currentFollower.username} follower={currentFollower} showingFollowerOf={props.showingFollowerOf}/>)
+                <FollowersModalItem key={currentFollower.username} follower={currentFollower}
+                                    showingFollowerOf={props.showingFollowerOf}/>)
         }
     }
 

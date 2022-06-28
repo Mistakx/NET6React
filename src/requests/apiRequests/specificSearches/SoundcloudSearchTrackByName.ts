@@ -104,7 +104,6 @@ export class SoundcloudSearchTrack extends ApiSearch {
 
         const soundcloudTracksPage = await this.searchSoundcloudTracksByUrl(searchQuery)
         const items = SoundcloudTracksPageToListItemsConverter.convert(soundcloudTracksPage)
-        console.log(items)
         return items
     }
 }

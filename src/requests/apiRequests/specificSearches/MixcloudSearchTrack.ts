@@ -57,18 +57,6 @@ export class MixcloudSearchTrack extends ApiSearch {
 
     public async getSearchResults(searchQuery: string): Promise<any> {
         const mixcloudTracksPage = await this.searchMixcloudByName(searchQuery);
-        console.log("mixcloudTracksPage")
-        console.log(mixcloudTracksPage)
-
-        let items: any
-        try {
-            items = MixcloudTracksPageToListItemsConverter.convert(mixcloudTracksPage)
-        }
-        catch (e) {
-            console.error(e);
-        }
-        console.log("Propagated exception 3")
-        return items
-
+        return MixcloudTracksPageToListItemsConverter.convert(mixcloudTracksPage)
     }
 }

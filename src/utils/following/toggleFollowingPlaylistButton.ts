@@ -16,16 +16,19 @@ export default function toggleFollowingPlaylistButton(playlist: PlaylistDto,
 
     let updatedSearchedCommunityResults: PlaylistDto[] = []
 
-    for (let searchedCommunityResult of searchedCommunityResults as PlaylistDto[]) {
-        if (searchedCommunityResult.id === playlist.id) {
-            let updatedCommunityResult: PlaylistDto = {
-                ...searchedCommunityResult, followed: !searchedCommunityResult.followed
+    if (searchedCommunityResults) {
+        for (let searchedCommunityResult of searchedCommunityResults as PlaylistDto[]) {
+            if (searchedCommunityResult.id === playlist.id) {
+                let updatedCommunityResult: PlaylistDto = {
+                    ...searchedCommunityResult, followed: !searchedCommunityResult.followed
+                }
+                updatedSearchedCommunityResults.push(updatedCommunityResult)
+            } else {
+                updatedSearchedCommunityResults.push(searchedCommunityResult)
             }
-            updatedSearchedCommunityResults.push(updatedCommunityResult)
-        } else {
-            updatedSearchedCommunityResults.push(searchedCommunityResult)
         }
+        setSearchedCommunityResults(updatedSearchedCommunityResults)
     }
-    setSearchedCommunityResults(updatedSearchedCommunityResults)
+
 
 }

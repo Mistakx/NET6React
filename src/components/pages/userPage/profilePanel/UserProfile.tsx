@@ -13,6 +13,7 @@ import CommunityRequests from "../../../../requests/backendRequests/CommunityReq
 import StatisticsModalStore from "../../../../stores/modals/StatisticsModalStore";
 import toggleFollowingUserButton from "../../../../utils/following/toggleFollowingUserButton";
 import SearchedCommunityResultsStore from "../../../../stores/searches/SearchedCommunityResultsStore";
+import FollowingModalStore from "../../../../stores/modals/FollowingModalStore";
 
 function UserProfile(props: UserProfileProperties): JSX.Element {
 
@@ -35,6 +36,9 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
 
     const setShowingUserFollowersModal = FollowersModalStore(state => state.setShowingFollowersModal)
     const setShowingFollowersOf = FollowersModalStore(state => state.setShowingFollowersOf)
+
+    const setShowingFollowingModal = FollowingModalStore(state => state.setShowingFollowingModal)
+    const setShowingFollowingOf = FollowingModalStore(state => state.setShowingFollowingOf)
 
     const setShowingStatisticsOf = StatisticsModalStore(state => state.setShowingStatisticsOf)
     const setShowingStatisticsModal = StatisticsModalStore(state => state.setShowingStatisticsModal)
@@ -99,6 +103,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
             (async () => {
                 const sessionToken = window.sessionStorage.getItem("sessionToken");
                 if (sessionToken) {
+                    let test = await UserRequests.getProfile(props.username, sessionToken)
                     setProfile(await UserRequests.getProfile(props.username, sessionToken))
                     setToggledFollowResponse(null)
                 } else prettyAlert("No session token found.", false)
@@ -158,33 +163,38 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
         </div>
     }
 
+    let userPhoto
+    if (userProfile) {
+        userPhoto = <img src={"/" + userProfile?.profilePhotoUrl}
+                         width="250"
+                         height="250"
+                         className="img-fluid rounded-circle"
+                         onError={({currentTarget}) => {
+                             console.log(currentTarget)
+                             currentTarget.onerror = null; // prevents looping
+                             // currentTarget.style.display = "none"
+                         }}
+
+        />
+    }
+
     return (
 
         <div className="col-lg-4 col-md-6 col-sm-12 col-12 position-relative  mb-4">
 
             <div className="align-items-stretch mb-4" data-aos="zoom-in" data-aos-delay="100">
 
-            <div className="options-dropdown">
+                <div className="options-dropdown">
                     <div className="btn-group icons-playlist" style={{position: "absolute", top: "0px", left: "0px"}}>
                         {dropdownMenu}
                         {followButton}
                         <button className="btn text-white"
-                            onClick={() => {
-                                if (userProfile) {
-                                    setShowingUserFollowersModal(true)
-                                    setShowingFollowersOf(userProfile)
-                                }
-                            }}
-                        >
-                            <i className='bx bxs-user-detail h1 p-0'></i>
-                        </button>
-                        <button className="btn text-white"
-                            onClick={() => {
-                                if (userProfile) {
-                                    setShowingStatisticsModal(true)
-                                    setShowingStatisticsOf(userProfile)
-                                }
-                            }}
+                                onClick={() => {
+                                    if (userProfile) {
+                                        setShowingStatisticsModal(true)
+                                        setShowingStatisticsOf(userProfile)
+                                    }
+                                }}
                         >
                             <i className='bx bx-info-circle h1 p-0'></i>
                         </button>
@@ -192,15 +202,10 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                 </div>
 
                 <div className="icon-box icon-box-lightblue">
-                    <h3 className="text-white"><strong>{userProfile?.name}</strong></h3>
-                    <h4 className="text-white">{userProfile?.username}</h4>
+                    <h3 className="text-white"><strong>{userProfile?.username}</strong></h3>
+                    <h4 className="text-white">{userProfile?.name}</h4>
                     <div className="position-relative change-profile-picture">
-
-                        <img src={"/" + userProfile?.profilePhotoUrl}
-                            width="250"
-                            height="250"
-                            className="img-fluid rounded-circle"
-                            />
+                        {userPhoto}
                         {editPhotoButton}
                     </div>
                 </div>
@@ -215,25 +220,32 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-4 col-4">
                     <div className="icon-box icon-box-lightblue clickable"
-                        onClick={() => {
-                            if (userProfile) {
-                                setShowingUserFollowersModal(true)
-                                setShowingFollowersOf(userProfile)
-                            }
-                        }}
+                         onClick={() => {
+                             if (userProfile) {
+                                 setShowingUserFollowersModal(true)
+                                 setShowingFollowersOf(userProfile)
+                             }
+                         }}
                     >
                         <h1>{userProfile?.followersAmount!}</h1>
                         Followers
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-4 col-4">
-                    <div className="icon-box icon-box-lightblue">
+                    <div className="icon-box icon-box-lightblue clickable"
+                         onClick={() => {
+                             if (userProfile) {
+                                 setShowingFollowingModal(true)
+                                 setShowingFollowingOf(userProfile)
+                             }
+                         }}
+                    >
                         <h1>{userProfile?.followingUsersAmount!}</h1>
                         Following
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
 

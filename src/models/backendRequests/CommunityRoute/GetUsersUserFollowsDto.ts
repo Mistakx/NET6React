@@ -1,4 +1,4 @@
-export interface GetUsersFollowingUserDto {
+export interface GetUsersUserFollowsDto {
     username: string
     sessionToken: string
 }

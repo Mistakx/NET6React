@@ -1,23 +1,18 @@
 import axios from "axios";
 import {UserProfileDto} from "../../models/backendResponses/userRoute/UserProfileDto";
 import {PlaylistDto} from "../../models/backendRequests/PlaylistRoute/PlaylistDto";
-import {EditUserInfo} from "../../models/backendRequests/UserRoute/EditUserInfo";
-import {EditUserPassword} from "../../models/backendRequests/UserRoute/EditUserPassword";
-import {LoginResponseDto} from "../../models/backendResponses/userRoute/LoginResponseDto";
-import {GetUserProfileDto} from "../../models/backendRequests/UserRoute/GetUserProfileDto";
-import {GetUserPlaylistsDto} from "../../models/backendRequests/UserRoute/GetUserPlaylistsDto";
-import {SortPlaylist} from "../../models/backendRequests/PlaylistRoute/SortPlaylist";
 import {ToggleUserFollowDto} from "../../models/backendRequests/CommunityRoute/ToggleUserFollowDto";
 import {TogglePlaylistFollowDto} from "../../models/backendRequests/CommunityRoute/TogglePlaylistFollowDto";
 import {GetFollowedPlaylistsDto} from "../../models/backendRequests/CommunityRoute/GetFollowedPlaylistsDto";
 import {GetFollowedUsersDto} from "../../models/backendRequests/CommunityRoute/GetFollowedUsersDto";
 import {GetUsersFollowingUserDto} from "../../models/backendRequests/CommunityRoute/GetUsersFollowingUserDto";
 import {GetUsersFollowingPlaylistDto} from "../../models/backendRequests/CommunityRoute/GetUsersFollowingPlaylistDto";
-import {SortPlaylistContent} from "../../models/backendRequests/PlaylistRoute/SortPlaylistContent";
 import {SortUserFollowDto} from "../../models/backendRequests/CommunityRoute/SortUserFollowDto";
 import {SortPlaylistFollowDto} from "../../models/backendRequests/CommunityRoute/SortPlaylistFollowDto";
 import {RemoveFollowFromPlaylist} from "../../models/backendRequests/CommunityRoute/RemoveFollowFromPlaylist";
 import {RemoveFollowFromUser} from "../../models/backendRequests/CommunityRoute/RemoveFollowFromUser";
+import {GetUsersUserFollowsDto} from "../../models/backendRequests/CommunityRoute/GetUsersUserFollowsDto";
+import {GetPlaylistsUserFollowsDto} from "../../models/backendRequests/CommunityRoute/GetPlaylistsUserFollowsDto";
 
 class UserRequests {
 
@@ -65,12 +60,13 @@ class UserRequests {
 
     }
 
-    static async getUsersFollowingUser(username: string) {
+    static async getUsersFollowingUser(username: string, sessionToken: string) {
 
         const url = "/Community/getUsersFollowingUser";
 
         let data: GetUsersFollowingUserDto = {
             username: username,
+            sessionToken: sessionToken
         }
 
         const options = {
@@ -86,12 +82,13 @@ class UserRequests {
 
     }
 
-    static async getUsersFollowingPlaylist(playlistId: string) {
+    static async getUsersFollowingPlaylist(playlistId: string, sessionToken: string) {
 
         const url = "/Community/getUsersFollowingPlaylist";
 
         let data: GetUsersFollowingPlaylistDto = {
-            playlistId: playlistId
+            playlistId: playlistId,
+            sessionToken: sessionToken
         }
 
         const options = {
@@ -104,6 +101,50 @@ class UserRequests {
         // @ts-ignore
         let response = await axios(options);
         return response.data as UserProfileDto[];
+
+    }
+
+    static async getUsersUserFollows(username: string, sessionToken: string) {
+
+        const url = "/Community/getUsersUserFollows";
+
+        let data: GetUsersUserFollowsDto = {
+            username: username,
+            sessionToken: sessionToken,
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+
+        // @ts-ignore
+        let response = await axios(options);
+        return response.data as UserProfileDto[];
+
+    }
+
+    static async getPlaylistsUserFollowsDto(username: string, sessionToken: string) {
+
+        const url = "/Community/getPlaylistsUserFollows";
+
+        let data: GetPlaylistsUserFollowsDto = {
+            username: username,
+            sessionToken: sessionToken,
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+
+        // @ts-ignore
+        let response = await axios(options);
+        return response.data as PlaylistDto[];
 
     }
 

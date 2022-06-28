@@ -23,6 +23,8 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
     let navigate = useNavigate()
 
+    const [followingButtonShapeClass, setFollowingButtonShapeClass] = React.useState<string>()
+
     const searchedCommunityResults = SearchedCommunityResultsStore(state => state.searchedCommunityResults)
     const setSearchedCommunityResults = SearchedCommunityResultsStore(state => state.setSearchedCommunityResults)
 
@@ -38,7 +40,6 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
         transition,
     } = useSortable({id: props.basicDetails.id});
 
-    const [followingButtonShapeClass, setFollowingButtonShapeClass] = React.useState<string>()
 
     useEffect(() => {
         if (props.basicDetails.followed) {
@@ -47,30 +48,6 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
             setFollowingButtonShapeClass("bx-heart")
         }
     }, [])
-
-    function toggleFollowingButton() {
-
-        if (followingButtonShapeClass === "bxs-heart") {
-            setFollowingButtonShapeClass("bx-heart")
-        } else if (followingButtonShapeClass === "bx-heart") {
-            setFollowingButtonShapeClass("bxs-heart")
-        }
-
-        let updatedSearchedCommunityResults: PlaylistDto[] = []
-
-        for (let searchedCommunityResult of searchedCommunityResults as PlaylistDto[]) {
-            if (searchedCommunityResult.id === props.basicDetails.id) {
-                let updatedCommunityResult: PlaylistDto = {
-                    ...searchedCommunityResult, followed: !searchedCommunityResult.followed
-                }
-                updatedSearchedCommunityResults.push(updatedCommunityResult)
-            } else {
-                updatedSearchedCommunityResults.push(searchedCommunityResult)
-            }
-        }
-        setSearchedCommunityResults(updatedSearchedCommunityResults)
-
-    }
 
     const style = {
         transform: CSS.Transform.toString(transform),

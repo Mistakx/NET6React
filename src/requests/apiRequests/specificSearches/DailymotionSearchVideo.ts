@@ -57,18 +57,6 @@ export class DailymotionSearchVideo extends ApiSearch {
 
     public async getSearchResults(searchQuery: string): Promise<any> {
         const dailymotionVideosPage = await this.searchDailymotion(searchQuery);
-        console.log("dailymotionVideosPage")
-        console.log(dailymotionVideosPage)
-
-        let items: any
-        try {
-            items = DailymotionVideosPageToListItemsConverter.convert(dailymotionVideosPage)
-        }
-        catch (e) {
-            console.error(e);
-        }
-        console.log("Propagated exception 3")
-        return items
-
+        return DailymotionVideosPageToListItemsConverter.convert(dailymotionVideosPage)
     }
 }

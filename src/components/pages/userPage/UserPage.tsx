@@ -13,6 +13,8 @@ import FollowersModalStore from "../../../stores/modals/FollowersModalStore";
 import EditUserInfoModalStore from "../../../stores/modals/EditUserInfoModalStore";
 import StatisticsModalStore from "../../../stores/modals/StatisticsModalStore";
 import EditOrCreatePlaylistModalStore from "../../../stores/modals/EditOrCreatePlaylistModalStore";
+import FollowingModal from "../../modals/followingModal/FollowingModal";
+import FollowingModalStore from "../../../stores/modals/FollowingModalStore";
 
 function UserPage(props: { username: string }) {
 
@@ -23,6 +25,7 @@ function UserPage(props: { username: string }) {
     const resetEditUserInfoModal = EditUserInfoModalStore(state => state.resetEditUserInfoModal)
     const resetEditUserPasswordModal = EditUserPasswordModalStore(state => state.resetEditUserPasswordModal)
     const resetFollowersModal = FollowersModalStore(state => state.resetFollowersModal)
+    const resetFollowingModal = FollowingModalStore(state => state.resetFollowingModal)
     const resetStatisticsModal = StatisticsModalStore(state => state.resetStatisticsModal)
     const resetEditOrCreatePlaylistModal = EditOrCreatePlaylistModalStore(state => state.resetEditOrCreatePlaylistModal)
 
@@ -30,6 +33,7 @@ function UserPage(props: { username: string }) {
         resetEditUserInfoModal()
         resetEditUserPasswordModal()
         resetFollowersModal()
+        resetFollowingModal()
         resetStatisticsModal()
         resetEditOrCreatePlaylistModal()
     }, [])
@@ -52,6 +56,7 @@ function UserPage(props: { username: string }) {
             <EditUserInfoModal/>
             <EditUserPasswordModal/>
             <FollowersModal/>
+            <FollowingModal/>
             <StatisticsModal/>
             <EditOrCreatePlaylistModal/>
 

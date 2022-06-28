@@ -16,16 +16,20 @@ export default function toggleFollowingUserButton(user: UserProfileDto,
 
     let updatedSearchedCommunityResults: UserProfileDto[] = []
 
-    for (let searchedCommunityResult of searchedCommunityResults as UserProfileDto[]) {
-        if (searchedCommunityResult.username === user.username) {
-            let updatedCommunityResult: UserProfileDto = {
-                ...searchedCommunityResult, followed: !searchedCommunityResult.followed
+    if (searchedCommunityResults ) {
+        for (let searchedCommunityResult of searchedCommunityResults as UserProfileDto[]) {
+            if (searchedCommunityResult.username === user.username) {
+                let updatedCommunityResult: UserProfileDto = {
+                    ...searchedCommunityResult, followed: !searchedCommunityResult.followed
+                }
+                updatedSearchedCommunityResults.push(updatedCommunityResult)
+            } else {
+                updatedSearchedCommunityResults.push(searchedCommunityResult)
             }
-            updatedSearchedCommunityResults.push(updatedCommunityResult)
-        } else {
-            updatedSearchedCommunityResults.push(searchedCommunityResult)
         }
+        setSearchedCommunityResults(updatedSearchedCommunityResults)
     }
-    setSearchedCommunityResults(updatedSearchedCommunityResults)
+
+
 
 }

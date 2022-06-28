@@ -39,15 +39,13 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
     let hasRightButton = false;
     if (props.showingMyPlaylist) hasRightButton = true;
 
-    useEffect(
-        () => {
-            if (hasLeftButton) setItemSizeClass(itemSizeClass - 1);
-            if (hasRightButton) setItemSizeClass(itemSizeClass - 1);
-        }, []
-    )
-
     useEffect(() => {
-        if (props.generalizedResult === playlistPlayerCurrentResult) {
+        if (props.generalizedResult !== playlistPlayerCurrentResult && itemSizeClass !== 12) {
+            setItemSizeClass(12);
+        } else if (props.generalizedResult === playlistPlayerCurrentResult) {
+            if (hasLeftButton && hasRightButton) setItemSizeClass(itemSizeClass - 2);
+            else if (hasLeftButton) setItemSizeClass(itemSizeClass - 1);
+            else if (hasRightButton) setItemSizeClass(itemSizeClass - 1);
             try {
                 // @ts-ignore
                 myRef.current.scrollIntoViewIfNeeded();
