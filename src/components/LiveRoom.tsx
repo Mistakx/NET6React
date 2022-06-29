@@ -2,8 +2,41 @@ import React, { useEffect } from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import {useNavigate} from "react-router-dom";
+import { HubConnectionSingleton } from "utils/HubConnectionSingleton";
+import AlertStore from "stores/AlertStore";
+import { ConnectToHubDto } from "models/backendRequests/HubConnections/ConnectToHubDto";
 
 function LiveRoom(): JSX.Element {
+
+    const hubConnection = HubConnectionSingleton.getInstance();
+
+    const prettyAlert = AlertStore(state => state.prettyAlert)
+
+    React.useEffect(() => {
+        hubConnection.on("myFriends", friends => {
+            console.log(friends)
+        })
+    }, []);
+
+    useEffect(() => {
+        window.onbeforeunload = function(){
+            let sendParams : ConnectToHubDto = {
+                sessionToken : window.sessionStorage.getItem("sessionToken"),
+                hubConnectionId : hubConnection.connectionId
+            }
+
+            hubConnection.send("UserDisconnected", sendParams);
+            hubConnection.stop()
+          }
+    }, []);
+
+
+    React.useEffect(() => {
+        hubConnection.on("notify", message => {
+            prettyAlert(message, true)
+        })
+    }, []);
+
 
     useEffect(() => {
         AOS.init();

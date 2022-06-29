@@ -9,7 +9,9 @@ const context = [
     "/Playlist",
     "/GetImage",
     "/Recommendations",
-    "/Community"
+    "/Community",
+    "/hub"
+
 ];
 
 module.exports = function (app) {
