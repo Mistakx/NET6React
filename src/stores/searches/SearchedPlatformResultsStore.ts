@@ -4,7 +4,8 @@ import {
     GenericLivestreamResult,
     GeneralizedResult,
     GenericTrackResult,
-    GenericVideoResult
+    GenericVideoResult,
+    GenericPodcastResult
 } from "../../models/apiResponses/GenericResults";
 
 const SearchedPlatformResultsStore = create<SearchedPlaftormResultsState>((set) => ({

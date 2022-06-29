@@ -1,11 +1,13 @@
 import {
     GenericLivestreamResult, GeneralizedResult,
     GenericTrackResult,
-    GenericVideoResult
+    GenericVideoResult,
+    GenericPodcastResult
 } from "../../../models/apiResponses/GenericResults";
 import LivestreamSearchItem from "./LivestreamSearchItem";
 import VideoSearchItem from "./VideoSearchItem";
 import TrackSearchItem from "./TrackSearchItem";
+import PodcastSearchItem from "./PodcastSearchItem";
 
 class SearchResultComponentFactory {
 
@@ -35,6 +37,15 @@ class SearchResultComponentFactory {
                     searchResultItems.push(currentTrackItem);
                     break;
 
+                case "GenericPodcastResult":
+                    let currentPodcastItem = <PodcastSearchItem
+                        key={currentGenericItem.platformId}
+                        searchResult={currentGenericItem as GenericPodcastResult}
+                        searchResults={results}
+                    />
+                    searchResultItems.push(currentPodcastItem);
+                    break;
+
                 case "GenericLivestreamResult":
                     let currentLivestreamItem =
                         <LivestreamSearchItem
@@ -43,7 +54,7 @@ class SearchResultComponentFactory {
                             searchResults={results}
                         />
                     searchResultItems.push(currentLivestreamItem);
-
+                    
             }
 
         }

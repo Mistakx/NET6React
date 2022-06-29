@@ -5,6 +5,7 @@ import {VimeoSearchVideoByName} from "../../../../requests/apiRequests/specificS
 import {YouTubeSearchVideoByGeneral} from "../../../../requests/apiRequests/specificSearches/YouTubeSearchVideoByGeneral";
 import {SpotifySearchTrackByName} from "../../../../requests/apiRequests/specificSearches/SpotifySearchTrackByName";
 import {SpotifySearchTrackByAlbum} from "../../../../requests/apiRequests/specificSearches/SpotifySearchTrackByAlbum";
+import {SpotifySearchPodcastsByName} from "../../../../requests/apiRequests/specificSearches/SpotifySearchPodcastsByName";
 import {TwitchSearchClipByChannel} from "../../../../requests/apiRequests/specificSearches/TwitchSearchClipByChannel";
 import {TwitchSearchClipByGame} from "../../../../requests/apiRequests/specificSearches/TwitchSearchClipByGame";
 import {TwitchSearchVideoByChannel} from "../../../../requests/apiRequests/specificSearches/TwitchSearchVideoByChannel";
@@ -85,6 +86,16 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
 
                     }}>
                         <div className="clickable dropdown-item btn-spotify">Album</div>
+                    </li>
+
+                    {/*Spotify by podcast button*/}
+                    <li onClick={(e) => {
+                        props.togglePlatformDropdownList()
+                        e.preventDefault()
+                        setSelectedSearch(SpotifySearchPodcastsByName.getInstance())
+
+                    }}>
+                        <div className="clickable dropdown-item btn-spotify">Podcasts</div>
                     </li>
 
                 </ul>

@@ -1,5 +1,5 @@
 type YouTubeSpecificSearch = "YouTubeSearchVideoByGeneral"
-type SpotifySpecificSearch = "SpotifySearchTrackByName" | "SpotifySearchTrackByAlbum"
+type SpotifySpecificSearch = "SpotifySearchTrackByName" | "SpotifySearchTrackByAlbum " | "SpotifySearchPodcastsByName"
 type VimeoSpecificSearch = "VimeoSearchVideoByName"
 type TwitchSpecificSearch = "TwitchSearchClipByChannel" | "TwitchSearchClipByGame" | "TwitchSearchVideoByChannel" | "TwitchSearchVideoByGame" |"TwitchSearchLivestreamByGeneral"
 export type SpecificSearchType = YouTubeSpecificSearch | SpotifySpecificSearch | VimeoSpecificSearch | TwitchSpecificSearch

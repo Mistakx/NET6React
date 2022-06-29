@@ -1,9 +1,5 @@
 import {Platform} from "../platforms/Platform";
-import {
-    GenericLivestreamResult, GeneralizedResult,
-    GenericTrackResult,
-    GenericVideoResult
-} from "../../../models/apiResponses/GenericResults";
+import {GenericLivestreamResult, GeneralizedResult, GenericTrackResult, GenericVideoResult, GenericPodcastResult} from "../../../models/apiResponses/GenericResults";
 
 export abstract class ApiSearch {
 

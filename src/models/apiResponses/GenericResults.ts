@@ -31,6 +31,12 @@ export interface GenericTrackResult extends GeneralizedResult {
     albumName: string
 }
 
+export interface GenericPodcastResult extends GeneralizedResult {
+    resultType: "GenericPodcastResult"
+    url: string
+    href: string
+}
+
 /**
  * A platform-agnostic livestream result, with no API specific details.
  */

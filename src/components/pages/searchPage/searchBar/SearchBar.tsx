@@ -44,12 +44,17 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
     async function searchPlatformItems(chosenSearchQuery: string) {
 
         let searchList: GeneralizedResult[] = [];
+        
+        console.log("entrou?")
 
         try {
             if (selectedSearch.getPlatform().getName() === "Spotify") {
+                console.log("entra aqui???")
                 searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40, props.spotifyAuthenticator.current)
+            
             } else if (selectedSearch.getPlatform().getName() === "Twitch") {
                 searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40, props.twitchAuthenticator.current)
+           
             } else {
                 searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40)
             }
@@ -69,6 +74,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
             <form onSubmit={async (event) => {
                 event.preventDefault()
                 let results = await searchPlatformItems(searchBarQuery)
+                console.log(results)
                 if (results) {
                     setSearchedResults(results)
                 }
