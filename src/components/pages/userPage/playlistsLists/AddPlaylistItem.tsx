@@ -16,7 +16,7 @@ function AddPlaylistItem(): JSX.Element {
         <div className="col-lg-4 col-md-6 col-sm-6 col-6"
             data-aos="fade-up"
             onClick={() => {
-                const sessionToken = window.sessionStorage.getItem("sessionToken")
+                const sessionToken = localStorage.getItem("sessionToken")
                 if (sessionToken) {
                     const newPlaylist: CreatePlaylist = {
                         title: "",

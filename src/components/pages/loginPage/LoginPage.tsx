@@ -20,9 +20,9 @@ function LoginPage(): JSX.Element {
 
     useEffect(() => {
         AOS.init();
-        if (window.sessionStorage.getItem("sessionToken")) {
-            setSessionToken(window.sessionStorage.getItem("sessionToken")!)
-            setUsername(window.sessionStorage.getItem("username")!)
+        if (localStorage.getItem("sessionToken")) {
+            setSessionToken(localStorage.getItem("sessionToken")!)
+            setUsername(localStorage.getItem("username")!)
         }
     }, []);
 
@@ -30,8 +30,8 @@ function LoginPage(): JSX.Element {
 
         (async () => {
             if (sessionToken) {
-                window.sessionStorage.setItem("sessionToken", sessionToken)
-                window.sessionStorage.setItem("username", username!)
+                localStorage.setItem("sessionToken", sessionToken)
+                localStorage.setItem("username", username!)
                 try {
                     const userProfile = await UserRequests.getProfile(username!, sessionToken)
                     LogRocket.identify(sessionToken, {

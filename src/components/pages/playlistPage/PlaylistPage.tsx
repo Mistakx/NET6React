@@ -15,7 +15,6 @@ import FollowersModalStore from "../../../stores/modals/FollowersModalStore";
 import FollowersModal from "../../modals/followersModal/FollowersModal";
 import StatisticsModalStore from "../../../stores/modals/StatisticsModalStore";
 import StatisticsModal from "../../modals/statisticsModal/StatisticsModal";
-import {EditOrCreatePlaylistModalState} from "../../../models/states/modals/EditOrCreatePlaylistModalState";
 
 function PlaylistPage(): JSX.Element {
 

@@ -44,7 +44,7 @@ function CommunitySearchBar(): JSX.Element {
         let searchList: PlaylistDto[] | UserProfileDto[] = [];
 
         try {
-            const sessionToken = window.sessionStorage.getItem("sessionToken")
+            const sessionToken = localStorage.getItem("sessionToken")
             if (sessionToken) {
 
                 if (selectedSearch.getButtonText() === "User") {

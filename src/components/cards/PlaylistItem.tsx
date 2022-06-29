@@ -32,6 +32,8 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
     const setToggledFollowResponse = BackendResponsesStore(state => state.setToggledFollowResponse)
 
+    const sessionToken = localStorage.getItem("sessionToken")
+
     const {
         attributes,
         listeners,
@@ -105,24 +107,25 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
     let followButton;
     if (props.basicDetails.followed !== null) {
-        followButton = <button className="btn btn-lg btn-add"
-                               type="button"
-                               onClick={async () => {
-                                   try {
-                                       const sessionToken = window.sessionStorage.getItem("sessionToken")
-                                       if (sessionToken) {
-                                           const response = await CommunityRequests.togglePlaylistFollow(props.basicDetails.id, sessionToken)
-                                           prettyAlert(response, true)
-                                           setToggledFollowResponse(response)
-                                           toggleFollowingPlaylistButton(props.basicDetails, followingButtonShapeClass, setFollowingButtonShapeClass, searchedCommunityResults, setSearchedCommunityResults)
-                                       } else prettyAlert("You need to be logged in to follow a playlist", false)
-                                   } catch (e: any) {
-                                       prettyAlert(e.response.data, false)
-                                   }
-                               }}
-        >
-            <i className={'bx ' + followingButtonShapeClass}></i>
-        </button>
+        followButton =
+            <button className="btn btn-lg btn-add"
+                    type="button"
+                    onClick={async () => {
+                        if (sessionToken) {
+
+                            try {
+                                const response = await CommunityRequests.togglePlaylistFollow(props.basicDetails.id, sessionToken)
+                                prettyAlert(response, true)
+                                setToggledFollowResponse(response)
+                                toggleFollowingPlaylistButton(props.basicDetails, followingButtonShapeClass, setFollowingButtonShapeClass, searchedCommunityResults, setSearchedCommunityResults)
+                            } catch (e: any) {
+                                prettyAlert(e.response.data, false)
+                            }
+                        } else prettyAlert("You need to be logged in to follow a playlist", false)
+                    }}
+            >
+                <i className={'bx ' + followingButtonShapeClass}></i>
+            </button>
 
     }
 
@@ -163,7 +166,11 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                     <div className="card-img-overlay"
                          onClick={() => {
                              navigate("/playlist/" + props.basicDetails.id)
-                             RecommendationRequests.savePlaylistView(props.basicDetails.id, window.sessionStorage.getItem("sessionToken")!)
+                             if (sessionToken) {
+                                 RecommendationRequests.savePlaylistView(props.basicDetails.id, sessionToken)
+                             } else {
+                                 prettyAlert("You need to be logged in to save a playlist", false)
+                             }
                          }}
                     >
                         <h5 className="card-title text-uppercase text-center">{props.basicDetails.title}</h5>

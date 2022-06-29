@@ -26,6 +26,7 @@ function FollowersModalItem(props: FollowersModalItemProperties): JSX.Element {
     const searchedCommunityResults = SearchedCommunityResultsStore(state => state.searchedCommunityResults)
     const setSearchedCommunityResults = SearchedCommunityResultsStore(state => state.setSearchedCommunityResults)
 
+    let sessionToken = localStorage.getItem("sessionToken")
 
     useEffect(() => {
         if (props.follower.followed) {
@@ -37,29 +38,30 @@ function FollowersModalItem(props: FollowersModalItemProperties): JSX.Element {
 
     // Remove follower button appears if showing follower of a user who is me, or a playlist that belongs to me (doesn't have an owner)
     let removeFollowerButton;
-    if (props.showingFollowerOf && "username" in props.showingFollowerOf && props.showingFollowerOf.username === window.sessionStorage.getItem("username")
+    if (props.showingFollowerOf && "username" in props.showingFollowerOf && props.showingFollowerOf.username === localStorage.getItem("username")
         || props.showingFollowerOf && "title" in props.showingFollowerOf && props.showingFollowerOf.owner === null) {
         removeFollowerButton = <button className="btn text-danger"
                                        onClick={async (e) => {
                                            e.stopPropagation()
-                                           const sessionToken = window.sessionStorage.getItem("sessionToken");
-                                           if (props.showingFollowerOf && sessionToken) {
-                                               try {
-                                                   let response: string;
+                                           if (props.showingFollowerOf) {
+                                               if (sessionToken) {
+                                                   try {
+                                                       let response: string;
 
-                                                   if ("username" in props.showingFollowerOf) {
-                                                       response = await CommunityRequests.removeFollowFromUser(props.follower.username, sessionToken)
+                                                       if ("username" in props.showingFollowerOf) {
+                                                           response = await CommunityRequests.removeFollowFromUser(props.follower.username, sessionToken)
 
-                                                   } else if ("title" in props.showingFollowerOf) {
-                                                       response = await CommunityRequests.removeFollowFromPlaylist(props.showingFollowerOf.id, props.follower.username, sessionToken)
+                                                       } else if ("title" in props.showingFollowerOf) {
+                                                           response = await CommunityRequests.removeFollowFromPlaylist(props.showingFollowerOf.id, props.follower.username, sessionToken)
+                                                       }
+                                                       setRemovedFollowerResponse(response!)
+                                                       prettyAlert(response!, true)
+
+                                                   } catch (e: any) {
+                                                       prettyAlert(e.response.data, false)
                                                    }
-                                                   setRemovedFollowerResponse(response!)
-                                                   prettyAlert(response!, true)
-
-                                               } catch (e: any) {
-                                                   prettyAlert(e.response.data, false)
-                                               }
-                                           } else prettyAlert("No session token found.", false)
+                                               } else prettyAlert("No session token found.", false)
+                                           }
 
                                        }}
 
@@ -67,26 +69,27 @@ function FollowersModalItem(props: FollowersModalItemProperties): JSX.Element {
     }
 
     let followingButton
-    if (props.follower.username !== window.sessionStorage.getItem("username")) {
+    if (props.follower.username !== localStorage.getItem("username")) {
         console.log("props.follower.username")
-        followingButton = <button type="button" className="btn dropdown-toggle-split"
-                                  onClick={async (e) => {
-                                      e.stopPropagation()
-                                      try {
-                                          const sessionToken = window.sessionStorage.getItem("sessionToken")
-                                          if (sessionToken) {
-                                              const response = await CommunityRequests.toggleUserFollow((props.follower as UserProfileDto).username, sessionToken)
-                                              prettyAlert(response, true)
-                                              toggleFollowingUserButton((props.follower as UserProfileDto), followingButtonShapeClass, setFollowingButtonShapeClass, searchedCommunityResults, setSearchedCommunityResults)
-                                              setToggledFollowResponse(response)
-                                          } else prettyAlert("You need to be logged in to follow a user", false)
-                                      } catch (e: any) {
-                                          prettyAlert(e.response.data, false)
-                                      }
-                                  }}
-        >
-            <i className={'bx ' + followingButtonShapeClass}></i>
-        </button>
+        followingButton =
+            <button type="button" className="btn dropdown-toggle-split"
+                    onClick={async (e) => {
+                        e.stopPropagation()
+                        if (sessionToken) {
+
+                            try {
+                                const response = await CommunityRequests.toggleUserFollow((props.follower as UserProfileDto).username, sessionToken)
+                                prettyAlert(response, true)
+                                toggleFollowingUserButton((props.follower as UserProfileDto), followingButtonShapeClass, setFollowingButtonShapeClass, searchedCommunityResults, setSearchedCommunityResults)
+                                setToggledFollowResponse(response)
+                            } catch (e: any) {
+                                prettyAlert(e.response.data, false)
+                            }
+                        } else prettyAlert("You need to be logged in to follow a user", false)
+                    }}
+            >
+                <i className={'bx ' + followingButtonShapeClass}></i>
+            </button>
     }
 
     return (

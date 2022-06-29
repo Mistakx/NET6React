@@ -50,6 +50,8 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
     const toggledFollowResponse = BackendResponsesStore(state => state.toggledFollowResponse)
     const setToggledFollowResponse = BackendResponsesStore(state => state.setToggledFollowResponse)
 
+    const sessionToken = localStorage.getItem("sessionToken");
+
     useEffect(() => {
         if (userProfile?.followed) {
             setFollowingButtonShapeClass("bxs-heart")
@@ -59,37 +61,33 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
     }, [userProfile])
 
     useEffect(() => {
+        if (sessionToken) {
+            (async () => {
 
-        (async () => {
-
-            const sessionToken = window.sessionStorage.getItem("sessionToken");
-            if (sessionToken) {
                 try {
                     setProfile(await UserRequests.getProfile(props.username, sessionToken))
                 } catch (e: any) {
                     prettyAlert(e.response.data, false)
                 }
-            } else prettyAlert("No session token found.", false)
-        })()
-
+            })()
+        } else prettyAlert("No session token found.", false)
     }, []);
 
     useEffect(() => {
         if (updatedUserPhotoResponse) {
-            (async () => {
-                const sessionToken = window.sessionStorage.getItem("sessionToken");
-                if (sessionToken) {
+            if (sessionToken) {
+                (async () => {
                     setProfile(await UserRequests.getProfile(props.username, sessionToken))
                     setUpdatedUserPhotoResponse(null)
-                } else prettyAlert("No session token found.", false)
-            })()
+                })()
+            } else prettyAlert("No session token found.", false)
         }
     }, [updatedUserPhotoResponse]);
 
     useEffect(() => {
         if (updatedUserInfoResponse) {
             (async () => {
-                const sessionToken = window.sessionStorage.getItem("sessionToken");
+                const sessionToken = localStorage.getItem("sessionToken");
                 if (sessionToken) {
                     setProfile(await UserRequests.getProfile(props.username, sessionToken))
                     setUpdatedUserInfoResponse(null)
@@ -100,21 +98,19 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
 
     useEffect(() => {
         if (toggledFollowResponse) {
-            (async () => {
-                const sessionToken = window.sessionStorage.getItem("sessionToken");
-                if (sessionToken) {
-                    let test = await UserRequests.getProfile(props.username, sessionToken)
+            if (sessionToken) {
+                (async () => {
                     setProfile(await UserRequests.getProfile(props.username, sessionToken))
                     setToggledFollowResponse(null)
-                } else prettyAlert("No session token found.", false)
-            })()
+                })()
+            } else prettyAlert("No session token found.", false)
         }
     }, [toggledFollowResponse]);
 
     let dropdownMenu;
     let editPhotoButton;
     let followButton;
-    if (props.username === window.sessionStorage.getItem("username")) {
+    if (props.username === localStorage.getItem("username")) {
         dropdownMenu =
             <div className="btn-group">
                 <button className="btn dropdown-toggle-split"
@@ -146,13 +142,14 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                     data-bs-toggle="dropdown" aria-expanded="false"
                     onClick={async () => {
                         try {
-                            const sessionToken = window.sessionStorage.getItem("sessionToken")
-                            if (userProfile && sessionToken) {
-                                const response = await CommunityRequests.toggleUserFollow(userProfile.username, sessionToken)
-                                prettyAlert(response, true)
-                                toggleFollowingUserButton(userProfile, followingButtonShapeClass, setFollowingButtonShapeClass, searchedCommunityResults, setSearchedCommunityResults)
-                                setToggledFollowResponse(response)
-                            } else prettyAlert("You need to be logged in to follow a user", false)
+                            if (userProfile) {
+                                if (sessionToken) {
+                                    const response = await CommunityRequests.toggleUserFollow(userProfile.username, sessionToken)
+                                    prettyAlert(response, true)
+                                    toggleFollowingUserButton(userProfile, followingButtonShapeClass, setFollowingButtonShapeClass, searchedCommunityResults, setSearchedCommunityResults)
+                                    setToggledFollowResponse(response)
+                                } else prettyAlert("You need to be logged in to follow a user", false)
+                            }
                         } catch (e: any) {
                             prettyAlert(e.response.data, false)
                         }

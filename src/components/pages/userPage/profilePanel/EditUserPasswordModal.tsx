@@ -21,7 +21,7 @@ function EditUserPasswordModal(): JSX.Element {
     }, [showingEditUserPasswordModal])
 
     async function submitForm() {
-        const sessionToken = sessionStorage.getItem("sessionToken")
+        const sessionToken = localStorage.getItem("sessionToken")
         if (sessionToken){
             try {
                 let response = await UserRequests.updatePassword(currentPassword, newPassword, sessionToken)

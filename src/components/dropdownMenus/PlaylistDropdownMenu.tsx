@@ -28,7 +28,7 @@ function PlaylistDropdownMenu(props: PlaylistDropdownMenuProperties) {
                 <ul className="dropdown-menu dropdown-menu-dark">
                     <li
                         onClick={() => {
-                            const sessionToken = sessionStorage.getItem("sessionToken")
+                            const sessionToken = localStorage.getItem("sessionToken")
                             if (sessionToken) {
                                 setShowingEditOrCreatePlaylistModal(true)
                                 let playlistToEdit: EditPlaylist = {
@@ -46,7 +46,7 @@ function PlaylistDropdownMenu(props: PlaylistDropdownMenuProperties) {
                     </li>
                     <li
                         onClick={async () => {
-                            const sessionToken = sessionStorage.getItem("sessionToken")
+                            const sessionToken = localStorage.getItem("sessionToken")
                             if (sessionToken) {
                                 try {
                                     let response = await PlaylistRequests.setCover(props.basicDetails.id, "", sessionToken)
@@ -61,7 +61,7 @@ function PlaylistDropdownMenu(props: PlaylistDropdownMenuProperties) {
                     </li>
                     <li
                         onClick={async () => {
-                            const sessionToken = sessionStorage.getItem("sessionToken")
+                            const sessionToken = localStorage.getItem("sessionToken")
                             if (sessionToken) {
                                 try {
                                     let response = await PlaylistRequests.deletePlaylist(props.basicDetails.id, sessionToken)

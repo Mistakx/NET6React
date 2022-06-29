@@ -12,7 +12,7 @@ export class PlayerFactory {
                                autoplay: boolean,
                                items?: GeneralizedResult[]) {
 
-        const sessionToken = window.sessionStorage.getItem("sessionToken");
+        const sessionToken = localStorage.getItem("sessionToken");
 
         if (sessionToken) {
             RecommendationRequests.saveContentView(item, sessionToken)

@@ -12,7 +12,7 @@ function RefreshedUserPage(): JSX.Element {
     const usernameParameter = useParams().username!
 
     let userPage;
-    if (usernameParameter === window.sessionStorage.getItem("username")) {
+    if (usernameParameter === localStorage.getItem("username")) {
         userPage = <MyUserPage username={usernameParameter!}/>
     } else {
         userPage = <OtherUserPage username={usernameParameter!}/>

@@ -50,7 +50,7 @@ function EditOrCreatePlaylistModal(): JSX.Element {
 
     async function submitForm() {
 
-        const sessionToken = sessionStorage.getItem("sessionToken")
+        const sessionToken = localStorage.getItem("sessionToken")
         if (sessionToken) {
             let response: string;
             if (playlistId) {

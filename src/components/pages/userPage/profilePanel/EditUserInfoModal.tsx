@@ -25,15 +25,15 @@ function EditUserInfoModal(): JSX.Element {
     const navigate = useNavigate();
 
     async function submitForm() {
-        const sessionToken = sessionStorage.getItem("sessionToken")
+        const sessionToken = localStorage.getItem("sessionToken")
         if (sessionToken){
             try {
                 let response = await UserRequests.updateUserInfo(name!, username!, email!, sessionToken)
                 prettyAlert(response, true)
                 setUpdatedUserInfoResponse(response)
                 setShowingEditUserInfoModal(false)
-                window.sessionStorage.setItem("username", username!)
-                navigate('/user/' + window.sessionStorage.getItem("username"));
+                localStorage.setItem("username", username!)
+                navigate('/user/' + localStorage.getItem("username"));
             } catch (e: any) {
                 prettyAlert(e.response.data, false)
             }

@@ -38,41 +38,19 @@ function FollowedList(): JSX.Element {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
-    const setToggledFollowResponse = BackendResponsesStore(state => state.setToggledFollowResponse)
     const toggledFollowResponse = BackendResponsesStore(state => state.toggledFollowResponse)
 
     const showing = FollowedTopBarStore(state => state.showing)
     const userOrder = FollowedTopBarStore(state => state.userOrder)
     const playlistOrder = FollowedTopBarStore(state => state.playlistOrder)
 
-    useEffect(() => {
-        (async () => {
-            if (showing == "Playlists") {
-                const followedPlaylists = await CommunityRequests.getFollowedPlaylists(window.sessionStorage.getItem("sessionToken")!)
-                if (playlistOrder === "Custom Order") followedPlaylists.sort()
-                else if (playlistOrder === "Order by Title") followedPlaylists.sort(comparePlaylistTitle)
-                else if (playlistOrder === "Order by Items Amount") followedPlaylists.sort(comparePlaylistResultsAmount)
-                else if (playlistOrder === "Order by Weekly Views") followedPlaylists.sort(comparePlaylistWeeklyViews)
-                else if (playlistOrder === "Order by Total Views") followedPlaylists.sort(comparePlaylistTotalViews)
-                setFollowedResults(followedPlaylists)
-            } else if (showing == "Users") {
-                const followedUsers = await CommunityRequests.getFollowedUsers(window.sessionStorage.getItem("sessionToken")!);
-                if (userOrder === "Custom Order") followedUsers.sort()
-                else if (userOrder === "Order by Username") followedUsers.sort(compareUsername)
-                else if (userOrder === "Order by Weekly Views") followedUsers.sort(compareUserWeeklyViews)
-                else if (userOrder === "Order by Total Views") followedUsers.sort(compareUserTotalViews)
-                else if (userOrder === "Order by Playlists Amount") followedUsers.sort(compareUserPlaylistAmount)
-                setFollowedResults(followedUsers)
-            }
-        })()
-    }, [showing]);
+    let sessionToken = localStorage.getItem("sessionToken");
 
     useEffect(() => {
-
-        if (toggledFollowResponse) {
+        if (sessionToken) {
             (async () => {
                 if (showing == "Playlists") {
-                    const followedPlaylists = await CommunityRequests.getFollowedPlaylists(window.sessionStorage.getItem("sessionToken")!)
+                    const followedPlaylists = await CommunityRequests.getFollowedPlaylists(sessionToken)
                     if (playlistOrder === "Custom Order") followedPlaylists.sort()
                     else if (playlistOrder === "Order by Title") followedPlaylists.sort(comparePlaylistTitle)
                     else if (playlistOrder === "Order by Items Amount") followedPlaylists.sort(comparePlaylistResultsAmount)
@@ -80,7 +58,7 @@ function FollowedList(): JSX.Element {
                     else if (playlistOrder === "Order by Total Views") followedPlaylists.sort(comparePlaylistTotalViews)
                     setFollowedResults(followedPlaylists)
                 } else if (showing == "Users") {
-                    const followedUsers = await CommunityRequests.getFollowedUsers(window.sessionStorage.getItem("sessionToken")!);
+                    const followedUsers = await CommunityRequests.getFollowedUsers(sessionToken);
                     if (userOrder === "Custom Order") followedUsers.sort()
                     else if (userOrder === "Order by Username") followedUsers.sort(compareUsername)
                     else if (userOrder === "Order by Weekly Views") followedUsers.sort(compareUserWeeklyViews)
@@ -88,8 +66,38 @@ function FollowedList(): JSX.Element {
                     else if (userOrder === "Order by Playlists Amount") followedUsers.sort(compareUserPlaylistAmount)
                     setFollowedResults(followedUsers)
                 }
-                setToggledFollowResponse(null)
             })()
+        } else {
+            prettyAlert("You must be logged in to view this page.", false)
+        }
+    }, [showing]);
+
+    useEffect(() => {
+
+        if (toggledFollowResponse) {
+            if (sessionToken) {
+                (async () => {
+                    if (showing == "Playlists") {
+                        const followedPlaylists = await CommunityRequests.getFollowedPlaylists(sessionToken)
+                        if (playlistOrder === "Custom Order") followedPlaylists.sort()
+                        else if (playlistOrder === "Order by Title") followedPlaylists.sort(comparePlaylistTitle)
+                        else if (playlistOrder === "Order by Items Amount") followedPlaylists.sort(comparePlaylistResultsAmount)
+                        else if (playlistOrder === "Order by Weekly Views") followedPlaylists.sort(comparePlaylistWeeklyViews)
+                        else if (playlistOrder === "Order by Total Views") followedPlaylists.sort(comparePlaylistTotalViews)
+                        setFollowedResults(followedPlaylists)
+                    } else if (showing == "Users") {
+                        const followedUsers = await CommunityRequests.getFollowedUsers(sessionToken);
+                        if (userOrder === "Custom Order") followedUsers.sort()
+                        else if (userOrder === "Order by Username") followedUsers.sort(compareUsername)
+                        else if (userOrder === "Order by Weekly Views") followedUsers.sort(compareUserWeeklyViews)
+                        else if (userOrder === "Order by Total Views") followedUsers.sort(compareUserTotalViews)
+                        else if (userOrder === "Order by Playlists Amount") followedUsers.sort(compareUserPlaylistAmount)
+                        setFollowedResults(followedUsers)
+                    }
+                })()
+            } else {
+                prettyAlert("You must be logged in to view this page.", false)
+            }
 
         }
     }, [toggledFollowResponse]);
@@ -119,7 +127,6 @@ function FollowedList(): JSX.Element {
 
         if (active.id !== over?.id) {
 
-            const sessionToken = sessionStorage.getItem("sessionToken");
             if (sessionToken) {
                 try {
                     const oldIndex = (followedResults as PlaylistDto[]).findIndex((item) => item.id === active.id);
@@ -143,7 +150,6 @@ function FollowedList(): JSX.Element {
 
         if (active.id !== over?.id) {
 
-            const sessionToken = sessionStorage.getItem("sessionToken");
             if (sessionToken) {
                 try {
                     const oldIndex = (followedResults as UserProfileDto[]).findIndex((item) => item.username === active.id);
@@ -186,7 +192,8 @@ function FollowedList(): JSX.Element {
                     >
 
                         {followedResults.map((playlist) => (
-                            <PlaylistItem key={(playlist as PlaylistDto).id} basicDetails={playlist as PlaylistDto} showingMyPlaylists={false}
+                            <PlaylistItem key={(playlist as PlaylistDto).id} basicDetails={playlist as PlaylistDto}
+                                          showingMyPlaylists={false}
                                           showingPlaylistInSearch={true}
                                           draggable={true}/>
                         ))}
@@ -218,7 +225,8 @@ function FollowedList(): JSX.Element {
                     >
 
                         {followedResults.map((user) => (
-                            <UserItem key={(user as UserProfileDto).username} basicDetails={user as UserProfileDto} draggable={true}/>
+                            <UserItem key={(user as UserProfileDto).username} basicDetails={user as UserProfileDto}
+                                      draggable={true}/>
                         ))}
 
                     </SortableContext>

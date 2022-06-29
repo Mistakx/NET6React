@@ -12,7 +12,7 @@ function LiveRoom(): JSX.Element {
     const navigate = useNavigate();
 
     let liveRoom;
-    if (window.sessionStorage.getItem("sessionToken")) {
+    if (localStorage.getItem("sessionToken")) {
         liveRoom = 
             
 

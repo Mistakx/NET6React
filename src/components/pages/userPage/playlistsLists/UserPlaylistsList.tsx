@@ -49,11 +49,11 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
     const setToggledFollowResponse = BackendResponsesStore(state => state.setToggledFollowResponse)
     const toggledFollowResponse = BackendResponsesStore(state => state.toggledFollowResponse)
 
+    const sessionToken = localStorage.getItem("sessionToken");
 
     useEffect(() => {
-        (async () => {
-            const sessionToken = window.sessionStorage.getItem("sessionToken");
-            if (sessionToken) {
+        if (sessionToken) {
+            (async () => {
                 try {
                     const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
                     if (order === "Custom Order") userPlaylists.sort()
@@ -66,15 +66,15 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                 } catch (e: any) {
                     prettyAlert(e.response.data, false)
                 }
-            } else prettyAlert("No session token found.", false)
-        })()
+            })()
+        } else prettyAlert("No session token found.", false)
+
     }, [order]);
 
     useEffect(() => {
         if (deletePlaylistResponse) {
-            (async () => {
-                const sessionToken = window.sessionStorage.getItem("sessionToken");
-                if (sessionToken) {
+            if (sessionToken) {
+                (async () => {
                     try {
                         const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
                         if (order === "Custom Order") userPlaylists.sort()
@@ -87,16 +87,15 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                         prettyAlert(e.response.data, false)
                     }
                     setDeletePlaylistResponse(null);
-                } else prettyAlert("No session token found.", false)
-            })()
+                })()
+            } else prettyAlert("No session token found.", false)
         }
     }, [deletePlaylistResponse]);
 
     useEffect(() => {
         if (resetCoverResponse) {
-            (async () => {
-                const sessionToken = window.sessionStorage.getItem("sessionToken");
-                if (sessionToken) {
+            if (sessionToken) {
+                (async () => {
                     try {
                         const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
                         if (order === "Custom Order") userPlaylists.sort()
@@ -109,16 +108,16 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                         prettyAlert(e.response.data, false)
                     }
                     setResetCoverResponse(null);
-                } else prettyAlert("No session token found.", false)
-            })()
+                })()
+            } else prettyAlert("No session token found.", false)
         }
     }, [resetCoverResponse]);
 
     useEffect(() => {
         if (editPlaylistResponse) {
-            (async () => {
-                const sessionToken = window.sessionStorage.getItem("sessionToken");
-                if (sessionToken) {
+            if (sessionToken) {
+
+                (async () => {
                     try {
                         const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
                         if (order === "Custom Order") userPlaylists.sort()
@@ -131,16 +130,17 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                         prettyAlert(e.response.data, false)
                     }
                     setEditPlaylistResponse(null);
-                } else prettyAlert("No session token found.", false)
-            })()
+                })()
+            } else prettyAlert("No session token found.", false)
+
         }
     }, [editPlaylistResponse]);
 
     useEffect(() => {
         if (createPlaylistResponse) {
-            (async () => {
-                const sessionToken = window.sessionStorage.getItem("sessionToken");
-                if (sessionToken) {
+            if (sessionToken) {
+
+                (async () => {
                     try {
                         const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
                         if (order === "Custom Order") userPlaylists.sort()
@@ -153,16 +153,16 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                         prettyAlert(e.response.data, false)
                     }
                     setCreatePlaylistResponse(null);
-                } else prettyAlert("No session token found.", false)
-            })()
+                })()
+            } else prettyAlert("No session token found.", false)
+
         }
     }, [createPlaylistResponse]);
 
     useEffect(() => {
         if (toggledFollowResponse) {
-            (async () => {
-                const sessionToken = window.sessionStorage.getItem("sessionToken");
-                if (sessionToken) {
+            if (sessionToken) {
+                (async () => {
                     try {
                         const userPlaylists = await UserRequests.getPlaylists(props.username, sessionToken)
                         if (order === "Custom Order") userPlaylists.sort()
@@ -175,8 +175,8 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
                         prettyAlert(e.response.data, false)
                     }
                     setToggledFollowResponse(null);
-                } else prettyAlert("No session token found.", false)
-            })()
+                })()
+            } else prettyAlert("No session token found.", false)
         }
     }, [toggledFollowResponse]);
 
@@ -213,7 +213,6 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
 
         if (active.id !== over?.id) {
 
-            const sessionToken = sessionStorage.getItem("sessionToken");
             if (sessionToken) {
                 try {
                     const oldIndex = userPlaylistItems.findIndex((item) => item.id === active.id);
@@ -235,8 +234,8 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
     let playlistList;
     let addPlaylistItem;
 
-    // Showing my playlist, and a custom order
-    if (props.username === sessionStorage.getItem("username") && order === "Custom Order") {
+// Showing my playlist, and a custom order
+    if (props.username === localStorage.getItem("username") && order === "Custom Order") {
         addPlaylistItem = <AddPlaylistItem/>
         playlistList = <DndContext
             sensors={sensors}
@@ -258,20 +257,20 @@ function UserPlaylistsList(props: UserPlaylistsListProperties): JSX.Element {
         </DndContext>
     }
 
-    // Showing my playlist, but not a custom order
-    else if (props.username === sessionStorage.getItem("username") && order !== "Custom Order") {
+// Showing my playlist, but not a custom order
+    else if (props.username === localStorage.getItem("username") && order !== "Custom Order") {
         addPlaylistItem = <AddPlaylistItem/>
         playlistList = <>
-                {userPlaylistItems.map((playlist) => (
-                    <PlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={true}
-                                  showingPlaylistInSearch={false} draggable={false}/>
-                ))}
+            {userPlaylistItems.map((playlist) => (
+                <PlaylistItem key={playlist.id} basicDetails={playlist} showingMyPlaylists={true}
+                              showingPlaylistInSearch={false} draggable={false}/>
+            ))}
         </>
 
 
     }
 
-    // Showing another user playlist
+// Showing another user playlist
     else {
         playlistList = <>
             {

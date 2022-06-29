@@ -28,14 +28,14 @@ function FollowingModalItem(props: FollowingModalItemProperties): JSX.Element {
 
     const [followingButtonShapeClass, setFollowingButtonShapeClass] = React.useState<string>()
 
-    // if (props.username === window.sessionStorage.getItem("username")) {
-
     const searchedCommunityResults = SearchedCommunityResultsStore(state => state.searchedCommunityResults)
     const setSearchedCommunityResults = SearchedCommunityResultsStore(state => state.setSearchedCommunityResults)
 
     let setToggledFollowResponse = BackendResponsesStore(state => state.setToggledFollowResponse)
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
+
+    const sessionToken = localStorage.getItem("sessionToken")
 
     useEffect(() => {
         if (props.following.followed) {
@@ -49,21 +49,20 @@ function FollowingModalItem(props: FollowingModalItemProperties): JSX.Element {
     if ("username" in props.following) {
 
         let followingButton
-        if (props.following.username !== window.sessionStorage.getItem("username")) {
+        if (props.following.username !== localStorage.getItem("username")) {
             followingButton = <button type="button" className="btn dropdown-toggle-split"
                                       onClick={async (e) => {
                                           e.stopPropagation()
-                                          try {
-                                              const sessionToken = window.sessionStorage.getItem("sessionToken")
-                                              if (sessionToken) {
+                                          if (sessionToken) {
+                                              try {
                                                   const response = await CommunityRequests.toggleUserFollow((props.following as UserProfileDto).username, sessionToken)
                                                   prettyAlert(response, true)
                                                   toggleFollowingUserButton((props.following as UserProfileDto), followingButtonShapeClass, setFollowingButtonShapeClass, searchedCommunityResults, setSearchedCommunityResults)
                                                   setToggledFollowResponse(response)
-                                              } else prettyAlert("You need to be logged in to follow a user", false)
-                                          } catch (e: any) {
-                                              prettyAlert(e.response.data, false)
-                                          }
+                                              } catch (e: any) {
+                                                  prettyAlert(e.response.data, false)
+                                              }
+                                          } else prettyAlert("You need to be logged in to follow a user", false)
                                       }}
             >
                 <i className={'bx ' + followingButtonShapeClass}></i>
@@ -110,17 +109,17 @@ function FollowingModalItem(props: FollowingModalItemProperties): JSX.Element {
                     <button type="button" className="btn dropdown-toggle-split"
                             onClick={async (e) => {
                                 e.stopPropagation()
-                                try {
-                                    const sessionToken = window.sessionStorage.getItem("sessionToken")
-                                    if (sessionToken) {
+                                if (sessionToken) {
+
+                                    try {
                                         const response = await CommunityRequests.togglePlaylistFollow((props.following as PlaylistDto).id, sessionToken)
                                         prettyAlert(response, true)
                                         toggleFollowingPlaylistButton((props.following as PlaylistDto), followingButtonShapeClass, setFollowingButtonShapeClass, searchedCommunityResults, setSearchedCommunityResults)
                                         setToggledFollowResponse(response)
-                                    } else prettyAlert("You need to be logged in to follow a user", false)
-                                } catch (e: any) {
-                                    prettyAlert(e.response.data, false)
-                                }
+                                    } catch (e: any) {
+                                        prettyAlert(e.response.data, false)
+                                    }
+                                } else prettyAlert("You need to be logged in to follow a user", false)
                             }}
                     >
                         <i className={'bx ' + followingButtonShapeClass}></i>

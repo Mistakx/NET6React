@@ -7,7 +7,7 @@ function SidePanel(): JSX.Element {
     const navigate = useNavigate();
 
     let sidePanel;
-    if (window.sessionStorage.getItem("sessionToken")) {
+    if (localStorage.getItem("sessionToken")) {
         sidePanel = <header id="header" className="d-flex flex-column justify-content-center">
 
             <nav id="navbar" className="navbar nav-menu">
@@ -67,7 +67,7 @@ function SidePanel(): JSX.Element {
                     <li>
                         <div className="clickable nav-link scrollto"
                              onClick={() => {
-                                 navigate('/user/' + window.sessionStorage.getItem("username"));
+                                 navigate('/user/' + localStorage.getItem("username"));
 
                              }}>
                             <i className='bx bxs-playlist'></i>

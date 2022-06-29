@@ -20,7 +20,7 @@ function AddPlaylistForm(): JSX.Element {
             <form
                 onSubmit={async (e) => {
                     e.preventDefault()
-                    const sessionToken = window.sessionStorage.getItem("sessionToken")
+                    const sessionToken = localStorage.getItem("sessionToken")
                     if (sessionToken) {
                         const response = await PlaylistRequests.createPlaylist(playlistTitle, "Public", "", sessionToken)
                         setNewPlaylistResponse(response)

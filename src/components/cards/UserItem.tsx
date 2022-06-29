@@ -26,6 +26,8 @@ function UserItem(props: UserItemProperties): JSX.Element {
 
     const setToggledFollowResponse = BackendResponsesStore(state => state.setToggledFollowResponse)
 
+    const sessionToken = localStorage.getItem("sessionToken")
+
     const {
         attributes,
         listeners,
@@ -76,17 +78,16 @@ function UserItem(props: UserItemProperties): JSX.Element {
                         <button className="btn btn-lg btn-add"
                                 type="button"
                                 onClick={async () => {
-                                    try {
-                                        const sessionToken = window.sessionStorage.getItem("sessionToken")
-                                        if (sessionToken) {
+                                    if (sessionToken) {
+                                        try {
                                             const response = await CommunityRequests.toggleUserFollow(props.basicDetails.username, sessionToken)
                                             prettyAlert(response, true)
                                             setToggledFollowResponse(response)
                                             toggleFollowingUserButton(props.basicDetails, followingButtonShapeClass, setFollowingButtonShapeClass, searchedCommunityResults, setSearchedCommunityResults)
-                                        } else prettyAlert("You need to be logged in to follow a user", false)
-                                    } catch (e: any) {
-                                        prettyAlert(e.response.data, false)
-                                    }
+                                        } catch (e: any) {
+                                            prettyAlert(e.response.data, false)
+                                        }
+                                    } else prettyAlert("You need to be logged in to follow a user", false)
                                 }}
                                 style={{fontSize: "32px"}}
                         >
@@ -97,7 +98,9 @@ function UserItem(props: UserItemProperties): JSX.Element {
                     <div className="card-img-overlay text-end"
                          onClick={() => {
                              navigate("/user/" + props.basicDetails.username)
-                             RecommendationRequests.saveUserView(props.basicDetails.username, window.sessionStorage.getItem("sessionToken")!)
+                             if (sessionToken) {
+                                 RecommendationRequests.saveUserView(props.basicDetails.username, sessionToken)
+                             } else prettyAlert("You need to be logged in to save a user", false)
                          }}
                     >
 

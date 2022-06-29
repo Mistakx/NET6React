@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {GeneralizedResult} from "../../../models/apiResponses/GenericResults";
 import RecommendationRequests from "../../../requests/backendRequests/RecommendationRequests";
 import SearchResultComponentFactory from "../../cards/content/SearchResultComponentFactory";
+import AlertStore from "../../../stores/AlertStore";
 
 function TrendingResultsList(): JSX.Element {
 
@@ -9,10 +10,17 @@ function TrendingResultsList(): JSX.Element {
 
     const [trendingResults, setTrendingResults] = useState<GeneralizedResult[]>();
 
+    const prettyAlert = AlertStore(state => state.prettyAlert)
+
     useEffect(() => {
-        (async () => {
-            setTrendingResults(await RecommendationRequests.getTrendingContent(1, 40, window.sessionStorage.getItem("sessionToken")!));
-        })()
+        let sessionToken = localStorage.getItem("sessionToken");
+        if (sessionToken) {
+            (async () => {
+                setTrendingResults(await RecommendationRequests.getTrendingContent(1, 40, sessionToken));
+            })()
+        } else {
+            prettyAlert("You must be logged in to view trending content", false);
+        }
     }, []);
 
     useEffect(() => {

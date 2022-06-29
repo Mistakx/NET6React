@@ -18,11 +18,11 @@ function UserPlaylistsModalItemsList(): JSX.Element {
 
     const [userPlaylists, setUserPlaylists] = React.useState<PlaylistDto[]>();
 
-    const username = sessionStorage.getItem("username");
+    const username = localStorage.getItem("username");
 
     useEffect(() => {
         (async () => {
-            const sessionToken = window.sessionStorage.getItem("sessionToken");
+            const sessionToken = localStorage.getItem("sessionToken");
             if (sessionToken) {
                 try {
                     setUserPlaylists(await UserRequests.getPlaylists(username!, sessionToken));
@@ -36,7 +36,7 @@ function UserPlaylistsModalItemsList(): JSX.Element {
     useEffect(() => {
         if (newPlaylistResponse) {
             (async () => {
-                const sessionToken = window.sessionStorage.getItem("sessionToken");
+                const sessionToken = localStorage.getItem("sessionToken");
                 if (sessionToken) {
                     try {
                         setUserPlaylists(await UserRequests.getPlaylists(username!, sessionToken));

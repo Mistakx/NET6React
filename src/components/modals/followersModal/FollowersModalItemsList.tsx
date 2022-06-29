@@ -23,7 +23,7 @@ function FollowersModalItemsList(props: FollowersModalItemsListProperties): JSX.
 
     useEffect(() => {
         (async () => {
-            const sessionToken = window.sessionStorage.getItem("sessionToken");
+            const sessionToken = localStorage.getItem("sessionToken");
             if (sessionToken) {
                 try {
                     if ("username" in props.showingFollowerOf) {
@@ -45,7 +45,7 @@ function FollowersModalItemsList(props: FollowersModalItemsListProperties): JSX.
     useEffect(() => {
         if (removedFollowerResponse) {
             (async () => {
-                const sessionToken = window.sessionStorage.getItem("sessionToken");
+                const sessionToken = localStorage.getItem("sessionToken");
                 if (sessionToken) {
                     try {
                         if ("username" in props.showingFollowerOf) {

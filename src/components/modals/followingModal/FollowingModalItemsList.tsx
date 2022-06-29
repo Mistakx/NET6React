@@ -30,7 +30,7 @@ function FollowingModalItemsList(props: FollowingModalItemsListProperties): JSX.
 
     useEffect(() => {
         (async () => {
-            const sessionToken = window.sessionStorage.getItem("sessionToken");
+            const sessionToken = localStorage.getItem("sessionToken");
             if (sessionToken) {
                 try {
                     if (props.showing === "Users") {
@@ -51,7 +51,7 @@ function FollowingModalItemsList(props: FollowingModalItemsListProperties): JSX.
 
     useEffect(() => {
         (async () => {
-            const sessionToken = window.sessionStorage.getItem("sessionToken");
+            const sessionToken = localStorage.getItem("sessionToken");
             if (sessionToken) {
                 try {
                     if (props.showing === "Users") {
@@ -73,7 +73,7 @@ function FollowingModalItemsList(props: FollowingModalItemsListProperties): JSX.
     useEffect(() => {
         if (toggledFollowResponse) {
             (async () => {
-                const sessionToken = window.sessionStorage.getItem("sessionToken");
+                const sessionToken = localStorage.getItem("sessionToken");
                 if (sessionToken) {
                     try {
                         if (props.showing === "Users") {

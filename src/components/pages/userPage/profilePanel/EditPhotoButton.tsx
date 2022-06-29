@@ -7,7 +7,7 @@ export function EditPhotoButton() {
 
     const fileInputRef = useRef();
 
-    const sessionToken = sessionStorage.getItem("sessionToken");
+    const sessionToken = localStorage.getItem("sessionToken");
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 

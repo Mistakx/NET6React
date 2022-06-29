@@ -39,7 +39,7 @@ function UserPage(props: { username: string }) {
     }, [])
 
     useEffect(() => {
-        if (props.username === window.sessionStorage.getItem("username")) {
+        if (props.username === localStorage.getItem("username")) {
             setTopBar(<UserTopBar text="My Profile 🎵"/>)
         } else {
             setTopBar(<UserTopBar text={props.username + " Profile 🎵"}/>)

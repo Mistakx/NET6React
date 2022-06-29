@@ -47,8 +47,9 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
     const toggledFollowResponse = BackendResponsesStore(state => state.toggledFollowResponse)
     const setToggledFollowResponse = BackendResponsesStore(state => state.setToggledFollowResponse)
 
-
     const prettyAlert = AlertStore(state => state.prettyAlert)
+
+    let sessionToken = localStorage.getItem("sessionToken")
 
     useEffect(() => {
         if (playlistBasicDetails?.followed) {
@@ -59,78 +60,106 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
     }, [playlistBasicDetails])
 
     useEffect(() => {
-        (async () => {
-            try {
-                setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, window.sessionStorage.getItem("sessionToken")!))
-            } catch (e: any) {
-                prettyAlert(e.response.data, false)
-            }
-        })()
+        if (sessionToken) {
+            (async () => {
+                if (sessionToken) {
+                    try {
+                        setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, sessionToken))
+                    } catch (e: any) {
+                        prettyAlert(e.response.data, false)
+                    }
+                } else {
+                    prettyAlert("You must be logged in to view this page", false)
+                }
+            })()
+        } else {
+            prettyAlert("You must be logged in to view this page", false)
+        }
     }, []);
 
     useEffect(() => {
         if (playlistCoverChangedResponse) {
-            (async () => {
-                try {
-                    setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, window.sessionStorage.getItem("sessionToken")!))
-                } catch (e: any) {
-                    prettyAlert(e.response.data, false)
-                }
-                setPlaylistCoverChangedResponse("")
-            })()
+            if (sessionToken) {
+                (async () => {
+                    try {
+                        setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, sessionToken))
+                    } catch (e: any) {
+                        prettyAlert(e.response.data, false)
+                    }
+                    setPlaylistCoverChangedResponse("")
+                })()
+            } else {
+                prettyAlert("You must be logged in to view this page", false)
+            }
         }
     }, [playlistCoverChangedResponse]);
 
     useEffect(() => {
         if (deletePlaylistResponse) {
-            (async () => {
-                try {
-                    setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, window.sessionStorage.getItem("sessionToken")!))
-                    navigate(-1)
-                } catch (e: any) {
-                    prettyAlert(e.response.data, false)
-                }
-                setDeletePlaylistResponse("")
-            })()
+            if (sessionToken) {
+                (async () => {
+                    try {
+                        setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, sessionToken))
+                        navigate(-1)
+                    } catch (e: any) {
+                        prettyAlert(e.response.data, false)
+                    }
+                    setDeletePlaylistResponse("")
+                })()
+            }
+        } else {
+            prettyAlert("You must be logged in to view this page", false)
         }
     }, [deletePlaylistResponse]);
 
     useEffect(() => {
         if (resetCoverResponse) {
-            (async () => {
-                try {
-                    setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, window.sessionStorage.getItem("sessionToken")!))
-                } catch (e: any) {
-                    prettyAlert(e.response.data, false)
-                }
-                setResetCoverResponse("")
-            })()
+            if (sessionToken) {
+                (async () => {
+                    try {
+                        setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, sessionToken))
+                    } catch (e: any) {
+                        prettyAlert(e.response.data, false)
+                    }
+                    setResetCoverResponse("")
+                })()
+            } else {
+                prettyAlert("You must be logged in to view this page", false)
+            }
         }
     }, [resetCoverResponse]);
 
     useEffect(() => {
         if (editPlaylistResponse) {
-            (async () => {
-                try {
-                    setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, window.sessionStorage.getItem("sessionToken")!))
-                } catch (e: any) {
-                    prettyAlert(e.response.data, false)
-                }
-                setEditPlaylistResponse("")
-            })()
+            if (sessionToken) {
+                (async () => {
+                    try {
+                        setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, sessionToken))
+                    } catch (e: any) {
+                        prettyAlert(e.response.data, false)
+                    }
+                    setEditPlaylistResponse("")
+                })()
+            }
+        } else {
+            prettyAlert("You must be logged in to view this page", false)
         }
     }, [editPlaylistResponse]);
 
     useEffect(() => {
         if (toggledFollowResponse) {
-            (async () => {
-                try {
-                    setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, window.sessionStorage.getItem("sessionToken")!))
-                } catch (e: any) {
-                    prettyAlert(e.response.data, false)
-                }
-                setToggledFollowResponse("")
-            })()
+            if (sessionToken) {
+                (async () => {
+                    try {
+                        setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, sessionToken))
+                    } catch (e: any) {
+                        prettyAlert(e.response.data, false)
+                    }
+                    setToggledFollowResponse("")
+                })()
+            }
+        } else {
+            prettyAlert("You must be logged in to view this page", false)
         }
     }, [toggledFollowResponse]);
 
@@ -138,14 +167,14 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
     if (playlistBasicDetails?.owner != null) {
 
         ownerButton = <button className="btn btn-lg btn-user"
-            title="Disabled tooltip"
-            type="button" style={{
+                              title="Disabled tooltip"
+                              type="button" style={{
             backgroundSize: "100% 100%",
             backgroundImage: "url(/" + playlistBasicDetails.owner.profilePhotoUrl + ")"
         }}
-        onClick={() => {
-            navigate(`/user/${playlistBasicDetails.owner?.username}`)
-        }}
+                              onClick={() => {
+                                  navigate(`/user/${playlistBasicDetails.owner?.username}`)
+                              }}
         >
             <i className='bx bx-user'></i>
         </button>
@@ -158,23 +187,26 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
 
     let followButton;
     if (playlistBasicDetails?.owner != null) {
-        followButton = <button type="button" className="btn dropdown-toggle-split"
-           onClick={async () => {
-               try {
-                   const sessionToken = window.sessionStorage.getItem("sessionToken")
-                   if (playlistBasicDetails && sessionToken) {
-                       const response = await CommunityRequests.togglePlaylistFollow(playlistBasicDetails.id, sessionToken)
-                       prettyAlert(response, true)
-                       toggleFollowingPlaylistButton(playlistBasicDetails, followingButtonShapeClass, setFollowingButtonShapeClass, searchedCommunityResults, setSearchedCommunityResults)
-                       setToggledFollowResponse(response)
-                   } else prettyAlert("You need to be logged in to follow a user", false)
-               } catch (e: any) {
-                   prettyAlert(e.response.data, false)
-               }
-           }}
-        >
-            <i className={'bx ' + followingButtonShapeClass}></i>
-        </button>
+        followButton =
+            <button type="button" className="btn dropdown-toggle-split"
+                    onClick={async () => {
+                        if (playlistBasicDetails) {
+                            if (sessionToken) {
+                                try {
+
+                                    const response = await CommunityRequests.togglePlaylistFollow(playlistBasicDetails.id, sessionToken)
+                                    prettyAlert(response, true)
+                                    toggleFollowingPlaylistButton(playlistBasicDetails, followingButtonShapeClass, setFollowingButtonShapeClass, searchedCommunityResults, setSearchedCommunityResults)
+                                    setToggledFollowResponse(response)
+                                } catch (e: any) {
+                                    prettyAlert(e.response.data, false)
+                                }
+                            } else prettyAlert("You need to be logged in to follow a user", false)
+                        }
+                    }}
+            >
+                <i className={'bx ' + followingButtonShapeClass}></i>
+            </button>
     }
 
     return (
@@ -189,17 +221,18 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                      backgroundPosition: "center",
                      backgroundImage: "url(" + playlistBasicDetails?.thumbnailUrl + ")"
                  }}>
-                    <div className="bg-dark rounded" style={{width: "100%", height: "100%"}}>
+                <div className="bg-dark rounded" style={{width: "100%", height: "100%"}}>
 
-                        <h2 className="text-white text-center text-wrap position-absolute top-50 start-50 translate-middle">
-                            {playlistBasicDetails?.title}
-                        </h2>
+                    <h2 className="text-white text-center text-wrap position-absolute top-50 start-50 translate-middle">
+                        {playlistBasicDetails?.title}
+                    </h2>
 
-                        {playlistDropdown}
-                    </div>
+                    {playlistDropdown}
+                </div>
 
                 <div className="options-dropdown-right">
-                    <div className="btn-group icons-playlist" style={{position: "absolute", top: "10px", right: "10px"}}>
+                    <div className="btn-group icons-playlist"
+                         style={{position: "absolute", top: "10px", right: "10px"}}>
 
                         {followButton}
 

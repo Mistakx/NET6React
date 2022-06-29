@@ -20,7 +20,7 @@ function PlaylistContentDropdown(props: PlaylistItemDropdownProperties): JSX.Ele
             <li>
                 <div className="dropdown-item clickable"
                      onClick={async () => {
-                         const sessionToken = sessionStorage.getItem("sessionToken");
+                         const sessionToken = localStorage.getItem("sessionToken");
                          if (sessionToken) {
                              try {
                                  let response = await PlaylistRequests.setCover(props.playlistId!, props.genericResult.thumbnailUrl, sessionToken)
@@ -37,7 +37,7 @@ function PlaylistContentDropdown(props: PlaylistItemDropdownProperties): JSX.Ele
 
             {/*Set as cover*/}
             <li onClick={async () => {
-                const sessionToken = sessionStorage.getItem("sessionToken")
+                const sessionToken = localStorage.getItem("sessionToken")
                 if (sessionToken) {
                     try {
                         let response = await PlaylistRequests.deleteContent(props.playlistId!, props.genericResult.databaseId!, sessionToken)

@@ -36,19 +36,19 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
     const deleteGeneralizedResultResponse = BackendResponsesStore(state => state.deleteGeneralizedResultResponse)
     const setDeleteGeneralizedResultResponse = BackendResponsesStore(state => state.setDeleteGeneralizedResultResponse)
 
-
+    let sessionToken = localStorage.getItem("sessionToken");
 
     useEffect(() => {
         (async () => {
-            let sessionToken = sessionStorage.getItem('sessionToken');
+            let sessionToken = localStorage.getItem('sessionToken');
             console.log("sessionToken")
             console.log(sessionToken)
-            let windowSessionToken = window.sessionStorage.getItem('sessionToken');
+            let windowSessionToken = localStorage.getItem('sessionToken');
             console.log("windowSessionToken")
             console.log(windowSessionToken)
 
             if (sessionToken) {
-                setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, sessionToken))
+                // setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, sessionToken))
             } else {
                 prettyAlert('You must be logged in to view this playlist', false)
             }
@@ -104,8 +104,6 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
         const {active, over} = event;
 
         if (active.id !== over?.id) {
-
-            const sessionToken = sessionStorage.getItem("sessionToken");
             if (sessionToken) {
                 try {
                     const oldIndex = playlistContent.findIndex((item) => item.platformId === active.id);
