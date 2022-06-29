@@ -13,7 +13,7 @@ export class DailymotionVideosPageToListItemsConverter {
                 resultType: "GenericTrackResult",
                 platformId: item.id,
                 title: item.title,
-                creator: "item.user.username",
+                creator: item.owner_screenname,
                 thumbnailUrl: item.thumbnail_url, // 0-640x640; 1-300x300; 2-64x64
                 // createdAt: item.album.release_date,
                 albumName: "",

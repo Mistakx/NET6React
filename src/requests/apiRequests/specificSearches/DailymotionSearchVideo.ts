@@ -32,7 +32,7 @@ export class DailymotionSearchVideo extends ApiSearch {
 
     private async searchDailymotion(searchQuery: string) {
 
-        const url = "https://api.dailymotion.com/videos?fields=id,url,thumbnail_url%2Ctitle"
+        const url = "https://api.dailymotion.com/videos?fields=id,url,owner_screenname,thumbnail_url%2Ctitle"
             + "&search=" + searchQuery
             + "&page=1&limit=50"
 

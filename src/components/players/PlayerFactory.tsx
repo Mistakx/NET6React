@@ -4,6 +4,7 @@ import {GeneralizedResult} from "../../models/apiResponses/GenericResults";
 import {TwitchClipPlayer} from "./TwitchClipPlayer";
 import {SpotifyPlayer} from "./SpotifyPlayer";
 import RecommendationRequests from "../../requests/backendRequests/RecommendationRequests";
+import {MixcloudPlayer} from "./MixcloudPlayer";
 
 export class PlayerFactory {
 
@@ -43,6 +44,14 @@ export class PlayerFactory {
                     setNextResult={setNextItem}
                     autoplay={autoplay}
                 />;
+
+            case "MixcloudPlayerFactory":
+                return <MixcloudPlayer
+                    currentResult={item}
+                    results={items}
+                    setNextResult={setNextItem}
+                />;
+
 
 
         }

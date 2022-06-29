@@ -11,7 +11,9 @@ export function MultiPlatformPlayer(props: MultiPlatformPlayerProperties): JSX.E
     else {
         url = props.currentResult.platformPlayerUrl + props.currentResult.platformId
     }
-
+    
+    
+    
     return (
         <ReactPlayer
             config={{vimeo: {playerOptions: {transparent: false}}}}

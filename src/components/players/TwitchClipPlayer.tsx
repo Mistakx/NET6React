@@ -6,7 +6,7 @@ export function TwitchClipPlayer(props: TwitchClipPlayerProperties): JSX.Element
     const parent = "&parent=" + process.env.REACT_APP_HOSTING_URL
 
     return (
-
+        
         <iframe
             src={"https://clips.twitch.tv/embed?clip=" + props.currentResult.platformId + parent + "&autoplay=true"}
             frameBorder={0}
