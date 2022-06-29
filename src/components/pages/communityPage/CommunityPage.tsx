@@ -12,32 +12,26 @@ function CommunityPage(): JSX.Element {
     }, []);
 
     return (
+        <section id="services" className="services">
+            <div className="container" >
 
-        <div>
+                <div className="row">
 
-            <section id="services" className="services">
-                <div className="container" >
+                    <div className="col-md-10 offset-md-1">
 
-                    <div className="row">
+                        <div className="search-body">
 
-                        <div className="col-md-10 offset-md-1">
-
-                            <div className="search-body">
-
-                                <CommunitySearchBar/>
-                                
-                                <CommunityResultsList/>
-
-                            </div>
-
+                            <CommunitySearchBar/>
+                            
+                            <CommunityResultsList/>
 
                         </div>
+
                     </div>
                 </div>
+            </div>
 
-            </section>
-
-        </div>
+        </section>
 
     )
 }

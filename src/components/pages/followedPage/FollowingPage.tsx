@@ -24,12 +24,7 @@ function FollowingPage(): JSX.Element {
 
                             <FollowingTopBar/>
 
-                            <div className="search-body">
-
-                                <FollowedList/>
-
-                            </div>
-
+                            <FollowedList/>
 
                         </div>
                     </div>

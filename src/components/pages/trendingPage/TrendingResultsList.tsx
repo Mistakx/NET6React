@@ -34,15 +34,11 @@ function TrendingResultsList(): JSX.Element {
     }, [trendingResults]);
 
     return (
+        <div className="results">
+            <div className="row">
 
-        <div>
+                {searchList}
 
-            <div className="results">
-                <div className="row">
-
-                    {searchList}
-
-                </div>
             </div>
         </div>
 
