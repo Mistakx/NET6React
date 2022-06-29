@@ -9,7 +9,7 @@ import PlaylistPage from "./components/pages/playlistPage/PlaylistPage";
 import Login from "./components/pages/loginPage/LoginPage";
 import RegisterPage from "./components/pages/registerPage/RegisterPage";
 import SidePanel from "./components/SidePanel";
-import LiveRoom from "./components/LiveRoom";
+import LiveRoom from "./components/liveRoom/LiveRoom";
 import GlobalPlayer from "./components/globalPlayer/GlobalPlayer";
 import Alert from "./components/Alert";
 import LogRocket from 'logrocket';
