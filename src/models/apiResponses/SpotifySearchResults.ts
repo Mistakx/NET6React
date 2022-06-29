@@ -1,4 +1,4 @@
-import {Album, Track} from "spotify-types";
+import {Album, Track, SimplifiedEpisode, Episode} from "spotify-types";
 import {Paging} from "spotify-types/typings/global";
 
 // https://developer.spotify.com/documentation/web-api/reference/#/operations/search
@@ -18,4 +18,12 @@ export interface SpotifySearchAlbumsResult {
 
 export interface SpotifyTrack extends Track {
 
+}
+
+export interface SpotifySearchPodcastsResult {
+    episodes: SpotifyPodcastPage;
+}
+
+export interface SpotifyPodcastPage extends Paging<SimplifiedEpisode>{
+    
 }

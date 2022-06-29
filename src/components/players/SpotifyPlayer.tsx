@@ -2,6 +2,18 @@ import {SpotifyPlayerProperties} from "../../models/components/players/SpotifyPl
 
 export function SpotifyPlayer(props: SpotifyPlayerProperties): JSX.Element {
 
+    let src, width, height
+    if(props.currentResult.resultType.includes("Track")){
+        src = "https://open.spotify.com/embed/track/" + props.currentResult.platformId + "?utm_source=generator"
+        width = "100.1%"
+        height="80"
+    }
+    else{
+        src = "https://open.spotify.com/embed/episode/" + props.currentResult.platformId + "?utm_source=generator&t=0"
+        width = "100%"
+        height="152"
+    }
+
     return (
 
         <div style={{
@@ -12,10 +24,10 @@ export function SpotifyPlayer(props: SpotifyPlayerProperties): JSX.Element {
         }}>
 
             <iframe
-                style={{position: "absolute", bottom: 0}}
-                src={"https://open.spotify.com/embed/track/" + props.currentResult.platformId + "?utm_source=generator"}
-                width="100.1%"
-                height="80"
+                style={{position: "absolute", bottom:0}}
+                src={src}
+                width={width}
+                height={height}
                 frameBorder="0"
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                 onEnded={() => {
