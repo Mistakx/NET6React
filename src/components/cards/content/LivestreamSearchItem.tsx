@@ -37,7 +37,7 @@ function LivestreamSearchItem(props: LivestreamSearchItemProperties): JSX.Elemen
             <div className="card scale clickable"
                  style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.searchResult.thumbnailUrl + ")"}}>
                 <div className="options">
-                    <button className="btn btn-add"
+                    <button className="btn btn-lg btn-add"
                             type="button"
                             onClick={() => {
                                 setShowingPlaylistsModal(true)

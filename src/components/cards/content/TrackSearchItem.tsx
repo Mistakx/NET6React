@@ -35,12 +35,12 @@ function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
 
                  style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.searchResult.thumbnailUrl + ")"}}>
                 <div className="options">
-                    <button className="btn btn-add"
-                            type="button"
-                            onClick={() => {
-                                setShowingPlaylistsModal(true)
-                                setResultToAdd(props.searchResult)
-                            }}
+                    <button className="btn btn-lg btn-add"
+                        type="button"
+                        onClick={() => {
+                            setShowingPlaylistsModal(true)
+                            setResultToAdd(props.searchResult)
+                        }}
                     >
                         <i className='bx bx-plus'></i></button>
                 </div>
