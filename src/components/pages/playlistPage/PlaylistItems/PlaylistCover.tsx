@@ -62,18 +62,14 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
     useEffect(() => {
         if (sessionToken) {
             (async () => {
-                if (sessionToken) {
-                    try {
-                        setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, sessionToken))
-                    } catch (e: any) {
-                        prettyAlert(e.response.data, false)
-                    }
-                } else {
-                    prettyAlert("You must be logged in to view this page", false)
+                try {
+                    setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, sessionToken))
+                } catch (e: any) {
+                    prettyAlert(e.response.data, false)
                 }
             })()
         } else {
-            prettyAlert("You must be logged in to view this page", false)
+            prettyAlert("You must be logged in to view the playlist cover", false)
         }
     }, []);
 
@@ -89,7 +85,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                     setPlaylistCoverChangedResponse("")
                 })()
             } else {
-                prettyAlert("You must be logged in to view this page", false)
+                prettyAlert("You must be logged in to view the playlist cover", false)
             }
         }
     }, [playlistCoverChangedResponse]);
@@ -106,9 +102,9 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                     }
                     setDeletePlaylistResponse("")
                 })()
+            } else {
+                prettyAlert("You must be logged in to view the playlist cover", false)
             }
-        } else {
-            prettyAlert("You must be logged in to view this page", false)
         }
     }, [deletePlaylistResponse]);
 
@@ -124,7 +120,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                     setResetCoverResponse("")
                 })()
             } else {
-                prettyAlert("You must be logged in to view this page", false)
+                prettyAlert("You must be logged in to view the playlist cover", false)
             }
         }
     }, [resetCoverResponse]);
@@ -140,9 +136,9 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                     }
                     setEditPlaylistResponse("")
                 })()
+            } else {
+                prettyAlert("You must be logged in to view the playlist cover", false)
             }
-        } else {
-            prettyAlert("You must be logged in to view this page", false)
         }
     }, [editPlaylistResponse]);
 
@@ -157,9 +153,9 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                     }
                     setToggledFollowResponse("")
                 })()
+            } else {
+                prettyAlert("You must be logged in to view the playlist cover", false)
             }
-        } else {
-            prettyAlert("You must be logged in to view this page", false)
         }
     }, [toggledFollowResponse]);
 
