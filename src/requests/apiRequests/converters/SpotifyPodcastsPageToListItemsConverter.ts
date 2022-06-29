@@ -14,6 +14,7 @@ export class SpotifyPodcastsPageToListItemsConverter {
             console.log(item.name)
             
             const currentGenericPodcastItem: GenericPodcastResult = {
+                platformName: "Spotify",
                 resultType: "GenericPodcastResult",
                 platformId: item.id,
                 title: item.name,
