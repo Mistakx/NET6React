@@ -40,15 +40,8 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
 
     useEffect(() => {
         (async () => {
-            let sessionToken = localStorage.getItem('sessionToken');
-            console.log("sessionToken")
-            console.log(sessionToken)
-            let windowSessionToken = localStorage.getItem('sessionToken');
-            console.log("windowSessionToken")
-            console.log(windowSessionToken)
-
             if (sessionToken) {
-                // setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, sessionToken))
+                setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, sessionToken))
             } else {
                 prettyAlert('You must be logged in to view this playlist', false)
             }
