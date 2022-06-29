@@ -50,6 +50,7 @@ export class PlayerFactory {
                     currentResult={item}
                     results={items}
                     setNextResult={setNextItem}
+                    autoplay={autoplay}
                 />;
 
 
