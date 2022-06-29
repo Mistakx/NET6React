@@ -62,7 +62,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
     }
 
     return (
-        <div className="form-wrapper">
+        <div className="form-wrapper position-relative">
 
             <SearchLabel/>
 
@@ -74,7 +74,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                 }
             }}>
 
-                <div className="input-group">
+                <div className="input-group sticky-top">
 
                     <PlatformDropdownButton togglePlatformDropdownList={togglePlatformDropdownList}/>
 

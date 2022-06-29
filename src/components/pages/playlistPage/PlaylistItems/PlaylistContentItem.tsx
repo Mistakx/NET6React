@@ -28,7 +28,7 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
 
     const style = {
         transform: CSS.Transform.toString(transform),
-        transition, 
+        transition,
         backgroundSize: "100% auto",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
@@ -74,7 +74,7 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
             key={props.generalizedResult.platformId}
             ref={setNodeRef} style={style} {...attributes} {...listeners}
         >
-            <div className="row align-middle bg-dark">
+            <div className="row align-middle">
                 {draggableButton}
                 <div className={"col-" + itemSizeClass + " p-3 clickable"}
                      onClick={() => {
