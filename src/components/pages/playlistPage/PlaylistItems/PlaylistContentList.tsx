@@ -23,7 +23,6 @@ import {rectSortingStrategy, SortableContext, sortableKeyboardCoordinates} from 
 import PlaylistTopBarStore from "../../../../stores/topBars/PlaylistTopBarStore";
 import {PlaylistDto} from "../../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import {compareContentCreator, compareContentTitle} from "../../../../utils/sorting/contentSorting";
-import PlaylistPagePlayerStore from "../../../../stores/players/PlaylistPagePlayerStore";
 
 function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
 
@@ -41,7 +40,18 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
 
     useEffect(() => {
         (async () => {
-            setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, window.sessionStorage.getItem("sessionToken")!))
+            let sessionToken = sessionStorage.getItem('sessionToken');
+            console.log("sessionToken")
+            console.log(sessionToken)
+            let windowSessionToken = window.sessionStorage.getItem('sessionToken');
+            console.log("windowSessionToken")
+            console.log(windowSessionToken)
+
+            if (sessionToken) {
+                setPlaylistBasicDetails(await PlaylistRequests.getPlaylistInformation(props.playlistId, sessionToken))
+            } else {
+                prettyAlert('You must be logged in to view this playlist', false)
+            }
         })()
     }, []);
 

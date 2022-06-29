@@ -40,20 +40,18 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
     if (props.showingMyPlaylist) hasRightButton = true;
 
     useEffect(() => {
-        if (props.generalizedResult !== playlistPlayerCurrentResult && itemSizeClass !== 12) {
             setItemSizeClass(12);
-        } else if (props.generalizedResult === playlistPlayerCurrentResult) {
-            if (hasLeftButton && hasRightButton) setItemSizeClass(itemSizeClass - 2);
-            else if (hasLeftButton) setItemSizeClass(itemSizeClass - 1);
-            else if (hasRightButton) setItemSizeClass(itemSizeClass - 1);
+            if (hasLeftButton && hasRightButton) setItemSizeClass((previousState) => previousState - 2);
+            else if (hasLeftButton) setItemSizeClass((previousState) => previousState - 1);
+            else if (hasRightButton) setItemSizeClass((previousState) => previousState - 1);
             try {
                 // @ts-ignore
-                myRef.current.scrollIntoViewIfNeeded();
+                // myRef.current.scrollIntoViewIfNeeded();
             } catch (e) {
                 console.log(e)
             }
-        }
-    }, [playlistPlayerCurrentResult])
+        }, [playlistPlayerCurrentResult]
+    )
 
     let leftButton;
     if (props.draggable) {
@@ -61,8 +59,10 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
             <span className="align-middle"><i className='bx bx-menu h4'></i></span>
         </div>
     }
-    if (props.generalizedResult === playlistPlayerCurrentResult) {
-
+    if (props.generalizedResult.platformId === playlistPlayerCurrentResult?.platformId
+        && props.generalizedResult.playerFactoryName === playlistPlayerCurrentResult?.playerFactoryName
+        && props.generalizedResult.platformPlayerUrl === playlistPlayerCurrentResult?.platformPlayerUrl) {
+        console.log("props.generalizedResult === playlistPlayerCurrentResult")
         leftButton = <div className="col-1">
             <span className="align-middle"><i className='bx bx-play h4'></i></span>
         </div>
