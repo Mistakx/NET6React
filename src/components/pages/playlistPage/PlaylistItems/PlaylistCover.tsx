@@ -140,7 +140,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
     let ownerButton;
     if (playlistBasicDetails?.owner != null) {
 
-        ownerButton = <button className="btn btn-lg"
+        ownerButton = <button className="btn btn-lg btn-user"
             title="Disabled tooltip"
             type="button" style={{
             backgroundSize: "100% 100%",

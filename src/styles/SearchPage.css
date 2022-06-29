@@ -52,6 +52,12 @@
     border-bottom-style: solid;
 }
 
+.search-body .btn i,
+.search-body .btn {
+    padding-bottom: 0 !important;
+    vertical-align: middle !important;
+}
+
 .search-body .form-control:focus {
     background-color: transparent;
     outline: 0;
@@ -473,12 +479,6 @@
     z-index: 10;
 }
 
-/* .options-dropdown-right-center {
-    position: absolute;
-    top: 50%;
-    right: 0px;
-} */
-
 .options-dropdown-right .btn,
 .options-dropdown .btn {
     color: var(--text);
@@ -514,7 +514,7 @@
     padding: 0;
     width: 42px;
     height: 42px;
-    color: #fff;
+    color: var(--text);
 }
 
 .options .btn-add i {

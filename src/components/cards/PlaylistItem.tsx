@@ -151,7 +151,7 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
     let ownerButton;
     if (props.basicDetails.owner ) {
         ownerButton =
-            <button className="btn btn-lg"
+            <button className="btn btn-lg btn-user"
                     type="button" style={{
                 backgroundSize: "100% 100%",
                 backgroundImage: "url(" + props.basicDetails.owner.profilePhotoUrl + ")"
