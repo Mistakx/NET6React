@@ -9,8 +9,7 @@ export class HubConnectionSingleton {
         const hubConnection = new HubConnectionBuilder().withUrl("/hub",
             {
                 transport: HttpTransportType.LongPolling  // disable websockets and use longPolling https://stackoverflow.com/questions/9994776/signalr-how-do-i-disable-websockets
-            })
-            .build();
+            }).withAutomaticReconnect().build();
         return hubConnection;
     }
 

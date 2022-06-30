@@ -8,6 +8,7 @@ import AlertStore from "../../../stores/AlertStore";
 import LogRocket from 'logrocket';
 import { HubConnectionSingleton } from 'utils/HubConnectionSingleton';
 import {ConnectToHubDto} from "../../../models/backendRequests/HubConnections/ConnectToHubDto";
+import LoginStore from "../../../stores/LoginStore";
 
 function LoginPage(): JSX.Element {
 
@@ -18,10 +19,13 @@ function LoginPage(): JSX.Element {
     const [sessionToken, setSessionToken] = useState<string>()
     const [username, setUsername] = useState<string>()
 
+
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
-    const hubConnection = HubConnectionSingleton.getInstance();
+    const setIsAuthenticated = LoginStore(state => state.setIsAuthenticated)
+    const location = LoginStore(state => state.location)
 
+    const hubConnection = HubConnectionSingleton.getInstance();
 
     function connectToHub(sessionToken: string) {
         hubConnection.start().then(function () {
@@ -36,17 +40,18 @@ function LoginPage(): JSX.Element {
 
             hubConnection.send("UserConnected", sendParams);
             
+            
         }).catch(function (err) {
             return console.error(err.toString());
         });
     }
 
-
-
     useEffect(() => {
         AOS.init();
-        if (localStorage.getItem("sessionToken")) {
-            setSessionToken(localStorage.getItem("sessionToken")!)
+
+        const sessionToken = localStorage.getItem("sessionToken")
+        if (sessionToken) {
+            setSessionToken(sessionToken)
             setUsername(localStorage.getItem("username")!)
         }
     }, []);
@@ -68,7 +73,9 @@ function LoginPage(): JSX.Element {
                     prettyAlert(e.response.data, false)
                     LogRocket.identify(sessionToken);
                 }
-                navigate("/home")
+                setIsAuthenticated(true)
+                connectToHub(sessionToken)
+                navigate(location)
 
             }
 
@@ -93,8 +100,6 @@ function LoginPage(): JSX.Element {
                                         prettyAlert("Successfully logged in.", true)
                                         setSessionToken(loginResponse.sessionToken)
                                         setUsername(loginResponse.username)
-                                        connectToHub(loginResponse.sessionToken)
-
                                     } catch (e: any) {
                                         prettyAlert(e.response.data, false)
                                     }

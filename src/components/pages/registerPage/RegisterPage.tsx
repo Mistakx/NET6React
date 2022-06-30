@@ -24,8 +24,9 @@ function RegisterPage(): JSX.Element {
 
     useEffect(() => {
         AOS.init();
-        if (localStorage.getItem("sessionToken")) {
-            setSessionToken(localStorage.getItem("sessionToken")!)
+        const sessionToken = localStorage.getItem("sessionToken")
+        if (sessionToken) {
+            setSessionToken(sessionToken)
             setSessionToken(localStorage.getItem("username")!)
         }
     }, []);

@@ -14,9 +14,11 @@ import StatisticsModalStore from "../../../../stores/modals/StatisticsModalStore
 import toggleFollowingUserButton from "../../../../utils/following/toggleFollowingUserButton";
 import SearchedCommunityResultsStore from "../../../../stores/searches/SearchedCommunityResultsStore";
 import FollowingModalStore from "../../../../stores/modals/FollowingModalStore";
+import {useNavigate} from "react-router-dom";
 
 function UserProfile(props: UserProfileProperties): JSX.Element {
 
+    const navigate = useNavigate()
 
     const [followingButtonShapeClass, setFollowingButtonShapeClass] = React.useState<string>()
 
@@ -110,6 +112,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
     let dropdownMenu;
     let editPhotoButton;
     let followButton;
+    let logoutButton;
     if (props.username === localStorage.getItem("username")) {
         dropdownMenu =
             <div className="btn-group">
@@ -135,7 +138,18 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                     </li>
                 </ul>
             </div>
+        logoutButton =
+            <button className="btn text-warning"
+                    onClick={() => {
+                        localStorage.removeItem("sessionToken");
+                        localStorage.removeItem("username");
+                        navigate("/")
+                    }}
+            >
+                <i className='bx bx-log-out'></i>
+            </button>
         editPhotoButton = <EditPhotoButton/>
+
     } else {
         followButton = <div className="btn-group">
             <button className="btn dropdown-toggle-split"
@@ -193,8 +207,9 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                                     }
                                 }}
                         >
-                            <i className='bx bx-info-circle h1 p-0'></i>
+                            <i className='bx bx-info-circle'></i>
                         </button>
+                        {logoutButton}
                     </div>
                 </div>
 

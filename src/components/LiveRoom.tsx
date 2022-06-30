@@ -13,8 +13,14 @@ function LiveRoom(): JSX.Element {
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
     React.useEffect(() => {
+        AOS.init();
+
         hubConnection.on("myFriends", friends => {
             console.log(friends)
+        })
+
+        hubConnection.on("notify", message => {
+            prettyAlert(message, true)
         })
     }, []);
 
@@ -29,20 +35,6 @@ function LiveRoom(): JSX.Element {
             hubConnection.stop()
           }
     }, []);
-
-
-    React.useEffect(() => {
-        hubConnection.on("notify", message => {
-            prettyAlert(message, true)
-        })
-    }, []);
-
-
-    useEffect(() => {
-        AOS.init();
-    }, []);
-
-    const navigate = useNavigate();
 
     let liveRoom;
     if (localStorage.getItem("sessionToken")) {
