@@ -21,6 +21,12 @@ import LoginStore from "./stores/LoginStore";
 export function App() {
 
     const isAuthenticated = LoginStore(state => state.isAuthenticated)
+    const setIsAuthenticated = LoginStore(state => state.setIsAuthenticated)
+    const sessionToken = localStorage.getItem('sessionToken')
+
+    if (sessionToken) {
+        setIsAuthenticated(true)
+    }
 
     return (
         <BrowserRouter>
@@ -37,19 +43,19 @@ export function App() {
                        element={<RegisterPage/>}/>
 
                 <Route path="/home"
-                       element={isAuthenticated ? <HomePage/> : <Login/>}/>
+                       element={isAuthenticated || sessionToken ? <HomePage/> : <Login/>}/>
                 <Route path="/search"
-                       element={isAuthenticated ? <SearchPage/> : <Login/>}/>
+                       element={isAuthenticated || sessionToken ? <SearchPage/> : <Login/>}/>
                 <Route path="/user/:username"
-                       element={isAuthenticated ? <RefreshedUserPage/> : <Login/>}/>
+                       element={isAuthenticated || sessionToken ? <RefreshedUserPage/> : <Login/>}/>
                 <Route path="/playlist/:playlistId"
-                       element={isAuthenticated ? <PlaylistPage/> : <Login/>}/>
+                       element={isAuthenticated || sessionToken ? <PlaylistPage/> : <Login/>}/>
                 <Route path="/trending"
-                       element={isAuthenticated ? <TrendingPage/> : <Login/>}/>
+                       element={isAuthenticated || sessionToken ? <TrendingPage/> : <Login/>}/>
                 <Route path="/community"
-                       element={isAuthenticated ? <CommunityPage/> : <Login/>}/>
+                       element={isAuthenticated || sessionToken ? <CommunityPage/> : <Login/>}/>
                 <Route path="/following"
-                       element={isAuthenticated ? <FollowingPage/> : <Login/>}/>
+                       element={isAuthenticated || sessionToken ? <FollowingPage/> : <Login/>}/>
             </Routes>
         </BrowserRouter>
     );
