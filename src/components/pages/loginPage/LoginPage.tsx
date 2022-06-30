@@ -87,7 +87,7 @@ function LoginPage(): JSX.Element {
             <div className="container" data-aos="zoom-in" data-aos-delay="100">
 
                 <div className="row">
-                    <div className="col-md-4 offset-md-3">
+                    <div className="col-md-4 offset-md-3 text-center">
                         <h1>Login</h1>
                         <div className="form-wrapper mt-5">
 
