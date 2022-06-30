@@ -5,12 +5,15 @@ import {useNavigate} from "react-router-dom";
 import {HubConnectionSingleton} from "utils/HubConnectionSingleton";
 import AlertStore from "stores/AlertStore";
 import {ConnectToHubDto} from "models/backendRequests/HubConnections/ConnectToHubDto";
+import LoginStore from "../stores/LoginStore";
 
 function LiveRoom(): JSX.Element {
 
     const hubConnection = HubConnectionSingleton.getInstance();
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
+
+    const isAuthenticated = LoginStore(state => state.isAuthenticated)
 
     React.useEffect(() => {
         AOS.init();
@@ -37,7 +40,7 @@ function LiveRoom(): JSX.Element {
     }, []);
 
     let liveRoom;
-    if (localStorage.getItem("sessionToken")) {
+    if (isAuthenticated) {
         liveRoom =
 
             <div className="position-relative">

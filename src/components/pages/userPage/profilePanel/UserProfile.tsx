@@ -15,6 +15,7 @@ import toggleFollowingUserButton from "../../../../utils/following/toggleFollowi
 import SearchedCommunityResultsStore from "../../../../stores/searches/SearchedCommunityResultsStore";
 import FollowingModalStore from "../../../../stores/modals/FollowingModalStore";
 import {useNavigate} from "react-router-dom";
+import LoginStore from "../../../../stores/LoginStore";
 
 function UserProfile(props: UserProfileProperties): JSX.Element {
 
@@ -26,6 +27,8 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
 
     const searchedCommunityResults = SearchedCommunityResultsStore(state => state.searchedCommunityResults)
     const setSearchedCommunityResults = SearchedCommunityResultsStore(state => state.setSearchedCommunityResults)
+
+    const setIsAuthenticated = LoginStore(state => state.setIsAuthenticated)
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
@@ -143,6 +146,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                     onClick={() => {
                         localStorage.removeItem("sessionToken");
                         localStorage.removeItem("username");
+                        setIsAuthenticated(false);
                         navigate("/")
                     }}
             >

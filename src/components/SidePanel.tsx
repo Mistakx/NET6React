@@ -1,13 +1,16 @@
 import React from 'react';
 import '../styles/Sidepanel.css';
 import {useNavigate} from "react-router-dom";
+import LoginStore from "../stores/LoginStore";
 
 function SidePanel(): JSX.Element {
 
     const navigate = useNavigate();
 
+    const isAuthenticated = LoginStore(state => state.isAuthenticated)
+
     let sidePanel;
-    if (localStorage.getItem("sessionToken")) {
+    if (isAuthenticated) {
         sidePanel = <header id="header" className="d-flex flex-column justify-content-center">
 
             <nav id="navbar" className="navbar nav-menu">

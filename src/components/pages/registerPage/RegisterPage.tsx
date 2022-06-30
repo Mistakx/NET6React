@@ -6,12 +6,15 @@ import AOS from "aos";
 import {useNavigate} from "react-router-dom";
 import AlertStore from "../../../stores/AlertStore";
 import LogRocket from "logrocket";
+import LoginStore from "../../../stores/LoginStore";
 
 function RegisterPage(): JSX.Element {
 
     const navigate = useNavigate()
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
+
+    const setIsAuthenticated = LoginStore(state => state.setIsAuthenticated)
 
     const [userPhoto, setUserPhoto] = useState<File>()
     const [name, setName] = useState("")
@@ -48,6 +51,7 @@ function RegisterPage(): JSX.Element {
                     prettyAlert(e.response.data, false)
                     LogRocket.identify(sessionToken);
                 }
+                setIsAuthenticated(true)
                 navigate("/trending")
 
             }
