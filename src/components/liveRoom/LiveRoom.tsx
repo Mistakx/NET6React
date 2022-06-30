@@ -11,6 +11,8 @@ import OnlineUserItem  from "./OnlineUserItem";
 
 function LiveRoom(): JSX.Element {
 
+    const hubConnection = HubConnectionSingleton.getInstance();
+
     const [onlineUsersList, setonlineUsersList] = useState<JSX.Element[]>();
 
     function updateOnlineFriendsList(friends : Array<any>){
@@ -23,7 +25,6 @@ function LiveRoom(): JSX.Element {
         setonlineUsersList(onlineUsersListComponents)
     }
 
-    const hubConnection = HubConnectionSingleton.getInstance();
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
@@ -89,6 +90,10 @@ function LiveRoom(): JSX.Element {
                         <span className="ripple green-sinal"></span>
                     </a>
                 </div>
+
+
+
+
                 <div className="offcanvas offcanvas-end" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                     <div className="offcanvas-header">
                         <h5 id="offcanvasRightLabel">Live Room</h5>
@@ -97,30 +102,37 @@ function LiveRoom(): JSX.Element {
                     </div>
                     <div className="offcanvas-body">
 
-                        <div className="list-group">
-                            <a href="#" className="list-group-item list-group-item-action" aria-current="true" data-aos="fade-left" data-aos-duration="3000">
-                                <div className="row">
 
-                                    <div className="col-3">
 
-                                        <div className="image_outer_container">
-                                            <div className="green_icon"></div>
-                                            <div className="image_inner_container">
-                                                <img className="img-fluid" src="https://i.pinimg.com/originals/43/96/61/439661dcc0d410d476d6d421b1812540.jpg"/>
-                                            </div>
-                                        </div>
+                        {/*<div className="list-group">*/}
+                        {/*    <a href="#" className="list-group-item list-group-item-action" aria-current="true" data-aos="fade-left" data-aos-duration="3000">*/}
+                        {/*        <div className="row">*/}
 
-                                    </div>
-                                    <div className="col-9">
-                                        <div className="d-flex w-100 justify-content-between">
-                                            <h5 className="mb-1">Nome utilizador</h5>
-                                            <small>3 days ago</small>
-                                        </div>
-                                        <p className="mb-1">Fazendo o que?.</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                        {/*            <div className="col-3">*/}
+
+                        {/*                <div className="image_outer_container">*/}
+                        {/*                    <div className="green_icon"></div>*/}
+                        {/*                    <div className="image_inner_container">*/}
+                        {/*                        <img className="img-fluid" src="https://i.pinimg.com/originals/43/96/61/439661dcc0d410d476d6d421b1812540.jpg"/>*/}
+                        {/*                    </div>*/}
+                        {/*                </div>*/}
+
+                        {/*            </div>*/}
+                        {/*            <div className="col-9">*/}
+                        {/*                <div className="d-flex w-100 justify-content-between">*/}
+                        {/*                    <h5 className="mb-1">Nome utilizador</h5>*/}
+                        {/*                    <small>3 days ago</small>*/}
+                        {/*                </div>*/}
+                        {/*                <p className="mb-1">Fazendo o que?.</p>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*    </a>*/}
+                        {/*</div>*/}
+
+                        {onlineUsersList}
+
+
+
 
                     </div>
                 </div>
