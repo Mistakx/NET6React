@@ -1,13 +1,27 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import {useNavigate} from "react-router-dom";
 import {HubConnectionSingleton} from "utils/HubConnectionSingleton";
 import AlertStore from "stores/AlertStore";
 import {ConnectToHubDto} from "models/backendRequests/HubConnections/ConnectToHubDto";
-import LoginStore from "../stores/LoginStore";
+import LoginStore from "../../stores/LoginStore";
+import OnlineUserItem  from "./OnlineUserItem";
+
 
 function LiveRoom(): JSX.Element {
+
+    const [onlineUsersList, setonlineUsersList] = useState<JSX.Element[]>();
+
+    function updateOnlineFriendsList(friends : Array<any>){
+        let onlineUsersListComponents: JSX.Element[] = []
+        for (const currentOnlineUser of friends) {
+            let currentUserItem = <OnlineUserItem basicUserDetails={currentOnlineUser} />
+            onlineUsersListComponents.push(currentUserItem)
+        }
+
+        setonlineUsersList(onlineUsersListComponents)
+    }
 
     const hubConnection = HubConnectionSingleton.getInstance();
 
@@ -18,8 +32,9 @@ function LiveRoom(): JSX.Element {
     React.useEffect(() => {
         AOS.init();
 
-        hubConnection.on("myFriends", friends => {
+        hubConnection.on("myOnlineFriends", friends => {
             console.log(friends)
+            updateOnlineFriendsList(friends)
         })
 
         hubConnection.on("notify", message => {
@@ -28,16 +43,36 @@ function LiveRoom(): JSX.Element {
     }, []);
 
     useEffect(() => {
-        window.onbeforeunload = function () {
-            let sendParams: ConnectToHubDto = {
-                sessionToken: window.sessionStorage.getItem("sessionToken"),
-                hubConnectionId: hubConnection.connectionId
+        hubConnection.onclose(async() =>{
+            let sendParams : ConnectToHubDto = {
+                sessionToken : window.sessionStorage.getItem("sessionToken"),
+                hubConnectionId : hubConnection.connectionId
             }
 
             hubConnection.send("UserDisconnected", sendParams);
             hubConnection.stop()
-        }
+        })
+
     }, []);
+
+
+    React.useEffect(() => {
+        hubConnection.on("notify", message => {
+            prettyAlert(message, true)
+        })
+    }, []);
+
+
+    useEffect(() => {
+        AOS.init();
+    }, []);
+
+    function getOnlineFriends(){
+        var sessionToken = window.sessionStorage.getItem("sessionToken")
+        hubConnection.send("GetOnlineFriends", sessionToken);
+    }
+
+    const navigate = useNavigate();
 
     let liveRoom;
     if (isAuthenticated) {
@@ -63,8 +98,7 @@ function LiveRoom(): JSX.Element {
                     <div className="offcanvas-body">
 
                         <div className="list-group">
-                            <a href="#" className="list-group-item list-group-item-action" aria-current="true"
-                               data-aos="fade-left" data-aos-duration="3000">
+                            <a href="#" className="list-group-item list-group-item-action" aria-current="true" data-aos="fade-left" data-aos-duration="3000">
                                 <div className="row">
 
                                     <div className="col-3">
@@ -72,8 +106,7 @@ function LiveRoom(): JSX.Element {
                                         <div className="image_outer_container">
                                             <div className="green_icon"></div>
                                             <div className="image_inner_container">
-                                                <img className="img-fluid"
-                                                     src="https://i.pinimg.com/originals/43/96/61/439661dcc0d410d476d6d421b1812540.jpg"/>
+                                                <img className="img-fluid" src="https://i.pinimg.com/originals/43/96/61/439661dcc0d410d476d6d421b1812540.jpg"/>
                                             </div>
                                         </div>
 
