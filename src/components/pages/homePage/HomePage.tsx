@@ -2,7 +2,7 @@ import '../../../styles/style.css';
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-const logo = require("../../../assets/img/logo.PNG");
+import LoginStore from "../../../stores/LoginStore";
 
 function HomePage(): JSX.Element {
 

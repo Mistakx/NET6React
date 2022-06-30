@@ -23,7 +23,6 @@ function LoginPage(): JSX.Element {
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const setIsAuthenticated = LoginStore(state => state.setIsAuthenticated)
-    const location = LoginStore(state => state.location)
 
     const hubConnection = HubConnectionSingleton.getInstance();
 
@@ -75,7 +74,7 @@ function LoginPage(): JSX.Element {
                 }
                 setIsAuthenticated(true)
                 connectToHub(sessionToken)
-                navigate(location)
+                navigate("/trending")
 
             }
 

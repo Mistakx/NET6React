@@ -139,14 +139,14 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                 </ul>
             </div>
         logoutButton =
-            <button className="btn text-warning"
+            <button className="btn text-danger"
                     onClick={() => {
                         localStorage.removeItem("sessionToken");
                         localStorage.removeItem("username");
                         navigate("/")
                     }}
             >
-                <i className='bx bx-log-out'></i>
+                <i className='bx bx-log-out text-danger'></i>
             </button>
         editPhotoButton = <EditPhotoButton/>
 

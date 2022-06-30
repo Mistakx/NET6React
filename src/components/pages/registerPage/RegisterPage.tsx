@@ -48,7 +48,7 @@ function RegisterPage(): JSX.Element {
                     prettyAlert(e.response.data, false)
                     LogRocket.identify(sessionToken);
                 }
-                navigate("/home")
+                navigate("/trending")
 
             }
 

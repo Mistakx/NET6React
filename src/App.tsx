@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route, Routes, useParams,} from "react-router-dom";
+import {BrowserRouter, Route, Routes, useLocation, useParams,} from "react-router-dom";
 import SearchPage from "./components/pages/searchPage/SearchPage";
 import HomePage from "./components/pages/homePage/HomePage";
 import PlaylistPage from "./components/pages/playlistPage/PlaylistPage";
@@ -21,8 +21,7 @@ import LoginStore from "./stores/LoginStore";
 export function App() {
 
     const isAuthenticated = LoginStore(state => state.isAuthenticated)
-    const setLocation = LoginStore(state => state.setLocation)
-    const urlId = useParams()
+
     return (
         <BrowserRouter>
 
@@ -32,23 +31,25 @@ export function App() {
             <GlobalPlayer/>
 
             <Routes>
-                <Route path="/" element={<Login/>}/>
-                <Route path="/register" element={<RegisterPage/>}/>
+                <Route path="/"
+                       element={<Login/>}/>
+                <Route path="/register"
+                       element={<RegisterPage/>}/>
 
                 <Route path="/home"
-                       element={isAuthenticated ? <HomePage/> : (setLocation("/home"), <Login/>)}/>
+                       element={isAuthenticated ? <HomePage/> : <Login/>}/>
                 <Route path="/search"
-                       element={isAuthenticated ? <SearchPage/> : (setLocation("/search"), <Login/>)}/>
+                       element={isAuthenticated ? <SearchPage/> : <Login/>}/>
                 <Route path="/user/:username"
-                       element={isAuthenticated ? <RefreshedUserPage/> : (setLocation("/user/" + urlId), <Login/>)}/>
+                       element={isAuthenticated ? <RefreshedUserPage/> : <Login/>}/>
                 <Route path="/playlist/:playlistId"
-                       element={isAuthenticated ? <PlaylistPage/> : (setLocation("/playlist/" + urlId), <Login/>)}/>
+                       element={isAuthenticated ? <PlaylistPage/> : <Login/>}/>
                 <Route path="/trending"
-                       element={isAuthenticated ? <TrendingPage/> : (setLocation("/trending"), <Login/>)}/>
+                       element={isAuthenticated ? <TrendingPage/> : <Login/>}/>
                 <Route path="/community"
-                       element={isAuthenticated ? <CommunityPage/> : (setLocation("/community"), <Login/>)}/>
+                       element={isAuthenticated ? <CommunityPage/> : <Login/>}/>
                 <Route path="/following"
-                       element={isAuthenticated ? <FollowingPage/> : (setLocation("/following"), <Login/>)}/>
+                       element={isAuthenticated ? <FollowingPage/> : <Login/>}/>
             </Routes>
         </BrowserRouter>
     );
