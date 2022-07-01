@@ -9,7 +9,7 @@ function PlatformDropdownButton(props: PlatformDropdownButtonProperties): JSX.El
 
     return (
 
-        <button className={"btn dropdown-toggle " + selectedSearch.getPlatform().getDropdownButtonClass()}
+        <button className={"btn btn-icon dropdown-toggle " + selectedSearch.getPlatform().getDropdownButtonClass()}
                 id="choose"
                 type="button"
                 data-bs-toggle="dropdown"

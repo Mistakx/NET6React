@@ -52,8 +52,8 @@
     border-bottom-style: solid;
 }
 
-.search-body .btn i,
-.search-body .btn {
+.search-body .btn-icon i,
+.search-body .btn-icon {
     padding-bottom: 0 !important;
     vertical-align: middle !important;
 }
@@ -69,6 +69,7 @@
     top: 0;
     right: 0;
     z-index: 10;
+    border:none;
 }
 
 .search-body .btn-search:hover,
@@ -158,7 +159,6 @@
 
 .search-body .sparta {
     color: var(--spartaHiglightColor);
-    /*border-bottom-color: var(--vimeoNeutralColor);*/
 }
 
 .search-body .sparta .btn-search,
@@ -515,10 +515,12 @@
     width: 42px;
     height: 42px;
     color: var(--text);
+    vertical-align: middle;
 }
 
 .options .btn-add i {
     padding: 0;
+    margin: 0;
 }
 
 .options .btn-add:hover,
