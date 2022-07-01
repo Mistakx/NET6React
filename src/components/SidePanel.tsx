@@ -19,7 +19,7 @@ function SidePanel(): JSX.Element {
                              onClick={() => {
                                  navigate('/home');
                              }}>
-                            <i className="bx bx-home"></i>
+                             <i className="bx bx-home"></i>
                             <span>Home</span>
                         </div>
                     </li>
@@ -29,7 +29,7 @@ function SidePanel(): JSX.Element {
                              onClick={() => {
                                  navigate('/trending');
                              }}>
-                            <i className='bx bxs-hot'></i>
+                             <i className='bx bxs-hot'></i>
                             <span>Trending</span>
                         </div>
                     </li>
@@ -39,7 +39,7 @@ function SidePanel(): JSX.Element {
                              onClick={() => {
                                  navigate('/search');
                              }}>
-                            <i className="bx bx-search-alt"></i>
+                             <i className="bx bx-search-alt"></i>
                             <span>Search</span>
                         </div>
                     </li>
@@ -49,7 +49,7 @@ function SidePanel(): JSX.Element {
                              onClick={() => {
                                  navigate('/community');
                              }}>
-                            <i className='bx bx-shape-circle'></i>
+                            <i className="fa-solid fa-people-group fa-lg"></i>
                             <span>Community</span>
                         </div>
                     </li>
@@ -59,7 +59,7 @@ function SidePanel(): JSX.Element {
                              onClick={() => {
                                  navigate('/following');
                              }}>
-                            <i className="bx bx-heart"></i>
+                             <i className="bx bx-heart"></i>
                             <span>Following</span>
                         </div>
                     </li>
