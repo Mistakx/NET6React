@@ -6,7 +6,7 @@ import AOS from "aos";
 import {useNavigate} from "react-router-dom";
 import AlertStore from "../../../stores/AlertStore";
 import LogRocket from 'logrocket';
-import { HubConnectionSingleton } from 'utils/HubConnectionSingleton';
+import {HubConnectionSingleton} from 'utils/HubConnectionSingleton';
 import {ConnectToHubDto} from "../../../models/backendRequests/HubConnections/ConnectToHubDto";
 import LoginStore from "../../../stores/LoginStore";
 
@@ -19,31 +19,9 @@ function LoginPage(): JSX.Element {
     const [sessionToken, setSessionToken] = useState<string>()
     const [username, setUsername] = useState<string>()
 
-
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const setIsAuthenticated = LoginStore(state => state.setIsAuthenticated)
-
-    const hubConnection = HubConnectionSingleton.getInstance();
-
-    function connectToHub(sessionToken: string) {
-        hubConnection.start().then(function () {
-            
-            console.log("Connection started");
-            console.log(hubConnection.connectionId)
-
-            let sendParams : ConnectToHubDto = {
-                sessionToken : sessionToken,
-                hubConnectionId : hubConnection.connectionId
-            }
-
-            hubConnection.send("UserConnected", sendParams);
-            
-            
-        }).catch(function (err) {
-            return console.error(err.toString());
-        });
-    }
 
     useEffect(() => {
         AOS.init();
@@ -73,7 +51,6 @@ function LoginPage(): JSX.Element {
                     LogRocket.identify(sessionToken);
                 }
                 setIsAuthenticated(true)
-                connectToHub(sessionToken)
                 navigate("/trending")
 
             }
@@ -95,10 +72,17 @@ function LoginPage(): JSX.Element {
                                 async (e) => {
                                     e.preventDefault()
                                     try {
-                                        let loginResponse = await UserRequests.login(loginEmail, loginPassword)
-                                        prettyAlert("Successfully logged in.", true)
-                                        setSessionToken(loginResponse.sessionToken)
-                                        setUsername(loginResponse.username)
+                                        const currentSessionToken = localStorage.getItem("sessionToken")
+                                        const currentUsername = localStorage.getItem("username")
+                                        if (currentSessionToken && currentUsername) {
+                                            prettyAlert("Successfully logged in.", true)
+                                        } else {
+                                            let loginResponse = await UserRequests.login(loginEmail, loginPassword)
+                                            setSessionToken(loginResponse.sessionToken)
+                                            setUsername(loginResponse.username)
+                                        }
+
+
                                     } catch (e: any) {
                                         prettyAlert(e.response.data, false)
                                     }

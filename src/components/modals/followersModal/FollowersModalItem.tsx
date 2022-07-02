@@ -70,7 +70,6 @@ function FollowersModalItem(props: FollowersModalItemProperties): JSX.Element {
 
     let followingButton
     if (props.follower.username !== localStorage.getItem("username")) {
-        console.log("props.follower.username")
         followingButton =
             <button type="button" className="btn dropdown-toggle-split"
                     onClick={async (e) => {

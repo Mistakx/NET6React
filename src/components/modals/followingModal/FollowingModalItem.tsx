@@ -1,21 +1,13 @@
 import '../../../styles/SearchPage.css';
 import React, {useEffect} from "react";
 import "aos/dist/aos.css";
-import {PlaylistItemProperties} from "../../../models/components/modals/userPlaylistsModal/PlaylistItemProperties";
-import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
-import UserPlaylistsModalStore from "../../../stores/modals/UserPlaylistsModalStore";
 import AlertStore from "../../../stores/AlertStore";
 import {useNavigate} from "react-router-dom";
-import {
-    FollowersModalItemProperties
-} from "../../../models/components/modals/followersModal/FollowersModalItemProperties";
 import CommunityRequests from "../../../requests/backendRequests/CommunityRequests";
 import BackendResponsesStore from "../../../stores/BackendResponsesStore";
-import UserRequests from "../../../requests/backendRequests/UserRequests";
 import {
     FollowingModalItemProperties
 } from "../../../models/components/modals/followingModal/FollowingModalItemProperties";
-import UserProfile from "../../pages/userPage/profilePanel/UserProfile";
 import {UserProfileDto} from "../../../models/backendResponses/userRoute/UserProfileDto";
 import {PlaylistDto} from "../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import toggleFollowingPlaylistButton from "../../../utils/following/toggleFollowingPlaylistButton";

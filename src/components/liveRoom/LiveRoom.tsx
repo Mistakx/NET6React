@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import {useNavigate} from "react-router-dom";
@@ -6,58 +6,56 @@ import {HubConnectionSingleton} from "utils/HubConnectionSingleton";
 import AlertStore from "stores/AlertStore";
 import {ConnectToHubDto} from "models/backendRequests/HubConnections/ConnectToHubDto";
 import LoginStore from "../../stores/LoginStore";
-import OnlineUserItem  from "./OnlineUserItem";
+import OnlineUserItem from "./OnlineUserItem";
 
 
 function LiveRoom(): JSX.Element {
 
     const hubConnection = HubConnectionSingleton.getInstance();
 
-    const [onlineUsersList, setonlineUsersList] = useState<JSX.Element[]>();
-
-    function updateOnlineFriendsList(friends : Array<any>){
-        let onlineUsersListComponents: JSX.Element[] = []
-        for (const currentOnlineUser of friends) {
-            let currentUserItem = <OnlineUserItem basicUserDetails={currentOnlineUser} />
-            onlineUsersListComponents.push(currentUserItem)
-        }
-
-        setonlineUsersList(onlineUsersListComponents)
-    }
+    const [onlineUsersList, setOnlineUsersList] = useState<JSX.Element[]>();
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const isAuthenticated = LoginStore(state => state.isAuthenticated)
 
-    React.useEffect(() => {
+    const sessionToken = localStorage.getItem("sessionToken");
+
+
+    useEffect(() => {
 
         AOS.init();
 
         hubConnection.on("myOnlineFriends", friends => {
             console.log(friends)
-            updateOnlineFriendsList(friends)
+            let onlineUsersListComponents: JSX.Element[] = []
+            for (const currentOnlineUser of friends) {
+                let currentUserItem = <OnlineUserItem basicUserDetails={currentOnlineUser}/>
+                onlineUsersListComponents.push(currentUserItem)
+            }
+
+            setOnlineUsersList(onlineUsersListComponents)
         })
 
         hubConnection.on("notify", message => {
             prettyAlert(message, true)
         })
 
-        hubConnection.onclose(async() =>{
-            let sendParams : ConnectToHubDto = {
-                sessionToken : window.sessionStorage.getItem("sessionToken"),
-                hubConnectionId : hubConnection.connectionId
-            }
-
-            hubConnection.send("UserDisconnected", sendParams);
-            hubConnection.stop()
-        })
 
     }, []);
 
-    function getOnlineFriends(){
-        const sessionToken = window.sessionStorage.getItem("sessionToken")
-        hubConnection.send("GetOnlineFriends", sessionToken);
-    }
+    useEffect(() => {
+
+        (async () => {
+            if (isAuthenticated) {
+                if (sessionToken) {
+                    await HubConnectionSingleton.connectToHub(sessionToken)
+                } else prettyAlert("Session token is not set", false)
+            }
+        })();
+
+
+    }, [isAuthenticated]);
 
     let liveRoom;
     if (isAuthenticated) {
@@ -67,7 +65,7 @@ function LiveRoom(): JSX.Element {
                 <div className="live-room">
                     <a className="intro-banner-vdo-play-btn green-sinal" type="button"
                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
-                       title="See online friends" onClick={getOnlineFriends}>
+                       title="See online friends">
                         <i className="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
                         <span className="ripple green-sinal"></span>
                         <span className="ripple green-sinal"></span>
@@ -90,7 +88,7 @@ function LiveRoom(): JSX.Element {
 
     }
 
-    return (<> {liveRoom}</>)
+    return (<>{liveRoom}</>)
 
 }
 

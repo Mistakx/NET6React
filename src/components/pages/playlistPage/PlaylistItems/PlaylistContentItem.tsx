@@ -62,7 +62,6 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
     if (props.generalizedResult.platformId === playlistPlayerCurrentResult?.platformId
         && props.generalizedResult.playerFactoryName === playlistPlayerCurrentResult?.playerFactoryName
         && props.generalizedResult.platformPlayerUrl === playlistPlayerCurrentResult?.platformPlayerUrl) {
-        console.log("props.generalizedResult === playlistPlayerCurrentResult")
         leftButton = <div className="col-1">
             <span className="align-middle"><i className='bx bx-play h4'></i></span>
         </div>

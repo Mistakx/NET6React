@@ -26,7 +26,7 @@ function OnlineUserItem(props: OnlineUserItemProperties): JSX.Element {
                         <div className="image_outer_container">
                             <div className="green_icon"></div>
                             <div className="image_inner_container">
-                                <img className="img-fluid" src={props.basicUserDetails.profilePhotoUrl}/>
+                                <img className="img-fluid" src={"/" + props.basicUserDetails.profilePhotoUrl}/>
                             </div>
                         </div>
 
@@ -36,7 +36,7 @@ function OnlineUserItem(props: OnlineUserItemProperties): JSX.Element {
                             <h5 className="mb-1"> {props.basicUserDetails.name} </h5>
                             <small>3 days ago</small>
                         </div>
-                        <p className="mb-1">Fazendo o que?.</p>
+                        <p className="mb-1">MDSMEUSENHORMEAJUDAPFV.</p>
                     </div>
                 </div>
             </a>

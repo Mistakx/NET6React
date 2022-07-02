@@ -7,12 +7,8 @@ export class SpotifyPodcastsPageToListItemsConverter {
 
         let items: GenericPodcastResult[] = []
         
-        console.log(spotifyPodcastsPage)
-        
         spotifyPodcastsPage.map(item => {
 
-            console.log(item.name)
-            
             const currentGenericPodcastItem: GenericPodcastResult = {
                 platformName: "Spotify",
                 resultType: "GenericPodcastResult",

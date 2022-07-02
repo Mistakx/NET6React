@@ -16,6 +16,7 @@ import SearchedCommunityResultsStore from "../../../../stores/searches/SearchedC
 import FollowingModalStore from "../../../../stores/modals/FollowingModalStore";
 import {useNavigate} from "react-router-dom";
 import LoginStore from "../../../../stores/LoginStore";
+import {HubConnectionSingleton} from "../../../../utils/HubConnectionSingleton";
 
 function UserProfile(props: UserProfileProperties): JSX.Element {
 
@@ -143,7 +144,9 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
             </div>
         logoutButton =
             <button className="btn text-danger"
-                    onClick={() => {
+                    onClick={async () => {
+                        if (sessionToken) await HubConnectionSingleton.disconnectHub(sessionToken);
+                        else prettyAlert("You are not logged in", true)
                         localStorage.removeItem("sessionToken");
                         localStorage.removeItem("username");
                         setIsAuthenticated(false);
@@ -185,9 +188,8 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                          height="250"
                          className="img-fluid rounded-circle"
                          onError={({currentTarget}) => {
-                             console.log(currentTarget)
                              currentTarget.onerror = null; // prevents looping
-                             // currentTarget.style.display = "none"
+                             currentTarget.style.display = "none"
                          }}
 
         />

@@ -24,6 +24,8 @@ export function App() {
     const setIsAuthenticated = LoginStore(state => state.setIsAuthenticated)
     const sessionToken = localStorage.getItem('sessionToken')
 
+    console.log(useParams())
+
     if (sessionToken) {
         setIsAuthenticated(true)
     }
