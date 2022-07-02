@@ -7,6 +7,8 @@ import AlertStore from "stores/AlertStore";
 import {ConnectToHubDto} from "models/backendRequests/HubConnections/ConnectToHubDto";
 import LoginStore from "../../stores/LoginStore";
 import OnlineUserItem from "./OnlineUserItem";
+import UserProfile from "../pages/userPage/profilePanel/UserProfile";
+import {UserProfileDto} from "../../models/backendResponses/userRoute/UserProfileDto";
 
 
 function LiveRoom(): JSX.Element {
@@ -28,8 +30,8 @@ function LiveRoom(): JSX.Element {
         hubConnection.on("myOnlineFriends", friends => {
             console.log(friends)
             let onlineUsersListComponents: JSX.Element[] = []
-            for (const currentOnlineUser of friends) {
-                let currentUserItem = <OnlineUserItem basicUserDetails={currentOnlineUser}/>
+            for (const currentOnlineUser of friends as UserProfileDto[]) {
+                let currentUserItem = <OnlineUserItem key={currentOnlineUser.username} basicUserDetails={currentOnlineUser}/>
                 onlineUsersListComponents.push(currentUserItem)
             }
 

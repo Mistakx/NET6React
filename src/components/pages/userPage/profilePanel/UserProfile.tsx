@@ -145,12 +145,16 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
         logoutButton =
             <button className="btn text-danger"
                     onClick={async () => {
-                        if (sessionToken) await HubConnectionSingleton.disconnectHub(sessionToken);
-                        else prettyAlert("You are not logged in", true)
-                        localStorage.removeItem("sessionToken");
-                        localStorage.removeItem("username");
-                        setIsAuthenticated(false);
-                        navigate("/")
+                        try {
+                            localStorage.removeItem("sessionToken");
+                            localStorage.removeItem("username");
+                            setIsAuthenticated(false);
+                            if (sessionToken) await HubConnectionSingleton.disconnectHub(sessionToken);
+                            else prettyAlert("You are not logged in", true)
+                        } catch (e: any) {
+                            prettyAlert(e, false)
+                            navigate("/")
+                        }
                     }}
             >
                 <i className='bx bx-log-out text-danger'></i>

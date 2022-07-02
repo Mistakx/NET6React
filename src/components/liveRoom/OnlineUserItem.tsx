@@ -14,11 +14,11 @@ function OnlineUserItem(props: OnlineUserItemProperties): JSX.Element {
 
 
     return (
-        <div className="list-group" onClick={() => {
-            navigate("/user/" + props.basicUserDetails.username)
+        <div className="list-group clickable" onClick={() => {
+            navigate(`/user/${props.basicUserDetails.username}`)
         }}>
-            <a href="" className="list-group-item list-group-item-action" aria-current="true" data-aos="fade-left"
-               data-aos-duration="1000">
+            <a className="list-group-item list-group-item-action" aria-current="true" data-aos="fade-left"
+               data-aos-duration="500">
                 <div className="row">
 
                     <div className="col-3">

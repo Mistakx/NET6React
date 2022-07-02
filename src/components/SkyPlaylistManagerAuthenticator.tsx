@@ -20,7 +20,10 @@ function SkyPlaylistManagerAuthenticator(): JSX.Element {
 
         window.addEventListener("storage", (e) => {
             const sessionToken = localStorage.getItem("sessionToken")
-            if (sessionToken) setIsAuthenticated(true)
+            if (sessionToken) {
+                setIsAuthenticated(true)
+                prettyAlert("Successfully logged in.", true)
+            }
             else setIsAuthenticated(false)
         });
 
@@ -30,7 +33,6 @@ function SkyPlaylistManagerAuthenticator(): JSX.Element {
 
         if (isAuthenticated) {
             navigate("/trending")
-            prettyAlert("Successfully logged in.", true)
         }
         else navigate("/")
 
