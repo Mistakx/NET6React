@@ -1,9 +1,12 @@
 import {Platform} from "./Platform";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faMixcloud} from "@fortawesome/free-brands-svg-icons";
+import React from "react";
 
 class Mixcloud extends Platform {
 
     public getDropdownButtonIcon(){
-        return <i className="fa-brands fa-mixcloud h3"></i>;
+        return <FontAwesomeIcon icon={faMixcloud} size={"2x"}/>;
     }
 
     public getDropdownButtonClass() {

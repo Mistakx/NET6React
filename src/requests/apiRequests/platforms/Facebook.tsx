@@ -1,9 +1,12 @@
 import {Platform} from "./Platform";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faFacebook} from "@fortawesome/free-brands-svg-icons";
+import React from "react";
 
 class Facebook extends Platform {
 
     public getDropdownButtonIcon(){
-        return <i className='fa-brands facebook h3'></i>;
+        return <FontAwesomeIcon icon={faFacebook} size={"2x"}/>;
     }
 
     public getDropdownButtonClass() {

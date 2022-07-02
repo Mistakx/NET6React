@@ -1,9 +1,12 @@
 import {Platform} from "./Platform";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faDailymotion} from "@fortawesome/free-brands-svg-icons";
+import React from "react";
 
 class Dailymotion extends Platform {
 
-    public getDropdownButtonIcon(){
-        return <i className='fa-brands fa-dailymotion h3'></i>;
+    public getDropdownButtonIcon() {
+        return <FontAwesomeIcon icon={faDailymotion} size={"2x"}/>;
     }
 
     public getDropdownButtonClass() {

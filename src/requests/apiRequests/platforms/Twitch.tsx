@@ -1,9 +1,12 @@
 import {Platform} from "./Platform";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faTwitch} from "@fortawesome/free-brands-svg-icons";
+import React from "react";
 
 class Twitch extends Platform {
 
     public getDropdownButtonIcon() {
-        return <i className='fa-brands fa-twitch h3'></i>
+        return <FontAwesomeIcon icon={faTwitch} size={"2x"}/>;
     }
 
     public getDropdownButtonClass() {

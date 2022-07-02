@@ -1,9 +1,12 @@
 import { Platform } from "./Platform";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faYoutube} from "@fortawesome/free-brands-svg-icons";
+import React from "react";
 
 export class YouTube extends Platform{
 
     public getDropdownButtonIcon() {
-        return <i className='fa-brands fa-youtube h3'/>;
+        return <FontAwesomeIcon icon={faYoutube} size={"2x"}/>;
     }
 
     public getDropdownButtonClass() {

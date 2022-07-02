@@ -2,6 +2,8 @@ import React from 'react';
 import '../styles/Sidepanel.css';
 import {useNavigate} from "react-router-dom";
 import LoginStore from "../stores/LoginStore";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPeopleGroup} from "@fortawesome/free-solid-svg-icons";
 
 function SidePanel(): JSX.Element {
 
@@ -43,7 +45,7 @@ function SidePanel(): JSX.Element {
                                  navigate('/community');
                              }}
                         >
-                            <i className="fa-solid fa-people-group fa-lg" style={{transform:"translateX(-10%)"}}></i>
+                            <FontAwesomeIcon icon={faPeopleGroup} />
                             <span>Community</span>
                         </div>
                     </li>

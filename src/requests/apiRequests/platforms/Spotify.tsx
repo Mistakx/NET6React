@@ -1,9 +1,12 @@
 import {Platform} from "./Platform";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSpotify} from "@fortawesome/free-brands-svg-icons";
+import React from "react";
 
 class Spotify extends Platform {
 
     public getDropdownButtonIcon(){
-        return <i className='fa-brands fa-spotify h3'></i>;
+        return <FontAwesomeIcon icon={faSpotify} size={"2x"}/>;
     }
 
     public getDropdownButtonClass() {

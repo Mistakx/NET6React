@@ -1,9 +1,12 @@
 import {Platform} from "./Platform";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSoundcloud} from "@fortawesome/free-brands-svg-icons";
+import React from "react";
 
 class SoundCloud extends Platform {
 
     public getDropdownButtonIcon(){
-        return <i className='fa-brands fa-soundcloud h3'></i>;
+        return <FontAwesomeIcon icon={faSoundcloud} size={"2x"}/>;
     }
 
     public getDropdownButtonClass() {

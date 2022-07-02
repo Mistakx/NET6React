@@ -1,9 +1,12 @@
 import { Platform } from "./Platform";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faVimeoV} from "@fortawesome/free-brands-svg-icons";
+import React from "react";
 
 class Vimeo extends Platform{
 
     public getDropdownButtonIcon() {
-        return <i className='fa-brands fa-vimeo-v h3'></i>;
+        return <FontAwesomeIcon icon={faVimeoV} size={"2x"}/>;
     }
 
     public getDropdownButtonClass() {

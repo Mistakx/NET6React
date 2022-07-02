@@ -2,20 +2,41 @@ import React from 'react';
 import '../../../../styles/style.css'
 import SelectedPlatformSearchStore from "../../../../stores/searches/SelectedPlatformSearchStore";
 import {VimeoSearchVideoByName} from "../../../../requests/apiRequests/specificSearches/VimeoSearchVideoByName";
-import {YouTubeSearchVideoByGeneral} from "../../../../requests/apiRequests/specificSearches/YouTubeSearchVideoByGeneral";
+import {
+    YouTubeSearchVideoByGeneral
+} from "../../../../requests/apiRequests/specificSearches/YouTubeSearchVideoByGeneral";
 import {SpotifySearchTrackByAlbum} from "../../../../requests/apiRequests/specificSearches/SpotifySearchTrackByAlbum";
 import {SpotifySearchTrackByName} from "../../../../requests/apiRequests/specificSearches/SpotifySearchTrackByName";
-import {SpotifySearchPodcastsByName} from "../../../../requests/apiRequests/specificSearches/SpotifySearchPodcastsByName";
+import {
+    SpotifySearchPodcastsByName
+} from "../../../../requests/apiRequests/specificSearches/SpotifySearchPodcastsByName";
 import {TwitchSearchClipByChannel} from "../../../../requests/apiRequests/specificSearches/TwitchSearchClipByChannel";
 import {TwitchSearchClipByGame} from "../../../../requests/apiRequests/specificSearches/TwitchSearchClipByGame";
 import {TwitchSearchVideoByChannel} from "../../../../requests/apiRequests/specificSearches/TwitchSearchVideoByChannel";
 import {TwitchSearchVideoByGame} from "../../../../requests/apiRequests/specificSearches/TwitchSearchVideoByGame";
-import {TwitchSearchLivestreamByGeneral} from "../../../../requests/apiRequests/specificSearches/TwitchSearchLivestreamByGeneral";
-import {PlatformDropdownListProperties} from "../../../../models/components/pages/searchBar/PlatformDropdownListProperties";
+import {
+    TwitchSearchLivestreamByGeneral
+} from "../../../../requests/apiRequests/specificSearches/TwitchSearchLivestreamByGeneral";
+import {
+    PlatformDropdownListProperties
+} from "../../../../models/components/pages/searchBar/PlatformDropdownListProperties";
 import PlatformDropdownStore from "../../../../stores/searches/PlatformDropdownStore";
 import {SoundcloudSearchTrack} from "../../../../requests/apiRequests/specificSearches/SoundcloudSearchTrackByName";
 import {MixcloudSearchTrack} from "../../../../requests/apiRequests/specificSearches/MixcloudSearchTrack";
 import {DailymotionSearchVideo} from "../../../../requests/apiRequests/specificSearches/DailymotionSearchVideo";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {
+    faYoutube,
+    faVimeoV,
+    faSpotify,
+    faSoundcloud,
+    faFacebookF,
+    faMixcloud,
+    faDailymotion,
+    faTwitch
+} from "@fortawesome/free-brands-svg-icons";
+import {faPeopleGroup} from "@fortawesome/free-solid-svg-icons";
+
 
 function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Element {
 
@@ -35,7 +56,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     e.preventDefault()
                     setSelectedSearch(YouTubeSearchVideoByGeneral.getInstance())
                 }}>
-                    <i className='fa-brands fa-youtube'></i>
+                    <FontAwesomeIcon icon={faYoutube}/>
                 </div>
             </li>
 
@@ -47,7 +68,10 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     props.togglePlatformDropdownList()
                     e.preventDefault()
                     setSelectedSearch(VimeoSearchVideoByName.getInstance())
-                }}><i className='fa-brands fa-vimeo-v'></i></div>
+                }}>
+                    <i className='fa-brands fa-vimeo-v'></i>
+                    <FontAwesomeIcon icon={faVimeoV}/>
+                </div>
             </li>
 
             {/*Spotify*/}
@@ -63,7 +87,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                          setSelectedSearch(SpotifySearchTrackByName.getInstance())
                      }}
                 >
-                    <i className='fa-brands fa-spotify'></i> &raquo;
+                    <FontAwesomeIcon icon={faSpotify}/> &raquo;
                 </div>
 
                 {/*Spotify dropdown*/}
@@ -110,7 +134,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     e.preventDefault()
                     setSelectedSearch(SoundcloudSearchTrack.getInstance())
                 }}>
-                    <i className='fa-brands fa-soundcloud'></i>
+                    <FontAwesomeIcon icon={faSoundcloud}/>
                 </div>
             </li>
 
@@ -123,7 +147,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     e.preventDefault()
                     setSelectedSearch(SoundcloudSearchTrack.getInstance())
                 }}>
-                    <i className='fa-brands fa-facebook'></i>
+                    <FontAwesomeIcon icon={faFacebookF}/>
                 </div>
             </li>
 
@@ -136,7 +160,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     e.preventDefault()
                     setSelectedSearch(MixcloudSearchTrack.getInstance())
                 }}>
-                    <i className="fa-brands fa-mixcloud"></i>
+                    <FontAwesomeIcon icon={faMixcloud}/>
                 </div>
             </li>
 
@@ -149,7 +173,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     e.preventDefault()
                     setSelectedSearch(DailymotionSearchVideo.getInstance())
                 }}>
-                    <i className='fa-brands fa-dailymotion'></i>
+                    <FontAwesomeIcon icon={faDailymotion}/>
                 </div>
             </li>
 
@@ -166,7 +190,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                          setSelectedSearch(TwitchSearchLivestreamByGeneral.getInstance())
                      }}
                 >
-                    <i className='fa-brands fa-twitch'></i> &raquo;
+                    <FontAwesomeIcon icon={faTwitch}/> &raquo;
                 </div>
 
                 {/*Twitch dropdown*/}
