@@ -61,7 +61,7 @@ function CommunitySearchBar(): JSX.Element {
     }
 
     return (
-        <div className="form-wrapper top-stick">
+        <div className="form-wrapper position-relative">
 
             <CommunitySearchLabel/>
 
@@ -73,7 +73,7 @@ function CommunitySearchBar(): JSX.Element {
                 }
             }}>
 
-                <div className="input-group">
+                <div className="input-group top-stick">
 
                     <CommunityDropdownButton togglePlatformDropdownList={togglePlatformDropdownList}/>
 

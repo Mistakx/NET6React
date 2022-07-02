@@ -25,7 +25,7 @@ function HomePage(): JSX.Element {
 
             <div className="container" data-aos="zoom-in" data-aos-delay="100">
                 <h1>Sparta List</h1>
-                <p><span className="typed"></span></p>
+                <div className="typed"></div>
                 <div className="social-links">
                     <a href="components/pages/homePage/HomePage#" className="twitter"><i className="bx bxl-twitter"></i></a>
                     <a href="components/pages/homePage/HomePage#" className="facebook"><i className="bx bxl-facebook"></i></a>

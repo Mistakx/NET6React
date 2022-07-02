@@ -30,8 +30,8 @@ function AddPlaylistItem(): JSX.Element {
             }}
         >
 
-            <div className="card scale clickable align-middle add-playlist">
-                <i className="bx bx-plus h1 text-center mt-5"
+            <div className="card scale clickable align-middle add-playlist position-relative">
+                <i className="bx bx-plus position-absolute top-50 start-50 translate-middle"
                     style={{fontSize: 120}}
                 ></i>
             </div>

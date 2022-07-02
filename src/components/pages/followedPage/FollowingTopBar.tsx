@@ -30,7 +30,7 @@ function FollowingTopBar(): JSX.Element {
 
     let orderSelect;
     if (showing == "Users") {
-        orderSelect = <li>
+        orderSelect =
             <select className="form-select form-select-sm bg-dark text-white" id="TopOrderBarSelect"
                     onChange={(e) => {
                         setUserOrder(e.target.value as UsernameSortingOptions)
@@ -40,10 +40,9 @@ function FollowingTopBar(): JSX.Element {
                 <option>Order By Weekly Views</option>
                 <option>Order By Total Views</option>
             </select>
-        </li>
     }
     else if (showing == "Playlists") {
-        orderSelect = <li>
+        orderSelect =
             <select className="form-select form-select-sm bg-dark text-white" id="TopOrderBarSelect"
                     onChange={(e) => {
                         setPlaylistOrder(e.target.value as PlaylistSortingOptions)
@@ -53,7 +52,6 @@ function FollowingTopBar(): JSX.Element {
                 <option>Order By Weekly Views</option>
                 <option>Order By Total Views</option>
             </select>
-        </li>
     }
 
     return (
@@ -62,21 +60,28 @@ function FollowingTopBar(): JSX.Element {
             <div className="col-12">
                 <div className="iconbox-blue rounded">
                     <nav aria-label="breadcrumb ">
-                        <ol className="breadcrumb p-3 position-relative hstack ">
+                        <ol className="breadcrumb p-3 position-relative">
 
                             {/* <li className="breadcrumb-item text-white" aria-current="page"><i className='bx bx-arrow-back'></i></li> */}
                             <li className="breadcrumb-item active text-white" aria-current="page">Following 👥</li>
-                            <li className="ms-auto align-middle me-3">
-                                <select className="form-select form-select-sm bg-dark text-white" id="TopTypeBarSelect"
-                                        onChange={(e) => {
-                                            setShowing(e.target.value as "Users" | "Playlists")
-                                        }}
-                                >
-                                    <option>Users</option>
-                                    <option>Playlists</option>
-                                </select>
+                            <li className="ms-auto align-middle">
+                                <div className="row">
+                                    <div className="col-6">
+
+                                        <select className="form-select form-select-sm bg-dark text-white" id="TopTypeBarSelect"
+                                                onChange={(e) => {
+                                                    setShowing(e.target.value as "Users" | "Playlists")
+                                                }}
+                                                >
+                                            <option>Users</option>
+                                            <option>Playlists</option>
+                                        </select>
+                                    </div>
+                                    <div className="col-6">
+                                        {orderSelect}
+                                    </div>
+                                </div>
                             </li>
-                            {orderSelect}
                         </ol>
                     </nav>
                 </div>

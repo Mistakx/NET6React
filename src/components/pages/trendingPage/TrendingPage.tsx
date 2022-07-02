@@ -33,7 +33,7 @@ function TrendingPage(): JSX.Element {
 
                             <TopBar text={"Trending This Week 🔥"}></TopBar>
 
-                            <div className="search-body">
+                            <div className="">
 
                                 <TrendingResultsList/>
 

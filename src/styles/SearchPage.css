@@ -24,17 +24,17 @@
     --soundCloudNeutralColor: #F26F23;
     --soundCloudHoveredColor: #D05119;
 
-    --facebookHiglightColor: #4e71ba;
-    --facebookNeutralColor: #3b5998;
-    --facebookHoveredColor: #2f477a;
+    --facebookHiglightColor: #17A9FD;
+    --facebookNeutralColor: #0165E1;
+    --facebookHoveredColor: #003AA2;
 
-    --mixcloudHiglightColor: #8fc8e6;
+    --mixcloudHiglightColor: #98DFF3;
     --mixcloudNeutralColor: #52aad8;
-    --mixcloudHoveredColor: #2c8fc3;
+    --mixcloudHoveredColor: #273a4b;
 
     --dailymotionHiglightColor: #00d2f3;
     --dailymotionNeutralColor: #00aaff;
-    --dailymotionHoveredColor: #0588c9;
+    --dailymotionHoveredColor: #0062B7;
 
     --spartaHiglightColor: #1970E3;
     --spartaNeutralColor: #1355AD;
@@ -52,6 +52,12 @@
     border-bottom-style: solid;
 }
 
+.search-body .btn-icon i,
+.search-body .btn-icon {
+    padding-bottom: 0 !important;
+    vertical-align: middle !important;
+}
+
 .search-body .form-control:focus {
     background-color: transparent;
     outline: 0;
@@ -63,6 +69,7 @@
     top: 0;
     right: 0;
     z-index: 10;
+    border:none;
 }
 
 .search-body .btn-search:hover,
@@ -152,7 +159,6 @@
 
 .search-body .sparta {
     color: var(--spartaHiglightColor);
-    /*border-bottom-color: var(--vimeoNeutralColor);*/
 }
 
 .search-body .sparta .btn-search,
@@ -402,7 +408,7 @@
     margin-bottom: 30px;
     border-radius: 20px;
     background-color: var(--spartaHoveredColor);
-    padding: none;
+    padding: 0 !important;
 }
 
 .card-img-overlay {
@@ -508,11 +514,13 @@
     padding: 0;
     width: 42px;
     height: 42px;
-    color: #fff;
+    color: var(--text);
+    vertical-align: middle;
 }
 
 .options .btn-add i {
     padding: 0;
+    margin: 0;
 }
 
 .options .btn-add:hover,

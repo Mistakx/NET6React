@@ -57,7 +57,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
     }
 
     return (
-        <div className="form-wrapper">
+        <div className="form-wrapper position-relative">
 
             <SearchLabel/>
 
@@ -75,7 +75,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                 }
             }}>
 
-                <div className="input-group">
+                <div className="input-group sticky-top">
 
                     <PlatformDropdownButton togglePlatformDropdownList={togglePlatformDropdownList}/>
 
@@ -85,7 +85,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                                 twitchAuthenticator={props.twitchAuthenticator}
                     />
 
-                    <button className={"btn btn-search " + selectedSearch.getPlatform().getColorClass()} type="submit"
+                    <button className={"btn btn-sm btn-search " + selectedSearch.getPlatform().getColorClass()} type="submit"
                             id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
                 </div>
             </form>

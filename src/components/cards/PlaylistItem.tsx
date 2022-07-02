@@ -155,11 +155,12 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                 <div className="card scale clickable position-relative"
                      style={{
                          backgroundSize: "100% 100%",
+                         backgroundPosition: "center center",
                          backgroundImage: "url(" + props.basicDetails.thumbnailUrl + ")"
                      }}>
 
                     {playlistItemDropdown}
-                    <div className="options options-bottom-right m-3">
+                    <div className="options options-bottom-right">
                         {ownerButton}
                         {followButton}
                     </div>

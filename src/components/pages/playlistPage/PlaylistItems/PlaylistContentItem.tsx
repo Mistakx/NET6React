@@ -32,6 +32,10 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
     const style = {
         transform: CSS.Transform.toString(transform),
         transition,
+        backgroundSize: "100% auto",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundImage: "url(" + props.generalizedResult.thumbnailUrl + ")"
     };
 
     let hasLeftButton = false;
@@ -55,7 +59,7 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
 
     let leftButton;
     if (props.draggable) {
-        leftButton = <div className="col-1">
+        leftButton = <div className="col-1 align-middle">
             <span className="align-middle"><i className='bx bx-menu h4'></i></span>
         </div>
     }
@@ -70,7 +74,7 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
     let contentDropdown;
     if (props.showingMyPlaylist) {
         contentDropdown = <div className="col-1">
-            <div className="btn-group text-end position-absolute top-0 end-0">
+            <div className="btn-group position-absolute top-0 end-0">
                 <button type="button" className="btn btn-link" data-bs-toggle="dropdown" aria-expanded="false">
                     <i className='bx bx-dots-vertical-rounded h4'></i>
                 </button>
@@ -83,6 +87,7 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
     }
 
 
+
     return (
 
         <li className="list-group-item"
@@ -92,12 +97,6 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
             <div className="row align-middle" ref={myRef}>
                 {leftButton}
                 <div className={"col-" + itemSizeClass + " p-3 clickable"}
-                     style={{
-                         backgroundSize: "100% auto",
-                         backgroundRepeat: "no-repeat",
-                         backgroundPosition: "center",
-                         backgroundImage: "url(" + props.generalizedResult.thumbnailUrl + ")"
-                     }}
                      onClick={() => {
                          setPlaylistPlayerGeneralizedResult(props.generalizedResult)
                          setPlaylistCurrentResults(props.generalizedResults)
@@ -105,6 +104,7 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
                          setSearchCurrentResults(null)
                      }}
                 >
+                    {/* <i className='bx bx-play h4 position-absolute top-50 start-0 translate-middle'></i> */}
                     <h6 className="fw-bold text-truncate text-center">{props.generalizedResult.title}</h6>
                 </div>
                 {contentDropdown}

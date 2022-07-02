@@ -30,20 +30,32 @@
   color: #fff;
 }
 
+#playlist .list-group .list-group-item .bg-dark {
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
 #playlist .list-group .list-group-item:hover {
   background-color: #1355AD;
-  color: #fff;
+  box-shadow: 0 0 10px 0 var(--text);
+  z-index: 2;
 }
+
+/* #playlist .list-group .list-group-item .btn {
+  margin-left: -30px !important;
+} */
 
 #playlist .list-group .list-group-item .active {
   background-color: #067ded;
+  box-shadow: 0 0 10px 0 var(--text);
+  z-index: 2;
 }
 
 #playlist .list-group {
   height: 335px;
   overflow: auto;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
 }
 
 .social {
@@ -115,10 +127,13 @@
   border-radius: 20px;
 }
 
+.list-group-item .bg-dark,
 .playlist .card-profile .bg-dark {
   background-color: rgba(9, 41, 83, 0.5) !important;
   border-top-left-radius: 10px !important;
   border-top-right-radius: 10px !important;
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
 }
 
 .playlist .card {

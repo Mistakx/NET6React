@@ -258,10 +258,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
 
                     </div>
                 </div>
-
-
             </div>
-
         </div>
     )
 
