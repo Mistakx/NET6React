@@ -25,6 +25,10 @@ function LoginPage(): JSX.Element {
 
     useEffect(() => {
         AOS.init();
+        const currentSessionToken = localStorage.getItem("sessionToken")
+        const currentUsername = localStorage.getItem("username")
+        if (currentSessionToken) setSessionToken(currentSessionToken)
+        if (currentUsername) setUsername(currentUsername)
     }, []);
 
     useEffect(() => {
@@ -45,6 +49,7 @@ function LoginPage(): JSX.Element {
                     LogRocket.identify(sessionToken);
                 }
                 setIsAuthenticated(true)
+                navigate("/trending")
             }
 
         })()

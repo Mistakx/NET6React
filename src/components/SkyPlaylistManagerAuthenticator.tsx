@@ -9,9 +9,9 @@ function SkyPlaylistManagerAuthenticator(): JSX.Element {
     const navigate = useNavigate()
 
     const setIsAuthenticated = LoginStore(state => state.setIsAuthenticated)
-    const isAuthenticated = LoginStore(state => state.isAuthenticated)
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
+
 
     useEffect(() => {
 
@@ -22,21 +22,13 @@ function SkyPlaylistManagerAuthenticator(): JSX.Element {
             const sessionToken = localStorage.getItem("sessionToken")
             if (sessionToken) {
                 setIsAuthenticated(true)
+                navigate("/trending")
                 prettyAlert("Successfully logged in.", true)
             }
             else setIsAuthenticated(false)
         });
 
     }, []);
-
-    useEffect(() => {
-
-        if (isAuthenticated) {
-            navigate("/trending")
-        }
-        else navigate("/")
-
-    }, [isAuthenticated]);
 
     return (<></>)
 

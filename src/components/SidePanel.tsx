@@ -20,19 +20,9 @@ function SidePanel(): JSX.Element {
                     <li>
                         <div className="clickable nav-link scrollto"
                              onClick={() => {
-                                 navigate('/home');
-                             }}>
-                             <i className="bx bx-home"></i>
-                            <span>Home</span>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div className="clickable nav-link scrollto"
-                             onClick={() => {
                                  navigate('/trending');
                              }}>
-                             <i className='bx bxs-hot'></i>
+                            <i className='bx bxs-hot'></i>
                             <span>Trending</span>
                         </div>
                     </li>
@@ -42,7 +32,7 @@ function SidePanel(): JSX.Element {
                              onClick={() => {
                                  navigate('/search');
                              }}>
-                             <i className="bx bx-search-alt"></i>
+                            <i className="bx bx-search-alt"></i>
                             <span>Search</span>
                         </div>
                     </li>
@@ -51,8 +41,9 @@ function SidePanel(): JSX.Element {
                         <div className="clickable nav-link scrollto"
                              onClick={() => {
                                  navigate('/community');
-                             }}>
-                            <i className="fa-solid fa-people-group fa-lg"></i>
+                             }}
+                        >
+                            <i className="fa-solid fa-people-group fa-lg" style={{transform:"translateX(-10%)"}}></i>
                             <span>Community</span>
                         </div>
                     </li>
@@ -62,7 +53,7 @@ function SidePanel(): JSX.Element {
                              onClick={() => {
                                  navigate('/following');
                              }}>
-                             <i className="bx bx-heart"></i>
+                            <i className="bx bx-heart"></i>
                             <span>Following</span>
                         </div>
                     </li>

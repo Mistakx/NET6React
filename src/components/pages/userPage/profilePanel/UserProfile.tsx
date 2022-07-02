@@ -55,6 +55,8 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
     const setUpdatedUserInfoResponse = BackendResponsesStore(state => state.setUpdatedUserInfoResponse)
     const toggledFollowResponse = BackendResponsesStore(state => state.toggledFollowResponse)
     const setToggledFollowResponse = BackendResponsesStore(state => state.setToggledFollowResponse)
+    const removedFollowerResponse = BackendResponsesStore(state => state.removedFollowerResponse)
+    const setRemovedFollowerResponse = BackendResponsesStore(state => state.setRemovedFollowerResponse)
 
     const sessionToken = localStorage.getItem("sessionToken");
 
@@ -113,6 +115,18 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
         }
     }, [toggledFollowResponse]);
 
+    useEffect(() => {
+        if (removedFollowerResponse) {
+            if (sessionToken) {
+                (async () => {
+                    setProfile(await UserRequests.getProfile(props.username, sessionToken))
+                    setRemovedFollowerResponse(null)
+                })()
+            } else prettyAlert("No session token found.", false)
+        }
+    }, [removedFollowerResponse]);
+
+
     let dropdownMenu;
     let editPhotoButton;
     let followButton;
@@ -153,6 +167,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                             else prettyAlert("You are not logged in", true)
                         } catch (e: any) {
                             prettyAlert(e, false)
+                        } finally {
                             navigate("/")
                         }
                     }}
