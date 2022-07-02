@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import '../styles/style.css';
 import LoginStore from "../stores/LoginStore";
 import {useNavigate} from "react-router-dom";
+import AlertStore from "../stores/AlertStore";
 
 function SkyPlaylistManagerAuthenticator(): JSX.Element {
 
@@ -9,6 +10,8 @@ function SkyPlaylistManagerAuthenticator(): JSX.Element {
 
     const setIsAuthenticated = LoginStore(state => state.setIsAuthenticated)
     const isAuthenticated = LoginStore(state => state.isAuthenticated)
+
+    const prettyAlert = AlertStore(state => state.prettyAlert)
 
     useEffect(() => {
 
@@ -25,7 +28,10 @@ function SkyPlaylistManagerAuthenticator(): JSX.Element {
 
     useEffect(() => {
 
-        if (isAuthenticated) navigate("/trending")
+        if (isAuthenticated) {
+            navigate("/trending")
+            prettyAlert("Successfully logged in.", true)
+        }
         else navigate("/")
 
     }, [isAuthenticated]);

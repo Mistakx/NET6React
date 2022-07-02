@@ -60,7 +60,7 @@ function LiveRoom(): JSX.Element {
     if (isAuthenticated) {
         liveRoom =
 
-            <div className="position-relative">
+            <div className="position-relative" style={{zIndex:9998}}>
                 <div className="live-room">
                     <a className="intro-banner-vdo-play-btn green-sinal" type="button"
                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
