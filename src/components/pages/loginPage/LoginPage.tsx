@@ -25,12 +25,6 @@ function LoginPage(): JSX.Element {
 
     useEffect(() => {
         AOS.init();
-
-        const sessionToken = localStorage.getItem("sessionToken")
-        if (sessionToken) {
-            setSessionToken(sessionToken)
-            setUsername(localStorage.getItem("username")!)
-        }
     }, []);
 
     useEffect(() => {
@@ -51,8 +45,6 @@ function LoginPage(): JSX.Element {
                     LogRocket.identify(sessionToken);
                 }
                 setIsAuthenticated(true)
-                navigate("/trending")
-
             }
 
         })()
@@ -72,17 +64,10 @@ function LoginPage(): JSX.Element {
                                 async (e) => {
                                     e.preventDefault()
                                     try {
-                                        const currentSessionToken = localStorage.getItem("sessionToken")
-                                        const currentUsername = localStorage.getItem("username")
-                                        if (currentSessionToken && currentUsername) {
-                                            prettyAlert("Successfully logged in.", true)
-                                        } else {
-                                            let loginResponse = await UserRequests.login(loginEmail, loginPassword)
-                                            setSessionToken(loginResponse.sessionToken)
-                                            setUsername(loginResponse.username)
-                                        }
-
-
+                                        let loginResponse = await UserRequests.login(loginEmail, loginPassword)
+                                        setSessionToken(loginResponse.sessionToken)
+                                        setUsername(loginResponse.username)
+                                        prettyAlert("Successfully logged in.", true)
                                     } catch (e: any) {
                                         prettyAlert(e.response.data, false)
                                     }

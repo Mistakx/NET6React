@@ -27,11 +27,6 @@ function RegisterPage(): JSX.Element {
 
     useEffect(() => {
         AOS.init();
-        const sessionToken = localStorage.getItem("sessionToken")
-        if (sessionToken) {
-            setSessionToken(sessionToken)
-            setSessionToken(localStorage.getItem("username")!)
-        }
     }, []);
 
     useEffect(() => {
@@ -52,8 +47,6 @@ function RegisterPage(): JSX.Element {
                     LogRocket.identify(sessionToken);
                 }
                 setIsAuthenticated(true)
-                navigate("/trending")
-
             }
 
         })()

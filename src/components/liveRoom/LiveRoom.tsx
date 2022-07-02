@@ -21,7 +21,6 @@ function LiveRoom(): JSX.Element {
 
     const sessionToken = localStorage.getItem("sessionToken");
 
-
     useEffect(() => {
 
         AOS.init();

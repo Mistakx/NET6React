@@ -1,5 +1,5 @@
-import React from 'react';
-import {BrowserRouter, Route, Routes, useLocation, useParams,} from "react-router-dom";
+import React, {useEffect} from 'react';
+import {BrowserRouter, Route, Routes, useLocation, useNavigate, useParams,} from "react-router-dom";
 import SearchPage from "./components/pages/searchPage/SearchPage";
 import HomePage from "./components/pages/homePage/HomePage";
 import PlaylistPage from "./components/pages/playlistPage/PlaylistPage";
@@ -15,24 +15,20 @@ import RefreshedUserPage from "./components/pages/userPage/RefreshedOtherUserPag
 import FollowingPage from "./components/pages/followedPage/FollowingPage";
 import LoginStore from "./stores/LoginStore";
 import LiveRoom from "./components/liveRoom/LiveRoom";
+import SkyPlaylistManagerAuthenticator from "./components/SkyPlaylistManagerAuthenticator";
 
 // LogRocket.init('tcdmcx/playlist-manager');
 
 export function App() {
 
+
     const isAuthenticated = LoginStore(state => state.isAuthenticated)
-    const setIsAuthenticated = LoginStore(state => state.setIsAuthenticated)
-    const sessionToken = localStorage.getItem('sessionToken')
 
-    console.log(useParams())
-
-    if (sessionToken) {
-        setIsAuthenticated(true)
-    }
 
     return (
         <BrowserRouter>
 
+            <SkyPlaylistManagerAuthenticator/>
             <SidePanel/>
             <LiveRoom/>
             <Alert/>
@@ -45,19 +41,19 @@ export function App() {
                        element={<RegisterPage/>}/>
 
                 <Route path="/home"
-                       element={isAuthenticated || sessionToken ? <HomePage/> : <Login/>}/>
+                       element={isAuthenticated ? <HomePage/> : <Login/>}/>
                 <Route path="/search"
-                       element={isAuthenticated || sessionToken ? <SearchPage/> : <Login/>}/>
+                       element={isAuthenticated ? <SearchPage/> : <Login/>}/>
                 <Route path="/user/:username"
-                       element={isAuthenticated || sessionToken ? <RefreshedUserPage/> : <Login/>}/>
+                       element={isAuthenticated ? <RefreshedUserPage/> : <Login/>}/>
                 <Route path="/playlist/:playlistId"
-                       element={isAuthenticated || sessionToken ? <PlaylistPage/> : <Login/>}/>
+                       element={isAuthenticated ? <PlaylistPage/> : <Login/>}/>
                 <Route path="/trending"
-                       element={isAuthenticated || sessionToken ? <TrendingPage/> : <Login/>}/>
+                       element={isAuthenticated ? <TrendingPage/> : <Login/>}/>
                 <Route path="/community"
-                       element={isAuthenticated || sessionToken ? <CommunityPage/> : <Login/>}/>
+                       element={isAuthenticated ? <CommunityPage/> : <Login/>}/>
                 <Route path="/following"
-                       element={isAuthenticated || sessionToken ? <FollowingPage/> : <Login/>}/>
+                       element={isAuthenticated ? <FollowingPage/> : <Login/>}/>
             </Routes>
         </BrowserRouter>
     );
