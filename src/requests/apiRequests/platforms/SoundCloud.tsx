@@ -3,7 +3,7 @@ import {Platform} from "./Platform";
 class SoundCloud extends Platform {
 
     public getDropdownButtonIcon(){
-        return <i className='bx bxl-soundcloud h3'></i>;
+        return <i className='fa-brands fa-soundcloud h3'></i>;
     }
 
     public getDropdownButtonClass() {

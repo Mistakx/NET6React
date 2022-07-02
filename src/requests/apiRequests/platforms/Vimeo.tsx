@@ -1,10 +1,9 @@
-import {ApiSearch} from "../specificSearches/ApiSearch";
 import { Platform } from "./Platform";
 
 class Vimeo extends Platform{
 
     public getDropdownButtonIcon() {
-        return <i className='bx bxl-vimeo h3'></i>;
+        return <i className='fa-brands fa-vimeo-v h3'></i>;
     }
 
     public getDropdownButtonClass() {

@@ -3,7 +3,7 @@ import {Platform} from "./Platform";
 class Dailymotion extends Platform {
 
     public getDropdownButtonIcon(){
-        return <i className='bx bxl-dailymotion h3'></i>;
+        return <i className='fa-brands fa-dailymotion h3'></i>;
     }
 
     public getDropdownButtonClass() {

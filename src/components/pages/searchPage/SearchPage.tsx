@@ -6,7 +6,6 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import UserPlaylistsModalStore from "../../../stores/modals/UserPlaylistsModalStore";
 import UserPlaylistsModal from "../../modals/userPlaylistsModal/UserPlaylistsModal";
-import LoginStore from "../../../stores/LoginStore";
 
 function SearchPage(): JSX.Element {
 

@@ -3,7 +3,7 @@ import {Platform} from "./Platform";
 class Spotify extends Platform {
 
     public getDropdownButtonIcon(){
-        return <i className='bx bxl-spotify h3'></i>;
+        return <i className='fa-brands fa-spotify h3'></i>;
     }
 
     public getDropdownButtonClass() {

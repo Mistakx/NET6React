@@ -3,7 +3,7 @@ import {Platform} from "./Platform";
 class Twitch extends Platform {
 
     public getDropdownButtonIcon() {
-        return <i className='bx bxl-twitch h3'></i>
+        return <i className='fa-brands fa-twitch h3'></i>
     }
 
     public getDropdownButtonClass() {

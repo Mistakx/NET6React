@@ -3,7 +3,7 @@ import {Platform} from "./Platform";
 class Mixcloud extends Platform {
 
     public getDropdownButtonIcon(){
-        return <i className="--fa-font-brands fa-brands fa-mixcloud h3"></i>;
+        return <i className="fa-brands fa-mixcloud h3"></i>;
     }
 
     public getDropdownButtonClass() {

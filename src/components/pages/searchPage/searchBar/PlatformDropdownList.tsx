@@ -35,7 +35,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     e.preventDefault()
                     setSelectedSearch(YouTubeSearchVideoByGeneral.getInstance())
                 }}>
-                    <i className='bx bxl-youtube'></i>
+                    <i className='fa-brands fa-youtube'></i>
                 </div>
             </li>
 
@@ -47,7 +47,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     props.togglePlatformDropdownList()
                     e.preventDefault()
                     setSelectedSearch(VimeoSearchVideoByName.getInstance())
-                }}><i className='bx bxl-vimeo'></i></div>
+                }}><i className='fa-brands fa-vimeo-v'></i></div>
             </li>
 
             {/*Spotify*/}
@@ -63,7 +63,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                          setSelectedSearch(SpotifySearchTrackByName.getInstance())
                      }}
                 >
-                    <i className='bx bxl-spotify'></i> &raquo;
+                    <i className='fa-brands fa-spotify'></i> &raquo;
                 </div>
 
                 {/*Spotify dropdown*/}
@@ -110,7 +110,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     e.preventDefault()
                     setSelectedSearch(SoundcloudSearchTrack.getInstance())
                 }}>
-                    <i className='bx bxl-soundcloud'></i>
+                    <i className='fa-brands fa-soundcloud'></i>
                 </div>
             </li>
 
@@ -123,7 +123,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     e.preventDefault()
                     setSelectedSearch(SoundcloudSearchTrack.getInstance())
                 }}>
-                    <i className='bx bxl-facebook'></i>
+                    <i className='fa-brands fa-facebook'></i>
                 </div>
             </li>
 
@@ -136,7 +136,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     e.preventDefault()
                     setSelectedSearch(MixcloudSearchTrack.getInstance())
                 }}>
-                    <i className="--fa-font-brands fa-brands fa-mixcloud"></i>
+                    <i className="fa-brands fa-mixcloud"></i>
                 </div>
             </li>
 
@@ -149,7 +149,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     e.preventDefault()
                     setSelectedSearch(DailymotionSearchVideo.getInstance())
                 }}>
-                    <i className='bx bxl-dailymotion'></i>
+                    <i className='fa-brands fa-dailymotion'></i>
                 </div>
             </li>
 
@@ -166,7 +166,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                          setSelectedSearch(TwitchSearchLivestreamByGeneral.getInstance())
                      }}
                 >
-                    <i className='bx bxl-twitch'></i> &raquo;
+                    <i className='fa-brands fa-twitch'></i> &raquo;
                 </div>
 
                 {/*Twitch dropdown*/}

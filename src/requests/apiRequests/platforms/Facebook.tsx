@@ -3,7 +3,7 @@ import {Platform} from "./Platform";
 class Facebook extends Platform {
 
     public getDropdownButtonIcon(){
-        return <i className='bx bxl-facebook h3'></i>;
+        return <i className='fa-brands facebook h3'></i>;
     }
 
     public getDropdownButtonClass() {

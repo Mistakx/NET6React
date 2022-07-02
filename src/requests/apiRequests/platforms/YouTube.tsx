@@ -3,7 +3,7 @@ import { Platform } from "./Platform";
 export class YouTube extends Platform{
 
     public getDropdownButtonIcon() {
-        return <i className='bx bxl-youtube h3'/>;
+        return <i className='fa-brands fa-youtube h3'/>;
     }
 
     public getDropdownButtonClass() {
