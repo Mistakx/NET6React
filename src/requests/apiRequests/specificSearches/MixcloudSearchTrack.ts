@@ -27,7 +27,7 @@ export class MixcloudSearchTrack extends ApiSearch {
     }
 
     public getButtonText() {
-        return "Mixcloud (Track)";
+        return "Mixcloud";
     }
 
     private async searchMixcloudByName(searchQuery: string) {

@@ -136,7 +136,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     e.preventDefault()
                     setSelectedSearch(MixcloudSearchTrack.getInstance())
                 }}>
-                    <i className="fa-brands fa-mixcloud"></i>
+                    <i className="--fa-font-brands fa-brands fa-mixcloud"></i>
                 </div>
             </li>
 
