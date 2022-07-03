@@ -6,7 +6,7 @@ import React from "react";
 class SoundCloud extends Platform {
 
     public getDropdownButtonIcon(){
-        return <FontAwesomeIcon icon={faSoundcloud} size={"2x"}/>;
+        return <FontAwesomeIcon icon={faSoundcloud} size={"lg"}/>;
     }
 
     public getDropdownButtonClass() {

@@ -49,7 +49,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
 
             {/*YouTube*/}
             <li>
-                <div className="dropdown-item text-center text-white h3 btn-youtube"
+                <div className="dropdown-item text-center text-white h4 btn-youtube"
                      id="platform"
                      data-id="youtube" onClick={(e) => {
                     props.togglePlatformDropdownList()
@@ -62,7 +62,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
 
             {/*Vimeo*/}
             <li>
-                <div className="dropdown-item text-center text-white h3 btn-vimeo"
+                <div className="dropdown-item text-center text-white h4 btn-vimeo"
                      id="platform"
                      data-id="vimeo" onClick={(e) => {
                     props.togglePlatformDropdownList()
@@ -77,7 +77,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
             <li>
 
                 {/*Spotify button*/}
-                <div className="clickable dropdown-item text-center text-white h3 btn-spotify"
+                <div className="clickable dropdown-item text-center text-white h4 btn-spotify"
                      id="platform"
                      data-id="spotify"
                      onClick={(e) => {
@@ -126,7 +126,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
 
             {/*Soundcloud*/}
             <li>
-                <div className="dropdown-item text-center text-white h3 btn-soundCloud"
+                <div className="dropdown-item text-center text-white h4 btn-soundCloud"
                      id="platform"
                      data-id="soundCloud" onClick={(e) => {
                     props.togglePlatformDropdownList()
@@ -139,7 +139,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
 
             {/*Facebook*/}
             <li>
-                <div className="dropdown-item text-center text-white h3 btn-facebook"
+                <div className="dropdown-item text-center text-white h4 btn-facebook"
                      id="platform"
                      data-id="facebook" onClick={(e) => {
                     props.togglePlatformDropdownList()
@@ -152,7 +152,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
 
             {/*Mixcloud*/}
             <li>
-                <div className="dropdown-item text-center text-white h3 btn-mixcloud"
+                <div className="dropdown-item text-center text-white h4 btn-mixcloud"
                      id="platform"
                      data-id="mixcloud" onClick={(e) => {
                     props.togglePlatformDropdownList()
@@ -165,7 +165,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
 
             {/*DailyMotion*/}
             <li>
-                <div className="dropdown-item text-center text-white h3 btn-dailymotion"
+                <div className="dropdown-item text-center text-white h4 btn-dailymotion"
                      id="platform"
                      data-id="dailymotion" onClick={(e) => {
                     props.togglePlatformDropdownList()
@@ -180,7 +180,7 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
             <li>
 
                 {/*Twitch button*/}
-                <div className="clickable dropdown-item text-center text-white h3 btn-twitch"
+                <div className="clickable dropdown-item text-center text-white h4 btn-twitch"
                      id="platform"
                      data-id="twitch"
                      onClick={(e) => {

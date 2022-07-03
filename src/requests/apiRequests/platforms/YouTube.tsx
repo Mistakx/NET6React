@@ -6,7 +6,7 @@ import React from "react";
 export class YouTube extends Platform{
 
     public getDropdownButtonIcon() {
-        return <FontAwesomeIcon icon={faYoutube} size={"2x"}/>;
+        return <FontAwesomeIcon icon={faYoutube} size={"lg"}/>;
     }
 
     public getDropdownButtonClass() {

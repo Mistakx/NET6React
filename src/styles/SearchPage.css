@@ -52,12 +52,6 @@
     border-bottom-style: solid;
 }
 
-.search-body .btn-icon i,
-.search-body .btn-icon {
-    padding-bottom: 0 !important;
-    vertical-align: middle !important;
-}
-
 .search-body .form-control:focus {
     background-color: transparent;
     outline: 0;

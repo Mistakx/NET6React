@@ -6,7 +6,7 @@ import React from "react";
 class Facebook extends Platform {
 
     public getDropdownButtonIcon(){
-        return <FontAwesomeIcon icon={faFacebook} size={"2x"}/>;
+        return <FontAwesomeIcon icon={faFacebook} size={"lg"}/>;
     }
 
     public getDropdownButtonClass() {

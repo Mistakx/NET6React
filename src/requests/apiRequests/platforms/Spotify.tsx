@@ -6,7 +6,7 @@ import React from "react";
 class Spotify extends Platform {
 
     public getDropdownButtonIcon(){
-        return <FontAwesomeIcon icon={faSpotify} size={"2x"}/>;
+        return <FontAwesomeIcon icon={faSpotify} size={"lg"}/>;
     }
 
     public getDropdownButtonClass() {

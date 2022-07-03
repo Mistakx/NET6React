@@ -6,7 +6,7 @@ import React from "react";
 class Twitch extends Platform {
 
     public getDropdownButtonIcon() {
-        return <FontAwesomeIcon icon={faTwitch} size={"2x"}/>;
+        return <FontAwesomeIcon icon={faTwitch} size={"lg"}/>;
     }
 
     public getDropdownButtonClass() {

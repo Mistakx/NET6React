@@ -6,7 +6,7 @@ import React from "react";
 class Mixcloud extends Platform {
 
     public getDropdownButtonIcon(){
-        return <FontAwesomeIcon icon={faMixcloud} size={"2x"}/>;
+        return <FontAwesomeIcon icon={faMixcloud} size={"lg"}/>;
     }
 
     public getDropdownButtonClass() {
