@@ -308,58 +308,58 @@
 # Dropdown submenu
 --------------------------------------------------------------*/
 
-.dropdown-menu {
+.search-body .dropdown-menu {
     min-width: auto !important;
     padding-bottom: 0;
 }
 
-.dropdown-menu li {
+.search-body .dropdown-menu li {
     position: relative;
 }
 
-.dropdown-menu .dropdown-submenu {
+.search-body .dropdown-menu .dropdown-submenu {
     display: none;
     position: absolute;
     left: 100%;
     top: -7px;
 }
 
-.dropdown-menu>li:hover>.dropdown-submenu {
+.search-body .dropdown-menu>li:hover>.dropdown-submenu {
     display: block;
 }
 
-.dropdown-menu .spotify {
+.search-body .dropdown-menu .spotify {
     background-color: var(--spotifyNeutralColor);
     color: var(--iconColor);
 }
 
-.dropdown-menu .spotify div:active {
+.search-body .dropdown-menu .spotify div:active {
     background-color: var(--spotifyHoveredColor) !important;
     border-color: var(--spotifyNeutralColor);
     color: var(--iconColor);
 }
 
-.dropdown-menu .twitch {
+.search-body .dropdown-menu .twitch {
     background-color: var(--twitchNeutralColor);
     color: var(--iconColor);
 }
 
-.dropdown-menu .twitch div:active {
+.search-body .dropdown-menu .twitch div:active {
     background-color: var(--twitchHoveredColor);
     border-color: var(--twitchNeutralColor);
     color: var(--iconColor);
 }
 
-.dropdown-submenu li:first-child {
+.search-body .dropdown-submenu li:first-child {
     margin-top: -7px;
 }
 
-.dropdown-submenu {
+.search-body .dropdown-submenu {
     position: relative;
     background-color: transparent;    
 }
 
-.dropdown-submenu .dropdown-menu {
+.search-body .dropdown-submenu .dropdown-menu {
     top: 0;
     left: 100%;
     margin-top: -1px;
