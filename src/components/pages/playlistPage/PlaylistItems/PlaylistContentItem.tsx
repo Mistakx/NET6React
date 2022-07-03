@@ -96,7 +96,7 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
         >
             <div className="row align-middle" ref={myRef}>
                 {leftButton}
-                <div className={"col-" + itemSizeClass + " p-3 clickable"}
+                <div className={"col-" + itemSizeClass + " p-4 clickable"}
                      onClick={() => {
                          setPlaylistPlayerGeneralizedResult(props.generalizedResult)
                          setPlaylistCurrentResults(props.generalizedResults)
@@ -104,8 +104,11 @@ function PlaylistContentItem(props: PlaylistItemProperties): JSX.Element {
                          setSearchCurrentResults(null)
                      }}
                 >
-                    {/* <i className='bx bx-play h4 position-absolute top-50 start-0 translate-middle'></i> */}
-                    <h6 className="fw-bold text-truncate text-center">{props.generalizedResult.title}</h6>
+                    
+                    <div className="bg-dark rounded" style={{width: "100%", height: "100%"}}>
+                        {/* <i className='bx bx-play h4 position-absolute top-50 start-0 translate-middle'></i> */}
+                        <h6 className="fw-bold text-truncate text-center">{props.generalizedResult.title}</h6>
+                    </div>
                 </div>
                 {contentDropdown}
             </div>

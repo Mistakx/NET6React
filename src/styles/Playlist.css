@@ -35,15 +35,19 @@
   padding: 0 !important;
 }
 
-#playlist .list-group .list-group-item:hover {
+#playlist .list-group .list-group-item:hover{
   background-color: #1355AD;
   box-shadow: 0 0 10px 0 var(--text);
   z-index: 2;
 }
 
-/* #playlist .list-group .list-group-item .btn {
-  margin-left: -30px !important;
-} */
+#playlist .list-group .list-group-item:hover {
+  filter: blur(8px);
+}
+
+#playlist .list-group .list-group-item:hover .clickable{
+  filter: blur(-8px);
+}
 
 #playlist .list-group .list-group-item .active {
   background-color: #067ded;

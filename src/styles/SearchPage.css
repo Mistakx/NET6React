@@ -373,11 +373,13 @@
     z-index: 9999;
 }
 
+.closeButton {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
 .moveButton,
 .closeButton {
-    /* position: absolute;
-    top: 0px;
-    right: 25px; */
     color: var(--text);
     z-index: 1020;
     background-color: rgba(19, 86, 173, 0.6)
