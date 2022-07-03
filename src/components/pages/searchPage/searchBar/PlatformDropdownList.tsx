@@ -69,7 +69,6 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     e.preventDefault()
                     setSelectedSearch(VimeoSearchVideoByName.getInstance())
                 }}>
-                    <i className='fa-brands fa-vimeo-v'></i>
                     <FontAwesomeIcon icon={faVimeoV}/>
                 </div>
             </li>

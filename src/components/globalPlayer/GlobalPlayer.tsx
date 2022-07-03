@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import GlobalPlayerStore from '../../stores/players/GlobalPlayerStore'
 import CloseVideoButton from "./CloseVideoButton";
 import {Rnd} from "react-rnd";
@@ -23,13 +23,14 @@ function GlobalPlayer(): JSX.Element {
 
         resizeablePlayer =
 
-            <div className="ratio ratio-16x9">
+            <div className="ratio ratio-16x9" >
                 {/* TODO botão para fechar não é percetivel no mobile */}
 
                 <Rnd
                     default={resizeablePlayerDefaultOptions}
                     minWidth="200px"
                     minHeight="100%"
+                    style={{zIndex:"9999"}}
                 >
                     <MoveVideoButton/>
                     <CloseVideoButton/>
