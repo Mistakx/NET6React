@@ -174,9 +174,9 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                              }
                          }}
                     >
-                        <h5 className="card-title text-uppercase text-center">{props.basicDetails.title}</h5>
+                        <h5 className="card-title text-uppercase text-truncate text-center">{props.basicDetails.title}</h5>
                         {visibility}
-                        {ownerName}
+                        {ownerName} 
                         <div className="card-text text-start">Items: {props.basicDetails.resultsAmount}</div>
                         {weeklyViews}
                         {totalViews}
