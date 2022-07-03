@@ -350,10 +350,13 @@
     color: var(--iconColor);
 }
 
+.dropdown-submenu li:first-child {
+    margin-top: -7px;
+}
 
 .dropdown-submenu {
     position: relative;
-    background-color: transparent;
+    background-color: transparent;    
 }
 
 .dropdown-submenu .dropdown-menu {
