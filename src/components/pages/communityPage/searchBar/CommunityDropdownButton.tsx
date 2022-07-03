@@ -17,7 +17,7 @@ function CommunityDropdownButton(props: PlatformDropdownButtonProperties): JSX.E
                 aria-expanded="false" onClick={() => {
             props.togglePlatformDropdownList()
         }}>{
-            <i className='h3' style={{"fontStyle":"normal"}}>{selectedSearch.getButtonText()}</i>
+            <i className='h5' style={{"fontStyle":"normal"}}>{selectedSearch.getButtonText()}</i>
         }
 
         </button>

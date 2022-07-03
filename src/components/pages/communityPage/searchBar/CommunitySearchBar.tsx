@@ -81,8 +81,8 @@ function CommunitySearchBar(): JSX.Element {
 
                     <CommunitySearchForm/>
 
-                    <button className={"btn btn-search sparta"} type="submit"
-                            id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
+                    <button className={"btn btn-sm btn-search sparta"} type="submit"
+                            id="button-addon2"><i className='bx bx-search-alt'></i></button>
                 </div>
             </form>
 
