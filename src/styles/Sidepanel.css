@@ -100,8 +100,7 @@
   padding: 15px;
   overflow-y: auto;
 }
-
-@media (max-width: 688px) {
+@media only screen and (orientation: portrait ) {
   #header {
     position: fixed;
     width: 100%;

@@ -38,7 +38,7 @@
 # General
 --------------------------------------------------------------*/
 body {
-  /*font-family: 'Baloo 2', cursive;*/
+  font-family: 'Baloo 2', cursive;
   background-color: #071E3D;
   color: var(--text);
 
@@ -66,7 +66,7 @@ a:hover {
 
 h1 {
   /* font-family: 'Caesar Dressing', cursive; */
-  /*font-family: 'Baloo 2', cursive;*/
+  font-family: 'Baloo 2', cursive;
 }
 
 h2,
@@ -74,7 +74,7 @@ h3,
 h4,
 h5,
 h6 {
-  /*font-family: 'Baloo 2', cursive;*/
+  font-family: 'Baloo 2', cursive;
 }
 
 /*--------------------------------------------------------------
@@ -282,11 +282,11 @@ h6 {
   color: #45505b;
   margin: 15px 0 0 0;
   font-size: 26px;
-  /*font-family: 'Baloo 2', cursive;*/
+  font-family: 'Baloo 2', cursive;
 }
 
 #hero p span {
-  /*font-family: 'Baloo 2', cursive;*/
+  font-family: 'Baloo 2', cursive;
   color: var(--text);
   letter-spacing: 1px;
 }
@@ -325,7 +325,9 @@ h6 {
   }
 }
 
-
+.loading {
+  display: inline-block;
+}
 
 
 
