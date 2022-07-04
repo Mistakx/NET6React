@@ -1,5 +1,9 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap');*/
-/*@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap'); !*Cursor changes when pointed at*!*/
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap');
+
+html {
+  font-family: 'Baloo 2', cursive;
+}
 
 .clickable {
   cursor: pointer;
@@ -328,8 +332,13 @@ h6 {
 .loading {
   display: inline-block;
 }
-
-
+.logo {
+  position: absolute;
+  z-index: 10;
+  background-image: url(../../public/favicon/logo-2-01.svg);
+  background-repeat: no-repeat;
+  background-size: 100px 100px;
+}
 
 
 /*--------------------------------------------------------------

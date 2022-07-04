@@ -239,7 +239,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                 </div>
 
                 <div className="icon-box icon-box-lightblue">
-                    <h3 className="text-white"><strong>{userProfile?.username}</strong></h3>
+                    <strong><h3 className="text-white">{userProfile?.username}</h3></strong>
                     <h4 className="text-white">{userProfile?.name}</h4>
                     <div className="position-relative change-profile-picture">
                         {userPhoto}
@@ -252,7 +252,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                 <div className="col-lg-4 col-md-4 col-sm-4 col-4">
                     <div className="icon-box icon-box-lightblue">
                         <h1>{userProfile?.viewablePlaylistsAmount!}</h1>
-                        Playlists
+                        <p>Playlists</p>
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-4 col-4">
@@ -265,7 +265,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                          }}
                     >
                         <h1>{userProfile?.followersAmount!}</h1>
-                        Followers
+                        <p>Followers</p>
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-4 col-4">
@@ -278,7 +278,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                          }}
                     >
                         <h1>{userProfile?.followingUsersAmount!}</h1>
-                        Following
+                        <p>Following</p>
                     </div>
                 </div>
             </div>

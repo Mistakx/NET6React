@@ -73,13 +73,13 @@
 .icon-box-lightblue {
   background: var(--spartaHoveredColor);
   color: #fff;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .services .icon-box {
   text-align: center;
   transition: all ease-in-out 0.3s;
-  padding: 20px 20px 20px 20px;
+  padding: 20px;
 }
 
 .services .icon-box img {
@@ -120,7 +120,7 @@
 
 .playlist .card-profile h2 {
   padding: 20px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .list-group-item .bg-dark,

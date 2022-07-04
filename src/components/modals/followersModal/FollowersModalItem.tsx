@@ -65,7 +65,7 @@ function FollowersModalItem(props: FollowersModalItemProperties): JSX.Element {
 
                                 }}
 
-        ><i className='bx bx-trash'></i></button>
+        ><i className='bx bx-trash h5'></i></button>
     }
 
     let followingButton
@@ -87,7 +87,7 @@ function FollowersModalItem(props: FollowersModalItemProperties): JSX.Element {
                         } else prettyAlert("You need to be logged in to follow a user", false)
                     }}
             >
-                <i className={'bx ' + followingButtonShapeClass}></i>
+                <i className={'bx h5 ' + followingButtonShapeClass}></i>
             </button>
     }
 
@@ -99,8 +99,8 @@ function FollowersModalItem(props: FollowersModalItemProperties): JSX.Element {
                     navigate(`/user/${props.follower.username}`)
                 }}
             >
-                <div className="col-2">
-                    <img src={"/" + props.follower.profilePhotoUrl} className="img-fluid rounded"/>
+                <div className="col-2 text-center">
+                    <img src={"/" + props.follower.profilePhotoUrl} className="img-fluid rounded" style={{width: '43px', height: '43px'}}/>
                 </div>
                 <div className="col-7">
                     <h5>{props.follower.username}</h5>

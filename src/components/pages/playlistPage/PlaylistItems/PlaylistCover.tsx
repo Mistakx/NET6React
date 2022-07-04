@@ -162,17 +162,14 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
     let ownerButton;
     if (playlistBasicDetails?.owner != null) {
 
-        ownerButton = <button className="btn btn-lg btn-user rounded border border-light"
+        ownerButton = <button className="btn btn-lg rounded border border-light"
                               title="Disabled tooltip"
-                              type="button" style={{
-            backgroundSize: "100% 100%",
-            backgroundImage: "url(/" + playlistBasicDetails.owner.profilePhotoUrl + ")"
-        }}
+                              type="button" 
                               onClick={() => {
                                   navigate(`/user/${playlistBasicDetails.owner?.username}`)
                               }}
         >
-            <i className='bx bx-user'></i>
+            <img src={"/" + playlistBasicDetails.owner.profilePhotoUrl} alt=""  className="img-fluid"/>
         </button>
     }
 

@@ -401,23 +401,24 @@
 /*--------------------------------------------------------------
 # Search results
 --------------------------------------------------------------*/
-.card {
+.results .card {
     background-position: center center;
     background-repeat: no-repeat;
     margin-bottom: 30px;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: var(--spartaHoveredColor);
     padding: 0 !important;
 }
 
 .card-img-overlay {
     color: #fff;
-    background: rgba(7, 30, 61, 0.5);
+    background: rgba(7, 30, 61, 0.502);
     height: 50px;
     overflow: hidden;
     margin: none;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    box-shadow: 0px 10px 10px 5px #071e3d80;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
 }
 
 .card:hover .card-img-overlay {
@@ -426,7 +427,7 @@
     color: #fff;
     transition: 400ms;
     height: 100%;
-    border-radius: 20px;
+    border-radius: 7px;
 }
 
 .card:not( :hover) .card-img-overlay {
@@ -439,7 +440,7 @@
 }
 
 .results .card img {
-    border-radius: 20px;
+    /* border-radius: 10px; */
 }
 
 .results .add-playlist {
