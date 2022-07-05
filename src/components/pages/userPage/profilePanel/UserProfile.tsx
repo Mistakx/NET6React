@@ -163,12 +163,9 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                             localStorage.removeItem("sessionToken");
                             localStorage.removeItem("username");
                             setIsAuthenticated(false);
-                            if (sessionToken) await HubConnectionSingleton.disconnectHub(sessionToken);
-                            else prettyAlert("You are not logged in", true)
+                            await HubConnectionSingleton.disconnectHub();
                         } catch (e: any) {
                             prettyAlert(e, false)
-                        } finally {
-                            navigate("/")
                         }
                     }}
             >

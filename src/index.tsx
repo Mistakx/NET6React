@@ -1,8 +1,8 @@
 import React from 'react';
 import reportWebVitals from './reportWebVitals';
 import {createRoot} from "react-dom/client";
-import LoginStore from "./stores/LoginStore";
 import {App} from "./App";
+// import LogRocket from "logrocket";
 
 // LogRocket.init('tcdmcx/playlist-manager');
 

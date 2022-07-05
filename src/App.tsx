@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {BrowserRouter, Route, Routes, useLocation, useNavigate, useParams,} from "react-router-dom";
+import React from 'react';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import SearchPage from "./components/pages/searchPage/SearchPage";
 import HomePage from "./components/pages/homePage/HomePage";
 import PlaylistPage from "./components/pages/playlistPage/PlaylistPage";
@@ -8,7 +8,6 @@ import RegisterPage from "./components/pages/registerPage/RegisterPage";
 import SidePanel from "./components/SidePanel";
 import GlobalPlayer from "./components/globalPlayer/GlobalPlayer";
 import Alert from "./components/Alert";
-import LogRocket from 'logrocket';
 import TrendingPage from "./components/pages/trendingPage/TrendingPage";
 import CommunityPage from "./components/pages/communityPage/CommunityPage";
 import RefreshedUserPage from "./components/pages/userPage/RefreshedOtherUserPage";
@@ -17,8 +16,6 @@ import LoginStore from "./stores/LoginStore";
 import LiveRoom from "./components/liveRoom/LiveRoom";
 import SkyPlaylistManagerAuthenticator from "./components/SkyPlaylistManagerAuthenticator";
 
-// LogRocket.init('tcdmcx/playlist-manager');
-
 export function App() {
 
 
@@ -26,7 +23,8 @@ export function App() {
     const sessionToken = localStorage.getItem("sessionToken"); // When the user refreshes the page, he isn't yet authenticated, but has the necessary session token.
 
     return (
-        <BrowserRouter>
+
+        <BrowserRouter basename="/">
 
             <SkyPlaylistManagerAuthenticator/>
             <SidePanel/>

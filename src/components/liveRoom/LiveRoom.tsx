@@ -1,19 +1,16 @@
 import React, {useEffect, useState} from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
-import {useNavigate} from "react-router-dom";
 import {HubConnectionSingleton} from "utils/HubConnectionSingleton";
 import AlertStore from "stores/AlertStore";
-import {ConnectToHubDto} from "models/backendRequests/HubConnections/ConnectToHubDto";
 import LoginStore from "../../stores/LoginStore";
 import OnlineUserItem from "./OnlineUserItem";
-import UserProfile from "../pages/userPage/profilePanel/UserProfile";
 import {UserProfileDto} from "../../models/backendResponses/userRoute/UserProfileDto";
+import {HubConnection, HubConnectionState} from "@microsoft/signalr";
 
 
 function LiveRoom(): JSX.Element {
 
-    const hubConnection = HubConnectionSingleton.getInstance();
 
     const [onlineUsersList, setOnlineUsersList] = useState<JSX.Element[]>();
 
@@ -21,40 +18,67 @@ function LiveRoom(): JSX.Element {
 
     const isAuthenticated = LoginStore(state => state.isAuthenticated)
 
-    const sessionToken = localStorage.getItem("sessionToken");
+    const [hubConnectionState, setHubConnectionState] = useState<HubConnectionState>(HubConnectionState.Connected);
+
+    var lockResolver;
+    // @ts-ignore
+    if (navigator && navigator.locks && navigator.locks.request) {
+        const promise = new Promise((res) => {
+            lockResolver = res;
+        });
+
+        // @ts-ignore
+        navigator.locks.request('unique_lock_name', {mode: "shared"}, () => {
+            return promise;
+        });
+
+    }
 
     useEffect(() => {
-
         AOS.init();
-
-        hubConnection.on("myOnlineFriends", friends => {
-            console.log(friends)
-            let onlineUsersListComponents: JSX.Element[] = []
-            for (const currentOnlineUser of friends as UserProfileDto[]) {
-                let currentUserItem = <OnlineUserItem key={currentOnlineUser.username} basicUserDetails={currentOnlineUser}/>
-                onlineUsersListComponents.push(currentUserItem)
-            }
-
-            setOnlineUsersList(onlineUsersListComponents)
-        })
-
-        hubConnection.on("notify", message => {
-            prettyAlert(message, true)
-        })
-
-
-    }, []);
+    })
 
     useEffect(() => {
 
-        (async () => {
-            if (isAuthenticated) {
-                if (sessionToken) {
-                    await HubConnectionSingleton.connectToHub(sessionToken)
-                } else prettyAlert("Session token is not set", false)
-            }
-        })();
+        const sessionToken = localStorage.getItem("sessionToken");
 
+        if (sessionToken) {
+            console.log("Logged in, starting Hub.")
+
+            let hubConnection = HubConnectionSingleton.getInstance(sessionToken);
+            HubConnectionSingleton.startHub()
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible' && hubConnection.state !== HubConnectionState.Disconnected) {
+                    HubConnectionSingleton.startHub();
+                }
+            });
+
+            // Run every 5 seconds
+            setInterval(() => {
+                setHubConnectionState(hubConnection.state);
+            }, 5000);
+
+            hubConnection.on("myOnlineFriends", friends => {
+                console.log(friends)
+                let onlineUsersListComponents: JSX.Element[] = []
+                for (const currentOnlineUser of friends as UserProfileDto[]) {
+                    let currentUserItem = <OnlineUserItem key={currentOnlineUser.username}
+                                                          basicUserDetails={currentOnlineUser}/>
+                    onlineUsersListComponents.push(currentUserItem)
+                }
+
+                setOnlineUsersList(onlineUsersListComponents)
+            })
+
+            hubConnection.on("notify", message => {
+                prettyAlert(message, true)
+            })
+        }
+
+        else {
+            HubConnectionSingleton.disconnectHub();
+        }
 
     }, [isAuthenticated]);
 
@@ -62,7 +86,7 @@ function LiveRoom(): JSX.Element {
     if (isAuthenticated) {
         liveRoom =
 
-            <div className="position-relative" style={{zIndex:9998}}>
+            <div className="position-relative" style={{zIndex: 9998}}>
                 <div className="live-room">
                     <a className="intro-banner-vdo-play-btn green-sinal" type="button"
                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
@@ -76,7 +100,7 @@ function LiveRoom(): JSX.Element {
 
                 <div className="offcanvas offcanvas-end" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                     <div className="offcanvas-header">
-                        <h5 id="offcanvasRightLabel">Live Room</h5>
+                        <h5 id="offcanvasRightLabel">Live Room - {hubConnectionState}</h5>
                         <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                     </div>
