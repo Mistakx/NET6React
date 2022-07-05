@@ -29,6 +29,9 @@ function UserPlaylistsModal(): JSX.Element {
                         <h5 id="staticBackdropLabel">
                             <strong>Add to playlist</strong><br/> {resultToAdd?.title}
                         </h5>
+                        <button className="btn btn-primary btn-sm text-end" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            New playlist
+                        </button>
                     </Modal.Title>
 
                     <button className="btn-close"
