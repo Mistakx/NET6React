@@ -2,12 +2,10 @@ import {ApiSearch} from "./ApiSearch";
 import axios from "axios";
 import {Platform} from "../platforms/Platform";
 import Radio from "../platforms/Radio";
-import {GeneralizedResult} from "../../../models/apiResponses/GenericResults";
 import {RadioPageToListItemsConverter} from "../converters/RadioPageToListItemsConverter";
+import {RadioSearchByIdResult, RadioSearchByNameResult} from "../../../models/apiResponses/RadioSearchResult";
 
 export class RadioSearchByName extends ApiSearch {
-
-  
 
     private static radioSearchInstance: ApiSearch
 
@@ -38,7 +36,7 @@ export class RadioSearchByName extends ApiSearch {
             + "?q=" + searchQuery
 
         const headers = {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
         }
         const options = {
             method: 'GET',
@@ -46,35 +44,20 @@ export class RadioSearchByName extends ApiSearch {
             url,
         };
 
-
         // @ts-ignore
         let radioInformationResponse = await axios(options);
 
-        let radioSource: {
-            code : string;
-            url : string;
-            subtitle : string;
-            title : string;
-        } 
-        
-        let radioInformation: {
-            _id: number;
-            _source : typeof radioSource;
-        }[] = radioInformationResponse.data.hits.hits
-        
-        //let radioInformation: any = radioInformationResponse.data;
-        return radioInformation;
-        
+        return radioInformationResponse.data as RadioSearchByNameResult
+
     }
 
-    
-    private async searchRadioByID(searchQuery: string) {
+    private async searchRadioById(searchQuery: string) {
 
         let radioName = await this.searchRadioByName(searchQuery);
 
-        var radiosInformation :any[] = []
-        
-        for (var radioNames of radioName) {
+        let radiosInformation: RadioSearchByIdResult[] = []
+
+        for (let radioNames of radioName.hits.hits) {
 
             const url = "http://radio.garden/api/ara/content/channel/"
                 + radioNames._source.url.substr(-8);
@@ -89,37 +72,23 @@ export class RadioSearchByName extends ApiSearch {
                 url: url,
             };
 
-
             // @ts-ignore
             let radioInformationResponse = await axios(options);
+            radiosInformation.push(radioInformationResponse.data)
 
-            let radioData: {
-                code : string;
-                url : string;
-                website : string;
-                title : string;
-            }
-
-            let radioInformation: {
-                id : typeof radioData,
-            } [] = radioInformationResponse.data.data;
-            
-            radiosInformation.push(radioInformation)
-            
         }
-        
+
         return radiosInformation;
-        
+
     }
-    
+
     public async getSearchResults(searchQuery: string): Promise<any> {
         try {
-            const radioPage = await this.searchRadioByID(searchQuery);
+            const radioPage = await this.searchRadioById(searchQuery);
             return RadioPageToListItemsConverter.convert(radioPage)
-        }
-        catch(e){
+        } catch (e) {
             console.log(e)
         }
-        
+
     }
 }

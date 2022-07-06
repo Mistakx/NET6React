@@ -64,11 +64,8 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
             <form onSubmit={async (event) => {
                 try {
                     event.preventDefault()
-                    console.log("Mistakx")
                     let results = await searchPlatformItems(searchBarQuery)
                     setSearchedResults(results)
-                    console.log(results)
-                    console.log("Mistakx END")
 
                 } catch (e: any) {
                     console.log(e.response?.data.message)

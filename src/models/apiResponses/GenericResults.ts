@@ -49,4 +49,5 @@ export interface GenericLivestreamResult extends GeneralizedResult{
 export interface GenericRadioResult extends GeneralizedResult{
     resultType: "GenericRadioResult"
     website: string
+    region: string
 }

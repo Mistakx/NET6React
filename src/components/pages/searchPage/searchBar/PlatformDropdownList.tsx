@@ -138,19 +138,6 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                 </div>
             </li>
 
-            {/*Facebook*/}
-            <li>
-                <div className="dropdown-item text-center text-white h3 btn-facebook"
-                     id="platform"
-                     data-id="facebook" onClick={(e) => {
-                    props.togglePlatformDropdownList()
-                    e.preventDefault()
-                    setSelectedSearch(SoundcloudSearchTrack.getInstance())
-                }}>
-                    <FontAwesomeIcon icon={faFacebookF}/>
-                </div>
-            </li>
-
             {/*Mixcloud*/}
             <li>
                 <div className="dropdown-item text-center text-white h3 btn-mixcloud"
