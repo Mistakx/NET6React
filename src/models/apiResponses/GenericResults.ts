@@ -45,3 +45,8 @@ export interface GenericLivestreamResult extends GeneralizedResult{
     resultType: "GenericLivestreamResult"
     gameName?: string // Name of the game being played on the stream.
 }
+
+export interface GenericRadioResult extends GeneralizedResult{
+    resultType: "GenericRadioResult"
+    website: string
+}

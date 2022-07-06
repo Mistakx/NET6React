@@ -4,3 +4,4 @@ export interface PodcastSearchItemProperties {
     searchResult: GenericPodcastResult
     searchResults: GeneralizedResult[]
 }
+

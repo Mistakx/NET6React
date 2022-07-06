@@ -36,6 +36,10 @@
     --dailymotionNeutralColor: #00aaff;
     --dailymotionHoveredColor: #0588c9;
 
+    --radioHiglightColor: #c95c04;
+    --radioNeutralColor: #b75204;
+    --radioHoveredColor: #984503;
+
     --spartaHiglightColor: #1970E3;
     --spartaNeutralColor: #1355AD;
     --spartaHoveredColor: #0D3A76;
@@ -148,6 +152,16 @@
 .search-body .dailymotion .btn-search,
 .search-body .dailymotion::placeholder {
     color: var(--dailymotionHiglightColor);
+}
+
+.search-body .radio {
+    color: var(--radioHiglightColor);
+    border-bottom-color: var(--radioNeutralColor);
+}
+
+.search-body .radio .btn-search,
+.search-body .radio::placeholder {
+    color: var(--radioHiglightColor);
 }
 
 .search-body .sparta {
@@ -296,6 +310,21 @@
 
 .btn-dailymotion:hover {
     background-color: var(--dailymotionHoveredColor) !important;
+    color: var(--iconColor);
+}
+
+.btn-dailymotion:active {
+    background-color: var(--dailymotionHoveredColor) !important;
+}
+
+.btn-radio {
+    background-color: var(--radioNeutralColor);
+    border-color: var(--radioNeutralColor);
+    color: var(--iconColor) !important;
+}
+
+.btn-radio:hover {
+    background-color: var(--radioHoveredColor) !important;
     color: var(--iconColor);
 }
 
