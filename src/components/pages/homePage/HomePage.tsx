@@ -37,7 +37,18 @@ function HomePage(): JSX.Element {
                 <div className="col-md-4 offset-md-2 position-absolute top-50 start-50 translate-middle logo">
                     {/* <img src={logo} alt="" /> */}
                 </div>
-
+                <div className="loading">
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                </div>
             </div>
 
         </section>

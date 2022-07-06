@@ -6,7 +6,7 @@ import React from "react";
 class Dailymotion extends Platform {
 
     public getDropdownButtonIcon() {
-        return <FontAwesomeIcon icon={faDailymotion} size={"2x"}/>;
+        return <FontAwesomeIcon icon={faDailymotion} size={"lg"}/>;
     }
 
     public getDropdownButtonClass() {

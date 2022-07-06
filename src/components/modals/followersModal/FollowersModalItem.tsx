@@ -40,38 +40,38 @@ function FollowersModalItem(props: FollowersModalItemProperties): JSX.Element {
     let removeFollowerButton;
     if (props.showingFollowerOf && "username" in props.showingFollowerOf && props.showingFollowerOf.username === localStorage.getItem("username")
         || props.showingFollowerOf && "title" in props.showingFollowerOf && props.showingFollowerOf.owner === null) {
-        removeFollowerButton = <button className="btn text-danger"
-                                       onClick={async (e) => {
-                                           e.stopPropagation()
-                                           if (props.showingFollowerOf) {
-                                               if (sessionToken) {
-                                                   try {
-                                                       let response: string;
+        removeFollowerButton = <button className="btn text-danger text-center"
+                                onClick={async (e) => {
+                                    e.stopPropagation()
+                                    if (props.showingFollowerOf) {
+                                        if (sessionToken) {
+                                            try {
+                                                let response: string;
 
-                                                       if ("username" in props.showingFollowerOf) {
-                                                           response = await CommunityRequests.removeFollowFromUser(props.follower.username, sessionToken)
+                                                if ("username" in props.showingFollowerOf) {
+                                                    response = await CommunityRequests.removeFollowFromUser(props.follower.username, sessionToken)
 
-                                                       } else if ("title" in props.showingFollowerOf) {
-                                                           response = await CommunityRequests.removeFollowFromPlaylist(props.showingFollowerOf.id, props.follower.username, sessionToken)
-                                                       }
-                                                       setRemovedFollowerResponse(response!)
-                                                       prettyAlert(response!, true)
+                                                } else if ("title" in props.showingFollowerOf) {
+                                                    response = await CommunityRequests.removeFollowFromPlaylist(props.showingFollowerOf.id, props.follower.username, sessionToken)
+                                                }
+                                                setRemovedFollowerResponse(response!)
+                                                prettyAlert(response!, true)
 
-                                                   } catch (e: any) {
-                                                       prettyAlert(e.response.data, false)
-                                                   }
-                                               } else prettyAlert("No session token found.", false)
-                                           }
+                                            } catch (e: any) {
+                                                prettyAlert(e.response.data, false)
+                                            }
+                                        } else prettyAlert("No session token found.", false)
+                                    }
 
-                                       }}
+                                }}
 
-        ><i className='bx bx-trash'></i></button>
+        ><i className='bx bx-trash h5'></i></button>
     }
 
     let followingButton
     if (props.follower.username !== localStorage.getItem("username")) {
         followingButton =
-            <button type="button" className="btn dropdown-toggle-split"
+            <button className="btn text-dark text-center"
                     onClick={async (e) => {
                         e.stopPropagation()
                         if (sessionToken) {
@@ -87,7 +87,7 @@ function FollowersModalItem(props: FollowersModalItemProperties): JSX.Element {
                         } else prettyAlert("You need to be logged in to follow a user", false)
                     }}
             >
-                <i className={'bx ' + followingButtonShapeClass}></i>
+                <i className={'bx h5 ' + followingButtonShapeClass}></i>
             </button>
     }
 
@@ -95,19 +95,21 @@ function FollowersModalItem(props: FollowersModalItemProperties): JSX.Element {
 
         <li className="list-group-item clickable">
             <div className="row align-middle"
-                 onClick={() => {
-                     navigate(`/user/${props.follower.username}`)
-                 }}
+                onClick={() => {
+                    navigate(`/user/${props.follower.username}`)
+                }}
             >
-                <div className="col-2">
-                    <img src={"/" + props.follower.profilePhotoUrl} className="img-fluid rounded"/>
+                <div className="col-2 text-center">
+                    <img src={"/" + props.follower.profilePhotoUrl} className="img-fluid rounded" style={{width: '43px', height: '43px'}}/>
                 </div>
-                <div className="col-8">
+                <div className="col-7">
                     <h5>{props.follower.username}</h5>
                 </div>
-                <div className="col-2">
-                    {removeFollowerButton}
+                <div className="col-1">
                     {followingButton}
+                </div>
+                <div className="col-1">
+                    {removeFollowerButton}
                 </div>
             </div>
 

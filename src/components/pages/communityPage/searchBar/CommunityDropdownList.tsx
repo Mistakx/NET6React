@@ -17,19 +17,20 @@ function CommunityDropdownList(props: PlatformDropdownListProperties): JSX.Eleme
 
             {/*User*/}
             <li>
-                <div className="dropdown-item text-center text-white h3 btn-sparta"
+                <div className="dropdown-item text-center text-white h5 btn-sparta"
 
                      onClick={(e) => {
                          props.togglePlatformDropdownList()
                          e.preventDefault()
                          setSelectedSearch(UserRequest.getInstance())
                      }}>
+                
                     User
                 </div>
             </li>
 
             <li>
-                <div className="dropdown-item text-center text-white h3 btn-sparta"
+                <div className="dropdown-item text-center text-white h5 btn-sparta"
 
                      onClick={(e) => {
                          props.togglePlatformDropdownList()

@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import '../../../../styles/style.css';
+import {OverlayTrigger, Popover} from "react-bootstrap";
 import {UserProfileDto} from "../../../../models/backendResponses/userRoute/UserProfileDto";
 import UserRequests from "../../../../requests/backendRequests/UserRequests";
 import {EditPhotoButton} from "./EditPhotoButton";
@@ -126,18 +127,27 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
         }
     }, [removedFollowerResponse]);
 
-
     let dropdownMenu;
     let editPhotoButton;
     let followButton;
     let logoutButton;
+    let  changeProfilePicture;
     if (props.username === localStorage.getItem("username")) {
+        changeProfilePicture = " change-profile-picture";
         dropdownMenu =
             <div className="btn-group">
-                <button className="btn dropdown-toggle-split"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                    <i className='bx bx-edit-alt'></i>
-                </button>
+
+                <OverlayTrigger
+                    trigger={['hover']}
+                    placement="right"
+                    overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
+                        Edit
+                    </Popover>} >
+                    <button className="btn dropdown-toggle-split"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <i className='bx bx-edit-alt'></i>
+                    </button>
+                </OverlayTrigger>
                 <ul className="dropdown-menu dropdown-menu-dark">
                     <li
                         onClick={() => {
@@ -157,6 +167,12 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                 </ul>
             </div>
         logoutButton =
+            <OverlayTrigger
+                trigger={['hover']}
+                placement="right"
+                overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
+                    Logout
+                </Popover>} >
             <button className="btn text-danger"
                     onClick={async () => {
                         try {
@@ -171,11 +187,19 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
             >
                 <i className='bx bx-log-out text-danger'></i>
             </button>
+            </OverlayTrigger>
         editPhotoButton = <EditPhotoButton/>
 
     } else {
         followButton = <div className="btn-group">
-            <button className="btn dropdown-toggle-split"
+
+            <OverlayTrigger
+                trigger={['hover']}
+                placement="right"
+                overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
+                    Follow
+                </Popover>} >
+                <button className="btn dropdown-toggle-split"
                     data-bs-toggle="dropdown" aria-expanded="false"
                     onClick={async () => {
                         try {
@@ -190,23 +214,23 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                         } catch (e: any) {
                             prettyAlert(e.response.data, false)
                         }
-                    }}
-            >
+                    }}>
                 <i className={'bx ' + followingButtonShapeClass}></i>
-            </button>
+                </button>
+            </OverlayTrigger>
         </div>
     }
 
     let userPhoto
     if (userProfile) {
         userPhoto = <img src={"/" + userProfile?.profilePhotoUrl}
-                         width="250"
-                         height="250"
-                         className="img-fluid rounded-circle"
-                         onError={({currentTarget}) => {
-                             currentTarget.onerror = null; // prevents looping
-                             currentTarget.style.display = "none"
-                         }}
+            width="250"
+            height="250"
+            className="img-fluid rounded-circle"
+            onError={({currentTarget}) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.style.display = "none"
+            }}
 
         />
     }
@@ -221,24 +245,31 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                     <div className="btn-group icons-playlist" style={{position: "absolute", top: "0px", left: "0px"}}>
                         {dropdownMenu}
                         {followButton}
-                        <button className="btn text-white"
-                                onClick={() => {
-                                    if (userProfile) {
-                                        setShowingStatisticsModal(true)
-                                        setShowingStatisticsOf(userProfile)
-                                    }
-                                }}
-                        >
-                            <i className='bx bx-info-circle'></i>
-                        </button>
+                        <OverlayTrigger
+                            trigger={['hover']}
+                            placement="right"
+                            overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
+                                Statistics
+                            </Popover>} >
+                            <button className="btn text-white"
+                                    onClick={() => {
+                                        if (userProfile) {
+                                            setShowingStatisticsModal(true)
+                                            setShowingStatisticsOf(userProfile)
+                                        }
+                                    }}
+                            >
+                                <i className='bx bx-info-circle'></i>
+                            </button>
+                        </OverlayTrigger>
                         {logoutButton}
                     </div>
                 </div>
 
                 <div className="icon-box icon-box-lightblue">
-                    <h3 className="text-white"><strong>{userProfile?.username}</strong></h3>
+                    <strong><h3 className="text-white">{userProfile?.username}</h3></strong>
                     <h4 className="text-white">{userProfile?.name}</h4>
-                    <div className="position-relative change-profile-picture">
+                    <div className={"position-relative"+ changeProfilePicture}>
                         {userPhoto}
                         {editPhotoButton}
                     </div>
@@ -249,7 +280,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                 <div className="col-lg-4 col-md-4 col-sm-4 col-4">
                     <div className="icon-box icon-box-lightblue">
                         <h1>{userProfile?.viewablePlaylistsAmount!}</h1>
-                        Playlists
+                        <p>Playlists</p>
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-4 col-4">
@@ -262,7 +293,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                          }}
                     >
                         <h1>{userProfile?.followersAmount!}</h1>
-                        Followers
+                        <p>Followers</p>
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-4 col-4">
@@ -275,7 +306,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                          }}
                     >
                         <h1>{userProfile?.followingUsersAmount!}</h1>
-                        Following
+                        <p>Following</p>
                     </div>
                 </div>
             </div>

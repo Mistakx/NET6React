@@ -13,7 +13,7 @@ function CloseVideoButton(): JSX.Element {
 
     return (
         <i
-            className='bx bx-x bx-sm closeButton clickable position-absolute top-100 start-100 translate-middle'
+            className='bx bx-x bx-sm closeButton clickable'
             onClick={() => {
                 stopPlayingVideo()
             }}>

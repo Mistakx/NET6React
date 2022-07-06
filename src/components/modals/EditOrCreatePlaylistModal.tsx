@@ -94,9 +94,9 @@ function EditOrCreatePlaylistModal(): JSX.Element {
                     </ModalTitle>
 
                     <button className="btn-close"
-                            onClick={() => {
-                                setShowingEditOrCreatePlaylistModal(false)
-                            }}>
+                        onClick={() => {
+                            setShowingEditOrCreatePlaylistModal(false)
+                        }}>
                     </button>
 
                 </ModalHeader>
@@ -108,16 +108,16 @@ function EditOrCreatePlaylistModal(): JSX.Element {
                     }}>
                         <div className="form-group mb-3">
                             <input type="text" className="form-control" placeholder="Playlist title"
-                                   value={playlistTitle}
-                                   onChange={(e) => {
-                                       setPlaylistTitle(e.target.value)
-                                   }}
+                                value={playlistTitle}
+                                onChange={(e) => {
+                                    setPlaylistTitle(e.target.value)
+                                }}
                             />
                         </div>
 
                         <div className="form-group mb-3 d-grid">
                             <div className="btn-group" role="group"
-                                 aria-label="Basic radio toggle button group">
+                                aria-label="Basic radio toggle button group">
 
                                 <label className={"btn btn-outline-light " + (playlistVisibility === "Public" ? "active" : "")}>
                                     <input
@@ -153,10 +153,10 @@ function EditOrCreatePlaylistModal(): JSX.Element {
 
                         <div className="form-group">
                             <textarea name="" id="" placeholder="Playlist description" className="form-control"
-                                      onChange={(e) => {
-                                          setPlaylistDescription(e.target.value)
-                                      }}
-                                      value={playlistDescription}
+                                onChange={(e) => {
+                                    setPlaylistDescription(e.target.value)
+                                }}
+                                value={playlistDescription}
                             >
 
                             </textarea>
@@ -166,10 +166,10 @@ function EditOrCreatePlaylistModal(): JSX.Element {
 
                 <div className="modal-footer">
                     <button type="submit" className="btn btn-success"
-                            onClick={async (e) => {
-                                e.preventDefault()
-                                await submitForm()
-                            }}
+                        onClick={async (e) => {
+                            e.preventDefault()
+                            await submitForm()
+                        }}
                     >
                         Save changes
                     </button>

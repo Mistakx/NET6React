@@ -56,12 +56,6 @@
     border-bottom-style: solid;
 }
 
-.search-body .btn-icon i,
-.search-body .btn-icon {
-    padding-bottom: 0 !important;
-    vertical-align: middle !important;
-}
-
 .search-body .form-control:focus {
     background-color: transparent;
     outline: 0;
@@ -343,55 +337,58 @@
 # Dropdown submenu
 --------------------------------------------------------------*/
 
-.dropdown-menu {
+.search-body .dropdown-menu {
     min-width: auto !important;
     padding-bottom: 0;
 }
 
-.dropdown-menu li {
+.search-body .dropdown-menu li {
     position: relative;
 }
 
-.dropdown-menu .dropdown-submenu {
+.search-body .dropdown-menu .dropdown-submenu {
     display: none;
     position: absolute;
     left: 100%;
     top: -7px;
 }
 
-.dropdown-menu>li:hover>.dropdown-submenu {
+.search-body .dropdown-menu>li:hover>.dropdown-submenu {
     display: block;
 }
 
-.dropdown-menu .spotify {
+.search-body .dropdown-menu .spotify {
     background-color: var(--spotifyNeutralColor);
     color: var(--iconColor);
 }
 
-.dropdown-menu .spotify div:active {
+.search-body .dropdown-menu .spotify div:active {
     background-color: var(--spotifyHoveredColor) !important;
     border-color: var(--spotifyNeutralColor);
     color: var(--iconColor);
 }
 
-.dropdown-menu .twitch {
+.search-body .dropdown-menu .twitch {
     background-color: var(--twitchNeutralColor);
     color: var(--iconColor);
 }
 
-.dropdown-menu .twitch div:active {
+.search-body .dropdown-menu .twitch div:active {
     background-color: var(--twitchHoveredColor);
     border-color: var(--twitchNeutralColor);
     color: var(--iconColor);
 }
 
-
-.dropdown-submenu {
-    position: relative;
-    background-color: transparent;
+.search-body .dropdown-submenu li:first-child {
+    margin-top: -7px;
 }
 
-.dropdown-submenu .dropdown-menu {
+.search-body .dropdown-submenu {
+    position: relative;
+    background-color: transparent;    
+}
+
+.search-body .dropdown-submenu .dropdown-menu {
     top: 0;
     left: 100%;
     margin-top: -1px;
@@ -408,11 +405,13 @@
     z-index: 9999;
 }
 
+.closeButton {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
 .moveButton,
 .closeButton {
-    /* position: absolute;
-    top: 0px;
-    right: 25px; */
     color: var(--text);
     z-index: 1020;
     background-color: rgba(19, 86, 173, 0.6)
@@ -431,23 +430,24 @@
 /*--------------------------------------------------------------
 # Search results
 --------------------------------------------------------------*/
-.card {
+.results .card {
     background-position: center center;
     background-repeat: no-repeat;
     margin-bottom: 30px;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: var(--spartaHoveredColor);
     padding: 0 !important;
 }
 
 .card-img-overlay {
     color: #fff;
-    background: rgba(7, 30, 61, 0.5);
+    background: rgba(7, 30, 61, 0.502);
     height: 50px;
     overflow: hidden;
     margin: none;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    box-shadow: 0px 10px 10px 5px #071e3d80;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
 }
 
 .card:hover .card-img-overlay {
@@ -456,7 +456,7 @@
     color: #fff;
     transition: 400ms;
     height: 100%;
-    border-radius: 20px;
+    border-radius: 7px;
 }
 
 .card:not( :hover) .card-img-overlay {
@@ -469,7 +469,7 @@
 }
 
 .results .card img {
-    border-radius: 20px;
+    /* border-radius: 10px; */
 }
 
 .results .add-playlist {

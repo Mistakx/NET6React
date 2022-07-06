@@ -1,5 +1,9 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap');*/
-/*@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap'); !*Cursor changes when pointed at*!*/
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap');
+
+html {
+  font-family: 'Baloo 2', cursive;
+}
 
 .clickable {
   cursor: pointer;
@@ -38,7 +42,7 @@
 # General
 --------------------------------------------------------------*/
 body {
-  /*font-family: 'Baloo 2', cursive;*/
+  font-family: 'Baloo 2', cursive;
   background-color: #071E3D;
   color: var(--text);
 
@@ -66,7 +70,7 @@ a:hover {
 
 h1 {
   /* font-family: 'Caesar Dressing', cursive; */
-  /*font-family: 'Baloo 2', cursive;*/
+  font-family: 'Baloo 2', cursive;
 }
 
 h2,
@@ -74,7 +78,7 @@ h3,
 h4,
 h5,
 h6 {
-  /*font-family: 'Baloo 2', cursive;*/
+  font-family: 'Baloo 2', cursive;
 }
 
 /*--------------------------------------------------------------
@@ -159,6 +163,15 @@ h6 {
 .align-middle {
   vertical-align: middle;
   align-items: center;
+}
+
+.btn-close {
+  box-shadow: none !important;
+}
+
+.popover-arrow {
+  /* background: var(--dark); */
+  display: none !important;
 }
 
 .bg-dark {
@@ -282,11 +295,11 @@ h6 {
   color: #45505b;
   margin: 15px 0 0 0;
   font-size: 26px;
-  /*font-family: 'Baloo 2', cursive;*/
+  font-family: 'Baloo 2', cursive;
 }
 
 #hero p span {
-  /*font-family: 'Baloo 2', cursive;*/
+  font-family: 'Baloo 2', cursive;
   color: var(--text);
   letter-spacing: 1px;
 }
@@ -325,9 +338,16 @@ h6 {
   }
 }
 
-
-
-
+.loading {
+  display: inline-block;
+}
+.logo {
+  position: absolute;
+  z-index: 10;
+  background-image: url(../../public/favicon/logo-2-01.svg);
+  background-repeat: no-repeat;
+  background-size: 100px 100px;
+}
 
 
 /*--------------------------------------------------------------
@@ -460,7 +480,12 @@ section {
 # side panel
 --------------------------------------------------------------*/
 .offcanvas {
-  background-color: var(--spartaHoveredColor);
+  background-color: var(--dark);
+  border-left: 3px solid var(--text);
+}
+
+.offcanvas-header .btn-close {
+  filter: invert(100%) sepia(42%) saturate(4%) hue-rotate(216deg) brightness(115%)
 }
 
 .offcanvas .divisor {
@@ -470,7 +495,7 @@ section {
 }
 
 .offcanvas .list-group .list-group-item {
-  background-color: var(--dark);
+  background-color: var(--spartaHiglightColor);
   color: var(--text);
 }
 
@@ -564,6 +589,8 @@ section {
 }
 
 .image_inner_container img {
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
 }
 

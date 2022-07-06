@@ -35,15 +35,11 @@
   padding: 0 !important;
 }
 
-#playlist .list-group .list-group-item:hover {
+#playlist .list-group .list-group-item:hover{
   background-color: #1355AD;
   box-shadow: 0 0 10px 0 var(--text);
   z-index: 2;
 }
-
-/* #playlist .list-group .list-group-item .btn {
-  margin-left: -30px !important;
-} */
 
 #playlist .list-group .list-group-item .active {
   background-color: #067ded;
@@ -77,13 +73,13 @@
 .icon-box-lightblue {
   background: var(--spartaHoveredColor);
   color: #fff;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .services .icon-box {
   text-align: center;
   transition: all ease-in-out 0.3s;
-  padding: 20px 20px 20px 20px;
+  padding: 20px;
 }
 
 .services .icon-box img {
@@ -124,7 +120,7 @@
 
 .playlist .card-profile h2 {
   padding: 20px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .list-group-item .bg-dark,

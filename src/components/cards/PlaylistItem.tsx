@@ -132,15 +132,18 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
     let ownerButton;
     if (props.basicDetails.owner) {
         ownerButton =
-            <button className="btn btn-lg btn-user"
+            <button className="btn btn-lg btn-user rounded border border-light"
                     type="button" style={{
-                backgroundSize: "100% 100%",
-                backgroundImage: "url(" + props.basicDetails.owner.profilePhotoUrl + ")"
-            }}
+                        backgroundSize: "100% 100%",
+                        backgroundRepeat: "no-repeat",
+                        backgroundImage: "url(" + props.basicDetails.owner.profilePhotoUrl + ")"
+                    }}
                     onClick={() => {
                         navigate(`/user/${props.basicDetails.owner?.username}`)
                     }}
             >
+                
+            {/* <img src={"/" + props.basicDetails.owner.profilePhotoUrl} alt=""  className="img-fluid"/> */}
             </button>
 
     }
@@ -174,9 +177,9 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
                              }
                          }}
                     >
-                        <h5 className="card-title text-uppercase text-center">{props.basicDetails.title}</h5>
+                        <h5 className="card-title text-uppercase text-truncate text-center">{props.basicDetails.title}</h5>
                         {visibility}
-                        {ownerName}
+                        {ownerName} 
                         <div className="card-text text-start">Items: {props.basicDetails.resultsAmount}</div>
                         {weeklyViews}
                         {totalViews}

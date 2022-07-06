@@ -6,7 +6,7 @@ import React from "react";
 class Vimeo extends Platform{
 
     public getDropdownButtonIcon() {
-        return <FontAwesomeIcon icon={faVimeoV} size={"2x"}/>;
+        return <FontAwesomeIcon icon={faVimeoV} size={"lg"}/>;
     }
 
     public getDropdownButtonClass() {

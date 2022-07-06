@@ -1,5 +1,6 @@
 import '../../../styles/SearchPage.css';
 import React from "react";
+import {Collapse, Card, Button} from "react-bootstrap";
 import "aos/dist/aos.css";
 import PlaylistRequests from "../../../requests/backendRequests/PlaylistRequests";
 import AlertStore from "../../../stores/AlertStore";
@@ -16,8 +17,8 @@ function AddPlaylistForm(): JSX.Element {
     return (
 
         <div className="add-list clickable mb-2">
-
-            <form
+            <div className="collapse" id="collapseExample">
+                <form
                 onSubmit={async (e) => {
                     e.preventDefault()
                     const sessionToken = localStorage.getItem("sessionToken")
@@ -29,7 +30,6 @@ function AddPlaylistForm(): JSX.Element {
                 }}
             >
                 <div className="input-group">
-
                     <input type="text" className="form-control" placeholder="Add Playlist"
                            onChange={(e) => {
                                setPlaylistTitle(e.target.value)
@@ -38,7 +38,7 @@ function AddPlaylistForm(): JSX.Element {
                     <button className="btn btn-success">OK</button>
                 </div>
             </form>
-
+            </div>
         </div>
 
     )

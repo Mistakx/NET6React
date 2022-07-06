@@ -37,27 +37,34 @@ function FollowingModal(): JSX.Element {
             <div className="modal-content">
 
                 <Modal.Header>
-
-                    <Modal.Title>
-                        <h5 id="staticBackdropLabel">
-                            <strong>Following</strong><br/> {showingFollowingOf.username}
-                        </h5>
-                        <select className="form-select form-select-sm bg-dark text-white" id="TopSelect"
-                                onChange={(e) => {
-                                    setShowing(e.target.value as "Users" | "Playlists")
-                                }}
-                        >
-                            <option>Users</option>
-                            <option>Playlists</option>
-                        </select>
-                    </Modal.Title>
-
-                    <button className="btn-close"
-                            onClick={() => {
-                                setShowingFollowingModal(false)
-                            }}>
-                    </button>
-
+                    <div className="container-fluid">
+                        <div className="row align-middle">
+                            <div className="col-7">
+                                <Modal.Title>
+                                    <h5 id="staticBackdropLabel">
+                                        <strong>Following</strong><br/> {showingFollowingOf.username}
+                                    </h5>
+                                </Modal.Title>
+                            </div>
+                            <div className="col-4">
+                                <select className="form-select form-select-sm bg-dark text-white" id="TopSelect"
+                                        onChange={(e) => {
+                                            setShowing(e.target.value as "Users" | "Playlists")
+                                        }}
+                                        >
+                                    <option>Users</option>
+                                    <option>Playlists</option>
+                                </select>
+                            </div>
+                            <div className="col-1">
+                                <button className="btn-close"
+                                        onClick={() => {
+                                            setShowingFollowingModal(false)
+                                        }}>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </Modal.Header>
 
                 <Modal.Body>
