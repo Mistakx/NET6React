@@ -280,7 +280,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                 <div className="col-lg-4 col-md-4 col-sm-4 col-4">
                     <div className="icon-box icon-box-lightblue">
                         <h1>{userProfile?.viewablePlaylistsAmount!}</h1>
-                        <p>Playlists</p>
+                        <p className={"text-truncate"}>Playlists</p>
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-4 col-4">
@@ -293,7 +293,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                          }}
                     >
                         <h1>{userProfile?.followersAmount!}</h1>
-                        <p>Followers</p>
+                        <p className={"text-truncate"}>Followers</p>
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-4 col-4">
@@ -306,7 +306,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                          }}
                     >
                         <h1>{userProfile?.followingUsersAmount!}</h1>
-                        <p>Following</p>
+                        <p className={"text-truncate"}>Following</p>
                     </div>
                 </div>
             </div>

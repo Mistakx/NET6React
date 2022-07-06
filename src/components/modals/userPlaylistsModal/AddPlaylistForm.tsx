@@ -30,7 +30,7 @@ function AddPlaylistForm(): JSX.Element {
                 }}
             >
                 <div className="input-group">
-                    <input type="text" className="form-control" placeholder="Add Playlist"
+                    <input type="text" className="form-control" placeholder="Create new playlist"
                            onChange={(e) => {
                                setPlaylistTitle(e.target.value)
                            }}

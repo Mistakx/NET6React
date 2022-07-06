@@ -34,7 +34,7 @@ function EditOrCreatePlaylistModal(): JSX.Element {
                 <div>
                     <strong>Edit Playlist</strong>
                     <br></br>
-                    {playlistToEditOrCreate?.title.toUpperCase()}
+                    <div>{playlistToEditOrCreate?.title.toUpperCase()}</div>
                 </div>
             )
             setPlaylistDescription(playlistToEditOrCreate?.description)

@@ -16,12 +16,12 @@ export class RadioPageToListItemsConverter {
                 resultType: "GenericRadioResult",
                 platformId: item.data.id,
                 title: item.data.title,
-                creator: "",
+                creator: item.data.title,
                 thumbnailUrl: "https://www.google.com/s2/favicons?domain=" + item.data.website + "&sz=256", // 0-640x640; 1-300x300; 2-64x64
                 website: item.data.website,
                 playerFactoryName: "MultiPlatformPlayerFactory",
                 platformPlayerUrl: item.data.url,
-                region: item.data.place + ", " + item.data.country,
+                region: item.data.place.title + ", " + item.data.country.title,
             }
 
             items.push(currentGenericRadioItem)

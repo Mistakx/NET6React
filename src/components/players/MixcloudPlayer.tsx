@@ -2,8 +2,6 @@ import {MixcloudPlayerProperties} from "../../models/components/players/Mixcloud
 
 export function MixcloudPlayer(props: MixcloudPlayerProperties): JSX.Element {
 
-    console.log("https://www.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2F" + props.currentResult.creator + "%2F" + props.currentResult.platformId)
-
     return (
 
         <div style={{

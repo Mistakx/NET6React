@@ -344,7 +344,7 @@ h6 {
 .logo {
   position: absolute;
   z-index: 10;
-  background-image: url(../../public/favicon/logo-2-01.svg);
+  /*background-image: url(../../public/favicon/logo-2-01.svg);*/
   background-repeat: no-repeat;
   background-size: 100px 100px;
 }

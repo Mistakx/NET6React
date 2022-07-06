@@ -50,7 +50,7 @@ function RadioSearchItem(props: RadioSearchItemProperties): JSX.Element {
                      }}
                 >
                     <h5 className="card-title text-uppercase text-truncate">{props.searchResult.title}</h5>
-                    <div className="card-text text-wrap">{props.searchResult.creator}</div>
+                    <div className="card-text text-wrap">{props.searchResult.region}</div>
                     {weeklyViewsAmount}
                     {totalViewsAmount}
                 </div>

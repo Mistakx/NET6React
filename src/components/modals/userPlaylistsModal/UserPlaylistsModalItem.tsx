@@ -22,7 +22,7 @@ function UserPlaylistsModalItem(props: PlaylistItemProperties): JSX.Element {
                 prettyAlert(e.response.data, false)
             }
         }}>
-            {props.title}
+            <div className={"text-truncate"}>{props.title}</div>
 
             <span className="badge"><i className='bx bx-list-plus'></i></span>
         </li>

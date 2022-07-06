@@ -1,9 +1,12 @@
 import {Platform} from "./Platform";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faRadio} from "@fortawesome/free-solid-svg-icons";
+import React from "react";
 
 class Radio extends Platform {
 
     public getDropdownButtonIcon(){
-        return <i className='bx radio h3'></i>;
+        return <FontAwesomeIcon icon={faRadio} size={"lg"}/>;
     }
 
     public getDropdownButtonClass() {
