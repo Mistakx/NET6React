@@ -25,7 +25,10 @@ function SkyPlaylistManagerAuthenticator(): JSX.Element {
                 navigate("/trending")
                 prettyAlert("Successfully logged in.", true)
             }
-            else setIsAuthenticated(false)
+            else {
+                setIsAuthenticated(false)
+                navigate("/")
+            }
         });
 
     }, []);

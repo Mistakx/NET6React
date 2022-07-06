@@ -24,7 +24,7 @@ export function App() {
 
     return (
 
-        <BrowserRouter basename="/">
+        <BrowserRouter>
 
             <SkyPlaylistManagerAuthenticator/>
             <SidePanel/>

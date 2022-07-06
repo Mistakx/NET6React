@@ -20,20 +20,6 @@ function LiveRoom(): JSX.Element {
 
     const [hubConnectionState, setHubConnectionState] = useState<HubConnectionState>(HubConnectionState.Connected);
 
-    var lockResolver;
-    // @ts-ignore
-    if (navigator && navigator.locks && navigator.locks.request) {
-        const promise = new Promise((res) => {
-            lockResolver = res;
-        });
-
-        // @ts-ignore
-        navigator.locks.request('unique_lock_name', {mode: "shared"}, () => {
-            return promise;
-        });
-
-    }
-
     useEffect(() => {
         AOS.init();
     })
@@ -42,7 +28,7 @@ function LiveRoom(): JSX.Element {
 
         const sessionToken = localStorage.getItem("sessionToken");
 
-        if (sessionToken) {
+        if (sessionToken && isAuthenticated) {
             console.log("Logged in, starting Hub.")
 
             let hubConnection = HubConnectionSingleton.getInstance(sessionToken);
@@ -59,6 +45,12 @@ function LiveRoom(): JSX.Element {
                 setHubConnectionState(hubConnection.state);
             }, 5000);
 
+            setInterval(() => {
+                if (hubConnection.state === HubConnectionState.Connected) {
+                    hubConnection.send("Ping", "Ping");
+                }
+            }, 2500);
+
             hubConnection.on("myOnlineFriends", friends => {
                 console.log(friends)
                 let onlineUsersListComponents: JSX.Element[] = []
@@ -71,12 +63,14 @@ function LiveRoom(): JSX.Element {
                 setOnlineUsersList(onlineUsersListComponents)
             })
 
+            hubConnection.on("ping", message => {
+                console.log(message)
+            })
+
             hubConnection.on("notify", message => {
                 prettyAlert(message, true)
             })
-        }
-
-        else {
+        } else {
             HubConnectionSingleton.disconnectHub();
         }
 
