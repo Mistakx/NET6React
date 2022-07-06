@@ -37,6 +37,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import {faPeopleGroup} from "@fortawesome/free-solid-svg-icons";
 
+import {RadioSearchByName} from "../../../../requests/apiRequests/specificSearches/RadioSearchByName";
 
 function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Element {
 
@@ -173,6 +174,19 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     setSelectedSearch(DailymotionSearchVideo.getInstance())
                 }}>
                     <FontAwesomeIcon icon={faDailymotion}/>
+                </div>
+            </li>
+
+            {/*Radio*/}
+            <li>
+                <div className="dropdown-item text-center text-white h3 btn-radio"
+                     id="platform"
+                     data-id="radio" onClick={(e) => {
+                    props.togglePlatformDropdownList()
+                    e.preventDefault()
+                    setSelectedSearch(RadioSearchByName.getInstance())
+                }}>
+                    <i className='bx radio'></i>
                 </div>
             </li>
 

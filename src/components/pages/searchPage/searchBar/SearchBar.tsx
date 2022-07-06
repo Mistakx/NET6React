@@ -44,7 +44,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
     async function searchPlatformItems(chosenSearchQuery: string) {
 
         let searchList: GeneralizedResult[];
-
+        
             if (selectedSearch.getPlatform().getName() === "Spotify") {
                 searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40, props.spotifyAuthenticator.current)
             } else if (selectedSearch.getPlatform().getName() === "Twitch") {
@@ -64,8 +64,12 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
             <form onSubmit={async (event) => {
                 try {
                     event.preventDefault()
+                    console.log("Mistakx")
                     let results = await searchPlatformItems(searchBarQuery)
                     setSearchedResults(results)
+                    console.log(results)
+                    console.log("Mistakx END")
+
                 } catch (e: any) {
                     console.log(e.response?.data.message)
                     console.log(e.response?.data.error?.message)
