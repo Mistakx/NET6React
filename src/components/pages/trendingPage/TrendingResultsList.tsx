@@ -3,6 +3,7 @@ import {GeneralizedResult} from "../../../models/apiResponses/GenericResults";
 import RecommendationRequests from "../../../requests/backendRequests/RecommendationRequests";
 import SearchResultComponentFactory from "../../cards/content/SearchResultComponentFactory";
 import AlertStore from "../../../stores/AlertStore";
+import TrendingTopBarStore from "../../../stores/topBars/TrendingTopBarStore";
 
 function TrendingResultsList(): JSX.Element {
 
@@ -10,18 +11,22 @@ function TrendingResultsList(): JSX.Element {
 
     const [trendingResults, setTrendingResults] = useState<GeneralizedResult[]>();
 
+    const showing = TrendingTopBarStore(state => state.showing)
+
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
     useEffect(() => {
         let sessionToken = localStorage.getItem("sessionToken");
         if (sessionToken) {
             (async () => {
-                setTrendingResults(await RecommendationRequests.getTrendingContent(1, 40, sessionToken));
+                if (showing === "Monthly") setTrendingResults(await RecommendationRequests.getTrendingMonthlyContent(1, 40, sessionToken));
+                else if (showing === "Weekly") setTrendingResults(await RecommendationRequests.getTrendingWeeklyContent(1, 40, sessionToken));
+                else if (showing === "Daily") setTrendingResults(await RecommendationRequests.getTrendingDailyContent(1, 40, sessionToken));
             })()
         } else {
             prettyAlert("You must be logged in to view trending content", false);
         }
-    }, []);
+    }, [showing]);
 
     useEffect(() => {
 

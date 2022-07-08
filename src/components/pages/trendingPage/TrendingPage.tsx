@@ -3,7 +3,7 @@ import React, {useEffect} from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import TrendingResultsList from "./TrendingResultsList";
-import TopBar from "../../TopBar";
+import TrendingTopBar from "./TrendingTopBar";
 import UserPlaylistsModal from "../../modals/userPlaylistsModal/UserPlaylistsModal";
 import UserPlaylistsModalStore from "../../../stores/modals/UserPlaylistsModalStore";
 
@@ -31,7 +31,7 @@ function TrendingPage(): JSX.Element {
 
                         <div className="col-md-10 offset-md-1">
 
-                            <TopBar text={"Trending This Week 🔥"}></TopBar>
+                            <TrendingTopBar text={"Trending This Week 🔥"}></TrendingTopBar>
 
                             <div className="">
 

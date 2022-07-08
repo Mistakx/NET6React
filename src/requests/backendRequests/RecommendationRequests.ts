@@ -35,9 +35,9 @@ class RecommendationRequests {
         return response.data as string
     }
 
-    static async getTrendingContent(page: number, limit: number, sessionToken: string) {
+    static async getTrendingMonthlyContent(page: number, limit: number, sessionToken: string) {
 
-        const url = "/Recommendations/getTrendingContent";
+        const url = "/Recommendations/getTrendingMonthlyContent";
 
         const data: GetTrendingContentDto = {
             limit: limit,
@@ -55,6 +55,49 @@ class RecommendationRequests {
         let response = await axios(options)
         return response.data as GeneralizedResult[]
     }
+
+    static async getTrendingWeeklyContent(page: number, limit: number, sessionToken: string) {
+
+        const url = "/Recommendations/getTrendingWeeklyContent";
+
+        const data: GetTrendingContentDto = {
+            limit: limit,
+            pageNumber: page,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as GeneralizedResult[]
+    }
+
+    static async getTrendingDailyContent(page: number, limit: number, sessionToken: string) {
+
+        const url = "/Recommendations/getTrendingDailyContent";
+
+        const data: GetTrendingContentDto = {
+            limit: limit,
+            pageNumber: page,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as GeneralizedResult[]
+    }
+
 
     static async getContentViews(platformId: string, playerFactoryName: string, platformPlayerUrl?: string) {
 

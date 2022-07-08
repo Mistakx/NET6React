@@ -16,11 +16,22 @@ function PodcastSearchItem(props: PodcastSearchItemProperties): JSX.Element {
         setGlobalPlayerCurrentResult(props.searchResult)
         // setSearchCurrentResults(props.searchResults)
     }
+    let monthlyViewsAmount;
+    if (props.searchResult.monthlyViewsAmount || props.searchResult.monthlyViewsAmount === 0) {
+        monthlyViewsAmount =
+            <div className="card-text text-truncate">Monthly Views: {props.searchResult.monthlyViewsAmount}</div>
+    }
 
     let weeklyViewsAmount;
     if (props.searchResult.weeklyViewsAmount || props.searchResult.weeklyViewsAmount === 0) {
         weeklyViewsAmount =
             <div className="card-text text-truncate">Weekly Views: {props.searchResult.weeklyViewsAmount}</div>
+    }
+
+    let dailyViewsAmount;
+    if (props.searchResult.dailyViewsAmount || props.searchResult.dailyViewsAmount === 0) {
+        dailyViewsAmount =
+            <div className="card-text text-truncate">Daily Views: {props.searchResult.dailyViewsAmount}</div>
     }
 
     let totalViewsAmount;
@@ -51,7 +62,9 @@ function PodcastSearchItem(props: PodcastSearchItemProperties): JSX.Element {
                 >
                     <h5 className="card-title text-uppercase text-truncate">{props.searchResult.title}</h5>
                     <div className="card-text text-wrap">{props.searchResult.creator}</div>
+                    {monthlyViewsAmount}
                     {weeklyViewsAmount}
+                    {dailyViewsAmount}
                     {totalViewsAmount}
                 </div>
             </div>
