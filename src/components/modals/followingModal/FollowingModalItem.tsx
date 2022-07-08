@@ -68,7 +68,7 @@ function FollowingModalItem(props: FollowingModalItemProperties): JSX.Element {
         >
             <div className="row align-middle">
                 <div className="col-2">
-                    <img src={"/" + (props.following as UserProfileDto).profilePhotoUrl} className="img-fluid rounded"/>
+                    <img src={"/" + (props.following as UserProfileDto).profilePhotoUrl} className="img-fluid rounded" style={{width: '43px', height: '43px'}}/>
                 </div>
                 <div className="col-8">
                     <h5>{(props.following as UserProfileDto).username}</h5>
@@ -88,7 +88,7 @@ function FollowingModalItem(props: FollowingModalItemProperties): JSX.Element {
                                  }}>
             <div className="row align-middle">
                 <div className="col-2">
-                    <img src={"" + (props.following as PlaylistDto).thumbnailUrl} className="img-fluid rounded"
+                    <img src={"" + (props.following as PlaylistDto).thumbnailUrl} className="img-fluid rounded " style={{width: '43px', height: '43px'}}
                          onError={({currentTarget}) => {
                              currentTarget.onerror = null; // prevents looping
                              currentTarget.style.display = "none"

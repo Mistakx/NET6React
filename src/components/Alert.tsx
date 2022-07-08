@@ -44,7 +44,7 @@ function Alert(): JSX.Element {
         alert =
 
             <div className="row text-center no-gutters position-fixed top-0 end-0 m-5"
-                 style={{overflowX: "hidden", zIndex: 9999}}>
+                 style={{overflowX: "hidden", zIndex: 10000}}>
 
                 <div
                      className={"toast align-items-center show " + alertColor}

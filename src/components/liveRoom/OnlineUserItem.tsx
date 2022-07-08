@@ -50,10 +50,9 @@ function OnlineUserItem(props: OnlineUserItemProperties): JSX.Element {
                         </div>
                         <div className={"row"}>
                             <div className={"col-1"} onClick={
-                                () => {
+                                (e) => {
+                                    e.stopPropagation()
                                     setGlobalPlayerCurrentResult(props.currentlyPlaying)
-                                    console.log("CLICKED")
-                                    console.log(globalPlayerCurrentResult)
                                 }
                             }>
                                 <FontAwesomeIcon icon={faPlay} className="mr-2"/>
