@@ -12,7 +12,7 @@ function GlobalPlayer(): JSX.Element {
     const searchCurrentResults = GlobalPlayerStore(state => state.searchCurrentResults)
 
     let resizeablePlayer;
-    if (globalPlayerCurrentResult && searchCurrentResults) {
+    if (globalPlayerCurrentResult) {
         let player = PlayerFactory.createPlayer(globalPlayerCurrentResult, setGlobalPlayerCurrentResult, false, searchCurrentResults)
         const resizeablePlayerDefaultOptions = {
             x: 0,

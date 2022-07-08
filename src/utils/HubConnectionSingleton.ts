@@ -1,4 +1,5 @@
 import {HubConnectionBuilder, HttpTransportType, HubConnection, HubConnectionState} from '@microsoft/signalr';
+import {GeneralizedResult} from "../models/apiResponses/GenericResults";
 
 export class HubConnectionSingleton {
     private static hubConnectionInstance: HubConnection;
@@ -27,6 +28,12 @@ export class HubConnectionSingleton {
     public static async disconnectHub() {
         if (HubConnectionSingleton.hubConnectionInstance) {
             await HubConnectionSingleton.hubConnectionInstance.stop()
+        }
+    }
+
+    public static async sendCurrentlyPlaying(currentlyPlayingContent: GeneralizedResult | null) {
+        if (HubConnectionSingleton.hubConnectionInstance) {
+            await HubConnectionSingleton.hubConnectionInstance.send("UpdateCurrentlyPlaying", currentlyPlayingContent);
         }
     }
 

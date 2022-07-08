@@ -1,5 +1,7 @@
 import GlobalPlayerStore from "../../../stores/players/GlobalPlayerStore";
-import {TrackSearchItemProperties} from "../../../models/components/pages/searchPage/searchItems/TrackSearchItemProperties";
+import {
+    TrackSearchItemProperties
+} from "../../../models/components/pages/searchPage/searchItems/TrackSearchItemProperties";
 import React, {useEffect} from "react";
 import "aos/dist/aos.css";
 import UserPlaylistsModalStore from "../../../stores/modals/UserPlaylistsModalStore";
@@ -14,7 +16,7 @@ function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
 
     function setCurrentPlayerToClickedItem() {
         setGlobalPlayerCurrentResult(props.searchResult)
-        setSearchCurrentResults(props.searchResults)
+        // setSearchCurrentResults(props.searchResults)
     }
 
     let weeklyViewsAmount;
@@ -25,7 +27,8 @@ function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
 
     let totalViewsAmount;
     if (props.searchResult.totalViewsAmount || props.searchResult.totalViewsAmount === 0) {
-        totalViewsAmount = <div className="card-text text-truncate">Total Views: {props.searchResult.totalViewsAmount}</div>
+        totalViewsAmount =
+            <div className="card-text text-truncate">Total Views: {props.searchResult.totalViewsAmount}</div>
     }
 
     return (
@@ -36,11 +39,11 @@ function TrackSearchItem(props: TrackSearchItemProperties): JSX.Element {
                  style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.searchResult.thumbnailUrl + ")"}}>
                 <div className="options">
                     <button className="btn btn-lg btn-add"
-                        type="button"
-                        onClick={() => {
-                            setShowingPlaylistsModal(true)
-                            setResultToAdd(props.searchResult)
-                        }}
+                            type="button"
+                            onClick={() => {
+                                setShowingPlaylistsModal(true)
+                                setResultToAdd(props.searchResult)
+                            }}
                     >
                         <i className='bx bx-plus'></i></button>
                 </div>

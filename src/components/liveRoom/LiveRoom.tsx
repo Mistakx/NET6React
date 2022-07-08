@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import {HubConnectionSingleton} from "utils/HubConnectionSingleton";
@@ -7,18 +7,25 @@ import LoginStore from "../../stores/LoginStore";
 import OnlineUserItem from "./OnlineUserItem";
 import {UserProfileDto} from "../../models/backendResponses/userRoute/UserProfileDto";
 import {HubConnection, HubConnectionState} from "@microsoft/signalr";
-
+import GlobalPlayerStore from "../../stores/players/GlobalPlayerStore";
+import PlaylistPlayerPageStore from "../../stores/players/PlaylistPagePlayerStore";
+import {ConnectToHubDto} from "../../models/backendRequests/HubConnections/ConnectToHubDto";
+import {LiveRoomUserDto} from "../../models/backendResponses/userRoute/LiveRoomUserDto";
 
 function LiveRoom(): JSX.Element {
 
-
-    const [onlineUsersList, setOnlineUsersList] = useState<JSX.Element[]>();
+    const [onlineUsers, setOnlineUsers] = useState<JSX.Element[]>([]);
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const isAuthenticated = LoginStore(state => state.isAuthenticated)
 
     const [hubConnectionState, setHubConnectionState] = useState<HubConnectionState>(HubConnectionState.Connected);
+
+    const globalPlayerCurrentResult = GlobalPlayerStore(state => state.globalPlayerCurrentResult)
+    const playlistPlayerCurrentResult = PlaylistPlayerPageStore(state => state.playlistPlayerCurrentResult)
+
+    let hubConnection = useRef() as React.MutableRefObject<HubConnection>;
 
     useEffect(() => {
         AOS.init();
@@ -31,43 +38,45 @@ function LiveRoom(): JSX.Element {
         if (sessionToken && isAuthenticated) {
             console.log("Logged in, starting Hub.")
 
-            let hubConnection = HubConnectionSingleton.getInstance(sessionToken);
+            hubConnection.current = HubConnectionSingleton.getInstance(sessionToken);
             HubConnectionSingleton.startHub()
 
             document.addEventListener('visibilitychange', () => {
-                if (document.visibilityState === 'visible' && hubConnection.state !== HubConnectionState.Disconnected) {
+                if (document.visibilityState === 'visible' && hubConnection.current.state !== HubConnectionState.Disconnected) {
                     HubConnectionSingleton.startHub();
                 }
             });
 
             // Run every 5 seconds
             setInterval(() => {
-                setHubConnectionState(hubConnection.state);
+                setHubConnectionState(hubConnection.current.state);
             }, 5000);
 
             setInterval(() => {
-                if (hubConnection.state === HubConnectionState.Connected) {
-                    hubConnection.send("Ping", "Ping");
+                if (hubConnection.current.state === HubConnectionState.Connected) {
+                    hubConnection.current.send("Ping", "Ping");
                 }
             }, 2500);
 
-            hubConnection.on("myOnlineFriends", friends => {
+            hubConnection.current.on("myOnlineFriends", friends => {
                 console.log(friends)
                 let onlineUsersListComponents: JSX.Element[] = []
-                for (const currentOnlineUser of friends as UserProfileDto[]) {
-                    let currentUserItem = <OnlineUserItem key={currentOnlineUser.username}
-                                                          basicUserDetails={currentOnlineUser}/>
+                for (const currentOnlineUser of friends as LiveRoomUserDto[]) {
+                    let currentUserItem = <OnlineUserItem key={currentOnlineUser.user.username}
+                                                          basicUserDetails={currentOnlineUser.user}
+                                                          currentlyPlaying={currentOnlineUser.currentlyPlaying}
+                    />
                     onlineUsersListComponents.push(currentUserItem)
                 }
 
-                setOnlineUsersList(onlineUsersListComponents)
+                setOnlineUsers(onlineUsersListComponents)
             })
 
-            hubConnection.on("ping", message => {
+            hubConnection.current.on("ping", message => {
                 console.log(message)
             })
 
-            hubConnection.on("notify", message => {
+            hubConnection.current.on("notify", message => {
                 prettyAlert(message, true)
             })
         } else {
@@ -76,8 +85,22 @@ function LiveRoom(): JSX.Element {
 
     }, [isAuthenticated]);
 
+    useEffect(() => {
+        if (hubConnection.current) {
+            HubConnectionSingleton.sendCurrentlyPlaying(globalPlayerCurrentResult || playlistPlayerCurrentResult)
+        }
+    }, [globalPlayerCurrentResult, playlistPlayerCurrentResult])
+
+    let onlineUsersList;
+    if (onlineUsers.length) {
+        onlineUsersList = onlineUsers
+    } else {
+        onlineUsersList = <p>No friends online.</p>
+    }
+
     let liveRoom;
     if (isAuthenticated) {
+
         liveRoom =
 
             <div className="position-relative" style={{zIndex: 9998}}>
@@ -104,6 +127,7 @@ function LiveRoom(): JSX.Element {
                 </div>
 
             </div>
+
 
     }
 

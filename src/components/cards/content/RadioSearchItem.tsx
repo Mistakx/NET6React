@@ -1,6 +1,6 @@
 import GlobalPlayerStore from "../../../stores/players/GlobalPlayerStore";
 import {RadioSearchItemProperties} from "../../../models/components/pages/searchPage/searchItems/RadioSearchItemProperties";
-import React, {useEffect} from "react";
+import React from "react";
 import "aos/dist/aos.css";
 import UserPlaylistsModalStore from "../../../stores/modals/UserPlaylistsModalStore";
 
@@ -14,7 +14,7 @@ function RadioSearchItem(props: RadioSearchItemProperties): JSX.Element {
 
     function setCurrentPlayerToClickedItem() {
         setGlobalPlayerCurrentResult(props.searchResult)
-        setSearchCurrentResults(props.searchResults)
+        // setSearchCurrentResults(props.searchResults)
     }
 
     let weeklyViewsAmount;

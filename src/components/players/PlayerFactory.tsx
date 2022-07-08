@@ -11,7 +11,7 @@ export class PlayerFactory {
     public static createPlayer(item: GeneralizedResult,
                                setNextItem: (playlistPlayerCurrentResult: (GeneralizedResult | null)) => void,
                                autoplay: boolean,
-                               items?: GeneralizedResult[]) {
+                               items?: GeneralizedResult[] | null) {
 
         const sessionToken = localStorage.getItem("sessionToken");
 

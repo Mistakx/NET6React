@@ -2,7 +2,7 @@ import GlobalPlayerStore from "../../../stores/players/GlobalPlayerStore";
 import {
     LivestreamSearchItemProperties
 } from "../../../models/components/pages/searchPage/searchItems/LivestreamSearchItemProperties";
-import React, {useEffect} from "react";
+import React from "react";
 import "aos/dist/aos.css";
 import UserPlaylistsModalStore from "../../../stores/modals/UserPlaylistsModalStore";
 
@@ -16,7 +16,7 @@ function LivestreamSearchItem(props: LivestreamSearchItemProperties): JSX.Elemen
 
     function setCurrentPlayerToClickedItem() {
         setGlobalPlayerCurrentResult(props.searchResult)
-        setSearchCurrentResults(props.searchResults)
+        // setSearchCurrentResults(props.searchResults)
     }
 
     let weeklyViewsAmount;

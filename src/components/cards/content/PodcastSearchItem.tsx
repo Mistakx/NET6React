@@ -14,7 +14,7 @@ function PodcastSearchItem(props: PodcastSearchItemProperties): JSX.Element {
 
     function setCurrentPlayerToClickedItem() {
         setGlobalPlayerCurrentResult(props.searchResult)
-        setSearchCurrentResults(props.searchResults)
+        // setSearchCurrentResults(props.searchResults)
     }
 
     let weeklyViewsAmount;

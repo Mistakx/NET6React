@@ -50,7 +50,7 @@ export function MultiPlatformPlayer(props: MultiPlatformPlayerProperties): JSX.E
 
             }}
         />
-        // </div>
+        </div>
     )
 
 }
