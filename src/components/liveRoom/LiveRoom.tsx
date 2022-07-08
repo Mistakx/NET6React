@@ -5,12 +5,13 @@ import {HubConnectionSingleton} from "utils/HubConnectionSingleton";
 import AlertStore from "stores/AlertStore";
 import LoginStore from "../../stores/LoginStore";
 import OnlineUserItem from "./OnlineUserItem";
-import {UserProfileDto} from "../../models/backendResponses/userRoute/UserProfileDto";
 import {HubConnection, HubConnectionState} from "@microsoft/signalr";
 import GlobalPlayerStore from "../../stores/players/GlobalPlayerStore";
 import PlaylistPlayerPageStore from "../../stores/players/PlaylistPagePlayerStore";
-import {ConnectToHubDto} from "../../models/backendRequests/HubConnections/ConnectToHubDto";
 import {LiveRoomUserDto} from "../../models/backendResponses/userRoute/LiveRoomUserDto";
+import {faRepeat} from "@fortawesome/free-solid-svg-icons"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
 
 function LiveRoom(): JSX.Element {
 
@@ -20,7 +21,7 @@ function LiveRoom(): JSX.Element {
 
     const isAuthenticated = LoginStore(state => state.isAuthenticated)
 
-    const [hubConnectionState, setHubConnectionState] = useState<HubConnectionState>(HubConnectionState.Connected);
+    const [hubConnectionState, setHubConnectionState] = useState<HubConnectionState>(HubConnectionState.Disconnected);
 
     const globalPlayerCurrentResult = GlobalPlayerStore(state => state.globalPlayerCurrentResult)
     const playlistPlayerCurrentResult = PlaylistPlayerPageStore(state => state.playlistPlayerCurrentResult)
@@ -47,10 +48,10 @@ function LiveRoom(): JSX.Element {
                 }
             });
 
-            // Run every 5 seconds
+            // Run every 0.5 seconds
             setInterval(() => {
                 setHubConnectionState(hubConnection.current.state);
-            }, 5000);
+            }, 500);
 
             setInterval(() => {
                 if (hubConnection.current.state === HubConnectionState.Connected) {
@@ -91,6 +92,14 @@ function LiveRoom(): JSX.Element {
         }
     }, [globalPlayerCurrentResult, playlistPlayerCurrentResult])
 
+    function reconnectToHub() {
+        HubConnectionSingleton.disconnectHub();
+        // Wait for a bit before trying to reconnect
+        setTimeout(() => {
+            HubConnectionSingleton.startHub();
+        }, 1000);
+    }
+
     let onlineUsersList;
     if (onlineUsers.length) {
         onlineUsersList = onlineUsers
@@ -118,6 +127,7 @@ function LiveRoom(): JSX.Element {
                 <div className="offcanvas offcanvas-end" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                     <div className="offcanvas-header">
                         <h5 id="offcanvasRightLabel">Live Room - {hubConnectionState}</h5>
+                        <FontAwesomeIcon icon={faRepeat} className="clickable" onClick={reconnectToHub}/>
                         <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                     </div>
