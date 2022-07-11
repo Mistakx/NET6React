@@ -78,12 +78,12 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
         recommendationsList = firstRecommendationsTitles.map(title => {
 
             return <div key={title}>
-                <button className={"suggestion " + selectedSearch.getPlatform().getColorClass()}
+                <li className={'align-middle btn-'+selectedSearch.getPlatform().getColorClass()}
                         onClick={
                             () => {
                                 setSearchBarQuery(title)
                             }
-                        }>{title}</button>
+                        }><i className='bx bx-search-alt'/> {title}</li>
             </div>
         })
     }
@@ -108,9 +108,9 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                 }
             }}>
 
-                <div className={"row"}>
+                <div className={"row sticky-top"}>
 
-                    <div className="input-group sticky-top">
+                    <div className="input-group">
 
                         <PlatformDropdownButton togglePlatformDropdownList={togglePlatformDropdownList}/>
 
@@ -121,13 +121,13 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                         />
 
                         <button className={"btn btn-sm btn-search " + selectedSearch.getPlatform().getColorClass()}
-                                type="submit"
-                                id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
+                            type="submit"
+                            id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
 
-                    </div>
+                        <div className="suggestion">
+                            {recommendationsList}
+                        </div>
 
-                    <div className="row">
-                        {recommendationsList}
                     </div>
 
 

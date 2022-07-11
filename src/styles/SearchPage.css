@@ -394,6 +394,20 @@
     margin-top: -1px;
 }
 
+.suggestion {
+    z-index: 20;
+    position: absolute;
+    width: 98%;
+    margin-top:40px;
+    text-decoration: none !important;
+}
+
+.suggestion li {
+    display: block;
+    height: 30px;
+    vertical-align: middle !important;
+}
+
 /*--------------------------------------------------------------
 # Floating Player
 --------------------------------------------------------------*/
