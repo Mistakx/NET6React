@@ -14,7 +14,7 @@ function AddPlaylistItem(): JSX.Element {
     return (
 
         <div className="col-lg-4 col-md-6 col-sm-6 col-6"
-            data-aos="fade-up"
+            data-aos="zoom-in"
             onClick={() => {
                 const sessionToken = localStorage.getItem("sessionToken")
                 if (sessionToken) {
