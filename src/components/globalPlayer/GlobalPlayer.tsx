@@ -25,17 +25,19 @@ function GlobalPlayer(): JSX.Element {
 
             // <div className="ratio ratio-16x9" >
 
-                <Rnd
-                    default={resizeablePlayerDefaultOptions}
-                    minWidth="200px"
-                    minHeight="100%"
+            <Rnd
+                default={resizeablePlayerDefaultOptions}
+                minWidth="200px"
+                minHeight="100%"
 
-                >
+            >
+                <div className="ratio ratio-16x9">
                     <MoveVideoButton/>
                     <CloseVideoButton/>
                     {player}
-                </Rnd>
-            // </div>
+                </div>
+            </Rnd>
+        // </div>
 
 
     }
