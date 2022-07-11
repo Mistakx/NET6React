@@ -164,12 +164,18 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
 
         ownerButton = <button className="btn btn-lg rounded border border-light"
                               title="Disabled tooltip"
-                              type="button" 
+
+                             style={{
+                                 width: "26px",
+                                 height: "26px",
+                                 margin: "auto",
+                                 backgroundSize: "100% 100%",
+                                 backgroundImage: "url(/" + playlistBasicDetails.owner.profilePhotoUrl + ")"
+                             }}
                               onClick={() => {
                                   navigate(`/user/${playlistBasicDetails.owner?.username}`)
                               }}
         >
-            <img src={"/" + playlistBasicDetails.owner.profilePhotoUrl} alt=""  className="img-fluid"/>
         </button>
     }
 
@@ -182,6 +188,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
     if (playlistBasicDetails?.owner != null) {
         followButton =
             <button type="button" className="btn dropdown-toggle-split"
+                    style={{margin:"auto"}}
                     onClick={async () => {
                         if (playlistBasicDetails) {
                             if (sessionToken) {
@@ -230,6 +237,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                         {followButton}
 
                         <button type="button" className="btn dropdown-toggle-split"
+                                style={{margin:"auto"}}
                                 onClick={() => {
                                     if (playlistBasicDetails) {
                                         setShowingFollowersModal(true)
@@ -241,6 +249,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                         </button>
 
                         <button type="button" className="btn dropdown-toggle-split"
+                                style={{margin:"auto"}}
                                 onClick={() => {
                                     if (playlistBasicDetails) {
                                         setShowingStatisticsModal(true)

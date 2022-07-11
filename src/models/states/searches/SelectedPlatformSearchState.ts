@@ -1,4 +1,5 @@
 import {ApiSearch} from "../../../requests/apiRequests/specificSearches/ApiSearch";
+import {GeneralizedResult} from "../../apiResponses/GenericResults";
 
 export interface SelectedPlatformSearchState {
 
@@ -7,5 +8,11 @@ export interface SelectedPlatformSearchState {
 
     selectedSearch: ApiSearch,
     setSelectedSearch: (search: ApiSearch) => void
+
+    recommendations: GeneralizedResult[],
+    setRecommendations: (recommendations: GeneralizedResult[]) => void
+
+    firstRecommendationsTitles: string[],
+    setFirstRecommendationsTitles: (firstRecommendationsTitles: string[]) => void
 
 }

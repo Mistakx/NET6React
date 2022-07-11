@@ -12,14 +12,19 @@ import {
 } from "../../../../models/apiResponses/GenericResults";
 import AlertStore from "../../../../stores/AlertStore";
 import SearchLabel from "./SearchLabel";
+import RecommendationRequests from "../../../../requests/backendRequests/RecommendationRequests";
 
 function SearchBar(props: SearchBarProperties): JSX.Element {
 
     const openedDropdown = "dropdown-menu dropdown-menu-dark align-items-center bg-dark show"
     const closedDropdown = "dropdown-menu dropdown-menu-dark align-items-center bg-dark"
 
+
     const selectedSearch = SelectedPlatformSearchStore(state => state.selectedSearch)
     const searchBarQuery = SelectedPlatformSearchStore(state => state.searchBarQuery)
+    const setSearchBarQuery = SelectedPlatformSearchStore(state => state.setSearchBarQuery)
+    const setRecommendations = SelectedPlatformSearchStore(state => state.setRecommendations)
+    const firstRecommendationsTitles = SelectedPlatformSearchStore(state => state.firstRecommendationsTitles)
 
     const platformDropdownList = PlatformDropdownStore(state => state.platformDropdownList)
     const setPlatformDropdownList = PlatformDropdownStore(state => state.setPlatformDropdownList)
@@ -28,10 +33,22 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
+
     useEffect(() => {
         setPlatformDropdownList(closedDropdown)
     }, [])
 
+    useEffect(() => {
+
+        (async () => {
+            const sessionToken = localStorage.getItem("sessionToken")
+            if (sessionToken) {
+                const trendingContent = await RecommendationRequests.getTrendingWeeklyContent(1, 1000, sessionToken)
+                setRecommendations(trendingContent)
+            } else prettyAlert("You must be logged in to view recommendations", false)
+        })()
+
+    }, [selectedSearch])
 
     function togglePlatformDropdownList() {
         if (platformDropdownList === closedDropdown) {
@@ -44,15 +61,15 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
     async function searchPlatformItems(chosenSearchQuery: string) {
 
         let searchList: GeneralizedResult[];
-        
-            if (selectedSearch.getPlatform().getName() === "Spotify") {
-                searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40, props.spotifyAuthenticator.current)
-            } else if (selectedSearch.getPlatform().getName() === "Twitch") {
-                searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40, props.twitchAuthenticator.current)
-            } else {
-                searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40)
-            }
-            return searchList;
+
+        if (selectedSearch.getPlatform().getName() === "Spotify") {
+            searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40, props.spotifyAuthenticator.current)
+        } else if (selectedSearch.getPlatform().getName() === "Twitch") {
+            searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40, props.twitchAuthenticator.current)
+        } else {
+            searchList = await selectedSearch.getSearchResults(chosenSearchQuery, 1, 40)
+        }
+        return searchList;
 
     }
 
@@ -61,7 +78,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
             <SearchLabel/>
 
-            <form onSubmit={async (event) => {
+            <form className={"searchBar"} onSubmit={async (event) => {
                 try {
                     event.preventDefault()
                     let results = await searchPlatformItems(searchBarQuery)
@@ -76,18 +93,45 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                 }
             }}>
 
+                <div className={"row"}>
+
                 <div className="input-group sticky-top">
 
-                    <PlatformDropdownButton togglePlatformDropdownList={togglePlatformDropdownList}/>
+                        <PlatformDropdownButton togglePlatformDropdownList={togglePlatformDropdownList}/>
 
-                    <PlatformDropdownList togglePlatformDropdownList={togglePlatformDropdownList}/>
+                        <PlatformDropdownList togglePlatformDropdownList={togglePlatformDropdownList}/>
 
-                    <SearchForm spotifyAuthenticator={props.spotifyAuthenticator}
-                                twitchAuthenticator={props.twitchAuthenticator}
-                    />
+                        <SearchForm spotifyAuthenticator={props.spotifyAuthenticator}
+                                    twitchAuthenticator={props.twitchAuthenticator}
+                        />
 
-                    <button className={"btn btn-sm btn-search " + selectedSearch.getPlatform().getColorClass()} type="submit"
-                            id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
+                        <button className={"btn btn-sm btn-search " + selectedSearch.getPlatform().getColorClass()}
+                                type="submit"
+                                id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
+
+                    </div>
+
+                    <div className="row">
+
+                        {searchBarQuery.length > 0 && firstRecommendationsTitles.map(title => {
+                            return <div>
+
+                                <button className={"suggestion " + selectedSearch.getPlatform().getColorClass()}
+                                        key={title}
+                                        onClick={
+                                            () => {
+                                                setSearchBarQuery(title)
+                                            }
+                                        }>{title}</button>
+
+                            </div>
+
+
+                        })}
+
+                    </div>
+
+
                 </div>
             </form>
 

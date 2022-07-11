@@ -23,21 +23,19 @@ function GlobalPlayer(): JSX.Element {
 
         resizeablePlayer =
 
-            <div className="ratio ratio-16x9" >
-                {/* TODO botão para fechar não é percetivel no mobile */}
+            // <div className="ratio ratio-16x9" >
 
                 <Rnd
                     default={resizeablePlayerDefaultOptions}
                     minWidth="200px"
                     minHeight="100%"
-                    style={{zIndex:"9999"}}
+
                 >
                     <MoveVideoButton/>
                     <CloseVideoButton/>
                     {player}
-
                 </Rnd>
-            </div>
+            // </div>
 
 
     }

@@ -57,7 +57,7 @@ function FollowingModalItem(props: FollowingModalItemProperties): JSX.Element {
                                           } else prettyAlert("You need to be logged in to follow a user", false)
                                       }}
             >
-                <i className={'bx ' + followingButtonShapeClass}></i>
+                <i className={'bx vertical-center h5 ' + followingButtonShapeClass}></i>
             </button>
         }
 

@@ -201,7 +201,8 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                 </Popover>} >
                 <button className="btn dropdown-toggle-split"
                     data-bs-toggle="dropdown" aria-expanded="false"
-                    onClick={async () => {
+                        style={{margin:"auto"}}
+                        onClick={async () => {
                         try {
                             if (userProfile) {
                                 if (sessionToken) {
@@ -227,10 +228,10 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
             width="250"
             height="250"
             className="img-fluid rounded-circle"
-            onError={({currentTarget}) => {
-                currentTarget.onerror = null; // prevents looping
-                currentTarget.style.display = "none"
-            }}
+            // onError={({currentTarget}) => {
+            //     currentTarget.onerror = null; // prevents looping
+            //     currentTarget.style.display = "none"
+            // }}
 
         />
     }
@@ -252,6 +253,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                                 Statistics
                             </Popover>} >
                             <button className="btn text-white"
+                                    style={{margin:"auto"}}
                                     onClick={() => {
                                         if (userProfile) {
                                             setShowingStatisticsModal(true)
