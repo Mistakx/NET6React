@@ -29,8 +29,8 @@ function OnlineUserItem(props: OnlineUserItemProperties): JSX.Element {
         <div className="list-group clickable" onClick={() => {
             navigate(`/user/${props.basicUserDetails.username}`)
         }}>
-            <a className="list-group-item list-group-item-action" aria-current="true" data-aos="fade-left"
-               data-aos-duration="500">
+            <a className="list-group-item list-group-item-action mb-2" aria-current="true" data-aos="fade-left"
+               data-aos-duration="2000">
                 <div className="row">
 
                     <div className="col-3">

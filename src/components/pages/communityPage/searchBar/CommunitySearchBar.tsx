@@ -106,13 +106,13 @@ function CommunitySearchBar(): JSX.Element {
         recommendationsList = firstRecommendationsTitles.map(title => {
             return <div>
 
-                <button className={"suggestion btn-sparta"}
+                <li className={"btn-sparta p-2"}
                         key={title}
                         onClick={
                             () => {
                                 setSearchBarQuery(title)
                             }
-                        }>{title}</button>
+                        }>{title}</li>
 
             </div>
         })
@@ -137,7 +137,7 @@ function CommunitySearchBar(): JSX.Element {
 
                 <div className={"row"}>
 
-                    <div className="input-group top-stick">
+                    <div className="input-group">
 
                         <CommunityDropdownButton togglePlatformDropdownList={togglePlatformDropdownList}/>
 
@@ -145,15 +145,15 @@ function CommunitySearchBar(): JSX.Element {
 
                         <CommunitySearchForm/>
 
-                        <button className={"btn btn-sm btn-search sparta"} type="submit"
-                                id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
+                        <button className={"btn btn-sm btn-search sparta"}
+                            type="submit"
+                            id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
                     </div>
-
+                    <div className={"suggestion"}>
+                        {recommendationsList}
+                    </div>
                 </div>
 
-                <div className={"row"}>
-                    {recommendationsList}
-                </div>
             </form>
 
         </div>

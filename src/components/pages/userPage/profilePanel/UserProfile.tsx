@@ -225,8 +225,8 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
     let userPhoto
     if (userProfile) {
         userPhoto = <img src={"/" + userProfile?.profilePhotoUrl}
-            width="250"
-            height="250"
+            width="250px"
+            height="250px"
             className="img-fluid rounded-circle"
             // onError={({currentTarget}) => {
             //     currentTarget.onerror = null; // prevents looping
@@ -271,7 +271,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                 <div className="icon-box icon-box-lightblue">
                     <strong><h3 className="text-white">{userProfile?.username}</h3></strong>
                     <h4 className="text-white">{userProfile?.name}</h4>
-                    <div className={"position-relative"+ changeProfilePicture}>
+                    <div className={"position-relative align-middle"+ changeProfilePicture}>
                         {userPhoto}
                         {editPhotoButton}
                     </div>

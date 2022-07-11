@@ -13,7 +13,7 @@ function CommunityPage(): JSX.Element {
 
     return (
         <section id="services" className="services">
-            <div className="container" >
+            <div className="container">
 
                 <div className="row">
 

@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
+import {OverlayTrigger, Popover} from "react-bootstrap";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import {HubConnectionSingleton} from "utils/HubConnectionSingleton";
@@ -114,14 +115,20 @@ function LiveRoom(): JSX.Element {
 
             <div className="position-relative" style={{zIndex: 9998}}>
                 <div className="live-room">
-                    <a className="intro-banner-vdo-play-btn green-sinal" type="button"
-                       data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
-                       title="See online friends">
-                        <i className="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
-                        <span className="ripple green-sinal"></span>
-                        <span className="ripple green-sinal"></span>
-                        <span className="ripple green-sinal"></span>
-                    </a>
+                <OverlayTrigger
+                    trigger={['hover', 'focus']}
+                    placement="left"
+                    overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
+                        See online friends
+                    </Popover>} >
+                        <a className="intro-banner-vdo-play-btn green-sinal" type="button"
+                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                            <i className="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
+                            <span className="ripple green-sinal"></span>
+                            <span className="ripple green-sinal"></span>
+                            <span className="ripple green-sinal"></span>
+                        </a>
+                    </OverlayTrigger>
                 </div>
 
                 <div className="offcanvas offcanvas-end" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">

@@ -24,7 +24,6 @@ function CommunityDropdownList(props: PlatformDropdownListProperties): JSX.Eleme
                          e.preventDefault()
                          setSelectedSearch(UserRequest.getInstance())
                      }}>
-                
                     User
                 </div>
             </li>

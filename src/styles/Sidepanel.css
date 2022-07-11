@@ -87,6 +87,10 @@
   display: block;
 }
 
+.nav-menu .sinal {
+  display: none;
+}
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -100,6 +104,7 @@
   padding: 15px;
   overflow-y: auto;
 }
+
 @media only screen and (orientation: portrait ) {
   #header {
     position: fixed;
@@ -148,6 +153,20 @@
     width: auto;
     overflow: hidden;
     transition: 0.3s;
+  }
+
+  .nav-menu .sinal {
+    display: flex;
+    color: var(--success);
+  }
+
+  .nav-menu .sinal:hover {
+    display: flex;
+    background-color: var(--success);
+  }
+
+  .green-sinal {
+    display: none;
   }
 
 }
