@@ -16,4 +16,4 @@ export function compareUserPlaylistAmount(a: UserProfileDto, b: UserProfileDto) 
     return (b.viewablePlaylistsAmount! - a.viewablePlaylistsAmount!);
 }
 
-export type UsernameSortingOptions = "Custom Order" | "Order by Username" | "Order by Weekly Views" | "Order by Total Views" | "Order by Playlists Amount"
+export type UserSortingOptions = "Custom Order" | "Order by Username" | "Order by Weekly Views" | "Order by Total Views" | "Order by Playlists Amount"

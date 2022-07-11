@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import '../../../styles/style.css';
 import FollowedTopBarStore from "../../../stores/topBars/FollowedTopBarStore";
 import {PlaylistSortingOptions} from "../../../utils/sorting/playlistSorting";
-import {UsernameSortingOptions} from "../../../utils/sorting/userSorting";
+import {UserSortingOptions} from "../../../utils/sorting/userSorting";
 
 function FollowingTopBar(): JSX.Element {
 
@@ -33,12 +33,14 @@ function FollowingTopBar(): JSX.Element {
         orderSelect =
             <select className="form-select form-select-sm bg-dark text-white" id="TopOrderBarSelect"
                     onChange={(e) => {
-                        setUserOrder(e.target.value as UsernameSortingOptions)
+                        setUserOrder(e.target.value as UserSortingOptions)
                     }}
             >
                 <option>Custom Order</option>
-                <option>Order By Weekly Views</option>
-                <option>Order By Total Views</option>
+                <option>Order by Username</option>
+                <option>Order by Weekly Views</option>
+                <option>Order by Total Views</option>
+                <option>Order by Playlists Amount</option>
             </select>
     }
     else if (showing == "Playlists") {
@@ -49,8 +51,10 @@ function FollowingTopBar(): JSX.Element {
                     }}
             >
                 <option>Custom Order</option>
-                <option>Order By Weekly Views</option>
-                <option>Order By Total Views</option>
+                <option>Order by Title</option>
+                <option>Order by Weekly Views</option>
+                <option>Order by Total Views</option>
+                <option>Order by Items Amount</option>
             </select>
     }
 

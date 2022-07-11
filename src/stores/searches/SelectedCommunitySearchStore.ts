@@ -5,6 +5,7 @@ import {YouTubeSearchVideoByGeneral} from "../../requests/apiRequests/specificSe
 import {UserRequest} from "../../requests/backendRequests/communitySearchBar/UserRequest";
 import {SelectedCommunitySearchState} from "../../models/states/searches/SelectedCommunitySearchState";
 import {CommunitySearch} from "../../requests/backendRequests/communitySearchBar/CommunitySearch";
+import {GeneralizedResult} from "../../models/apiResponses/GenericResults";
 
 const SelectedCommunitySearchStore = create<SelectedCommunitySearchState>((set) => ({
 
@@ -16,7 +17,17 @@ const SelectedCommunitySearchStore = create<SelectedCommunitySearchState>((set) 
     selectedCommunitySearch: UserRequest.getInstance(),
     setSelectedCommunitySearch: (selectedCommunitySearch: CommunitySearch) => set(state => ({
         selectedCommunitySearch: selectedCommunitySearch
-    }))
+    })),
+
+    recommendations: [],
+    setRecommendations: (recommendations: GeneralizedResult[]) => set(state => ({
+        recommendations: recommendations
+    })),
+
+    firstRecommendationsTitles: [],
+    setFirstRecommendationsTitles: (firstRecommendationsTitles: string[]) => set(state => ({
+        firstRecommendationsTitles: firstRecommendationsTitles
+    })),
 
 
 }))

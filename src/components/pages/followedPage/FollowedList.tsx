@@ -49,16 +49,18 @@ function FollowedList(): JSX.Element {
     useEffect(() => {
         if (sessionToken) {
             (async () => {
+
                 if (showing == "Playlists") {
-                    const followedPlaylists = await CommunityRequests.getFollowedPlaylists(sessionToken)
+                    let followedPlaylists = await CommunityRequests.getFollowedPlaylists(sessionToken)
                     if (playlistOrder === "Custom Order") followedPlaylists.sort()
                     else if (playlistOrder === "Order by Title") followedPlaylists.sort(comparePlaylistTitle)
-                    else if (playlistOrder === "Order by Items Amount") followedPlaylists.sort(comparePlaylistResultsAmount)
                     else if (playlistOrder === "Order by Weekly Views") followedPlaylists.sort(comparePlaylistWeeklyViews)
                     else if (playlistOrder === "Order by Total Views") followedPlaylists.sort(comparePlaylistTotalViews)
+                    else if (playlistOrder === "Order by Items Amount") followedPlaylists.sort(comparePlaylistResultsAmount)
                     setFollowedResults(followedPlaylists)
                 } else if (showing == "Users") {
-                    const followedUsers = await CommunityRequests.getFollowedUsers(sessionToken);
+                    let followedUsers = await CommunityRequests.getFollowedUsers(sessionToken);
+                    console.log("t" + userOrder)
                     if (userOrder === "Custom Order") followedUsers.sort()
                     else if (userOrder === "Order by Username") followedUsers.sort(compareUsername)
                     else if (userOrder === "Order by Weekly Views") followedUsers.sort(compareUserWeeklyViews)
@@ -70,7 +72,7 @@ function FollowedList(): JSX.Element {
         } else {
             prettyAlert("You must be logged in to view this page.", false)
         }
-    }, [showing]);
+    }, [showing, userOrder, playlistOrder]);
 
     useEffect(() => {
 
@@ -202,7 +204,7 @@ function FollowedList(): JSX.Element {
                 </DndContext>
             } else {
                 followedList = followedResults.map((playlist) => (
-                    <PlaylistItem basicDetails={playlist as PlaylistDto} showingMyPlaylists={false}
+                    <PlaylistItem key={(playlist as PlaylistDto).id} basicDetails={playlist as PlaylistDto} showingMyPlaylists={false}
                                   showingPlaylistInSearch={true}
                                   draggable={false}/>
                 ))
@@ -233,7 +235,7 @@ function FollowedList(): JSX.Element {
                 </DndContext>
             } else {
                 followedList = followedResults.map((user) => (
-                    <UserItem basicDetails={user as UserProfileDto} draggable={false}/>
+                    <UserItem key={(user as UserProfileDto).username} basicDetails={user as UserProfileDto} draggable={false}/>
                 ))
             }
 

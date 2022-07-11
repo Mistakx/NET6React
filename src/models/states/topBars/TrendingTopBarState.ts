@@ -1,5 +1,5 @@
 import {PlaylistSortingOptions} from "../../../utils/sorting/playlistSorting";
-import {UsernameSortingOptions} from "../../../utils/sorting/userSorting";
+import {UserSortingOptions} from "../../../utils/sorting/userSorting";
 
 export interface TrendingTopBarState {
 

@@ -138,7 +138,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
             <div className="btn-group">
 
                 <OverlayTrigger
-                    trigger={['hover']}
+                    trigger={['hover', 'focus']}
                     placement="right"
                     overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
                         Edit
@@ -168,7 +168,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
             </div>
         logoutButton =
             <OverlayTrigger
-                trigger={['hover']}
+                trigger={['hover', 'focus']}
                 placement="right"
                 overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
                     Logout
@@ -194,7 +194,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
         followButton = <div className="btn-group">
 
             <OverlayTrigger
-                trigger={['hover']}
+                trigger={['hover', 'focus']}
                 placement="right"
                 overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
                     Follow
@@ -247,7 +247,7 @@ function UserProfile(props: UserProfileProperties): JSX.Element {
                         {dropdownMenu}
                         {followButton}
                         <OverlayTrigger
-                            trigger={['hover']}
+                            trigger={['hover', 'focus']}
                             placement="right"
                             overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
                                 Statistics
