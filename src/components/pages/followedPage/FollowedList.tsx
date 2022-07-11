@@ -39,6 +39,7 @@ function FollowedList(): JSX.Element {
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const toggledFollowResponse = BackendResponsesStore(state => state.toggledFollowResponse)
+    const setToggledFollowResponse = BackendResponsesStore(state => state.setToggledFollowResponse)
 
     const showing = FollowedTopBarStore(state => state.showing)
     const userOrder = FollowedTopBarStore(state => state.userOrder)
@@ -60,7 +61,6 @@ function FollowedList(): JSX.Element {
                     setFollowedResults(followedPlaylists)
                 } else if (showing == "Users") {
                     let followedUsers = await CommunityRequests.getFollowedUsers(sessionToken);
-                    console.log("t" + userOrder)
                     if (userOrder === "Custom Order") followedUsers.sort()
                     else if (userOrder === "Order by Username") followedUsers.sort(compareUsername)
                     else if (userOrder === "Order by Weekly Views") followedUsers.sort(compareUserWeeklyViews)
@@ -100,6 +100,7 @@ function FollowedList(): JSX.Element {
             } else {
                 prettyAlert("You must be logged in to view this page.", false)
             }
+            setToggledFollowResponse(null)
 
         }
     }, [toggledFollowResponse]);
