@@ -1,6 +1,7 @@
 import '../../../../styles/Playlist.css'
 import '../../../../styles/SearchPage.css'
 import React, {useState} from "react";
+import {OverlayTrigger, Popover} from "react-bootstrap";
 import "aos/dist/aos.css";
 import {PlayerFactory} from "../../../players/PlayerFactory";
 import PlaylistPagePlayerStore from "../../../../stores/players/PlaylistPagePlayerStore";
@@ -67,22 +68,42 @@ function PlaylistPlayer(): JSX.Element {
                 </div>
 
                 <div className="player-options rounded">
-                    <button className="btn btn-link text-white"
-                            onClick={playPreviousContent}
-                    >
-                        <i className='bx bx-skip-previous h3'></i>
-                    </button>
-                    <button className={"btn btn-link text-" + (autoPlay ? "success" : "white")}
-                            title="Toggle autoplay"
-                            onClick={toggleAutoPlay}
-                    >
-                        <i className='bx bx-reset h3'></i>
-                    </button>
-                    <button className="btn btn-link text-white"
-                            onClick={playNextContent}
-                    >
-                        <i className='bx bx-skip-next h3'></i>
-                    </button>
+                    <OverlayTrigger
+                        trigger={['hover', 'focus']}
+                        placement="bottom"
+                        overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
+                            Previus
+                        </Popover>} >
+                        <button className="btn btn-link text-white"
+                                onClick={playPreviousContent}
+                        >
+                            <i className='bx bx-skip-previous h3'></i>
+                        </button>
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                        trigger={['hover', 'focus']}
+                        placement="bottom"
+                        overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
+                            Toggle autoplay
+                        </Popover>} >
+                        <button className={"btn btn-link text-" + (autoPlay ? "success" : "white")}
+                                onClick={toggleAutoPlay}
+                        >
+                            <i className='bx bx-reset h3'></i>
+                        </button>
+                    </OverlayTrigger>
+                    <OverlayTrigger
+                        trigger={['hover', 'focus']}
+                        placement="bottom"
+                        overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
+                            Next
+                        </Popover>} >
+                        <button className="btn btn-link text-white"
+                                onClick={playNextContent}
+                        >
+                            <i className='bx bx-skip-next h3'></i>
+                        </button>
+                    </OverlayTrigger>
                 </div>
 
             </div>

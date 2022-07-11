@@ -470,9 +470,7 @@ section {
 
 .change-profile-picture {
   margin: 0 60px;
-  height: 250px;
   border-radius: 50%;
-
 }
 
 .change-profile-picture:hover .edit-profile-photo .btn {

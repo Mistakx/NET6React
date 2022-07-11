@@ -130,7 +130,6 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
                     </div>
 
-
                 </div>
             </form>
 

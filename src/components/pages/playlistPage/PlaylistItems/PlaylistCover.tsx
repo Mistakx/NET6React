@@ -1,6 +1,7 @@
 import '../../../../styles/Playlist.css'
 import '../../../../styles/SearchPage.css'
 import React, {useEffect, useState} from "react";
+import {OverlayTrigger, Popover} from "react-bootstrap";
 import "aos/dist/aos.css";
 import BackendResponsesStore from "../../../../stores/BackendResponsesStore";
 import PlaylistRequests from "../../../../requests/backendRequests/PlaylistRequests";
@@ -162,21 +163,29 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
     let ownerButton;
     if (playlistBasicDetails?.owner != null) {
 
-        ownerButton = <button className="btn btn-lg rounded border border-light"
-                              title="Disabled tooltip"
+        ownerButton = 
+        <OverlayTrigger
+            trigger={['hover', 'focus']}
+            placement="left"
+            overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
+                Owner
+            </Popover>} >
+            <button className="btn btn-lg rounded border border-light"
+                title="Disabled tooltip"
 
-                             style={{
-                                 width: "26px",
-                                 height: "26px",
-                                 margin: "auto",
-                                 backgroundSize: "100% 100%",
-                                 backgroundImage: "url(/" + playlistBasicDetails.owner.profilePhotoUrl + ")"
-                             }}
-                              onClick={() => {
-                                  navigate(`/user/${playlistBasicDetails.owner?.username}`)
-                              }}
-        >
-        </button>
+                style={{
+                    width: "26px",
+                    height: "26px",
+                    margin: "auto",
+                    backgroundSize: "100% 100%",
+                    backgroundImage: "url(/" + playlistBasicDetails.owner.profilePhotoUrl + ")"
+                }}
+                onClick={() => {
+                    navigate(`/user/${playlistBasicDetails.owner?.username}`)
+                }}
+            >
+            </button>
+        </OverlayTrigger>
     }
 
     let playlistDropdown;
@@ -187,6 +196,12 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
     let followButton;
     if (playlistBasicDetails?.owner != null) {
         followButton =
+        <OverlayTrigger
+            trigger={['hover', 'focus']}
+            placement="left"
+            overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
+                Follow
+            </Popover>} >
             <button type="button" className="btn dropdown-toggle-split"
                     style={{margin:"auto"}}
                     onClick={async () => {
@@ -207,6 +222,7 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
             >
                 <i className={'bx ' + followingButtonShapeClass}></i>
             </button>
+        </OverlayTrigger>
     }
 
     return (
@@ -235,30 +251,43 @@ function PlaylistCover(props: PlaylistCoverProperties): JSX.Element {
                          style={{position: "absolute", top: "10px", right: "10px"}}>
 
                         {followButton}
+                        <OverlayTrigger
+                            trigger={['hover', 'focus']}
+                            placement="left"
+                            overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
+                                Followers
+                            </Popover>} >
+                            <button type="button" className="btn dropdown-toggle-split"
+                                    style={{margin:"auto"}}
+                                    onClick={() => {
+                                        if (playlistBasicDetails) {
+                                            setShowingFollowersModal(true)
+                                            setShowingFollowersOf(playlistBasicDetails)
+                                        }
+                                    }}
+                            >
+                                <i className='bx bxs-user-detail'></i>
+                            </button>
+                        </OverlayTrigger>
 
-                        <button type="button" className="btn dropdown-toggle-split"
-                                style={{margin:"auto"}}
-                                onClick={() => {
-                                    if (playlistBasicDetails) {
-                                        setShowingFollowersModal(true)
-                                        setShowingFollowersOf(playlistBasicDetails)
-                                    }
-                                }}
-                        >
-                            <i className='bx bxs-user-detail'></i>
-                        </button>
-
-                        <button type="button" className="btn dropdown-toggle-split"
-                                style={{margin:"auto"}}
-                                onClick={() => {
-                                    if (playlistBasicDetails) {
-                                        setShowingStatisticsModal(true)
-                                        setShowingStatisticsOf(playlistBasicDetails)
-                                    }
-                                }}
-                        >
-                            <i className='bx bx-info-circle'></i>
-                        </button>
+                        <OverlayTrigger
+                            trigger={['hover', 'focus']}
+                            placement="left"
+                            overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
+                                Statistics
+                            </Popover>} >
+                            <button type="button" className="btn dropdown-toggle-split"
+                                    style={{margin:"auto"}}
+                                    onClick={() => {
+                                        if (playlistBasicDetails) {
+                                            setShowingStatisticsModal(true)
+                                            setShowingStatisticsOf(playlistBasicDetails)
+                                        }
+                                    }}
+                                    >
+                                <i className='bx bx-info-circle'></i>
+                            </button>
+                        </OverlayTrigger>
 
                         {ownerButton}
 

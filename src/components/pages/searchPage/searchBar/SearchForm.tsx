@@ -33,7 +33,6 @@ function SearchForm(props: SearchFormProperties): JSX.Element {
 
         <input type="text submit" id="search"
                className={"form-control " + selectedSearch.getPlatform().getColorClass()}
-            // style={{"width": "100%"}}
                autoFocus
                autoComplete={"off"}
                value={searchBarQuery}
