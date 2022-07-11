@@ -77,13 +77,17 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
     if (searchBarQuery.length > 0) {
         recommendationsList = firstRecommendationsTitles.map(title => {
 
-            return <div key={title}>
-                <li className={'align-middle btn-'+selectedSearch.getPlatform().getColorClass()}
-                        onClick={
-                            () => {
-                                setSearchBarQuery(title)
-                            }
-                        }><i className='bx bx-search-alt'/> {title}</li>
+            return <div key={title} onClick={
+                () => {
+                    document.getElementById('button-addon2')?.click();
+                }
+            }>
+                <li className={'align-middle btn-' + selectedSearch.getPlatform().getColorClass()}
+                    onClick={
+                        () => {
+                            setSearchBarQuery(title)
+                        }
+                    }><i className='bx bx-search-alt'/> {title}</li>
             </div>
         })
     }
@@ -94,7 +98,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
             <SearchLabel/>
 
-            <form className={"searchBar"} onSubmit={async (event) => {
+            <form id={"searchBar"} onSubmit={async (event) => {
                 try {
                     event.preventDefault()
                     let results = await searchPlatformItems(searchBarQuery)
@@ -121,8 +125,8 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                         />
 
                         <button className={"btn btn-sm btn-search " + selectedSearch.getPlatform().getColorClass()}
-                            type="submit"
-                            id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
+                                type="submit"
+                                id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
 
                         <div className="suggestion">
                             {recommendationsList}
