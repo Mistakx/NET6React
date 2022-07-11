@@ -83,12 +83,7 @@ export class RadioSearchByName extends ApiSearch {
     }
 
     public async getSearchResults(searchQuery: string): Promise<any> {
-        try {
-            const radioPage = await this.searchRadioById(searchQuery);
-            return RadioPageToListItemsConverter.convert(radioPage)
-        } catch (e) {
-            console.log(e)
-        }
-
+        const radioPage = await this.searchRadioById(searchQuery);
+        return RadioPageToListItemsConverter.convert(radioPage)
     }
 }

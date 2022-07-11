@@ -60,7 +60,7 @@ function LiveRoom(): JSX.Element {
             }, 2500);
 
             hubConnection.current.on("myOnlineFriends", friends => {
-                console.log(friends)
+                console.log("Online friends: " + friends)
                 let onlineUsersListComponents: JSX.Element[] = []
                 for (const currentOnlineUser of friends as LiveRoomUserDto[]) {
                     let currentUserItem = <OnlineUserItem key={currentOnlineUser.user.username}

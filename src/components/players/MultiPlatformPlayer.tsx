@@ -3,8 +3,6 @@ import {MultiPlatformPlayerProperties} from "../../models/components/players/Mul
 
 export function MultiPlatformPlayer(props: MultiPlatformPlayerProperties): JSX.Element {
     
-    console.log(props)
-    
     let url;
     if (props.currentResult.platformPlayerUrl?.includes("soundcloud") || props.currentResult.platformPlayerUrl?.includes("dailymotion")) {
         url = props.currentResult.platformPlayerUrl

@@ -76,16 +76,14 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
     let recommendationsList
     if (searchBarQuery.length > 0) {
         recommendationsList = firstRecommendationsTitles.map(title => {
-            return <div>
 
+            return <div key={title}>
                 <button className={"suggestion " + selectedSearch.getPlatform().getColorClass()}
-                        key={title}
                         onClick={
                             () => {
                                 setSearchBarQuery(title)
                             }
                         }>{title}</button>
-
             </div>
         })
     }
@@ -101,13 +99,12 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                     event.preventDefault()
                     let results = await searchPlatformItems(searchBarQuery)
                     setSearchedResults(results)
-
                 } catch (e: any) {
-                    console.log(e.response?.data.message)
-                    console.log(e.response?.data.error?.message)
-                    console.log(e.response?.data.error)
-                    console.log(e.toJSON().message)
                     prettyAlert("Error occurred on search", false)
+                    // console.log(e.response?.data.message)
+                    // console.log(e.response?.data.error?.message)
+                    // console.log(e.response?.data.error)
+                    // console.log(e.toJSON().message)
                 }
             }}>
 
