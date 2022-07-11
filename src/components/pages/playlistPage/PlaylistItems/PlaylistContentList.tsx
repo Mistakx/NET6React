@@ -23,6 +23,7 @@ import {rectSortingStrategy, SortableContext, sortableKeyboardCoordinates} from 
 import PlaylistTopBarStore from "../../../../stores/topBars/PlaylistTopBarStore";
 import {PlaylistDto} from "../../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import {compareContentCreator, compareContentTitle} from "../../../../utils/sorting/contentSorting";
+import PlaylistPagePlayerStore from "../../../../stores/players/PlaylistPagePlayerStore";
 
 function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
 
@@ -32,6 +33,8 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
     const [playlistBasicDetails, setPlaylistBasicDetails] = React.useState<PlaylistDto>();
 
     const prettyAlert = AlertStore(state => state.prettyAlert)
+
+    const setPlaylistCurrentResults = PlaylistPagePlayerStore(state => state.setPlaylistCurrentResults)
 
     const deleteGeneralizedResultResponse = BackendResponsesStore(state => state.deleteGeneralizedResultResponse)
     const setDeleteGeneralizedResultResponse = BackendResponsesStore(state => state.setDeleteGeneralizedResultResponse)
@@ -80,7 +83,9 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
         }
     }, [deleteGeneralizedResultResponse]);
 
-
+    useEffect(() => {
+        setPlaylistCurrentResults(playlistContent)
+    }, [playlistContent]);
 
     const sensors = useSensors(
         useSensor(PointerSensor, {
