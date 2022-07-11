@@ -10,6 +10,7 @@ import SearchedCommunityResultsStore from "../../../../stores/searches/SearchedC
 import {PlaylistDto} from "../../../../models/backendRequests/PlaylistRoute/PlaylistDto";
 import {UserProfileDto} from "../../../../models/backendResponses/userRoute/UserProfileDto";
 import CommunitySearchLabel from "./CommunitySearchLabel";
+import RecommendationRequests from "../../../../requests/backendRequests/RecommendationRequests";
 
 function CommunitySearchBar(): JSX.Element {
 
@@ -18,6 +19,11 @@ function CommunitySearchBar(): JSX.Element {
 
     const selectedSearch = SelectedCommunitySearchStore(state => state.selectedCommunitySearch)
     const searchBarQuery = SelectedCommunitySearchStore(state => state.searchBarQuery)
+    const setSearchBarQuery = SelectedCommunitySearchStore(state => state.setSearchBarQuery)
+    const setRecommendations = SelectedCommunitySearchStore(state => state.setRecommendations)
+    const recommendations = SelectedCommunitySearchStore(state => state.recommendations)
+    const firstRecommendationsTitles = SelectedCommunitySearchStore(state => state.firstRecommendationsTitles)
+    const setFirstRecommendationsTitles = SelectedCommunitySearchStore(state => state.setFirstRecommendationsTitles)
 
     const platformDropdownList = CommunityDropdownStore(state => state.communityDropdownList)
     const setPlatformDropdownList = CommunityDropdownStore(state => state.setCommunityDropdownList)
@@ -30,6 +36,38 @@ function CommunitySearchBar(): JSX.Element {
         setPlatformDropdownList(closedDropdown)
     }, [])
 
+    useEffect(() => {
+
+        (async () => {
+            const sessionToken = localStorage.getItem("sessionToken")
+            if (sessionToken) {
+                if (selectedSearch.getButtonText() === "Playlist") {
+                    const trendingContent = await RecommendationRequests.getTrendingPlaylists("", 1, 1000, sessionToken)
+                    setRecommendations(trendingContent)
+                } else if (selectedSearch.getButtonText() === "User") {
+                    const trendingContent = await RecommendationRequests.getTrendingUsers("", 1, 1000, sessionToken)
+                    setRecommendations(trendingContent)
+                }
+
+            } else prettyAlert("You must be logged in to view recommendations", false)
+        })()
+
+
+    }, [selectedSearch])
+
+    useEffect(() => {
+        const recommendationsTitles = recommendations.map(recommendation => {
+            if ("username" in recommendation) return recommendation.username
+            else if ("title" in recommendation) return recommendation.title
+            else return ""
+        })
+
+        if (recommendationsTitles.length > 0) {
+            let allMatches = recommendationsTitles.filter(title => title.toLowerCase().includes(searchBarQuery.toLowerCase()))
+            setFirstRecommendationsTitles(allMatches.slice(0, 5))
+        }
+
+    }, [searchBarQuery, recommendations])
 
     function togglePlatformDropdownList() {
         if (platformDropdownList === closedDropdown) {
@@ -60,6 +98,30 @@ function CommunitySearchBar(): JSX.Element {
 
     }
 
+
+
+    let recommendationsList
+    if (searchBarQuery.length > 0) {
+
+        recommendationsList = firstRecommendationsTitles.map(title => {
+            return <div>
+
+                <button className={"suggestion btn-sparta"}
+                        key={title}
+                        onClick={
+                            () => {
+                                setSearchBarQuery(title)
+                            }
+                        }>{title}</button>
+
+            </div>
+        })
+
+        console.log("recommendationsList")
+        console.log(recommendationsList)
+
+    }
+
     return (
         <div className="form-wrapper position-relative">
 
@@ -73,16 +135,24 @@ function CommunitySearchBar(): JSX.Element {
                 }
             }}>
 
-                <div className="input-group top-stick">
+                <div className={"row"}>
 
-                    <CommunityDropdownButton togglePlatformDropdownList={togglePlatformDropdownList}/>
+                    <div className="input-group top-stick">
 
-                    <CommunityDropdownList togglePlatformDropdownList={togglePlatformDropdownList}/>
+                        <CommunityDropdownButton togglePlatformDropdownList={togglePlatformDropdownList}/>
 
-                    <CommunitySearchForm/>
+                        <CommunityDropdownList togglePlatformDropdownList={togglePlatformDropdownList}/>
 
-                    <button className={"btn btn-sm btn-search sparta"} type="submit"
-                            id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
+                        <CommunitySearchForm/>
+
+                        <button className={"btn btn-sm btn-search sparta"} type="submit"
+                                id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
+                    </div>
+
+                </div>
+
+                <div className={"row"}>
+                    {recommendationsList}
                 </div>
             </form>
 

@@ -6,6 +6,8 @@ import {UserRequest} from "../../requests/backendRequests/communitySearchBar/Use
 import {SelectedCommunitySearchState} from "../../models/states/searches/SelectedCommunitySearchState";
 import {CommunitySearch} from "../../requests/backendRequests/communitySearchBar/CommunitySearch";
 import {GeneralizedResult} from "../../models/apiResponses/GenericResults";
+import {PlaylistDto} from "../../models/backendRequests/PlaylistRoute/PlaylistDto";
+import {UserProfileDto} from "../../models/backendResponses/userRoute/UserProfileDto";
 
 const SelectedCommunitySearchStore = create<SelectedCommunitySearchState>((set) => ({
 
@@ -20,7 +22,7 @@ const SelectedCommunitySearchStore = create<SelectedCommunitySearchState>((set) 
     })),
 
     recommendations: [],
-    setRecommendations: (recommendations: GeneralizedResult[]) => set(state => ({
+    setRecommendations: (recommendations: PlaylistDto[] | UserProfileDto[]) => set(state => ({
         recommendations: recommendations
     })),
 

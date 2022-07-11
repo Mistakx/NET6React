@@ -73,6 +73,24 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
     }
 
+    let recommendationsList
+    if (searchBarQuery.length > 0) {
+        recommendationsList = firstRecommendationsTitles.map(title => {
+            return <div>
+
+                <button className={"suggestion " + selectedSearch.getPlatform().getColorClass()}
+                        key={title}
+                        onClick={
+                            () => {
+                                setSearchBarQuery(title)
+                            }
+                        }>{title}</button>
+
+            </div>
+        })
+    }
+
+
     return (
         <div className="form-wrapper position-relative">
 
@@ -95,7 +113,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
                 <div className={"row"}>
 
-                <div className="input-group sticky-top">
+                    <div className="input-group sticky-top">
 
                         <PlatformDropdownButton togglePlatformDropdownList={togglePlatformDropdownList}/>
 
@@ -112,23 +130,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
                     </div>
 
                     <div className="row">
-
-                        {searchBarQuery.length > 0 && firstRecommendationsTitles.map(title => {
-                            return <div>
-
-                                <button className={"suggestion " + selectedSearch.getPlatform().getColorClass()}
-                                        key={title}
-                                        onClick={
-                                            () => {
-                                                setSearchBarQuery(title)
-                                            }
-                                        }>{title}</button>
-
-                            </div>
-
-
-                        })}
-
+                        {recommendationsList}
                     </div>
 
 
