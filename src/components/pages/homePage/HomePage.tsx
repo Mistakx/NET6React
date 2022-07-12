@@ -2,55 +2,94 @@ import '../../../styles/style.css';
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import LoginStore from "../../../stores/LoginStore";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {
+    faYoutube,
+    faVimeoV,
+    faSpotify,
+    faSoundcloud,
+    faMixcloud,
+    faDailymotion,
+    faTwitch
+} from "@fortawesome/free-brands-svg-icons";
+import {faRadio, faPodcast} from "@fortawesome/free-solid-svg-icons";
 
 function HomePage(): JSX.Element {
 
     useEffect(() => {
         AOS.init();
     }, []);
-
-    // var options = new Typed('.typed', {
-    //     strings       : ['Make your playlist', 'Choose your music', 'Many more than a playlist manager'],
-    //     backSpeed     : 0,
-    //     smartBackspace: true,
-    //     typeSpeed     : 100,
-    //     backDelay     : 700,
-    //     loop          : true,
-    // });
     
     return (
 
-        <section id="hero" className="d-flex flex-column justify-content-center position-relative">
+        <section id="hero" className="d-flex flex-column justify-content-center">
 
-            <div className="container" data-aos="zoom-in" data-aos-delay="100">
-                <h1>Sparta List</h1>
-                <div className="typed"></div>
-                <div className="social-links">
-                    <a href="components/pages/homePage/HomePage#" className="twitter"><i className="bx bxl-twitter"></i></a>
-                    <a href="components/pages/homePage/HomePage#" className="facebook"><i className="bx bxl-facebook"></i></a>
-                    <a href="components/pages/homePage/HomePage#" className="instagram"><i className="bx bxl-instagram"></i></a>
-                    <a href="components/pages/homePage/HomePage#" className="google-plus"><i className="bx bxl-skype"></i></a>
-                    <a href="components/pages/homePage/HomePage#" className="linkedin"><i className="bx bxl-linkedin"></i></a>
-                </div>
+            <div className="container-fluid" data-aos="zoom-in" data-aos-delay="100">
+                <div className="row text-center">
+                    <div className="col-lg-10">
 
-                <div className="col-md-4 offset-md-2 position-absolute top-50 start-50 translate-middle logo">
-                    {/* <img src={logo} alt="" /> */}
+                        <h1>No Name app</h1>
+                        <div className="typed"></div>
+                        <button className="btn btn-lg btn-secondary">Login</button>
+                    </div>
                 </div>
-                <div className="loading">
-                    <div className="bar"></div>
-                    <div className="bar"></div>
-                    <div className="bar"></div>
-                    <div className="bar"></div>
-                    <div className="bar"></div>
-                    <div className="bar"></div>
-                    <div className="bar"></div>
-                    <div className="bar"></div>
-                    <div className="bar"></div>
-                    <div className="bar"></div>
+                <div className="row text-center mt-5">
+                    <div className="col-10 offset-1">
+                        <div className="row">
+                            <div className="col-lg-1">
+                            </div>
+                            <div className="col-lg-1">
+                                
+                                <FontAwesomeIcon icon={faYoutube} size={"4x"}/>
+                                    
+                            </div>
+                            <div className="col-lg-1">
+                                
+                                <FontAwesomeIcon icon={faVimeoV} size={"4x"}/>
+                                    
+                            </div>
+                            <div className="col-lg-1">
+                                
+                                <FontAwesomeIcon icon={faSpotify} size={"4x"}/>
+                                    
+                            </div>
+                            <div className="col-lg-1">
+                                
+                                <FontAwesomeIcon icon={faSoundcloud} size={"4x"}/>
+                                    
+                            </div>
+                            <div className="col-lg-1">
+                                
+                                <FontAwesomeIcon icon={faMixcloud} size={"4x"}/>
+                                    
+                            </div>
+                            <div className="col-lg-1">
+                                
+                                <FontAwesomeIcon icon={faDailymotion} size={"4x"}/>
+                                    
+                            </div>
+                            <div className="col-lg-1">
+                                
+                                <FontAwesomeIcon icon={faTwitch} size={"4x"}/>
+                                    
+                            </div>
+                            <div className="col-lg-1">
+                                
+                                <FontAwesomeIcon icon={faRadio} size={"4x"}/>
+                                    
+                            </div>
+                            <div className="col-lg-1">
+                                
+                                <FontAwesomeIcon icon={faPodcast} size={"4x"}/>
+                                    
+                            </div>
+                            <div className="col-lg-1">
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
             </div>
-
         </section>
     )
 

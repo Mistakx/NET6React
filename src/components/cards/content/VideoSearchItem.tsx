@@ -45,10 +45,9 @@ function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
 
     return (
 
-        <div className="result col-lg-3 col-md-4 col-sm-6 col-6 position-relative" data-aos="zoom-in">
+        <div className="result col-lg-3 col-md-4 col-sm-6 col-6 position-relative">
             <div className="card scale clickable"
-
-                 style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.searchResult.thumbnailUrl + ")"}}>
+                style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.searchResult.thumbnailUrl + ")"}}>
                 <div className="options">
                     <button className="btn btn-lg btn-add"
                             type="button"
@@ -64,7 +63,9 @@ function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
                          setCurrentPlayerToClickedItem()
                      }}
                 >
-                    <h5 className="card-title text-uppercase text-truncate">{props.searchResult.title}</h5>
+                    <div className="card-title">
+                        <h5 className="flex-grow-1">{props.searchResult.title}</h5>
+                    </div>
                     <div className="card-text text-truncate">{props.searchResult.creator}</div>
                     {monthlyViewsAmount}
                     {weeklyViewsAmount}

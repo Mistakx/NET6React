@@ -42,7 +42,7 @@ function RadioSearchItem(props: RadioSearchItemProperties): JSX.Element {
 
     return (
 
-        <div className="result col-lg-3 col-md-4 col-sm-6 col-6 position-relative" data-aos="zoom-in">
+        <div className="result col-lg-3 col-md-4 col-sm-6 col-6 position-relative">
             <div className="card scale clickable"
 
                  style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.searchResult.thumbnailUrl + ")"}}>
