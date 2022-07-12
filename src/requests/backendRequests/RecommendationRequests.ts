@@ -77,6 +77,241 @@ class RecommendationRequests {
         return response.data as GeneralizedResult[]
     }
 
+
+    // Trending recomendations by platform
+    static async getTrendingWeeklyYoutubeContent(page: number, limit: number, sessionToken: string) {
+
+        const url = "/Recommendations/getTrendingWeeklyYoutubeContent";
+
+        const data: GetTrendingContentDto = {
+            limit: limit,
+            pageNumber: page,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as GeneralizedResult[]
+    }
+
+    static async getTrendingWeeklyVimeoContent(page: number, limit: number, sessionToken: string) {
+
+        const url = "/Recommendations/getTrendingWeeklyVimeoContent";
+
+        const data: GetTrendingContentDto = {
+            limit: limit,
+            pageNumber: page,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as GeneralizedResult[]
+    }
+
+    static async getTrendingWeeklySpotifyTrackAndAlbumContent(page: number, limit: number, sessionToken: string) {
+
+        const url = "/Recommendations/getTrendingWeeklySpotifyTrackAndAlbumContent";
+
+        const data: GetTrendingContentDto = {
+            limit: limit,
+            pageNumber: page,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as GeneralizedResult[]
+    }
+
+    static async getTrendingWeeklySpotifyPodcastContent(page: number, limit: number, sessionToken: string) {
+
+        const url = "/Recommendations/getTrendingWeeklySpotifyPodcastContent";
+
+        const data: GetTrendingContentDto = {
+            limit: limit,
+            pageNumber: page,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as GeneralizedResult[]
+    }
+
+    static async getTrendingWeeklySoundCloudContent(page: number, limit: number, sessionToken: string) {
+
+        const url = "/Recommendations/getTrendingWeeklySoundCloudContent";
+
+        const data: GetTrendingContentDto = {
+            limit: limit,
+            pageNumber: page,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as GeneralizedResult[]
+    }
+
+    static async getTrendingWeeklyMixcloudContent(page: number, limit: number, sessionToken: string) {
+
+        const url = "/Recommendations/getTrendingWeeklyMixcloudContent";
+
+        const data: GetTrendingContentDto = {
+            limit: limit,
+            pageNumber: page,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as GeneralizedResult[]
+    }
+
+    static async getTrendingWeeklyDailymotionContent(page: number, limit: number, sessionToken: string) {
+
+        const url = "/Recommendations/getTrendingWeeklyDailymotionContent";
+
+        const data: GetTrendingContentDto = {
+            limit: limit,
+            pageNumber: page,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as GeneralizedResult[]
+    }
+
+    static async getTrendingWeeklyTwitchLivestreamContent(page: number, limit: number, sessionToken: string) {
+
+        const url = "/Recommendations/getTrendingWeeklyTwitchLivestreamContent";
+
+        const data: GetTrendingContentDto = {
+            limit: limit,
+            pageNumber: page,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as GeneralizedResult[]
+    }
+
+    static async GetTrendingWeeklyTwitchClipContent(page: number, limit: number, sessionToken: string) {
+
+        const url = "/Recommendations/GetTrendingWeeklyTwitchClipContent";
+
+        const data: GetTrendingContentDto = {
+            limit: limit,
+            pageNumber: page,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as GeneralizedResult[]
+    }
+
+    static async getTrendingWeeklyTwitchVideoContent(page: number, limit: number, sessionToken: string) {
+
+        const url = "/Recommendations/getTrendingWeeklyTwitchVideoContent";
+
+        const data: GetTrendingContentDto = {
+            limit: limit,
+            pageNumber: page,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as GeneralizedResult[]
+    }
+
+    static async getTrendingWeeklyRadioContent(page: number, limit: number, sessionToken: string) {
+
+        const url = "/Recommendations/getTrendingWeeklyRadioContent";
+
+        const data: GetTrendingContentDto = {
+            limit: limit,
+            pageNumber: page,
+            sessionToken: sessionToken
+        }
+
+        const options = {
+            method: 'POST',
+            url: url,
+            data: data
+        };
+
+        // @ts-ignore
+        let response = await axios(options)
+        return response.data as GeneralizedResult[]
+    }
+
+
+
     static async getTrendingDailyContent(page: number, limit: number, sessionToken: string) {
 
         const url = "/Recommendations/getTrendingDailyContent";

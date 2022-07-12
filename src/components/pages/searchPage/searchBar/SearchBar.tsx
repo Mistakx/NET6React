@@ -45,9 +45,43 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
         (async () => {
             const sessionToken = localStorage.getItem("sessionToken")
             if (sessionToken) {
-                const trendingContent = await RecommendationRequests.getTrendingWeeklyContent(1, 1000, sessionToken)
-                setRecommendations(trendingContent)
-            } else prettyAlert("You must be logged in to view recommendations", false)
+                console.log(selectedSearch.getButtonText())
+
+                if(selectedSearch.getButtonText() === 'YouTube') {
+                     setRecommendations(await RecommendationRequests.getTrendingWeeklyYoutubeContent(1, 1000, sessionToken))
+                }
+                else if(selectedSearch.getButtonText() === 'Vimeo') {
+                    setRecommendations(await RecommendationRequests.getTrendingWeeklyVimeoContent(1, 1000, sessionToken))
+                }
+                else if(selectedSearch.getButtonText() === 'Spotify (Track)' || selectedSearch.getButtonText() === 'Spotify (Album)') {
+                    setRecommendations(await RecommendationRequests.getTrendingWeeklySpotifyTrackAndAlbumContent(1, 1000, sessionToken))
+                }
+                else if(selectedSearch.getButtonText() === 'Spotify (Podcasts)') {
+                    setRecommendations(await RecommendationRequests.getTrendingWeeklySpotifyPodcastContent(1, 1000, sessionToken))
+                }
+                else if(selectedSearch.getButtonText() === 'SoundCloud') {
+                    setRecommendations(await RecommendationRequests.getTrendingWeeklySoundCloudContent(1, 1000, sessionToken))
+                }
+                else if(selectedSearch.getButtonText() === 'Mixcloud') {
+                    setRecommendations(await RecommendationRequests.getTrendingWeeklyMixcloudContent(1, 1000, sessionToken))
+                }
+                else if(selectedSearch.getButtonText() === 'Dailymotion') {
+                    setRecommendations(await RecommendationRequests.getTrendingWeeklyDailymotionContent(1, 1000, sessionToken))
+                }
+                else if(selectedSearch.getButtonText() === 'Twitch - Livestream') {
+                    setRecommendations(await RecommendationRequests.getTrendingWeeklyTwitchLivestreamContent(1, 1000, sessionToken))
+                }
+                else if(selectedSearch.getButtonText() === 'Twitch - Clip (Channel)' || selectedSearch.getButtonText() === 'Twitch - Clip (Game)') {
+                    setRecommendations(await RecommendationRequests.GetTrendingWeeklyTwitchClipContent(1, 1000, sessionToken))
+                }
+                else if(selectedSearch.getButtonText() === 'Twitch - Video (Channel)' || selectedSearch.getButtonText() === 'Twitch - Video (Game)') {
+                    setRecommendations(await RecommendationRequests.getTrendingWeeklyTwitchVideoContent(1, 1000, sessionToken))
+                }
+                else if(selectedSearch.getButtonText() === 'Radio') {
+                    setRecommendations(await RecommendationRequests.getTrendingWeeklyRadioContent(1, 1000, sessionToken))
+                }
+            } 
+            else prettyAlert("You must be logged in to view recommendations", false)
         })()
 
     }, [selectedSearch])
