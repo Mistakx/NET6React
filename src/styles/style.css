@@ -1,4 +1,4 @@
-/*@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap');
 
 html {
@@ -50,7 +50,7 @@ html {
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: 'Baloo 2', cursive;
+  /* font-family: 'Baloo 2', cursive; */
   background-color: #071E3D;
   color: var(--text);
 
@@ -77,8 +77,8 @@ a:hover {
 }
 
 h1 {
-  /* font-family: 'Caesar Dressing', cursive; */
-  font-family: 'Baloo 2', cursive;
+  font-family: 'Caesar Dressing', cursive;
+  /* font-family: 'Baloo 2', cursive; */
 }
 
 h2,
@@ -272,21 +272,21 @@ h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  min-height: 100vh;
-  background: url("https://cdn.pixabay.com/photo/2016/11/23/00/58/record-player-1851576_960_720.jpg") top right no-repeat;
+  height: 100vh;
+  background: url("https://cdn.pixabay.com/photo/2019/12/04/08/12/night-4672027_960_720.jpg") center center no-repeat;
   background-size: cover;
   position: relative;
 }
 
 @media (min-width: 992px) {
   #hero {
-    padding-left: 160px;
+    /* padding-left: 160px; */
   }
 }
 
 #hero:before {
   content: "";
-  background: rgba(7, 30, 61, 0.65);
+  background: rgba(7, 30, 61, 0.35);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -296,7 +296,7 @@ h6 {
 
 #hero h1 {
   /* margin-top: -200px; */
-  font-size: 88px;
+  font-size: 200px;
 }
 
 #hero p {

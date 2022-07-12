@@ -7,8 +7,8 @@
 
 .login h1 {
   color:#f2f3f5;
-  
   font-family: 'Baloo 2', cursive;
+  font-size: 88px !important;
 }
 
 .login .form-control {

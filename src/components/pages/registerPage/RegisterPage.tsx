@@ -64,7 +64,7 @@ function RegisterPage(): JSX.Element {
             <div className="container" data-aos="zoom-in" data-aos-delay="100">
 
                 <div className="row">
-                    <div className="col-md-4 offset-md-3 text-center">
+                    <div className="col-md-4 offset-md-4 text-center">
                         <h1>Register</h1>
                         <div className="form-wrapper mt-5">
 
@@ -102,7 +102,7 @@ function RegisterPage(): JSX.Element {
 
                                 {/*Username*/}
                                 <div className="form-group" data-aos="zoom-in" data-aos-delay="200">
-                                    <input type="text" className="form-control form-control-lg" placeholder="User Name"
+                                    <input type="text" className="form-control form-control-lg" placeholder="User Name" required
                                            onChange={
                                                (e) => {
                                                    setUsername(e.target.value)
@@ -113,7 +113,7 @@ function RegisterPage(): JSX.Element {
 
                                 {/*Name*/}
                                 <div className="form-group" data-aos="zoom-in" data-aos-delay="200">
-                                    <input type="text" className="form-control form-control-lg" placeholder="Name"
+                                    <input type="text" className="form-control form-control-lg" placeholder="Name" required
                                            onChange={
                                                (e) => {
                                                    setName(e.target.value)
@@ -124,7 +124,7 @@ function RegisterPage(): JSX.Element {
 
                                 {/*Email*/}
                                 <div className="form-group" data-aos="zoom-in" data-aos-delay="300">
-                                    <input type="text" className="form-control form-control-lg" placeholder="Email"
+                                    <input type="email" className="form-control form-control-lg" placeholder="Email" required
                                            onChange={
                                                (e) => {
                                                    setEmail(e.target.value)
@@ -135,7 +135,7 @@ function RegisterPage(): JSX.Element {
 
                                 {/*Password*/}
                                 <div className="form-group" data-aos="zoom-in" data-aos-delay="400">
-                                    <input type="password" className="form-control form-control-lg"
+                                    <input type="password" className="form-control form-control-lg" required minLength={8}
                                            placeholder="Password"
                                            onChange={
                                                (e) => {
@@ -147,7 +147,7 @@ function RegisterPage(): JSX.Element {
 
                                 {/*Confirm password*/}
                                 <div className="form-group" data-aos="zoom-in" data-aos-delay="500">
-                                    <input type="password" className="form-control form-control-lg"
+                                    <input type="password" className="form-control form-control-lg" required minLength={8}
                                            placeholder="Confirm password"
                                            onChange={
                                                (e) => {

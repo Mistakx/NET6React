@@ -63,7 +63,7 @@ function VideoSearchItem(props: VideoSearchItemProperties): JSX.Element {
                          setCurrentPlayerToClickedItem()
                      }}
                 >
-                    <div className="card-title">
+                    <div className="card-title text-uppercase">
                         <h5 className="flex-grow-1">{props.searchResult.title}</h5>
                     </div>
                     <div className="card-text text-truncate">{props.searchResult.creator}</div>
