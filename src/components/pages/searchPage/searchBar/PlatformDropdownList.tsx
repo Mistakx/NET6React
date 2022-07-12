@@ -164,19 +164,6 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                 </div>
             </li>
 
-            {/*Radio*/}
-            <li>
-                <div className="dropdown-item text-center text-white h4 btn-radio"
-                     id="platform"
-                     data-id="radio" onClick={(e) => {
-                    props.togglePlatformDropdownList()
-                    e.preventDefault()
-                    setSelectedSearch(RadioSearchByName.getInstance())
-                }}>
-                    <FontAwesomeIcon icon={faRadio}></FontAwesomeIcon>
-                </div>
-            </li>
-
             {/*Twitch*/}
             <li>
 
@@ -246,6 +233,19 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     </li>
 
                 </ul>
+            </li>
+
+            {/*Radio*/}
+            <li>
+                <div className="dropdown-item text-center text-white h4 btn-radio"
+                     id="platform"
+                     data-id="radio" onClick={(e) => {
+                    props.togglePlatformDropdownList()
+                    e.preventDefault()
+                    setSelectedSearch(RadioSearchByName.getInstance())
+                }}>
+                    <FontAwesomeIcon icon={faRadio}></FontAwesomeIcon>
+                </div>
             </li>
 
         </ul>

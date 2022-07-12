@@ -31,7 +31,7 @@ function TrendingPage(): JSX.Element {
 
                         <div className="col-md-10 offset-md-1">
 
-                            <TrendingTopBar text={"Trending This Week 🔥"}></TrendingTopBar>
+                            <TrendingTopBar text={"Trending 🔥"}></TrendingTopBar>
 
                             <div className="">
 

@@ -27,7 +27,9 @@ function PlaylistPlayer(): JSX.Element {
             let playlistResultIndex = 0
             for (let result of playlistCurrentResults!) {
 
-                if (result === playlistPlayerCurrentResult) {
+                if (result.platformId === playlistPlayerCurrentResult.platformId
+                    && result.playerFactoryName === playlistPlayerCurrentResult.playerFactoryName
+                    && result.platformPlayerUrl === playlistPlayerCurrentResult.platformPlayerUrl) {
                     break
                 }
                 playlistResultIndex++
@@ -41,7 +43,9 @@ function PlaylistPlayer(): JSX.Element {
             let playlistResultIndex = 0
             for (let result of playlistCurrentResults!) {
 
-                if (result === playlistPlayerCurrentResult) {
+                if (result.platformId === playlistPlayerCurrentResult.platformId
+                    && result.playerFactoryName === playlistPlayerCurrentResult.playerFactoryName
+                    && result.platformPlayerUrl === playlistPlayerCurrentResult.platformPlayerUrl) {
                     break
                 }
                 playlistResultIndex++
@@ -71,9 +75,10 @@ function PlaylistPlayer(): JSX.Element {
                     <OverlayTrigger
                         trigger={['hover', 'focus']}
                         placement="bottom"
-                        overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
-                            Previus
-                        </Popover>} >
+                        overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1'
+                                          title="Popover right">
+                            Previous
+                        </Popover>}>
                         <button className="btn btn-link text-white"
                                 onClick={playPreviousContent}
                         >
@@ -83,9 +88,10 @@ function PlaylistPlayer(): JSX.Element {
                     <OverlayTrigger
                         trigger={['hover', 'focus']}
                         placement="bottom"
-                        overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
+                        overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1'
+                                          title="Popover right">
                             Toggle autoplay
-                        </Popover>} >
+                        </Popover>}>
                         <button className={"btn btn-link text-" + (autoPlay ? "success" : "white")}
                                 onClick={toggleAutoPlay}
                         >
@@ -95,9 +101,10 @@ function PlaylistPlayer(): JSX.Element {
                     <OverlayTrigger
                         trigger={['hover', 'focus']}
                         placement="bottom"
-                        overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1' title="Popover right">
+                        overlay={<Popover id="popover-trigger-focus" className='bg-dark text-white p-1'
+                                          title="Popover right">
                             Next
-                        </Popover>} >
+                        </Popover>}>
                         <button className="btn btn-link text-white"
                                 onClick={playNextContent}
                         >

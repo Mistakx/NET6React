@@ -35,6 +35,7 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
     const prettyAlert = AlertStore(state => state.prettyAlert)
 
     const setPlaylistCurrentResults = PlaylistPagePlayerStore(state => state.setPlaylistCurrentResults)
+    const playlistCurrentResults = PlaylistPagePlayerStore(state => state.playlistCurrentResults)
 
     const deleteGeneralizedResultResponse = BackendResponsesStore(state => state.deleteGeneralizedResultResponse)
     const setDeleteGeneralizedResultResponse = BackendResponsesStore(state => state.setDeleteGeneralizedResultResponse)
@@ -84,6 +85,8 @@ function PlaylistContentList(props: PlaylistItemsListProperties): JSX.Element {
     }, [deleteGeneralizedResultResponse]);
 
     useEffect(() => {
+        console.log("playlistCurrentResults", playlistCurrentResults)
+        console.log("playlistContent", playlistContent)
         setPlaylistCurrentResults(playlistContent)
     }, [playlistContent]);
 
