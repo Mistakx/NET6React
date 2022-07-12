@@ -23,8 +23,10 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
     const selectedSearch = SelectedPlatformSearchStore(state => state.selectedSearch)
     const searchBarQuery = SelectedPlatformSearchStore(state => state.searchBarQuery)
+    const recommendations = SelectedPlatformSearchStore(state => state.recommendations)
     const setSearchBarQuery = SelectedPlatformSearchStore(state => state.setSearchBarQuery)
     const setRecommendations = SelectedPlatformSearchStore(state => state.setRecommendations)
+    const setFirstRecommendationsTitles = SelectedPlatformSearchStore(state => state.setFirstRecommendationsTitles)
     const showingRecommendations = SelectedPlatformSearchStore(state => state.showingRecommendations)
     const firstRecommendationsTitles = SelectedPlatformSearchStore(state => state.firstRecommendationsTitles)
 
@@ -45,7 +47,6 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
         (async () => {
             const sessionToken = localStorage.getItem("sessionToken")
             if (sessionToken) {
-                console.log(selectedSearch.getButtonText())
 
                 if(selectedSearch.getButtonText() === 'YouTube') {
                      setRecommendations(await RecommendationRequests.getTrendingWeeklyYoutubeContent(1, 1000, sessionToken))
@@ -86,6 +87,19 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
 
     }, [selectedSearch])
 
+    useEffect(() => {
+        const recommendationsTitles = recommendations.map(recommendation => {
+            if (recommendation.resultType === "GenericLivestreamResult") return recommendation.creator
+            else return recommendation.title
+        })
+
+        if (recommendationsTitles.length > 0) {
+            let allMatches = recommendationsTitles.filter(title => title.toLowerCase().includes(searchBarQuery.toLowerCase()))
+            setFirstRecommendationsTitles(allMatches.slice(0, 5))
+        }
+
+    }, [searchBarQuery, recommendations])
+
     function togglePlatformDropdownList() {
         if (platformDropdownList === closedDropdown) {
             setPlatformDropdownList(openedDropdown)
@@ -112,6 +126,8 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
     let recommendationsList
     if (searchBarQuery.length > 0 && showingRecommendations) {
         recommendationsList = firstRecommendationsTitles.map(title => {
+
+            console.log(title)
 
             return <div key={title} onClick={
                 () => {

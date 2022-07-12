@@ -16,19 +16,6 @@ function SearchForm(props: SearchFormProperties): JSX.Element {
     const recommendations = SelectedPlatformSearchStore(state => state.recommendations)
     const setFirstRecommendationsTitles = SelectedPlatformSearchStore(state => state.setFirstRecommendationsTitles)
 
-
-    function onChangeHandler(event: React.ChangeEvent<HTMLInputElement>) {
-        setSearchBarQuery(event.target.value)
-
-        const recommendationsTitles = recommendations.map(recommendation => recommendation.title)
-
-        if (recommendationsTitles.length > 0) {
-            let allMatches = recommendationsTitles.filter(title => title.toLowerCase().includes(event.target.value.toLowerCase()))
-            setFirstRecommendationsTitles(allMatches.slice(0, 5))
-        }
-
-    }
-
     return (
 
         <input type="text submit" id="search"
@@ -50,7 +37,7 @@ function SearchForm(props: SearchFormProperties): JSX.Element {
                }}
 
                onChange={(event) => {
-                   onChangeHandler(event)
+                    setSearchBarQuery(event.target.value)
                }}
         />
 
