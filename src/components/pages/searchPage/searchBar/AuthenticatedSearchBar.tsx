@@ -9,9 +9,7 @@ function AuthenticatedSearchBar(): JSX.Element {
     const spotifyAuthenticator = SpotifyAuthenticator()
 
     return (
-        <div>
-            <SearchBar spotifyAuthenticator={spotifyAuthenticator} twitchAuthenticator={twitchAuthenticator}/>
-        </div>
+        <SearchBar spotifyAuthenticator={spotifyAuthenticator} twitchAuthenticator={twitchAuthenticator}/>
     )
 }
 

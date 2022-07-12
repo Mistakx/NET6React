@@ -12,22 +12,28 @@ import {UserProfileDto} from "../../models/backendResponses/userRoute/UserProfil
 const SelectedCommunitySearchStore = create<SelectedCommunitySearchState>((set) => ({
 
     searchBarQuery: "",
-    setSearchBarQuery: (searchBarQuery: string) => set(state => ({
+    setSearchBarQuery: (searchBarQuery) => set(state => ({
         searchBarQuery: searchBarQuery
     })),
 
     selectedCommunitySearch: UserRequest.getInstance(),
-    setSelectedCommunitySearch: (selectedCommunitySearch: CommunitySearch) => set(state => ({
+    setSelectedCommunitySearch: (selectedCommunitySearch) => set(state => ({
         selectedCommunitySearch: selectedCommunitySearch
     })),
 
+    showingRecommendations: false,
+    setShowingRecommendations: (showingRecommendations) => set(state => ({
+        showingRecommendations: showingRecommendations
+    })),
+
+
     recommendations: [],
-    setRecommendations: (recommendations: PlaylistDto[] | UserProfileDto[]) => set(state => ({
+    setRecommendations: (recommendations) => set(state => ({
         recommendations: recommendations
     })),
 
     firstRecommendationsTitles: [],
-    setFirstRecommendationsTitles: (firstRecommendationsTitles: string[]) => set(state => ({
+    setFirstRecommendationsTitles: (firstRecommendationsTitles) => set(state => ({
         firstRecommendationsTitles: firstRecommendationsTitles
     })),
 

@@ -8,23 +8,27 @@ import {GeneralizedResult} from "../../models/apiResponses/GenericResults";
 const SelectedPlatformSearchStore = create<SelectedPlatformSearchState>((set) => ({
 
     searchBarQuery: "",
-    setSearchBarQuery: (searchBarQuery: string) => set(state => ({
+    setSearchBarQuery: (searchBarQuery) => set(state => ({
         searchBarQuery: searchBarQuery
     })),
 
     selectedSearch: YouTubeSearchVideoByGeneral.getInstance(),
-    setSelectedSearch: (selectedSearch: ApiSearch) => set(state => ({
+    setSelectedSearch: (selectedSearch) => set(state => ({
         selectedSearch: selectedSearch
     })),
 
+    showingRecommendations: false,
+    setShowingRecommendations: (showingRecommendations) => set(state => ({
+        showingRecommendations: showingRecommendations
+    })),
 
     recommendations: [],
-    setRecommendations: (recommendations: GeneralizedResult[]) => set(state => ({
+    setRecommendations: (recommendations) => set(state => ({
         recommendations: recommendations
     })),
 
     firstRecommendationsTitles: [],
-    setFirstRecommendationsTitles: (firstRecommendationsTitles: string[]) => set(state => ({
+    setFirstRecommendationsTitles: (firstRecommendationsTitles) => set(state => ({
         firstRecommendationsTitles: firstRecommendationsTitles
     })),
 

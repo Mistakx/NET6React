@@ -9,6 +9,9 @@ export interface SelectedPlatformSearchState {
     selectedSearch: ApiSearch,
     setSelectedSearch: (search: ApiSearch) => void
 
+    showingRecommendations: boolean,
+    setShowingRecommendations: (showingRecommendations: boolean) => void
+
     recommendations: GeneralizedResult[],
     setRecommendations: (recommendations: GeneralizedResult[]) => void
 

@@ -11,6 +11,9 @@ export interface SelectedCommunitySearchState {
     selectedCommunitySearch: CommunitySearch,
     setSelectedCommunitySearch: (search: CommunitySearch) => void
 
+    showingRecommendations: boolean,
+    setShowingRecommendations: (showingRecommendations: boolean) => void
+
     recommendations: PlaylistDto[] | UserProfileDto[],
     setRecommendations: (recommendations: PlaylistDto[] | UserProfileDto[]) => void
 

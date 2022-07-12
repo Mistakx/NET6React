@@ -13,6 +13,7 @@ import {
 import AlertStore from "../../../../stores/AlertStore";
 import SearchLabel from "./SearchLabel";
 import RecommendationRequests from "../../../../requests/backendRequests/RecommendationRequests";
+import {flushSync} from "react-dom";
 
 function SearchBar(props: SearchBarProperties): JSX.Element {
 
@@ -24,6 +25,7 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
     const searchBarQuery = SelectedPlatformSearchStore(state => state.searchBarQuery)
     const setSearchBarQuery = SelectedPlatformSearchStore(state => state.setSearchBarQuery)
     const setRecommendations = SelectedPlatformSearchStore(state => state.setRecommendations)
+    const showingRecommendations = SelectedPlatformSearchStore(state => state.showingRecommendations)
     const firstRecommendationsTitles = SelectedPlatformSearchStore(state => state.firstRecommendationsTitles)
 
     const platformDropdownList = PlatformDropdownStore(state => state.platformDropdownList)
@@ -74,20 +76,23 @@ function SearchBar(props: SearchBarProperties): JSX.Element {
     }
 
     let recommendationsList
-    if (searchBarQuery.length > 0) {
+    if (searchBarQuery.length > 0 && showingRecommendations) {
         recommendationsList = firstRecommendationsTitles.map(title => {
 
             return <div key={title} onClick={
                 () => {
+
+                    // https://codingshower.com/react-execute-code-immediately-after-set-state-update-and-re-render/
+                    flushSync(() => {
+                        setSearchBarQuery(title)
+                    })
+
                     document.getElementById('button-addon2')?.click();
                 }
             }>
-                <li className={'align-middle btn-' + selectedSearch.getPlatform().getColorClass()}
-                    onClick={
-                        () => {
-                            setSearchBarQuery(title)
-                        }
-                    }><i className='bx bx-search-alt'/> {title}</li>
+                <li className={'align-middle btn-' + selectedSearch.getPlatform().getColorClass()}>
+                    <i className='bx bx-search-alt'/> {title}
+                </li>
             </div>
         })
     }

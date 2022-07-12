@@ -11,6 +11,7 @@ import {PlaylistDto} from "../../../../models/backendRequests/PlaylistRoute/Play
 import {UserProfileDto} from "../../../../models/backendResponses/userRoute/UserProfileDto";
 import CommunitySearchLabel from "./CommunitySearchLabel";
 import RecommendationRequests from "../../../../requests/backendRequests/RecommendationRequests";
+import {flushSync} from "react-dom";
 
 function CommunitySearchBar(): JSX.Element {
 
@@ -22,6 +23,7 @@ function CommunitySearchBar(): JSX.Element {
     const setSearchBarQuery = SelectedCommunitySearchStore(state => state.setSearchBarQuery)
     const setRecommendations = SelectedCommunitySearchStore(state => state.setRecommendations)
     const recommendations = SelectedCommunitySearchStore(state => state.recommendations)
+    const showingRecommendations = SelectedCommunitySearchStore(state => state.showingRecommendations)
     const firstRecommendationsTitles = SelectedCommunitySearchStore(state => state.firstRecommendationsTitles)
     const setFirstRecommendationsTitles = SelectedCommunitySearchStore(state => state.setFirstRecommendationsTitles)
 
@@ -99,26 +101,29 @@ function CommunitySearchBar(): JSX.Element {
     }
 
 
-
     let recommendationsList
-    if (searchBarQuery.length > 0) {
+    if (searchBarQuery.length > 0 && showingRecommendations) {
 
         recommendationsList = firstRecommendationsTitles.map(title => {
-            return <div>
+            return <div key={title} onClick={
+                () => {
 
-                <li className={"btn-sparta p-2"}
-                        key={title}
-                        onClick={
-                            () => {
-                                setSearchBarQuery(title)
-                            }
-                        }>{title}</li>
+                    // https://codingshower.com/react-execute-code-immediately-after-set-state-update-and-re-render/
+                    flushSync(() => {
+                        setSearchBarQuery(title)
+                    })
+
+                    document.getElementById('button-addon2')?.click()
+
+                }
+            }>
+
+                <li className={"btn-sparta"}>
+                    <i className='bx bx-search-alt'/> {title}
+                </li>
 
             </div>
         })
-
-        console.log("recommendationsList")
-        console.log(recommendationsList)
 
     }
 
@@ -146,8 +151,8 @@ function CommunitySearchBar(): JSX.Element {
                         <CommunitySearchForm/>
 
                         <button className={"btn btn-sm btn-search sparta"}
-                            type="submit"
-                            id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
+                                type="submit"
+                                id="button-addon2"><i className='bx bx-search-alt h3'></i></button>
                     </div>
                     <div className={"suggestion"}>
                         {recommendationsList}

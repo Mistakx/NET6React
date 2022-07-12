@@ -67,7 +67,7 @@
     top: 0;
     right: 0;
     z-index: 10;
-    border:none;
+    border: none;
 }
 
 .search-body .btn-search:hover,
@@ -337,6 +337,10 @@
 # Dropdown submenu
 --------------------------------------------------------------*/
 
+.dropdown-menu {
+    min-width: auto !important;
+}
+
 .search-body .dropdown-menu {
     min-width: auto !important;
     padding-bottom: 0;
@@ -353,7 +357,7 @@
     top: -7px;
 }
 
-.search-body .dropdown-menu>li:hover>.dropdown-submenu {
+.search-body .dropdown-menu > li:hover > .dropdown-submenu {
     display: block;
 }
 
@@ -385,7 +389,7 @@
 
 .search-body .dropdown-submenu {
     position: relative;
-    background-color: transparent;    
+    background-color: transparent;
 }
 
 .search-body .dropdown-submenu .dropdown-menu {
@@ -396,13 +400,14 @@
 
 .suggestion {
     z-index: 20;
-    position: absolute;
+    /*position: absolute;*/
     width: 100%;
-    margin-top:40px;
+    margin-top: 1px;
     text-decoration: none !important;
 }
 
 .suggestion li {
+    border-top: #071E3D 1px solid;
     display: block;
     /* height: 30px; */
     vertical-align: middle !important;
@@ -424,6 +429,7 @@
     top: 0px;
     right: 0px;
 }
+
 .moveButton,
 .closeButton {
     color: var(--text);
@@ -432,7 +438,7 @@
 }
 
 .moveButton:hover,
-.closeButton:hover  {
+.closeButton:hover {
     background-color: rgba(19, 86, 173, 0.8);
 }
 
