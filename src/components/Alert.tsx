@@ -43,24 +43,24 @@ function Alert(): JSX.Element {
     if (showingAlert && alertMessageBeingDisplayed) {
         alert =
 
-            <div className="row text-center no-gutters position-fixed top-0 end-0 m-5"
-                 style={{overflowX: "hidden", zIndex: 10000}}>
-
-                <div
-                     className={"toast align-items-center show " + alertColor}
-                     data-aos="fade-left" data-aos-duration="500">
-                    <div className="d-flex">
-                        <div className="toast-body">
-                            {alertMessageBeingDisplayed}
-                        </div>
-                        <button type="button" className="btn-close me-2 m-auto"
+            <div className="row text-center no-gutters position-fixed top-0 end-0 m-2"
+                style={{overflowX: "hidden", zIndex: 10000}}>
+                <div className="col-12">
+                    <div className={"toast align-items-center show " + alertColor}
+                        data-aos="fade-left" data-aos-duration="500">
+                        <div className="d-flex">
+                            <div className="toast-body">
+                                {alertMessageBeingDisplayed}
+                            </div>
+                            <button type="button" className="btn-close me-1 m-auto"
                                 aria-label="Close"
                                 onClick={() => {
                                     setShowingAlert(false)
                                     setAlertMessage(null)
                                 }}
-                        >
-                        </button>
+                            >
+                            </button>
+                        </div>
                     </div>
                 </div>
 

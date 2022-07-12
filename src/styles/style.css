@@ -49,8 +49,10 @@ html {
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
+
 body {
-  /* font-family: 'Baloo 2', cursive; */
+  font-family: 'Baloo 2', cursive;
   background-color: #071E3D;
   color: var(--text);
 
@@ -76,11 +78,7 @@ a:hover {
   text-decoration: none;
 }
 
-h1 {
-  font-family: 'Caesar Dressing', cursive;
-  /* font-family: 'Baloo 2', cursive; */
-}
-
+h1,
 h2,
 h3,
 h4,
@@ -278,12 +276,6 @@ h6 {
   position: relative;
 }
 
-@media (min-width: 992px) {
-  #hero {
-    /* padding-left: 160px; */
-  }
-}
-
 #hero:before {
   content: "";
   background: rgba(7, 30, 61, 0.35);
@@ -294,8 +286,8 @@ h6 {
   right: 0;
 }
 
-#hero h1 {
-  /* margin-top: -200px; */
+#hero h1  {
+  font-family: 'Caesar Dressing', cursive;
   font-size: 200px;
 }
 

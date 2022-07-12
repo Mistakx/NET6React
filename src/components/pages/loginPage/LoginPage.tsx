@@ -90,7 +90,7 @@ function LoginPage(): JSX.Element {
                                 </div>
 
                                 <div className="form-group" data-aos="zoom-in" data-aos-delay="200">
-                                    <input type="password" className="form-control form-control-lg" required minLength={8}
+                                    <input type="password" className="form-control form-control-lg" required
                                            placeholder="Password"
                                            onChange={
                                                (e) => {

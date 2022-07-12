@@ -37,9 +37,8 @@ export function App() {
                        element={<Login/>}/>
                 <Route path="/register"
                        element={<RegisterPage/>}/>
-
                 <Route path="/home"
-                       element={isAuthenticated || sessionToken ? <HomePage/> : <Login/>}/>
+                       element={<HomePage/>}/>
                 <Route path="/search"
                        element={isAuthenticated || sessionToken ? <SearchPage/> : <Login/>}/>
                 <Route path="/user/:username"
