@@ -223,14 +223,14 @@ function PlatformDropdownList(props: PlatformDropdownListProperties): JSX.Elemen
                     </li>
 
                     {/*Twitch video by game*/}
-                    <li onClick={(e) => {
-                        props.togglePlatformDropdownList()
-                        e.preventDefault()
-                        setSelectedSearch(TwitchSearchVideoByGame.getInstance())
-
-                    }}>
-                        <div className="clickable dropdown-item btn-twitch">Video - Game</div>
-                    </li>
+                    {/*<li onClick={(e) => {*/}
+                    {/*    props.togglePlatformDropdownList()*/}
+                    {/*    e.preventDefault()*/}
+                    {/*    setSelectedSearch(TwitchSearchVideoByGame.getInstance())*/}
+                    
+                    {/*}}>*/}
+                    {/*    <div className="clickable dropdown-item btn-twitch">Video - Game</div>*/}
+                    {/*</li>*/}
 
                 </ul>
             </li>

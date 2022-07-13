@@ -12,13 +12,21 @@ function CloseVideoButton(): JSX.Element {
     }
 
     return (
-        <button>
-            <i
-                className='bx bx-x bx-sm closeButton clickable'
-                onClick={() => {
+        <button
+            onClick={
+                () => {
                     stopPlayingVideo()
-                }}>
-            </i>
+                    console.log('clicked')
+                }
+            }
+            onTouchEnd={
+                () => {
+                    stopPlayingVideo()
+                }
+            }
+        >
+
+            <i className='bx bx-x bx-sm closeButton clickable'> </i>
         </button>
     )
 }

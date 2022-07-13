@@ -32,7 +32,7 @@ function RadioSearchItem(props: RadioSearchItemProperties): JSX.Element {
     let dailyViewsAmount;
     if (props.searchResult.dailyViewsAmount || props.searchResult.dailyViewsAmount === 0) {
         dailyViewsAmount =
-            <div className="card-text text-truncate">Weekly Views: {props.searchResult.dailyViewsAmount}</div>
+            <div className="card-text text-truncate">Daily Views: {props.searchResult.dailyViewsAmount}</div>
     }
 
     let totalViewsAmount;
