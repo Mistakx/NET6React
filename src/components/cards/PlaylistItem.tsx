@@ -150,7 +150,8 @@ function PlaylistItem(props: ProfilePlaylistItemProperties): JSX.Element {
 
     return (
 
-        <div className={playlistItemClass}>
+        <div className={playlistItemClass}
+             data-aos="zoom-in">
 
             <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
 

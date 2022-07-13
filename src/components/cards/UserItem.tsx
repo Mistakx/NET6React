@@ -65,7 +65,7 @@ function UserItem(props: UserItemProperties): JSX.Element {
 
     return (
 
-        <div className="result col-lg-3 col-md-4 col-sm-6 col-6 position-relative">
+        <div className="result col-lg-3 col-md-4 col-sm-6 col-6 position-relative" data-aos="zoom-in">
 
             <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
 
