@@ -74,11 +74,7 @@ function SidePanel(): JSX.Element {
                     <li>
                         <div className="clickable nav-link scrollto sinal"
                             data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
-                            title="See online friends"
-                             onClick={() => {
-                                 navigate('/user/' + localStorage.getItem("username"));
-
-                             }}>
+                            title="See online friends">
                             <FontAwesomeIcon icon={faTowerBroadcast} />
                             <span>Live Room</span>
                         </div>

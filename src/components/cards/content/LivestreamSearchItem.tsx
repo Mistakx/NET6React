@@ -46,7 +46,7 @@ function LivestreamSearchItem(props: LivestreamSearchItemProperties): JSX.Elemen
 
     return (
 
-        <div className="result col-lg-3 col-md-4 col-sm-6 col-6 position-relative" data-aos="zoom-in">
+        <div className="result col-lg-3 col-md-4 col-sm-6 col-6 position-relative">
             <div className="card scale clickable"
                  style={{backgroundSize: "100% 100%", backgroundImage: "url(" + props.searchResult.thumbnailUrl + ")"}}>
                 <div className="options">
@@ -64,7 +64,9 @@ function LivestreamSearchItem(props: LivestreamSearchItemProperties): JSX.Elemen
                          setCurrentPlayerToClickedItem()
                      }}
                 >
-                    <h5 className="card-title text-uppercase text-truncate">{props.searchResult.title}</h5>
+                   <div className="card-title text-uppercase">
+                        <h5 className="flex-grow-1">{props.searchResult.title}</h5>
+                    </div>
                     <div className="card-text text-truncate">{props.searchResult.gameName}</div>
                     <div className="card-text text-truncate">{props.searchResult.creator}</div>
                     {monthlyViewsAmount}
