@@ -1,46 +1,51 @@
-# Getting Started with Create React App
+# Sky Playlist Manager - Winner of the 2022 competition
+As a competition organized in Madeira by Sky, we were tasked to design and implement a playlist manager with the backend written in C#.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+We decided to implement a rest API, with a MongoDB docker container as the database, as well as ASP.NET Core for the backend, and React for the frontend.
 
-## Available Scripts
+This is the frontend for the backend found [here.](https://github.com/Mistakx/NET6PlaylistManager)
 
-In the project directory, you can run:
 
-### `npm start`
+## Trending Page
+The trending page shows the most popular assets being played by the platform's users. <br>
+A user can sort the assets by their monthly, weekly and daily popularity. <br>
+The assets can also be directly added to a user's playlist.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![Trending](./assets/Trending.gif)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Search Page
+The search page can be used to search for and play assets on a variety of platforms. <br>
+The user can search YouTube, Vimeo, Spotify, SoundCloud and Vimeo, Mixcloud, DailyMotion, Twitch for various videos, songs, or podcasts. <br>
+The user can also search for a wide variety of radios located all around the world.
 
-### `npm test`
+![Search](./assets/Search.gif)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Community Page
+In the community page, the user can search for and follow the public playlists of other users sorted by their popularity. <br>
+This page can also be used to search for other users, and follow them.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Community](./assets/Community.gif)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Following Page
+In the following page, the user can find and sort the users and playlists they follow.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Following](./assets/Following.gif)
 
-### `npm run eject`
+## My Profile Page
+In the my profile page, the user can edit their information and manage their followers. <br>
+This page is also used to find and edit or delete a user's own playlist.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![MyProfile](./assets/MyProfile.gif)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Playlist Page
+When a user clicks on a playlist, they are redirected to the playlist page. <br>
+In this page, the user can play the playlist's assets, or remove them and sort them if he is the owner of the playlist.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![Playlist](./assets/Playlist.gif)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Online Friends Tab
+The user can click on the blinking green dots to see which of their friends are online. <br>
+The user is notified when their friends come online or go offline, and can see and start playing the same asset the friend is watching.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+![OnlineFriends](./assets/OnlineFriends.gif)
