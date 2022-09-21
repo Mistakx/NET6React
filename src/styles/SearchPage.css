@@ -81,7 +81,8 @@
 }
 
 .search-body .spotify .btn-search,
-.search-body .spotify::placeholder {
+.search-body .spotify::placeholder,
+.text-spotify {
     color: var(--spotifyHighlightColor);
 }
 
@@ -91,7 +92,8 @@
 }
 
 .search-body .youtube .btn-search,
-.search-body .youtube::placeholder {
+.search-body .youtube::placeholder,
+.text-youtube  {
     color: var(--youtubeHighlightColor);
 }
 
@@ -101,7 +103,8 @@
 }
 
 .search-body .twitch .btn-search,
-.search-body .twitch::placeholder {
+.search-body .twitch::placeholder,
+.text-twitch  {
     color: var(--twitchHiglightColor);
 }
 
@@ -111,7 +114,8 @@
 }
 
 .search-body .vimeo .btn-search,
-.search-body .vimeo::placeholder {
+.search-body .vimeo::placeholder,
+.text-vimeo  {
     color: var(--vimeoHiglightColor);
 }
 
@@ -121,18 +125,9 @@
 }
 
 .search-body .soundCloud .btn-search,
-.search-body .soundCloud::placeholder {
+.search-body .soundCloud::placeholder,
+.text-soundCloud  {
     color: var(--soundCloudHiglightColor);
-}
-
-.search-body .facebook {
-    color: var(--facebookHiglightColor);
-    border-bottom-color: var(--facebookNeutralColor);
-}
-
-.search-body .facebook .btn-search,
-.search-body .facebook::placeholder {
-    color: var(--facebookHiglightColor);
 }
 
 .search-body .mixcloud {
@@ -141,7 +136,8 @@
 }
 
 .search-body .mixcloud .btn-search,
-.search-body .mixcloud::placeholder {
+.search-body .mixcloud::placeholder,
+.text-mixcloud  {
     color: var(--mixcloudHiglightColor);
 }
 
@@ -151,7 +147,8 @@
 }
 
 .search-body .dailymotion .btn-search,
-.search-body .dailymotion::placeholder {
+.search-body .dailymotion::placeholder,
+.text-dailymotion  {
     color: var(--dailymotionHiglightColor);
 }
 
@@ -161,7 +158,8 @@
 }
 
 .search-body .radio .btn-search,
-.search-body .radio::placeholder {
+.search-body .radio::placeholder,
+.text-radio  {
     color: var(--radioHiglightColor);
 }
 
@@ -170,7 +168,8 @@
 }
 
 .search-body .sparta .btn-search,
-.search-body .sparta::placeholder {
+.search-body .sparta::placeholder,
+.text-orion  {
     color: var(--spartaHiglightColor);
 }
 
@@ -462,9 +461,9 @@
 .card-img-overlay {
     color: #fff;
     background: rgba(7, 30, 61, 0.502);
-    height: 50px;
+    height: 45px;
     overflow: hidden;
-    margin: none;
+    /*margin: none;*/
     box-shadow: 0px 10px 10px 5px #071e3d80;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
@@ -482,6 +481,50 @@
 .card:not( :hover) .card-img-overlay {
     transition: 400ms;
 }
+
+.card-title {
+    height: 20px;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+}
+
+.card:hover .card-title h5 {
+    /*position: absolute;*/
+    /* Starting position */
+    /*-moz-transform:translateX(100%);*/
+    /*-webkit-transform:translateX(100%);    */
+    /*transform:translateX(100%);*/
+    /* Apply animation to this element */  
+    -moz-animation: scroll-left 5s linear infinite;
+    -webkit-animation: scroll-left 5s linear infinite;
+    animation: scroll-left 5s linear infinite;
+}
+
+   /* Move it (define the animation) */
+@-moz-keyframes scroll-left {
+    0%   { -moz-transform: translateX(0%); }
+    100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes scroll-left {
+    0%   { -webkit-transform: translateX(0%); }
+    100% { -webkit-transform: translateX(-100%); }
+}
+
+@keyframes scroll-left {
+    0%   { 
+        -moz-transform: translateX(0%); /* Browser bug fix */
+        -webkit-transform: translateX(0%); /* Browser bug fix */
+        transform: translateX(0%);       
+    }
+    100% { 
+        -moz-transform: translateX(-100%); /* Browser bug fix */
+        -webkit-transform: translateX(-100%); /* Browser bug fix */
+        transform: translateX(-100%); 
+    }
+}
+
+
 
 .results .card {
     max-width: 100%;

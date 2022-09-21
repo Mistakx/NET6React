@@ -60,7 +60,9 @@ function PodcastSearchItem(props: PodcastSearchItemProperties): JSX.Element {
                          setCurrentPlayerToClickedItem()
                      }}
                 >
-                    <h5 className="card-title text-uppercase text-truncate">{props.searchResult.title}</h5>
+                    <div className="card-title text-uppercase">
+                        <h5 className="flex-grow-1">{props.searchResult.title}</h5>
+                    </div>
                     <div className="card-text text-wrap">{props.searchResult.creator}</div>
                     {monthlyViewsAmount}
                     {weeklyViewsAmount}

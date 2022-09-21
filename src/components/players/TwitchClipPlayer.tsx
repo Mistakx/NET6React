@@ -3,7 +3,7 @@ import React from "react";
 
 export function TwitchClipPlayer(props: TwitchClipPlayerProperties): JSX.Element {
 
-    const parent = "&parent=orionplaylists.ddns.net"
+    const parent = "&parent=localhost"
         // + process.env.REACT_APP_HOSTING_URL
 
     return (

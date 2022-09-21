@@ -61,7 +61,7 @@ function LoginPage(): JSX.Element {
             <div className="container" data-aos="zoom-in" data-aos-delay="100">
 
                 <div className="row">
-                    <div className="col-md-4 offset-md-3 text-center">
+                    <div className="col-md-4 offset-md-4 text-center">
                         <h1>Login</h1>
                         <div className="form-wrapper mt-5">
 
@@ -80,7 +80,7 @@ function LoginPage(): JSX.Element {
                             }>
 
                                 <div className="form-group" data-aos="zoom-in" data-aos-delay="100">
-                                    <input type="text" className="form-control form-control-lg" placeholder="Email"
+                                    <input type="email" className="form-control form-control-lg" placeholder="Email" required
                                            onChange={
                                                (e) => {
                                                    setLoginEmail(e.target.value)
@@ -90,7 +90,7 @@ function LoginPage(): JSX.Element {
                                 </div>
 
                                 <div className="form-group" data-aos="zoom-in" data-aos-delay="200">
-                                    <input type="password" className="form-control form-control-lg"
+                                    <input type="password" className="form-control form-control-lg" required
                                            placeholder="Password"
                                            onChange={
                                                (e) => {
